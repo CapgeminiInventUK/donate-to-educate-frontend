@@ -4,6 +4,9 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Layout from '../Layout/Layout';
 import { Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
+import Footer from '../Footer/Footer';
 
 const breakpoints = {
   screenSmall: '400px',
@@ -22,7 +25,13 @@ const App = (): JSX.Element => {
             {routes.map(({ element, path }, index) => (
               <Route
                 key={index}
-                element={<Layout page={element} header={isMobile ? <></> : <></>} footer={<></>} />}
+                element={
+                  <Layout
+                    page={element}
+                    header={isMobile ? <Sidebar /> : <Navbar />}
+                    footer={<Footer />}
+                  />
+                }
                 path={path}
               />
             ))}

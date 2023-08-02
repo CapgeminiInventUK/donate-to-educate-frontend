@@ -11,7 +11,7 @@ const Layout: FC<LayoutProps> = ({ header, footer, page }): ReactElement => {
   return (
     <div className={styles.layout}>
       <div className={styles.header}>{header}</div>
-      <div className={styles.content}>{page}</div>
+      <main className={styles.content}>{page}</main>
       <div className={styles.footer}>{footer}</div>
     </div>
   );
