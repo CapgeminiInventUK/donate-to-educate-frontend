@@ -38,7 +38,10 @@ const Sidebar: FC = (): ReactElement => {
   return (
     <nav className={styles.container} ref={containerRef}>
       <div className={styles.nav}>
-        <MenuIcon className={styles.menuIcon} onClick={(): void => setIsDrawerOpen(true)} />
+        <MenuIcon
+          className={styles.menuIcon}
+          onClick={(): void => setIsDrawerOpen(!isDrawerOpen)}
+        />
         <LogoBlue className={styles.logoBlue} onClick={(): void => navigate(Paths.HOME)} />
         <Button
           theme="darkBlue"

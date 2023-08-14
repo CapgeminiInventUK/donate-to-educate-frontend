@@ -56,15 +56,21 @@
 }
 
 .links {
+  margin-top: 50px;
+  user-select: none;
   list-style-type: none;
   padding: 0;
 
   .link {
+    width: fit-content;
     margin-top: 40px;
+    padding: 10px 12px 10px 12px;
 
     a {
       text-decoration: none;
       color: g.$primary-white;
+      font-weight: 700;
+      font-size: 16px;
 
       &:hover {
         text-decoration: underline g.$primary-white 3px;
@@ -74,11 +80,14 @@
   }
 
   .active {
+    border-radius: 3px;
+    background-color: g.$primary-white;
+
     a {
-      color: g.$primary-light-blue;
+      color: g.$primary-dark-blue;
 
       &:hover {
-        text-decoration: underline g.$primary-light-blue 3px;
+        text-decoration: underline g.$primary-dark-blue 3px;
         text-underline-offset: 5px;
       }
     }
