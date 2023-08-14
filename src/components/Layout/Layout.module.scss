@@ -1,3 +1,5 @@
+@use '../../assets/global.scss' as g;
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -6,4 +8,8 @@
 
 .footer {
   margin-top: auto;
+}
+
+.content {
+  margin-top: g.$nav-height;
 }

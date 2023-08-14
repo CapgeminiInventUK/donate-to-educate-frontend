@@ -1,5 +1,94 @@
+@use '../../assets/global.scss' as g;
+
 .container {
-  background: white;
+  background: g.$primary-white;
   width: 100%;
+  height: g.$nav-height;
+  position: fixed;
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.logoBlue {
   height: 50px;
+  cursor: pointer;
+}
+
+.logoWhite {
+  height: 60px;
+  cursor: pointer;
+}
+
+.drawer {
+  height: calc(100% - g.$nav-height);
+  background-color: g.$primary-dark-blue;
+  position: fixed;
+  width: 60%;
+  min-width: 300px;
+  top: g.$nav-height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drawer::after {
+  content: '';
+  width: 8px;
+  height: 100%;
+  top: 0;
+  right: -8px;
+  position: absolute;
+  background-color: g.$primary-mid-blue;
+}
+
+.closeIcon {
+  padding-top: 10px;
+  padding-right: 10px;
+  align-self: self-end;
+  cursor: pointer;
+}
+
+.links {
+  list-style-type: none;
+  padding: 0;
+
+  .link {
+    padding-top: 40px;
+
+    a {
+      text-decoration: none;
+      color: g.$primary-white;
+
+      &:hover {
+        text-decoration: underline g.$primary-white 3px;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+}
+
+.button {
+  padding: 12px 40px 12px 40px;
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.menuIcon {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 400px) {
+  .button {
+    display: none;
+  }
 }

@@ -1,5 +1,58 @@
+@use '../../assets/global.scss' as g;
+
 .container {
   background: white;
   width: 100%;
+  height: g.$nav-height;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  padding-right: 120px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+
+  .link {
+    padding-left: 40px;
+    font-weight: 700;
+    font-size: 16px;
+
+    a {
+      text-decoration: none;
+      color: g.$primary-mid-blue;
+
+      &:hover {
+        text-decoration: underline g.$primary-mid-blue 3px;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+}
+
+.logoBlue {
   height: 50px;
+  padding-left: 120px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+  .logoBlue {
+    padding-left: 60px;
+  }
+
+  .links {
+    padding-right: 60px;
+
+    .link {
+      padding-left: 20px;
+    }
+  }
 }

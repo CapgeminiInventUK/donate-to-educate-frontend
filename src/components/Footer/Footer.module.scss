@@ -1,5 +1,7 @@
+@use '../../assets/global.scss' as g;
+
 .container {
-  background: white;
+  background: g.$primary-dark-blue;
   width: 100%;
   height: 50px;
   margin-top: auto;
@@ -7,4 +9,8 @@
 
 footer {
   margin-top: auto;
+}
+
+.logo {
+  height: 50px;
 }
