@@ -5,7 +5,7 @@ import LogoBlue from '../../assets/logo/LogoBlue';
 import LogoWhite from '../../assets/logo/LogoWhite';
 import CloseIcon from '../../assets/navigation/CloseIcon';
 import routes from '../../config/routes';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import Paths from '../../config/paths';
 
@@ -20,6 +20,7 @@ const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
@@ -55,7 +56,12 @@ const Sidebar: FC = (): ReactElement => {
               {routes.map(({ name, path }) => {
                 if (name) {
                   return (
-                    <li key={name} className={styles.link}>
+                    <li
+                      key={name}
+                      className={`${styles.link} ${
+                        pathname === (path as string) ? styles.active : ''
+                      }`}
+                    >
                       <Link to={path}>{name}</Link>
                     </li>
                   );

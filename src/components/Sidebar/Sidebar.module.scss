@@ -60,7 +60,7 @@
   padding: 0;
 
   .link {
-    padding-top: 40px;
+    margin-top: 40px;
 
     a {
       text-decoration: none;
@@ -68,6 +68,17 @@
 
       &:hover {
         text-decoration: underline g.$primary-white 3px;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+
+  .active {
+    a {
+      color: g.$primary-light-blue;
+
+      &:hover {
+        text-decoration: underline g.$primary-light-blue 3px;
         text-underline-offset: 5px;
       }
     }
