@@ -18,11 +18,6 @@ const routes = [
     name: 'Contact',
   },
   {
-    path: Paths.COMING_SOON,
-    element: <Home />,
-    name: 'Coming soon',
-  },
-  {
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
