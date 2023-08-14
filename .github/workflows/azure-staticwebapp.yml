@@ -21,7 +21,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ env.API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ secrets.API_TOKEN }}
           action: 'upload'
           app_location: ${{ env.APP_LOCATION }}
           app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
