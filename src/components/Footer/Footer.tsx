@@ -2,6 +2,8 @@ import { ReactElement, FC } from 'react';
 import styles from './Footer.module.scss';
 import LogoWhite from '../../assets/logo/LogoWhite';
 import { Link, useNavigate } from 'react-router-dom';
+import Paths from '../../config/paths';
+import Button from '../Button/Button';
 
 const Footer: FC = (): ReactElement => {
   const navigate = useNavigate();
@@ -9,18 +11,21 @@ const Footer: FC = (): ReactElement => {
     <footer className={styles.container}>
       <div className={styles.footerHeader}>
         <LogoWhite className={styles.logo} />
-        <button onClick={(): void => navigate('/contact')} className={styles.button}>
-          Contact us
-        </button>
+        <Button
+          theme="midBlue"
+          text="Contact us"
+          onClick={(): void => navigate(Paths.CONTACT)}
+          className={styles.fitContent769}
+        />
       </div>
       <div className={styles.links}>
-        <Link to={'/'} className={styles.link}>
+        <Link to={Paths.HOME} className={styles.link}>
           Accessibility statement
         </Link>
-        <Link to={'/'} className={styles.link}>
+        <Link to={Paths.HOME} className={styles.link}>
           Privacy Policy
         </Link>
-        <Link to={'/'} className={styles.link}>
+        <Link to={Paths.HOME} className={styles.link}>
           Terms and conditions
         </Link>
       </div>

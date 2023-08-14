@@ -48,7 +48,7 @@
   flex-direction: column;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
   .links {
     flex-direction: row;
     padding-top: 10px;
@@ -62,20 +62,9 @@
     flex-direction: row;
     align-items: center;
 
-    .button {
+    .fitContent769 {
       height: fit-content;
       margin-left: 40px;
     }
   }
-}
-
-.button {
-  padding: 12px 40px;
-  border-radius: 5px;
-  background: g.$primary-mid-blue;
-  font-size: 16px;
-  color: g.$primary-white;
-  font-weight: 700;
-  border-color: g.$primary-mid-blue;
-  cursor: pointer;
 }

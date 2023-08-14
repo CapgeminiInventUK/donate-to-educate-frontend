@@ -74,22 +74,12 @@
   }
 }
 
-.button {
-  padding: 12px 40px 12px 40px;
-  background: g.$primary-dark-blue;
-  color: g.$primary-white;
-  border-radius: 5px;
-  font-weight: 700;
-  font-size: 16px;
-  border-color: g.$primary-mid-blue;
-}
-
 .menuIcon {
   cursor: pointer;
 }
 
 @media only screen and (max-width: 400px) {
-  .button {
+  .hide400 {
     display: none;
   }
 }

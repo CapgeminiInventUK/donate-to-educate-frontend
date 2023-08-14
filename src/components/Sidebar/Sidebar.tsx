@@ -6,6 +6,8 @@ import LogoWhite from '../../assets/logo/LogoWhite';
 import CloseIcon from '../../assets/navigation/CloseIcon';
 import routes from '../../config/routes';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from '../Button/Button';
+import Paths from '../../config/paths';
 
 const checkIfRefContainsMouseEvent = (
   ref: RefObject<HTMLInputElement>,
@@ -36,14 +38,19 @@ const Sidebar: FC = (): ReactElement => {
     <nav className={styles.container} ref={containerRef}>
       <div className={styles.nav}>
         <MenuIcon className={styles.menuIcon} onClick={(): void => setIsDrawerOpen(true)} />
-        <LogoBlue className={styles.logoBlue} onClick={(): void => navigate('/')} />
-        <button className={styles.button}>Donate</button>
+        <LogoBlue className={styles.logoBlue} onClick={(): void => navigate(Paths.HOME)} />
+        <Button
+          theme="darkBlue"
+          text="Donate"
+          onClick={(): void => navigate(Paths.DONATE)}
+          className={styles.hide400}
+        />
       </div>
       {isDrawerOpen && (
         <div className={styles.drawer}>
           <CloseIcon className={styles.closeIcon} onClick={(): void => setIsDrawerOpen(false)} />
           <div className={styles.navContainer}>
-            <LogoWhite className={styles.logoWhite} onClick={(): void => navigate('/')} />
+            <LogoWhite className={styles.logoWhite} onClick={(): void => navigate(Paths.HOME)} />
             <ul className={styles.links}>
               {routes.map(({ name, path }) => {
                 if (name) {
