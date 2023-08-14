@@ -7,10 +7,12 @@ const Footer: FC = (): ReactElement => {
   const navigate = useNavigate();
   return (
     <footer className={styles.container}>
-      <LogoWhite className={styles.logo} />
-      <button onClick={(): void => navigate('/contact')} className={styles.button}>
-        Contact us
-      </button>
+      <div className={styles.footerHeader}>
+        <LogoWhite className={styles.logo} />
+        <button onClick={(): void => navigate('/contact')} className={styles.button}>
+          Contact us
+        </button>
+      </div>
       <div className={styles.links}>
         <Link to={'/'} className={styles.link}>
           Accessibility statement

@@ -43,6 +43,32 @@
   }
 }
 
+.footerHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .links {
+    flex-direction: row;
+    padding-top: 10px;
+
+    .link {
+      padding-left: 20px;
+    }
+  }
+
+  .footerHeader {
+    flex-direction: row;
+    align-items: center;
+
+    .button {
+      height: fit-content;
+      margin-left: 40px;
+    }
+  }
+}
+
 .button {
   padding: 12px 40px;
   border-radius: 5px;
