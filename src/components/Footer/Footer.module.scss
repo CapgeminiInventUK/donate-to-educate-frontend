@@ -48,7 +48,7 @@
   flex-direction: column;
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: calc(g.$screen-medium + 1px)) {
   .links {
     flex-direction: row;
     padding-top: 10px;

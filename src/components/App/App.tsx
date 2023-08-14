@@ -7,12 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import Footer from '../Footer/Footer';
-
-const breakpoints = {
-  screenSmall: '400px',
-  screenMedium: '768px',
-  screenLarge: '1200px',
-};
+import { breakpoints } from '../../utils/globals';
 
 const App = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
