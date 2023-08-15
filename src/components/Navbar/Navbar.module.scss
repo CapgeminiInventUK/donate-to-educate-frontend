@@ -26,16 +26,25 @@
     margin-left: 40px;
     font-weight: 700;
     font-size: 16px;
+    text-align: center;
 
     a {
       text-decoration: none;
       color: g.$primary-dark-blue;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         text-decoration: underline g.$primary-dark-blue 3px;
         text-underline-offset: 5px;
       }
     }
+  }
+
+  .navButton {
+    margin-left: 40px;
   }
 
   .active {
@@ -61,14 +70,36 @@
 
 @media only screen and (max-width: g.$screen-large) {
   .logoBlue {
-    padding-left: 60px;
+    padding-left: 40px;
   }
 
   .links {
-    padding-right: 60px;
+    padding-right: 40px;
 
     .link {
       margin-left: 20px;
+    }
+
+    .navButton {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media only screen and (min-width: g.$screen-large) and (max-width: g.$screen-xlarge) {
+  .logoBlue {
+    padding-left: 80px;
+  }
+
+  .links {
+    padding-right: 80px;
+
+    .link {
+      margin-left: 30px;
+    }
+
+    .navButton {
+      margin-left: 30px;
     }
   }
 }

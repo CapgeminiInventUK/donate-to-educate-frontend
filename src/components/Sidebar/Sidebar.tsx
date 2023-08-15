@@ -48,6 +48,7 @@ const Sidebar: FC = (): ReactElement => {
           text="Donate"
           onClick={(): void => navigate(Paths.DONATE)}
           className={styles.hide400}
+          disabled
         />
       </div>
       {isDrawerOpen && (

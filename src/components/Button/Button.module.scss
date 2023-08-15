@@ -21,3 +21,11 @@
   color: g.$primary-white;
   border-color: g.$primary-mid-blue;
 }
+
+.disabled {
+  background-color: #e5e6eb;
+  border-color: #f9fafb;
+  cursor: not-allowed;
+  color: #596975;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
