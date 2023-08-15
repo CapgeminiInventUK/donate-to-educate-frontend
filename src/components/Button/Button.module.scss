@@ -23,9 +23,9 @@
 }
 
 .disabled {
-  background-color: #e5e6eb;
-  border-color: #f9fafb;
+  background-color: g.$greyscale-disabled;
+  border-color: g.$greyscale-disabled-border;
   cursor: not-allowed;
-  color: #596975;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: g.$disabled-font;
+  box-shadow: 0px 4px 4px 0px g.$box-shadow-black;
 }
