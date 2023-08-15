@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState, useEffect, RefObject, useRef } from 'react';
+import { ReactElement, FC, useState, useEffect, useRef } from 'react';
 import styles from './Sidebar.module.scss';
 import MenuIcon from '../../assets/navigation/MenuIcon';
 import LogoBlue from '../../assets/logo/LogoBlue';
@@ -8,13 +8,7 @@ import routes from '../../config/routes';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import Paths from '../../config/paths';
-
-const checkIfRefContainsMouseEvent = (
-  ref: RefObject<HTMLInputElement>,
-  event: MouseEvent
-): boolean => {
-  return ref.current !== null && ref.current.contains(event.target as Node);
-};
+import { checkIfRefContainsMouseEvent } from '../../utils/ref';
 
 const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -58,18 +52,33 @@ const Sidebar: FC = (): ReactElement => {
             <LogoWhite className={styles.logoWhite} onClick={(): void => navigate(Paths.HOME)} />
             <ul className={styles.links}>
               {routes.map(({ name, path }) => {
-                if (name) {
+                if (!name) {
+                  return;
+                }
+
+                if (path === Paths.DONATE) {
                   return (
-                    <li
+                    <Button
                       key={name}
-                      className={`${styles.link} ${
-                        pathname === (path as string) ? styles.active : ''
-                      }`}
-                    >
-                      <Link to={path}>{name}</Link>
-                    </li>
+                      text={name}
+                      theme="midBlue"
+                      onClick={(): void => navigate(Paths.DONATE)}
+                      className={styles.navButton}
+                      disabled
+                    ></Button>
                   );
                 }
+
+                return (
+                  <li
+                    key={name}
+                    className={`${styles.link} ${
+                      pathname === (path as string) ? styles.active : ''
+                    }`}
+                  >
+                    <Link to={path}>{name}</Link>
+                  </li>
+                );
               })}
             </ul>
           </div>

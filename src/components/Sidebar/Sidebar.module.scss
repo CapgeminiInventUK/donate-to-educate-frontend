@@ -98,6 +98,10 @@
   cursor: pointer;
 }
 
+.navButton {
+  margin-top: 40px;
+}
+
 @media only screen and (max-width: g.$screen-small) {
   .hide400 {
     display: none;
