@@ -6,26 +6,34 @@
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  line-height: 11px;
 }
 
 .darkBlue {
   @extend %button;
   background: g.$primary-dark-blue;
   color: g.$primary-white;
-  border-color: g.$primary-dark-blue;
+  border: g.$primary-dark-blue 1px solid;
 }
 
 .midBlue {
   @extend %button;
   background: g.$primary-mid-blue;
   color: g.$primary-white;
-  border-color: g.$primary-mid-blue;
+  border: g.$primary-mid-blue 1px solid;
 }
 
 .disabled {
   background-color: g.$greyscale-disabled;
-  border-color: g.$greyscale-disabled-border;
+  border: g.$greyscale-disabled-border 1px solid;
   cursor: not-allowed;
   color: g.$disabled-font;
   box-shadow: 0px 4px 4px 0px g.$box-shadow-black;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  %button {
+    line-height: 16px;
+  }
 }
