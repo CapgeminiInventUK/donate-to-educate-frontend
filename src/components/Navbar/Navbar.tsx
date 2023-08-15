@@ -8,8 +8,6 @@ import Paths from '../../config/paths';
 const Navbar: FC = (): ReactElement => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  // eslint-disable-next-line no-console
-  console.log(pathname);
 
   return (
     <nav className={styles.container}>

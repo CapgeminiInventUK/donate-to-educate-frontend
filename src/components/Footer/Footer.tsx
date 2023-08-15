@@ -29,7 +29,7 @@ const Footer: FC = (): ReactElement => {
           Terms and conditions
         </Link>
       </div>
-      <p>Educate to Donate &copy;</p>
+      <p>Donate to Educate &copy;</p>
     </footer>
   );
 };
