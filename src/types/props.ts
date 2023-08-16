@@ -6,8 +6,10 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
+export type Themes = 'darkBlue' | 'midBlue';
+
 export interface ButtonProps {
-  theme: 'darkBlue' | 'midBlue';
+  theme: Themes;
   onClick: () => void;
   text: string;
   className?: string;
@@ -34,4 +36,12 @@ export interface SvgProps {
 export interface HeaderProps {
   text: string;
   className?: string;
+}
+
+export interface NavLinksProps {
+  theme: Themes;
+  activeClassName: string;
+  className: string;
+  buttonClassName: string;
+  linkClassName: string;
 }

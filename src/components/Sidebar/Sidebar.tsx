@@ -4,17 +4,16 @@ import MenuIcon from '../../assets/navigation/MenuIcon';
 import LogoBlue from '../../assets/logo/LogoBlue';
 import LogoWhite from '../../assets/logo/LogoWhite';
 import CloseIcon from '../../assets/navigation/CloseIcon';
-import routes from '../../config/routes';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import Paths from '../../config/paths';
 import useOnClickAwayListener from '../../hooks/useOnClickAwayListener';
+import NavLinks from '../NavLinks/NavLinks';
 
 const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   useOnClickAwayListener(
     containerRef,
@@ -42,37 +41,13 @@ const Sidebar: FC = (): ReactElement => {
           <CloseIcon className={styles.closeIcon} onClick={(): void => setIsDrawerOpen(false)} />
           <div className={styles.navContainer}>
             <LogoWhite className={styles.logoWhite} onClick={(): void => navigate(Paths.HOME)} />
-            <ul className={styles.links}>
-              {routes.map(({ name, path }) => {
-                if (!name) {
-                  return;
-                }
-
-                if (path === Paths.DONATE) {
-                  return (
-                    <Button
-                      key={name}
-                      text={name}
-                      theme="midBlue"
-                      onClick={(): void => navigate(Paths.DONATE)}
-                      className={styles.navButton}
-                      disabled
-                    ></Button>
-                  );
-                }
-
-                return (
-                  <li
-                    key={name}
-                    className={`${styles.link} ${
-                      pathname === (path as string) ? styles.active : ''
-                    }`}
-                  >
-                    <Link to={path}>{name}</Link>
-                  </li>
-                );
-              })}
-            </ul>
+            <NavLinks
+              theme="midBlue"
+              className={styles.links}
+              linkClassName={styles.link}
+              activeClassName={styles.active}
+              buttonClassName={styles.navButton}
+            />
           </div>
         </div>
       )}
