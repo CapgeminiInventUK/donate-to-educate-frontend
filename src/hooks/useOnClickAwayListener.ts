@@ -1,4 +1,5 @@
 import { RefObject, useEffect } from 'react';
+import { checkIfRefContainsMouseEvent } from '../utils/ref';
 
 const useOnClickAwayListener = (
   ref: RefObject<HTMLElement>,
@@ -6,7 +7,7 @@ const useOnClickAwayListener = (
 ): void => {
   useEffect(() => {
     const listener = (event: MouseEvent): void => {
-      if (!ref.current || ref.current.contains(event.target as Node)) {
+      if (checkIfRefContainsMouseEvent(ref, event)) {
         return;
       }
       if (Number(event.clientX) + 7 >= window.innerWidth) {

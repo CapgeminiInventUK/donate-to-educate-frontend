@@ -11,7 +11,7 @@ export type Themes = 'darkBlue' | 'midBlue';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
-  text: string;
+  text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
 }

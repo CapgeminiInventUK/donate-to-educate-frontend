@@ -6,6 +6,8 @@ import Button from '../Button/Button';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '../../utils/globals';
 import { NavLinksProps } from '../../types/props';
+import LogoGrey from '../../assets/logo/LogoGrey';
+import styles from './NavLinks.module.scss';
 
 const NavLinks: FC<NavLinksProps> = ({
   theme,
@@ -26,10 +28,16 @@ const NavLinks: FC<NavLinksProps> = ({
         }
 
         if (path === Paths.DONATE) {
+          const text = isMobile ? name : `${name} (coming soon)`;
           return (
             <Button
               key={name}
-              text={isMobile ? name : `${name} (coming soon)`}
+              text={
+                <div className={styles.buttonContent}>
+                  <LogoGrey className={styles.logoGrey} />
+                  {text}
+                </div>
+              }
               theme={theme}
               onClick={(): void => navigate(Paths.DONATE)}
               className={buttonClassName}

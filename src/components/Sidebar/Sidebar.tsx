@@ -8,6 +8,7 @@ import Paths from '../../config/paths';
 import useOnClickAwayListener from '../../hooks/useOnClickAwayListener';
 import NavLinks from '../NavLinks/NavLinks';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
+import LogoGrey from '../../assets/logo/LogoGrey';
 
 const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -29,7 +30,12 @@ const Sidebar: FC = (): ReactElement => {
         <ClickableLogo colour="blue" className={styles.logoBlue} />
         <Button
           theme="darkBlue"
-          text="Donate"
+          text={
+            <div className={styles.buttonContent}>
+              <LogoGrey className={styles.logoGrey} />
+              Donate
+            </div>
+          }
           onClick={(): void => navigate(Paths.DONATE)}
           className={styles.hide400}
           disabled
