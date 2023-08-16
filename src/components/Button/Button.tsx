@@ -1,13 +1,6 @@
 import { ReactElement, FC } from 'react';
 import styles from './Button.module.scss';
-
-interface ButtonProps {
-  theme: 'darkBlue' | 'midBlue';
-  onClick: () => void;
-  text: string;
-  className?: string;
-  disabled?: boolean;
-}
+import { ButtonProps } from '../types/props';
 
 const Button: FC<ButtonProps> = ({
   onClick,

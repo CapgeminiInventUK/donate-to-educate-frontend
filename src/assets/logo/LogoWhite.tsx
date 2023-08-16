@@ -1,9 +1,6 @@
-interface LogoProps {
-  className: string;
-  onClick?: () => void;
-}
+import { SvgProps } from '../../components/types/props';
 
-const LogoWhite = ({ className, onClick }: LogoProps): JSX.Element => (
+const LogoWhite = ({ className, onClick }: SvgProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 304 103"

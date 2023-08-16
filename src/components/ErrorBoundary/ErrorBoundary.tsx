@@ -1,15 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import SomethingWentWrong from '../../pages/SomethingWentWrong/SomethingWentWrong';
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-  error?: Error;
-  errorInfo?: ErrorInfo;
-}
-
-interface ErrorBoundaryProps {
-  children?: ReactNode;
-}
+import { ErrorBoundaryProps } from '../types/props';
+import { ErrorBoundaryState } from '../types/data';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   public state: ErrorBoundaryState = {

@@ -1,0 +1,30 @@
+@use '../../assets/global.scss' as g;
+
+.councilBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: g.$primary-light-blue;
+  padding: 40px 20px;
+
+  .title {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: calc(g.$screen-medium + 1px)) {
+  .councilBanner {
+    flex-direction: row;
+    padding: 89px 222px;
+
+    .title {
+      padding-bottom: 0;
+    }
+  }
+
+  .paddingLeft {
+    padding-left: 74px;
+  }
+}

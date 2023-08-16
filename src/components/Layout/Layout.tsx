@@ -1,11 +1,6 @@
-import { ReactElement, FC, ReactNode } from 'react';
+import { ReactElement, FC } from 'react';
 import styles from './Layout.module.scss';
-
-export interface LayoutProps {
-  header?: ReactNode;
-  footer?: ReactNode;
-  page: ReactNode;
-}
+import { LayoutProps } from '../types/props';
 
 const Layout: FC<LayoutProps> = ({ header, footer, page }): ReactElement => {
   return (
