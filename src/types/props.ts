@@ -45,3 +45,8 @@ export interface NavLinksProps {
   buttonClassName?: string;
   linkClassName?: string;
 }
+
+export interface ClickableLogoProps {
+  colour: 'white' | 'blue';
+  className: string;
+}

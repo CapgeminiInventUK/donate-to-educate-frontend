@@ -1,16 +1,12 @@
 import { ReactElement, FC } from 'react';
 import styles from './Navbar.module.scss';
-import LogoBlue from '../../assets/logo/LogoBlue';
-import { useNavigate } from 'react-router-dom';
-import Paths from '../../config/paths';
 import NavLinks from '../NavLinks/NavLinks';
+import ClickableLogo from '../ClickableLogo/ClickableLogo';
 
 const Navbar: FC = (): ReactElement => {
-  const navigate = useNavigate();
-
   return (
     <nav className={styles.container}>
-      <LogoBlue className={styles.logoBlue} onClick={(): void => navigate(Paths.HOME)} />
+      <ClickableLogo colour="blue" className={styles.logoBlue} />
       <NavLinks
         theme="darkBlue"
         className={styles.links}
