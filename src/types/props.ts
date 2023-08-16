@@ -40,8 +40,8 @@ export interface HeaderProps {
 
 export interface NavLinksProps {
   theme: Themes;
-  activeClassName: string;
-  className: string;
-  buttonClassName: string;
-  linkClassName: string;
+  activeClassName?: string;
+  className?: string;
+  buttonClassName?: string;
+  linkClassName?: string;
 }

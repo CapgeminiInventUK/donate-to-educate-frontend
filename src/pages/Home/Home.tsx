@@ -8,7 +8,6 @@ const Home = (): JSX.Element => {
     <div className={styles.container}>
       <div className={styles.councilBanner}>
         <Header className={styles.title} text="Supporting over 60 schools in West Sussex" />
-
         <Image
           image={westSussexCouncilLogo}
           alt="west sussex county council logo"
