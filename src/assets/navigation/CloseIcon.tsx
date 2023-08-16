@@ -1,4 +1,4 @@
-import { SvgProps } from '../../components/types/props';
+import { SvgProps } from '../../types/props';
 
 const CloseIcon = ({ className, onClick }: SvgProps): JSX.Element => (
   <svg

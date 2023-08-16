@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 
 export const checkIfRefContainsMouseEvent = (
-  ref: RefObject<HTMLInputElement>,
+  ref: RefObject<HTMLElement>,
   event: MouseEvent
 ): boolean => {
   return ref.current !== null && ref.current.contains(event.target as Node);

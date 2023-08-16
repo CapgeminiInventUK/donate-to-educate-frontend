@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState, useEffect, useRef } from 'react';
+import { ReactElement, FC, useState, useRef, useCallback } from 'react';
 import styles from './Sidebar.module.scss';
 import MenuIcon from '../../assets/navigation/MenuIcon';
 import LogoBlue from '../../assets/logo/LogoBlue';
@@ -8,26 +8,18 @@ import routes from '../../config/routes';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import Paths from '../../config/paths';
-import { checkIfRefContainsMouseEvent } from '../../utils/ref';
+import useOnClickAwayListener from '../../hooks/useOnClickAwayListener';
 
 const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const containerRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent): void => {
-      if (!checkIfRefContainsMouseEvent(containerRef, event)) {
-        setIsDrawerOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [containerRef, isDrawerOpen]);
+  useOnClickAwayListener(
+    containerRef,
+    useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen])
+  );
 
   return (
     <nav className={styles.container} ref={containerRef}>

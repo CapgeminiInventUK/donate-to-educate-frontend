@@ -30,3 +30,8 @@ export interface SvgProps {
   className: string;
   onClick?: () => void;
 }
+
+export interface HeaderProps {
+  text: string;
+  className?: string;
+}
