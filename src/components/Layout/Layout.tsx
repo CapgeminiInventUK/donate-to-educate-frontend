@@ -1,6 +1,6 @@
 import { ReactElement, FC } from 'react';
 import styles from './Layout.module.scss';
-import { LayoutProps } from '../../types/props';
+import { LayoutProps } from '@/types/props';
 
 const Layout: FC<LayoutProps> = ({ header, footer, page }): ReactElement => {
   return (

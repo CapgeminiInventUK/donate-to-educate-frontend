@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
-import SomethingWentWrong from '../../pages/SomethingWentWrong/SomethingWentWrong';
-import { ErrorBoundaryProps } from '../../types/props';
-import { ErrorBoundaryState } from '../../types/data';
+import SomethingWentWrong from '@pages/SomethingWentWrong/SomethingWentWrong';
+import { ErrorBoundaryProps } from '@/types/props';
+import { ErrorBoundaryState } from '@/types/data';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   public state: ErrorBoundaryState = {

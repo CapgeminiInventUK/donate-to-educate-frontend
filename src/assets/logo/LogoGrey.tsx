@@ -1,4 +1,4 @@
-import { SvgProps } from '../../types/props';
+import { SvgProps } from '@/types/props';
 
 const LogoGrey = ({ className, onClick }: SvgProps): JSX.Element => (
   <svg

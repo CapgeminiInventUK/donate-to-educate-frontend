@@ -1,7 +1,7 @@
 import styles from './Home.module.scss';
-import Image from '../../components/Image/Image';
-import westSussexCouncilLogo from '../../assets/logo/WestSussexCouncilLogo.webp';
-import Header from '../../components/Header/Header';
+import Image from '@components/Image/Image';
+import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
+import Header from '@components/Header/Header';
 
 const Home = (): JSX.Element => {
   return (

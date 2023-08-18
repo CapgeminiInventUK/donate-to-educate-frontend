@@ -1,14 +1,14 @@
 import { ReactElement, FC, useState, useRef, useCallback } from 'react';
 import styles from './Sidebar.module.scss';
-import MenuIcon from '../../assets/navigation/MenuIcon';
-import CloseIcon from '../../assets/navigation/CloseIcon';
+import MenuIcon from '@assets/navigation/MenuIcon';
+import CloseIcon from '@assets/navigation/CloseIcon';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
-import Paths from '../../config/paths';
-import useOnClickAwayListener from '../../hooks/useOnClickAwayListener';
+import Paths from '@/config/paths';
+import useOnClickAwayListener from '@hooks/useOnClickAwayListener';
 import NavLinks from '../NavLinks/NavLinks';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
-import LogoGrey from '../../assets/logo/LogoGrey';
+import LogoGrey from '@assets/logo/LogoGrey';
 
 const Sidebar: FC = (): ReactElement => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

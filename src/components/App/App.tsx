@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import routes from '../../config/routes';
+import routes from '@/config/routes';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Layout from '../Layout/Layout';
 import { Suspense } from 'react';
@@ -7,7 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import Footer from '../Footer/Footer';
-import { breakpoints } from '../../utils/globals';
+import { breakpoints } from '@utils/globals';
 
 const App = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });

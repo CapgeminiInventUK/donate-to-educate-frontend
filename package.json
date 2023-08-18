@@ -11,14 +11,14 @@
     "coverage": "jest --coverage",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "is-ci || husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json,css,scss,md,yml,yaml}": [
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,yml,yaml}": [
       "npm run format:fix"
     ],
-    "**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "npm run lint"
     ]
   },

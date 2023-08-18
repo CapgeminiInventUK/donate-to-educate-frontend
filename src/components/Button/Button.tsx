@@ -1,6 +1,6 @@
 import { ReactElement, FC } from 'react';
 import styles from './Button.module.scss';
-import { ButtonProps } from '../../types/props';
+import { ButtonProps } from '@/types/props';
 
 const Button: FC<ButtonProps> = ({
   onClick,

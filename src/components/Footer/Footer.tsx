@@ -1,8 +1,8 @@
 import { ReactElement, FC } from 'react';
 import styles from './Footer.module.scss';
-import LogoWhite from '../../assets/logo/LogoWhite';
+import LogoWhite from '@assets/logo/LogoWhite';
 import { Link, useNavigate } from 'react-router-dom';
-import Paths from '../../config/paths';
+import Paths from '@/config/paths';
 import Button from '../Button/Button';
 
 const Footer: FC = (): ReactElement => {

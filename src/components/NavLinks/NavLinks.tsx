@@ -1,12 +1,12 @@
 import { ReactElement, FC } from 'react';
-import routes from '../../config/routes';
+import routes from '@/config/routes';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Paths from '../../config/paths';
+import Paths from '@/config/paths';
 import Button from '../Button/Button';
 import { useMediaQuery } from 'react-responsive';
-import { breakpoints } from '../../utils/globals';
-import { NavLinksProps } from '../../types/props';
-import LogoGrey from '../../assets/logo/LogoGrey';
+import { breakpoints } from '@utils/globals';
+import { NavLinksProps } from '@/types/props';
+import LogoGrey from '@assets/logo/LogoGrey';
 import styles from './NavLinks.module.scss';
 
 const NavLinks: FC<NavLinksProps> = ({

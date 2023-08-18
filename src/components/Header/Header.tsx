@@ -1,7 +1,7 @@
 import { ReactElement, FC } from 'react';
-import { HeaderProps } from '../../types/props';
+import { HeaderProps } from '@/types/props';
 import { useMediaQuery } from 'react-responsive';
-import { breakpoints } from '../../utils/globals';
+import { breakpoints } from '@utils/globals';
 
 const Header: FC<HeaderProps> = ({ text, className }): ReactElement => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
