@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  padding: 30px 0px;
 }
 
 .footerContainer {
@@ -27,14 +27,22 @@
   }
 }
 
-.weHaveThePower {
+.circleInner {
   background: g.$primary-mid-blue;
   padding: 20px 0px;
+}
+
+.weHaveThePower {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   font-size: 16px;
   font-weight: 500;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .logo {
@@ -45,10 +53,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-}
-
-.link {
-  padding-bottom: 20px;
+  gap: 20px;
+  padding-top: 10px;
 }
 
 .footerHeader {
@@ -57,13 +63,13 @@
 }
 
 @media only screen and (min-width: calc(g.$screen-medium + 1px)) {
-  .linksContainer {
-    flex-direction: row;
-    padding-top: 10px;
+  .container {
+    padding: 0px;
   }
 
-  .link {
-    padding-left: 20px;
+  .linksContainer {
+    flex-direction: row;
+    padding: 10px 10px 0;
   }
 
   .footerHeader {
@@ -72,6 +78,7 @@
 
     .fitContent769 {
       height: fit-content;
+      min-width: fit-content;
       margin-left: 40px;
     }
   }
@@ -88,10 +95,29 @@
     justify-content: space-between;
   }
 
-  .weHaveThePower {
+  .circleInner {
     width: 30%;
-    border-top-left-radius: 800px;
-    border-bottom-left-radius: 400px;
-    padding-left: 40px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -15rem;
+    right: -8rem;
+    width: 30rem;
+    height: 30rem;
+    margin-top: 10rem;
+  }
+
+  .circleOuter {
+    overflow: hidden;
+    height: 14rem;
+    width: 30rem;
+    position: relative;
+  }
+
+  .weHaveThePower {
+    width: 18rem;
+    height: 14rem;
+    position: absolute;
+    top: 4rem;
+    right: 10rem;
   }
 }

@@ -22,24 +22,22 @@ const Footer: FC = (): ReactElement => {
           />
         </div>
         <div className={styles.linksContainer}>
-          <Link to={Paths.HOME} className={styles.link}>
-            Accessibility statement
-          </Link>
-          <Link to={Paths.HOME} className={styles.link}>
-            Privacy Policy
-          </Link>
-          <Link to={Paths.HOME} className={styles.link}>
-            Terms and conditions
-          </Link>
+          <Link to={Paths.HOME}>Accessibility statement</Link>
+          <Link to={Paths.HOME}>Privacy Policy</Link>
+          <Link to={Paths.HOME}>Terms and conditions</Link>
         </div>
         <p>Donate to Educate &copy;</p>
       </div>
-      <div className={styles.weHaveThePower}>
-        <Image image={WeHaveThePowerLogo} alt="we have the power logo" width={200} />
-        <div className={styles.link}>
-          Donate to Educate is a national project funded by <strong>We Have The POWER</strong>
+      <div className={styles.circleOuter}>
+        <div className={styles.circleInner}>
+          <div className={styles.weHaveThePower}>
+            <Image image={WeHaveThePowerLogo} alt="we have the power logo" width={200} />
+            <div>
+              Donate to Educate is a national project funded by <strong>We Have The POWER</strong>
+            </div>
+            <Link to={Paths.WE_HAVE_THE_POWER}>wehavethepower.org/</Link>
+          </div>
         </div>
-        <Link to={Paths.WE_HAVE_THE_POWER}>wehavethepower.org/</Link>
       </div>
     </footer>
   );
