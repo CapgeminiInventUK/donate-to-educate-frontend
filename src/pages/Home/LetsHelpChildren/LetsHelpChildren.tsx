@@ -5,7 +5,7 @@ const LetsHelpChildren = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <LogoIconBlue className={styles.logo} />
-      <h1>Let&apos;s help children thrive at school</h1>
+      <h1>Let&apos;s stop education poverty</h1>
       {paragraphs.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
@@ -14,10 +14,9 @@ const LetsHelpChildren = (): JSX.Element => {
 };
 
 const paragraphs = [
-  'It costs around £350 a year to buy essential school stuff for one child.',
-  'While school children take time off school because they don’t have the things they need, every year over 100 million school items are sent to landfill.',
-  'Donate to Educate will provide one place to help pupils get pre-loved things they need to be empowered in school, while supporting families and the planet.',
-  "We'll connect communities, charities and schools to give pupils the things they need to feel good - creating a brighter future for children and communities.",
+  "We're on a mission to tackle education poverty, by ensuring every child is given the essential items they need to thrive at school.",
+  "We'll connect communities, charities and schools to work together to provide a focal point to match need to availability - creating a brighter future for children and communities.",
+  "With over 100 million items of school uniform, along with laptops and other essential items destined for landfill every year, it's time to create circularity within education - supporting pupils and planet.",
 ];
 
 export default LetsHelpChildren;

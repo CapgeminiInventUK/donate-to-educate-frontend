@@ -64,9 +64,9 @@ const content = {
     image: Pupil,
     alt: 'School pupil',
     body: [
-      "Get pre-loved school stuff for your child, so they're empowered to learn.",
-      'Search online for clothes, sports gear and equipment at your school.',
-      "Donate your things when you're done to help the next pupil and the planet.",
+      'Find new and pre-loved school essentials for your child.',
+      'Search online for uniform, sportwear and equipment from your school or local community groups.',
+      'Donate your things when you’re done to help the next pupil and the planet.',
     ],
     list: [
       {
@@ -88,9 +88,9 @@ const content = {
     image: Teacher,
     alt: 'School teacher',
     body: [
-      "Create your school's shop-front to help families get the things they need.",
-      'Manage your stock, list your products and give pre-loved items a new home.',
-      'Connect with charities to get support and ask the community to donate the things you need.',
+      "Create your school's list of the items available, what you need and excess stock you are happy to share.",
+      'Manage your lists, connect with local community groups and help every pupil get the items they need.',
+      'Get support from national charities who can provide access to laptops, hygiene products and other products.',
     ],
     list: [
       {
@@ -112,8 +112,8 @@ const content = {
     image: Prefect,
     alt: 'School prefect',
     body: [
-      'Support, donate or volunteer to make a difference to families across the country.',
-      'Volunteer your time to make our services work for the community.',
+      'Local community groups can support schools and collect the items needed by pupils.',
+      'Local businesses and supporters can donate funds to refurbish laptops, provide hygiene products and other essentials.',
       'Donate vital school stuff to improve the lives of children who need it.',
     ],
     list: [
@@ -123,11 +123,11 @@ const content = {
       },
       {
         icon: <Box />,
-        text: 'Donate stuff',
+        text: 'Collect and donate',
       },
       {
         icon: <Heart />,
-        text: 'Make a difference',
+        text: 'Support schools and pupils',
       },
     ],
   },
