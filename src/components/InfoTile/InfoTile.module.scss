@@ -4,6 +4,7 @@
   background: g.$primary-light-blue;
   margin: 0 100px 66px 100px;
   display: flex;
+  border-radius: 10px;
 
   h1 {
     margin: 0;
@@ -68,11 +69,33 @@
     height: 100%;
     object-fit: cover;
     overflow: hidden;
+    border-radius: 10px;
   }
 }
 
 @media only screen and (min-width: g.$screen-xlarge) {
   .tile {
     max-height: 800px;
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .imageContainer {
+    display: none;
+  }
+
+  .tile {
+    margin: 0 20px 20px 20px;
+
+    .contentContainer {
+      width: fit-content;
+      margin: auto;
+      display: block;
+      padding: 30px;
+    }
+  }
+
+  .line {
+    margin: 10px 0;
   }
 }
