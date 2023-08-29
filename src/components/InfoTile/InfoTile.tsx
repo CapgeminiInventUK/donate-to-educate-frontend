@@ -12,16 +12,17 @@ import Help from '@/assets/tiles/Help';
 import Calender from '@/assets/tiles/Calender';
 import Box from '@/assets/tiles/Box';
 import Heart from '@/assets/tiles/Heart';
-import Child from '@/assets/tiles/Child';
-import Teacher from '@/assets/tiles/Teacher';
-import Prefect from '@/assets/tiles/Prefect';
+import Pupil from '@/assets/tiles/Child.webp';
+import Teacher from '@/assets/tiles/Teacher.webp';
+import Prefect from '@/assets/tiles/Prefect.webp';
+import Image from '@components/Image/Image';
 
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
 }
 
 const InfoTile: FC<InfoTileProps> = ({ colour }): ReactElement => {
-  const { title, body, list, image } = content[colour];
+  const { title, body, list, image, alt } = content[colour];
 
   return (
     <div className={`${styles.tile} ${styles[colour]}`}>
@@ -40,7 +41,9 @@ const InfoTile: FC<InfoTileProps> = ({ colour }): ReactElement => {
           ))}
         </ul>
       </div>
-      {image}
+      <div className={styles.imageContainer}>
+        <Image image={image} alt={alt} className={styles.image} />
+      </div>
     </div>
   );
 };
@@ -61,7 +64,8 @@ const getLine = (colour: 'lightBlue' | 'midBlue' | 'darkBlue'): JSX.Element => {
 const content = {
   lightBlue: {
     title: 'A place for families',
-    image: <Child />,
+    image: Pupil,
+    alt: 'School pupil',
     body: [
       "Get pre-loved school stuff for your child, so they're empowered to learn.",
       'Search online for clothes, sports gear and equipment at your school.',
@@ -84,7 +88,8 @@ const content = {
   },
   midBlue: {
     title: 'A place for schools',
-    image: <Teacher />,
+    image: Teacher,
+    alt: 'School teacher',
     body: [
       "Create your school's shop-front to help families get the things they need.",
       'Manage your stock, list your products and give pre-loved items a new home.',
@@ -107,7 +112,8 @@ const content = {
   },
   darkBlue: {
     title: 'A place for our supporters',
-    image: <Prefect />,
+    image: Prefect,
+    alt: 'School prefect',
     body: [
       'Support, donate or volunteer to make a difference to families across the country.',
       'Volunteer your time to make our services work for the community.',
