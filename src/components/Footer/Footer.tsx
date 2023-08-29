@@ -30,8 +30,13 @@ const Footer: FC = (): ReactElement => {
       </div>
       <div className={styles.circleOuter}>
         <div className={styles.circleInner}>
-          <div className={styles.weHaveThePower}>
-            <Image image={WeHaveThePowerLogo} alt="we have the power logo" width={200} />
+          <div className={styles.weHaveThePowerContainer}>
+            <Image
+              className={styles.weHaveThePowerLogo}
+              image={WeHaveThePowerLogo}
+              alt="we have the power logo"
+              width={200}
+            />
             <div>
               Donate to Educate is a national project funded by <strong>We Have The POWER</strong>
             </div>
