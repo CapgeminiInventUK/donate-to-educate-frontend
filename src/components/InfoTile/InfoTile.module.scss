@@ -1,0 +1,57 @@
+@use '@assets/global.scss' as g;
+
+.tile {
+  background: g.$primary-light-blue;
+  margin: 0 100px 66px 100px;
+  padding: 95px 126px;
+  display: flex;
+
+  h1 {
+    margin: 0;
+  }
+
+  .contentContainer {
+    width: 50%;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.lightBlue {
+  background: g.$primary-light-blue;
+  color: g.$primary-dark-blue;
+}
+
+.midBlue {
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+}
+
+.darkBlue {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+}
+
+.line {
+  margin: 40px 0;
+}
+
+.listItem {
+  display: flex;
+  margin-top: 40px;
+
+  .itemText {
+    list-style-type: none;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 125%; /* 30px */
+    letter-spacing: -0.24px;
+  }
+
+  .itemIcon {
+    margin-right: 15px;
+  }
+}

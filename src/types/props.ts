@@ -29,7 +29,7 @@ export interface ErrorBoundaryProps {
 }
 
 export interface SvgProps {
-  className: string;
+  className?: string;
   onClick?: () => void;
 }
 
