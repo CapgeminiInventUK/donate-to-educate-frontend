@@ -49,7 +49,9 @@ const NavLinks: FC<NavLinksProps> = ({
         return (
           <li
             key={name}
-            className={`${linkClassName} ${pathname === (path as string) ? activeClassName : ''}`}
+            className={`${linkClassName} ${pathname === (path as string) ? activeClassName : ''} ${
+              styles.hidden
+            }`}
           >
             <Link to={path}>{name}</Link>
           </li>
