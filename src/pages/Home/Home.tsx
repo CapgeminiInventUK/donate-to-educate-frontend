@@ -4,10 +4,12 @@ import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
 import Header from '@components/Header/Header';
 import InfoTile from '@/components/InfoTile/InfoTile';
 import LetsHelpChildren from './LetsHelpChildren/LetsHelpChildren';
+import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 
 const Home = (): JSX.Element => {
   return (
     <div className={styles.container}>
+      <HeroBanner />
       <InfoTile colour="lightBlue" />
       <InfoTile colour="midBlue" />
       <InfoTile colour="darkBlue" />

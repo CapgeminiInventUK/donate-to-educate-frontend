@@ -1,0 +1,52 @@
+@use '@assets/global.scss' as g;
+
+.bannerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: g.$primary-light-blue;
+}
+
+.textContainer {
+  width: 40%;
+  padding: 0rem 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  font-size: 1.1rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+.diagonalTextContainer {
+  padding-top: 3rem;
+  padding-left: 20%;
+  transform: rotate(-5deg);
+  font-size: 1.5rem;
+  letter-spacing: 0.4rem;
+  font-family: Microsoft Sans Serif;
+}
+
+.imageStyles {
+  width: 50%;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .bannerContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+  }
+
+  .textContainer {
+    width: 90%;
+  }
+
+  .imageStyles {
+    width: 90%;
+  }
+}
