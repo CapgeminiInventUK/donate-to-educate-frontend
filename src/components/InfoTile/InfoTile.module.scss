@@ -4,7 +4,6 @@
   background: g.$primary-light-blue;
   margin: 0 100px 66px 100px;
   display: flex;
-  max-height: 800px;
 
   h1 {
     margin: 0;
@@ -69,5 +68,11 @@
     height: 100%;
     object-fit: cover;
     overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: g.$screen-xlarge) {
+  .tile {
+    max-height: 800px;
   }
 }
