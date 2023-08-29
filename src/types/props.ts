@@ -50,3 +50,15 @@ export interface ClickableLogoProps {
   colour: 'white' | 'blue';
   className: string;
 }
+
+export interface InfoTileProps {
+  colour: 'lightBlue' | 'midBlue' | 'darkBlue';
+}
+
+export interface CarouselProps {
+  items: {
+    title: string;
+    image: string;
+    colour: 'lightBlue' | 'midBlue' | 'darkBlue';
+  }[];
+}

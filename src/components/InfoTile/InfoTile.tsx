@@ -16,10 +16,7 @@ import Pupil from '@/assets/tiles/Child.webp';
 import Teacher from '@/assets/tiles/Teacher.webp';
 import Prefect from '@/assets/tiles/Prefect.webp';
 import Image from '@components/Image/Image';
-
-export interface InfoTileProps {
-  colour: 'lightBlue' | 'midBlue' | 'darkBlue';
-}
+import { InfoTileProps } from '@/types/props';
 
 const InfoTile: FC<InfoTileProps> = ({ colour }): ReactElement => {
   const { title, body, list, image, alt } = content[colour];
