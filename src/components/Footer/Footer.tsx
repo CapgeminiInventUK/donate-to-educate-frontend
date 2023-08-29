@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import Image from '../../components/Image/Image';
 import Button from '../Button/Button';
-import WeHaveThePowerLogo from '../../assets/logo/WeHaveThePowerLogo.png';
+import WeHaveThePowerLogo from '../../assets/logo/WeHaveThePowerLogo.webp';
 
 const Footer: FC = (): ReactElement => {
   const navigate = useNavigate();
