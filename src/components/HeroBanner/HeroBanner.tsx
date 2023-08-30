@@ -1,7 +1,7 @@
 import { ReactElement, FC } from 'react';
 import styles from './HeroBanner.module.scss';
 import Image from '../../components/Image/Image';
-import WeHaveThePowerLogo from '../../assets/hero-pictures/HeroBanner.webp';
+import HeroBannerPicture from '../../assets/hero-pictures/HeroBanner.webp';
 
 export const HeroBanner: FC = (): ReactElement => {
   return (
@@ -14,7 +14,12 @@ export const HeroBanner: FC = (): ReactElement => {
         </div>
         <div className={styles.diagonalTextContainer}>Coming January 2024</div>
       </div>
-      <Image className={styles.imageStyles} image={WeHaveThePowerLogo} alt="Children" width={200} />
+      <Image
+        className={styles.imageStyles}
+        image={HeroBannerPicture}
+        alt="Children with a blue background"
+        width={200}
+      />
     </div>
   );
 };
