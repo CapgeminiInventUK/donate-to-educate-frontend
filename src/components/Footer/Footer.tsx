@@ -35,7 +35,7 @@ const Footer: FC = (): ReactElement => {
               className={styles.weHaveThePowerLogo}
               image={WeHaveThePowerLogo}
               alt="we have the power logo"
-              width={200}
+              width={150}
             />
             <div>
               Donate to Educate is a national project funded by <strong>We Have The POWER</strong>
