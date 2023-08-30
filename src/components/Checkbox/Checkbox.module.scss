@@ -1,0 +1,29 @@
+@use '@assets/global.scss' as g;
+
+input[type='checkbox'] {
+  appearance: none;
+  overflow: hidden;
+  position: absolute;
+}
+
+.checkbox {
+  display: inline-block; // set to `inline-block` as `inline elements ignore `height` and `width`
+  height: 20px;
+  width: 20px;
+  background: #fff;
+  border: 2px #11356f solid;
+  border-radius: 1px;
+  margin-right: 4px;
+}
+
+.checkbox:active {
+  outline: solid 2px #5c7aff;
+}
+
+.checkbox:hover {
+  outline: solid 2px #5c7aff;
+}
+
+.checkmark {
+  color: #394150;
+}
