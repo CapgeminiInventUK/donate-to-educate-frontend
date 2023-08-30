@@ -29,7 +29,7 @@ export interface ErrorBoundaryProps {
 }
 
 export interface SvgProps {
-  className: string;
+  className?: string;
   onClick?: () => void;
 }
 
@@ -70,4 +70,15 @@ export interface RadioGroupProps {
   values: string[];
   labels?: string[];
   className?: string;
+}
+export interface InfoTileProps {
+  colour: 'lightBlue' | 'midBlue' | 'darkBlue';
+}
+
+export interface CarouselProps {
+  items: {
+    title: string;
+    image: string;
+    colour: 'lightBlue' | 'midBlue' | 'darkBlue';
+  }[];
 }

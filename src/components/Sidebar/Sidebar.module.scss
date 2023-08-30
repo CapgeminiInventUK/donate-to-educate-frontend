@@ -106,6 +106,10 @@
   .hide400 {
     display: none;
   }
+
+  .logoBlue {
+    margin: auto;
+  }
 }
 
 .logoGrey {
@@ -117,4 +121,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.hidden {
+  display: none;
 }
