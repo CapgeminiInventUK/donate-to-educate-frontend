@@ -4,13 +4,12 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: g.$primary-light-blue;
 }
 
 .textContainer {
-  width: 40%;
-  padding: 0rem 15rem;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: left;
@@ -24,11 +23,11 @@ h2 {
 
 .diagonalTextContainer {
   padding-top: 3rem;
-  padding-left: 20%;
-  transform: rotate(-5deg);
+  transform: rotate(-4deg);
   font-size: 1.5rem;
-  letter-spacing: 0.4rem;
+  letter-spacing: 0.5rem;
   font-family: Microsoft Sans Serif;
+  text-align: right;
 }
 
 .imageStyles {
@@ -48,5 +47,11 @@ h2 {
 
   .imageStyles {
     width: 90%;
+  }
+
+  .diagonalTextContainer {
+    text-align: center;
+    font-size: 2.5rem;
+    padding-bottom: 20px;
   }
 }
