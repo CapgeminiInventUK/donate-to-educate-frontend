@@ -1,7 +1,7 @@
 import DonateToEducateBanner from '@/components/DonateToEducateBanner/DonateToEducateBanner';
-import styles from './Contact.module.scss';
+import styles from './AccessibilityStatement.module.scss';
 
-const Contact = (): JSX.Element => {
+const AccessibilityStatement = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <DonateToEducateBanner />
@@ -9,4 +9,4 @@ const Contact = (): JSX.Element => {
   );
 };
 
-export default Contact;
+export default AccessibilityStatement;

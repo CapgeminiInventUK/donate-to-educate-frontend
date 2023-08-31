@@ -22,9 +22,13 @@ const Footer: FC = (): ReactElement => {
           />
         </div>
         <div className={styles.linksContainer}>
-          <Link to={Paths.HOME}>Accessibility statement</Link>
-          <Link to={Paths.HOME}>Privacy Policy</Link>
-          <Link to={Paths.HOME}>Terms and conditions</Link>
+          <Link to={Paths.ACCESSABILITY_STATEMENT}>Accessibility statement</Link>
+          <Link to={Paths.PRIVACY_POLICY} target="_blank" rel="noopener noreferrer">
+            Privacy Policy
+          </Link>
+          <Link to={Paths.TERMS_AND_CONDITIONS} target="_blank" rel="noopener noreferrer">
+            Terms and conditions
+          </Link>
         </div>
         <p>Donate to Educate &copy;</p>
       </div>

@@ -24,7 +24,7 @@ const Sidebar: FC = (): ReactElement => {
     <nav className={styles.container} ref={containerRef}>
       <div className={styles.nav}>
         <MenuIcon
-          className={`${styles.menuIcon} ${styles.hidden}`}
+          className={`${styles.menuIcon}`}
           onClick={(): void => setIsDrawerOpen(!isDrawerOpen)}
         />
         <ClickableLogo colour="blue" className={styles.logoBlue} />
