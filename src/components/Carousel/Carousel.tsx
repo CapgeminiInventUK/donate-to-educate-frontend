@@ -1,10 +1,10 @@
-import { ReactElement, FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styles from './Carousel.module.scss';
 import Image from '@components/Image/Image';
 import { CarouselProps } from '@/types/props';
 import { TEN_SECONDS_IN_MILLISECONDS } from '@/utils/globals';
 
-const Carousel: FC<CarouselProps> = ({ items }): ReactElement => {
+const Carousel: FC<CarouselProps> = ({ items }) => {
   const [active, setActive] = useState<number>(0);
 
   useEffect(() => {

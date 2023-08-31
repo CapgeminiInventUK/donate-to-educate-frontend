@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import styles from './Contact.module.scss';
 
-const Contact = (): JSX.Element => {
+const Contact: FC = () => {
   return <div className={styles.container}>Contact</div>;
 };
 

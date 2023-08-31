@@ -1,7 +1,8 @@
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import styles from './LetsHelpChildren.module.scss';
+import { FC } from 'react';
 
-const LetsHelpChildren = (): JSX.Element => {
+const LetsHelpChildren: FC = () => {
   return (
     <div className={styles.container}>
       <LogoIconBlue className={styles.logo} />
