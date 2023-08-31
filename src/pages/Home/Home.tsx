@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styles from './Home.module.scss';
 import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
@@ -10,7 +11,7 @@ import Items from '@/assets/carousel/items.webp';
 import Request from '@/assets/carousel/request.webp';
 import Stock from '@/assets/carousel/stock.webp';
 
-const Home = (): JSX.Element => {
+const Home: FC = () => {
   return (
     <div className={styles.container}>
       <HeroBanner />

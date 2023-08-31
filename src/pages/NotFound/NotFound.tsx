@@ -1,4 +1,6 @@
-const NotFound = (): JSX.Element => {
+import { FC } from 'react';
+
+const NotFound: FC = () => {
   return <div>Page not found</div>;
 };
 

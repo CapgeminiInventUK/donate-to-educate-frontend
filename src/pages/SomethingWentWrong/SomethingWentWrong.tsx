@@ -1,4 +1,6 @@
-const SomethingWentWrong = (): JSX.Element => {
+import { FC } from 'react';
+
+const SomethingWentWrong: FC = () => {
   return <div>Oops... Something went wrong</div>;
 };
 
