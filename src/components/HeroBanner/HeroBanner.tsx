@@ -9,8 +9,8 @@ export const HeroBanner: FC = (): ReactElement => {
       <div className={styles.textContainer}>
         <h2>Donate to Educate</h2>
         <div>
-          Connecting communities, charities and schools to tackle education poverty by providing
-          pupils the things they need to thrive at school.
+          Connecting communities, charities and schools to tackle education poverty and give pupils
+          the things they need to thrive at school.
         </div>
         <div className={styles.diagonalTextContainer}>Coming January 2024</div>
       </div>

@@ -17,18 +17,20 @@ const Home = (): JSX.Element => {
       <Carousel
         items={[
           {
-            title: 'Support West Sussex schools with their inventory needs',
+            title:
+              'A platform to unite communities to collect items and match need to availability',
             image: Stock,
             colour: 'lightBlue',
           },
           {
-            title: 'Request pre-loved items directly from your school or local communities',
+            title:
+              'Families can get new and pre-loved products from your school and local communities',
             image: Request,
             colour: 'midBlue',
           },
           {
             title:
-              'Update the status of your inventory to increase parent and community awareness of what you have and what is needed',
+              'Schools can connect to communities to say what stock you have, what your pupils need and what extra stock you can share',
             image: Items,
             colour: 'darkBlue',
           },
@@ -41,7 +43,7 @@ const Home = (): JSX.Element => {
       <div className={styles.councilBanner}>
         <Header
           className={styles.title}
-          text="Pilot launching in partnership with West Sussex County Council"
+          text="First launching in partnership with West Sussex County Council"
         />
         <Image
           image={westSussexCouncilLogo}

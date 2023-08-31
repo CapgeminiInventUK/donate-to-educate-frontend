@@ -9,13 +9,13 @@ import Present from '@/assets/tiles/Present';
 import Money from '@/assets/tiles/Money';
 import Dashboard from '@/assets/tiles/Dashboard';
 import Help from '@/assets/tiles/Help';
-import Calender from '@/assets/tiles/Calender';
 import Box from '@/assets/tiles/Box';
 import Heart from '@/assets/tiles/Heart';
 import Pupil from '@/assets/tiles/Child.webp';
 import Teacher from '@/assets/tiles/Teacher.webp';
 import Prefect from '@/assets/tiles/Prefect.webp';
 import Image from '@components/Image/Image';
+import RoundArrows from '@/assets/tiles/RoundArrows';
 import { InfoTileProps } from '@/types/props';
 
 const InfoTile: FC<InfoTileProps> = ({ colour }): ReactElement => {
@@ -88,9 +88,9 @@ const content = {
     image: Teacher,
     alt: 'School teacher',
     body: [
-      "Create your school's list of the items available, what you need and excess stock you are happy to share.",
-      'Manage your lists, connect with local community groups and help every pupil get the items they need.',
-      'Get support from national charities who can provide access to laptops, hygiene products and other products.',
+      "Create a list of your school's products that are in stock, say what you need and list extra stock you are happy to share.",
+      'Connect with local community groups and help every pupil get the items they need.',
+      'Get support from national charities who can donate laptops, hygiene products and other products.',
     ],
     list: [
       {
@@ -112,14 +112,14 @@ const content = {
     image: Prefect,
     alt: 'School prefect',
     body: [
-      'Local community groups can support schools and collect the items needed by pupils.',
-      'Local businesses and supporters can donate funds to refurbish laptops, provide hygiene products and other essentials.',
+      'Local community groups can support schools and collect the items that pupils needs.',
+      'Local businesses and volunteers can donate funds to refurbish laptops, provide hygiene products and other essentials.',
       'Donate vital school stuff to improve the lives of children who need it.',
     ],
     list: [
       {
-        icon: <Calender />,
-        text: 'Volunteer time',
+        icon: <RoundArrows />,
+        text: 'Connect with schools',
       },
       {
         icon: <Box />,
