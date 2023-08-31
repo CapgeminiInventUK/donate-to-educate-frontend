@@ -51,6 +51,31 @@ export interface ClickableLogoProps {
   className: string;
 }
 
+export interface CheckboxProps {
+  label?: string;
+  className?: string;
+}
+
+export interface CheckmarkProps {
+  className?: string;
+  isChecked: boolean;
+}
+
+export interface RadioButtonProps {
+  name: string;
+  value: string;
+  onChange: (e: string) => void;
+  checked: boolean;
+  label?: string;
+  className?: string;
+}
+
+export interface RadioGroupProps {
+  name: string;
+  values: string[];
+  labels?: string[];
+  className?: string;
+}
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
 }
