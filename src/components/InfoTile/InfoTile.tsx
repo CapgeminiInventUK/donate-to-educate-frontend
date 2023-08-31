@@ -1,4 +1,4 @@
-import { ReactElement, FC } from 'react';
+import { FC } from 'react';
 import styles from './InfoTile.module.scss';
 import LightBlueLine from '@/assets/tiles/LightBlueLine';
 import MidBlueLine from '@/assets/tiles/MidBlueLine';
@@ -18,7 +18,7 @@ import Image from '@components/Image/Image';
 import RoundArrows from '@/assets/tiles/RoundArrows';
 import { InfoTileProps } from '@/types/props';
 
-const InfoTile: FC<InfoTileProps> = ({ colour }): ReactElement => {
+const InfoTile: FC<InfoTileProps> = ({ colour }) => {
   const { title, body, list, image, alt } = content[colour];
 
   return (

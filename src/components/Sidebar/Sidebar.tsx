@@ -1,4 +1,4 @@
-import { ReactElement, FC, useState, useRef, useCallback } from 'react';
+import { FC, useState, useRef, useCallback } from 'react';
 import styles from './Sidebar.module.scss';
 import MenuIcon from '@assets/navigation/MenuIcon';
 import CloseIcon from '@assets/navigation/CloseIcon';
@@ -10,7 +10,7 @@ import NavLinks from '../NavLinks/NavLinks';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
 import LogoGrey from '@assets/logo/LogoGrey';
 
-const Sidebar: FC = (): ReactElement => {
+const Sidebar: FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
