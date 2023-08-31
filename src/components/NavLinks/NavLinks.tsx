@@ -1,4 +1,4 @@
-import { ReactElement, FC } from 'react';
+import { FC } from 'react';
 import routes from '@/config/routes';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -15,7 +15,7 @@ const NavLinks: FC<NavLinksProps> = ({
   linkClassName,
   className,
   buttonClassName,
-}): ReactElement => {
+}) => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -42,7 +42,7 @@ const NavLinks: FC<NavLinksProps> = ({
               onClick={(): void => navigate(Paths.DONATE)}
               className={`${buttonClassName} ${styles.hidden}`}
               disabled
-            ></Button>
+            />
           );
         }
 

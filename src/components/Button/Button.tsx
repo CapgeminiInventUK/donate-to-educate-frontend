@@ -1,14 +1,8 @@
-import { ReactElement, FC } from 'react';
+import { FC } from 'react';
 import styles from './Button.module.scss';
 import { ButtonProps } from '@/types/props';
 
-const Button: FC<ButtonProps> = ({
-  onClick,
-  text,
-  theme,
-  className,
-  disabled = false,
-}): ReactElement => {
+const Button: FC<ButtonProps> = ({ onClick, text, theme, className, disabled = false }) => {
   return (
     <button
       onClick={onClick}

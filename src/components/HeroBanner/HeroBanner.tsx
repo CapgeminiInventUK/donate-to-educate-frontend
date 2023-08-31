@@ -1,9 +1,9 @@
-import { ReactElement, FC } from 'react';
+import { FC } from 'react';
 import styles from './HeroBanner.module.scss';
 import Image from '../../components/Image/Image';
 import HeroBannerPicture from '../../assets/hero-pictures/HeroBanner.webp';
 
-export const HeroBanner: FC = (): ReactElement => {
+export const HeroBanner: FC = () => {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.textContainer}>
