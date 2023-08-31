@@ -1,5 +1,5 @@
 import Paths from './paths';
-import { Home, AboutUs, Contact, NotFound } from './lazy';
+import { Home, AboutUs, Contact, NotFound, AccessabilityStatement } from './lazy';
 
 const routes = [
   {
@@ -16,6 +16,10 @@ const routes = [
     path: Paths.CONTACT,
     element: <Contact />,
     name: 'Contact us',
+  },
+  {
+    path: Paths.ACCESSABILITY_STATEMENT,
+    element: <AccessabilityStatement />,
   },
   {
     path: Paths.DONATE,
