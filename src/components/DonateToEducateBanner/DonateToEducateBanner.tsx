@@ -1,8 +1,8 @@
-import { ReactElement, FC } from 'react';
+import { FC } from 'react';
 import styles from './DonateToEducateBanner.module.scss';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
-const DonateToEducateBanner: FC = (): ReactElement => {
+const DonateToEducateBanner: FC = () => {
   return (
     <div className={styles.container}>
       <LogoWhite className={styles.logo} />
