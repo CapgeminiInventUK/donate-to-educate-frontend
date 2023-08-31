@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import DonateToEducateBanner from '@/components/DonateToEducateBanner/DonateToEducateBanner';
 import styles from './AccessibilityStatement.module.scss';
 
-const AccessibilityStatement = (): JSX.Element => {
+const AccessibilityStatement: FC = () => {
   return (
     <div className={styles.container}>
       <DonateToEducateBanner />
