@@ -43,7 +43,7 @@ const Home = (): JSX.Element => {
       <div className={styles.councilBanner}>
         <Header
           className={styles.title}
-          text="First launching in partnership with West Sussex County Council"
+          text="First launching in partnership with West Sussex County&nbsp;Council"
         />
         <Image
           image={westSussexCouncilLogo}
