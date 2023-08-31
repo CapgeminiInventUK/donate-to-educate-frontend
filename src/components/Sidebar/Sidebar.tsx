@@ -37,7 +37,7 @@ const Sidebar: FC = (): ReactElement => {
             </div>
           }
           onClick={(): void => navigate(Paths.DONATE)}
-          className={styles.hide400}
+          className={`${styles.hide400} ${styles.hidden}`}
           disabled
         />
       </div>

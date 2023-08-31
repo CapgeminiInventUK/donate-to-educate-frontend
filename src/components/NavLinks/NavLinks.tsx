@@ -40,7 +40,7 @@ const NavLinks: FC<NavLinksProps> = ({
               }
               theme={theme}
               onClick={(): void => navigate(Paths.DONATE)}
-              className={buttonClassName}
+              className={`${buttonClassName} ${styles.hidden}`}
               disabled
             ></Button>
           );
