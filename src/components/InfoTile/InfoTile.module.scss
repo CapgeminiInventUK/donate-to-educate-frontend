@@ -8,6 +8,7 @@
 
   h1 {
     margin: 0;
+    white-space: nowrap;
   }
 
   .contentContainer {
@@ -34,6 +35,10 @@
 .darkBlue {
   background: g.$primary-dark-blue;
   color: g.$primary-white;
+
+  .contentContainer {
+    padding: 50px 126px;
+  }
 }
 
 .line {

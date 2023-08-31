@@ -42,7 +42,8 @@ const Footer: FC = () => {
               width={150}
             />
             <div>
-              Donate to Educate is a national project funded by <strong>We Have The POWER</strong>
+              Donate to Educate is a national project funded by{' '}
+              <strong>We Have The&nbsp;POWER</strong>
             </div>
             <Link to={Paths.WE_HAVE_THE_POWER}>wehavethepower.org/</Link>
           </div>
