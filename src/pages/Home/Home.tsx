@@ -4,6 +4,7 @@ import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
 import Header from '@components/Header/Header';
 import InfoTile from '@/components/InfoTile/InfoTile';
 import LetsHelpChildren from './LetsHelpChildren/LetsHelpChildren';
+import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Carousel from '@/components/Carousel/Carousel';
 import Items from '@/assets/carousel/items.webp';
 import Request from '@/assets/carousel/request.webp';
@@ -12,6 +13,7 @@ import Stock from '@/assets/carousel/stock.webp';
 const Home = (): JSX.Element => {
   return (
     <div className={styles.container}>
+      <HeroBanner />
       <Carousel
         items={[
           {

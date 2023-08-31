@@ -1,5 +1,12 @@
 @use '@assets/global.scss' as g;
 
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .councilBanner {
   display: flex;
   flex-direction: column;
