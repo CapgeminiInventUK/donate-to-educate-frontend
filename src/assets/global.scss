@@ -22,6 +22,9 @@ $disabled-font: #596975;
 // Box Shadow Colours
 $box-shadow-black: rgba(0, 0, 0, 0.1);
 
+// General Colours
+$black: black;
+
 // Screen Breakpoints
 $screen-small: 400px;
 $screen-medium: 768px;
@@ -64,7 +67,8 @@ h4 {
   letter-spacing: -0.16px;
 }
 
-p {
+p,
+li {
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
