@@ -1,8 +1,8 @@
-import { ReactElement, FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { RadioGroupProps } from '@/types/props';
 import RadioButton from '../RadioButton/RadioButton';
 
-const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className }): ReactElement => {
+const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className }) => {
   const [selectedInput, setSelectedInput] = useState('');
 
   const handleChange = (inputValue: string): void => {
@@ -14,8 +14,8 @@ const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className }): R
       {values.map((value: string, index: number) => {
         return (
           <RadioButton
-            key={`${value}`}
-            name={`${name}`}
+            key={value}
+            name={name}
             value={values[index]}
             label={labels != null ? labels[index] : ''}
             onChange={handleChange}

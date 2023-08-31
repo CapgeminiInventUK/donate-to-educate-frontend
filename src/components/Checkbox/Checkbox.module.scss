@@ -11,17 +11,17 @@ input[type='checkbox'] {
   height: 20px;
   width: 20px;
   background: #fff;
-  border: 2px #11356f solid;
+  border: 2px g.$primary-dark-blue solid;
   border-radius: 1px;
   margin-right: 4px;
 }
 
 .checkbox:active {
-  outline: solid 2px #5c7aff;
+  outline: solid 2px g.$secondary-purple;
 }
 
 .checkbox:hover {
-  outline: solid 2px #5c7aff;
+  outline: solid 2px g.$secondary-purple;
 }
 
 .checkmark {

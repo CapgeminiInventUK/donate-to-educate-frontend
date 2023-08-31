@@ -56,6 +56,11 @@ export interface CheckboxProps {
   className?: string;
 }
 
+export interface CheckmarkProps {
+  className?: string;
+  isChecked: boolean;
+}
+
 export interface RadioButtonProps {
   name: string;
   value: string;
