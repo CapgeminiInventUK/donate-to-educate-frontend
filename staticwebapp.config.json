@@ -5,5 +5,18 @@
   },
   "navigationFallback": {
     "rewrite": "/index.html"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    },
+    "400": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  },
+  "networking": {
+    "allowedIpRanges": ["81.102.110.98/32", "192.176.203.0/22"]
   }
 }
