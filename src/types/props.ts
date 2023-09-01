@@ -87,3 +87,8 @@ export interface CarouselProps {
     colour: 'lightBlue' | 'midBlue' | 'darkBlue';
   }[];
 }
+
+export interface FooterPageProps {
+  title: string;
+  children: JSX.Element[] | JSX.Element;
+}

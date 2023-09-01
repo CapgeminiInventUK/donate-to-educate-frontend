@@ -1,0 +1,66 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  background: g.$primary-light-blue;
+  height: 100%;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+
+    h1 {
+      padding: 66px 0;
+      margin: 0;
+    }
+
+    h3 {
+      margin-top: 60px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      a {
+        color: g.$black;
+      }
+    }
+
+    .card {
+      border-radius: 10px;
+      background: g.$primary-white;
+      padding: 60px 82px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
+      .email {
+        word-break: break-word;
+
+        a {
+          color: g.$black;
+        }
+      }
+
+      .home {
+        color: g.$primary-dark-blue;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 160%; /* 25.6px */
+        text-decoration-line: underline;
+        display: inline-block;
+        padding-top: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-medium)) {
+  .title {
+    display: none;
+  }
+
+  .card {
+    margin-top: 66px;
+  }
+}

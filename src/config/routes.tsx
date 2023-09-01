@@ -1,5 +1,13 @@
 import Paths from './paths';
-import { Home, AboutUs, Contact, NotFound, AccessabilityStatement } from './lazy';
+import {
+  Home,
+  AboutUs,
+  Contact,
+  NotFound,
+  AccessabilityStatement,
+  PrivacyPolicy,
+  TermsAndConditions,
+} from './lazy';
 
 const routes = [
   {
@@ -20,6 +28,14 @@ const routes = [
   {
     path: Paths.ACCESSABILITY_STATEMENT,
     element: <AccessabilityStatement />,
+  },
+  {
+    path: Paths.PRIVACY_POLICY,
+    element: <PrivacyPolicy />,
+  },
+  {
+    path: Paths.TERMS_AND_CONDITIONS,
+    element: <TermsAndConditions />,
   },
   {
     path: Paths.DONATE,

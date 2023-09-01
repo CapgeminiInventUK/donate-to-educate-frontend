@@ -1,0 +1,171 @@
+import { FC } from 'react';
+import FooterPage from '@/components/FooterPage/FooterPage';
+import styles from './TermsAndConditions.module.scss';
+
+const TermsAndConditions: FC = () => {
+  return (
+    <FooterPage title="Terms and conditions">
+      <h3>Terms and conditions</h3>
+      <p>
+        Welcome to Donate to Educate, owned by Community Inspired. If you browse and use this
+        website you are agreeing to comply with, and be bound by, our terms and conditions of use,
+        which together with our privacy policy, govern Community Inspired Ltd&apos;s relationship
+        with you in relation to this website.
+      </p>
+      <p>
+        We may update and change these terms and conditions. You should check this page to make sure
+        that you are happy with any changes. If you do not agree to the changes then you should stop
+        using the website and contact us.
+      </p>
+      <p>These terms are effective from 1 September 2023.</p>
+
+      <h3>Definitions</h3>
+      <p>
+        The term &apos;Community Inspired Ltd&apos; or &apos;us&apos; or &apos;we&apos; refers to
+        the owner of the website and services whose registered office is shown below. Our company
+        registration number is 04573509 - Registered in England & Wales.
+      </p>
+      <p>
+        The term &apos;you&apos; refers to customers and users of our websites and other services.
+      </p>
+      <p>
+        The term &apos;service/s&apos; refers to all services available as part of the Donate to
+        Educate platform, including but not limited to the donatetoeducate.org.uk website. Each user
+        must agree to the terms and conditions on that site to use the service.
+      </p>
+      <p>
+        The term &apos;supplier&apos; refers to companies, individuals and other bodies who supply
+        goods and services to schools and fundraising groups.
+      </p>
+
+      <h3>General terms</h3>
+      <p>The use of this website is subject to the following terms of use: </p>
+      <p>
+        The content of the pages of this website is for your general information and use only. It is
+        subject to change without notice.
+      </p>
+      <p>
+        Neither we nor any third parties provide any warranty or guarantee as to the accuracy,
+        timeliness, performance, completeness or suitability of the information and materials found
+        or offered on this website for any particular purpose. You acknowledge that such information
+        and materials may contain inaccuracies or errors and we expressly exclude liability for any
+        such inaccuracies or errors to the fullest extent permitted by law.
+      </p>
+      <p>
+        Your use of any information or materials on this website is entirely at your own risk, for
+        which we shall not be liable. It shall be your own responsibility to ensure that any
+        products, services or information available through this website meet your specific
+        requirements. This website contains material which is owned by or licensed to us.
+      </p>
+      <p>
+        This material includes, but is not limited to, the design, layout, look, appearance and
+        graphics. Reproduction is prohibited other than in accordance with the copyright notice,
+        which forms part of these terms and conditions.
+      </p>
+      <p>
+        All trade marks reproduced in this website, which are not the property of or licensed to us
+        are acknowledged.
+      </p>
+      <p>
+        Unauthorised use of this website may give rise to a claim for damages and/or be a criminal
+        offence.
+      </p>
+      <p>
+        If, through this website you are able to link to other websites which are not under the
+        control of Community Inspired Ltd. We have no control over the nature, content and
+        availability of those sites and we have no responsibility for the content of the linked
+        websites. The inclusion of any links does not necessarily imply a recommendation or
+        endorsement of the views expressed within them.
+      </p>
+      <h3>Limitation of liability</h3>
+      <p>
+        The information contained in this website provided by Community Inspired Ltd is for general
+        information purposes only. While we endeavour to keep the information up-to-date and
+        correct, we make no representations or warranties of any kind, express or implied, about the
+        completeness, accuracy, reliability, suitability or availability with respect to the website
+        or the information, products, services, or related graphics contained on the website for any
+        purpose. Any reliance you place on such information is strictly at your own risk.
+      </p>
+      <p>
+        The website and services are provided as is and on an &apos;as available&apos; basis.
+        Although we seek to ensure that the website and services are always up and running smoothly,
+        we cannot guarantee the timeliness, completeness or performance of the site or services.
+        Community Inspired Ltd takes no responsibility for, and will not be liable for, the website
+        or services being unavailable. We do not warrant that site functions or services will be
+        uninterrupted or error-free or that defects will be corrected or that it is free of viruses
+        or bugs.
+      </p>
+      <p>
+        In no event will we be liable for any loss or damage, including without limitation, indirect
+        or consequential loss or damage, or any loss or damage whatsoever arising from loss of data
+        or profits arising out of, or in connection with, the use of this website.
+      </p>
+      <p>Users of the website and services</p>
+      <p>As a user of the website and services, you:</p>
+      <ul>
+        <li>
+          agree to the use of the information and personal data (including sensitive personal data)
+          by us in accordance with these terms and conditions and our privacy policy,{' '}
+        </li>
+        <li>
+          accept that it is your responsibility to implement your own procedures and virus checks to
+          satisfy your requirements for the accuracy of data input and output,
+        </li>
+        <li>
+          agree to fully indemnify and keep us indemnified against all claims, liability, damages,
+          losses, costs and expenses, arising out of any breach of these terms and conditions by you
+          or other liabilities arising out of your use of the website and/or services.
+        </li>
+      </ul>
+      <h3>Intellectual property and copyright</h3>
+      <p>
+        This website and its content is copyright of Community Inspired Ltd © Community Inspired
+        Ltd. All rights reserved.
+      </p>
+      <h3>Data protection</h3>
+      <p>
+        We are required by law to give you certain information on our data usage practices. Please
+        see our privacy policy for details.
+      </p>
+      <h3>Assignment</h3>
+      <p>
+        You are not entitled to assign any of your rights or obligations under these terms and
+        conditions. We have the right to assign or otherwise delegate all or any of our rights
+        hereunder.
+      </p>
+      <h3>Jurisdiction and choice of law</h3>
+      <p>
+        If any of these terms are found to be invalid or otherwise unenforceable for legal reasons,
+        then it will be severed and deleted from these terms and the remaining terms will continue
+        to be binding and enforceable.
+      </p>
+      <p>
+        Our failure or delay to exercise or enforce any right in these terms does not waive our
+        right to enforce that right. Your use of this website and any dispute arising out of such
+        use of the website is subject to the laws of England and Wales which shall have exclusive
+        jurisdiction over any disputes.
+      </p>
+      <h3>Contact us</h3>
+      <p>
+        We welcome your questions and comments about our website. If you have any questions, contact
+        us:
+      </p>
+      <p className={styles.email}>Email: team@donatetoeducate.org.uk</p>
+      <p>
+        Community Inspired Ltd <br />
+        Unit 2 Bulrushes Farm <br />
+        Coombe Hill Road <br />
+        East Grinstead <br />
+        West Sussex <br />
+        RH19 4LZ
+      </p>
+      <p>
+        Registered in England & Wales: 04573509 <br />
+        Registered Office: 112 Broadwater Street West, Worthing, West Sussex BN14 9DJ <br />
+        Vat reg. No. 802501090
+      </p>
+    </FooterPage>
+  );
+};
+
+export default TermsAndConditions;

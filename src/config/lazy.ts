@@ -6,7 +6,17 @@ const Contact = lazy(() => import('@pages/Contact/Contact'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
+const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
+const TermsAndConditions = lazy(() => import('@pages/TermsAndConditions/TermsAndConditions'));
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 
-export { Home, AboutUs, Contact, NotFound, AccessabilityStatement };
+export {
+  Home,
+  AboutUs,
+  Contact,
+  NotFound,
+  AccessabilityStatement,
+  PrivacyPolicy,
+  TermsAndConditions,
+};
