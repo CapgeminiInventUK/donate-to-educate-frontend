@@ -105,8 +105,12 @@
   }
 }
 
-@media only screen and (min-width: g.$screen-medium) {
+@media only screen and (max-width: g.$screen-medium) {
   .tile {
+    h1 {
+      white-space: wrap;
+    }
+
     .contentContainer {
       padding: 50px;
 
@@ -117,6 +121,16 @@
           margin-top: 20px;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-small) {
+  .listItem {
+    align-items: center;
+
+    .itemText {
+      font-size: 20px;
     }
   }
 }

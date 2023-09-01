@@ -1,6 +1,7 @@
 import { SvgProps } from '@/types/props';
+import { FC } from 'react';
 
-const DarkBlueLine = ({ className }: SvgProps): JSX.Element => (
+const DarkBlueLine: FC<SvgProps> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={450}
