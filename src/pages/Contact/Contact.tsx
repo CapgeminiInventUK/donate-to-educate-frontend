@@ -10,7 +10,7 @@ const Contact: FC = () => {
     <div className={styles.container}>
       <DonateToEducateBanner />
       <div className={styles.contentContainer}>
-        <h1 className={styles.title}>Contact us at</h1>
+        <h1 className={styles.title}>Contact us</h1>
         <div className={styles.card}>
           <Email />
           <Link to={Paths.EMAIL} className={styles.email}>
