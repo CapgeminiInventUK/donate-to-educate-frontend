@@ -30,7 +30,7 @@ const Footer: FC = () => {
             Terms and conditions
           </Link>
         </div>
-        <p>Donate to Educate &copy;</p>
+        <p className={styles.copyrightNotice}>Donate to Educate &copy;</p>
       </div>
       <div className={styles.circleOuter}>
         <div className={styles.circleInner}>
@@ -43,7 +43,7 @@ const Footer: FC = () => {
             />
             <div>
               Donate to Educate is a national project funded by{' '}
-              <strong>We Have The&nbsp;POWER</strong>
+              <strong>We&nbsp;Have&nbsp;The&nbsp;POWER</strong>
             </div>
             <Link to={Paths.WE_HAVE_THE_POWER}>wehavethepower.org/</Link>
           </div>

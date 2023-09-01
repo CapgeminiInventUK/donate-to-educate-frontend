@@ -86,3 +86,14 @@
     }
   }
 }
+
+@media only screen and (max-width: g.$screen-medium) {
+  .carouselItem {
+    .image {
+      padding-right: 0;
+      width: 75%;
+      height: 350px;
+      margin-top: 30px;
+    }
+  }
+}

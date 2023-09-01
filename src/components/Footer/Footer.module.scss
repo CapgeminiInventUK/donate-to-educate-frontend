@@ -47,7 +47,7 @@
 
   a {
     font-size: 14px;
-    margin-top: 6px;
+    margin-top: 10px;
   }
 }
 
@@ -135,5 +135,16 @@
     position: absolute;
     top: 4rem;
     right: 10rem;
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .fitContent769 {
+    margin-bottom: 15px;
+  }
+
+  .copyrightNotice {
+    font-size: 12px;
+    font-weight: 300;
   }
 }
