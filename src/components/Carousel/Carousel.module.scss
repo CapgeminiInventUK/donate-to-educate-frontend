@@ -97,3 +97,16 @@
     }
   }
 }
+
+@media only screen and (max-width: g.$screen-small) {
+  .carouselItem {
+    .image {
+      height: 175px;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+}
