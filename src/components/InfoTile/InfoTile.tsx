@@ -88,9 +88,9 @@ const content = {
     image: Teacher,
     alt: 'School teacher',
     body: [
-      "Create a list of your school's products that are in stock, say what you need and list extra stock you are happy to share.",
+      'Create a list of items that are available, items that are needed and excess items that you are happy to share.',
       'Connect with local community groups and help every pupil get the items they need.',
-      'Get support from national charities who can donate laptops, hygiene products and other products.',
+      'Get support from national charities who can donate laptops, hygiene products and other items.',
     ],
     list: [
       {
@@ -112,9 +112,9 @@ const content = {
     image: Prefect,
     alt: 'School prefect',
     body: [
-      'Local community groups can support schools and collect the items that pupils needs.',
+      'Local community groups can support schools and collect the items that pupils need.',
       'Local businesses and volunteers can donate funds to refurbish laptops, provide hygiene products and other essentials.',
-      'Donate vital school stuff to improve the lives of children who need it.',
+      'Donate vital school items to improve the lives of children who need them.',
     ],
     list: [
       {
