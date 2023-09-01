@@ -95,15 +95,15 @@ const content = {
     list: [
       {
         icon: <Money />,
-        text: 'Get Donations',
+        text: 'Get donations',
       },
       {
         icon: <Dashboard />,
-        text: 'Manage Products',
+        text: 'Manage products',
       },
       {
         icon: <Help />,
-        text: 'Help Families',
+        text: 'Help families',
       },
     ],
   },
