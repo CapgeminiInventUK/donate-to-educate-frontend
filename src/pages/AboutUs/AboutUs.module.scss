@@ -1,0 +1,108 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  background: g.$primary-light-blue;
+  height: 100%;
+
+  .banner {
+    background: g.$dark-blue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      width: 300px;
+      padding: 89px 0 89px 40px;
+    }
+  }
+
+  .inventBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 40px 0;
+    border-radius: 10px;
+    margin-top: 40px;
+
+    p {
+      margin-top: 0;
+    }
+  }
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+
+    h1 {
+      padding: 66px 0 26px;
+      margin: 0;
+    }
+
+    h3 {
+      margin-top: 60px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .card {
+      border-radius: 10px;
+      background: g.$primary-white;
+      padding: 60px 82px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+
+      p {
+        a {
+          color: g.$black;
+        }
+      }
+    }
+  }
+}
+
+.home {
+  width: fit-content;
+  display: block;
+  margin: auto;
+  color: g.$primary-dark-blue;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 160%; /* 25.6px */
+  text-decoration-line: underline;
+  padding-top: 40px;
+}
+
+@media only screen and (max-width: calc(g.$screen-medium)) {
+  .container {
+    .title {
+      display: none;
+    }
+
+    .card {
+      margin-top: 66px;
+    }
+
+    .inventLogo {
+      width: 250px;
+    }
+
+    .banner {
+      flex-direction: column;
+
+      .logo {
+        padding: 40px 0 89px 0;
+      }
+
+      .communityInspiredLogo {
+        padding-top: 89px;
+      }
+    }
+  }
+}

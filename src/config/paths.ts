@@ -9,6 +9,8 @@ enum Paths {
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
   EQUALITY_SERVICES = 'https://www.equalityadvisoryservice.com/',
   EMAIL = 'mailto: team@donatetoeducate.org.uk',
+  PTA = 'https://www.pta.co.uk/',
+  FUNDED = 'http://www.funded.org.uk/magazine/currentissue/funded-magazine---current-issue1/',
 }
 
 export default Paths;
