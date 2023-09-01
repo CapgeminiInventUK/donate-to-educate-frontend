@@ -11,6 +11,7 @@ enum Paths {
   EMAIL = 'mailto: team@donatetoeducate.org.uk',
   PTA = 'https://www.pta.co.uk/',
   FUNDED = 'http://www.funded.org.uk/magazine/currentissue/funded-magazine---current-issue1/',
+  INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
 }
 
 export default Paths;

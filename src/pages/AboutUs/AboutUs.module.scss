@@ -57,6 +57,26 @@
       padding: 60px 82px;
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
       margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+
+      .image,
+      .imageContainer {
+        width: 50%;
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .newsletter {
+        width: 100%;
+      }
 
       p {
         a {
@@ -64,7 +84,15 @@
         }
       }
     }
+
+    .col {
+      flex-direction: column;
+    }
   }
+}
+
+.inventLogo {
+  cursor: pointer;
 }
 
 .home {
@@ -76,17 +104,13 @@
   font-weight: 500;
   line-height: 160%; /* 25.6px */
   text-decoration-line: underline;
-  padding-top: 40px;
+  margin-top: 40px;
 }
 
 @media only screen and (max-width: calc(g.$screen-medium)) {
   .container {
     .title {
       display: none;
-    }
-
-    .card {
-      margin-top: 66px;
     }
 
     .inventLogo {
@@ -102,6 +126,31 @@
 
       .communityInspiredLogo {
         padding-top: 89px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-large)) {
+  .container {
+    .newsletter {
+      display: none;
+    }
+
+    .contentContainer {
+      .card {
+        padding: 30px 40px;
+      }
+
+      .card,
+      .content {
+        flex-direction: column;
+
+        .image,
+        .imageContainer {
+          width: 100%;
+          height: fit-content;
+        }
       }
     }
   }
