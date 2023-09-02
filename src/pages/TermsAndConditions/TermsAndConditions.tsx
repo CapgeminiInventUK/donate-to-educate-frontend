@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import FooterPage from '@/components/FooterPage/FooterPage';
 import styles from './TermsAndConditions.module.scss';
+import { Link } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 const TermsAndConditions: FC = () => {
   return (
     <FooterPage title="Terms and conditions">
-      <h3>Terms and conditions</h3>
       <p>
         Welcome to Donate to Educate, owned by Community Inspired. If you browse and use this
         website you are agreeing to comply with, and be bound by, our terms and conditions of use,
@@ -150,7 +151,9 @@ const TermsAndConditions: FC = () => {
         We welcome your questions and comments about our website. If you have any questions, contact
         us:
       </p>
-      <p className={styles.email}>Email: team@donatetoeducate.org.uk</p>
+      <p className={styles.email}>
+        Email: <Link to={Paths.EMAIL}>team@donatetoeducate.org.uk</Link>
+      </p>
       <p>
         Community Inspired Ltd <br />
         Unit 2 Bulrushes Farm <br />

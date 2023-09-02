@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import FooterPage from '@/components/FooterPage/FooterPage';
 import styles from './PrivacyPolicy.module.scss';
+import { Link } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 const PrivacyPolicy: FC = () => {
   return (
     <FooterPage title="Privacy policy">
-      <h3>Privacy policy</h3>
       <p>
         This privacy policy explains how we, Community Inspired, owners of Donate to Educate,
         protect your details when you use this website.
@@ -65,7 +66,9 @@ const PrivacyPolicy: FC = () => {
         If you need to see the information we hold about you, or if you have any questions about our
         privacy policy and how we use data, contact us:
       </p>
-      <p className={styles.email}>Email: team@donatetoeducate.org.uk</p>
+      <p className={styles.email}>
+        Email: <Link to={Paths.EMAIL}>team@donatetoeducate.org.uk</Link>
+      </p>
       <p>
         Community Inspired Ltd <br />
         Unit 2 Bulrushes Farm <br />

@@ -7,26 +7,29 @@ import FooterPage from '@/components/FooterPage/FooterPage';
 const AccessibilityStatement: FC = () => {
   return (
     <FooterPage title="Accessibility statement">
-      <h3>Accessibility statement for Donate to Educate</h3>
       <p>
         We want as many people as possible to be able to use this website. We have taken steps to
         make this website as accessible as possible, for instance:
       </p>
       <ul>
         <li>content is written in plain English</li>
-        <li>visually hidden content is included on images and buttons</li>
         <li>
           text against a coloured background passes a minimum of Web Content Accessibility
           Guidelines (WCAG) 2.1 AA colour contrast criteria
         </li>
       </ul>
-      <p>AbilityNet has advice on making your device easier to use if you have a disability</p>
+      <p>
+        <a href="https://abilitynet.org.uk/" target="_blank" rel="noreferrer">
+          AbilityNet
+        </a>{' '}
+        has advice on making your device easier to use if you have a disability
+      </p>
 
       <h3>Accessibility testing</h3>
       <p>
         We are aware that the site needs to be fully accessibility tested for us to identify where
-        we need to improve. We plan on accessibility testing this site as soon as possible. This
-        page will be updated once accessibility testing has taken place.
+        we need to improve. We plan on accessibility testing this site when it has been fully
+        developed. This page will be updated once accessibility testing has taken place.
       </p>
 
       <h3>Feedback and contact information</h3>

@@ -27,24 +27,17 @@ const AboutUs: FC = () => {
               enterprise delivering projects to enhance schools, local communities and society.
             </p>
             <p>
-              We focus on helping PTAs, families, and schools, reinvesting reinvest our profits to
-              benefit the communities we serve.
+              We focus on helping PTAs, families, and schools, reinvesting our profits to benefit
+              the communities we serve.
             </p>
             <p>
-              With 15 years of experience engaging parents, teachers and PTAs, we have established
-              ourselves as experts in school fundraising, becoming the leading fundraisers of PTAs
-              in the UK.
+              With 15 years of experience in engaging schools and PTAs, we have established
+              ourselves as leading experts in school fundraising, becoming the leading fundraisers
+              of PTAs in the UK.
             </p>
             <p>
-              Thanks to our printed and digital magazines,{' '}
-              <Link to={Paths.PTA} target="_blank" rel="noopener noreferrer">
-                PTA+
-              </Link>{' '}
-              and{' '}
-              <Link to={Paths.FUNDED} target="_blank" rel="noopener noreferrer">
-                FundEd
-              </Link>
-              , every year, PTAs raise over £150m to support children&apos;s education.
+              Thanks to our magazines and online resources, we help PTAs to raise over £150m a year,
+              supporting children&apos;s education.
             </p>
             <p>
               Our mix of publishing, digital and fundraising expertise, coupled with our loyal PTA
