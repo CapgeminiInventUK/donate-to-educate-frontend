@@ -13,7 +13,7 @@ import Box from '@/assets/tiles/Box';
 import Heart from '@/assets/tiles/Heart';
 import Pupil from '@/assets/tiles/Child.webp';
 import Teacher from '@/assets/tiles/Teacher.webp';
-import Prefect from '@/assets/tiles/Prefect.webp';
+import Supporters from '@/assets/tiles/Supporters.webp';
 import Image from '@components/Image/Image';
 import RoundArrows from '@/assets/tiles/RoundArrows';
 import { InfoTileProps } from '@/types/props';
@@ -108,9 +108,9 @@ const content = {
     ],
   },
   darkBlue: {
-    title: 'A place for our supporters',
-    image: Prefect,
-    alt: 'School prefect',
+    title: 'A place for supporters',
+    image: Supporters,
+    alt: 'Supporters',
     body: [
       'Local community groups can support schools and collect the items that pupils need.',
       'Local businesses and volunteers can donate funds to refurbish laptops, provide hygiene products and other essentials.',

@@ -1,8 +1,15 @@
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import styles from './LetsHelpChildren.module.scss';
 import { FC } from 'react';
+import Image from '@/components/Image/Image';
+import PupilsTalking from '../../../assets/tiles/PupilsTalking.webp';
+import { useMediaQuery } from 'react-responsive';
+import { breakpoints } from '@/utils/globals';
 
 const LetsHelpChildren: FC = () => {
+  const isSmallScreen = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
+  const isLargerThanMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenSmall})` });
+
   return (
     <div className={styles.container}>
       <LogoIconBlue className={styles.logo} />
@@ -10,6 +17,11 @@ const LetsHelpChildren: FC = () => {
       {paragraphs.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
+      <div className={styles.imageContainer}>
+        {isLargerThanMobile && (
+          <Image alt="pupils talking" image={PupilsTalking} width={isSmallScreen ? 380 : 750} />
+        )}
+      </div>
     </div>
   );
 };
