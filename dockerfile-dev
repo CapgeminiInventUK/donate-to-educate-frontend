@@ -1,0 +1,19 @@
+# Use an official node runtime as a parent image
+FROM node:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+COPY package.json /app
+RUN npm install
+
+# Add rest of the client code
+COPY . /app
+
+# Specify which port your application will run on
+EXPOSE 5173
+
+# Start the application using the 'npm run dev' command
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+

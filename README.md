@@ -25,3 +25,12 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Docker
+Run the following command to build a docker container of the application. This will build the application then deploy a static server on the port '5173'
+
+```cli
+docker compose up
+```
+
+If you want to run the vita preview server change the 'dockerfile' in [docker-compose.yml](./docker-compose.yml) to 'dockerfile-dev'
