@@ -7,7 +7,7 @@ export const HeroBanner: FC = () => {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.textContainer}>
-        <h2>Donate to Educate</h2>
+        <h1>Donate to Educate</h1>
         <div>
           Connecting communities, charities and schools to tackle education poverty and give pupils
           the things they need to thrive at school.
