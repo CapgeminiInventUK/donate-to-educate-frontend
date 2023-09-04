@@ -1,9 +1,10 @@
+@use '@assets/global.scss' as g;
+
 .container {
   max-width: 450px;
   width: 80%;
   margin: auto;
-  padding-bottom: 100px;
-  padding-top: 40px;
+  padding: 40px 0 100px;
 }
 
 .logo {
@@ -16,4 +17,10 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .container {
+    padding-bottom: 0;
+  }
 }
