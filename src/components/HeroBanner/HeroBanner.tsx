@@ -14,8 +14,8 @@ export const HeroBanner: FC = () => {
         </p>
         <p>
           We&apos;ll give communities, charities and schools a platform to work together and match
-          the things pupil&apos;s need to the items available - creating a brighter future for
-          children and communities.
+          the things pupils need to the items available - creating a brighter future for children
+          and communities.
         </p>
         <div className={styles.diagonalTextContainer}>Coming January 2024</div>
       </div>
