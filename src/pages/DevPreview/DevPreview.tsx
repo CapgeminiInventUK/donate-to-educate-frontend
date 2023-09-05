@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextInput, { TextInputProps, ValidationResult } from '@components/TextInput/TextInput';
+import Button from '@components/Button/Button';
+import styles from '@components/Button/Button.module.scss';
+import Modal from 'react-modal';
+
 import { Preview } from '@/components/DevPreview/Preview';
 
 const DevPreview: React.FC = () => {
@@ -13,6 +17,16 @@ const DevPreview: React.FC = () => {
     return { isValid: true };
   };
 
+  const buttonClassNames = Object.keys(styles).filter((className) => className !== 'disabled');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (): void => {
+    setModalIsOpen(true);
+    setTimeout(() => {
+      setModalIsOpen(false);
+    }, 1000);
+  };
+
   return (
     <div>
       <h1>Development Preview</h1>
@@ -24,6 +38,21 @@ const DevPreview: React.FC = () => {
           validator: validator,
         }}
       />
+      {buttonClassNames.map((className) => (
+        <Preview<ComponentProps<typeof Button>>
+          key={className}
+          Component={Button}
+          componentName={`Button ${className}`}
+          initialProps={{
+            onClick: openModal,
+            text: className,
+            theme: className,
+          }}
+        />
+      ))}
+      <Modal isOpen={modalIsOpen}>
+        <h2>Clicked</h2>
+      </Modal>
     </div>
   );
 };
