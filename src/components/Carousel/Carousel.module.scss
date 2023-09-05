@@ -42,9 +42,11 @@
   }
 
   .image {
-    width: 50%;
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
     padding-right: 60px;
-    height: 450px;
   }
 }
 
@@ -100,8 +102,11 @@
     padding: 20px;
 
     .image {
+      width: auto;
+      height: auto;
+      max-width: 80%;
+      max-height: 80%;
       padding-right: 0;
-      width: 90%;
     }
 
     .title {
@@ -114,22 +119,6 @@
 
 @media only screen and (max-width: g.$screen-medium) {
   .carouselItem {
-    .image {
-      padding-right: 0;
-      width: 75%;
-      height: 350px;
-      margin-top: 30px;
-    }
-  }
-}
-
-@media only screen and (max-width: g.$screen-small) {
-  .carouselItem {
-    .image {
-      height: 175px;
-      margin-top: 10px;
-    }
-
     h2 {
       font-size: 24px;
     }
