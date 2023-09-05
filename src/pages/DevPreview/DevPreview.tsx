@@ -29,7 +29,6 @@ const DevPreview: React.FC = () => {
 
   return (
     <div>
-      <h1>Development Preview</h1>
       <Preview<TextInputProps>
         Component={TextInput}
         componentName="TextInput"
