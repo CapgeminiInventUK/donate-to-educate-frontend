@@ -32,8 +32,8 @@ const AboutUs: FC = () => {
             </p>
             <p>
               With 15 years of experience in engaging schools and PTAs, we have established
-              ourselves as leading experts in school fundraising, becoming the leading fundraisers
-              of PTAs in the UK.
+              ourselves as leading experts in school fundraising, becoming the leading supporters of
+              PTAs in the UK.
             </p>
             <p>
               Thanks to our magazines and online resources, we help PTAs to raise over £150m a year,

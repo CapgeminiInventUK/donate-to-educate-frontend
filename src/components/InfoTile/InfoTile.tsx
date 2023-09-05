@@ -99,7 +99,7 @@ const content = {
       },
       {
         icon: <Dashboard />,
-        text: 'Manage products',
+        text: 'Manage items',
       },
       {
         icon: <Help />,
@@ -112,9 +112,9 @@ const content = {
     image: Supporters,
     alt: 'Supporters',
     body: [
-      'Local community groups can support schools and collect the items that pupils need.',
-      'Local businesses and volunteers can donate funds to refurbish laptops, provide hygiene products and other essentials.',
-      'Donate vital school items to improve the lives of children who need them.',
+      'Local community groups can find and connect with local schools that need their support.',
+      'Connect with PTAs and national charities to help local schools collect the items that pupils need.',
+      'Work with local businesses and volunteers to raise funds to refurbish laptops, provide hygiene products and other essential school items.',
     ],
     list: [
       {
