@@ -24,8 +24,7 @@ const Home: FC = () => {
             colour: 'lightBlue',
           },
           {
-            title:
-              'Families can get new and pre-loved products from your school and local communities',
+            title: 'Request pre-loved items directly from their school or local communities',
             image: Request,
             colour: 'midBlue',
           },
