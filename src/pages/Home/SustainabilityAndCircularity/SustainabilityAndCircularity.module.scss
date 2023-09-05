@@ -4,7 +4,7 @@
   max-width: 450px;
   width: 80%;
   margin: auto;
-  padding: 40px 0 100px;
+  padding: 40px 0 0 0;
 }
 
 .logo {
@@ -17,10 +17,4 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
-}
-
-@media only screen and (max-width: g.$screen-large) {
-  .container {
-    padding-bottom: 0;
-  }
 }

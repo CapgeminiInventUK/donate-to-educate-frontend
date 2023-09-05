@@ -4,7 +4,7 @@ import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
 import Header from '@components/Header/Header';
 import InfoTile from '@/components/InfoTile/InfoTile';
-import LetsHelpChildren from './LetsHelpChildren/LetsHelpChildren';
+import SustainabilityAndCircularity from './SustainabilityAndCircularity/SustainabilityAndCircularity';
 import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Carousel from '@/components/Carousel/Carousel';
 import Items from '@/assets/carousel/items.webp';
@@ -40,7 +40,7 @@ const Home: FC = () => {
       <InfoTile colour="lightBlue" />
       <InfoTile colour="midBlue" />
       <InfoTile colour="darkBlue" />
-      <LetsHelpChildren />
+      <SustainabilityAndCircularity />
       <div className={styles.councilBanner}>
         <Header
           className={styles.title}
