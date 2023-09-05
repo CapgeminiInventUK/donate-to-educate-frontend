@@ -4,6 +4,29 @@
   margin: 20px 100px 66px 100px;
 }
 
+.arrow {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  transform: translateY(-25%);
+  border-radius: 50%;
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}
+
+.left {
+  left: 0;
+  margin-left: 5px;
+}
+
+.right {
+  right: 0;
+  margin-right: 5px;
+}
+
 .carouselItem {
   border-radius: 10px;
   display: flex;
@@ -11,6 +34,7 @@
   justify-content: center;
   padding: 50px;
   margin-bottom: 25px;
+  position: relative;
 
   .title {
     width: 50%;
