@@ -10,7 +10,7 @@ enum Paths {
   EQUALITY_SERVICES = 'https://www.equalityadvisoryservice.com/',
   EMAIL = 'mailto: team@donatetoeducate.org.uk',
   PTA = 'https://www.pta.co.uk/',
-  FUNDED = 'http://www.funded.org.uk/magazine/currentissue/funded-magazine---current-issue1/',
+  FUNDED = 'https://www.funded.org.uk',
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
 }
 
