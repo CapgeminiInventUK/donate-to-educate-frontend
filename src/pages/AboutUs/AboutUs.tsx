@@ -2,7 +2,6 @@ import { FC } from 'react';
 import styles from './AboutUs.module.scss';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
-import LogoWhite from '@/assets/logo/LogoWhite';
 import LogoCommunityInspired from '@/assets/logo/LogoCommunityInspired';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 import Image from '@/components/Image/Image';
@@ -13,14 +12,11 @@ import green from '@/assets/about/green-up-your-school.webp';
 const AboutUs: FC = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.banner}>
-        <LogoCommunityInspired className={styles.communityInspiredLogo} />
-        <LogoWhite className={styles.logo} />
-      </div>
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>About us</h1>
         <div className={styles.card}>
           <div className={styles.imageContainer}>
+            <LogoCommunityInspired className={styles.communityInspiredLogo} />
             <h2>Community Inspired</h2>
             <p>
               Donate to Educate was created by Community Inspired, a not-for-profit social
