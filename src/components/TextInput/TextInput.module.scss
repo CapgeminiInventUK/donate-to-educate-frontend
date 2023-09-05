@@ -1,0 +1,61 @@
+@use '@assets/global.scss' as g;
+
+%textInput {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  background: g.$primary-white;
+  color: g.$primary-mid-blue;
+  border: g.$primary-mid-blue 1px solid;
+  font-family: 'Poppins', sans-serif;
+  line-height: 20px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.header {
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: -0.24px;
+  color: var(--primary-11356F, #11356f);
+}
+
+.input {
+  @extend %textInput;
+}
+
+.errorMessage {
+  margin-top: 5px;
+  color: var(--error-F03A47, #f03a47);
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26.1px;
+  letter-spacing: -0.09px;
+}
+
+.error {
+  border: red 1px solid;
+  background: #fdd;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  %textInput {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+}
