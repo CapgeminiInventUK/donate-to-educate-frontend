@@ -1,4 +1,3 @@
-import DonateToEducateBanner from '@/components/DonateToEducateBanner/DonateToEducateBanner';
 import styles from './Contact.module.scss';
 import { FC } from 'react';
 import Paths from '@/config/paths';
@@ -8,7 +7,6 @@ import Email from '@/assets/tiles/Email';
 const Contact: FC = () => {
   return (
     <div className={styles.container}>
-      <DonateToEducateBanner />
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>Contact us</h1>
         <div className={styles.card}>

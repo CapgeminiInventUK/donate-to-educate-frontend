@@ -8,6 +8,11 @@
   padding: 20px 0px;
 }
 
+.copyrightNotice {
+  font-size: 12px;
+  font-weight: 300;
+}
+
 .footerContainer {
   width: 100%;
   height: fit-content;
@@ -144,8 +149,6 @@
   }
 
   .copyrightNotice {
-    font-size: 12px;
-    font-weight: 300;
     margin-top: 20px;
   }
 }

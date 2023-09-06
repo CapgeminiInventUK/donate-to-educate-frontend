@@ -4,12 +4,12 @@ import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
 import Header from '@components/Header/Header';
 import InfoTile from '@/components/InfoTile/InfoTile';
-import LetsHelpChildren from './LetsHelpChildren/LetsHelpChildren';
+import SustainabilityAndCircularity from './SustainabilityAndCircularity/SustainabilityAndCircularity';
 import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Carousel from '@/components/Carousel/Carousel';
-import Items from '@/assets/carousel/items.webp';
-import Request from '@/assets/carousel/request.webp';
-import Stock from '@/assets/carousel/stock.webp';
+import Laptop from '@/assets/carousel/Laptop.webp';
+import Tablet from '@/assets/carousel/Tablet.webp';
+import Tiles from '@/assets/carousel/Tiles.webp';
 
 const Home: FC = () => {
   return (
@@ -20,19 +20,19 @@ const Home: FC = () => {
           {
             title:
               'A platform to unite communities to collect items and match need to availability',
-            image: Stock,
+            image: Laptop,
             colour: 'lightBlue',
           },
           {
             title:
-              'Families can get new and pre-loved products from your school and local communities',
-            image: Request,
+              'Parents & guardians can request available items from their school or local community groups.',
+            image: Tablet,
             colour: 'midBlue',
           },
           {
             title:
-              'Schools can connect to communities to say what stock you have, what your pupils need and what extra stock you can share',
-            image: Items,
+              'Schools can connect to local community groups to list the items they need, items available and excess stock they can share',
+            image: Tiles,
             colour: 'darkBlue',
           },
         ]}
@@ -40,7 +40,7 @@ const Home: FC = () => {
       <InfoTile colour="lightBlue" />
       <InfoTile colour="midBlue" />
       <InfoTile colour="darkBlue" />
-      <LetsHelpChildren />
+      <SustainabilityAndCircularity />
       <div className={styles.councilBanner}>
         <Header
           className={styles.title}

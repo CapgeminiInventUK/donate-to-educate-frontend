@@ -1,4 +1,6 @@
+
 import { ComponentType, ReactNode } from 'react';
+import { CarouselItem } from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -31,6 +33,7 @@ export interface ErrorBoundaryProps {
 export interface SvgProps {
   className?: string;
   onClick?: () => void;
+  colour?: string;
 }
 
 export interface HeaderProps {
@@ -83,11 +86,7 @@ export interface InfoTileProps {
 }
 
 export interface CarouselProps {
-  items: {
-    title: string;
-    image: string;
-    colour: 'lightBlue' | 'midBlue' | 'darkBlue';
-  }[];
+  items: CarouselItem[];
 }
 
 export interface FooterPageProps {

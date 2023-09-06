@@ -4,19 +4,6 @@
   background: g.$primary-light-blue;
   height: 100%;
 
-  .banner {
-    background: g.$dark-blue;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .logo {
-      width: 300px;
-      padding: 89px 0 89px 40px;
-    }
-  }
-
   .inventBanner {
     display: flex;
     flex-direction: column;
@@ -117,15 +104,11 @@
       width: 250px;
     }
 
-    .banner {
-      flex-direction: column;
+    .contentContainer {
+      padding-top: 40px;
 
-      .logo {
-        padding: 40px 0 89px 0;
-      }
-
-      .communityInspiredLogo {
-        padding-top: 89px;
+      .card {
+        margin-top: 20px;
       }
     }
   }

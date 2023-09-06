@@ -5,3 +5,9 @@ export interface ErrorBoundaryState {
   error?: Error;
   errorInfo?: ErrorInfo;
 }
+
+export interface CarouselItem {
+  title: string;
+  image: string;
+  colour: 'lightBlue' | 'midBlue' | 'darkBlue';
+}

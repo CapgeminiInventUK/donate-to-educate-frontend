@@ -3,18 +3,28 @@ import styles from './Carousel.module.scss';
 import Image from '@components/Image/Image';
 import { CarouselProps } from '@/types/props';
 import { TEN_SECONDS_IN_MILLISECONDS } from '@/utils/globals';
+import ArrowLeft from '@/assets/carousel/ArrowLeft';
+import ArrowRight from '@/assets/carousel/ArrowRight';
+import { CarouselItem } from '@/types/data';
+
+const incrementCount = (items: CarouselItem[], active: number): number => {
+  return items.length === active + 1 ? 0 : active + 1;
+};
+
+const decrementCount = (items: CarouselItem[], active: number): number => {
+  return active === 0 ? items.length - 1 : active - 1;
+};
 
 const Carousel: FC<CarouselProps> = ({ items }) => {
   const [active, setActive] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextActive = items.length === active + 1 ? 0 : active + 1;
-      setActive(nextActive);
+      setActive(incrementCount(items, active));
     }, TEN_SECONDS_IN_MILLISECONDS);
 
     return () => clearInterval(interval);
-  }, [active, items.length]);
+  }, [active, items]);
 
   return (
     <div className={styles.container}>
@@ -27,6 +37,16 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
         >
           <Image className={styles.image} image={image} alt={title} />
           <h2 className={styles.title}>{title}</h2>
+          <ArrowLeft
+            className={`${styles.arrow} ${styles.left}`}
+            colour={colour === 'lightBlue' ? 'black' : 'white'}
+            onClick={(): void => setActive(decrementCount(items, active))}
+          />
+          <ArrowRight
+            className={`${styles.arrow} ${styles.right}`}
+            colour={colour === 'lightBlue' ? 'black' : 'white'}
+            onClick={(): void => setActive(incrementCount(items, active))}
+          />
         </div>
       ))}
       <div className={styles.progressContainer}>
