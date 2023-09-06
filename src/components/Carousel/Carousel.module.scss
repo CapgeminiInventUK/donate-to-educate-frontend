@@ -1,7 +1,7 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  margin: 20px 100px 66px 100px;
+  margin: 66px 100px 66px 100px;
 }
 
 .arrow {
@@ -9,7 +9,6 @@
   height: 50px;
   width: 50px;
   position: absolute;
-  transform: translateY(-25%);
   border-radius: 50%;
 
   &:hover {
@@ -53,7 +52,6 @@
 .progressContainer {
   display: flex;
   justify-content: center;
-  padding-bottom: 30px;
 
   .progressDot {
     height: 25px;
