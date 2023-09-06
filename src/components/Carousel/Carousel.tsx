@@ -38,12 +38,12 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
           <Image className={styles.image} image={image} alt={title} />
           <h2 className={styles.title}>{title}</h2>
           <ArrowLeft
-            className={`${styles.arrow} ${styles.left} ${styles[colour]}`}
+            className={`${styles.arrow} ${styles.left}`}
             colour={colour === 'lightBlue' ? 'black' : 'white'}
             onClick={(): void => setActive(decrementCount(items, active))}
           />
           <ArrowRight
-            className={`${styles.arrow} ${styles.right} ${styles[colour]}`}
+            className={`${styles.arrow} ${styles.right}`}
             colour={colour === 'lightBlue' ? 'black' : 'white'}
             onClick={(): void => setActive(incrementCount(items, active))}
           />
