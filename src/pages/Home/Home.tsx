@@ -7,9 +7,9 @@ import InfoTile from '@/components/InfoTile/InfoTile';
 import SustainabilityAndCircularity from './SustainabilityAndCircularity/SustainabilityAndCircularity';
 import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Carousel from '@/components/Carousel/Carousel';
-import Items from '@/assets/carousel/items.webp';
-import Request from '@/assets/carousel/request.webp';
-import Stock from '@/assets/carousel/stock.webp';
+import Laptop from '@/assets/carousel/Laptop.webp';
+import Tablet from '@/assets/carousel/Tablet.webp';
+import Tiles from '@/assets/carousel/Tiles.webp';
 
 const Home: FC = () => {
   return (
@@ -20,18 +20,18 @@ const Home: FC = () => {
           {
             title:
               'A platform to unite communities to collect items and match need to availability',
-            image: Stock,
+            image: Laptop,
             colour: 'lightBlue',
           },
           {
             title: 'Request pre-loved items directly from their school or local communities',
-            image: Request,
+            image: Tablet,
             colour: 'midBlue',
           },
           {
             title:
               'Schools can connect to communities to say what stock you have, what your pupils need and what extra stock you can share',
-            image: Items,
+            image: Tiles,
             colour: 'darkBlue',
           },
         ]}
