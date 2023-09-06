@@ -11,8 +11,8 @@ export const Preview = <T extends Record<string, unknown>>({
 
   const handleChange =
     (key: keyof T) =>
-    (e: ChangeEvent<HTMLInputElement>): void => {
-      setProps((prevProps) => ({ ...prevProps, [key]: e.target.value }));
+    (event: ChangeEvent<HTMLInputElement>): void => {
+      setProps((prevProps) => ({ ...prevProps, [key]: event.target.value }));
     };
 
   return (
