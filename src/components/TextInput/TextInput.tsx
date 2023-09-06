@@ -1,16 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './TextInput.module.scss';
-
-export interface TextInputProps {
-  header: string;
-  validator?: (input: string) => ValidationResult;
-  placeholder?: string;
-}
-
-export interface ValidationResult {
-  isValid: boolean;
-  errorMessage?: string;
-}
+import { TextInputProps } from '@/types/props';
 
 const TextInput: FC<TextInputProps> = ({ header, validator, placeholder }) => {
   const [value, setValue] = useState('');
@@ -33,8 +23,8 @@ const TextInput: FC<TextInputProps> = ({ header, validator, placeholder }) => {
   }, [value, validator]);
 
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.header}>{header}</h2>
+    <div className={`${styles.wrapper} ${error ? styles.error : ''}`}>
+      <h3 className={styles.header}>{header}</h3>
       {error && <p className={styles.errorMessage}>{error}</p>}
       <label htmlFor="textInput" className={styles.label}>
         <input

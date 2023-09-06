@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ComponentType, ReactNode } from 'react';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -54,6 +54,8 @@ export interface ClickableLogoProps {
 export interface CheckboxProps {
   label?: string;
   className?: string;
+  checked?: boolean;
+  onChange?: (e: boolean) => void;
 }
 
 export interface CheckmarkProps {
@@ -91,4 +93,22 @@ export interface CarouselProps {
 export interface FooterPageProps {
   title: string;
   children: JSX.Element[] | JSX.Element;
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errorMessage?: string;
+}
+
+export interface TextInputProps {
+  header: string;
+  validator?: (input: string) => ValidationResult;
+  placeholder?: string;
+}
+
+// ------ Dev only props
+export interface PreviewProps<T> {
+  Component: ComponentType<T>;
+  componentName: string;
+  initialProps: T;
 }

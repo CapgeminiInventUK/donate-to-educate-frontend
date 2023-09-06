@@ -1,10 +1,6 @@
-import { useState, ChangeEvent, ComponentType } from 'react';
-
-interface PreviewProps<T> {
-  Component: ComponentType<T>;
-  componentName: string;
-  initialProps: T;
-}
+import { useState, ChangeEvent } from 'react';
+import { PreviewProps } from '@/types/props';
+import styles from './Preview.module.scss';
 
 export const Preview = <T extends Record<string, unknown>>({
   Component,
@@ -20,7 +16,7 @@ export const Preview = <T extends Record<string, unknown>>({
     };
 
   return (
-    <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+    <div className={styles.preview}>
       <h2>{componentName}</h2>
       {Object.keys(initialProps).map((key: keyof T & string) => (
         <div key={key}>
@@ -34,7 +30,9 @@ export const Preview = <T extends Record<string, unknown>>({
           </label>
         </div>
       ))}
-      <Component {...props} />
+      <div className={styles.dottedBorder}>
+        <Component {...props} />
+      </div>
     </div>
   );
 };

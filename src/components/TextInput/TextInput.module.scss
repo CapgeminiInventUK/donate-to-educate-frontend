@@ -2,31 +2,26 @@
 
 %textInput {
   padding: 10px 20px;
-  border-radius: 5px;
   font-size: 16px;
   background: g.$primary-white;
   color: g.$primary-mid-blue;
-  border: g.$primary-mid-blue 1px solid;
   font-family: 'Poppins', sans-serif;
   line-height: 20px;
+  border: 1px solid g.$greyscale;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
 }
 
 .header {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 0px;
   font-family: 'Poppins', sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 30px;
-  letter-spacing: -0.24px;
-  color: var(--primary-11356F, #11356f);
+  color: g.$primary-dark-blue;
 }
 
 .input {
@@ -34,19 +29,16 @@
 }
 
 .errorMessage {
-  margin-top: 5px;
-  color: var(--error-F03A47, #f03a47);
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-style: normal;
+  color: g.$error-red;
   font-weight: 700;
-  line-height: 26.1px;
-  letter-spacing: -0.09px;
+  color: g.$error-red;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
-.error {
-  border: red 1px solid;
-  background: #fdd;
+.wrapper.error {
+  border-left: 5px solid g.$error-red;
+  padding-left: 20px;
 }
 
 @media only screen and (max-width: g.$screen-large) {

@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
-import TextInput, { TextInputProps, ValidationResult } from '@components/TextInput/TextInput';
-import Button from '@components/Button/Button';
-import styles from '@components/Button/Button.module.scss';
+import React, { ComponentProps, useState } from 'react';
 import Modal from 'react-modal';
-
 import { Preview } from '@/components/DevPreview/Preview';
+
+//--- Components
+import TextInput from '@components/TextInput/TextInput';
+import Button from '@components/Button/Button';
+import Checkbox from '@/components/Checkbox/Checkbox';
+//--- Components
+
+//---Styles
+import ButtonStyles from '@components/Button/Button.module.scss';
+import CheckboxStyles from '@components/Checkbox/Checkbox.module.scss';
+import DevPreviewStyles from './DevPreview.module.scss';
+//---Styles
+
+//--- Component props
+import { TextInputProps, ValidationResult } from '@/types/props';
+//--- Component props
 
 const DevPreview: React.FC = () => {
   const validator: TextInputProps['validator'] = (input: string): ValidationResult => {
@@ -17,7 +29,9 @@ const DevPreview: React.FC = () => {
     return { isValid: true };
   };
 
-  const buttonClassNames = Object.keys(styles).filter((className) => className !== 'disabled');
+  const buttonClassNames = Object.keys(ButtonStyles).filter(
+    (className) => className !== 'disabled'
+  );
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = (): void => {
@@ -27,13 +41,19 @@ const DevPreview: React.FC = () => {
     }, 1000);
   };
 
+  const handleCheckboxChange = (checked: boolean): void => {
+    if (checked) {
+      openModal();
+    }
+  };
+
   return (
-    <div>
+    <div className={DevPreviewStyles.background}>
       <Preview<TextInputProps>
         Component={TextInput}
         componentName="TextInput"
         initialProps={{
-          header: 'Test Header',
+          header: 'Type Error for error',
           validator: validator,
         }}
       />
@@ -49,8 +69,17 @@ const DevPreview: React.FC = () => {
           }}
         />
       ))}
+      <Preview<ComponentProps<typeof Checkbox>>
+        Component={Checkbox}
+        componentName="Checkbox"
+        initialProps={{
+          label: 'CheckBox',
+          className: CheckboxStyles.checkbox,
+          onChange: handleCheckboxChange,
+        }}
+      />
       <Modal isOpen={modalIsOpen}>
-        <h2>Clicked</h2>
+        <h2>Modal Shown</h2>
       </Modal>
     </div>
   );
