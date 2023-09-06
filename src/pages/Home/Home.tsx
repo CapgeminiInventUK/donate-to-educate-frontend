@@ -24,13 +24,14 @@ const Home: FC = () => {
             colour: 'lightBlue',
           },
           {
-            title: 'Request pre-loved items directly from their school or local communities',
+            title:
+              'Parents & guardians can request available items from their school or local community groups.',
             image: Tablet,
             colour: 'midBlue',
           },
           {
             title:
-              'Schools can connect to communities to say what stock you have, what your pupils need and what extra stock you can share',
+              'Schools can connect to local community groups to list the items they need, items available and excess stock they can share',
             image: Tiles,
             colour: 'darkBlue',
           },
