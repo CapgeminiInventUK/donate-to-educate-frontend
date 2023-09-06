@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import styles from './TextInput.module.scss';
 import { TextInputProps } from '@/types/props';
 
-const TextInput: FC<TextInputProps> = ({ header, validator, placeholder }) => {
+const TextInput: FC<TextInputProps> = ({ header, validator, placeholder, password = false }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -28,7 +28,7 @@ const TextInput: FC<TextInputProps> = ({ header, validator, placeholder }) => {
       {error && <p className={styles.errorMessage}>{error}</p>}
       <label htmlFor="textInput" className={styles.label}>
         <input
-          type="text"
+          type={password ? 'password' : 'text'}
           id="textInput"
           value={value}
           onChange={handleChange}

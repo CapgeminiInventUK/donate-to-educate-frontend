@@ -57,6 +57,15 @@ const DevPreview: React.FC = () => {
           validator: validator,
         }}
       />
+      <Preview<TextInputProps>
+        Component={TextInput}
+        componentName="TextInput-Password"
+        initialProps={{
+          header: 'Type Error for error',
+          validator: validator,
+          password: true,
+        }}
+      />
       {buttonClassNames.map((className) => (
         <Preview<ComponentProps<typeof Button>>
           key={className}

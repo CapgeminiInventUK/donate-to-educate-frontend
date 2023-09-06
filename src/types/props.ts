@@ -103,6 +103,7 @@ export interface TextInputProps {
   header: string;
   validator?: (input: string) => ValidationResult;
   placeholder?: string;
+  password?: boolean;
 }
 
 // ------ Dev only props
