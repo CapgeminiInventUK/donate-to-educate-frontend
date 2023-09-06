@@ -14,7 +14,7 @@ const SustainabilityAndCircularity: FC = () => {
   return (
     <div className={styles.container}>
       <LogoIconBlue className={styles.logo} />
-      <Header text="Sustainability and circularity" />
+      <Header text="Sustainability and Circularity" />
       <p>
         Every year, pupils experiencing education poverty miss days off school because they
         don&apos;t have the things they need. With over 100 million items of school uniform, laptops
