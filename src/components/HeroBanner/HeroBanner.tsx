@@ -2,12 +2,13 @@ import { FC } from 'react';
 import styles from './HeroBanner.module.scss';
 import Image from '../../components/Image/Image';
 import HeroBannerPicture from '../../assets/hero-pictures/HeroBanner.webp';
+import Header from '../Header/Header';
 
 export const HeroBanner: FC = () => {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.textContainer}>
-        <h1>Let&apos;s stop education poverty</h1>
+        <Header text="Let's stop education poverty" />
         <p>
           We&apos;re on a mission to tackle education poverty by making sure every child has the
           essential items they need to thrive at school.

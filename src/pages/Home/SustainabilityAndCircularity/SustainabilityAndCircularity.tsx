@@ -5,6 +5,7 @@ import Image from '@/components/Image/Image';
 import PupilsTalking from '../../../assets/tiles/PupilsTalking.webp';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '@/utils/globals';
+import Header from '@/components/Header/Header';
 
 const SustainabilityAndCircularity: FC = () => {
   const isSmallScreen = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
@@ -13,7 +14,7 @@ const SustainabilityAndCircularity: FC = () => {
   return (
     <div className={styles.container}>
       <LogoIconBlue className={styles.logo} />
-      <h1>Sustainability and Circularity</h1>
+      <Header text="Sustainability and Circularity" />
       <p>
         Every year, pupils experiencing education poverty miss days off school because they
         don&apos;t have the things they need. With over 100 million items of school uniform, laptops

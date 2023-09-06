@@ -17,6 +17,7 @@ import Supporters from '@/assets/tiles/Supporters.webp';
 import Image from '@components/Image/Image';
 import RoundArrows from '@/assets/tiles/RoundArrows';
 import { InfoTileProps } from '@/types/props';
+import Header from '../Header/Header';
 
 const InfoTile: FC<InfoTileProps> = ({ colour }) => {
   const { title, body, list, image, alt } = content[colour];
@@ -24,7 +25,7 @@ const InfoTile: FC<InfoTileProps> = ({ colour }) => {
   return (
     <div className={`${styles.tile} ${styles[colour]}`}>
       <div className={styles.contentContainer}>
-        <h1>{title}</h1>
+        <Header text={title} />
         {getLine(colour)}
         {body.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>

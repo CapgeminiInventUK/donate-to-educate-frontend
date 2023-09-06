@@ -122,3 +122,11 @@
     }
   }
 }
+
+@media only screen and (max-width: g.$screen-small) {
+  .carouselItem {
+    h2 {
+      font-size: 18px;
+    }
+  }
+}

@@ -20,6 +20,13 @@
   }
 }
 
+.westSussexLogo {
+  height: auto;
+  width: auto;
+  max-width: 60%;
+  max-height: 60%;
+}
+
 @media only screen and (min-width: calc(g.$screen-medium + 1px)) {
   .councilBanner {
     flex-direction: row;
@@ -30,7 +37,8 @@
     }
   }
 
-  .paddingLeft {
+  .westSussexLogo {
     padding-left: 74px;
+    width: 300px;
   }
 }

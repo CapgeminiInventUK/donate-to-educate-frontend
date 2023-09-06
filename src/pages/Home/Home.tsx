@@ -50,7 +50,7 @@ const Home: FC = () => {
           image={westSussexCouncilLogo}
           alt="west sussex county council logo"
           width={300}
-          className={styles.paddingLeft}
+          className={styles.westSussexLogo}
         />
       </div>
     </div>
