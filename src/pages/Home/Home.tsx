@@ -25,7 +25,7 @@ const Home: FC = () => {
           },
           {
             title:
-              'Parents & guardians can request available items from their school or local community groups.',
+              'Parents and guardians can request available items from their school or local community groups.',
             image: Tablet,
             colour: 'midBlue',
           },

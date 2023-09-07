@@ -109,6 +109,7 @@
 
     .title {
       font-weight: 400;
+      font-size: 24px;
       text-align: center;
       width: 90%;
     }
@@ -117,15 +118,15 @@
 
 @media only screen and (max-width: g.$screen-medium) {
   .carouselItem {
-    h2 {
-      font-size: 24px;
+    .title {
+      font-size: 20px;
     }
   }
 }
 
 @media only screen and (max-width: g.$screen-small) {
   .carouselItem {
-    h2 {
+    .title {
       font-size: 18px;
     }
   }
