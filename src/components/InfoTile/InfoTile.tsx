@@ -114,7 +114,7 @@ const content = {
     alt: 'Supporters',
     body: [
       'Local community groups can find and connect with local schools that need their support.',
-      'Connect with PTAs and national charities to help local schools collect the items that pupils need.',
+      'Connect with PTAs and national charities to help local schools source the items that pupils need.',
       'Work with local businesses and volunteers to raise funds to refurbish laptops, provide hygiene products and other essential school items.',
     ],
     list: [
