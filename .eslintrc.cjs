@@ -1,4 +1,12 @@
 module.exports = {
+  overrides: [
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+  ],
   root: true,
   env: { browser: true, es2020: true },
   extends: [
