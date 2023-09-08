@@ -1,8 +1,9 @@
 import { useState, ChangeEvent } from 'react';
-import { PreviewProps } from '@/types/props';
+import { PreviewProps, PropTypes } from '@/types/props';
 import styles from './Preview.module.scss';
+import Checkbox from '@components/Checkbox/Checkbox';
 
-export const Preview = <T extends Record<string, unknown>>({
+export const Preview = <T extends PropTypes>({
   Component,
   componentName,
   initialProps,
@@ -11,22 +12,30 @@ export const Preview = <T extends Record<string, unknown>>({
 
   const handleChange =
     (key: keyof T) =>
-    (event: ChangeEvent<HTMLInputElement>): void => {
+    (event: ChangeEvent<HTMLInputElement | (HTMLInputElement & { checked: boolean })>): void => {
       setProps((prevProps) => ({ ...prevProps, [key]: event.target.value }));
     };
 
   return (
     <div className={styles.preview}>
       <h2>{componentName}</h2>
-      {Object.keys(initialProps).map((key: keyof T & string) => (
+      {Object.entries(initialProps).map(([key, value]) => (
         <div key={key}>
           <label>
             {key}:
-            <input
-              type="text"
-              value={props[key] as unknown as string}
-              onChange={handleChange(key)}
-            />
+            {typeof value === 'string' ? (
+              <input type="text" value={props[key] as string} onChange={handleChange(key)} />
+            ) : typeof value === 'boolean' ? (
+              <Checkbox
+                label={key}
+                checked={props[key] as boolean}
+                onChange={(checked: boolean): void =>
+                  setProps((prevProps) => ({ ...prevProps, [key]: checked }))
+                }
+              />
+            ) : (
+              <div>{props[key] as string}</div>
+            )}
           </label>
         </div>
       ))}

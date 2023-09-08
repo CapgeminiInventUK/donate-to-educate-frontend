@@ -8,6 +8,7 @@ import {
   PrivacyPolicy,
   TermsAndConditions,
 } from './lazy';
+import DevPreview from '@/pages/DevPreview/DevPreview';
 
 const routes = [
   {
@@ -36,6 +37,10 @@ const routes = [
   {
     path: Paths.TERMS_AND_CONDITIONS,
     element: <TermsAndConditions />,
+  },
+  {
+    path: Paths.DEV_PREVIEW,
+    element: <DevPreview />,
   },
   {
     path: Paths.DONATE,

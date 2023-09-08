@@ -1,4 +1,5 @@
-import React, { ComponentProps, useState } from 'react';
+import React, { useState } from 'react';
+import FooterPage from '@/components/FooterPage/FooterPage';
 import Modal from 'react-modal';
 import { Preview } from '@/components/DevPreview/Preview';
 
@@ -15,7 +16,13 @@ import DevPreviewStyles from './DevPreview.module.scss';
 //---Styles
 
 //--- Component props
-import { TextInputProps, ValidationResult } from '@/types/props';
+import {
+  TextInputProps,
+  ValidationResult,
+  CheckboxProps,
+  ButtonProps,
+  Themes,
+} from '@/types/props';
 //--- Component props
 
 const DevPreview: React.FC = () => {
@@ -29,9 +36,7 @@ const DevPreview: React.FC = () => {
     return { isValid: true };
   };
 
-  const buttonClassNames = Object.keys(ButtonStyles).filter(
-    (className) => className !== 'disabled'
-  );
+  const buttonThemes = Object.keys(ButtonStyles).filter((className) => className !== 'disabled');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = (): void => {
@@ -48,49 +53,44 @@ const DevPreview: React.FC = () => {
   };
 
   return (
-    <div className={DevPreviewStyles.background}>
-      <Preview<TextInputProps>
-        Component={TextInput}
-        componentName="TextInput"
-        initialProps={{
-          header: 'Type Error for error',
-          validator: validator,
-        }}
-      />
-      <Preview<TextInputProps>
-        Component={TextInput}
-        componentName="TextInput-Password"
-        initialProps={{
-          header: 'Type Error for error',
-          validator: validator,
-          password: true,
-        }}
-      />
-      {buttonClassNames.map((className) => (
-        <Preview<ComponentProps<typeof Button>>
-          key={className}
-          Component={Button}
-          componentName={`Button ${className}`}
+    <FooterPage title="Developer Componet Preview">
+
+      <div className={DevPreviewStyles.background}>
+        <Preview<TextInputProps>
+          Component={TextInput}
+          componentName="TextInput"
           initialProps={{
-            onClick: openModal,
-            text: className,
-            theme: className,
+            header: 'Type Error for error',
+            validator: validator,
+            password: false,
           }}
         />
-      ))}
-      <Preview<ComponentProps<typeof Checkbox>>
-        Component={Checkbox}
-        componentName="Checkbox"
-        initialProps={{
-          label: 'CheckBox',
-          className: CheckboxStyles.checkbox,
-          onChange: handleCheckboxChange,
-        }}
-      />
-      <Modal isOpen={modalIsOpen}>
-        <h2>Modal Shown</h2>
-      </Modal>
-    </div>
+        {buttonThemes.map((className) => (
+          <Preview<ButtonProps>
+            key={className}
+            Component={Button}
+            componentName={`Button ${className}`}
+            initialProps={{
+              onClick: openModal,
+              text: className,
+              theme: className as Themes,
+            }}
+          />
+        ))}
+        <Preview<CheckboxProps>
+          Component={Checkbox}
+          componentName="Checkbox"
+          initialProps={{
+            label: 'CheckBox',
+            className: CheckboxStyles.checkbox,
+            onChange: handleCheckboxChange,
+          }}
+        />
+        <Modal isOpen={modalIsOpen}>
+          <h2>Modal Shown</h2>
+        </Modal>
+      </div>
+    </FooterPage>
   );
 };
 
