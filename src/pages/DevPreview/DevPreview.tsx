@@ -54,7 +54,6 @@ const DevPreview: React.FC = () => {
 
   return (
     <FooterPage title="Developer Componet Preview">
-
       <div className={DevPreviewStyles.background}>
         <Preview<TextInputProps>
           Component={TextInput}

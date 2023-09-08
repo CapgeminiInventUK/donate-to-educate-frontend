@@ -28,7 +28,7 @@ const Footer: FC = () => {
           <Link to={Paths.ACCESSABILITY_STATEMENT}>Accessibility statement</Link>
           <Link to={Paths.PRIVACY_POLICY}>Privacy policy</Link>
           <Link to={Paths.TERMS_AND_CONDITIONS}>Terms and conditions</Link>
-          {isDevelopment && <Link to={Paths.DEV_PREVIEW}>Dev Preview</Link>}
+          {isDevelopment && <Link to={String(Paths.DEV_PREVIEW)}>Dev Preview</Link>}
         </div>
         <p className={styles.copyrightNotice}>Donate to Educate &copy;</p>
       </div>
