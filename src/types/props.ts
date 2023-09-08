@@ -1,7 +1,26 @@
-
 import { ComponentType, ReactNode } from 'react';
 import { CarouselItem } from './data';
 
+// Add your new props export here so it can be used in the devPreview
+export type PropTypes =
+  | LayoutProps
+  | ButtonProps
+  | ImageProps
+  | ErrorBoundaryProps
+  | SvgProps
+  | HeaderProps
+  | NavLinksProps
+  | ClickableLogoProps
+  | CheckboxProps
+  | CheckmarkProps
+  | RadioButtonProps
+  | RadioGroupProps
+  | InfoTileProps
+  | CarouselProps
+  | FooterPageProps
+  | TextInputProps;
+
+//-------
 export interface LayoutProps {
   header?: ReactNode;
   footer?: ReactNode;
@@ -104,6 +123,8 @@ export interface TextInputProps {
   validator?: (input: string) => ValidationResult;
   placeholder?: string;
   password?: boolean;
+  id?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 // ------ Dev only props

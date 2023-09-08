@@ -26,6 +26,7 @@
 
 .input {
   @extend %textInput;
+  width: 30em;
 }
 
 .errorMessage {
