@@ -26,19 +26,19 @@ export const Preview = <T extends PropTypes>({
             {typeof value === 'string' ? (
               <input
                 type="text"
-                value={props[key as keyof T]}
+                value={props[key as keyof T] as string}
                 onChange={handleChange(key as keyof T)}
               />
             ) : typeof value === 'boolean' ? (
               <Checkbox
                 label={key}
-                checked={props[key as keyof T]}
+                checked={props[key as keyof T] as boolean}
                 onChange={(checked: boolean): void =>
                   setProps((prevProps) => ({ ...prevProps, [key]: checked }))
                 }
               />
             ) : (
-              <div>{props[key as keyof T]}</div>
+              <div>{props[key as keyof T] as string}</div>
             )}
           </label>
         </div>
