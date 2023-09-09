@@ -35,20 +35,28 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
             styles[colour]
           }`}
         >
-          <Image className={styles.image} image={image} alt={title} />
+          <div className={styles.imageContainer}>
+            <Image className={styles.image} image={image} alt={title} />
+            {/* Render ArrowLeft and ArrowRight based on active index */}
+            {active === index && (
+              <>
+                <ArrowLeft
+                  className={`${styles.arrow} ${styles.left}`}
+                  colour={colour === 'lightBlue' ? 'black' : 'white'}
+                  onClick={(): void => setActive(decrementCount(items, active))}
+                />
+                <ArrowRight
+                  className={`${styles.arrow} ${styles.right}`}
+                  colour={colour === 'lightBlue' ? 'black' : 'white'}
+                  onClick={(): void => setActive(incrementCount(items, active))}
+                />
+              </>
+            )}
+          </div>
           <h2 className={styles.title}>{title}</h2>
-          <ArrowLeft
-            className={`${styles.arrow} ${styles.left}`}
-            colour={colour === 'lightBlue' ? 'black' : 'white'}
-            onClick={(): void => setActive(decrementCount(items, active))}
-          />
-          <ArrowRight
-            className={`${styles.arrow} ${styles.right}`}
-            colour={colour === 'lightBlue' ? 'black' : 'white'}
-            onClick={(): void => setActive(incrementCount(items, active))}
-          />
         </div>
       ))}
+
       <div className={styles.progressContainer}>
         {items.map(({ title }, index) => (
           <div
