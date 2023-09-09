@@ -12,7 +12,7 @@ enum Paths {
   PTA = 'https://www.pta.co.uk/',
   FUNDED = 'https://www.funded.org.uk',
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
-  DEV_PREVIEW = '/dev-preview',
+  DEV_PREVIEW = '/6465762d70726576696577',
 }
 
 export default Paths;
