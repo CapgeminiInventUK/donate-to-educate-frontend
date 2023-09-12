@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Carousel from './Carousel';
 import { CarouselItem } from '@/types/data';
 
@@ -19,28 +19,35 @@ describe('Carousel', () => {
     expect(getAllByRole('img')).toHaveLength(items.length);
   });
 
-  //   it('changes active item on arrow click', () => {
-  //     const { getByLabelText, getByAltText } = render(<Carousel items={items} />);
-  //     const arrowLeft = getByLabelText('arrow-left');
-  //     const arrowRight = getByLabelText('arrow-right');
+  it('changes active item on arrow click', () => {
+    const { getByLabelText, getByAltText, rerender } = render(<Carousel items={items} />);
 
-  //     const itemOne = getByAltText('Item 1') as unknown as HTMLImageElement;
-  //     const itemOneContainer = itemOne.parentElement?.parentElement;
+    const checkVisibility = (itemNumber: number, shouldBeVisible: boolean): void => {
+      const item = getByAltText(`Item ${itemNumber}`) as unknown as HTMLImageElement;
+      const itemContainer = item.parentElement?.parentElement;
+      if (shouldBeVisible) {
+        expect(itemContainer).not.toHaveClass('hidden');
+      } else {
+        expect(itemContainer).toHaveClass('hidden');
+      }
+    };
 
-  //     const itemTwo = getByAltText('Item 2') as unknown as HTMLImageElement;
-  //     const itemTwoContainer = itemTwo.parentElement?.parentElement;
+    // Initial state
+    checkVisibility(1, true);
+    checkVisibility(2, false);
 
-  //     expect(itemOneContainer).not.toHaveClass('hidden');
-  //     expect(itemTwoContainer).toHaveClass('hidden');
-  //     fireEvent.click(arrowLeft);
+    // After clicking left arrow
+    fireEvent.click(getByLabelText('arrow-left'));
+    rerender(<Carousel items={items} />);
+    checkVisibility(1, false);
+    checkVisibility(2, true);
 
-  //     expect(itemOneContainer).toHaveClass('hidden');
-  //     expect(itemTwoContainer).not.toHaveClass('hidden');
-
-  //     fireEvent.click(arrowRight);
-  //     expect(itemOneContainer).not.toHaveClass('hidden');
-  //     expect(itemTwoContainer).toHaveClass('hidden');
-  //   });
+    // After clicking right arrow
+    fireEvent.click(getByLabelText('arrow-right'));
+    rerender(<Carousel items={items} />);
+    checkVisibility(1, true);
+    checkVisibility(2, false);
+  });
 
   // it('changes active item every 10 seconds', () => {
   //   render(<Carousel items={items} />);
