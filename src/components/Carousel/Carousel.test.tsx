@@ -20,24 +20,33 @@ describe('Carousel', () => {
   });
 
   //   it('changes active item on arrow click', () => {
-  //     const { getByTestId, getByAltText } = render(<Carousel items={items} />);
-  //     const arrowLeft = getByTestId('arrow-left');
-  //     const arrowRight = getByTestId('arrow-right');
+  //     const { getByLabelText, getByAltText } = render(<Carousel items={items} />);
+  //     const arrowLeft = getByLabelText('arrow-left');
+  //     const arrowRight = getByLabelText('arrow-right');
 
-  //     expect(getByAltText('Item 1')).toBeVisible();
-  //     fireEvent.click(arrowRight);
-  //     expect(getByAltText('Item 1')).not.toBeVisible();
-  //     expect(getByAltText('Item 2')).toBeVisible();
+  //     const itemOne = getByAltText('Item 1') as unknown as HTMLImageElement;
+  //     const itemOneContainer = itemOne.parentElement?.parentElement;
+
+  //     const itemTwo = getByAltText('Item 2') as unknown as HTMLImageElement;
+  //     const itemTwoContainer = itemTwo.parentElement?.parentElement;
+
+  //     expect(itemOneContainer).not.toHaveClass('hidden');
+  //     expect(itemTwoContainer).toHaveClass('hidden');
   //     fireEvent.click(arrowLeft);
-  //     expect(getByAltText('Item 2')).not.toBeVisible();
-  //     expect(getByAltText('Item 1')).toBeVisible();
+
+  //     expect(itemOneContainer).toHaveClass('hidden');
+  //     expect(itemTwoContainer).not.toHaveClass('hidden');
+
+  //     fireEvent.click(arrowRight);
+  //     expect(itemOneContainer).not.toHaveClass('hidden');
+  //     expect(itemTwoContainer).toHaveClass('hidden');
   //   });
 
-  //   it('changes active item every 10 seconds', () => {
-  //     render(<Carousel items={items} />);
-  //     act(() => {
-  //       jest.advanceTimersByTime(10000);
-  //     });
-  //     expect(setActive).toHaveBeenCalledWith(1);
+  // it('changes active item every 10 seconds', () => {
+  //   render(<Carousel items={items} />);
+  //   act(() => {
+  //     jest.advanceTimersByTime(10000);
   //   });
+  //   expect(setActive).toHaveBeenCalledWith(1);
+  // });
 });
