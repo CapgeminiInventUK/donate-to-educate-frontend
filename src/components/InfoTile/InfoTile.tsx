@@ -39,9 +39,7 @@ const InfoTile: FC<InfoTileProps> = ({ colour }) => {
           ))}
         </ul>
       </div>
-      <div className={styles.imageContainer}>
-        <Image image={image} alt={alt} className={styles.image} />
-      </div>
+      <Image image={image} alt={alt} className={styles.image} />
     </div>
   );
 };
