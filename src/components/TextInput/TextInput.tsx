@@ -9,6 +9,7 @@ const TextInput: FC<TextInputProps> = ({
   password = false,
   id,
   onChange,
+  subHeading,
 }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -41,6 +42,7 @@ const TextInput: FC<TextInputProps> = ({
     <div className={`${styles.wrapper} ${error ? styles.error : ''}`}>
       <h3 className={styles.header}>{header}</h3>
       {error && <p className={styles.errorMessage}>{error}</p>}
+      {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
       <label htmlFor="textInput" className={styles.label}>
         <input
           type={password ? 'password' : 'text'}

@@ -98,6 +98,7 @@ export interface ValidationResult {
 
 export interface TextInputProps {
   header: string;
+  subHeading?: string;
   validator?: (input: string) => ValidationResult;
   placeholder?: string;
   password?: boolean;
