@@ -74,4 +74,29 @@ describe('Carousel', () => {
     checkVisibility(1, false);
     checkVisibility(2, true);
   });
+
+  it('changes active item on progress dot click', () => {
+    const { container, getByAltText } = render(<Carousel items={items} />);
+
+    const checkVisibility = (itemNumber: number, shouldBeVisible: boolean): void => {
+      const item = getByAltText(`Item ${itemNumber}`) as unknown as HTMLImageElement;
+      const itemContainer = item.parentElement?.parentElement;
+      if (shouldBeVisible) {
+        expect(itemContainer).not.toHaveClass('hidden');
+      } else {
+        expect(itemContainer).toHaveClass('hidden');
+      }
+    };
+
+    // Initial state
+    checkVisibility(1, true);
+    checkVisibility(2, false);
+
+    // After clicking on the inactive progress dot
+    const progressDots = container.querySelectorAll('.progressDot');
+    fireEvent.click(progressDots[0]);
+
+    checkVisibility(1, false);
+    checkVisibility(2, true);
+  });
 });
