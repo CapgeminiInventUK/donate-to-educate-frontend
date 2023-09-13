@@ -25,13 +25,13 @@
 }
 
 .subHeading {
-  color: var(--primary-11356F, #11356f);
-  /* P3 Paragraph 14px */
+  color: g.$primary-dark-blue;
+  margin: 0px;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 160%; /* 22.4px */
+  line-height: 160%;
 }
 
 .input {
