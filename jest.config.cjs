@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/jest/setupTests.ts'],
   moduleNameMapper: {
-    '\\.(css|scss|modules.scss)$': '<rootDir>/src/jest/styleMock.ts',
+    '\\.(css|scss|modules.scss)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
