@@ -58,4 +58,24 @@ describe('TextInput', (): void => {
     const input = container.querySelector('input');
     expect(input).toHaveAttribute('id', 'test-headertextInput');
   });
+
+  test('displays the provided subheading text', (): void => {
+    const subHeadingText = 'Test Subheading';
+    const { getByText } = render(
+      <TextInput
+        header="Test Header"
+        validator={() => ({ isValid: true })}
+        subHeading={subHeadingText}
+      />
+    );
+    expect(getByText(subHeadingText)).toBeInTheDocument();
+  });
+
+  test('does not render a <p> element with a class of "subHeading" when the subheading is not provided', (): void => {
+    const { queryByText } = render(
+      <TextInput header="Test Header" validator={() => ({ isValid: true })} />
+    );
+    const subHeading = queryByText(/Test Subheading/);
+    expect(subHeading).toBeNull();
+  });
 });
