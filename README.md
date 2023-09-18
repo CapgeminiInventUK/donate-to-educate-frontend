@@ -4,8 +4,8 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@vitejs/plugin-react][1] uses [Babel][2] for Fast Refresh
+- [@vitejs/plugin-react-swc][3] uses [SWC][4] for Fast Refresh
 
 ## Expanding the ESLint configuration
 
@@ -24,7 +24,7 @@ If you are developing a production application, we recommend updating the config
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Install [eslint-plugin-react][5] and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 ## Docker
 
@@ -34,11 +34,11 @@ Run the following command to build a docker container of the application. This w
 docker compose up
 ```
 
-If you want to run the vita preview server change the 'dockerfile' in [docker-compose.yml](./docker-compose.yml) to 'dockerfile-dev'
+If you want to run the vita preview server change the 'dockerfile' in [docker-compose.yml][6] to 'dockerfile-dev'
 
 ## Components
 
-### TextInput
+### [TextInput][7]
 
 A reusable text input component.
 
@@ -85,13 +85,13 @@ interface ValidationResult {
 
 ## DevPreview Page
 
-The `DevPreview` page is a component preview tool for testing and previewing different components. It allows you to load and test new components before integrating them into a page. When the site is loaded using 'Development' as the NODE_ENV then a link will be available in the footer to the dev page.
+The [`DevPreview`][8] page is a component preview tool for testing and previewing different components. It allows you to load and test new components before integrating them into a page. When the site is loaded using 'Development' as the NODE_ENV then a link will be available in the footer to the dev page.
 
 ### How to Add a New Component to the DevPreview Page
 
 1. Create a new component file (e.g., `NewComponent.tsx`) in the appropriate directory.
 
-2. Import the new component in the `DevPreview.tsx` file:
+2. Import the new component in the [`DevPreview.tsx`][8] file:
 
     ```tsx
     import NewComponent from '@/path/to/NewComponent';
@@ -109,7 +109,7 @@ The `DevPreview` page is a component preview tool for testing and previewing dif
     import { NewComponentProps } from '@/types/props';
     ```
 
-5. Add the new component to the `DevPreview` component:
+5. Add the new component to the `DevPreview` component by putting it inside a [Preview Component][9]:
 
     ```tsx
     <Preview<NewComponentProps>
@@ -129,4 +129,12 @@ The `DevPreview` page is a component preview tool for testing and previewing dif
 
 7. Save the changes and run the application to see the new component in the `DevPreview` page.
 
-By following these steps, you can easily add a new component to the `DevPreview` page for testing and previewing.
+[1]: https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md
+[2]: https://babeljs.io/
+[3]: https://github.com/vitejs/vite-plugin-react-swc
+[4]: https://swc.rs/
+[5]: https://github.com/jsx-eslint/eslint-plugin-react
+[6]: ./docker-compose.yml
+[7]: ./src/components//TextInput/TextInput.tsx
+[8]: ./src/pages/DevPreview/DevPreview.tsx
+[9]: ./src/components/DevPreview/Preview.tsx
