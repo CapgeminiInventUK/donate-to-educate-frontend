@@ -90,3 +90,18 @@ export interface FooterPageProps {
   title: string;
   children: JSX.Element[] | JSX.Element;
 }
+
+export interface ValidationResult {
+  isValid: boolean;
+  errorMessage?: string;
+}
+
+export interface TextInputProps {
+  header: string;
+  subHeading?: string;
+  validator?: (input: string) => ValidationResult;
+  placeholder?: string;
+  password?: boolean;
+  id?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
