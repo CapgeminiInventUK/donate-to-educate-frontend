@@ -1,4 +1,4 @@
-## Donate to Educate Frontend
+# Donate to Educate Frontend
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -36,9 +36,9 @@ docker compose up
 
 If you want to run the vita preview server change the 'dockerfile' in [docker-compose.yml](./docker-compose.yml) to 'dockerfile-dev'
 
-# Components
+## Components
 
-## TextInput
+### TextInput
 
 A reusable text input component.
 
@@ -46,7 +46,7 @@ A reusable text input component.
 import TextInput from '@components/TextInput/TextInput';
 ```
 
-### Usage
+#### Usage
 
 The TextInput component can be used as follows:
 
@@ -59,7 +59,7 @@ The TextInput component can be used as follows:
 />
 ```
 
-### Props
+#### Props
 
 The TextInput component accepts the following props:
 
@@ -82,3 +82,51 @@ interface ValidationResult {
   errorMessage?: string;
 }
 ```
+
+## DevPreview Page
+
+The `DevPreview` page is a component preview tool for testing and previewing different components. It allows you to load and test new components before integrating them into a page. When the site is loaded using 'Development' as the NODE_ENV then a link will be available in the footer to the dev page.
+
+### How to Add a New Component to the DevPreview Page
+
+1. Create a new component file (e.g., `NewComponent.tsx`) in the appropriate directory.
+
+2. Import the new component in the `DevPreview.tsx` file:
+
+    ```tsx
+    import NewComponent from '@/path/to/NewComponent';
+    ```
+
+3. Import the necessary styles for the new component:
+
+    ```tsx
+    import NewComponentStyles from '@/path/to/NewComponent.module.scss';
+    ```
+
+4. Define the props interface for the new component, if necessary:
+
+    ```tsx
+    import { NewComponentProps } from '@/types/props';
+    ```
+
+5. Add the new component to the `DevPreview` component:
+
+    ```tsx
+    <Preview<NewComponentProps>
+      Component={NewComponent}
+      componentName="NewComponent"
+      initialProps={{
+        // Provide initial props for the new component
+      }}
+    />
+    ```
+
+6. Optionally, add any custom styles or classes specific to the new component:
+
+    ```tsx
+    import NewComponentStyles from '@/path/to/NewComponent.module.scss';
+    ```
+
+7. Save the changes and run the application to see the new component in the `DevPreview` page.
+
+By following these steps, you can easily add a new component to the `DevPreview` page for testing and previewing.
