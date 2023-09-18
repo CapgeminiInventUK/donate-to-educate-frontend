@@ -1,0 +1,4 @@
+@use '@assets/global.scss' as g;
+.background {
+  background-color: g.$primary-light-blue;
+}

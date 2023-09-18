@@ -7,6 +7,7 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  DevPreview,
 } from './lazy';
 
 const routes = [
@@ -36,6 +37,10 @@ const routes = [
   {
     path: Paths.TERMS_AND_CONDITIONS,
     element: <TermsAndConditions />,
+  },
+  {
+    path: Paths.DEV_PREVIEW,
+    element: <DevPreview />,
   },
   {
     path: Paths.DONATE,
