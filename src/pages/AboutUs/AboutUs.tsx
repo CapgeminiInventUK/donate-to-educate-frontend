@@ -78,7 +78,7 @@ const AboutUs: FC = () => {
           </div>
           <Image image={green} alt="Green up your school" className={styles.newsletter} />
         </div>
-        <div className={styles.inventBanner}>
+        <div className={`${styles.inventBanner} ${styles.hidden}`}>
           <p>Powered by</p>
           <LogoCapgeminiInvent
             className={styles.inventLogo}
