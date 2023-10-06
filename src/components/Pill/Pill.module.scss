@@ -3,9 +3,10 @@
 .container {
   width: max-content;
   padding: 0px 15px;
-  font-weight: bold;
+  font-weight: 600;
   font-family: 'Poppins';
   box-shadow: 0 8px 6px -6px g.$box-shadow-black;
+  white-space: nowrap;
 }
 
 .green {
@@ -14,5 +15,21 @@
 }
 
 .red {
-  background-color: aqua;
+  background-color: #f6d3cd;
+  color: #8b281a;
+}
+
+.grey {
+  background-color: #ebecec;
+  color: #31373b;
+}
+
+.yellow {
+  background-color: #fbfdb5;
+  color: #514d12;
+}
+
+.blue {
+  background-color: #3157b0;
+  color: #f2f4fa;
 }

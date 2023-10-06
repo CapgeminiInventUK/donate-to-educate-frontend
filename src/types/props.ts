@@ -41,8 +41,7 @@ export interface HeaderProps {
 }
 
 export interface PillProps {
-  text: string;
-  color: string;
+  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
 }
 
 export interface NavLinksProps {
