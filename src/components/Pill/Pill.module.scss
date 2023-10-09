@@ -9,27 +9,27 @@
   white-space: nowrap;
 }
 
-.green {
-  background-color: #c2dfd1;
-  color: #005328;
+.blue {
+  background-color: g.$pill-blue-background;
+  color: g.$pill-blue-text;
 }
 
-.red {
-  background-color: #f6d3cd;
-  color: #8b281a;
+.green {
+  background-color: g.$pill-green-background;
+  color: g.$pill-green-text;
 }
 
 .grey {
-  background-color: #ebecec;
-  color: #31373b;
+  background-color: g.$pill-grey-background;
+  color: g.$pill-grey-text;
+}
+
+.red {
+  background-color: g.$pill-red-background;
+  color: g.$pill-red-text;
 }
 
 .yellow {
-  background-color: #fbfdb5;
-  color: #514d12;
-}
-
-.blue {
-  background-color: #3157b0;
-  color: #f2f4fa;
+  background-color: g.$pill-yellow-background;
+  color: g.$pill-yellow-text;
 }
