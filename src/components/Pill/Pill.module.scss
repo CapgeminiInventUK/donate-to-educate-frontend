@@ -1,0 +1,35 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  width: max-content;
+  padding: 0px 15px;
+  font-weight: 600;
+  font-family: 'Poppins';
+  box-shadow: 0 8px 6px -6px g.$box-shadow-black;
+  white-space: nowrap;
+}
+
+.blue {
+  background-color: g.$pill-blue-background;
+  color: g.$pill-blue-text;
+}
+
+.green {
+  background-color: g.$pill-green-background;
+  color: g.$pill-green-text;
+}
+
+.grey {
+  background-color: g.$pill-grey-background;
+  color: g.$pill-grey-text;
+}
+
+.red {
+  background-color: g.$pill-red-background;
+  color: g.$pill-red-text;
+}
+
+.yellow {
+  background-color: g.$pill-yellow-background;
+  color: g.$pill-yellow-text;
+}

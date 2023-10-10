@@ -40,6 +40,10 @@ export interface HeaderProps {
   className?: string;
 }
 
+export interface PillProps {
+  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
+}
+
 export interface NavLinksProps {
   theme: Themes;
   activeClassName?: string;
