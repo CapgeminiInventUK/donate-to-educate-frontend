@@ -10,8 +10,33 @@ import Carousel from '@/components/Carousel/Carousel';
 import Laptop from '@/assets/carousel/Laptop.webp';
 import Tablet from '@/assets/carousel/Tablet.webp';
 import Tiles from '@/assets/carousel/Tiles.webp';
+import { API } from 'aws-amplify';
+import { GraphQLQuery } from '@aws-amplify/api';
+import { getSchoolByName } from '@/graphql/queries';
+import { GetSchoolByNameQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
 
 const Home: FC = () => {
+  const {
+    data,
+    // isLoading,
+    // isSuccess,
+    // isError: isErrorQuery,
+  } = useQuery({
+    queryKey: ['schools'],
+    queryFn: async () => {
+      const response = await API.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
+        query: getSchoolByName,
+        variables: { name: '1' },
+      });
+
+      return response.data;
+    },
+  });
+
+  // eslint-disable-next-line no-console
+  console.log(data);
+
   return (
     <div className={styles.container}>
       <HeroBanner />

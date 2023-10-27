@@ -1,0 +1,15 @@
+type School {
+  urn: ID!
+  name: String!
+  localAuthority: String!
+  postcode: String!
+  registered: Boolean!
+}
+
+type Query {
+  getSchoolByName(name: String!): School
+}
+
+schema {
+  query: Query
+}
