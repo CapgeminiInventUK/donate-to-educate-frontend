@@ -3,7 +3,7 @@ import { z } from 'zod';
 const envSchema = z.object({
   VITE_AWS_REGION: z.string().min(1),
   VITE_APPSYNC_ENDPOINT: z.string().min(1),
-  VITE_COGNITO_USER_POOLS_ID: z.string().min(1),
+  // VITE_COGNITO_USER_POOLS_ID: z.string().min(1),
   VITE_APPSYNC_API_KEY: z.string().min(1),
 });
 
