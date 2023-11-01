@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Home.module.scss';
 import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
@@ -10,20 +10,36 @@ import Carousel from '@/components/Carousel/Carousel';
 import Laptop from '@/assets/carousel/Laptop.webp';
 import Tablet from '@/assets/carousel/Tablet.webp';
 import Tiles from '@/assets/carousel/Tiles.webp';
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { getSchoolByName } from '@/graphql/queries';
 import { GetSchoolByNameQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 
 const Home: FC = () => {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    const signIn = async (): Promise<string> => {
+      const data = (await Auth.signIn({ username: 'admin', password: 'Admin123$' })) as string;
+      return data;
+    };
+
+    signIn()
+      .then(() => {
+        setEnabled(true);
+      })
+      // eslint-disable-next-line no-console
+      .catch(console.error);
+  });
+
   const {
     data,
     // isLoading,
     // isSuccess,
-    // isError: isErrorQuery,
+    error,
   } = useQuery({
     queryKey: ['schools'],
+    enabled,
     queryFn: async () => {
       const response = await API.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
         query: getSchoolByName,
@@ -35,7 +51,7 @@ const Home: FC = () => {
   });
 
   // eslint-disable-next-line no-console
-  console.log(data);
+  console.log(data, error);
 
   return (
     <div className={styles.container}>
