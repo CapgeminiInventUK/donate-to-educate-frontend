@@ -38,7 +38,7 @@ If you want to run the vita preview server change the 'dockerfile' in [docker-co
 
 ## Environment variables
 
-You need to set the following environment variables
+You need to set the following environment variables in a file called .env at the root
 
 ```JavaScript
 VITE_AWS_REGION = "eu-west-2"
