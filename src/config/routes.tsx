@@ -7,6 +7,7 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  InitialStatement,
 } from './lazy';
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
+  },
+  {
+    path: Paths.INTIAL_STATEMENT,
+    element: <InitialStatement />,
+    name: 'School',
   },
   {
     path: '*',

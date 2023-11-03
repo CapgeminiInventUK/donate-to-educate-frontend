@@ -1,0 +1,60 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  background: g.$primary-light-blue;
+  height: 100%;
+  padding: 0% 10% 5% 10%;
+
+  .card {
+    border-radius: 10px;
+    background: g.$primary-white;
+    padding: 60px 82px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    .contentContainer {
+      padding-top: 40px;
+
+      .card {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .container {
+    .contentContainer {
+      .card {
+        padding: 30px 40px;
+      }
+
+      .card,
+      .content {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-small) {
+  .container {
+    .contentContainer {
+      width: 100%;
+      padding-top: 20px;
+      margin-bottom: 20px;
+
+      .card {
+        margin: 20px;
+        margin-top: 0;
+      }
+    }
+  }
+}
