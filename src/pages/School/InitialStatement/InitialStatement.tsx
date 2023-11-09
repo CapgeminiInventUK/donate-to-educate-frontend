@@ -2,8 +2,12 @@ import { FC } from 'react';
 import styles from './InitialStatement.module.scss';
 import BackLink from '@/assets/navigation/BackLink';
 import Paths from '@/config/paths';
+import Button from '@/components/Button/Button';
 
 const InitialStatement: FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const handleStartClick = () => (): void => {};
+
   return (
     <div className={styles.container}>
       <BackLink route={Paths.INTIAL_STATEMENT} />
@@ -26,6 +30,7 @@ const InitialStatement: FC = () => {
           <li>ask your local authority to confirm your identity</li>
           <li>email you to confirm whether you can join us</li>
         </ul>
+        <Button onClick={handleStartClick} text={'Start'} theme={'startButton'} />
       </div>
     </div>
   );

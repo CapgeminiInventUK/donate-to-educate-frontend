@@ -10,6 +10,11 @@
   line-height: 11px;
 }
 
+.startButton {
+  @extend .darkBlue;
+  border-radius: 0px;
+}
+
 .darkBlue {
   @extend %button;
   background: g.$primary-dark-blue;
