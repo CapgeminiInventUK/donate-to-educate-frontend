@@ -43,7 +43,7 @@ const Home: FC = () => {
     queryFn: async () => {
       const response = await API.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
         query: getSchoolByName,
-        variables: { name: '1' },
+        variables: { name: 'Edith Neville Primary School' },
       });
 
       return response.data;
