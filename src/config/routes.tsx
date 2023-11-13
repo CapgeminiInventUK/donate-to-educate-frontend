@@ -7,6 +7,7 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  Login,
 } from './lazy';
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
+  },
+  {
+    path: Paths.LOGIN,
+    element: <Login />,
+    name: 'Login',
   },
   {
     path: '*',

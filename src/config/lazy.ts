@@ -8,6 +8,7 @@ const AccessabilityStatement = lazy(
 );
 const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
 const TermsAndConditions = lazy(() => import('@pages/TermsAndConditions/TermsAndConditions'));
+const Login = lazy(() => import('@pages/Login/Login'));
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 
@@ -19,4 +20,5 @@ export {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  Login,
 };

@@ -3,6 +3,7 @@ enum Paths {
   ABOUT = '/about-us',
   CONTACT = '/contact',
   DONATE = '/donate',
+  LOGIN = '/login',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',

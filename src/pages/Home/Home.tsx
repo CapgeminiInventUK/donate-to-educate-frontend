@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './Home.module.scss';
 import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
@@ -17,17 +17,16 @@ import { GetSchoolByNameQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 
 const Home: FC = () => {
-  const [enabled, setEnabled] = useState(false);
+  // const [enabled, setEnabled] = useState(false);
   useEffect(() => {
-    const signIn = async (): Promise<string> => {
-      const data = (await Auth.signIn({ username: 'admin', password: 'Admin123$' })) as string;
+    const getUser = async (): Promise<string> => {
+      const data = (await Auth.currentAuthenticatedUser()) as string;
       return data;
     };
 
-    signIn()
-      .then(() => {
-        setEnabled(true);
-      })
+    getUser()
+      // eslint-disable-next-line no-console
+      .then(console.log)
       // eslint-disable-next-line no-console
       .catch(console.error);
   });
@@ -39,7 +38,7 @@ const Home: FC = () => {
     error,
   } = useQuery({
     queryKey: ['schools'],
-    enabled,
+    // enabled,
     queryFn: async () => {
       const response = await API.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
         query: getSchoolByName,

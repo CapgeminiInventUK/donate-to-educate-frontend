@@ -16,7 +16,7 @@ export const amplifyConfig = {
   // AppSync
   aws_appsync_region: env.VITE_AWS_REGION,
   aws_appsync_graphqlEndpoint: env.VITE_APPSYNC_ENDPOINT,
-  aws_appsync_authenticationType: 'API_KEY', // TODO need to change to AWS_IAM
+  aws_appsync_authenticationType: 'API_KEY',
   aws_appsync_apiKey: env.VITE_APPSYNC_API_KEY,
 
   // Cognito

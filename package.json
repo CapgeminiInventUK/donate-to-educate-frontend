@@ -12,7 +12,8 @@
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "codegen": "amplify codegen"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,yml,yaml}": [
