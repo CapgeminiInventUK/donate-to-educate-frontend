@@ -45,4 +45,5 @@ VITE_AWS_REGION = "eu-west-2"
 VITE_APPSYNC_ENDPOINT = "https://localhost:9000"
 VITE_COGNITO_USER_POOLS_ID = "eu-west-2_r7E2OJ1t0"
 VITE_APPSYNC_API_KEY = "somekey"
+VITE_ANALYTICS_APP_ID = "someID"
 ```
