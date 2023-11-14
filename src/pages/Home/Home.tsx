@@ -17,7 +17,6 @@ import { GetSchoolByNameQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 
 const Home: FC = () => {
-  // const [enabled, setEnabled] = useState(false);
   useEffect(() => {
     const getUser = async (): Promise<string> => {
       const data = (await Auth.currentAuthenticatedUser()) as string;
