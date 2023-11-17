@@ -6,12 +6,15 @@ import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
 import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
+import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
+
+  const checkIsLoggedIn = useCheckCurrentUser();
 
   useEffect(() => {
     if (submitted) {
@@ -21,6 +24,12 @@ export const SignIn: FC = () => {
       setSubmitted(false);
     }
   }, [submitted, password, username, navigate]);
+
+  // TODO display loader
+  if (checkIsLoggedIn) {
+    navigate('/admin-dashboard');
+    return <></>;
+  }
 
   return (
     <div className={styles.container}>

@@ -1,26 +1,12 @@
-import { FC, ReactNode, useEffect, useState } from 'react';
-import { getCurrentUser } from 'aws-amplify/auth';
-import { useNavigate } from 'react-router';
+import { FC, ReactNode } from 'react';
+import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 
 interface Props {
   route: string;
   children: ReactNode;
 }
 const PrivateRoute: FC<Props> = ({ route, children }) => {
-  const navigate = useNavigate();
-  const [checkIsLoggedIn, setCheckIsLoggedIn] = useState(false);
-
-  async function checkAuthState(): Promise<void> {
-    try {
-      await getCurrentUser();
-      setCheckIsLoggedIn(true);
-    } catch (err) {
-      navigate(route);
-    }
-  }
-  useEffect(() => {
-    void checkAuthState();
-  });
+  const checkIsLoggedIn = useCheckCurrentUser(route);
 
   // TODO display loader
   if (!checkIsLoggedIn) {
