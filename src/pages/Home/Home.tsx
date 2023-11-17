@@ -10,13 +10,11 @@ import Carousel from '@/components/Carousel/Carousel';
 import Laptop from '@/assets/carousel/Laptop.webp';
 import Tablet from '@/assets/carousel/Tablet.webp';
 import Tiles from '@/assets/carousel/Tiles.webp';
-import { generateClient } from 'aws-amplify/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { getSchoolByName } from '@/graphql/queries';
 import { GetSchoolByNameQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
-
-const client = generateClient();
+import { client } from '@/graphqlClient';
 
 const Home: FC = () => {
   const {

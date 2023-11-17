@@ -1,15 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './AdminDashboard.module.scss';
 import Button from '@/components/Button/Button';
-import { generateClient } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { getLocalAuthorities } from '@/graphql/queries';
 import { GetLocalAuthoritiesQuery } from '@/types/api';
 import { GraphQLQuery } from '@aws-amplify/api';
+import { client } from '@/graphqlClient';
 
-const client = generateClient();
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
