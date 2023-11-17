@@ -5,11 +5,13 @@ import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
 import styles from './SignIn.module.scss';
+import { useNavigate } from 'react-router';
 
 interface CognitoUser {
   username: string;
   attributes: {
     sub: string;
+    type: 'admin' | 'school' | 'charity' | 'local authority'; // TODO need to add for account creation
   };
 }
 
@@ -17,13 +19,16 @@ export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (submitted) {
-      userLogin(username, password).then(console.info).catch(console.error);
+      userLogin(username, password)
+        .then(() => navigate('/admin-dashboard'))
+        .catch(console.error);
       setSubmitted(false);
     }
-  }, [submitted, password, username]);
+  }, [submitted, password, username, navigate]);
 
   return (
     <div className={styles.container}>

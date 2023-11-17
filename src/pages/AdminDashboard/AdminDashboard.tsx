@@ -1,9 +1,29 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './AdminDashboard.module.scss';
 import Button from '@/components/Button/Button';
+import { Auth } from 'aws-amplify';
+import { useNavigate } from 'react-router';
 
+const signOut = async (): Promise<void> => {
+  await Auth.signOut();
+};
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
+  const navigate = useNavigate();
+  const [shouldSignOut, setShouldSignOut] = useState(false);
+
+  useEffect(() => {
+    if (shouldSignOut) {
+      void signOut()
+        .then(() => {
+          setShouldSignOut(false);
+          navigate('/login');
+        })
+        // eslint-disable-next-line no-console
+        .catch(console.error);
+    }
+  }, [shouldSignOut, navigate]);
+
   return (
     <div className={styles.container}>
       <div className={styles.adminCard}>
@@ -11,7 +31,7 @@ const AdminDashboard: FC = () => {
           <h1>Admin Dashboard</h1>
           <div>
             <Button theme="darkBlue" text="Settings" onClick={(): void => undefined} />
-            <Button theme="darkBlue" text="Sign out" onClick={(): void => undefined} />
+            <Button theme="darkBlue" text="Sign out" onClick={(): void => setShouldSignOut(true)} />
           </div>
         </div>
         <div className={styles.body}>
