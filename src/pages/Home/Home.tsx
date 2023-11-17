@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import styles from './Home.module.scss';
 import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
@@ -10,26 +10,15 @@ import Carousel from '@/components/Carousel/Carousel';
 import Laptop from '@/assets/carousel/Laptop.webp';
 import Tablet from '@/assets/carousel/Tablet.webp';
 import Tiles from '@/assets/carousel/Tiles.webp';
-import { API, Auth } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { getSchoolByName } from '@/graphql/queries';
 import { GetSchoolByNameQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 
+const client = generateClient();
+
 const Home: FC = () => {
-  useEffect(() => {
-    const getUser = async (): Promise<string> => {
-      const data = (await Auth.currentAuthenticatedUser()) as string;
-      return data;
-    };
-
-    getUser()
-      // eslint-disable-next-line no-console
-      .then(console.log)
-      // eslint-disable-next-line no-console
-      .catch(console.error);
-  });
-
   const {
     data,
     // isLoading,
@@ -39,7 +28,7 @@ const Home: FC = () => {
     queryKey: ['schools'],
     // enabled,
     queryFn: async () => {
-      const response = await API.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
+      const response = await client.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
         query: getSchoolByName,
         variables: { name: 'Edith Neville Primary School' },
       });

@@ -1,19 +1,11 @@
 /* eslint-disable no-console */
-import { Auth } from 'aws-amplify';
+import { SignInOutput, signIn } from 'aws-amplify/auth';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
 import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
-
-interface CognitoUser {
-  username: string;
-  attributes: {
-    sub: string;
-    type: 'admin' | 'school' | 'charity' | 'local authority'; // TODO need to add for account creation
-  };
-}
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -47,6 +39,6 @@ export const SignIn: FC = () => {
   );
 };
 
-const userLogin = async (username: string, password: string): Promise<CognitoUser> => {
-  return (await Auth.signIn(username, password)) as CognitoUser;
+const userLogin = async (username: string, password: string): Promise<SignInOutput> => {
+  return await signIn({ username, password });
 };

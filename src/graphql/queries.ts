@@ -19,3 +19,34 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolByNameQueryVariables, APITypes.GetSchoolByNameQuery>;
+export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!) {
+  getSchoolsByLa(name: $name) {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolsByLaQueryVariables, APITypes.GetSchoolsByLaQuery>;
+export const getSchools = /* GraphQL */ `query GetSchools {
+  getSchools {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolsQueryVariables, APITypes.GetSchoolsQuery>;
+export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
+  getLocalAuthorities {
+    code
+    name
+    registered
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetLocalAuthoritiesQueryVariables, APITypes.GetLocalAuthoritiesQuery>;

@@ -1,5 +1,5 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
-import { Auth } from 'aws-amplify';
+import { getCurrentUser } from 'aws-amplify/auth';
 import { useNavigate } from 'react-router';
 
 interface Props {
@@ -12,7 +12,7 @@ const PrivateRoute: FC<Props> = ({ route, children }) => {
 
   async function checkAuthState(): Promise<void> {
     try {
-      await Auth.currentAuthenticatedUser();
+      await getCurrentUser();
       setCheckIsLoggedIn(true);
     } catch (err) {
       navigate(route);
