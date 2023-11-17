@@ -47,7 +47,6 @@ const routes = [
   {
     path: Paths.LOGIN,
     element: <Login />,
-    name: 'Login',
   },
   {
     path: Paths.ADMIN_DASHBOARD,
