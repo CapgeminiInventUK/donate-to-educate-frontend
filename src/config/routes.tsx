@@ -52,6 +52,8 @@ const routes = [
   {
     path: Paths.ADMIN_DASHBOARD,
     element: <AdminDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
   },
   {
     path: '*',

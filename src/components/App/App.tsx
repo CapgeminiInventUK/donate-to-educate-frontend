@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import { breakpoints } from '@utils/globals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,12 +29,18 @@ const App = (): JSX.Element => {
         <ErrorBoundary>
           <Router>
             <Routes>
-              {routes.map(({ element, path }, index) => (
+              {routes.map(({ element, path, requiresAuth, redirectRoute }, index) => (
                 <Route
                   key={index}
                   element={
                     <Layout
-                      page={element}
+                      page={
+                        requiresAuth ? (
+                          <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
+                        ) : (
+                          element
+                        )
+                      }
                       header={isMobile ? <Sidebar /> : <Navbar />}
                       footer={<Footer />}
                     />
