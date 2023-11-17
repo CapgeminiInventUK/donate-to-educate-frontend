@@ -1,0 +1,39 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  background: g.$primary-light-blue;
+  height: 100%;
+  padding: 48px 50px;
+
+  .adminCard {
+    border: solid g.$primary-white 2px;
+    border-radius: 10px;
+
+    .header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .body {
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      padding: 50px 60px;
+      border-radius: 0 0 10px 10px;
+
+      .cardContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .card {
+          background: g.$primary-white;
+          border-radius: 10px;
+          color: g.$primary-dark-blue;
+          padding: 30px 40px;
+          margin: 10px;
+        }
+      }
+    }
+  }
+}

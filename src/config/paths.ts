@@ -4,6 +4,7 @@ enum Paths {
   CONTACT = '/contact',
   DONATE = '/donate',
   LOGIN = '/login',
+  ADMIN_DASHBOARD = '/admin-dashboard',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',

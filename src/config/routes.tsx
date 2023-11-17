@@ -8,6 +8,7 @@ import {
   PrivacyPolicy,
   TermsAndConditions,
   Login,
+  AdminDashboard,
 } from './lazy';
 
 const routes = [
@@ -47,6 +48,10 @@ const routes = [
     path: Paths.LOGIN,
     element: <Login />,
     name: 'Login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD,
+    element: <AdminDashboard />,
   },
   {
     path: '*',

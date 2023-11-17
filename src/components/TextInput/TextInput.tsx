@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './TextInput.module.scss';
 import { TextInputProps } from '@/types/props';
+import ShowHide from '../ShowHide/ShowHide';
 
 const TextInput: FC<TextInputProps> = ({
   header,
@@ -52,6 +53,7 @@ const TextInput: FC<TextInputProps> = ({
           className={styles.input}
           placeholder={placeholder ?? ''}
         />
+        {password && <ShowHide />}
       </label>
     </div>
   );

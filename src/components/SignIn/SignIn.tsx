@@ -3,6 +3,8 @@ import { Auth } from 'aws-amplify';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
+import LogoWhite from '@assets/logo/LogoWhite';
+import styles from './SignIn.module.scss';
 
 interface CognitoUser {
   username: string;
@@ -24,7 +26,11 @@ export const SignIn: FC = () => {
   }, [submitted, password, username]);
 
   return (
-    <>
+    <div className={styles.container}>
+      <div className={styles.loginBanner}>
+        <LogoWhite />
+      </div>
+      <h2>Sign in</h2>
       <TextInput header="Username" onChange={(event): void => setUsername(event.target.value)} />
       <TextInput
         header="Password"
@@ -32,7 +38,7 @@ export const SignIn: FC = () => {
         onChange={(event): void => setPassword(event.target.value)}
       />
       <Button theme="darkBlue" text="Login" onClick={(): void => setSubmitted(true)} />
-    </>
+    </div>
   );
 };
 
