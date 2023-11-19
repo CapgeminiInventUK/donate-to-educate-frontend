@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense>
-        <ErrorBoundary>
+        <ErrorBoundary name="Generic">
           <Router>
             <Routes>
               {routes.map(({ element, path, requiresAuth, redirectRoute }, index) => (
@@ -35,11 +35,13 @@ const App = (): JSX.Element => {
                   element={
                     <Layout
                       page={
-                        requiresAuth ? (
-                          <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
-                        ) : (
-                          element
-                        )
+                        <ErrorBoundary name="Router">
+                          {requiresAuth ? (
+                            <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
+                          ) : (
+                            element
+                          )}
+                        </ErrorBoundary>
                       }
                       header={isMobile ? <Sidebar /> : <Navbar />}
                       footer={<Footer />}

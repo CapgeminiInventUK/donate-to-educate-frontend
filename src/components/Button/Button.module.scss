@@ -10,6 +10,14 @@
   line-height: 11px;
 }
 
+.link {
+  @extend %button;
+  background: none;
+  color: g.$primary-white;
+  border: none;
+  text-decoration: underline;
+}
+
 .darkBlue {
   @extend %button;
   background: g.$primary-dark-blue;

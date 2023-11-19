@@ -7,7 +7,7 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes = 'darkBlue' | 'midBlue';
+export type Themes = 'darkBlue' | 'midBlue' | 'link';
 
 export interface ButtonProps {
   theme: Themes;
@@ -27,6 +27,7 @@ export interface ImageProps {
 
 export interface ErrorBoundaryProps {
   children?: ReactNode;
+  name?: string;
 }
 
 export interface SvgProps {
