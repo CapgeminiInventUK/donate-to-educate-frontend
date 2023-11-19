@@ -18,5 +18,5 @@ export const useCheckCurrentUser = (route = '/login'): boolean => {
     void checkAuthState();
   });
 
-  return [checkIsLoggedIn];
+  return checkIsLoggedIn;
 };
