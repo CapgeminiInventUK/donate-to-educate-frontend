@@ -8,6 +8,7 @@ import { getLocalAuthorities } from '@/graphql/queries';
 import { GetLocalAuthoritiesQuery } from '@/types/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { client } from '@/graphqlClient';
+import BackButton from '@/components/BackButton/BackButton';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -118,6 +119,7 @@ const AdminDashboard: FC = () => {
           )}
           {stage === 'manage_las' && (
             <>
+              <BackButton onClick={(): void => setStage('overview')} />
               <div>{registered} joined</div>
               <div>{notRegistered} to join</div>
               <ul>
@@ -131,7 +133,11 @@ const AdminDashboard: FC = () => {
               </ul>
             </>
           )}
-          {stage === 'view_requests' && <></>}
+          {stage === 'view_requests' && (
+            <>
+              <BackButton onClick={(): void => setStage('overview')} />
+            </>
+          )}
         </div>
       </div>
     </div>
