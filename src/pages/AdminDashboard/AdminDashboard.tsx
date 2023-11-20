@@ -9,10 +9,14 @@ import { GetLocalAuthoritiesQuery } from '@/types/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { client } from '@/graphqlClient';
 import BackButton from '@/components/BackButton/BackButton';
+import LocalAuthoritySignUp from './LocalAuthoritySignUp';
+import ConfirmationPage from '@/components/ConfirmationPage/ConfirmationPage';
+import Email from '@/assets/admin/Email';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
+  const [selectedLa, setSelectedLa] = useState('');
   const navigate = useNavigate();
   const [shouldSignOut, setShouldSignOut] = useState(false);
 
@@ -65,81 +69,107 @@ const AdminDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.adminCard}>
-        <div className={styles.header}>
-          <h1>{getHeader(stage)}</h1>
-          <div>
-            <Button
-              theme="link"
-              text="Settings"
-              className={styles.actionButtons}
-              onClick={(): void => undefined}
-            />
-            <Button
-              theme="link"
-              text="Sign out"
-              className={styles.actionButtons}
-              onClick={(): void => setShouldSignOut(true)}
-            />
+      {['overview', 'manage_las', 'view_requests'].includes(stage) && (
+        <div className={styles.adminCard}>
+          <div className={styles.header}>
+            <h1>{getHeader(stage)}</h1>
+            <div>
+              <Button
+                theme="link"
+                text="Settings"
+                className={styles.actionButtons}
+                onClick={(): void => undefined}
+              />
+              <Button
+                theme="link"
+                text="Sign out"
+                className={styles.actionButtons}
+                onClick={(): void => setShouldSignOut(true)}
+              />
+            </div>
+          </div>
+          <div className={styles.body}>
+            {stage === 'overview' && (
+              <>
+                <h2>Hello, team</h2>
+                <hr />
+                <div className={styles.cardContainer}>
+                  <div className={`${styles.card} ${styles.la}`}>
+                    <h3>Manage local authorities</h3>
+                    <div className={styles.laBorder}>{registered} joined</div>
+                    <div className={styles.laBorder}>{notRegistered} to join</div>
+                    <br />
+                    <div>View, add and edit your local authorities.</div>
+                    <br />
+                    <Button
+                      theme="midBlue"
+                      text="Start"
+                      onClick={(): void => setStage('manage_las')}
+                    />
+                  </div>
+                  <div className={`${styles.card} ${styles.requests}`}>
+                    <h3>Manage schools, charities and volunteers</h3>
+                    <div className={styles.requestsBorder}>4 requests</div>
+                    <br />
+                    <div>View who&apos;s asked to join Donate to Educate.</div>
+                    <br />
+                    <Button
+                      theme="midBlue"
+                      text="Start"
+                      onClick={(): void => setStage('view_requests')}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {stage === 'manage_las' && (
+              <>
+                <BackButton onClick={(): void => setStage('overview')} theme="white" />
+                <div className={styles.laBorder}>{registered} joined</div>
+                <div className={styles.laBorder}>{notRegistered} to join</div>
+                <ul>
+                  {data?.getLocalAuthorities.map((la) => {
+                    return (
+                      <li key={la.name}>
+                        {la.name} - {la.registered ? 'Joined' : 'Not Joined'} - Action:
+                        {
+                          <Button
+                            theme="link"
+                            text="Add user"
+                            onClick={(): void => {
+                              setSelectedLa(la.name);
+                              setStage('la_sign_up');
+                            }}
+                          />
+                        }
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
+            {stage === 'view_requests' && (
+              <>
+                <BackButton onClick={(): void => setStage('overview')} theme="white" />
+              </>
+            )}
           </div>
         </div>
-        <div className={styles.body}>
-          {stage === 'overview' && (
-            <>
-              <h2>Hello, team</h2>
-              <hr />
-              <div className={styles.cardContainer}>
-                <div className={`${styles.card} ${styles.la}`}>
-                  <h3>Manage local authorities</h3>
-                  <div className={styles.laBorder}>{registered} joined</div>
-                  <div className={styles.laBorder}>{notRegistered} to join</div>
-                  <br />
-                  <div>View, add and edit your local authorities.</div>
-                  <br />
-                  <Button
-                    theme="midBlue"
-                    text="Start"
-                    onClick={(): void => setStage('manage_las')}
-                  />
-                </div>
-                <div className={`${styles.card} ${styles.requests}`}>
-                  <h3>Manage schools, charities and volunteers</h3>
-                  <div className={styles.requestsBorder}>4 requests</div>
-                  <br />
-                  <div>View who&apos;s asked to join Donate to Educate.</div>
-                  <br />
-                  <Button
-                    theme="midBlue"
-                    text="Start"
-                    onClick={(): void => setStage('view_requests')}
-                  />
-                </div>
-              </div>
-            </>
-          )}
-          {stage === 'manage_las' && (
-            <>
-              <BackButton onClick={(): void => setStage('overview')} />
-              <div>{registered} joined</div>
-              <div>{notRegistered} to join</div>
-              <ul>
-                {data?.getLocalAuthorities.map((la) => {
-                  return (
-                    <li key={la.name}>
-                      {la.name} - {la.registered ? 'Joined' : 'Not Joined'}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
-          {stage === 'view_requests' && (
-            <>
-              <BackButton onClick={(): void => setStage('overview')} />
-            </>
-          )}
-        </div>
-      </div>
+      )}
+      {stage === 'la_sign_up' && (
+        <>
+          <BackButton onClick={(): void => setStage('manage_las')} theme="blue" />
+          <LocalAuthoritySignUp name={selectedLa} setStage={setStage} />
+        </>
+      )}
+      {stage === 'la_confirmation' && (
+        <ConfirmationPage
+          setStage={setStage}
+          icon={<Email />}
+          title="You have created an account for West Sussex County Council"
+          message={<p>The main user has been emailed with instructions to set up their profile</p>}
+        />
+      )}
     </div>
   );
 };

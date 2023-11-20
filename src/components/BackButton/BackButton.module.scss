@@ -11,8 +11,12 @@
   &:hover {
     cursor: pointer;
   }
+}
 
-  h4 {
-    color: g.$primary-white;
-  }
+.white h4 {
+  color: g.$primary-white;
+}
+
+.blue h4 {
+  color: g.$primary-dark-blue;
 }
