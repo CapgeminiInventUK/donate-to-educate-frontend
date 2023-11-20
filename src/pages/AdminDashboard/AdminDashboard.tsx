@@ -68,8 +68,18 @@ const AdminDashboard: FC = () => {
         <div className={styles.header}>
           <h1>{getHeader(stage)}</h1>
           <div>
-            <Button theme="darkBlue" text="Settings" onClick={(): void => undefined} />
-            <Button theme="darkBlue" text="Sign out" onClick={(): void => setShouldSignOut(true)} />
+            <Button
+              theme="link"
+              text="Settings"
+              className={styles.actionButtons}
+              onClick={(): void => undefined}
+            />
+            <Button
+              theme="link"
+              text="Sign out"
+              className={styles.actionButtons}
+              onClick={(): void => setShouldSignOut(true)}
+            />
           </div>
         </div>
         <div className={styles.body}>
@@ -78,21 +88,25 @@ const AdminDashboard: FC = () => {
               <h2>Hello, team</h2>
               <hr />
               <div className={styles.cardContainer}>
-                <div className={styles.card}>
+                <div className={`${styles.card} ${styles.la}`}>
                   <h3>Manage local authorities</h3>
-                  <div>{registered} joined</div>
-                  <div>{notRegistered} to join</div>
+                  <div className={styles.laBorder}>{registered} joined</div>
+                  <div className={styles.laBorder}>{notRegistered} to join</div>
+                  <br />
                   <div>View, add and edit your local authorities.</div>
+                  <br />
                   <Button
                     theme="midBlue"
                     text="Start"
                     onClick={(): void => setStage('manage_las')}
                   />
                 </div>
-                <div className={styles.card}>
+                <div className={`${styles.card} ${styles.requests}`}>
                   <h3>Manage schools, charities and volunteers</h3>
-                  <div>4 requests</div>
+                  <div className={styles.requestsBorder}>4 requests</div>
+                  <br />
                   <div>View who&apos;s asked to join Donate to Educate.</div>
+                  <br />
                   <Button
                     theme="midBlue"
                     text="Start"

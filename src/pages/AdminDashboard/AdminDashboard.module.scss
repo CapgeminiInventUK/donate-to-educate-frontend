@@ -13,6 +13,11 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+
+      .actionButtons {
+        color: black;
+        text-decoration: none;
+      }
     }
 
     .body {
@@ -24,14 +29,36 @@
       .cardContainer {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        padding: 40px 0;
 
         .card {
           background: g.$primary-white;
           border-radius: 10px;
+          border-top: 18px solid transparent;
           color: g.$primary-dark-blue;
           padding: 30px 40px;
           margin: 10px;
+          width: 380px;
+
+          .laBorder {
+            border-left: solid 10px g.$primary-light-blue;
+            padding-left: 20px;
+          }
+
+          .requestsBorder {
+            border-left: solid 10px g.$secondary-blue;
+            padding-left: 20px;
+          }
+        }
+
+        .la {
+          border-color: g.$primary-light-blue;
+        }
+
+        .requests {
+          border-color: g.$secondary-blue;
         }
       }
     }
