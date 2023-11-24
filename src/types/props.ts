@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { CarouselItem } from './data';
 
 export interface LayoutProps {
@@ -109,4 +109,18 @@ export interface TextInputProps {
   password?: boolean;
   id?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface FormComponent {
+  componentType: string;
+  component: FC;
+  componentData: Record<string, string>;
+}
+
+export interface FormDataItem {
+  header?: string;
+  formComponent: FormComponent;
+}
+export interface FormProps {
+  formData: FormDataItem[];
 }
