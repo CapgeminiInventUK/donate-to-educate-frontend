@@ -7,6 +7,7 @@ import LogoWhite from '@assets/logo/LogoWhite';
 import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
 import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
+import Paths from '@/config/paths';
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -19,15 +20,16 @@ export const SignIn: FC = () => {
   useEffect(() => {
     if (submitted) {
       userLogin(username, password)
-        .then(() => navigate('/admin-dashboard'))
+        .then(() => {
+          setSubmitted(false);
+          navigate(Paths.ADMIN_DASHBOARD);
+        })
         .catch(console.error);
-      setSubmitted(false);
     }
   }, [submitted, password, username, navigate]);
 
-  // TODO display loader
+  // TODO display loader here
   if (checkIsLoggedIn) {
-    navigate('/admin-dashboard');
     return <></>;
   }
 
@@ -37,11 +39,22 @@ export const SignIn: FC = () => {
         <LogoWhite />
       </div>
       <h2>Sign in</h2>
-      <TextInput header="Username" onChange={(event): void => setUsername(event.target.value)} />
+      <TextInput
+        header="Username"
+        onChange={(event): void => {
+          if (username !== event.target.value) {
+            setUsername(event.target.value);
+          }
+        }}
+      />
       <TextInput
         header="Password"
         password
-        onChange={(event): void => setPassword(event.target.value)}
+        onChange={(event): void => {
+          if (password !== event.target.value) {
+            setPassword(event.target.value);
+          }
+        }}
       />
       <Button theme="darkBlue" text="Login" onClick={(): void => setSubmitted(true)} />
     </div>

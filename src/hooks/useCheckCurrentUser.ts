@@ -1,21 +1,17 @@
 import { getCurrentUser } from 'aws-amplify/auth';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 
-export const useCheckCurrentUser = (route = '/login'): boolean => {
-  const navigate = useNavigate();
+async function checkAuthState(): Promise<void> {
+  await getCurrentUser();
+}
+
+export const useCheckCurrentUser = (): boolean => {
   const [checkIsLoggedIn, setCheckIsLoggedIn] = useState(false);
 
-  async function checkAuthState(): Promise<void> {
-    try {
-      await getCurrentUser();
-      setCheckIsLoggedIn(true);
-    } catch (err) {
-      navigate(route);
-    }
-  }
   useEffect(() => {
-    void checkAuthState();
+    checkAuthState()
+      .then(() => setCheckIsLoggedIn(true))
+      .catch(() => setCheckIsLoggedIn(false));
   });
 
   return checkIsLoggedIn;

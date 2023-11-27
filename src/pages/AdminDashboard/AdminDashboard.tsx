@@ -12,6 +12,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import LocalAuthoritySignUp from './LocalAuthoritySignUp';
 import ConfirmationPage from '@/components/ConfirmationPage/ConfirmationPage';
 import Email from '@/assets/admin/Email';
+import Paths from '@/config/paths';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -58,14 +59,16 @@ const AdminDashboard: FC = () => {
   useEffect(() => {
     if (shouldSignOut) {
       void signOut()
-        .then(() => {
-          setShouldSignOut(false);
-          navigate('/login');
-        })
+        .then(() => navigate(Paths.LOGIN))
         // eslint-disable-next-line no-console
         .catch(console.error);
     }
   }, [shouldSignOut, navigate]);
+
+  // TODO add loader here
+  if (shouldSignOut) {
+    return <></>;
+  }
 
   return (
     <div className={styles.container}>
