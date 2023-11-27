@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
-import { CarouselItem } from './data';
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from 'react';
+import { CarouselItem, FormData } from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -108,19 +108,16 @@ export interface TextInputProps {
   placeholder?: string;
   password?: boolean;
   id?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface FormComponent {
-  componentType: string;
-  component: FC;
-  componentData: Record<string, string>;
+export interface FormContainerProps {
+  formData: FormData[];
+  pageNumber: number;
+  setPageNumber: Dispatch<SetStateAction<number>>;
 }
 
-export interface FormDataItem {
-  header?: string;
-  formComponent: FormComponent;
-}
-export interface FormProps {
-  formData: FormDataItem[];
+export interface ExternalLinkProps {
+  linkText: string;
+  linkUrl: string;
 }
