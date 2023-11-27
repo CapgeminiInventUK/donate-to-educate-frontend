@@ -37,7 +37,6 @@ const Home: FC = () => {
 
   // eslint-disable-next-line no-console
   console.log(data, error);
-
   return (
     <div className={styles.container}>
       <HeroBanner />

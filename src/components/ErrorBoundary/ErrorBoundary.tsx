@@ -20,11 +20,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       // eslint-disable-next-line no-console
       console.log(`Boundary Name: ${this.props.name}`);
+
       // eslint-disable-next-line no-console
       console.log(this.state.error);
       // eslint-disable-next-line no-console
       console.log(this.state.errorInfo);
-      return <SomethingWentWrong />;
+      return <SomethingWentWrong errorBoundary={this.props?.name ?? 'Router'} />;
     }
 
     return this.props.children;

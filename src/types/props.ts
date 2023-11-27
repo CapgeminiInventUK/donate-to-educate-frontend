@@ -27,8 +27,10 @@ export interface ImageProps {
 
 export interface ErrorBoundaryProps {
   children?: ReactNode;
-  name?: string;
+  name?: ErrorBoundaryType;
 }
+
+export type ErrorBoundaryType = 'Router' | 'Generic';
 
 export interface SvgProps {
   className?: string;

@@ -5,3 +5,12 @@
   padding: 40px 120px;
   height: 100%;
 }
+
+.fullContainer {
+  background: g.$primary-light-blue;
+  padding: 0 120px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
