@@ -2,12 +2,7 @@ import React, { FC, useState } from 'react';
 import { TextAreaProps } from '@/types/props';
 import styles from './TextArea.module.scss';
 
-const TextArea: FC<TextAreaProps> = ({
-  header, placeholder, id,
-  onChange,
-  subHeading,
-}) => {
-
+const TextArea: FC<TextAreaProps> = ({ header, placeholder, id, onChange, subHeading }) => {
   const [value, setValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
