@@ -20,7 +20,6 @@ export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
   text: string | JSX.Element;
-  useArrow: boolean;
   className?: string;
   disabled?: boolean;
 }
