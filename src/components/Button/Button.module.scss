@@ -10,46 +10,6 @@
   line-height: 11px;
 }
 
-%formButton {
-  @extend %button;
-  border-radius: 1px;
-  width: min-content;
-  height: max-content;
-  margin: 5px;
-}
-
-.formButtonDarkBlue {
-  @extend %formButton;
-  border: g.$primary-dark-blue 1px solid;
-  box-shadow: 2px 2px 0px 2px g.$primary-light-blue;
-  background: g.$primary-dark-blue;
-  color: g.$primary-white;
-}
-
-.formButtonMidBlue {
-  @extend %formButton;
-  border: g.$primary-mid-blue 1px solid;
-  box-shadow: 2px 2px 0px 2px g.$primary-dark-blue;
-  background: g.$primary-mid-blue;
-  color: g.$primary-white;
-}
-
-.formButtonWhite {
-  @extend %formButton;
-  border: g.$greyscale-disabled 1px solid;
-  box-shadow: 2px 2px 0px 2px g.$primary-mid-blue;
-  background: g.$primary-white;
-  color: g.$greyscale;
-}
-
-.formButtonGrey {
-  @extend %formButton;
-  border: g.$greyscale-disabled 1px solid;
-  box-shadow: 2px 2px 0px 2px g.$secondary-red;
-  background: g.$greyscale-disabled;
-  color: g.$primary-dark-blue;
-}
-
 .darkBlue {
   @extend %button;
   background: g.$primary-dark-blue;

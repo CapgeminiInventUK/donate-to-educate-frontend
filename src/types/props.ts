@@ -7,20 +7,29 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes =
-  | 'darkBlue'
-  | 'midBlue'
+export type Themes = 'darkBlue' | 'midBlue';
+
+export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonWhite'
-  | 'formButtonGrey';
+  | 'formButtonGrey'
+  | 'formButtonRed';
 
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
   text: string | JSX.Element;
+  useArrow: boolean;
   className?: string;
   disabled?: boolean;
+}
+
+export interface FormButtonProps {
+  theme: FormButtonThemes;
+  onClick: () => void;
+  text: string | JSX.Element;
+  useArrow: boolean;
 }
 
 export interface ImageProps {
