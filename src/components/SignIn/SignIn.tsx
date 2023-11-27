@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { SignInOutput, signIn } from 'aws-amplify/auth';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
@@ -13,6 +12,7 @@ import Spinner from '../Spinner/Spinner';
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [validationMessage, setValidationMessage] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export const SignIn: FC = () => {
         .then(() => {
           setSubmitted(false);
         })
-        .catch(console.error);
+        .catch(handleError);
     }
   }, [submitted, password, username, navigate]);
 
@@ -32,6 +32,10 @@ export const SignIn: FC = () => {
     navigate(Paths.ADMIN_DASHBOARD);
     return <Spinner />;
   }
+
+  const handleError = (): void => {
+    setValidationMessage('Incorrect username or password');
+  };
 
   return (
     <div className={styles.container}>
@@ -56,6 +60,9 @@ export const SignIn: FC = () => {
           }
         }}
       />
+      <div className={styles.validationContainer}>
+        <span>{validationMessage}</span>
+      </div>
       <Button theme="darkBlue" text="Login" onClick={(): void => setSubmitted(true)} />
     </div>
   );
