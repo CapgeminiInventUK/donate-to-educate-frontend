@@ -10,7 +10,6 @@ const PrivateRoute: FC<Props> = ({ route, children }) => {
   const [lastCheck, setLastCheck] = useState<boolean>();
   const checkIsLoggedIn = useCheckCurrentUser();
 
-  // // TODO display loader
   if (!checkIsLoggedIn && checkIsLoggedIn !== lastCheck) {
     setLastCheck(checkIsLoggedIn);
     return <Navigate to={route} />;

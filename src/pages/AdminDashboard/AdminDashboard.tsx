@@ -13,6 +13,7 @@ import LocalAuthoritySignUp from './LocalAuthoritySignUp';
 import ConfirmationPage from '@/components/ConfirmationPage/ConfirmationPage';
 import Email from '@/assets/admin/Email';
 import Paths from '@/config/paths';
+import Spinner from '@/components/Spinner/Spinner';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -23,7 +24,7 @@ const AdminDashboard: FC = () => {
 
   const {
     data,
-    // isLoading,
+    isLoading,
     // isSuccess,
     error,
   } = useQuery({
@@ -65,9 +66,8 @@ const AdminDashboard: FC = () => {
     }
   }, [shouldSignOut, navigate]);
 
-  // TODO add loader here
   if (shouldSignOut) {
-    return <></>;
+    return <Spinner />;
   }
 
   return (
@@ -98,17 +98,22 @@ const AdminDashboard: FC = () => {
                 <hr />
                 <div className={styles.cardContainer}>
                   <div className={`${styles.card} ${styles.la}`}>
-                    <h3>Manage local authorities</h3>
-                    <div className={styles.laBorder}>{registered} joined</div>
-                    <div className={styles.laBorder}>{notRegistered} to join</div>
-                    <br />
-                    <div>View, add and edit your local authorities.</div>
-                    <br />
-                    <Button
-                      theme="midBlue"
-                      text="Start"
-                      onClick={(): void => setStage('manage_las')}
-                    />
+                    {isLoading && <Spinner />}
+                    {!isLoading && (
+                      <>
+                        <h3>Manage local authorities</h3>
+                        <div className={styles.laBorder}>{registered} joined</div>
+                        <div className={styles.laBorder}>{notRegistered} to join</div>
+                        <br />
+                        <div>View, add and edit your local authorities.</div>
+                        <br />
+                        <Button
+                          theme="midBlue"
+                          text="Start"
+                          onClick={(): void => setStage('manage_las')}
+                        />
+                      </>
+                    )}
                   </div>
                   <div className={`${styles.card} ${styles.requests}`}>
                     <h3>Manage schools, charities and volunteers</h3>

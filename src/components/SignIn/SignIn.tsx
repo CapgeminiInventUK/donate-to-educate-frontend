@@ -8,6 +8,7 @@ import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
 import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
+import Spinner from '../Spinner/Spinner';
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -22,15 +23,14 @@ export const SignIn: FC = () => {
       userLogin(username, password)
         .then(() => {
           setSubmitted(false);
-          navigate(Paths.ADMIN_DASHBOARD);
         })
         .catch(console.error);
     }
   }, [submitted, password, username, navigate]);
 
-  // TODO display loader here
-  if (checkIsLoggedIn) {
-    return <></>;
+  if (checkIsLoggedIn && !submitted) {
+    navigate(Paths.ADMIN_DASHBOARD);
+    return <Spinner />;
   }
 
   return (
