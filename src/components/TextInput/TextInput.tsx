@@ -14,6 +14,7 @@ const TextInput: FC<TextInputProps> = ({
 }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [inputType, setInputType] = useState('password');
 
   if (id == null) {
     // Squeeze together header and replace non-alphanumeric characters with hyphens
@@ -25,6 +26,14 @@ const TextInput: FC<TextInputProps> = ({
     setValue(inputValue);
     if (onChange) {
       onChange(event);
+    }
+  };
+
+  const handleChangePasswordVisibility = (show: boolean): void => {
+    if (show) {
+      setInputType('text');
+    } else {
+      setInputType('password');
     }
   };
 
@@ -45,15 +54,16 @@ const TextInput: FC<TextInputProps> = ({
       {error && <p className={styles.errorMessage}>{error}</p>}
       {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
       <label htmlFor="textInput" className={styles.label}>
+        {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
+
         <input
-          type={password ? 'password' : 'text'}
+          type={password ? inputType : 'text'}
           id={id}
           value={value}
           onChange={handleChange}
           className={styles.input}
           placeholder={placeholder ?? ''}
         />
-        {password && <ShowHide />}
       </label>
     </div>
   );
