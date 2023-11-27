@@ -1,5 +1,11 @@
 import { ErrorInfo } from 'react';
-import { CheckboxProps, ExternalLinkProps, RadioGroupProps, TextInputProps } from './props';
+import {
+  CheckboxProps,
+  ExternalLinkProps,
+  RadioGroupProps,
+  TextAreaProps,
+  TextInputProps,
+} from './props';
 
 export interface ErrorBoundaryState {
   hasError: boolean;
@@ -15,9 +21,15 @@ export interface CarouselItem {
 
 export interface FormComponent {
   componentType: ComponentType;
-  componentData: TextInputProps | RadioGroupProps | CheckboxProps;
+  componentData: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
 }
+
+export type ComponentDataPropsType =
+  | TextInputProps
+  | RadioGroupProps
+  | CheckboxProps
+  | TextAreaProps;
 
 export interface FormData {
   formComponents: FormComponent[];

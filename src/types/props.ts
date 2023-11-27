@@ -117,7 +117,18 @@ export interface FormContainerProps {
   setPageNumber: Dispatch<SetStateAction<number>>;
 }
 
+export interface TextAreaProps {
+  header: string;
+  characterLimit: number;
+  subHeading?: string;
+  hint?: string;
+  placeholder?: string;
+  id?: string;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
 export interface ExternalLinkProps {
   linkText: string;
   linkUrl: string;
+  className?: string;
 }

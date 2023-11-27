@@ -1,21 +1,30 @@
-import { CheckboxProps, FormContainerProps, RadioGroupProps, TextInputProps } from '@/types/props';
+import {
+  CheckboxProps,
+  FormContainerProps,
+  RadioGroupProps,
+  TextAreaProps,
+  TextInputProps,
+} from '@/types/props';
 import { FC, ReactNode } from 'react';
 import styles from './Form.module.scss';
 import TextInput from '@/components/TextInput/TextInput';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import Button from '@/components/Button/Button';
-import { ComponentType } from '@/types/data';
+import { ComponentDataPropsType, ComponentType } from '@/types/data';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
+import TextArea from '@/components/TextArea/TextArea';
 
 const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNumber }) => {
   const createFormComponent = (
     componentType: ComponentType,
-    componentData: TextInputProps | RadioGroupProps | CheckboxProps
+    componentData: ComponentDataPropsType
   ): ReactNode => {
     switch (componentType) {
       case ComponentType.TEXT:
         return <TextInput {...(componentData as TextInputProps)} />;
+      case ComponentType.TEXTAREA:
+        return <TextArea {...(componentData as TextAreaProps)} />;
       case ComponentType.RADIO:
         return <RadioGroup {...(componentData as RadioGroupProps)} />;
       case ComponentType.CHECKBOX:
@@ -43,7 +52,11 @@ const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNu
         ({ componentType, componentData, formComponentLink }, index) => (
           <div className={styles.formComponent} key={index}>
             {createFormComponent(componentType, componentData)}
-            {formComponentLink && <ExternalLink {...formComponentLink} />}
+            {formComponentLink && (
+              <div className={styles.link}>
+                <ExternalLink {...formComponentLink} />
+              </div>
+            )}
           </div>
         )
       )}

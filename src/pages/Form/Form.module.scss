@@ -33,7 +33,7 @@
         font-size: 32px;
       }
 
-      p {
+      p:first-of-type {
         font-size: 18px;
         font-weight: 400;
         letter-spacing: -0.09px;
@@ -41,7 +41,11 @@
       }
 
       > div {
-        padding-bottom: 40px;
+        padding-bottom: 0;
+      }
+
+      .link {
+        margin-top: 40px;
       }
     }
   }

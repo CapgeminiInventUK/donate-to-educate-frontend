@@ -29,6 +29,20 @@ const Form: FC = () => {
         },
       ],
     },
+    {
+      formComponents: [
+        {
+          componentType: ComponentType.TEXTAREA,
+          componentData: {
+            header: 'Tell us about your charity or volunteer group',
+            subHeading:
+              'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
+            hint: 'This information can only be seen by Donate to Educate administrators.',
+            characterLimit: 1000,
+          },
+        },
+      ],
+    },
   ];
 
   return (

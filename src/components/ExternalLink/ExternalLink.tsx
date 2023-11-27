@@ -2,9 +2,9 @@ import { ExternalLinkProps } from '@/types/props';
 import { FC } from 'react';
 import styles from './ExternalLink.module.scss';
 
-const ExternalLink: FC<ExternalLinkProps> = ({ linkText, linkUrl }) => {
+const ExternalLink: FC<ExternalLinkProps> = ({ linkText, linkUrl, className }) => {
   return (
-    <a className={styles.link} href={linkUrl} target="_blank" rel="noreferrer">
+    <a className={`${styles.link} ${className}`} href={linkUrl} target="_blank" rel="noreferrer">
       {linkText}
     </a>
   );
