@@ -1,0 +1,65 @@
+@use '@assets/global.scss' as g;
+
+%textInput {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: g.$primary-white;
+  color: g.$primary-mid-blue;
+  font-family: 'Poppins', sans-serif;
+  line-height: 20px;
+  border: 1px solid g.$greyscale;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+}
+
+.header {
+  margin-bottom: 20px;
+  margin-top: 0px;
+  font-family: 'Poppins', sans-serif;
+  color: g.$primary-dark-blue;
+}
+
+.subHeading {
+  color: g.$primary-dark-blue;
+  margin: 0px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+}
+
+.input {
+  @extend %textInput;
+  width: 30em;
+}
+
+.errorMessage {
+  color: g.$error-red;
+  font-weight: 700;
+  color: g.$error-red;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.wrapper.error {
+  border-left: 5px solid g.$error-red;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  %textInput {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+}

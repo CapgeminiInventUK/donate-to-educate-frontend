@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ChangeEvent, FC, ReactNode } from 'react';
 import { CarouselItem } from './data';
 
 export interface LayoutProps {
@@ -109,6 +109,15 @@ export interface TextInputProps {
   password?: boolean;
   id?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface DropdownProps {
+  header: string;
+  subHeading?: string;
+  validator?: (input: string) => ValidationResult;
+  id?: string;
+  name?: string;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface FormComponent {
