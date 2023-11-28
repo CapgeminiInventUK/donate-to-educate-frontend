@@ -10,7 +10,6 @@ import Carousel from '@/components/Carousel/Carousel';
 import Laptop from '@/assets/carousel/Laptop.webp';
 import Tablet from '@/assets/carousel/Tablet.webp';
 import Tiles from '@/assets/carousel/Tiles.webp';
-import FormButton from '@/components/FormButton/FormButton';
 
 const Home: FC = () => {
   return (
@@ -37,38 +36,6 @@ const Home: FC = () => {
             colour: 'darkBlue',
           },
         ]}
-      />
-      <FormButton
-        onClick={(): void => {
-          return window.close();
-        }}
-        theme={'formButtonDarkBlue'}
-        text={'Next'}
-        useArrow={true}
-      />
-      <FormButton
-        onClick={(): void => {
-          return window.close();
-        }}
-        theme={'formButtonMidBlue'}
-        text={'Next'}
-        useArrow={false}
-      />
-      <FormButton
-        onClick={(): void => {
-          return window.close();
-        }}
-        theme={'formButtonRed'}
-        text={'Next'}
-        useArrow={false}
-      />
-      <FormButton
-        onClick={(): void => {
-          return window.close();
-        }}
-        theme={'formButtonGrey'}
-        text={'Next'}
-        useArrow={false}
       />
       <InfoTile colour="lightBlue" />
       <InfoTile colour="midBlue" />

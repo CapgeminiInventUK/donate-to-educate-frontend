@@ -12,7 +12,6 @@ export type Themes = 'darkBlue' | 'midBlue';
 export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
-  | 'formButtonWhite'
   | 'formButtonGrey'
   | 'formButtonRed';
 

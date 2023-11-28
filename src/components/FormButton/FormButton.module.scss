@@ -34,7 +34,7 @@
   color: g.$primary-white;
 }
 
-.formButtonGrey {
+.formButtonRed {
   @extend %button;
   border: g.$greyscale-disabled 1px solid;
   box-shadow: 2px 2px 0px 2px g.$secondary-red;
@@ -42,7 +42,7 @@
   color: g.$primary-dark-blue;
 }
 
-.formButtonRed {
+.formButtonGrey {
   @extend %button;
   border: g.$form-button-grey-background 1px solid;
   box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
