@@ -9,12 +9,25 @@ export interface LayoutProps {
 
 export type Themes = 'darkBlue' | 'midBlue' | 'link';
 
+export type FormButtonThemes =
+  | 'formButtonDarkBlue'
+  | 'formButtonMidBlue'
+  | 'formButtonGrey'
+  | 'formButtonRed';
+
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
+}
+
+export interface FormButtonProps {
+  theme: FormButtonThemes;
+  onClick: () => void;
+  text: string | JSX.Element;
+  useArrow?: boolean;
 }
 
 export interface ImageProps {
