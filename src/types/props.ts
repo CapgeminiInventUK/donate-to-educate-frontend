@@ -27,7 +27,7 @@ export interface FormButtonProps {
   theme: FormButtonThemes;
   onClick: () => void;
   text: string | JSX.Element;
-  useArrow: boolean;
+  useArrow?: boolean;
 }
 
 export interface ImageProps {
