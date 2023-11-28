@@ -90,6 +90,14 @@
   color: g.$primary-white;
 }
 
+.imageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 @media only screen and (max-width: g.$screen-large) {
   .container {
     margin: 20px;

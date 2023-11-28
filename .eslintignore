@@ -4,3 +4,6 @@ dist
 vite.config.ts
 jest.config.cjs
 .eslintrc.cjs
+
+graphql
+src/types/api.ts

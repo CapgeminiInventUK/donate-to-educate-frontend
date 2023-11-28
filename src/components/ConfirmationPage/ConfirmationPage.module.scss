@@ -1,0 +1,23 @@
+@use '@assets/global.scss' as g;
+
+.errorPage {
+  color: g.$primary-white;
+  background: g.$primary-dark-blue;
+  padding: 40px 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  width: 300px;
+  padding: 60px 0;
+}
+
+a {
+  color: g.$primary-white;
+  text-decoration: underline;
+  cursor: pointer;
+}

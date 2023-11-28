@@ -1,0 +1,14 @@
+@use '@assets/global.scss' as g;
+
+.card {
+  background: g.$primary-white;
+  border-radius: 10px;
+  padding: 60px 82px;
+
+  hr {
+    background: g.$primary-light-blue;
+    height: 4px;
+    border: none;
+    margin-bottom: 40px;
+  }
+}

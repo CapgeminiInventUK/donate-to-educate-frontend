@@ -30,6 +30,18 @@ $box-shadow-black: rgba(0, 0, 0, 0.1);
 $black: black;
 $dark-blue: #050e33;
 
+// Pill Colours
+$pill-blue-background: #3157b0;
+$pill-blue-text: #f2f4fa;
+$pill-green-background: #c2dfd1;
+$pill-green-text: #005328;
+$pill-grey-background: #ebecec;
+$pill-grey-text: #31373b;
+$pill-red-background: #f6d3cd;
+$pill-red-text: #8b281a;
+$pill-yellow-background: #fbfdb5;
+$pill-yellow-text: #514d12;
+
 // Screen Breakpoints
 $screen-small: 400px;
 $screen-medium: 768px;
@@ -38,6 +50,9 @@ $screen-xlarge: 1200px;
 
 // Navigation
 $nav-height: 80px;
+
+// Error
+$error-red: #f03a47;
 
 // Headers
 h1 {

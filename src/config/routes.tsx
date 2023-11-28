@@ -7,6 +7,8 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  Login,
+  AdminDashboard,
 } from './lazy';
 
 const routes = [
@@ -41,6 +43,17 @@ const routes = [
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
+  },
+  {
+    path: Paths.LOGIN,
+    element: <Login />,
+    name: 'Login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD,
+    element: <AdminDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
   },
   {
     path: '*',

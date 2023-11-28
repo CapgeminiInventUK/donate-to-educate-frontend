@@ -7,7 +7,7 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes = 'darkBlue' | 'midBlue';
+export type Themes = 'darkBlue' | 'midBlue' | 'link';
 
 export type FormButtonThemes =
   | 'formButtonDarkBlue'
@@ -40,7 +40,10 @@ export interface ImageProps {
 
 export interface ErrorBoundaryProps {
   children?: ReactNode;
+  name?: ErrorBoundaryType;
 }
+
+export type ErrorBoundaryType = 'Router' | 'Generic';
 
 export interface SvgProps {
   className?: string;
@@ -51,6 +54,10 @@ export interface SvgProps {
 export interface HeaderProps {
   text: string;
   className?: string;
+}
+
+export interface PillProps {
+  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
 }
 
 export interface NavLinksProps {
@@ -102,4 +109,19 @@ export interface CarouselProps {
 export interface FooterPageProps {
   title: string;
   children: JSX.Element[] | JSX.Element;
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errorMessage?: string;
+}
+
+export interface TextInputProps {
+  header: string;
+  subHeading?: string;
+  validator?: (input: string) => ValidationResult;
+  placeholder?: string;
+  password?: boolean;
+  id?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
