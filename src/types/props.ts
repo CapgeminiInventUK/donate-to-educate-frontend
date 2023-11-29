@@ -7,7 +7,14 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes = 'darkBlue' | 'midBlue' | 'startButton';
+// export type Themes = 'darkBlue' | 'midBlue' | 'startButton';
+export type Themes = 'darkBlue' | 'midBlue' | 'link';
+
+export type FormButtonThemes =
+  | 'formButtonDarkBlue'
+  | 'formButtonMidBlue'
+  | 'formButtonGrey'
+  | 'formButtonRed';
 
 export interface ButtonProps {
   theme: Themes;
@@ -15,6 +22,13 @@ export interface ButtonProps {
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
+}
+
+export interface FormButtonProps {
+  theme: FormButtonThemes;
+  onClick: () => void;
+  text: string | JSX.Element;
+  useArrow?: boolean;
 }
 
 export interface ImageProps {
@@ -27,7 +41,10 @@ export interface ImageProps {
 
 export interface ErrorBoundaryProps {
   children?: ReactNode;
+  name?: ErrorBoundaryType;
 }
+
+export type ErrorBoundaryType = 'Router' | 'Generic';
 
 export interface SvgProps {
   className?: string;
@@ -42,6 +59,10 @@ export interface BackLinkProps {
 export interface HeaderProps {
   text: string;
   className?: string;
+}
+
+export interface PillProps {
+  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
 }
 
 export interface NavLinksProps {
@@ -93,4 +114,19 @@ export interface CarouselProps {
 export interface FooterPageProps {
   title: string;
   children: JSX.Element[] | JSX.Element;
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errorMessage?: string;
+}
+
+export interface TextInputProps {
+  header: string;
+  subHeading?: string;
+  validator?: (input: string) => ValidationResult;
+  placeholder?: string;
+  password?: boolean;
+  id?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

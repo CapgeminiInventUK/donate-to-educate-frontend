@@ -2,6 +2,7 @@ import { SvgProps } from '@/types/props';
 
 const ArrowRight = ({ className, onClick, colour }: SvgProps): JSX.Element => (
   <svg
+    aria-label="arrow-right"
     className={className}
     onClick={onClick}
     xmlns="http://www.w3.org/2000/svg"

@@ -1,0 +1,22 @@
+@use '@assets/global.scss' as g;
+
+.back {
+  background: none;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.white h4 {
+  color: g.$primary-white;
+}
+
+.blue h4 {
+  color: g.$primary-dark-blue;
+}

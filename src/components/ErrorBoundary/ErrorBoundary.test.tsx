@@ -27,7 +27,7 @@ describe('Error Boundary', () => {
       </ErrorBoundary>
     );
 
-    expect(screen.getByText('Oops... Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
   });
 
   it('Should not render when no error', () => {

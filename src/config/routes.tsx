@@ -8,6 +8,8 @@ import {
   PrivacyPolicy,
   TermsAndConditions,
   InitialStatement,
+  Login,
+  AdminDashboard,
 } from './lazy';
 
 const routes = [
@@ -47,6 +49,17 @@ const routes = [
     path: Paths.INTIAL_STATEMENT,
     element: <InitialStatement />,
     name: 'School',
+  },
+  {
+    path: Paths.LOGIN,
+    element: <Login />,
+    name: 'Login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD,
+    element: <AdminDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
   },
   {
     path: '*',

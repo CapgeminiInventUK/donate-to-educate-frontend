@@ -1,0 +1,25 @@
+type School @aws_cognito_user_pools {
+  urn: ID!
+  name: String!
+  localAuthority: String!
+  postcode: String
+  registered: Boolean!
+}
+
+type LocalAuthority {
+  code: String!
+  name: String!
+  registered: Boolean!
+}
+
+type Query {
+  getSchoolByName(name: String!): School!
+  getSchoolsByLa(name: String!): [School!]!
+  getSchools: [School!]!
+
+  getLocalAuthorities: [LocalAuthority!]!
+}
+
+schema {
+  query: Query
+}

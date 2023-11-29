@@ -1,18 +1,23 @@
 import { FC } from 'react';
 import styles from './InitialStatement.module.scss';
-import BackLink from '@/assets/navigation/BackLink';
-import Paths from '@/config/paths';
-import Button from '@/components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import FormButton from '@/components/FormButton/FormButton';
+import BackButton from '@/components/BackButton/BackButton';
 
 const InitialStatement: FC = () => {
+  const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const handleStartClick = () => (): void => {};
 
+  const handleBackClick = (): void => {
+    navigate('/');
+  };
+
   return (
     <div className={styles.container}>
-      <BackLink route={Paths.INTIAL_STATEMENT} />
+      <BackButton onClick={handleBackClick} theme="blue" />
       <div className={styles.card}>
-        <h1>Join Donate to Educate</h1>
+        <h1 className={styles.heading}>Join Donate to Educate</h1>
         <p>To add your school, you need to:</p>
         <ul>
           <li>be a PTA member, governor, or senior teaching staff at your school</li>
@@ -23,14 +28,21 @@ const InitialStatement: FC = () => {
             identity
           </li>
         </ul>
-        <h2>What to expect</h2>
+        <h2 className={styles.heading}>What to expect</h2>
         <p>Once you give us your details, we will:</p>
         <ul>
           <li>send your details to your local authority</li>
           <li>ask your local authority to confirm your identity</li>
           <li>email you to confirm whether you can join us</li>
         </ul>
-        <Button onClick={handleStartClick} text={'Start'} theme={'startButton'} />
+        <div className={styles.buttonContainer}>
+          <FormButton
+            text={'Start'}
+            theme={'formButtonDarkBlue'}
+            onClick={handleStartClick}
+            useArrow={true}
+          />
+        </div>
       </div>
     </div>
   );
