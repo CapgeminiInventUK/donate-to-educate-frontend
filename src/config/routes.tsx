@@ -10,6 +10,7 @@ import {
   Login,
   AdminDashboard,
 } from './lazy';
+import ResetPassword from '@/pages/ResetPassword/ResetPassword';
 
 const routes = [
   {
@@ -54,6 +55,10 @@ const routes = [
     element: <AdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
+  },
+  {
+    path: Paths.RESET_PASSWORD,
+    element: <ResetPassword />,
   },
   {
     path: '*',
