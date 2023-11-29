@@ -43,6 +43,23 @@ const Form: FC = () => {
         },
       ],
     },
+    {
+      formComponents: [
+        {
+          componentType: ComponentType.DROPDOWN,
+          componentData: {
+            header: "What is the name of your charity or volunteer group's local council?",
+            subHeading: 'If you have locations across the country, choose one main local council.',
+            name: 'West Sussex County Council',
+            options: [
+              { value: 'westBerks', label: 'West Berkshire' },
+              { value: 'westNorthants', label: 'West Northamptonshire' },
+              { value: 'westSussex', label: 'West Sussex County Council' },
+            ],
+          },
+        },
+      ],
+    },
   ];
 
   return (

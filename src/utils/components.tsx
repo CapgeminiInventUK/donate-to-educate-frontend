@@ -1,10 +1,17 @@
 import { ReactNode } from 'react';
 import { ComponentDataPropsType, ComponentType } from '@/types/data';
-import { CheckboxProps, RadioGroupProps, TextAreaProps, TextInputProps } from '@/types/props';
+import {
+  CheckboxProps,
+  DropdownProps,
+  RadioGroupProps,
+  TextAreaProps,
+  TextInputProps,
+} from '@/types/props';
 import TextInput from '@/components/TextInput/TextInput';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import TextArea from '@/components/TextArea/TextArea';
+import Dropdown from '@/components/Dropdown/Dropdown';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -19,6 +26,8 @@ export const createFormComponent = (
       return <RadioGroup {...(componentData as RadioGroupProps)} />;
     case ComponentType.CHECKBOX:
       return <Checkbox {...(componentData as CheckboxProps)} />;
+    case ComponentType.DROPDOWN:
+      return <Dropdown {...(componentData as DropdownProps)} />;
 
     default:
       return <></>;

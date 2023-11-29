@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from 'react';
-import { CarouselItem, FormData } from './data';
+import { CarouselItem, DropdownOption, FormData } from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -115,6 +115,15 @@ export interface FormContainerProps {
   formData: FormData[];
   pageNumber: number;
   setPageNumber: Dispatch<SetStateAction<number>>;
+}
+export interface DropdownProps {
+  header: string;
+  options: DropdownOption[];
+  subHeading?: string;
+  validator?: (input: string) => ValidationResult;
+  id?: string;
+  name?: string;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface TextAreaProps {

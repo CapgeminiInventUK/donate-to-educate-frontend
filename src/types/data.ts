@@ -1,6 +1,7 @@
 import { ErrorInfo } from 'react';
 import {
   CheckboxProps,
+  DropdownProps,
   ExternalLinkProps,
   RadioGroupProps,
   TextAreaProps,
@@ -29,7 +30,8 @@ export type ComponentDataPropsType =
   | TextInputProps
   | RadioGroupProps
   | CheckboxProps
-  | TextAreaProps;
+  | TextAreaProps
+  | DropdownProps;
 
 export interface FormData {
   formComponents: FormComponent[];
@@ -42,4 +44,9 @@ export enum ComponentType {
   TEXTAREA = 'textArea',
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
+}
+
+export interface DropdownOption {
+  value: string | number;
+  label: string;
 }
