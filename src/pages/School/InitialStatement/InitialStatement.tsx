@@ -3,14 +3,13 @@ import styles from './InitialStatement.module.scss';
 import { useNavigate } from 'react-router-dom';
 import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
+import Paths from '@/config/paths';
 
 const InitialStatement: FC = () => {
   const navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const handleStartClick = () => (): void => {};
 
   const handleBackClick = (): void => {
-    navigate('/');
+    navigate(Paths.HOME);
   };
 
   return (
@@ -39,7 +38,9 @@ const InitialStatement: FC = () => {
           <FormButton
             text={'Start'}
             theme={'formButtonDarkBlue'}
-            onClick={handleStartClick}
+            onClick={(): void => {
+              navigate(Paths.YOUR_SCHOOL);
+            }}
             useArrow={true}
           />
         </div>
