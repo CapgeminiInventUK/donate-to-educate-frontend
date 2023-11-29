@@ -7,7 +7,6 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-// export type Themes = 'darkBlue' | 'midBlue' | 'startButton';
 export type Themes = 'darkBlue' | 'midBlue' | 'link';
 
 export type FormButtonThemes =
