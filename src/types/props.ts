@@ -51,6 +51,10 @@ export interface SvgProps {
   colour?: string;
 }
 
+export interface BackLinkProps {
+  route: string;
+}
+
 export interface HeaderProps {
   text: string;
   className?: string;
