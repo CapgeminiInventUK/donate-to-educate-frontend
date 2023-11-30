@@ -141,3 +141,12 @@ export interface ExternalLinkProps {
   linkUrl: string;
   className?: string;
 }
+
+export interface FormIntroPageProps {
+  header: string;
+  infoText: string;
+  listItems: string[];
+  secondaryHeading?: string;
+  secondaryInfoText?: string;
+  secondaryListItems?: string[];
+}

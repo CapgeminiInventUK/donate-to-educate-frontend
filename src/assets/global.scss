@@ -50,6 +50,17 @@ $nav-height: 80px;
 // Error
 $error-red: #f03a47;
 
+@mixin card {
+  border-radius: 10px;
+  background: $primary-white;
+  box-shadow: 0 4px 4px 0 $box-shadow-black;
+}
+
+@mixin page-container {
+  background: $primary-light-blue;
+  height: 100%;
+}
+
 // Headers
 h1 {
   font-size: 48px;

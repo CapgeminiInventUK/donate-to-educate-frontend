@@ -17,6 +17,31 @@ const Form: FC = () => {
     {
       formComponents: [
         {
+          componentType: ComponentType.INTRO,
+          componentData: {
+            header: 'Join Donate to Educate',
+            infoText: 'To support us and help families and schools, you need to:',
+            listItems: [
+              'work at a charity or be a volunteer',
+              'have a work address or premises to store school products',
+              'provide us with your contact details',
+              'review and agree to our GDPR statements and policies',
+              'agree that we can share your information with your local authority or local council to confirm your identity',
+            ],
+            secondaryHeading: 'What to expect',
+            secondaryInfoText: `One you give us your details, we will:`,
+            secondaryListItems: [
+              `send you details to your local authority or local council`,
+              `your local authority or local council will confirm your identity`,
+              `you will get an email to confirm whether you can join`,
+            ],
+          },
+        },
+      ],
+    },
+    {
+      formComponents: [
+        {
           componentType: ComponentType.TEXT,
           componentData: {
             header: "What is the name of your charity or volunteer group's local council?",

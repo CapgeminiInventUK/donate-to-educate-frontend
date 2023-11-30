@@ -3,6 +3,7 @@ import {
   CheckboxProps,
   DropdownProps,
   ExternalLinkProps,
+  FormIntroPageProps,
   RadioGroupProps,
   TextAreaProps,
   TextInputProps,
@@ -31,7 +32,8 @@ export type ComponentDataPropsType =
   | RadioGroupProps
   | CheckboxProps
   | TextAreaProps
-  | DropdownProps;
+  | DropdownProps
+  | FormIntroPageProps;
 
 export interface FormData {
   formComponents: FormComponent[];

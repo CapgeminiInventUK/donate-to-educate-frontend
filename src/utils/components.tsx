@@ -3,6 +3,7 @@ import { ComponentDataPropsType, ComponentType } from '@/types/data';
 import {
   CheckboxProps,
   DropdownProps,
+  FormIntroPageProps,
   RadioGroupProps,
   TextAreaProps,
   TextInputProps,
@@ -12,12 +13,15 @@ import RadioGroup from '@/components/RadioGroup/RadioGroup';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import TextArea from '@/components/TextArea/TextArea';
 import Dropdown from '@/components/Dropdown/Dropdown';
+import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 
 export const createFormComponent = (
   componentType: ComponentType,
   componentData: ComponentDataPropsType
 ): ReactNode => {
   switch (componentType) {
+    case ComponentType.INTRO:
+      return <FormIntroPage {...(componentData as FormIntroPageProps)} />;
     case ComponentType.TEXT:
       return <TextInput {...(componentData as TextInputProps)} />;
     case ComponentType.TEXTAREA:

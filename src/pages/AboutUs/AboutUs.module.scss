@@ -1,8 +1,7 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  background: g.$primary-light-blue;
-  height: 100%;
+  @include g.page-container;
 
   .inventBanner {
     display: flex;
@@ -39,10 +38,8 @@
     }
 
     .card {
-      border-radius: 10px;
-      background: g.$primary-white;
+      @include g.card;
       padding: 60px 82px;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
       margin-top: 40px;
       display: flex;
       justify-content: center;
