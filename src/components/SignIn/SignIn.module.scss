@@ -11,6 +11,10 @@
     background: g.$primary-dark-blue;
     padding: 20px 145px;
     border-radius: 10px;
+
+    svg {
+      height: 40px;
+    }
   }
 
   .validationContainer {
