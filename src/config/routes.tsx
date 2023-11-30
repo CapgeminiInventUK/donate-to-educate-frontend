@@ -46,7 +46,7 @@ const routes = [
     name: 'Donate',
   },
   {
-    path: Paths.INTIAL_STATEMENT,
+    path: Paths.INITIAL_STATEMENT,
     element: <InitialStatement />,
     name: 'School',
   },
