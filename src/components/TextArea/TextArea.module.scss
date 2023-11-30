@@ -1,16 +1,5 @@
 @use '@assets/global.scss' as g;
 
-%textArea {
-  padding: 10px 20px;
-  font-size: 16px;
-  background: g.$primary-white;
-  color: g.$primary-mid-blue;
-  font-family: 'Poppins', sans-serif;
-  line-height: 20px;
-  border: 1px solid g.$greyscale;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
 %paragraph {
   color: g.$primary-dark-blue;
   margin: 0px;
