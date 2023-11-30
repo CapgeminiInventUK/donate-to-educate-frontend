@@ -15,8 +15,8 @@ const FormIntroPage: FC<FormIntroPageProps> = ({
       <h2 className={styles.header}>{header} </h2>
       <p className={styles.text}> {infoText}</p>
       <ul className={styles.text}>
-        {listItems.map((item, id) => (
-          <li key={id}>{item}</li>
+        {listItems.map((item, index) => (
+          <li key={index}>{item}</li>
         ))}
       </ul>
       <h3 className={styles.secondaryHeader}>{secondaryHeading}</h3>

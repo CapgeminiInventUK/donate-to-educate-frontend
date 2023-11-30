@@ -123,10 +123,8 @@ export interface ValidationResult {
 export interface TextInputProps {
   header: string;
   subHeading?: string;
-  validator?: (input: string) => ValidationResult;
   placeholder?: string;
   password?: boolean;
-  id?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -139,10 +137,8 @@ export interface DropdownProps {
   header: string;
   options: DropdownOption[];
   subHeading?: string;
-  validator?: (input: string) => ValidationResult;
-  id?: string;
   name?: string;
-  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: string) => void;
 }
 
 export interface TextAreaProps {

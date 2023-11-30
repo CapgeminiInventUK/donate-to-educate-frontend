@@ -17,14 +17,14 @@ const TextArea: FC<TextAreaProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const inputValue = event.target.value;
     setValue(inputValue);
-    setCharacterCount(event.target.value.length);
+    setCharacterCount(inputValue.length);
     if (onChange) {
       onChange(event);
     }
   };
 
   return (
-    <div className={`${styles.container}`}>
+    <div className={styles.container}>
       <h2 className={styles.header}>{header}</h2>
       {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
       {hint && <p className={styles.hint}>{hint}</p>}

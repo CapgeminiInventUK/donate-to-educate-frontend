@@ -1,16 +1,5 @@
 @use '@assets/global.scss' as g;
 
-%textInput {
-  padding: 10px 20px;
-  font-size: 16px;
-  background: g.$primary-white;
-  color: g.$primary-mid-blue;
-  font-family: 'Poppins', sans-serif;
-  line-height: 20px;
-  border: 1px solid g.$greyscale;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -20,7 +9,7 @@
 
 .header {
   margin-bottom: 20px;
-  margin-top: 0px;
+  margin-top: 0;
   font-family: 'Poppins', sans-serif;
   color: g.$primary-dark-blue;
 }
@@ -32,7 +21,7 @@
 
 .subHeading {
   color: g.$primary-dark-blue;
-  margin: 0px;
+  margin: 0;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -41,15 +30,14 @@
 }
 
 .input {
-  @extend %textInput;
-  width: 30em;
+  @include g.input;
 }
 
 .errorMessage {
   color: g.$error-red;
   font-weight: 700;
   color: g.$error-red;
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
@@ -59,7 +47,7 @@
 }
 
 @media only screen and (max-width: g.$screen-large) {
-  %textInput {
+  .input {
     padding: 8px 16px;
     font-size: 14px;
   }

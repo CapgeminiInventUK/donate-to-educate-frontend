@@ -65,6 +65,17 @@ $error-red: #f03a47;
   height: 100%;
 }
 
+@mixin input {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: $primary-white;
+  color: $primary-mid-blue;
+  font-family: 'Poppins', sans-serif;
+  line-height: 20px;
+  border: 1px solid $greyscale;
+  box-shadow: 0 4px 4px 0 $box-shadow-black;
+}
+
 // Headers
 h1 {
   font-size: 48px;

@@ -44,7 +44,7 @@
   }
 
   .textArea {
-    @extend %textArea;
+    @include g.input;
     width: 90%;
     height: 200px;
     resize: none;
