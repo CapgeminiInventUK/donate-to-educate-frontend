@@ -4,8 +4,7 @@ import Button from '@/components/Button/Button';
 import { signOut } from 'aws-amplify/auth';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { getLocalAuthorities } from '@/graphql/queries';
-import { GetLocalAuthoritiesQuery } from '@/types/api';
+import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { client } from '@/graphqlClient';
 import BackButton from '@/components/BackButton/BackButton';
@@ -14,6 +13,7 @@ import ConfirmationPage from '@/components/ConfirmationPage/ConfirmationPage';
 import Email from '@/assets/admin/Email';
 import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
+import { getAdminPageRequests } from '@/graphql/composite';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -31,11 +31,13 @@ const AdminDashboard: FC = () => {
     queryKey: ['la'],
     // enabled,
     queryFn: async () => {
-      const response = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
-        query: getLocalAuthorities,
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
+      >({
+        query: getAdminPageRequests,
       });
 
-      return response.data;
+      return data;
     },
   });
 
@@ -116,16 +118,23 @@ const AdminDashboard: FC = () => {
                     )}
                   </div>
                   <div className={`${styles.card} ${styles.requests}`}>
-                    <h3>Manage schools, charities and volunteers</h3>
-                    <div className={styles.requestsBorder}>4 requests</div>
-                    <br />
-                    <div>View who&apos;s asked to join Donate to Educate.</div>
-                    <br />
-                    <Button
-                      theme="midBlue"
-                      text="Start"
-                      onClick={(): void => setStage('view_requests')}
-                    />
+                    {isLoading && <Spinner />}
+                    {!isLoading && (
+                      <>
+                        <h3>Manage schools, charities and volunteers</h3>
+                        <div className={styles.requestsBorder}>
+                          {data?.getJoinRequests?.length ?? 4} requests
+                        </div>
+                        <br />
+                        <div>View who&apos;s asked to join Donate to Educate.</div>
+                        <br />
+                        <Button
+                          theme="midBlue"
+                          text="Start"
+                          onClick={(): void => setStage('view_requests')}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               </>
