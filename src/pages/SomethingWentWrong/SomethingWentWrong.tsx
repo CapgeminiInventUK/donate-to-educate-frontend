@@ -3,10 +3,15 @@ import styles from './SomethingWentWrong.module.scss';
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
 import AlertCircle from '@/assets/error/AlertCircle';
 import Paths from '@/config/paths';
+import { ErrorBoundaryType } from '@/types/props';
 
-const SomethingWentWrong: FC = () => {
+interface SomethingWentWrongProps {
+  errorBoundary: ErrorBoundaryType;
+}
+
+const SomethingWentWrong: FC<SomethingWentWrongProps> = ({ errorBoundary }) => {
   return (
-    <div className={styles.container}>
+    <div className={errorBoundary === 'Router' ? styles.container : styles.fullContainer}>
       <ErrorPage
         icon={<AlertCircle />}
         title="Something went wrong"

@@ -12,4 +12,9 @@
     padding: 20px 145px;
     border-radius: 10px;
   }
+
+  .validationContainer {
+    margin-bottom: 10px;
+    color: g.$error-red;
+  }
 }

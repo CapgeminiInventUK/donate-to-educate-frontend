@@ -4,3 +4,12 @@
   @include g.page-container;
   padding: 40px 120px;
 }
+
+.fullContainer {
+  background: g.$primary-light-blue;
+  padding: 0 120px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

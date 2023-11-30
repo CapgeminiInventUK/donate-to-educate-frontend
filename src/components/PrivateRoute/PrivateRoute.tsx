@@ -1,16 +1,18 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
+import { Navigate } from 'react-router';
 
 interface Props {
   route: string;
   children: ReactNode;
 }
 const PrivateRoute: FC<Props> = ({ route, children }) => {
-  const checkIsLoggedIn = useCheckCurrentUser(route);
+  const [lastCheck, setLastCheck] = useState<boolean>();
+  const checkIsLoggedIn = useCheckCurrentUser();
 
-  // TODO display loader
-  if (!checkIsLoggedIn) {
-    return <></>;
+  if (!checkIsLoggedIn && checkIsLoggedIn !== lastCheck) {
+    setLastCheck(checkIsLoggedIn);
+    return <Navigate to={route} />;
   }
 
   return children;

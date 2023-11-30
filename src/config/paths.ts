@@ -6,6 +6,8 @@ enum Paths {
   LOGIN = '/login',
   ADMIN_DASHBOARD = '/admin-dashboard',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
+  INITIAL_STATEMENT = '/school/initial-statement',
+  YOUR_SCHOOL = '/school/your-school',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
