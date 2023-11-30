@@ -10,6 +10,7 @@ import {
   InitialStatement,
   Login,
   AdminDashboard,
+  Form,
 } from './lazy';
 
 const routes = [
@@ -60,6 +61,10 @@ const routes = [
     element: <AdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
+  },
+  {
+    path: Paths.FORM,
+    element: <Form />,
   },
   {
     path: '*',

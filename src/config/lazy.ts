@@ -3,6 +3,7 @@ import { lazy } from 'react';
 const Home = lazy(() => import('@pages/Home/Home'));
 const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('@pages/Contact/Contact'));
+const Form = lazy(() => import('@pages/Form/Form'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
@@ -25,4 +26,5 @@ export {
   InitialStatement,
   Login,
   AdminDashboard,
+  Form,
 };

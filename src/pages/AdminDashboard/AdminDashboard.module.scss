@@ -1,8 +1,7 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  background: g.$primary-light-blue;
-  height: 100%;
+  @include g.page-container;
   padding: 48px 50px;
 
   .adminCard {

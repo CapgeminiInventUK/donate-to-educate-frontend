@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { CarouselItem } from './data';
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from 'react';
+import { CarouselItem, DropdownOption, FormData } from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -123,9 +123,45 @@ export interface ValidationResult {
 export interface TextInputProps {
   header: string;
   subHeading?: string;
-  validator?: (input: string) => ValidationResult;
   placeholder?: string;
   password?: boolean;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface FormContainerProps {
+  formData: FormData[];
+  pageNumber: number;
+  setPageNumber: Dispatch<SetStateAction<number>>;
+}
+export interface DropdownProps {
+  header: string;
+  options: DropdownOption[];
+  subHeading?: string;
+  name?: string;
+  onChange: (value: string) => void;
+}
+
+export interface TextAreaProps {
+  header: string;
+  characterLimit: number;
+  subHeading?: string;
+  hint?: string;
+  placeholder?: string;
   id?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export interface ExternalLinkProps {
+  linkText: string;
+  linkUrl: string;
+  className?: string;
+}
+
+export interface FormIntroPageProps {
+  header: string;
+  infoText: string;
+  listItems: string[];
+  secondaryHeading?: string;
+  secondaryInfoText?: string;
+  secondaryListItems?: string[];
 }

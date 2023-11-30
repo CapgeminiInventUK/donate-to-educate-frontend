@@ -1,9 +1,8 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  background: g.$primary-light-blue;
+  @include g.page-container;
   padding: 40px 120px;
-  height: 100%;
 }
 
 .fullContainer {

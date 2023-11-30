@@ -1,0 +1,59 @@
+@use '@assets/global.scss' as g;
+
+%paragraph {
+  color: g.$primary-dark-blue;
+  margin: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+  font-size: 18px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+
+  .header {
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-family: 'Poppins', sans-serif;
+    color: g.$primary-dark-blue;
+  }
+
+  .subHeading {
+    @extend %paragraph;
+  }
+
+  p.hint {
+    @extend %paragraph;
+    margin-bottom: 20px;
+  }
+
+  .textArea {
+    @include g.input;
+    width: 90%;
+    height: 200px;
+    resize: none;
+  }
+
+  .characterCount {
+    margin-top: 20px;
+    width: 90%;
+    text-align: right;
+    color: g.$primary-dark-blue;
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  %textInput {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+}
