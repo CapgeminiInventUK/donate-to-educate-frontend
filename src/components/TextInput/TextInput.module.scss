@@ -31,6 +31,7 @@
 
 .input {
   @include g.input;
+  width: 70%;
 }
 
 .errorMessage {
