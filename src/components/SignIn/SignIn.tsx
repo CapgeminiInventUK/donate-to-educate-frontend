@@ -1,5 +1,4 @@
 import { SignInOutput, signIn } from 'aws-amplify/auth';
-import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import Spinner from '../Spinner/Spinner';
+import FormButton from '../FormButton/FormButton';
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -63,7 +63,12 @@ export const SignIn: FC = () => {
       <div className={styles.validationContainer}>
         <span>{validationMessage}</span>
       </div>
-      <Button theme="darkBlue" text="Login" onClick={(): void => setSubmitted(true)} />
+      <FormButton
+        text={'Login'}
+        theme={'formButtonDarkBlue'}
+        onClick={(): void => setSubmitted(true)}
+        useArrow={true}
+      />
     </div>
   );
 };

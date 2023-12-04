@@ -1,7 +1,8 @@
-import Button from '@/components/Button/Button';
 import TextInput from '@/components/TextInput/TextInput';
 import { FC } from 'react';
 import styles from './LocalAuthoritySignUp.module.scss';
+import FormButton from '@/components/FormButton/FormButton';
+import TextArea from '@/components/TextArea/TextArea';
 
 interface LocalAuthoritySignUpProps {
   name: string;
@@ -19,11 +20,15 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput header="Department" />
       <TextInput header="Email" />
       <TextInput header="Phone" />
-      {/* // TODO need to do a text input component */}
-      <Button
-        text="Create account"
+      <TextArea
+        header="Notes about this user (optional)"
+        subHeading="This information can only be seen by Donate to Educate administrators."
+        characterLimit={1000}
+      />
+      <FormButton
+        text={'Create account'}
+        theme={'formButtonMidBlue'}
         onClick={(): void => setStage('la_confirmation')}
-        theme="midBlue"
       />
     </div>
   );

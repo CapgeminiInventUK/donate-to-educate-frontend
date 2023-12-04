@@ -28,6 +28,7 @@ export interface FormButtonProps {
   onClick: () => void;
   text: string | JSX.Element;
   useArrow?: boolean;
+  fullWidth?: boolean;
 }
 
 export interface ImageProps {

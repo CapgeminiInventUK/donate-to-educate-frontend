@@ -14,6 +14,7 @@ import Email from '@/assets/admin/Email';
 import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
+import FormButton from '@/components/FormButton/FormButton';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -109,10 +110,11 @@ const AdminDashboard: FC = () => {
                         <br />
                         <div>View, add and edit your local authorities.</div>
                         <br />
-                        <Button
-                          theme="midBlue"
-                          text="Start"
+                        <FormButton
+                          text={'Start'}
+                          theme={'formButtonMidBlue'}
                           onClick={(): void => setStage('manage_las')}
+                          fullWidth
                         />
                       </>
                     )}
@@ -128,10 +130,11 @@ const AdminDashboard: FC = () => {
                         <br />
                         <div>View who&apos;s asked to join Donate to Educate.</div>
                         <br />
-                        <Button
-                          theme="midBlue"
-                          text="Start"
+                        <FormButton
+                          text={'Start'}
+                          theme="formButtonGrey"
                           onClick={(): void => setStage('view_requests')}
+                          fullWidth
                         />
                       </>
                     )}
