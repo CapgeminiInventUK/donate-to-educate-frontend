@@ -18,6 +18,14 @@ export type LocalAuthority = {
   registered: boolean;
 };
 
+export type JoinRequest = {
+  __typename: 'JoinRequest';
+  name: string;
+  localAuthority: string;
+  type: string;
+  requestTime: number;
+};
+
 export type GetSchoolByNameQueryVariables = {
   name: string;
 };
@@ -69,5 +77,17 @@ export type GetLocalAuthoritiesQuery = {
     code: string;
     name: string;
     registered: boolean;
+  }>;
+};
+
+export type GetJoinRequestsQueryVariables = {};
+
+export type GetJoinRequestsQuery = {
+  getJoinRequests: Array<{
+    __typename: 'JoinRequest';
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
   }>;
 };

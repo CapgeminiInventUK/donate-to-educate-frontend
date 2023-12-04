@@ -43,7 +43,7 @@ You need to set the following environment variables in a file called .env at the
 ```JavaScript
 VITE_AWS_REGION = "eu-west-2"
 VITE_APPSYNC_ENDPOINT = "https://localhost:9000"
-VITE_COGNITO_USER_POOLS_ID = "eu-west-2_r7E2OJ1t0"
+VITE_COGNITO_USER_POOLS_ID = "eu-west-2_5vqFlUEoR"
 VITE_APPSYNC_API_KEY = "somekey"
 VITE_ANALYTICS_APP_ID = "someID"
 VITE_COGNITO_IDENTITY_POOLS_ID = "someID"

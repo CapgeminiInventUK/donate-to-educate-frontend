@@ -9,6 +9,7 @@ import {
   TermsAndConditions,
   Login,
   AdminDashboard,
+  Form,
 } from './lazy';
 import ResetPassword from '@/pages/ResetPassword/ResetPassword';
 
@@ -55,6 +56,10 @@ const routes = [
     element: <AdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
+  },
+  {
+    path: Paths.FORM,
+    element: <Form />,
   },
   {
     path: Paths.RESET_PASSWORD,

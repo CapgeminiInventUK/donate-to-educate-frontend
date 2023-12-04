@@ -1,0 +1,64 @@
+@use '@assets/global.scss' as g;
+
+%button {
+  padding: 4px 15px 4px 15px;
+  border-radius: 1px;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  line-height: 10px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.text {
+  padding: 8px 0 8px 0;
+}
+
+.formButtonDarkBlue {
+  @extend %button;
+  border: g.$primary-dark-blue 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$primary-light-blue;
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+}
+
+.formButtonMidBlue {
+  @extend %button;
+  border: g.$primary-mid-blue 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$primary-dark-blue;
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+}
+
+.formButtonRed {
+  @extend %button;
+  border: g.$greyscale-disabled 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$secondary-red;
+  background: g.$greyscale-disabled;
+  color: g.$primary-dark-blue;
+}
+
+.formButtonGrey {
+  @extend %button;
+  border: g.$form-button-grey-background 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+  background: g.$form-button-grey-background;
+  color: g.$form-button-grey-text;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  %button {
+    line-height: 16px;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+  span {
+    width: 100%;
+  }
+}

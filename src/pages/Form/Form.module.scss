@@ -1,0 +1,50 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .formContainer {
+    @include g.card;
+    padding: 40px 82px;
+    width: 65vw;
+    margin-bottom: 50px;
+
+    .pagination {
+      display: flex;
+      flex-direction: row-reverse;
+      font-size: 24px;
+      color: g.$primary-dark-blue;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: -0.24px;
+      margin-bottom: 40px;
+    }
+
+    .formComponent {
+      margin-bottom: 40px;
+
+      h3 {
+        font-size: 32px;
+      }
+
+      p:first-of-type {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.09px;
+        margin-bottom: 40px;
+      }
+
+      > div {
+        padding-bottom: 0;
+      }
+
+      .link {
+        margin-top: 40px;
+      }
+    }
+  }
+}

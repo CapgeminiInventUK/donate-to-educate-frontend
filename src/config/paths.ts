@@ -15,6 +15,7 @@ enum Paths {
   FUNDED = 'https://www.funded.org.uk',
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
   RESET_PASSWORD = '/reset-password',
+  FORM = '/form',
 }
 
 export default Paths;

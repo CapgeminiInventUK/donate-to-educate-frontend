@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
 import { SignInOutput, signIn } from 'aws-amplify/auth';
-import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
@@ -10,10 +8,12 @@ import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
+import FormButton from '../FormButton/FormButton';
 
 export const SignIn: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [validationMessage, setValidationMessage] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export const SignIn: FC = () => {
         .then(() => {
           setSubmitted(false);
         })
-        .catch(console.error);
+        .catch(handleError);
     }
   }, [submitted, password, username, navigate]);
 
@@ -33,6 +33,10 @@ export const SignIn: FC = () => {
     navigate(Paths.ADMIN_DASHBOARD);
     return <Spinner />;
   }
+
+  const handleError = (): void => {
+    setValidationMessage('Incorrect username or password');
+  };
 
   return (
     <div className={styles.container}>
@@ -60,7 +64,15 @@ export const SignIn: FC = () => {
       <Link to={Paths.RESET_PASSWORD} className={styles.forgotPassword}>
         I have forgotten my password
       </Link>
-      <Button theme="darkBlue" text="Login" onClick={(): void => setSubmitted(true)} />
+      <div className={styles.validationContainer}>
+        <span>{validationMessage}</span>
+      </div>
+      <FormButton
+        text={'Login'}
+        theme={'formButtonDarkBlue'}
+        onClick={(): void => setSubmitted(true)}
+        useArrow={true}
+      />
     </div>
   );
 };
