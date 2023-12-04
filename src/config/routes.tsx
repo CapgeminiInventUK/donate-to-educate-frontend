@@ -7,7 +7,6 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
-  InitialStatement,
   Login,
   AdminDashboard,
   Form,
@@ -45,11 +44,6 @@ const routes = [
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
-  },
-  {
-    path: Paths.INITIAL_STATEMENT,
-    element: <InitialStatement />,
-    name: 'School',
   },
   {
     path: Paths.LOGIN,

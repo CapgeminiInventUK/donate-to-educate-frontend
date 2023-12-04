@@ -3,13 +3,19 @@ import styles from './Form.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import FormContainer from './FormContainer';
 import { ComponentType, FormData } from '@/types/data';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 const Form: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const navigate = useNavigate();
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
+    }
+    if (pageNumber === 0) {
+      navigate(Paths.HOME);
     }
   };
 
