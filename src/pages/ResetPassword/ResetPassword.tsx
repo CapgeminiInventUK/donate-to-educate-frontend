@@ -16,7 +16,7 @@ const ResetPassword: FC = () => {
   const [newPasswordRepeat, setNewPassordRepeat] = useState('');
 
   const [verificationCode, setVerificationCode] = useState('');
-  const [stepNumber, setStepNumber] = useState(0);
+  const [stepNumber, setStepNumber] = useState(2);
 
   const [firstErrorText, setFirstErrorText] = useState('');
   const [secondErrorText, setSecondErrorText] = useState('');
@@ -39,7 +39,7 @@ const ResetPassword: FC = () => {
   }: ConfirmResetPasswordInput): void {
     confirmResetPassword({ username, confirmationCode, newPassword })
       .then(() => {
-        setStepNumber(4);
+        setStepNumber(3);
       })
       .catch((error) => {
         console.log(error);
@@ -127,10 +127,15 @@ const ResetPassword: FC = () => {
             />
             <p className={styles.errorText}>{secondErrorText}</p>
             <FormButton
-              text={'Submit'}
+              text={'Change Password'}
               theme={'formButtonDarkBlue'}
               useArrow={true}
               onClick={(): void => {
+                if (newPassword === '' || newPasswordRepeat === '') {
+                  setSecondErrorText('Please do not leave field blank');
+                  return;
+                }
+
                 if (!(newPassword === newPasswordRepeat)) {
                   setSecondErrorText("Passwords don't match.");
                   return;
@@ -146,7 +151,6 @@ const ResetPassword: FC = () => {
           </>
         ) : (
           <>
-            {' '}
             <div className={styles.loginBanner}>
               <LogoWhite />
             </div>

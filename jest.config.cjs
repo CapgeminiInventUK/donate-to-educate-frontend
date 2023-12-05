@@ -12,7 +12,6 @@ module.exports = {
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
   },
-  transformIgnorePatterns: ['^.+\\.svg$'],
   coveragePathIgnorePatterns: ['src/jest/', 'vite-env.d.ts', 'src/assets'],
   collectCoverageFrom: ['<rootDir>/src/**'],
   coverageThreshold: {
