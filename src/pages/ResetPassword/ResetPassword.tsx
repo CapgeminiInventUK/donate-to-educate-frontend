@@ -3,11 +3,11 @@ import { FC, useState } from 'react';
 import styles from './ResetPassword.module.scss';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import TextInput from '@/components/TextInput/TextInput';
-import Button from '@/components/Button/Button';
 import { ConfirmResetPasswordInput, confirmResetPassword, resetPassword } from 'aws-amplify/auth';
 import VerificationInput from 'react-verification-input';
 import Paths from '@/config/paths';
 import { Link } from 'react-router-dom';
+import FormButton from '../../components/FormButton/FormButton';
 
 const ResetPassword: FC = () => {
   const [username, setUsername] = useState('');
@@ -67,12 +67,11 @@ const ResetPassword: FC = () => {
               }}
             />
             <p className={styles.errorText}>{firstErrorText}</p>
-            <Button
-              theme="darkBlue"
-              text="Submit"
-              onClick={() => {
-                handleResetPassword(username);
-              }}
+            <FormButton
+              text={'Submit'}
+              theme={'formButtonDarkBlue'}
+              onClick={(): void => handleResetPassword(username)}
+              useArrow={true}
             />
           </>
         ) : stepNumber === 1 ? (
@@ -91,10 +90,11 @@ const ResetPassword: FC = () => {
                 }}
               />
               <br />
-              <Button
-                theme="darkBlue"
-                text="Submit"
-                onClick={() => {
+              <FormButton
+                text={'Next'}
+                theme={'formButtonDarkBlue'}
+                useArrow={true}
+                onClick={(): void => {
                   if (verificationCode.length === 6) {
                     setStepNumber(2);
                   }
@@ -126,10 +126,11 @@ const ResetPassword: FC = () => {
               }}
             />
             <p className={styles.errorText}>{secondErrorText}</p>
-            <Button
-              theme="darkBlue"
-              text="Submit"
-              onClick={() => {
+            <FormButton
+              text={'Submit'}
+              theme={'formButtonDarkBlue'}
+              useArrow={true}
+              onClick={(): void => {
                 if (!(newPassword === newPasswordRepeat)) {
                   setSecondErrorText("Passwords don't match.");
                   return;

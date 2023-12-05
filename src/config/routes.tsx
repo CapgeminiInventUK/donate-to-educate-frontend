@@ -10,8 +10,8 @@ import {
   Login,
   AdminDashboard,
   Form,
+  ResetPassword,
 } from './lazy';
-import ResetPassword from '@/pages/ResetPassword/ResetPassword';
 
 const routes = [
   {
