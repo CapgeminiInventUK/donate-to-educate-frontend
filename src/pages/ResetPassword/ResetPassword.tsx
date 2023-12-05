@@ -57,7 +57,7 @@ const ResetPassword: FC = () => {
             </div>
             <h2>Reset Password</h2>
             <TextInput
-              header="Your username"
+              header="Your Email"
               onChange={(event): void => {
                 setUsername(event.target.value);
 
@@ -150,8 +150,8 @@ const ResetPassword: FC = () => {
               <LogoWhite />
             </div>
             <p>Password changed successfully.</p>
-            <Link className={styles.home} to={Paths.HOME}>
-              Return to homepage
+            <Link className={styles.login} to={Paths.LOGIN}>
+              Back to Login
             </Link>
           </>
         )}
