@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import Spinner from '../Spinner/Spinner';
+import { Link } from 'react-router-dom';
 import FormButton from '../FormButton/FormButton';
 
 export const SignIn: FC = () => {
@@ -60,6 +61,9 @@ export const SignIn: FC = () => {
           }
         }}
       />
+      <Link to={Paths.RESET_PASSWORD} className={styles.forgotPassword}>
+        I have forgotten my password
+      </Link>
       <div className={styles.validationContainer}>
         <span>{validationMessage}</span>
       </div>

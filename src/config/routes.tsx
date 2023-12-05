@@ -10,6 +10,7 @@ import {
   Login,
   AdminDashboard,
   Form,
+  ResetPassword,
 } from './lazy';
 
 const routes = [
@@ -59,6 +60,10 @@ const routes = [
   {
     path: Paths.FORM,
     element: <Form />,
+  },
+  {
+    path: Paths.RESET_PASSWORD,
+    element: <ResetPassword />,
   },
   {
     path: '*',

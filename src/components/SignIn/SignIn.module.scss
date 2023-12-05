@@ -21,4 +21,14 @@
     margin-bottom: 10px;
     color: g.$error-red;
   }
+
+  .forgotPassword {
+    color: g.$primary-dark-blue;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%; /* 25.6px */
+    text-decoration-line: underline;
+    display: block;
+    padding-bottom: 20px;
+  }
 }
