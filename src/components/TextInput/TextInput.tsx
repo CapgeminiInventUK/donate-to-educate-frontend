@@ -9,6 +9,8 @@ const TextInput: FC<TextInputProps> = ({
   password = false,
   onChange,
   subHeading,
+  isLarge,
+  isSmall,
 }) => {
   const [value, setValue] = useState('');
   const [inputType, setInputType] = useState('password');
@@ -30,14 +32,16 @@ const TextInput: FC<TextInputProps> = ({
 
   return (
     <div className={styles.wrapper}>
-      <h3 className={styles.header}>{header}</h3>
-      {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
+      {header && <h4 className={styles.header}>{header}</h4>}
+      {subHeading && <h5 className={styles.subHeading}>{subHeading}</h5>}
       {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
       <input
         type={password ? inputType : 'text'}
         value={value}
         onChange={handleChange}
-        className={styles.input}
+        className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
+          isSmall ? styles.inputSmall : ''
+        }`}
         placeholder={placeholder ?? ''}
       />
     </div>

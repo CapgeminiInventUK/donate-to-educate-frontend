@@ -1,20 +1,9 @@
-type School {
+type School @aws_cognito_user_pools {
   urn: ID!
   name: String!
   localAuthority: String!
   postcode: String
   registered: Boolean!
-}
-
-type LocalAuthorityUser {
-  name: String!
-  firstName: String!
-  lastName: String!
-  jobTitle: String!
-  department: String!
-  email: String!
-  phone: String!
-  notes: String
 }
 
 type LocalAuthority {
@@ -23,36 +12,14 @@ type LocalAuthority {
   registered: Boolean!
 }
 
-type JoinRequest {
-  name: String!
-  localAuthority: String!
-  type: String!
-  requestTime: Int!
-}
-
 type Query {
   getSchoolByName(name: String!): School!
   getSchoolsByLa(name: String!): [School!]!
   getSchools: [School!]!
 
   getLocalAuthorities: [LocalAuthority!]!
-  getJoinRequests: [JoinRequest!]!
-}
-
-type Mutation {
-  registerLocalAuthority(
-    name: String!
-    firstName: String!
-    lastName: String!
-    jobTitle: String!
-    department: String!
-    email: String!
-    phone: String!
-    notes: String
-  ): Boolean!
 }
 
 schema {
   query: Query
-  mutation: Mutation
 }

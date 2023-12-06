@@ -8,7 +8,7 @@
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   line-height: 10px;
-  width: fit-content;
+  width: min-content;
   display: flex;
   align-items: center;
   margin: 5px;
@@ -53,12 +53,5 @@
 @media only screen and (max-width: g.$screen-large) {
   %button {
     line-height: 16px;
-  }
-}
-
-.fullWidth {
-  width: 100%;
-  span {
-    width: 100%;
   }
 }

@@ -22,15 +22,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
-}
-
-.input {
-  @include g.input;
-  width: 30em;
+  margin: -20px 0 20px;
 }
 
 @media only screen and (max-width: g.$screen-large) {
-  .input {
+  .select {
     padding: 8px 16px;
     font-size: 14px;
   }

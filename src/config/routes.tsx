@@ -7,10 +7,10 @@ import {
   AccessabilityStatement,
   PrivacyPolicy,
   TermsAndConditions,
+  InitialStatement,
   Login,
   AdminDashboard,
   Form,
-  ResetPassword,
 } from './lazy';
 
 const routes = [
@@ -47,6 +47,11 @@ const routes = [
     name: 'Donate',
   },
   {
+    path: Paths.INITIAL_STATEMENT,
+    element: <InitialStatement />,
+    name: 'School',
+  },
+  {
     path: Paths.LOGIN,
     element: <Login />,
     name: 'Login',
@@ -60,10 +65,6 @@ const routes = [
   {
     path: Paths.FORM,
     element: <Form />,
-  },
-  {
-    path: Paths.RESET_PASSWORD,
-    element: <ResetPassword />,
   },
   {
     path: '*',

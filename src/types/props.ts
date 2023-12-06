@@ -28,7 +28,6 @@ export interface FormButtonProps {
   onClick: () => void;
   text: string | JSX.Element;
   useArrow?: boolean;
-  fullWidth?: boolean;
 }
 
 export interface ImageProps {
@@ -63,7 +62,6 @@ export interface HeaderProps {
 
 export interface PillProps {
   color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
-  text?: string;
 }
 
 export interface NavLinksProps {
@@ -123,11 +121,13 @@ export interface ValidationResult {
 }
 
 export interface TextInputProps {
-  header: string;
+  header?: string;
   subHeading?: string;
   placeholder?: string;
   password?: boolean;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  isLarge?: boolean;
+  isSmall?: boolean;
 }
 
 export interface FormContainerProps {
@@ -136,15 +136,16 @@ export interface FormContainerProps {
   setPageNumber: Dispatch<SetStateAction<number>>;
 }
 export interface DropdownProps {
-  header: string;
+  header?: string;
   options: DropdownOption[];
   subHeading?: string;
   name?: string;
   onChange: (value: string) => void;
+  isLarge?: boolean;
 }
 
 export interface TextAreaProps {
-  header: string;
+  header?: string;
   characterLimit: number;
   subHeading?: string;
   hint?: string;

@@ -2,7 +2,7 @@ import { PillProps } from '@/types/props';
 import { FC } from 'react';
 import styles from './Pill.module.scss';
 
-export const Pill: FC<PillProps> = ({ color, text }) => {
+export const Pill: FC<PillProps> = ({ color }) => {
   const getText = (color: 'green' | 'blue' | 'yellow' | 'grey' | 'red'): string => {
     switch (color) {
       case 'green':
@@ -20,5 +20,5 @@ export const Pill: FC<PillProps> = ({ color, text }) => {
     }
   };
 
-  return <span className={`${styles[color]} ${styles.container}`}>{text ?? getText(color)}</span>;
+  return <div className={`${styles[color]} ${styles.container}`}>{getText(color)}</div>;
 };

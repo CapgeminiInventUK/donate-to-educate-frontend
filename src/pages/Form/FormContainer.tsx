@@ -1,9 +1,9 @@
 import { FormContainerProps } from '@/types/props';
 import { FC } from 'react';
 import styles from './Form.module.scss';
+import Button from '@/components/Button/Button';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
-import FormButton from '@/components/FormButton/FormButton';
 
 const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNumber }) => {
   const onButtonClick = (): void => {
@@ -12,6 +12,8 @@ const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNu
     }
   };
 
+  const { header = undefined, subHeader = undefined, formComponents = [] } = formData[pageNumber];
+
   return (
     <div className={styles.formContainer}>
       {pageNumber > 0 && (
@@ -19,24 +21,21 @@ const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNu
           Step {pageNumber} of {formData.length - 1}
         </div>
       )}
-      {formData[pageNumber]?.formComponents.map(
-        ({ componentType, componentData, formComponentLink }, index) => (
-          <div className={styles.formComponent} key={index}>
-            {createFormComponent(componentType, componentData)}
-            {formComponentLink && (
-              <div className={styles.link}>
-                <ExternalLink {...formComponentLink} />
-              </div>
-            )}
-          </div>
-        )
-      )}
-      <FormButton
-        text={pageNumber === 0 ? 'Start' : 'Next'}
-        theme={'formButtonDarkBlue'}
-        onClick={onButtonClick}
-        useArrow={true}
-      />
+      <div className={styles.headerContainer}>
+        {header && <h2 className={styles.header}>{header}</h2>}
+        {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
+      </div>
+      {formComponents.map(({ componentType, componentData, formComponentLink }, index) => (
+        <div className={styles.formComponent} key={index}>
+          {createFormComponent(componentType, componentData)}
+          {formComponentLink && (
+            <div className={styles.link}>
+              <ExternalLink {...formComponentLink} />
+            </div>
+          )}
+        </div>
+      ))}
+      <Button theme="darkBlue" onClick={onButtonClick} text="Next" />
     </div>
   );
 };

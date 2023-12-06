@@ -3,19 +3,13 @@ import styles from './Form.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import FormContainer from './FormContainer';
 import { ComponentType, FormData } from '@/types/data';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
 
 const Form: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
-  const navigate = useNavigate();
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
-    }
-    if (pageNumber === 0) {
-      navigate(Paths.HOME);
     }
   };
 
@@ -46,12 +40,28 @@ const Form: FC = () => {
       ],
     },
     {
+      header: 'Name of charity or volunteer group',
       formComponents: [
         {
           componentType: ComponentType.TEXT,
+          componentData: { isLarge: true },
+        },
+      ],
+    },
+    {
+      header: "What is the name of your charity or volunteer group's local council?",
+      formComponents: [
+        {
+          componentType: ComponentType.DROPDOWN,
           componentData: {
-            header: "What is the name of your charity or volunteer group's local council?",
             subHeading: 'If you have locations across the country, choose one main local council.',
+            name: 'West Sussex County Council',
+            options: [
+              { value: 'westBerks', label: 'West Berkshire' },
+              { value: 'westNorthants', label: 'West Northamptonshire' },
+              { value: 'westSussex', label: 'West Sussex County Council' },
+            ],
+            isLarge: true,
           },
           formComponentLink: {
             linkText: 'Find my local council (opens in a new tab).',
@@ -61,32 +71,96 @@ const Form: FC = () => {
       ],
     },
     {
+      header: 'Your details',
       formComponents: [
         {
-          componentType: ComponentType.TEXTAREA,
+          componentType: ComponentType.TEXT,
           componentData: {
-            header: 'Tell us about your charity or volunteer group',
+            header: 'First name',
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Last name',
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Job title or role',
+            subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Email',
             subHeading:
-              'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
-            hint: 'This information can only be seen by Donate to Educate administrators.',
-            characterLimit: 1000,
+              "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Phone',
           },
         },
       ],
     },
     {
+      header: "What is your charity or volunteer group's main address?",
+      subHeader: 'This can be your work address or where you store your school products',
       formComponents: [
         {
-          componentType: ComponentType.DROPDOWN,
+          componentType: ComponentType.TEXT,
           componentData: {
-            header: "What is the name of your charity or volunteer group's local council?",
-            subHeading: 'If you have locations across the country, choose one main local council.',
-            name: 'West Sussex County Council',
-            options: [
-              { value: 'westBerks', label: 'West Berkshire' },
-              { value: 'westNorthants', label: 'West Northamptonshire' },
-              { value: 'westSussex', label: 'West Sussex County Council' },
-            ],
+            header: 'Address line 1',
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Address line 2 (optional)',
+            isLarge: true,
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Town or city',
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'County',
+          },
+        },
+        {
+          componentType: ComponentType.TEXT,
+          componentData: {
+            header: 'Postcode',
+            isSmall: true,
+          },
+        },
+      ],
+    },
+    {
+      header: 'Tell us about your charity or volunteer group',
+      formComponents: [
+        {
+          componentType: ComponentType.TEXTAREA,
+          componentData: {
+            subHeading:
+              'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
+            hint: 'This information can only be seen by Donate to Educate administrators.',
+            characterLimit: 1000,
           },
         },
       ],

@@ -5,13 +5,7 @@ import RightArrowWhite from '../../assets/icons/form-button-right-arrow-white.sv
 import RightArrowGrey from '../../assets/icons/form-button-right-arrow-grey.svg';
 import RightArrowBlue from '../../assets/icons/form-button-right-arrow-blue.svg';
 
-const FormButton: FC<FormButtonProps> = ({
-  onClick,
-  text,
-  theme,
-  useArrow = false,
-  fullWidth = false,
-}) => {
+const FormButton: FC<FormButtonProps> = ({ onClick, text, theme, useArrow = false }) => {
   const getArrowColour = (): string => {
     switch (theme) {
       case 'formButtonDarkBlue':
@@ -24,10 +18,7 @@ const FormButton: FC<FormButtonProps> = ({
     }
   };
   return (
-    <button
-      onClick={onClick}
-      className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''}`}
-    >
+    <button onClick={onClick} className={`${styles[theme] ?? ''}`}>
       <span className={styles.text}>{text}</span>
       {useArrow && (
         <div>
