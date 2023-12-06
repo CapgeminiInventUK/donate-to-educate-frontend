@@ -1,9 +1,9 @@
 import { FormContainerProps } from '@/types/props';
 import { FC } from 'react';
 import styles from './Form.module.scss';
-import Button from '@/components/Button/Button';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
+import FormButton from '@/components/FormButton/FormButton';
 
 const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNumber }) => {
   const onButtonClick = (): void => {
@@ -35,7 +35,12 @@ const FormContainer: FC<FormContainerProps> = ({ formData, pageNumber, setPageNu
           )}
         </div>
       ))}
-      <Button theme="darkBlue" onClick={onButtonClick} text="Next" />
+      <FormButton
+        text={pageNumber === 0 ? 'Start' : 'Next'}
+        theme={'formButtonDarkBlue'}
+        onClick={onButtonClick}
+        useArrow={true}
+      />
     </div>
   );
 };
