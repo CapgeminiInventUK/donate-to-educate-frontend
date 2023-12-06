@@ -16,7 +16,7 @@ const ResetPassword: FC = () => {
   const [newPasswordRepeat, setNewPassordRepeat] = useState('');
 
   const [verificationCode, setVerificationCode] = useState('');
-  const [stepNumber, setStepNumber] = useState(2);
+  const [stepNumber, setStepNumber] = useState(0);
 
   const [firstErrorText, setFirstErrorText] = useState('');
   const [secondErrorText, setSecondErrorText] = useState('');
