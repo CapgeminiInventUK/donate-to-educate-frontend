@@ -3,6 +3,11 @@ import { FC } from 'react';
 import styles from './LocalAuthoritySignUp.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import TextArea from '@/components/TextArea/TextArea';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { RegisterLocalAuthorityMutation } from '@/types/api';
+import { registerLocalAuthority } from '@/graphql/mutations';
 
 interface LocalAuthoritySignUpProps {
   name: string;
@@ -10,6 +15,27 @@ interface LocalAuthoritySignUpProps {
 }
 
 const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage }) => {
+  const { refetch } = useQuery({
+    queryKey: ['register'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
+        query: registerLocalAuthority,
+        variables: {
+          name,
+          firstName: '1',
+          lastName: '2',
+          jobTitle: '1',
+          department: '1',
+          email: '1',
+          phone: '1',
+        },
+      });
+
+      return result;
+    },
+  });
+
   return (
     <div className={styles.card}>
       <h1>{name}</h1>
@@ -28,7 +54,12 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <FormButton
         text={'Create account'}
         theme={'formButtonMidBlue'}
-        onClick={(): void => setStage('la_confirmation')}
+        onClick={(): void => {
+          refetch()
+            .then(() => setStage('la_confirmation'))
+            // eslint-disable-next-line no-console
+            .catch(console.error);
+        }}
       />
     </div>
   );
