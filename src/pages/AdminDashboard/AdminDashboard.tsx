@@ -15,6 +15,7 @@ import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
 import FormButton from '@/components/FormButton/FormButton';
+import { Pill } from '@/components/Pill/Pill';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -151,7 +152,13 @@ const AdminDashboard: FC = () => {
                   {data?.getLocalAuthorities.map((la) => {
                     return (
                       <li key={la.name}>
-                        {la.name} - {la.registered ? 'Joined' : 'Not Joined'} - Action:
+                        {la.name} -{' '}
+                        {la.registered ? (
+                          <Pill color="blue" text="Joined" />
+                        ) : (
+                          <Pill color="red" text="Not Joined" />
+                        )}{' '}
+                        - Action:
                         {
                           <Button
                             theme="link"
