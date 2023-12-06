@@ -126,7 +126,8 @@ const AdminDashboard: FC = () => {
                       <>
                         <h3>Manage schools, charities and volunteers</h3>
                         <div className={styles.requestsBorder}>
-                          {data?.getJoinRequests?.length ?? 4} requests
+                          {data?.getJoinRequests?.length ?? 0}
+                          {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
                         </div>
                         <br />
                         <div>View who&apos;s asked to join Donate to Educate.</div>
@@ -193,7 +194,7 @@ const AdminDashboard: FC = () => {
         <ConfirmationPage
           setStage={setStage}
           icon={<Email />}
-          title="You have created an account for West Sussex County Council"
+          title={`You have created an account for ${selectedLa} County Council`}
           message={<p>The main user has been emailed with instructions to set up their profile</p>}
         />
       )}
