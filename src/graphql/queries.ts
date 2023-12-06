@@ -50,3 +50,13 @@ export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
   }
 }
 ` as GeneratedQuery<APITypes.GetLocalAuthoritiesQueryVariables, APITypes.GetLocalAuthoritiesQuery>;
+export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
+  getJoinRequests {
+    name
+    localAuthority
+    type
+    requestTime
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetJoinRequestsQueryVariables, APITypes.GetJoinRequestsQuery>;

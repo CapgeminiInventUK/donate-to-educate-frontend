@@ -28,6 +28,7 @@ export interface FormButtonProps {
   onClick: () => void;
   text: string | JSX.Element;
   useArrow?: boolean;
+  fullWidth?: boolean;
 }
 
 export interface ImageProps {
@@ -62,6 +63,7 @@ export interface HeaderProps {
 
 export interface PillProps {
   color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
+  text?: string;
 }
 
 export interface NavLinksProps {

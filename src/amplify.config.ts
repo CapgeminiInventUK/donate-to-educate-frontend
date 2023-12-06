@@ -24,7 +24,7 @@ export const amplifyConfig = {
   // Cognito
   aws_cognito_region: env.VITE_AWS_REGION,
   aws_user_pools_id: env.VITE_COGNITO_USER_POOLS_ID,
-  aws_user_pools_web_client_id: '68vvv67nra2567fl2m83so533k',
+  aws_user_pools_web_client_id: '4qrg2m435rkmlkv8ujhqjgsiu7',
   aws_cognito_identity_pool_id: env.VITE_COGNITO_IDENTITY_POOLS_ID,
   aws_mandatory_sign_in: false,
 

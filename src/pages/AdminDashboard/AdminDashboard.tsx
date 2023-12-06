@@ -4,8 +4,7 @@ import Button from '@/components/Button/Button';
 import { signOut } from 'aws-amplify/auth';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { getLocalAuthorities } from '@/graphql/queries';
-import { GetLocalAuthoritiesQuery } from '@/types/api';
+import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { client } from '@/graphqlClient';
 import BackButton from '@/components/BackButton/BackButton';
@@ -14,6 +13,9 @@ import ConfirmationPage from '@/components/ConfirmationPage/ConfirmationPage';
 import Email from '@/assets/admin/Email';
 import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
+import { getAdminPageRequests } from '@/graphql/composite';
+import FormButton from '@/components/FormButton/FormButton';
+import { Pill } from '@/components/Pill/Pill';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -31,11 +33,13 @@ const AdminDashboard: FC = () => {
     queryKey: ['la'],
     // enabled,
     queryFn: async () => {
-      const response = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
-        query: getLocalAuthorities,
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
+      >({
+        query: getAdminPageRequests,
       });
 
-      return response.data;
+      return data;
     },
   });
 
@@ -107,25 +111,35 @@ const AdminDashboard: FC = () => {
                         <br />
                         <div>View, add and edit your local authorities.</div>
                         <br />
-                        <Button
-                          theme="midBlue"
-                          text="Start"
+                        <FormButton
+                          text={'Start'}
+                          theme={'formButtonMidBlue'}
                           onClick={(): void => setStage('manage_las')}
+                          fullWidth
                         />
                       </>
                     )}
                   </div>
                   <div className={`${styles.card} ${styles.requests}`}>
-                    <h3>Manage schools, charities and volunteers</h3>
-                    <div className={styles.requestsBorder}>4 requests</div>
-                    <br />
-                    <div>View who&apos;s asked to join Donate to Educate.</div>
-                    <br />
-                    <Button
-                      theme="midBlue"
-                      text="Start"
-                      onClick={(): void => setStage('view_requests')}
-                    />
+                    {isLoading && <Spinner />}
+                    {!isLoading && (
+                      <>
+                        <h3>Manage schools, charities and volunteers</h3>
+                        <div className={styles.requestsBorder}>
+                          {data?.getJoinRequests?.length ?? 0}
+                          {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
+                        </div>
+                        <br />
+                        <div>View who&apos;s asked to join Donate to Educate.</div>
+                        <br />
+                        <FormButton
+                          text={'Start'}
+                          theme="formButtonGrey"
+                          onClick={(): void => setStage('view_requests')}
+                          fullWidth
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               </>
@@ -139,7 +153,13 @@ const AdminDashboard: FC = () => {
                   {data?.getLocalAuthorities.map((la) => {
                     return (
                       <li key={la.name}>
-                        {la.name} - {la.registered ? 'Joined' : 'Not Joined'} - Action:
+                        {la.name} -{' '}
+                        {la.registered ? (
+                          <Pill color="blue" text="Joined" />
+                        ) : (
+                          <Pill color="red" text="Not Joined" />
+                        )}{' '}
+                        - Action:
                         {
                           <Button
                             theme="link"
@@ -174,7 +194,7 @@ const AdminDashboard: FC = () => {
         <ConfirmationPage
           setStage={setStage}
           icon={<Email />}
-          title="You have created an account for West Sussex County Council"
+          title={`You have created an account for ${selectedLa} County Council`}
           message={<p>The main user has been emailed with instructions to set up their profile</p>}
         />
       )}

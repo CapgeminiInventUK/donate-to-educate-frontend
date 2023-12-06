@@ -26,4 +26,3 @@ dist-ssr
 coverage
 
 .env
-node_modules
