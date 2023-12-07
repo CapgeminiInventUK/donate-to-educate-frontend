@@ -164,6 +164,9 @@ const AdminDashboard: FC = () => {
                             theme="link"
                             text="Add user"
                             onClick={(): void => {
+                              // eslint-disable-next-line no-console
+                              console.log('test message!!!');
+
                               setSelectedLa(la.name);
                               setStage('la_sign_up');
                             }}
@@ -193,7 +196,7 @@ const AdminDashboard: FC = () => {
         <ConfirmationPage
           setStage={setStage}
           icon={<Email />}
-          title="You have created an account for West Sussex County Council"
+          title={`You have created an account for ${selectedLa} County Council`}
           message={<p>The main user has been emailed with instructions to set up their profile</p>}
         />
       )}
