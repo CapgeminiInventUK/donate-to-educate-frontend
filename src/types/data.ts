@@ -35,10 +35,20 @@ export type ComponentDataPropsType =
   | DropdownProps
   | FormIntroPageProps;
 
-export interface FormData {
+export interface FormTemplate {
   formComponents: FormComponent[];
   header?: string;
   subHeader?: string;
+}
+
+export interface FormDataItem {
+  field: string;
+  value: string | number;
+}
+
+export interface FormData {
+  formName: string;
+  formDataItems: FormDataItem[];
 }
 
 export enum ComponentType {

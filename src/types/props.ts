@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from 'react';
-import { CarouselItem, DropdownOption, FormData } from './data';
+import { CarouselItem, DropdownOption, FormData, FormTemplate } from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -133,9 +133,11 @@ export interface TextInputProps {
 }
 
 export interface FormContainerProps {
-  formData: FormData[];
+  formTemplate: FormTemplate[];
   pageNumber: number;
   setPageNumber: Dispatch<SetStateAction<number>>;
+  formData: FormData[];
+  setFormData: Dispatch<SetStateAction<FormData[]>>;
 }
 export interface DropdownProps {
   header?: string;

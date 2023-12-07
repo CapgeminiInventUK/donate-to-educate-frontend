@@ -2,10 +2,11 @@ import { FC, useState } from 'react';
 import styles from './Form.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import FormContainer from './FormContainer';
-import { ComponentType, FormData } from '@/types/data';
+import { ComponentType, FormData, FormTemplate } from '@/types/data';
 
 const Form: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [formData, setFormData] = useState<FormData[]>([]);
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
@@ -13,7 +14,7 @@ const Form: FC = () => {
     }
   };
 
-  const formData: FormData[] = [
+  const formTemplate: FormTemplate[] = [
     {
       formComponents: [
         {
@@ -171,7 +172,13 @@ const Form: FC = () => {
     <div className={styles.container}>
       <div>
         <BackButton onClick={onBackButtonClick} theme="blue" />
-        <FormContainer formData={formData} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+        <FormContainer
+          formTemplate={formTemplate}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </div>
     </div>
   );
