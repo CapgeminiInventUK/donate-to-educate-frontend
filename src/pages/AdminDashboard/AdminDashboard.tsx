@@ -164,9 +164,6 @@ const AdminDashboard: FC = () => {
                             theme="link"
                             text="Add user"
                             onClick={(): void => {
-                              // eslint-disable-next-line no-console
-                              console.log('test message!!!');
-
                               setSelectedLa(la.name);
                               setStage('la_sign_up');
                             }}
