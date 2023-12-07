@@ -25,6 +25,7 @@
 
   .subHeading {
     @extend %paragraph;
+    margin: -20px 0 20px;
   }
 
   p.hint {

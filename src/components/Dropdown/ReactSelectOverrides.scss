@@ -1,0 +1,46 @@
+@use '@assets/global.scss' as g;
+
+.select,
+.selectLarge {
+  &__control {
+    @include g.input;
+    height: 50px;
+    padding: 0;
+  }
+
+  &__indicators {
+    display: none;
+  }
+
+  &__menu {
+    display: flex;
+    padding: 0 20px 26px 19px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid g.$greyscale-disabled;
+    background: g.$primary-white;
+  }
+
+  &__menu-list {
+    width: 100%;
+    gap: 20px;
+  }
+
+  &__option {
+    color: g.$primary-dark-blue;
+    height: 70px;
+    line-height: 55px;
+    border-bottom: 1px solid g.$primary-light-blue;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.16px;
+  }
+}
+
+.selectLarge {
+  &__control {
+    width: 600px;
+  }
+}

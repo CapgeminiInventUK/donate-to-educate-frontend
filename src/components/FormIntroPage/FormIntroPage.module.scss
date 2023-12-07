@@ -4,6 +4,7 @@
 .secondaryHeader {
   color: g.$primary-dark-blue;
   font-weight: 700;
+  margin-bottom: 40px;
 }
 
 .header {
@@ -12,11 +13,21 @@
 
 .secondaryHeader {
   font-size: 24px;
+  margin: 0 0 30px;
 }
 
-.text {
+.text,
+.list {
   color: g.$primary-dark-blue;
   font-size: 18px;
   font-weight: 400;
   line-height: 145%;
+}
+
+.text {
+  margin: 0 0 20px;
+}
+
+.list {
+  margin: 0 0 40px;
 }

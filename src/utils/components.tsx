@@ -17,7 +17,7 @@ import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 
 export const createFormComponent = (
   componentType: ComponentType,
-  componentData: ComponentDataPropsType
+  componentData?: ComponentDataPropsType
 ): ReactNode => {
   switch (componentType) {
     case ComponentType.INTRO:

@@ -27,11 +27,19 @@
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
+  margin: -20px 0 20px;
 }
 
 .input {
   @include g.input;
-  width: 70%;
+}
+
+.inputLarge {
+  width: 600px;
+}
+
+.inputSmall {
+  width: 200px;
 }
 
 .errorMessage {

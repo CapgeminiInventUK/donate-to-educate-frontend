@@ -23,7 +23,7 @@ export interface CarouselItem {
 
 export interface FormComponent {
   componentType: ComponentType;
-  componentData: ComponentDataPropsType;
+  componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
 }
 
@@ -37,6 +37,8 @@ export type ComponentDataPropsType =
 
 export interface FormData {
   formComponents: FormComponent[];
+  header?: string;
+  subHeader?: string;
 }
 
 export enum ComponentType {

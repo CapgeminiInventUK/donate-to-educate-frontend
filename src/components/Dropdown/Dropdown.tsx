@@ -1,28 +1,31 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './Dropdown.module.scss';
 import { DropdownProps } from '@/types/props';
+import Select, { SingleValue } from 'react-select';
+import { DropdownOption } from '@/types/data';
+import './ReactSelectOverrides.scss';
 
-const Dropdown: FC<DropdownProps> = ({ header, name, subHeading, options, onChange }) => {
-  const [dropDownValue, setDropdownValue] = useState('');
+const Dropdown: FC<DropdownProps> = ({ header, name, subHeading, options, onChange, isLarge }) => {
+  const [dropDownValue, setDropdownValue] = useState<SingleValue<DropdownOption>>();
 
-  const handleSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
-    setDropdownValue(event.target.value);
-    onChange(event.target.value);
+  const handleSelect = (option: SingleValue<DropdownOption>): void => {
+    setDropdownValue(option);
+    onChange(option?.label ?? '');
   };
 
   return (
     <div className={styles.wrapper}>
-      <h3 className={styles.header}>{header}</h3>
-      {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
-      <label htmlFor="dropdown" className={styles.label}>
-        <select value={dropDownValue} name={name} onChange={handleSelect}>
-          {options.map(({ value, label }) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
-      </label>
+      {header && <h4 className={styles.header}>{header}</h4>}
+      {subHeading && <h5 className={styles.subHeading}>{subHeading}</h5>}
+      <Select
+        className={styles.select}
+        classNamePrefix={`${isLarge ? 'selectLarge' : 'select'}`}
+        options={options}
+        onChange={handleSelect}
+        value={dropDownValue}
+        name={name}
+        placeholder={''}
+      />
     </div>
   );
 };
