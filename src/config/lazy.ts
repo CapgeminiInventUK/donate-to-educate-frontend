@@ -13,6 +13,7 @@ const Login = lazy(() => import('@pages/Login/Login'));
 const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDashboard'));
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
+const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   AdminDashboard,
   Form,
   ResetPassword,
+  AddUser,
 };

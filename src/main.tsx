@@ -21,6 +21,8 @@ configureAutoTrack({
   type: 'session',
 });
 
+// Need to identify the user to get location information
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />

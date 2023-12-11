@@ -11,6 +11,7 @@ import {
   AdminDashboard,
   Form,
   ResetPassword,
+  AddUser,
 } from './lazy';
 
 const routes = [
@@ -56,6 +57,10 @@ const routes = [
     element: <AdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADD_USER,
+    element: <AddUser />,
   },
   {
     path: Paths.FORM,
