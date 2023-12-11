@@ -76,7 +76,7 @@ const AdminDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      {['overview', 'manage_las', 'view_requests'].includes(stage) && (
+      {['overview', 'manage_las', 'view_requests', 'view_la_profile'].includes(stage) && (
         <div className={styles.adminCard}>
           <div className={styles.header}>
             <h1>{getHeader(stage)}</h1>
@@ -160,7 +160,16 @@ const AdminDashboard: FC = () => {
                           <Pill color="red" text="Not Joined" />
                         )}{' '}
                         - Action:
-                        {
+                        {la.registered ? (
+                          <Button
+                            theme="link"
+                            text="view profile"
+                            onClick={(): void => {
+                              setSelectedLa(la.name);
+                              setStage('view_la_profile');
+                            }}
+                          />
+                        ) : (
                           <Button
                             theme="link"
                             text="Add user"
@@ -169,11 +178,16 @@ const AdminDashboard: FC = () => {
                               setStage('la_sign_up');
                             }}
                           />
-                        }
+                        )}
                       </li>
                     );
                   })}
                 </ul>
+              </>
+            )}
+            {stage === 'view_la_profile' && (
+              <>
+                <BackButton onClick={(): void => setStage('manage_las')} theme="white" />
               </>
             )}
             {stage === 'view_requests' && (
@@ -210,6 +224,8 @@ const getHeader = (stage: string): string => {
       return 'Manage local authorities';
     case 'view_requests':
       return 'Requests to join';
+    case 'view_la_profile':
+      return 'Local Authority Profile';
     default:
       throw new Error(`Unexpected stage`);
   }

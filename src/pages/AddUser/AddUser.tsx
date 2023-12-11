@@ -6,6 +6,7 @@ import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
 import { Navigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import styles from './AddUser.module.scss';
 
 interface SignUpParameters {
   password: string;
@@ -87,54 +88,56 @@ const NewUser: FC = () => {
   }
 
   return (
-    <>
-      {step === 'SIGN_UP' && (
-        <>
-          <p>Hi</p>
-          <TextInput
-            header="Email"
-            onChange={(event): void => {
-              setEmail(event.target.value);
-            }}
-          />
-          <TextInput
-            header="Password"
-            password
-            onChange={(event): void => {
-              setPassword(event.target.value);
-            }}
-          />
-          <FormButton
-            theme={'formButtonDarkBlue'}
-            onClick={(): void => setSubmitted(true)}
-            text={'Create user'}
-          />
-        </>
-      )}
-      {step === 'CONFIRM_SIGN_UP' && (
-        <>
-          <p>Please enter the verification code sent to your email address.</p>
-          <VerificationInput
-            value={verificationCode}
-            onChange={(input) => {
-              if (input.match(/^[0-9]*$/)) {
-                setVerificationCode(input);
-              }
-            }}
-          />
-          <FormButton
-            text={'Next'}
-            theme={'formButtonDarkBlue'}
-            useArrow={true}
-            onClick={(): void => {
-              if (verificationCode.length === 6) {
-                setSubmitCode(true);
-              }
-            }}
-          />
-        </>
-      )}
-    </>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        {step === 'SIGN_UP' && (
+          <>
+            <h2>Create user</h2>
+            <TextInput
+              header="Email"
+              onChange={(event): void => {
+                setEmail(event.target.value);
+              }}
+            />
+            <TextInput
+              header="Password"
+              password
+              onChange={(event): void => {
+                setPassword(event.target.value);
+              }}
+            />
+            <FormButton
+              theme={'formButtonDarkBlue'}
+              onClick={(): void => setSubmitted(true)}
+              text={'Create user'}
+            />
+          </>
+        )}
+        {step === 'CONFIRM_SIGN_UP' && (
+          <>
+            <p>Please enter the verification code sent to your email address.</p>
+            <VerificationInput
+              value={verificationCode}
+              onChange={(input) => {
+                if (input.match(/^[0-9]*$/)) {
+                  setVerificationCode(input);
+                }
+              }}
+            />
+            <FormButton
+              text={'Next'}
+              theme={'formButtonDarkBlue'}
+              useArrow={true}
+              onClick={(): void => {
+                if (verificationCode.length === 6) {
+                  setSubmitCode(true);
+                }
+              }}
+            />
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

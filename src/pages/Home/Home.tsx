@@ -33,6 +33,12 @@ const Home: FC = () => {
         />
         <Button
           className={styles.buttons}
+          theme="darkBlue"
+          text="Add user"
+          onClick={() => navigate('add-user')}
+        />
+        <Button
+          className={styles.buttons}
           theme="midBlue"
           text="School sign up"
           onClick={() => navigate('form')}
