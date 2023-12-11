@@ -42,6 +42,7 @@ async function handleSignUp({ email, password }: SignUpParameters): Promise<stri
       options: {
         userAttributes: {
           email: lowercaseEmail,
+          'custom:type': 'localAuthority',
         },
       },
     });

@@ -1,0 +1,6 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  padding: 48px 50px;
+}

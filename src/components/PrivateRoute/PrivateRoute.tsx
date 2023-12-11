@@ -8,10 +8,10 @@ interface Props {
 }
 const PrivateRoute: FC<Props> = ({ route, children }) => {
   const [lastCheck, setLastCheck] = useState<boolean>();
-  const checkIsLoggedIn = useCheckCurrentUser();
+  const { isLoggedIn } = useCheckCurrentUser();
 
-  if (!checkIsLoggedIn && checkIsLoggedIn !== lastCheck) {
-    setLastCheck(checkIsLoggedIn);
+  if (!isLoggedIn && isLoggedIn !== lastCheck) {
+    setLastCheck(isLoggedIn);
     return <Navigate to={route} />;
   }
 

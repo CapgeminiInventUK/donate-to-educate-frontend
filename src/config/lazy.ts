@@ -11,6 +11,9 @@ const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
 const TermsAndConditions = lazy(() => import('@pages/TermsAndConditions/TermsAndConditions'));
 const Login = lazy(() => import('@pages/Login/Login'));
 const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDashboard'));
+const LocalAuthorityDashboard = lazy(
+  () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
+);
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
 const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
@@ -28,4 +31,5 @@ export {
   Form,
   ResetPassword,
   AddUser,
+  LocalAuthorityDashboard,
 };
