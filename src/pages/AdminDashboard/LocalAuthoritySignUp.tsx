@@ -15,8 +15,8 @@ interface LocalAuthoritySignUpProps {
 }
 
 const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage }) => {
-  const [localState, setLocalState] = useState({
-    name: name,
+  const [formState, setFormState] = useState({
+    name,
     firstName: '',
     lastName: '',
     jobTitle: '',
@@ -33,14 +33,14 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
-          name: name,
-          firstName: localState.firstName,
-          lastName: localState.lastName,
-          jobTitle: localState.jobTitle,
-          department: localState.department,
-          email: localState.email,
-          phone: localState.phone,
-          notes: localState.notes,
+          name,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          jobTitle: formState.jobTitle,
+          department: formState.department,
+          email: formState.email,
+          phone: formState.phone,
+          notes: formState.notes,
         },
       });
 
@@ -55,7 +55,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="First name"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             firstName: event.target.value,
           }));
@@ -64,7 +64,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="Last name"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             lastName: event.target.value,
           }));
@@ -73,7 +73,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="Job title or role"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             jobTitle: event.target.value,
           }));
@@ -82,7 +82,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="Department"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             department: event.target.value,
           }));
@@ -91,7 +91,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="Email"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             email: event.target.value,
           }));
@@ -100,7 +100,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <TextInput
         header="Phone"
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             phone: event.target.value,
           }));
@@ -108,7 +108,7 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       />
       <TextArea
         onChange={(event) => {
-          setLocalState((prevState) => ({
+          setFormState((prevState) => ({
             ...prevState,
             notes: event.target.value,
           }));
