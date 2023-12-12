@@ -1,5 +1,5 @@
 import TextInput from '@/components/TextInput/TextInput';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './LocalAuthoritySignUp.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import TextArea from '@/components/TextArea/TextArea';
@@ -15,6 +15,17 @@ interface LocalAuthoritySignUpProps {
 }
 
 const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage }) => {
+  const [formState, setFormState] = useState({
+    name,
+    firstName: '',
+    lastName: '',
+    jobTitle: '',
+    department: '',
+    email: '',
+    phone: '',
+    notes: '',
+  });
+
   const { refetch } = useQuery({
     queryKey: ['register'],
     enabled: false,
@@ -23,12 +34,13 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
         query: registerLocalAuthority,
         variables: {
           name,
-          firstName: '1',
-          lastName: '2',
-          jobTitle: '1',
-          department: '1',
-          email: '1',
-          phone: '1',
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          jobTitle: formState.jobTitle,
+          department: formState.department,
+          email: formState.email,
+          phone: formState.phone,
+          notes: formState.notes,
         },
       });
 
@@ -40,13 +52,67 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
     <div className={styles.card}>
       <h1>{name}</h1>
       <hr />
-      <TextInput header="First name" />
-      <TextInput header="Last name" />
-      <TextInput header="Job title or role" />
-      <TextInput header="Department" />
-      <TextInput header="Email" />
-      <TextInput header="Phone" />
+      <TextInput
+        header="First name"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            firstName: event.target.value,
+          }));
+        }}
+      />
+      <TextInput
+        header="Last name"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            lastName: event.target.value,
+          }));
+        }}
+      />
+      <TextInput
+        header="Job title or role"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            jobTitle: event.target.value,
+          }));
+        }}
+      />
+      <TextInput
+        header="Department"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            department: event.target.value,
+          }));
+        }}
+      />
+      <TextInput
+        header="Email"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            email: event.target.value,
+          }));
+        }}
+      />
+      <TextInput
+        header="Phone"
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            phone: event.target.value,
+          }));
+        }}
+      />
       <TextArea
+        onChange={(event) => {
+          setFormState((prevState) => ({
+            ...prevState,
+            notes: event.target.value,
+          }));
+        }}
         header="Notes about this user (optional)"
         subHeading="This information can only be seen by Donate to Educate administrators."
         characterLimit={1000}
