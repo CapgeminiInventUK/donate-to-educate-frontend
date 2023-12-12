@@ -16,6 +16,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
 import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
+import ApprovalRequest from './ApprovalRequest';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -193,10 +194,30 @@ const AdminDashboard: FC = () => {
             {stage === 'view_requests' && (
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
+
+                <Button
+                  theme="midBlue"
+                  text="Approve request school"
+                  onClick={(): void => {
+                    setStage('request_approval_school');
+                  }}
+                />
+
+                <Button
+                  theme="midBlue"
+                  text="Approve request charity"
+                  onClick={(): void => {
+                    setStage('request_approval_charity');
+                  }}
+                />
               </>
             )}
           </div>
         </div>
+      )}
+      {stage === 'request_approval_school' && <ApprovalRequest setStage={setStage} type="school" />}
+      {stage === 'request_approval_charity' && (
+        <ApprovalRequest setStage={setStage} type="charity" />
       )}
       {stage === 'la_sign_up' && (
         <>

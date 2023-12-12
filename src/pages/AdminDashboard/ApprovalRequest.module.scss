@@ -1,0 +1,33 @@
+@use '@assets/global.scss' as g;
+
+.card {
+  background: g.$primary-white;
+  border-radius: 10px;
+  padding: 60px 82px;
+
+  hr {
+    background: g.$primary-light-blue;
+    height: 4px;
+    border: none;
+    margin: 60px 0;
+  }
+
+  .requestDecisionCard {
+    margin-top: 40px;
+    padding: 40px 60px;
+    border: g.$primary-light-blue solid 2px;
+    border-radius: 10px;
+
+    hr {
+      height: 2px;
+      margin: 0;
+    }
+
+    .actionButtons {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
