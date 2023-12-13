@@ -11,14 +11,16 @@ const TextInput: FC<TextInputProps> = ({
   subHeading,
   isLarge,
   isSmall,
+  formMeta,
 }) => {
   const [value, setValue] = useState('');
   const [inputType, setInputType] = useState('password');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value = event.target.value;
     setValue(event.target.value);
     if (onChange) {
-      onChange(event);
+      onChange(value, formMeta);
     }
   };
 
