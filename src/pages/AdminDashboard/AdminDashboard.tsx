@@ -15,8 +15,8 @@ import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
 import FormButton from '@/components/FormButton/FormButton';
-import { Pill } from '@/components/Pill/Pill';
 import ApprovalRequest from './ApprovalRequest';
+import LocalAuthorityManage from './LocalAuthorityManage';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -148,42 +148,14 @@ const AdminDashboard: FC = () => {
             {stage === 'manage_las' && (
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
-                <div className={styles.laBorder}>{registered} joined</div>
-                <div className={styles.laBorder}>{notRegistered} to join</div>
-                <ul>
-                  {data?.getLocalAuthorities.map((la) => {
-                    return (
-                      <li key={la.name}>
-                        {la.name} -{' '}
-                        {la.registered ? (
-                          <Pill color="blue" text="Joined" />
-                        ) : (
-                          <Pill color="red" text="Not Joined" />
-                        )}{' '}
-                        - Action:
-                        {la.registered ? (
-                          <Button
-                            theme="link"
-                            text="view profile"
-                            onClick={(): void => {
-                              setSelectedLa(la.name);
-                              setStage('view_la_profile');
-                            }}
-                          />
-                        ) : (
-                          <Button
-                            theme="link"
-                            text="Add user"
-                            onClick={(): void => {
-                              setSelectedLa(la.name);
-                              setStage('la_sign_up');
-                            }}
-                          />
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
+                <LocalAuthorityManage
+                  name={selectedLa}
+                  setStage={setStage}
+                  data={data}
+                  registered={registered}
+                  notRegistered={notRegistered}
+                  setSelectedLa={setSelectedLa}
+                />
               </>
             )}
             {stage === 'view_la_profile' && (

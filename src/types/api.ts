@@ -105,12 +105,14 @@ export type GetSchoolsQuery = {
 export type GetLocalAuthoritiesQueryVariables = {};
 
 export type GetLocalAuthoritiesQuery = {
-  getLocalAuthorities: Array<{
-    __typename: 'LocalAuthority';
-    code: string;
-    name: string;
-    registered: boolean;
-  }>;
+  getLocalAuthorities: Array<GetLocalAuthority>;
+};
+
+export type GetLocalAuthority = {
+  __typename: 'LocalAuthority';
+  code: string;
+  name: string;
+  registered: boolean;
 };
 
 export type GetJoinRequestsQueryVariables = {};
