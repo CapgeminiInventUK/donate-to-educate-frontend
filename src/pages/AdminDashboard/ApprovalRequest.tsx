@@ -3,6 +3,7 @@ import styles from './ApprovalRequest.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
 import BackButton from '@/components/BackButton/BackButton';
+import Email from '@/assets/admin/Email';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -18,14 +19,22 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
           <>
             <Pill color="blue" text="SCHOOL" />
             <h1>Ormiston Six Villages Academy</h1>
-            <div>01243 546800</div>
-            <div>email@ormiston.edu.ac.uk</div>
-            <p>Ormiston Six Villages Academy</p>
-            <p>Lime Avenue</p>
-            <p>Westergate</p>
-            <p>West Sussex</p>
-            <p>PO20 3UE</p>
-            <p>England</p>
+            <div className={styles.contactInfo}>
+              <Email />
+              <div>01243 546800</div>
+            </div>
+            <div className={styles.contactInfo}>
+              <Email />
+              <div>email@ormiston.edu.ac.uk</div>
+            </div>
+            <div className={styles.detailsCard}>
+              <p>Ormiston Six Villages Academy</p>
+              <p>Lime Avenue</p>
+              <p>Westergate</p>
+              <p>West Sussex</p>
+              <p>PO20 3UE</p>
+              <p>England</p>
+            </div>
             <hr />
             <p>
               To confirm this connection, check that they&apos;re senior staff or a senior contact
@@ -33,20 +42,24 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
             </p>
             <b>The local authority may also review, confirm or decline this request.</b>
             <div className={styles.requestDecisionCard}>
-              <div>
-                <span>Name</span> Alexander Isak
+              <div className={styles.informationLine}>
+                <b>Name</b>
+                <span>Alexander Isak</span>
               </div>
               <hr />
-              <div>
-                <span>Job title or role</span> Head of Chemistry
+              <div className={styles.informationLine}>
+                <b>Job title or role</b>
+                <span>Head of Chemistry</span>
               </div>
               <hr />
-              <div>
-                <span>Email</span> Isak-chemistry@mgail.com
+              <div className={styles.informationLine}>
+                <b>Email</b>
+                <span>Isak-chemistry@mgail.com</span>
               </div>
               <hr />
-              <div>
-                <span>Phone</span> 07123456789
+              <div className={styles.informationLine}>
+                <b>Phone</b>
+                <span>07123456789</span>
               </div>
               <hr />
               <div className={styles.actionButtons}>

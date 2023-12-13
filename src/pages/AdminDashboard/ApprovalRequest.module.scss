@@ -4,6 +4,11 @@
   background: g.$primary-white;
   border-radius: 10px;
   padding: 60px 82px;
+  color: g.$primary-dark-blue;
+
+  svg {
+    fill: currentColor;
+  }
 
   hr {
     background: g.$primary-light-blue;
@@ -17,6 +22,10 @@
     padding: 40px 60px;
     border: g.$primary-light-blue solid 2px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    color: g.$primary-dark-blue;
 
     hr {
       height: 2px;
@@ -29,5 +38,30 @@
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .informationLine {
+    display: flex;
+
+    b {
+      width: 45%;
+      max-width: 275px;
+    }
+
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  .detailsCard {
+    border-left: 8px solid g.$greyscale-light;
+    padding: 1px;
+    padding-left: 20px;
+    margin-top: 40px;
+  }
+
+  .contactInfo {
+    display: flex;
+    align-items: center;
   }
 }
