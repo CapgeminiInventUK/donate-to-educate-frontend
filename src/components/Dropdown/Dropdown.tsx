@@ -5,12 +5,19 @@ import Select, { SingleValue } from 'react-select';
 import { DropdownOption } from '@/types/data';
 import './ReactSelectOverrides.scss';
 
-const Dropdown: FC<DropdownProps> = ({ header, name, subHeading, options, onChange, isLarge }) => {
+const Dropdown: FC<DropdownProps> = ({
+  header,
+  subHeading,
+  options,
+  onChange,
+  isLarge,
+  formMeta,
+}) => {
   const [dropDownValue, setDropdownValue] = useState<SingleValue<DropdownOption>>();
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
-    onChange(option?.label ?? '');
+    onChange && onChange(option?.label ?? '', formMeta);
   };
 
   return (
@@ -23,7 +30,6 @@ const Dropdown: FC<DropdownProps> = ({ header, name, subHeading, options, onChan
         options={options}
         onChange={handleSelect}
         value={dropDownValue}
-        name={name}
         placeholder={''}
       />
     </div>

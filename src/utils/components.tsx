@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { ComponentDataPropsType, ComponentType } from '@/types/data';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ComponentDataPropsType, ComponentType, FormDataItem } from '@/types/data';
 import {
+  CheckYourAnswersProps,
   CheckboxProps,
   DropdownProps,
   FormIntroPageProps,
@@ -14,10 +15,13 @@ import Checkbox from '@/components/Checkbox/Checkbox';
 import TextArea from '@/components/TextArea/TextArea';
 import Dropdown from '@/components/Dropdown/Dropdown';
 import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
+import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
 
 export const createFormComponent = (
   componentType: ComponentType,
-  componentData?: ComponentDataPropsType
+  formData: FormDataItem[],
+  componentData?: ComponentDataPropsType,
+  setPageNumber?: Dispatch<SetStateAction<number>>
 ): ReactNode => {
   switch (componentType) {
     case ComponentType.INTRO:
@@ -32,7 +36,14 @@ export const createFormComponent = (
       return <Checkbox {...(componentData as CheckboxProps)} />;
     case ComponentType.DROPDOWN:
       return <Dropdown {...(componentData as DropdownProps)} />;
-
+    case ComponentType.CYA:
+      return (
+        <CheckYourAnswers
+          {...(componentData as CheckYourAnswersProps)}
+          formData={formData}
+          setPageNumber={setPageNumber}
+        />
+      );
     default:
       return <></>;
   }

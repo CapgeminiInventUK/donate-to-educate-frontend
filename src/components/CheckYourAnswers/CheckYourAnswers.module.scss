@@ -1,0 +1,50 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  color: g.$primary-dark-blue;
+  margin-bottom: 60px;
+
+  .row {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 22px 0;
+    border-bottom: 1px solid g.$primary-light-blue;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.04));
+    line-height: 2;
+
+    div {
+      flex-basis: 100%;
+    }
+
+    .field {
+      font-weight: 700;
+    }
+
+    .value {
+      white-space: pre-line;
+      font-weight: 400;
+    }
+
+    .addressCell {
+      line-height: 1.5;
+    }
+
+    .changeLink {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        color: g.$primary-dark-blue;
+        font-weight: 400;
+        text-underline-offset: 2px;
+      }
+    }
+
+    .changeAddressLink {
+      align-items: flex-start;
+    }
+  }
+}

@@ -2,10 +2,18 @@ import { FC, useState } from 'react';
 import styles from './Form.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import FormContainer from './FormContainer';
-import { ComponentType, FormData } from '@/types/data';
+import {
+  ComponentType,
+  FormDataItem,
+  FormMeta,
+  FormNames,
+  FormSections,
+  FormTemplate,
+} from '@/types/data';
 
 const Form: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [formData, setFormData] = useState<FormDataItem[]>([]);
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
@@ -13,7 +21,13 @@ const Form: FC = () => {
     }
   };
 
-  const formData: FormData[] = [
+  const onChange = (value: string, formMeta: FormMeta | undefined): void => {
+    const { page = 0, field = '', section } = formMeta ?? {};
+    const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
+    setFormData([...removeOldValue, { field: field, value, section, page }]);
+  };
+
+  const formTemplate: FormTemplate[] = [
     {
       formComponents: [
         {
@@ -44,7 +58,15 @@ const Form: FC = () => {
       formComponents: [
         {
           componentType: ComponentType.TEXT,
-          componentData: { isLarge: true },
+          componentData: {
+            isLarge: true,
+            onChange,
+            formMeta: {
+              page: 1,
+              field: 'Name',
+              section: FormSections.CHARITY_SECTION,
+            },
+          },
         },
       ],
     },
@@ -55,13 +77,18 @@ const Form: FC = () => {
           componentType: ComponentType.DROPDOWN,
           componentData: {
             subHeading: 'If you have locations across the country, choose one main local council.',
-            name: 'West Sussex County Council',
             options: [
               { value: 'westBerks', label: 'West Berkshire' },
               { value: 'westNorthants', label: 'West Northamptonshire' },
               { value: 'westSussex', label: 'West Sussex County Council' },
             ],
             isLarge: true,
+            formMeta: {
+              page: 2,
+              field: 'Main local council',
+              section: FormSections.CHARITY_SECTION,
+            },
+            onChange,
           },
           formComponentLink: {
             linkText: 'Find my local council (opens in a new tab).',
@@ -78,6 +105,12 @@ const Form: FC = () => {
           componentData: {
             header: 'First name',
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 3,
+              field: 'First name',
+              section: FormSections.YOUR_DETAILS_SECTION,
+            },
           },
         },
         {
@@ -85,6 +118,12 @@ const Form: FC = () => {
           componentData: {
             header: 'Last name',
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 3,
+              field: 'Last name',
+              section: FormSections.YOUR_DETAILS_SECTION,
+            },
           },
         },
         {
@@ -93,6 +132,12 @@ const Form: FC = () => {
             header: 'Job title or role',
             subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 3,
+              field: 'Job title or role',
+              section: FormSections.YOUR_DETAILS_SECTION,
+            },
           },
         },
         {
@@ -102,12 +147,24 @@ const Form: FC = () => {
             subHeading:
               "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 3,
+              field: 'Email',
+              section: FormSections.YOUR_DETAILS_SECTION,
+            },
           },
         },
         {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Phone',
+            onChange,
+            formMeta: {
+              page: 3,
+              field: 'Phone',
+              section: FormSections.YOUR_DETAILS_SECTION,
+            },
           },
         },
       ],
@@ -121,6 +178,12 @@ const Form: FC = () => {
           componentData: {
             header: 'Address line 1',
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 4,
+              field: 'Address line 1',
+              section: FormSections.CHARITY_SECTION,
+            },
           },
         },
         {
@@ -128,25 +191,49 @@ const Form: FC = () => {
           componentData: {
             header: 'Address line 2 (optional)',
             isLarge: true,
+            onChange,
+            formMeta: {
+              page: 4,
+              field: 'Address line 2',
+              section: FormSections.CHARITY_SECTION,
+            },
           },
         },
         {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Town or city',
+            onChange,
+            formMeta: {
+              page: 4,
+              field: 'Town',
+              section: FormSections.CHARITY_SECTION,
+            },
           },
         },
         {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'County',
+            onChange,
+            formMeta: {
+              page: 4,
+              field: 'County',
+              section: FormSections.CHARITY_SECTION,
+            },
           },
         },
         {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Postcode',
+            onChange,
             isSmall: true,
+            formMeta: {
+              page: 4,
+              field: 'Postcode',
+              section: FormSections.CHARITY_SECTION,
+            },
           },
         },
       ],
@@ -161,6 +248,24 @@ const Form: FC = () => {
               'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
             hint: 'This information can only be seen by Donate to Educate administrators.',
             characterLimit: 1000,
+            onChange,
+            formMeta: {
+              page: 4,
+              field: 'About',
+              section: FormSections.CHARITY_SECTION,
+            },
+          },
+        },
+      ],
+    },
+    {
+      header: 'Check your Answers',
+      formComponents: [
+        {
+          componentType: ComponentType.CYA,
+          componentData: {
+            sections: [FormSections.YOUR_DETAILS_SECTION, FormSections.CHARITY_SECTION],
+            formName: FormNames.JOIN,
           },
         },
       ],
@@ -171,7 +276,12 @@ const Form: FC = () => {
     <div className={styles.container}>
       <div>
         <BackButton onClick={onBackButtonClick} theme="blue" />
-        <FormContainer formData={formData} pageNumber={pageNumber} setPageNumber={setPageNumber} />
+        <FormContainer
+          formTemplate={formTemplate}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          formData={formData}
+        />
       </div>
     </div>
   );

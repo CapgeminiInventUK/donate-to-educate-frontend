@@ -46,18 +46,18 @@ export const SignIn: FC = () => {
       <h2>Sign in</h2>
       <TextInput
         header="Username"
-        onChange={(event): void => {
-          if (username !== event.target.value) {
-            setUsername(event.target.value);
+        onChange={(value): void => {
+          if (username !== value) {
+            setUsername(value);
           }
         }}
       />
       <TextInput
         header="Password"
         password
-        onChange={(event): void => {
-          if (password !== event.target.value) {
-            setPassword(event.target.value);
+        onChange={(value): void => {
+          if (password !== value) {
+            setPassword(value);
           }
         }}
       />
