@@ -1,5 +1,6 @@
 import { ErrorInfo } from 'react';
 import {
+  CheckYourAnswersProps,
   CheckboxProps,
   DropdownProps,
   ExternalLinkProps,
@@ -33,7 +34,8 @@ export type ComponentDataPropsType =
   | CheckboxProps
   | TextAreaProps
   | DropdownProps
-  | FormIntroPageProps;
+  | FormIntroPageProps
+  | CheckYourAnswersProps;
 
 export interface FormTemplate {
   formComponents: FormComponent[];
@@ -41,14 +43,26 @@ export interface FormTemplate {
   subHeader?: string;
 }
 
+export interface FormMeta {
+  page?: number;
+  field?: string;
+  section?: FormSections;
+}
+
 export interface FormDataItem {
   field: string;
   value: string | number;
+  page?: number;
+  section?: FormSections;
 }
 
-export interface FormData {
-  formName: string;
-  formDataItems: FormDataItem[];
+export enum FormSections {
+  CHARITY_SECTION = 'Your charity or volunteer group',
+  YOUR_DETAILS_SECTION = 'Your details',
+}
+
+export enum FormNames {
+  JOIN = 'Join Donate to Educate',
 }
 
 export enum ComponentType {
@@ -58,6 +72,7 @@ export enum ComponentType {
   TEXTAREA = 'textArea',
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
+  CYA = 'checkYourAnswers',
 }
 
 export interface DropdownOption {

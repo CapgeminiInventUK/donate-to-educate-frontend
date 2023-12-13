@@ -5,7 +5,12 @@ import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
 import FormButton from '@/components/FormButton/FormButton';
 
-const FormContainer: FC<FormContainerProps> = ({ formTemplate, pageNumber, setPageNumber }) => {
+const FormContainer: FC<FormContainerProps> = ({
+  formTemplate,
+  pageNumber,
+  setPageNumber,
+  formData,
+}) => {
   const onButtonClick = (): void => {
     if (pageNumber < formTemplate.length - 1) {
       setPageNumber(pageNumber + 1);
@@ -31,7 +36,7 @@ const FormContainer: FC<FormContainerProps> = ({ formTemplate, pageNumber, setPa
       </div>
       {formComponents.map(({ componentType, componentData, formComponentLink }, index) => (
         <div className={styles.formComponent} key={index}>
-          {createFormComponent(componentType, componentData)}
+          {createFormComponent(componentType, formData, componentData, setPageNumber)}
           {formComponentLink && (
             <div className={styles.link}>
               <ExternalLink {...formComponentLink} />

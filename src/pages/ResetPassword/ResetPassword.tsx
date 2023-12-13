@@ -58,8 +58,8 @@ const ResetPassword: FC = () => {
             <h2>Reset Password</h2>
             <TextInput
               header="Your Email"
-              onChange={(event): void => {
-                setUsername(event.target.value);
+              onChange={(value): void => {
+                setUsername(value);
 
                 if (!(firstErrorText === '')) {
                   setFirstErrorText('');
@@ -107,8 +107,8 @@ const ResetPassword: FC = () => {
             <TextInput
               header="New Password"
               password
-              onChange={(event): void => {
-                setNewPassord(event.target.value);
+              onChange={(value): void => {
+                setNewPassord(value);
 
                 if (!(secondErrorText === '')) {
                   setSecondErrorText('');
@@ -118,8 +118,8 @@ const ResetPassword: FC = () => {
             <TextInput
               header="Repeat Password"
               password
-              onChange={(event): void => {
-                setNewPassordRepeat(event.target.value);
+              onChange={(value): void => {
+                setNewPassordRepeat(value);
                 if (!(secondErrorText === '')) {
                   setSecondErrorText('');
                 }

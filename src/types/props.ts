@@ -1,5 +1,13 @@
-import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from 'react';
-import { CarouselItem, DropdownOption, FormData, FormTemplate } from './data';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import {
+  CarouselItem,
+  DropdownOption,
+  FormDataItem,
+  FormMeta,
+  FormNames,
+  FormSections,
+  FormTemplate,
+} from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -122,12 +130,16 @@ export interface ValidationResult {
   errorMessage?: string;
 }
 
-export interface TextInputProps {
+export interface CommonInputProps {
   header?: string;
   subHeading?: string;
   placeholder?: string;
+  onChange?: (value: string, meta?: FormMeta) => void;
+  formMeta?: FormMeta;
+}
+
+export interface TextInputProps extends CommonInputProps {
   password?: boolean;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   isLarge?: boolean;
   isSmall?: boolean;
 }
@@ -136,26 +148,17 @@ export interface FormContainerProps {
   formTemplate: FormTemplate[];
   pageNumber: number;
   setPageNumber: Dispatch<SetStateAction<number>>;
-  formData: FormData[];
-  setFormData: Dispatch<SetStateAction<FormData[]>>;
+  formData: FormDataItem[];
 }
-export interface DropdownProps {
-  header?: string;
+export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
-  subHeading?: string;
-  name?: string;
-  onChange: (value: string) => void;
   isLarge?: boolean;
 }
 
-export interface TextAreaProps {
-  header?: string;
+export interface TextAreaProps extends CommonInputProps {
   characterLimit: number;
-  subHeading?: string;
   hint?: string;
-  placeholder?: string;
   id?: string;
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 export interface ExternalLinkProps {
@@ -171,4 +174,11 @@ export interface FormIntroPageProps {
   secondaryHeading?: string;
   secondaryInfoText?: string;
   secondaryListItems?: string[];
+}
+
+export interface CheckYourAnswersProps {
+  sections: FormSections[];
+  formName: FormNames;
+  formData?: FormDataItem[];
+  setPageNumber?: Dispatch<SetStateAction<number>>;
 }

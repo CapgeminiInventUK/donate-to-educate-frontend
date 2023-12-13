@@ -10,6 +10,7 @@ const TextArea: FC<TextAreaProps> = ({
   subHeading,
   hint,
   characterLimit,
+  formMeta,
 }) => {
   const [value, setValue] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
@@ -19,7 +20,7 @@ const TextArea: FC<TextAreaProps> = ({
     setValue(inputValue);
     setCharacterCount(inputValue.length);
     if (onChange) {
-      onChange(event);
+      onChange(inputValue, formMeta);
     }
   };
 
