@@ -96,15 +96,15 @@ const NewUser: FC = () => {
             <h2>Create user</h2>
             <TextInput
               header="Email"
-              onChange={(event): void => {
-                setEmail(event.target.value);
+              onChange={(value): void => {
+                setEmail(value);
               }}
             />
             <TextInput
               header="Password"
               password
-              onChange={(event): void => {
-                setPassword(event.target.value);
+              onChange={(value): void => {
+                setPassword(value);
               }}
             />
             <FormButton

@@ -54,63 +54,63 @@ const LocalAuthoritySignUp: FC<LocalAuthoritySignUpProps> = ({ name, setStage })
       <hr />
       <TextInput
         header="First name"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            firstName: event.target.value,
+            firstName: value,
           }));
         }}
       />
       <TextInput
         header="Last name"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            lastName: event.target.value,
+            lastName: value,
           }));
         }}
       />
       <TextInput
         header="Job title or role"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            jobTitle: event.target.value,
+            jobTitle: value,
           }));
         }}
       />
       <TextInput
         header="Department"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            department: event.target.value,
+            department: value,
           }));
         }}
       />
       <TextInput
         header="Email"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            email: event.target.value,
+            email: value,
           }));
         }}
       />
       <TextInput
         header="Phone"
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            phone: event.target.value,
+            phone: value,
           }));
         }}
       />
       <TextArea
-        onChange={(event) => {
+        onChange={(value) => {
           setFormState((prevState) => ({
             ...prevState,
-            notes: event.target.value,
+            notes: value,
           }));
         }}
         header="Notes about this user (optional)"

@@ -3,7 +3,9 @@ import styles from './ApprovalRequest.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
 import BackButton from '@/components/BackButton/BackButton';
-import Email from '@/assets/admin/Email';
+import Email from '@/assets/tiles/Email';
+import Phone from '@/assets/admin/Phone';
+import ToolTip from '@/assets/admin/Tooltip';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -20,7 +22,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
             <Pill color="blue" text="SCHOOL" />
             <h1>Ormiston Six Villages Academy</h1>
             <div className={styles.contactInfo}>
-              <Email />
+              <Phone />
               <div>01243 546800</div>
             </div>
             <div className={styles.contactInfo}>
@@ -40,7 +42,10 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
               To confirm this connection, check that they&apos;re senior staff or a senior contact
               at the school.
             </p>
-            <b>The local authority may also review, confirm or decline this request.</b>
+            <div className={styles.contactInfo}>
+              <ToolTip className={styles.infoToolTip} />
+              <b>The local authority may also review, confirm or decline this request.</b>
+            </div>
             <div className={styles.requestDecisionCard}>
               <div className={styles.informationLine}>
                 <b>Name</b>
