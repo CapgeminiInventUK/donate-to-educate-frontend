@@ -14,6 +14,8 @@ enum Paths {
   ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION = '/admin-dashboard/la-sign-up-confirmation',
   LOCAL_AUTHORITY_DASHBOARD = '/local-authority-dashboard',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
+  YOUR_SCHOOL = '/school/your-school',
+  SCHOOLS_DASHBOARD = '/school/schools-dashboard',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
