@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
