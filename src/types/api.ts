@@ -118,11 +118,13 @@ export type GetLocalAuthority = {
 export type GetJoinRequestsQueryVariables = {};
 
 export type GetJoinRequestsQuery = {
-  getJoinRequests: Array<{
-    __typename: 'JoinRequest';
-    name: string;
-    localAuthority: string;
-    type: string;
-    requestTime: number;
-  }>;
+  getJoinRequests: Array<GetJoinRequest>;
+};
+
+export type GetJoinRequest = {
+  __typename: 'JoinRequest';
+  name: string;
+  localAuthority: string;
+  type: string;
+  requestTime: number;
 };

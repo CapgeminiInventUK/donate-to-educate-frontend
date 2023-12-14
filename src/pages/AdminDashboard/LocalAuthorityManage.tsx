@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './LocalAuthoritySignUp.module.scss';
+import styles from './LocalAuthorityManage.module.scss';
 import Button from '@/components/Button/Button';
 import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, GetLocalAuthority } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -74,8 +74,8 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
   ];
 
   return (
-    <div className={`${styles.cardContainer} ${styles.lasCardContainer}`}>
-      <div className={styles.card}>
+    <div className={styles.cardContainer}>
+      <div className={styles.lasCard}>
         <div className={styles.laBorder}>{registered} joined</div>
         <div className={styles.laBorder}>{notRegistered} to join</div>
 

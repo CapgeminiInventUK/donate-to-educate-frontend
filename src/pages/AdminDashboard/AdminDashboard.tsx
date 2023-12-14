@@ -17,6 +17,7 @@ import { getAdminPageRequests } from '@/graphql/composite';
 import FormButton from '@/components/FormButton/FormButton';
 import ApprovalRequest from './ApprovalRequest';
 import LocalAuthorityManage from './LocalAuthorityManage';
+import JoinRequests from './JoinRequests';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -181,6 +182,13 @@ const AdminDashboard: FC = () => {
                   onClick={(): void => {
                     setStage('request_approval_charity');
                   }}
+                />
+
+                <JoinRequests
+                  setStage={setStage}
+                  data={data}
+                  name={selectedLa}
+                  setSelectedLa={setSelectedLa}
                 />
               </>
             )}
