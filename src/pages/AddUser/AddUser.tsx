@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
@@ -98,15 +96,15 @@ const NewUser: FC = () => {
             <h2>Create user</h2>
             <TextInput
               header="Email"
-              onChange={(event): void => {
-                setEmail(event.target.value);
+              onChange={(value): void => {
+                setEmail(value);
               }}
             />
             <TextInput
               header="Password"
               password
-              onChange={(event): void => {
-                setPassword(event.target.value);
+              onChange={(value): void => {
+                setPassword(value);
               }}
             />
             <FormButton
@@ -121,7 +119,7 @@ const NewUser: FC = () => {
             <p>Please enter the verification code sent to your email address.</p>
             <VerificationInput
               value={verificationCode}
-              onChange={(input) => {
+              onChange={(input: string) => {
                 if (input.match(/^[0-9]*$/)) {
                   setVerificationCode(input);
                 }

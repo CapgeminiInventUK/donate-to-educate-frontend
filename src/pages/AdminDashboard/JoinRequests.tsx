@@ -28,7 +28,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
     {
       title: 'Action',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      render: (_: unknown, joinRequest: GetJoinRequest) => (
+      render: (_: unknown, _joinRequest: GetJoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button
             theme="link-blue"
