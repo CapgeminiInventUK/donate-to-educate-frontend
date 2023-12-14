@@ -5,7 +5,7 @@ import { Pill } from '@/components/Pill/Pill';
 import BackButton from '@/components/BackButton/BackButton';
 import Email from '@/assets/tiles/Email';
 import Phone from '@/assets/admin/Phone';
-import ToolTip from '@/assets/admin/Tooltip';
+import ToolTip from '@/assets/admin/ToolTip';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
