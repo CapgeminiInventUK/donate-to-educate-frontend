@@ -12,14 +12,13 @@ interface JoinRequestsProps {
 }
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
-  const columns = [
-    {
-      title: 'School',
-      dataIndex: 'name',
-      key: 'name',
-    },
+  const schools = data?.getJoinRequests.filter(({ type }) => type === 'school');
+  const charities = data?.getJoinRequests.filter(({ type }) => type === 'charity');
+
+  const baseColumns = [
     {
       title: 'Local authority',
+      dataIndex: 'localAuthority',
     },
     {
       title: 'Request time',
@@ -42,10 +41,28 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
       ),
     },
   ];
+  const schoolColumns = [
+    {
+      title: 'School',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    ...baseColumns,
+  ];
+  const charityColumns = [
+    {
+      title: 'Charity',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    ...baseColumns,
+  ];
 
   return (
     <>
-      <Table className={styles.schoolsTable} dataSource={data?.getJoinRequests} columns={columns} />
+      <Table className={styles.schoolsTable} dataSource={schools} columns={schoolColumns} />
+
+      <Table className={styles.schoolsTable} dataSource={charities} columns={charityColumns} />
     </>
   );
 };
