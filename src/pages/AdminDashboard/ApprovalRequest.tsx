@@ -1,11 +1,8 @@
 import { FC } from 'react';
 import styles from './ApprovalRequest.module.scss';
-import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
 import BackButton from '@/components/BackButton/BackButton';
-import Email from '@/assets/tiles/Email';
-import Phone from '@/assets/admin/Phone';
-import ToolTip from '@/assets/admin/Tooltip';
+import SchoolUserRequest from './SchoolUserRequest';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -19,7 +16,8 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
       <div className={styles.card}>
         {type === 'school' && (
           <>
-            <Pill color="blue" text="SCHOOL" />
+            <SchoolUserRequest />
+            {/* <Pill color="blue" text="SCHOOL" />
             <h1>Ormiston Six Villages Academy</h1>
             <div className={styles.contactInfo}>
               <Phone />
@@ -79,7 +77,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
                   onClick={(): void => undefined}
                 />
               </div>
-            </div>
+            </div> */}
           </>
         )}
         {type === 'charity' && <Pill color="grey" text="CHARITY OR VOLUNTEER GROUP" />}
