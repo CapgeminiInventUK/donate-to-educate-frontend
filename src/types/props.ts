@@ -58,6 +58,8 @@ export interface SvgProps {
   className?: string;
   onClick?: () => void;
   colour?: string;
+  height?: number;
+  width?: number;
 }
 
 export interface BackLinkProps {

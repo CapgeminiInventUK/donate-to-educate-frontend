@@ -60,9 +60,19 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
 
   return (
     <>
-      <Table className={styles.schoolsTable} dataSource={schools} columns={schoolColumns} />
+      <Table
+        className={styles.schoolsTable}
+        dataSource={schools}
+        columns={schoolColumns}
+        scroll={{ x: 'max-content' }}
+      />
 
-      <Table className={styles.schoolsTable} dataSource={charities} columns={charityColumns} />
+      <Table
+        className={styles.schoolsTable}
+        dataSource={charities}
+        columns={charityColumns}
+        scroll={{ x: 'max-content' }}
+      />
     </>
   );
 };

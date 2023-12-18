@@ -83,6 +83,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
           className={styles.lasTable}
           dataSource={data?.getLocalAuthorities}
           columns={columns}
+          scroll={{ x: 'max-content' }}
         />
       </div>
     </div>

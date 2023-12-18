@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './ApprovalRequest.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
@@ -6,6 +6,8 @@ import BackButton from '@/components/BackButton/BackButton';
 import Email from '@/assets/tiles/Email';
 import Phone from '@/assets/admin/Phone';
 import ToolTip from '@/assets/admin/ToolTip';
+import DeclineModal from './DeclineModal';
+import ResultBanner from './ResultBanner';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -13,6 +15,8 @@ interface ApprovalRequestProps {
 }
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <BackButton onClick={(): void => setStage('view_requests')} theme="blue" />
@@ -76,13 +80,16 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, type }) => {
                 <FormButton
                   theme="formButtonGrey"
                   text="Decline request"
-                  onClick={(): void => undefined}
+                  onClick={(): void => setShowModal(true)}
                 />
               </div>
             </div>
           </>
         )}
         {type === 'charity' && <Pill color="grey" text="CHARITY OR VOLUNTEER GROUP" />}
+        <DeclineModal setShowModal={setShowModal} showModal={showModal} />
+        <ResultBanner type="declined" />
+        <ResultBanner type="approved" name="bob" />
       </div>
     </>
   );
