@@ -70,7 +70,7 @@ export interface HeaderProps {
 }
 
 export interface PillProps {
-  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
+  color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red';
   text?: string;
 }
 

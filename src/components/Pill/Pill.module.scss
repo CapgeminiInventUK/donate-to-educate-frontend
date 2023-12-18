@@ -11,7 +11,12 @@
 
 .blue {
   background-color: g.$pill-blue-background;
-  color: g.$pill-blue-text;
+  color: g.$pill-text-white;
+}
+
+.lightBlue {
+  background-color: g.$pill-light-blue;
+  color: g.$pill-text-blue;
 }
 
 .green {
