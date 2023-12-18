@@ -13,6 +13,7 @@ import {
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
+  SchoolEdit,
 } from './lazy';
 
 const routes = [
@@ -62,6 +63,12 @@ const routes = [
   {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD,
     element: <LocalAuthorityDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.SCHOOL_EDIT,
+    element: <SchoolEdit />,
     requiresAuth: true,
     redirectRoute: '/login',
   },

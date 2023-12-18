@@ -92,6 +92,7 @@ export interface ClickableLogoProps {
 export interface CheckboxProps {
   label?: string;
   className?: string;
+  onChange?: (value: boolean) => void;
 }
 
 export interface CheckmarkProps {

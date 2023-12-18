@@ -55,7 +55,7 @@ const Home: FC = () => {
             },
             {
               text: 'Edit school profile',
-              path: Paths.HOME,
+              path: Paths.SCHOOL_EDIT,
               color: 'blue',
               pillText: 'IN PROGRESS',
               theme: 'midBlue',
