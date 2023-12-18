@@ -1,0 +1,17 @@
+@use '@assets/global.scss' as g;
+
+.banner {
+  background: g.$primary-mid-blue;
+  border-radius: 10px;
+  color: g.$primary-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 82px;
+  margin: 60px 0;
+
+  .email {
+    transform: scale(3);
+  }
+}

@@ -10,3 +10,14 @@
   margin-top: g.$nav-height;
   flex: 1;
 }
+
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: g.$primary-dark-blue;
+  transform-origin: 0%;
+  z-index: 1000000;
+}

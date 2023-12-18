@@ -18,6 +18,15 @@
   text-decoration: underline;
 }
 
+.link-blue {
+  @extend %button;
+  background: none;
+  color: g.$primary-dark-blue;
+  border: none;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
 .darkBlue {
   @extend %button;
   background: g.$primary-dark-blue;

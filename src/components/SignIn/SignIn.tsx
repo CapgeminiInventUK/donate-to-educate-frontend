@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from 'react';
 import LogoWhite from '@assets/logo/LogoWhite';
 import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
-import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
+import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ export const SignIn: FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  const checkIsLoggedIn = useCheckCurrentUser();
+  const { isLoggedIn, type } = useCheckCurrentUser();
 
   useEffect(() => {
     if (submitted) {
@@ -27,10 +27,10 @@ export const SignIn: FC = () => {
         })
         .catch(handleError);
     }
-  }, [submitted, password, username, navigate]);
+  }, [submitted, password, username]);
 
-  if (checkIsLoggedIn && !submitted) {
-    navigate(Paths.ADMIN_DASHBOARD);
+  if (isLoggedIn && !submitted && type) {
+    navigate(getRedirectUrl(type));
     return <Spinner />;
   }
 
@@ -79,4 +79,15 @@ export const SignIn: FC = () => {
 
 const userLogin = async (username: string, password: string): Promise<SignInOutput> => {
   return await signIn({ username, password });
+};
+
+const getRedirectUrl = (type: AccountType): string => {
+  switch (type) {
+    case 'admin':
+      return Paths.ADMIN_DASHBOARD;
+    case 'localAuthority':
+      return Paths.LOCAL_AUTHORITY_DASHBOARD;
+    default:
+      throw new Error(`Unknown account type ${type}`);
+  }
 };

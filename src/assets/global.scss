@@ -16,6 +16,7 @@ $gradient-blue: linear-gradient(90deg, #11356f 0%, #0075a2 100%);
 
 // Greyscale Colours
 $greyscale: #394150;
+$greyscale-light: #9ea3ae;
 $greyscale-disabled: #e5e6eb;
 $greyscale-disabled-border: #f9fafb;
 $disabled-font: #596975;
@@ -53,6 +54,8 @@ $nav-height: 80px;
 
 // Error
 $error-red: #f03a47;
+
+$modal-backdrop: rgba(17, 53, 111, 0.75);
 
 @mixin card {
   border-radius: 10px;

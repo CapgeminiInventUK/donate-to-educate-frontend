@@ -15,7 +15,7 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes = 'darkBlue' | 'midBlue' | 'link';
+export type Themes = 'darkBlue' | 'midBlue' | 'link' | 'link-blue';
 
 export type FormButtonThemes =
   | 'formButtonDarkBlue'
@@ -58,6 +58,8 @@ export interface SvgProps {
   className?: string;
   onClick?: () => void;
   colour?: string;
+  height?: number;
+  width?: number;
 }
 
 export interface BackLinkProps {

@@ -83,7 +83,7 @@ const ResetPassword: FC = () => {
               <p>Please enter the verification code sent to your email address.</p>
               <VerificationInput
                 value={verificationCode}
-                onChange={(input) => {
+                onChange={(input: string) => {
                   if (input.match(/^[0-9]*$/)) {
                     setVerificationCode(input);
                   }

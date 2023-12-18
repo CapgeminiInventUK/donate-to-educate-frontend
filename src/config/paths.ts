@@ -5,6 +5,7 @@ enum Paths {
   DONATE = '/donate',
   LOGIN = '/login',
   ADMIN_DASHBOARD = '/admin-dashboard',
+  LOCAL_AUTHORITY_DASHBOARD = '/local-authority-dashboard',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',
@@ -16,6 +17,7 @@ enum Paths {
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
   RESET_PASSWORD = '/reset-password',
   FORM = '/form',
+  ADD_USER = '/add-user',
 }
 
 export default Paths;

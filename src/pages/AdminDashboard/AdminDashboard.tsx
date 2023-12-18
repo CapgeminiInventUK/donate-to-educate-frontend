@@ -15,7 +15,9 @@ import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
 import FormButton from '@/components/FormButton/FormButton';
-import { Pill } from '@/components/Pill/Pill';
+import ApprovalRequest from './ApprovalRequest';
+import LocalAuthorityManage from './LocalAuthorityManage';
+import JoinRequests from './JoinRequests';
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
@@ -76,7 +78,7 @@ const AdminDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      {['overview', 'manage_las', 'view_requests'].includes(stage) && (
+      {['overview', 'manage_las', 'view_requests', 'view_la_profile'].includes(stage) && (
         <div className={styles.adminCard}>
           <div className={styles.header}>
             <h1>{getHeader(stage)}</h1>
@@ -147,42 +149,55 @@ const AdminDashboard: FC = () => {
             {stage === 'manage_las' && (
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
-                <div className={styles.laBorder}>{registered} joined</div>
-                <div className={styles.laBorder}>{notRegistered} to join</div>
-                <ul>
-                  {data?.getLocalAuthorities.map((la) => {
-                    return (
-                      <li key={la.name}>
-                        {la.name} -{' '}
-                        {la.registered ? (
-                          <Pill color="blue" text="Joined" />
-                        ) : (
-                          <Pill color="red" text="Not Joined" />
-                        )}{' '}
-                        - Action:
-                        {
-                          <Button
-                            theme="link"
-                            text="Add user"
-                            onClick={(): void => {
-                              setSelectedLa(la.name);
-                              setStage('la_sign_up');
-                            }}
-                          />
-                        }
-                      </li>
-                    );
-                  })}
-                </ul>
+                <LocalAuthorityManage
+                  name={selectedLa}
+                  setStage={setStage}
+                  data={data}
+                  registered={registered}
+                  notRegistered={notRegistered}
+                  setSelectedLa={setSelectedLa}
+                />
+              </>
+            )}
+            {stage === 'view_la_profile' && (
+              <>
+                <BackButton onClick={(): void => setStage('manage_las')} theme="white" />
               </>
             )}
             {stage === 'view_requests' && (
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
+
+                <Button
+                  theme="midBlue"
+                  text="Approve request school"
+                  onClick={(): void => {
+                    setStage('request_approval_school');
+                  }}
+                />
+
+                <Button
+                  theme="midBlue"
+                  text="Approve request charity"
+                  onClick={(): void => {
+                    setStage('request_approval_charity');
+                  }}
+                />
+
+                <JoinRequests
+                  setStage={setStage}
+                  data={data}
+                  name={selectedLa}
+                  setSelectedLa={setSelectedLa}
+                />
               </>
             )}
           </div>
         </div>
+      )}
+      {stage === 'request_approval_school' && <ApprovalRequest setStage={setStage} type="school" />}
+      {stage === 'request_approval_charity' && (
+        <ApprovalRequest setStage={setStage} type="charity" />
       )}
       {stage === 'la_sign_up' && (
         <>
@@ -210,6 +225,8 @@ const getHeader = (stage: string): string => {
       return 'Manage local authorities';
     case 'view_requests':
       return 'Requests to join';
+    case 'view_la_profile':
+      return 'Local Authority Profile';
     default:
       throw new Error(`Unexpected stage`);
   }
