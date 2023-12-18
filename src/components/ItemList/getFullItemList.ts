@@ -1,6 +1,6 @@
 import { ItemsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
 
-interface ItemList {
+export interface ItemList {
   icon: JSX.Element;
   name: string;
   items: string[];
