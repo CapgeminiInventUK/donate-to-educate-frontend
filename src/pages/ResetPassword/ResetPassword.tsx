@@ -12,8 +12,8 @@ import FormButton from '../../components/FormButton/FormButton';
 const ResetPassword: FC = () => {
   const [username, setUsername] = useState('');
 
-  const [newPassword, setNewPassord] = useState('');
-  const [newPasswordRepeat, setNewPassordRepeat] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordRepeat, setNewPasswordRepeat] = useState('');
 
   const [verificationCode, setVerificationCode] = useState('');
   const [stepNumber, setStepNumber] = useState(0);
@@ -108,7 +108,7 @@ const ResetPassword: FC = () => {
               header="New Password"
               password
               onChange={(value): void => {
-                setNewPassord(value);
+                setNewPassword(value);
 
                 if (!(secondErrorText === '')) {
                   setSecondErrorText('');
@@ -119,7 +119,7 @@ const ResetPassword: FC = () => {
               header="Repeat Password"
               password
               onChange={(value): void => {
-                setNewPassordRepeat(value);
+                setNewPasswordRepeat(value);
                 if (!(secondErrorText === '')) {
                   setSecondErrorText('');
                 }
