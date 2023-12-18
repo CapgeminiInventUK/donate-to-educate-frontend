@@ -93,6 +93,7 @@ export interface CheckboxProps {
   label?: string;
   className?: string;
   formMeta?: FormMeta;
+  onChange?: (value: boolean) => void;
 }
 
 export interface CheckmarkProps {
