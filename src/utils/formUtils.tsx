@@ -1,4 +1,5 @@
-import { FormDataItem, FormNames, FormSections } from '@/types/data';
+import { DropdownOption, FormDataItem, FormNames, FormSections } from '@/types/data';
+import { SingleValue } from 'react-select';
 
 const excludedValues = [
   'First name',
@@ -74,4 +75,11 @@ export const checkYourAnswersDataMap = (
     default:
       return {};
   }
+};
+
+export const getValueFromOptionsByLabel = (
+  options: DropdownOption[],
+  valueLabel?: string
+): SingleValue<DropdownOption> | undefined => {
+  return options.find(({ label = '' }) => label === valueLabel);
 };

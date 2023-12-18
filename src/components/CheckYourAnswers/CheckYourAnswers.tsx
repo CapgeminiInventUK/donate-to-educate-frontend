@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CheckYourAnswersProps } from '@/types/props';
 import styles from './CheckYourAnswers.module.scss';
-import { checkYourAnswersDataMap } from '@/utils/checkYourAnswers';
+import { checkYourAnswersDataMap } from '@/utils/formUtils';
 import Button from '../Button/Button';
 
 const CheckYourAnswers: FC<CheckYourAnswersProps> = ({

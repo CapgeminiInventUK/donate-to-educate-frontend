@@ -1,5 +1,5 @@
 import { FormContainerProps } from '@/types/props';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Form.module.scss';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
@@ -11,17 +11,30 @@ const FormContainer: FC<FormContainerProps> = ({
   setPageNumber,
   formData,
 }) => {
-  const onButtonClick = (): void => {
-    if (pageNumber < formTemplate.length - 1) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
+  const [navigationFromCya, setNavigationFromCya] = useState(false);
+  const [cyaPageNumber, setCyaPageNumber] = useState<number>();
 
   const {
     header = undefined,
     subHeader = undefined,
     formComponents = [],
   } = formTemplate[pageNumber];
+
+  useEffect(() => {
+    if (header === 'Check your Answers') {
+      setCyaPageNumber(pageNumber);
+      setNavigationFromCya(true);
+    }
+  }, [header, pageNumber]);
+
+  const onButtonClick = (): void => {
+    if (navigationFromCya && cyaPageNumber) {
+      return setPageNumber(cyaPageNumber);
+    }
+    if (pageNumber < formTemplate.length - 1) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
 
   return (
     <div className={styles.formContainer}>

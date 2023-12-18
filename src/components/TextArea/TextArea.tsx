@@ -11,13 +11,12 @@ const TextArea: FC<TextAreaProps> = ({
   hint,
   characterLimit,
   formMeta,
+  value,
 }) => {
-  const [value, setValue] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const inputValue = event.target.value;
-    setValue(inputValue);
     setCharacterCount(inputValue.length);
     if (onChange) {
       onChange(inputValue, formMeta);
