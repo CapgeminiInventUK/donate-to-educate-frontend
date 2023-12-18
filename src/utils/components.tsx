@@ -3,6 +3,7 @@ import { ComponentDataPropsType, ComponentType, FormDataItem } from '@/types/dat
 import {
   CheckYourAnswersProps,
   CheckboxProps,
+  CommonInputProps,
   DropdownProps,
   FormIntroPageProps,
   RadioGroupProps,
@@ -16,6 +17,7 @@ import TextArea from '@/components/TextArea/TextArea';
 import Dropdown from '@/components/Dropdown/Dropdown';
 import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
+import { findValueFromFormData } from './formUtils';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -23,19 +25,22 @@ export const createFormComponent = (
   componentData?: ComponentDataPropsType,
   setPageNumber?: Dispatch<SetStateAction<number>>
 ): ReactNode => {
+  const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+
+  const value = findValueFromFormData(formData, field);
   switch (componentType) {
     case ComponentType.INTRO:
       return <FormIntroPage {...(componentData as FormIntroPageProps)} />;
     case ComponentType.TEXT:
-      return <TextInput {...(componentData as TextInputProps)} />;
+      return <TextInput {...(componentData as TextInputProps)} value={String(value)} />;
     case ComponentType.TEXTAREA:
-      return <TextArea {...(componentData as TextAreaProps)} />;
+      return <TextArea {...(componentData as TextAreaProps)} value={String(value)} />;
     case ComponentType.RADIO:
       return <RadioGroup {...(componentData as RadioGroupProps)} />;
     case ComponentType.CHECKBOX:
       return <Checkbox {...(componentData as CheckboxProps)} />;
     case ComponentType.DROPDOWN:
-      return <Dropdown {...(componentData as DropdownProps)} />;
+      return <Dropdown {...(componentData as DropdownProps)} value={String(value)} />;
     case ComponentType.CYA:
       return (
         <CheckYourAnswers

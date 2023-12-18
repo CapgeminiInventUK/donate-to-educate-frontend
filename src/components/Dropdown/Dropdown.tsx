@@ -4,6 +4,7 @@ import { DropdownProps } from '@/types/props';
 import Select, { SingleValue } from 'react-select';
 import { DropdownOption } from '@/types/data';
 import './ReactSelectOverrides.scss';
+import { getValueFromOptionsByLabel } from '@/utils/formUtils';
 
 const Dropdown: FC<DropdownProps> = ({
   header,
@@ -12,8 +13,9 @@ const Dropdown: FC<DropdownProps> = ({
   onChange,
   isLarge,
   formMeta,
+  value,
 }) => {
-  const [dropDownValue, setDropdownValue] = useState<SingleValue<DropdownOption>>();
+  const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
@@ -30,7 +32,7 @@ const Dropdown: FC<DropdownProps> = ({
         options={options}
         onChange={handleSelect}
         value={dropDownValue}
-        placeholder={''}
+        placeholder={value}
       />
     </div>
   );

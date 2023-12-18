@@ -92,6 +92,7 @@ export interface ClickableLogoProps {
 export interface CheckboxProps {
   label?: string;
   className?: string;
+  formMeta?: FormMeta;
   onChange?: (value: boolean) => void;
 }
 
@@ -114,6 +115,7 @@ export interface RadioGroupProps {
   values: string[];
   labels?: string[];
   className?: string;
+  formMeta?: FormMeta;
 }
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
@@ -139,6 +141,7 @@ export interface CommonInputProps {
   placeholder?: string;
   onChange?: (value: string, meta?: FormMeta) => void;
   formMeta?: FormMeta;
+  value?: string;
 }
 
 export interface TextInputProps extends CommonInputProps {
@@ -184,4 +187,5 @@ export interface CheckYourAnswersProps {
   formName: FormNames;
   formData?: FormDataItem[];
   setPageNumber?: Dispatch<SetStateAction<number>>;
+  formMeta: FormMeta;
 }
