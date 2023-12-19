@@ -29,7 +29,10 @@ const getKeyFromType = (type: string): string => {
 const SchoolEdit: FC = () => {
   const [type, setType] = useState<ItemsIconType>('tick');
   const [preview, setPreview] = useState(false);
-  const { banner, helpBannerTitle, helpBannerBody } = getPageText(type);
+  const { banner, helpBannerTitle, helpBannerBody, whatToExpect, actionText } = getPageText(type);
+  const [whatToExpectText, setWhatToExpectText] = useState(whatToExpect);
+  const [actionDescription, setActionDescription] = useState(actionText);
+  const [items, setItems] = useState<Record<string, SectionsIconType>>({});
 
   // TODO need to make the query key unique for each school
   const { isLoading, data } = useQuery({
@@ -45,9 +48,6 @@ const SchoolEdit: FC = () => {
       return data;
     },
   });
-
-  // TODO default items loaded from API call.
-  const [items, setItems] = useState<Record<string, SectionsIconType>>({});
 
   const { refetch } = useQuery({
     queryKey: ['saveProfile'],
@@ -85,6 +85,14 @@ const SchoolEdit: FC = () => {
     }
   }, [isLoading, type, data?.getSchoolProfile]);
 
+  useEffect(() => {
+    setWhatToExpectText(whatToExpect);
+  }, [whatToExpect]);
+
+  useEffect(() => {
+    setActionDescription(actionText);
+  }, [actionText]);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -106,18 +114,12 @@ const SchoolEdit: FC = () => {
             </div>
             <div className={styles.whatToExpect}>
               <h2>What to expect</h2>
-              <p>
-                View the products we have in stock. While we update our stock levels regularly, they
-                may change daily.{' '}
-              </p>
+              <p>{whatToExpectText}</p>
               <FormButton text={'Edit'} onClick={(): void => undefined} theme="formButtonGrey" />
             </div>
             <ItemListEdit setItems={setItems} items={items} />
             <div className={styles.helpContact}>
-              <p>
-                Once we have your request for the products you need, we&apos;ll contact you to
-                arrange the next steps as soon as we can.
-              </p>
+              <p>{actionDescription}</p>
               <FormButton text={'Edit'} onClick={(): void => undefined} theme="formButtonGrey" />
             </div>
             <div className={styles.actionButtons}>
@@ -170,7 +172,13 @@ const SchoolEdit: FC = () => {
 
 const getPageText = (
   type: ItemsIconType
-): { banner: string; helpBannerTitle: string; helpBannerBody: string } => {
+): {
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+} => {
   switch (type) {
     case 'tick':
       return {
@@ -178,6 +186,10 @@ const getPageText = (
         helpBannerTitle: 'Build your request products page',
         helpBannerBody:
           'Tell your visitors what to expect when they request products. Include your collection or delivery times to manage their expectations. Select which products you have in stock and include details, if you need them.',
+        whatToExpect:
+          'View the products we have in stock. While we update our stock levels regularly, they may change daily.',
+        actionText:
+          "Once we have your request for the products you need, we'll contact you to arrange the next steps as soon as we can.",
       };
     case 'heart':
       return {
@@ -185,6 +197,10 @@ const getPageText = (
         helpBannerTitle: 'Build your donate products page',
         helpBannerBody:
           'Select the products your school needs so that charities and volunteer groups know what to donate',
+        whatToExpect:
+          "View the products we need. When you select 'donate', you can tell us how you can help.",
+        actionText:
+          "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
       };
     case 'plus':
       return {
@@ -192,6 +208,10 @@ const getPageText = (
         helpBannerTitle: 'Build your extra stock page',
         helpBannerBody:
           'Select the products you have too much of so that charities and volunteer groups can help share it with people that need it.',
+        whatToExpect:
+          'View the products we have too much of, take it from us and share it with people who need it.',
+        actionText:
+          "Once we know what extra stock you can take from us, we'll contact you to arrange the next steps as soon as we can.",
       };
     default:
       throw new Error(`Unknown type ${String(type)}`);
