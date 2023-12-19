@@ -119,7 +119,7 @@ export const getFullItemList = (): ItemList[] => {
         'Toothpaste',
         'Shampoo',
         'Conditioner',
-        'Reusable sanitary products',
+        'Reusable period care',
       ].sort(),
     },
     {

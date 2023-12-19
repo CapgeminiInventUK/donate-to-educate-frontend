@@ -33,11 +33,15 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
+                const checkValue = item in items && name === items[item];
                 return (
-                  <li key={`${name}-${item}-edit`} className={styles.listItem}>
+                  <li
+                    key={`${name}-${item}-edit`}
+                    className={`${styles.listItem} ${checkValue ? styles.bold : ''}`}
+                  >
                     <Checkbox
                       onChange={(checked) => handleToggle(checked, item, name)}
-                      value={item in items && name === items[item]}
+                      value={checkValue}
                     />
                     <span>{item}</span>
                   </li>
