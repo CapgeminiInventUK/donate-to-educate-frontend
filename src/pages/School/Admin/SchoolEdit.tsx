@@ -85,9 +85,6 @@ const SchoolEdit: FC = () => {
     }
   }, [isLoading, type, data?.getSchoolProfile]);
 
-  // eslint-disable-next-line no-console
-  console.log(data, items);
-
   if (isLoading) {
     return <Spinner />;
   }
