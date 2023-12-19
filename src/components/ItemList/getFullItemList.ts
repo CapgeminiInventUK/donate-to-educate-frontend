@@ -1,17 +1,14 @@
-import { ItemsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { SectionsIconType } from './getIcons';
 
 export interface ItemList {
-  icon: JSX.Element;
-  name: string;
+  name: SectionsIconType;
   items: string[];
-  itemIcon: JSX.Element;
 }
 [];
 
-export const getFullItemList = (type: ItemsIconType): ItemList[] => {
+export const getFullItemList = (): ItemList[] => {
   return [
     {
-      icon: getSectionsIcon('shirt'),
       name: 'Clothing and uniform',
       items: [
         'Coats',
@@ -37,10 +34,8 @@ export const getFullItemList = (type: ItemsIconType): ItemList[] => {
         'Pinafores',
         'Summer pinafores',
       ].sort(),
-      itemIcon: getItemsIcon(type),
     },
     {
-      icon: getSectionsIcon('ball'),
       name: 'Sports',
       items: [
         'Football boots',
@@ -64,10 +59,8 @@ export const getFullItemList = (type: ItemsIconType): ItemList[] => {
         'Shin pads',
         'Water bottle',
       ].sort(),
-      itemIcon: getItemsIcon(type),
     },
     {
-      icon: getSectionsIcon('brush'),
       name: 'Art and music',
       items: [
         'Sketch books',
@@ -85,10 +78,8 @@ export const getFullItemList = (type: ItemsIconType): ItemList[] => {
         'Guitars',
         'Music score books',
       ].sort(),
-      itemIcon: getItemsIcon(type),
     },
     {
-      icon: getSectionsIcon('book'),
       name: 'Study',
       items: [
         'Book bags',
@@ -116,10 +107,8 @@ export const getFullItemList = (type: ItemsIconType): ItemList[] => {
         'Lined notebook',
         'Compass',
       ].sort(),
-      itemIcon: getItemsIcon(type),
     },
     {
-      icon: getSectionsIcon('sink'),
       name: 'Toiletries',
       items: [
         'Shower gel',
@@ -132,13 +121,10 @@ export const getFullItemList = (type: ItemsIconType): ItemList[] => {
         'Conditioner',
         'Reusable sanitary products',
       ].sort(),
-      itemIcon: getItemsIcon(type),
     },
     {
-      icon: getSectionsIcon('computer'),
       name: 'Computing and technology',
       items: ['Laptops', 'Tablets', 'Computer software', 'Internet access'].sort(),
-      itemIcon: getItemsIcon(type),
     },
   ];
 };

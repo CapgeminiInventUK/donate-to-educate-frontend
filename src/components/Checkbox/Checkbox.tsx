@@ -3,8 +3,8 @@ import styles from './Checkbox.module.scss';
 import { CheckboxProps } from '@/types/props';
 import Checkmark from '@/assets/tiles/Checkmark';
 
-const Checkbox: FC<CheckboxProps> = ({ label, className, onChange }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const Checkbox: FC<CheckboxProps> = ({ label, className, onChange, initialValue = false }) => {
+  const [isChecked, setIsChecked] = useState<boolean>(initialValue);
   return (
     <label>
       <input

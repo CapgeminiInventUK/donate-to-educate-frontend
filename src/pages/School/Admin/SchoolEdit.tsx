@@ -3,13 +3,15 @@ import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
+import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
 import Button from '@/components/Button/Button';
 
 const SchoolEdit: FC = () => {
   const [type, setType] = useState<ItemsIconType>('tick');
   const [preview, setPreview] = useState(false);
   const { banner, helpBannerTitle, helpBannerBody } = getPageText(type);
+  // TODO default items loaded from API call.
+  const [items, setItems] = useState<Record<string, SectionsIconType>>({});
 
   return (
     <div className={styles.container}>
@@ -34,7 +36,7 @@ const SchoolEdit: FC = () => {
               </p>
               <FormButton text={'Edit'} onClick={(): void => undefined} theme="formButtonGrey" />
             </div>
-            <ItemListEdit type={type} />
+            <ItemListEdit setItems={setItems} items={items} />
             <div className={styles.helpContact}>
               <p>
                 Once we have your request for the products you need, we&apos;ll contact you to
@@ -58,7 +60,7 @@ const SchoolEdit: FC = () => {
         )}
         {preview && (
           <>
-            <ItemList type={type} />
+            <ItemList type={type} items={items} />
             <div className={styles.actionButtons}>
               <FormButton
                 theme={'formButtonDarkBlue'}
