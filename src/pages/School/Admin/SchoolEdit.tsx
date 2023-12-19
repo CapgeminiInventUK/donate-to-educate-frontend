@@ -1,17 +1,96 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
 import Button from '@/components/Button/Button';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GetSchoolProfileQuery, UpdateSchoolProfileMutation } from '@/types/api';
+import { updateSchoolProfile } from '@/graphql/mutations';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { getSchoolProfile } from '@/graphql/queries';
+import Spinner from '@/components/Spinner/Spinner';
+
+const getKeyFromType = (type: string): string => {
+  switch (type) {
+    case 'tick':
+      return 'request';
+    case 'heart':
+      return 'donate';
+    case 'plus':
+      return 'excess';
+    default:
+      throw new Error(`Unknown type ${type}`);
+  }
+};
 
 const SchoolEdit: FC = () => {
   const [type, setType] = useState<ItemsIconType>('tick');
   const [preview, setPreview] = useState(false);
   const { banner, helpBannerTitle, helpBannerBody } = getPageText(type);
+
+  // TODO need to make the query key unique for each school
+  const { isLoading, data } = useQuery({
+    queryKey: ['profile'],
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
+        query: getSchoolProfile,
+        variables: {
+          name: 'Test School Profile',
+        },
+      });
+
+      return data;
+    },
+  });
+
   // TODO default items loaded from API call.
   const [items, setItems] = useState<Record<string, SectionsIconType>>({});
+
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+        query: updateSchoolProfile,
+        variables: {
+          key: getKeyFromType(type),
+          name: 'Test School Profile',
+          value: JSON.stringify(items),
+        },
+      });
+
+      return result;
+    },
+  });
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (data?.getSchoolProfile && getKeyFromType(type) in (data?.getSchoolProfile ?? {})) {
+        const { donate, request, excess } = data.getSchoolProfile;
+        switch (type) {
+          case 'tick':
+            setItems(request ? (JSON.parse(request) as Record<string, SectionsIconType>) : {});
+            break;
+          case 'heart':
+            setItems(donate ? (JSON.parse(donate) as Record<string, SectionsIconType>) : {});
+            break;
+          case 'plus':
+            setItems(excess ? (JSON.parse(excess) as Record<string, SectionsIconType>) : {});
+            break;
+        }
+      }
+    }
+  }, [isLoading, type, data?.getSchoolProfile]);
+
+  // eslint-disable-next-line no-console
+  console.log(data, items);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -52,7 +131,13 @@ const SchoolEdit: FC = () => {
               />
               <FormButton
                 theme={'formButtonMidBlue'}
-                onClick={(): void => undefined}
+                onClick={(): void => {
+                  refetch()
+                    // eslint-disable-next-line no-console
+                    .then(console.log)
+                    // eslint-disable-next-line no-console
+                    .catch(console.error);
+                }}
                 text={'Save'}
               />
             </div>
@@ -69,7 +154,13 @@ const SchoolEdit: FC = () => {
               />
               <FormButton
                 theme={'formButtonMidBlue'}
-                onClick={(): void => undefined}
+                onClick={(): void => {
+                  refetch()
+                    // eslint-disable-next-line no-console
+                    .then(console.log)
+                    // eslint-disable-next-line no-console
+                    .catch(console.error);
+                }}
                 text={'Save'}
               />
             </div>

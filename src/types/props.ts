@@ -95,6 +95,7 @@ export interface CheckboxProps {
   formMeta?: FormMeta;
   onChange?: (value: boolean) => void;
   initialValue?: boolean;
+  value?: boolean;
 }
 
 export interface CheckmarkProps {

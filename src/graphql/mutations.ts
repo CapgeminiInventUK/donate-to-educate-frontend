@@ -33,3 +33,11 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
   APITypes.RegisterLocalAuthorityMutationVariables,
   APITypes.RegisterLocalAuthorityMutation
 >;
+export const updateSchoolProfile =
+  /* GraphQL */ `mutation UpdateSchoolProfile($name: String!, $key: String!, $value: String!) {
+  updateSchoolProfile(name: $name, key: $key, value: $value)
+}
+` as GeneratedMutation<
+    APITypes.UpdateSchoolProfileMutationVariables,
+    APITypes.UpdateSchoolProfileMutation
+  >;

@@ -26,6 +26,13 @@ export type School = {
   registered: boolean;
 };
 
+export type SchoolProfile = {
+  __typename: 'SchoolProfile';
+  request?: string | null;
+  donate?: string | null;
+  excess?: string | null;
+};
+
 export type getAdminPageRequestsQueryVariables = {};
 
 export type getAdminPageRequestsQuery = {
@@ -57,6 +64,16 @@ export type RegisterLocalAuthorityMutationVariables = {
 
 export type RegisterLocalAuthorityMutation = {
   registerLocalAuthority: boolean;
+};
+
+export type UpdateSchoolProfileMutationVariables = {
+  name: string;
+  key: string;
+  value: string;
+};
+
+export type UpdateSchoolProfileMutation = {
+  updateSchoolProfile: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -105,26 +122,35 @@ export type GetSchoolsQuery = {
 export type GetLocalAuthoritiesQueryVariables = {};
 
 export type GetLocalAuthoritiesQuery = {
-  getLocalAuthorities: Array<GetLocalAuthority>;
-};
-
-export type GetLocalAuthority = {
-  __typename: 'LocalAuthority';
-  code: string;
-  name: string;
-  registered: boolean;
+  getLocalAuthorities: Array<{
+    __typename: 'LocalAuthority';
+    code: string;
+    name: string;
+    registered: boolean;
+  }>;
 };
 
 export type GetJoinRequestsQueryVariables = {};
 
 export type GetJoinRequestsQuery = {
-  getJoinRequests: Array<GetJoinRequest>;
+  getJoinRequests: Array<{
+    __typename: 'JoinRequest';
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
+  }>;
 };
 
-export type GetJoinRequest = {
-  __typename: 'JoinRequest';
+export type GetSchoolProfileQueryVariables = {
   name: string;
-  localAuthority: string;
-  type: string;
-  requestTime: number;
+};
+
+export type GetSchoolProfileQuery = {
+  getSchoolProfile: {
+    __typename: 'SchoolProfile';
+    request?: string | null;
+    donate?: string | null;
+    excess?: string | null;
+  };
 };

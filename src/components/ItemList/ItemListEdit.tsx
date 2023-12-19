@@ -33,11 +33,15 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
+                if (item === 'Cardigans') {
+                  // eslint-disable-next-line no-console
+                  console.log(item, items, name, item in items && name === items[item]);
+                }
                 return (
                   <li key={`${name}-${item}-edit`} className={styles.listItem}>
                     <Checkbox
                       onChange={(checked) => handleToggle(checked, item, name)}
-                      initialValue={item in items && name === items[item]}
+                      value={item in items && name === items[item]}
                     />
                     <span>{item}</span>
                   </li>

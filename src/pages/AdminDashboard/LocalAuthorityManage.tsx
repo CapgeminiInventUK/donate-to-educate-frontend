@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './LocalAuthorityManage.module.scss';
 import Button from '@/components/Button/Button';
-import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, GetLocalAuthority } from '@/types/api';
+import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { Pill } from '@/components/Pill/Pill';
 import { Table } from 'antd';
@@ -36,7 +36,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
     },
     {
       title: 'Action',
-      render: (_: unknown, la: GetLocalAuthority) =>
+      render: (_: unknown, la: LocalAuthority) =>
         la.registered ? (
           <div className={styles.actionsContainer}>
             <Button
