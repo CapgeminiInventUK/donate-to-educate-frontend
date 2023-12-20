@@ -79,8 +79,6 @@ const AdminDashboard: FC = () => {
     return <Spinner />;
   }
 
-  //data?.getJoinRequests[0].
-
   return (
     <div className={styles.container}>
       {['overview', 'manage_las', 'view_requests', 'view_la_profile'].includes(stage) && (
@@ -175,22 +173,6 @@ const AdminDashboard: FC = () => {
             {stage === 'view_requests' && (
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
-
-                {/* <Button
-                  theme="midBlue"
-                  text="Approve request school"
-                  onClick={(): void => {
-                    setStage('request_approval_school');
-                  }}
-                />
-
-                <Button
-                  theme="midBlue"
-                  text="Approve request charity"
-                  onClick={(): void => {
-                    setStage('request_approval_charity');
-                  }}
-                /> */}
 
                 <JoinRequests
                   setStage={setStage}
