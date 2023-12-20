@@ -23,6 +23,8 @@ import JoinRequests from './JoinRequests';
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
   const [selectedLa, setSelectedLa] = useState('');
+  const [schoolOrCharityName, setSchoolOrCharityName] = useState('');
+
   const navigate = useNavigate();
   const [shouldSignOut, setShouldSignOut] = useState(false);
 
@@ -75,6 +77,8 @@ const AdminDashboard: FC = () => {
   if (shouldSignOut) {
     return <Spinner />;
   }
+
+  //data?.getJoinRequests[0].
 
   return (
     <div className={styles.container}>
@@ -168,7 +172,7 @@ const AdminDashboard: FC = () => {
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
 
-                <Button
+                {/* <Button
                   theme="midBlue"
                   text="Approve request school"
                   onClick={(): void => {
@@ -182,10 +186,11 @@ const AdminDashboard: FC = () => {
                   onClick={(): void => {
                     setStage('request_approval_charity');
                   }}
-                />
+                /> */}
 
                 <JoinRequests
                   setStage={setStage}
+                  setSchoolOrCharityName={setSchoolOrCharityName}
                   data={data}
                   name={selectedLa}
                   setSelectedLa={setSelectedLa}
@@ -195,9 +200,11 @@ const AdminDashboard: FC = () => {
           </div>
         </div>
       )}
-      {stage === 'request_approval_school' && <ApprovalRequest setStage={setStage} type="school" />}
+      {stage === 'request_approval_school' && (
+        <ApprovalRequest setStage={setStage} type="school" name={schoolOrCharityName} />
+      )}
       {stage === 'request_approval_charity' && (
-        <ApprovalRequest setStage={setStage} type="charity" />
+        <ApprovalRequest setStage={setStage} type="charity" name={schoolOrCharityName} />
       )}
       {stage === 'la_sign_up' && (
         <>
