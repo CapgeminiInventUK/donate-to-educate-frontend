@@ -266,6 +266,9 @@ const Form: FC = () => {
           componentData: {
             sections: [FormSections.YOUR_DETAILS_SECTION, FormSections.CHARITY_SECTION],
             formName: FormNames.JOIN,
+            formMeta: {
+              page: 5,
+            },
           },
         },
       ],

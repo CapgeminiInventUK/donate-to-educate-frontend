@@ -48,7 +48,7 @@ module.exports = {
     ],
     'jsx-quotes': [2, 'prefer-double'],
     '@typescript-eslint/func-call-spacing': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
     '@typescript-eslint/await-thenable': 'off',
   },
   overrides: [

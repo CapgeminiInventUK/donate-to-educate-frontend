@@ -44,24 +44,45 @@
           padding: 30px 40px;
           margin: 10px;
           width: 380px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
 
-          .laBorder {
+        .la {
+          border-color: g.$primary-light-blue;
+
+          .border {
             border-left: solid 10px g.$primary-light-blue;
             padding-left: 20px;
           }
+        }
 
-          .requestsBorder {
+        .requests {
+          border-color: g.$secondary-blue;
+
+          .border {
             border-left: solid 10px g.$secondary-blue;
             padding-left: 20px;
           }
         }
 
-        .la {
-          border-color: g.$primary-light-blue;
+        .schools {
+          border-color: g.$primary-mid-blue;
+
+          .border {
+            border-left: solid 10px g.$primary-mid-blue;
+            padding-left: 20px;
+          }
         }
 
-        .requests {
-          border-color: g.$secondary-blue;
+        .charities {
+          border-color: g.$secondary-green;
+
+          .border {
+            border-left: solid 10px g.$secondary-green;
+            padding-left: 20px;
+          }
         }
       }
 

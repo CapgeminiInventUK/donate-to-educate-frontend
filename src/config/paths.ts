@@ -18,6 +18,7 @@ enum Paths {
   RESET_PASSWORD = '/reset-password',
   FORM = '/form',
   ADD_USER = '/add-user',
+  SCHOOL_EDIT = '/school-edit',
 }
 
 export default Paths;

@@ -1,4 +1,4 @@
-import { GetJoinRequest, GetJoinRequestsQuery } from '@/types/api';
+import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
 import styles from './JoinRequests.module.scss';
 import Button from '@/components/Button/Button';
 import { Table } from 'antd';
@@ -27,7 +27,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
     },
     {
       title: 'Action',
-      render: (_: unknown, joinRequest: GetJoinRequest) => (
+      render: (_: unknown, joinRequest: JoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button
             theme="link-blue"
