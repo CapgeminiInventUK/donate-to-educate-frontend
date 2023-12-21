@@ -1,10 +1,13 @@
-import { FC } from 'react';
+import { FC, useRef, useState } from 'react';
 import styles from './LocalAuthorityManage.module.scss';
 import Button from '@/components/Button/Button';
 import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { Pill } from '@/components/Pill/Pill';
-import { Table } from 'antd';
+import Highlighter from 'react-highlight-words';
+import { Button as SearchButton, Input, Space, Table, InputRef } from 'antd';
+import { SearchOutlined, FilterFilled } from '@ant-design/icons';
+import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
 
 interface LocalAuthorityManageProps {
   name: string;
@@ -22,15 +25,113 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
   setSelectedLa,
   setStage,
 }) => {
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef<InputRef>(null);
+
+  const handleSearch = (
+    selectedKeys: string[],
+    confirm: (param?: FilterConfirmProps) => void,
+    dataIndex: string
+  ): void => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters: () => void): void => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex: keyof LocalAuthority): ColumnType<LocalAuthority> => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
+          style={{ marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <SearchButton
+            type="primary"
+            onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </SearchButton>
+          <SearchButton
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Reset
+          </SearchButton>
+          <SearchButton
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            Close
+          </SearchButton>
+        </Space>
+      </div>
+    ),
+    filterIcon: () => <SearchOutlined className={styles.filterIcon} />,
+    onFilter: (value, record): boolean => {
+      return record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes((value as string).toLowerCase());
+    },
+    onFilterDropdownOpenChange: (visible): void => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text: string) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+
   const columns = [
     {
       title: 'Local authority',
       dataIndex: 'name',
       key: 'name',
+      ...getColumnSearchProps('name'),
     },
     {
       title: 'Status',
       dataIndex: 'registered',
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
+      onFilter: (value: boolean | React.Key, record: LocalAuthority): boolean =>
+        record.registered === value,
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean) =>
         registered ? <Pill color="blue" text="Joined" /> : <Pill color="red" text="Not Joined" />,
     },
@@ -78,6 +179,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
       <div className={styles.lasCard}>
         <div className={styles.laBorder}>{registered} joined</div>
         <div className={styles.laBorder}>{notRegistered} to join</div>
+        <br />
 
         <Table
           className={styles.lasTable}
