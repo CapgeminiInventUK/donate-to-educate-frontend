@@ -3,7 +3,7 @@
 .schoolsTable {
   background: g.$primary-white;
   border-radius: 10px;
-  border-top: 18px solid transparent;
+  border-top: 18px solid g.$secondary-blue;
   color: g.$primary-dark-blue;
   padding: 30px 40px;
   margin: 10px;
@@ -28,4 +28,31 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+.filterIcon {
+  color: g.$primary-white;
+}
+
+.sorters {
+  display: flex;
+  flex-direction: column;
+
+  svg {
+    height: 10px;
+    margin: -1px;
+  }
+
+  .sortActive {
+    color: g.$primary-dark-blue;
+  }
+}
+
+.tableTitle {
+  color: g.$primary-dark-blue;
+}
+
+.requestsLeftBorder {
+  border-left: solid 10px g.$secondary-blue;
+  padding-left: 20px;
 }
