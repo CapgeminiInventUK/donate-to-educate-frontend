@@ -41,6 +41,19 @@
   border: g.$primary-mid-blue 1px solid;
 }
 
+.outline-light {
+  @extend %button;
+  border: g.$primary-white 2px solid;
+  color: g.$primary-white;
+  background-color: transparent;
+}
+
+.light {
+  @extend %button;
+  background-color: g.$primary-white;
+  border: g.$primary-white 2px solid;
+}
+
 .disabled {
   background-color: g.$greyscale-disabled;
   border: g.$greyscale-disabled-border 1px solid;
