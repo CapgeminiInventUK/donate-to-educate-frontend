@@ -190,7 +190,7 @@ const ManageLocalAuthorities: FC = () => {
               className={styles.actionButtons}
               text="Add user"
               onClick={(): void => {
-                navigate(`${Paths.ADMIN_DASHBOARD_SIGN_UP}?laName=${la.name}`);
+                navigate(`${Paths.ADMIN_DASHBOARD_SIGN_UP}?la=${la.name}`);
               }}
             />
           </div>

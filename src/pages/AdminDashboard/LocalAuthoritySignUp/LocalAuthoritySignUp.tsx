@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
@@ -38,17 +38,18 @@ const LocalAuthoritySignUp: FC = () => {
     notes: '',
   });
 
-  const { laName } = useParams();
   const navigate = useNavigate();
+  const params = useLocation().search;
+  const la = new URLSearchParams(params).get('la');
 
   useEffect(() => {
-    if (laName) {
+    if (la) {
       setFormState((prevState) => ({
         ...prevState,
-        name: laName,
+        name: la,
       }));
     }
-  }, [formState, laName]);
+  }, [la]);
 
   const { refetch } = useQuery({
     queryKey: ['register'],
@@ -92,7 +93,7 @@ const LocalAuthoritySignUp: FC = () => {
       <div className={dashboardStyles.body}>
         <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)} theme="white" />
         <div className={styles.card}>
-          <h1>{laName}</h1>
+          <h1>{la}</h1>
           <hr />
           <TextInput
             header="First name"
