@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
@@ -15,9 +15,20 @@ import { RegisterLocalAuthorityMutation } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
 
+interface FormState {
+  name: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  department: string;
+  email: string;
+  phone: string;
+  notes: string;
+}
+
 const LocalAuthoritySignUp: FC = () => {
-  const [formState, setFormState] = useState({
-    name,
+  const [formState, setFormState] = useState<FormState>({
+    name: '',
     firstName: '',
     lastName: '',
     jobTitle: '',
@@ -27,7 +38,17 @@ const LocalAuthoritySignUp: FC = () => {
     notes: '',
   });
 
+  const { laName } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (laName) {
+      setFormState((prevState) => ({
+        ...prevState,
+        name: laName,
+      }));
+    }
+  }, [formState, laName]);
 
   const { refetch } = useQuery({
     queryKey: ['register'],
@@ -46,7 +67,6 @@ const LocalAuthoritySignUp: FC = () => {
           notes: formState.notes,
         },
       });
-
       return result;
     },
   });
@@ -72,7 +92,7 @@ const LocalAuthoritySignUp: FC = () => {
       <div className={dashboardStyles.body}>
         <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)} theme="white" />
         <div className={styles.card}>
-          <h1>NAME</h1>
+          <h1>{laName}</h1>
           <hr />
           <TextInput
             header="First name"
