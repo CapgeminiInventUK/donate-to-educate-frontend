@@ -6,30 +6,54 @@ import { FilterConfirmProps } from 'antd/es/table/interface';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined, FilterFilled } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
+import { signOut } from 'aws-amplify/auth';
+import { getAdminPageRequests } from '@/graphql/composite';
+import { client } from '@/graphqlClient';
+import { useQuery } from '@tanstack/react-query';
 import { Pill } from '@/components/Pill/Pill';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
+import Spinner from '@/components/Spinner/Spinner';
 import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
-import Paths from '@/config/paths';
 
-interface ManageLocalAuthoritiesProps {
-  data?: GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>;
-  registered?: number;
-  notRegistered?: number;
-}
-
-const ManageLocalAuthorities: FC<ManageLocalAuthoritiesProps> = ({
-  registered,
-  notRegistered,
-  data,
-}) => {
+const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
 
   const navigate = useNavigate();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['la'],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
+      >({
+        query: getAdminPageRequests,
+      });
+
+      return data;
+    },
+  });
+
+  const { registered, notRegistered } =
+    data?.getLocalAuthorities.reduce(
+      (acc, la) => {
+        if (la.registered) {
+          acc.registered++;
+        } else {
+          acc.notRegistered++;
+        }
+        return acc;
+      },
+      {
+        registered: 0,
+        notRegistered: 0,
+      }
+    ) ?? {};
 
   const handleSearch = (
     selectedKeys: string[],
@@ -184,27 +208,33 @@ const ManageLocalAuthorities: FC<ManageLocalAuthoritiesProps> = ({
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              return;
-            }} // setShouldSignOut(true)}
+              void signOut()
+                .then(() => navigate(Paths.LOGIN))
+                // eslint-disable-next-line no-console
+                .catch(console.error);
+            }}
           />
         </div>
       </div>
       <div className={dashboardStyles.body}>
         <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)} theme="white" />
-        <div className={styles.cardContainer}>
-          <div className={styles.lasCard}>
-            <div className={styles.laBorder}>{registered} joined</div>
-            <div className={styles.laBorder}>{notRegistered} to join</div>
-            <br />
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div className={styles.cardContainer}>
+            <div className={styles.lasCard}>
+              <div className={styles.laBorder}>{registered} joined</div>
+              <div className={styles.laBorder}>{notRegistered} to join</div>
+              <br />
 
-            <Table
-              className={styles.lasTable}
-              dataSource={data?.getLocalAuthorities}
-              columns={columns}
-              scroll={{ x: 'max-content' }}
-            />
+              <Table
+                className={styles.lasTable}
+                dataSource={data?.getLocalAuthorities}
+                columns={columns}
+                scroll={{ x: 'max-content' }}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -1,20 +1,35 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { signOut } from 'aws-amplify/auth';
+import { getAdminPageRequests } from '@/graphql/composite';
+import { client } from '@/graphqlClient';
+import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
-import { GetJoinRequestsQuery } from '@/types/api';
-import JoinRequests from './JoinRequests/JoinRequests';
-import dashboardStyles from '../AdminDashboard.module.scss';
-import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
 import Paths from '@/config/paths';
+import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
+import JoinRequests from './JoinRequests/JoinRequests';
+import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
+import dashboardStyles from '../AdminDashboard.module.scss';
 
-interface RequestsProps {
-  data?: GetJoinRequestsQuery;
-}
-
-const Requests: FC<RequestsProps> = ({ data }) => {
+const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
   const navigate = useNavigate();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['la'],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
+      >({
+        query: getAdminPageRequests,
+      });
+
+      return data;
+    },
+  });
 
   return (
     <div className={dashboardStyles.container}>
@@ -26,13 +41,17 @@ const Requests: FC<RequestsProps> = ({ data }) => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              return;
-            }} // setShouldSignOut(true)}
+              void signOut()
+                .then(() => navigate(Paths.LOGIN))
+                // eslint-disable-next-line no-console
+                .catch(console.error);
+            }}
           />
         </div>
       </div>
       <div className={dashboardStyles.body}>
-        {stage === 'view_requests' && (
+        {isLoading && <Spinner />}
+        {!isLoading && stage === 'view_requests' && (
           <>
             <BackButton
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
@@ -55,10 +74,10 @@ const Requests: FC<RequestsProps> = ({ data }) => {
             <JoinRequests setStage={setStage} data={data} />
           </>
         )}
-        {stage === 'request_approval_school' && (
+        {!isLoading && stage === 'request_approval_school' && (
           <ApprovalRequest setStage={setStage} type="school" />
         )}
-        {stage === 'request_approval_charity' && (
+        {!isLoading && stage === 'request_approval_charity' && (
           <ApprovalRequest setStage={setStage} type="charity" />
         )}
       </div>

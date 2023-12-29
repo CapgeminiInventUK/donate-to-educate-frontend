@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'aws-amplify/auth';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
-import dashboardStyles from '../AdminDashboard.module.scss';
 import Paths from '@/config/paths';
+import dashboardStyles from '../AdminDashboard.module.scss';
 
 const ViewLocalAuthority: FC = () => {
   const navigate = useNavigate();
@@ -18,8 +19,11 @@ const ViewLocalAuthority: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              return;
-            }} // setShouldSignOut(true)}
+              void signOut()
+                .then(() => navigate(Paths.LOGIN))
+                // eslint-disable-next-line no-console
+                .catch(console.error);
+            }}
           />
         </div>
       </div>

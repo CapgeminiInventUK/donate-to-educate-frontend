@@ -1,13 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { signOut } from 'aws-amplify/auth';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { getAdminPageRequests } from '@/graphql/composite';
-import Button from '@/components/Button/Button';
 import { client } from '@/graphqlClient';
+import Button from '@/components/Button/Button';
 import Paths from '@/config/paths';
-import Spinner from '@/components/Spinner/Spinner';
 import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 import styles from './AdminDashboard.module.scss';
@@ -15,7 +14,6 @@ import styles from './AdminDashboard.module.scss';
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
-  const [shouldSignOut, setShouldSignOut] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['la'],
@@ -48,18 +46,6 @@ const AdminDashboard: FC = () => {
 
   // eslint-disable-next-line no-console
   console.log(data, error, registered, notRegistered);
-  useEffect(() => {
-    if (shouldSignOut) {
-      void signOut()
-        .then(() => navigate(Paths.LOGIN))
-        // eslint-disable-next-line no-console
-        .catch(console.error);
-    }
-  }, [shouldSignOut, navigate]);
-
-  if (shouldSignOut) {
-    return <Spinner />;
-  }
 
   return (
     <div className={styles.container}>
@@ -71,7 +57,12 @@ const AdminDashboard: FC = () => {
               theme="link"
               text="Sign out"
               className={styles.actionButtons}
-              onClick={(): void => setShouldSignOut(true)}
+              onClick={(): void => {
+                void signOut()
+                  .then(() => navigate(Paths.LOGIN))
+                  // eslint-disable-next-line no-console
+                  .catch(console.error);
+              }}
             />
           </div>
         </div>

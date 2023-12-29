@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
+import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
 import { registerLocalAuthority } from '@/graphql/mutations';
 import { useQuery } from '@tanstack/react-query';
@@ -9,10 +10,10 @@ import FormButton from '@/components/FormButton/FormButton';
 import TextArea from '@/components/TextArea/TextArea';
 import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
+import Paths from '@/config/paths';
 import { RegisterLocalAuthorityMutation } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
-import Paths from '@/config/paths';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState({
@@ -60,8 +61,11 @@ const LocalAuthoritySignUp: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              return;
-            }} // setShouldSignOut(true)}
+              void signOut()
+                .then(() => navigate(Paths.LOGIN))
+                // eslint-disable-next-line no-console
+                .catch(console.error);
+            }}
           />
         </div>
       </div>

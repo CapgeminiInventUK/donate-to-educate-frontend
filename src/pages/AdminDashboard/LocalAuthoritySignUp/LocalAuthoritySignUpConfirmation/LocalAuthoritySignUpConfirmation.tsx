@@ -1,15 +1,14 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import { signOut } from 'aws-amplify/auth';
 import Button from '@/components/Button/Button';
+import Paths from '@/config/paths';
+import Email from '@/assets/admin/Email';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUpConfirmation.module.scss';
-import Paths from '@/config/paths';
 
 const LocalAuthoritySignUpConfirmation: FC = () => {
-  const icon = 'icon';
-  const title = 'title';
-  const message = 'message';
   const navigate = useNavigate();
 
   return (
@@ -22,15 +21,18 @@ const LocalAuthoritySignUpConfirmation: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              return;
-            }} // setShouldSignOut(true)}
+              void signOut()
+                .then(() => navigate(Paths.LOGIN))
+                // eslint-disable-next-line no-console
+                .catch(console.error);
+            }}
           />
         </div>
       </div>
       <div className={dashboardStyles.body}>
-        {icon}
-        <h2>{title}</h2>
-        {message}
+        <Email />
+        <h2>You have created an account for SELECTED_LA County Council</h2>
+        <p>The main user has been emailed with instructions to set up their profile</p>
         <LogoWhite className={styles.logo} />
         <a onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)}>Return to dashboard</a>
       </div>
