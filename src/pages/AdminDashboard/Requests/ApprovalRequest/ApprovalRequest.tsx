@@ -6,8 +6,8 @@ import BackButton from '@/components/BackButton/BackButton';
 import Email from '@/assets/tiles/Email';
 import Phone from '@/assets/admin/Phone';
 import ToolTip from '@/assets/admin/ToolTip';
-import DeclineModal from './DeclineModal';
-import ResultBanner from './ResultBanner';
+import DeclineModal from './DeclineModal/DeclineModal';
+import ResultBanner from './ResultBanner/ResultBanner';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;

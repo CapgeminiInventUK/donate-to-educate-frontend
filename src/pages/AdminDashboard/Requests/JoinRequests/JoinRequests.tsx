@@ -1,18 +1,16 @@
-import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
-import styles from './JoinRequests.module.scss';
-import Button from '@/components/Button/Button';
-import { Input, InputRef, Space, Table, Button as SearchButton } from 'antd';
 import { FC, useRef, useState } from 'react';
-import { ColumnsType } from 'antd/es/table';
 import Highlighter from 'react-highlight-words';
+import { Input, InputRef, Space, Table, Button as SearchButton } from 'antd';
+import { ColumnsType } from 'antd/es/table';
 import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
 import { SearchOutlined, CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
+import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
+import Button from '@/components/Button/Button';
+import styles from './JoinRequests.module.scss';
 
 interface JoinRequestsProps {
-  name: string;
   setStage: React.Dispatch<React.SetStateAction<string>>;
   data?: GetJoinRequestsQuery;
-  setSelectedLa: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {

@@ -1,33 +1,35 @@
-import { FC, useRef, useState } from 'react';
-import styles from './LocalAuthorityManage.module.scss';
-import Button from '@/components/Button/Button';
-import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import { useState, useRef, FC } from 'react';
+import Highlighter from 'react-highlight-words';
+import { useNavigate } from 'react-router-dom';
+import { Button as SearchButton, Input, InputRef, Space, Table } from 'antd';
+import { FilterConfirmProps } from 'antd/es/table/interface';
+import { ColumnType } from 'antd/es/table';
+import { SearchOutlined, FilterFilled } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { Pill } from '@/components/Pill/Pill';
-import Highlighter from 'react-highlight-words';
-import { Button as SearchButton, Input, Space, Table, InputRef } from 'antd';
-import { SearchOutlined, FilterFilled } from '@ant-design/icons';
-import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
+import Button from '@/components/Button/Button';
+import BackButton from '@/components/BackButton/BackButton';
+import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import dashboardStyles from '../AdminDashboard.module.scss';
+import styles from './ManageLocalAuthorities.module.scss';
+import Paths from '@/config/paths';
 
-interface LocalAuthorityManageProps {
-  name: string;
-  setStage: React.Dispatch<React.SetStateAction<string>>;
+interface ManageLocalAuthoritiesProps {
   data?: GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>;
   registered?: number;
   notRegistered?: number;
-  setSelectedLa: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
+const ManageLocalAuthorities: FC<ManageLocalAuthoritiesProps> = ({
   registered,
   notRegistered,
   data,
-  setSelectedLa,
-  setStage,
 }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
+
+  const navigate = useNavigate();
 
   const handleSearch = (
     selectedKeys: string[],
@@ -145,8 +147,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
               className={styles.actionButtons}
               text="View profile"
               onClick={(): void => {
-                setSelectedLa(la.name);
-                setStage('view_la_profile');
+                navigate(`${Paths.ADMIN_DASHBOARD_LA_VIEW}?la=${la.name}`);
               }}
             />
             <Button
@@ -154,7 +155,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
               className={styles.actionButtons}
               text="Edit users"
               onClick={(): void => {
-                setStage('overview');
+                navigate(Paths.ADMIN_DASHBOARD);
               }}
             />
           </div>
@@ -165,8 +166,7 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
               className={styles.actionButtons}
               text="Add user"
               onClick={(): void => {
-                setSelectedLa(la.name);
-                setStage('la_sign_up');
+                navigate(`${Paths.ADMIN_DASHBOARD_SIGN_UP}?la=${la.name}`);
               }}
             />
           </div>
@@ -175,21 +175,39 @@ const LocalAuthorityManage: FC<LocalAuthorityManageProps> = ({
   ];
 
   return (
-    <div className={styles.cardContainer}>
-      <div className={styles.lasCard}>
-        <div className={styles.laBorder}>{registered} joined</div>
-        <div className={styles.laBorder}>{notRegistered} to join</div>
-        <br />
+    <div className={dashboardStyles.container}>
+      <div className={dashboardStyles.adminCard}>
+        <div className={dashboardStyles.header}>
+          <h1>Manage local authorities</h1>
+          <Button
+            theme="link"
+            text="Sign out"
+            className={dashboardStyles.actionButtons}
+            onClick={(): void => {
+              return;
+            }} // setShouldSignOut(true)}
+          />
+        </div>
+      </div>
+      <div className={dashboardStyles.body}>
+        <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)} theme="white" />
+        <div className={styles.cardContainer}>
+          <div className={styles.lasCard}>
+            <div className={styles.laBorder}>{registered} joined</div>
+            <div className={styles.laBorder}>{notRegistered} to join</div>
+            <br />
 
-        <Table
-          className={styles.lasTable}
-          dataSource={data?.getLocalAuthorities}
-          columns={columns}
-          scroll={{ x: 'max-content' }}
-        />
+            <Table
+              className={styles.lasTable}
+              dataSource={data?.getLocalAuthorities}
+              columns={columns}
+              scroll={{ x: 'max-content' }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default LocalAuthorityManage;
+export default ManageLocalAuthorities;
