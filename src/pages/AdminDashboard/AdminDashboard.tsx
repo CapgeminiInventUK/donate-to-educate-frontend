@@ -20,11 +20,17 @@ import LocalAuthorityManage from './LocalAuthorityManage';
 import JoinRequests from './JoinRequests';
 import { FormButtonThemes } from '@/types/props';
 
+export interface SchoolOrCharityProperties {
+  name: string;
+  la: string;
+}
+
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
   const [selectedLa, setSelectedLa] = useState('');
-  const [schoolOrCharityName, setSchoolOrCharityName] = useState('');
+  const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
+    useState<SchoolOrCharityProperties>({ name: '', la: '' });
 
   const navigate = useNavigate();
   const [shouldSignOut, setShouldSignOut] = useState(false);
@@ -180,7 +186,7 @@ const AdminDashboard: FC = () => {
 
                 <JoinRequests
                   setStage={setStage}
-                  setSchoolOrCharityName={setSchoolOrCharityName}
+                  setSchoolOrCharityProperties={setSchoolOrCharityProperties}
                   data={data}
                   name={selectedLa}
                   setSelectedLa={setSelectedLa}
@@ -191,10 +197,20 @@ const AdminDashboard: FC = () => {
         </div>
       )}
       {stage === 'request_approval_school' && (
-        <ApprovalRequest setStage={setStage} type="school" name={schoolOrCharityName} />
+        <ApprovalRequest
+          setStage={setStage}
+          type="school"
+          name={schoolOrCharityProperties.name}
+          la={schoolOrCharityProperties.la}
+        />
       )}
       {stage === 'request_approval_charity' && (
-        <ApprovalRequest setStage={setStage} type="charity" name={schoolOrCharityName} />
+        <ApprovalRequest
+          setStage={setStage}
+          type="charity"
+          name={schoolOrCharityProperties.name}
+          la={schoolOrCharityProperties.la}
+        />
       )}
       {stage === 'la_sign_up' && (
         <>

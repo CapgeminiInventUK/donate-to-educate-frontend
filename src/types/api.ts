@@ -15,6 +15,7 @@ export type JoinRequest = {
   localAuthority: string;
   type: string;
   requestTime: number;
+  status: string;
 };
 
 export type School = {
@@ -74,6 +75,16 @@ export type UpdateSchoolProfileMutationVariables = {
 
 export type UpdateSchoolProfileMutation = {
   updateSchoolProfile: boolean;
+};
+
+export type UpdateJoinRequestMutationVariables = {
+  localAuthority: string;
+  name: string;
+  status: string;
+};
+
+export type UpdateJoinRequestMutation = {
+  updateJoinRequest: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -139,6 +150,7 @@ export type GetJoinRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+    status: string;
   }>;
 };
 

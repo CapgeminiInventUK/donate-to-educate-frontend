@@ -7,16 +7,17 @@ import { ColumnsType } from 'antd/es/table';
 import Highlighter from 'react-highlight-words';
 import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
 import { SearchOutlined, CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
+import { SchoolOrCharityProperties } from './AdminDashboard';
 
 interface JoinRequestsProps {
   name: string;
   setStage: React.Dispatch<React.SetStateAction<string>>;
-  setSchoolOrCharityName: React.Dispatch<React.SetStateAction<string>>;
+  setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
   data?: GetJoinRequestsQuery;
   setSelectedLa: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityName }) => {
+const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
@@ -143,7 +144,10 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             className={styles.actionButtons}
             text={`View request`}
             onClick={(): void => {
-              setSchoolOrCharityName(joinRequest.name);
+              setSchoolOrCharityProperties({
+                name: joinRequest.name,
+                la: joinRequest.localAuthority,
+              });
               setStage(
                 joinRequest.type === 'school'
                   ? 'request_approval_school'

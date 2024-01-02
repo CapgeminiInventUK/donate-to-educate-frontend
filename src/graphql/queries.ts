@@ -56,6 +56,7 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     localAuthority
     type
     requestTime
+    status
     __typename
   }
 }

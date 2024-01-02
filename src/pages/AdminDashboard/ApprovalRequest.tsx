@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './ApprovalRequest.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import Email from '@/assets/tiles/Email';
@@ -8,19 +8,49 @@ import ResultBanner from './ResultBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import ToolTip from '@/assets/admin/ToolTip';
 import { Pill } from '@/components/Pill/Pill';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from '@aws-amplify/api-graphql';
+import { UpdateJoinRequestMutation } from '@/types/api';
+import { updateJoinRequest } from '@/graphql/mutations';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
   type: 'school' | 'charity';
   name: string;
+  la: string;
 }
 
 type myStageType = 'deciding' | 'approved' | 'denied';
 
-const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type }) => {
+const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la }) => {
   const [showModal, setShowModal] = useState(false);
 
   const [myStage, setMyStage] = useState<myStageType>('deciding');
+
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
+        query: updateJoinRequest,
+        variables: {
+          localAuthority: la,
+          name,
+          status: myStage === 'approved' ? 'APPROVED' : 'DENIED',
+        },
+      });
+
+      return result;
+    },
+  });
+
+  useEffect(() => {
+    if (myStage === 'approved' || myStage === 'denied') {
+      // eslint-disable-next-line no-console
+      refetch().then(console.log).catch(console.error);
+    }
+  }, [myStage, refetch]);
 
   return (
     <>
