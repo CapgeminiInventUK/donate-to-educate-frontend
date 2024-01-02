@@ -25,7 +25,7 @@ const App = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
 
   return (
-    <ConfigProvider theme={{ hashed: false }}>
+    <ConfigProvider theme={{ hashed: false, token: { fontFamily: 'Poppins' } }}>
       <QueryClientProvider client={queryClient}>
         <Suspense>
           <ErrorBoundary name="Generic">

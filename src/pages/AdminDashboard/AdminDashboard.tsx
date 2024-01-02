@@ -86,12 +86,16 @@ const AdminDashboard: FC = () => {
           <div className={styles.header}>
             <h1>{getHeader(stage)}</h1>
             <div>
+              {/*
+              ###
+              Hidden for now might be added back in the future
+              ###
               <Button
                 theme="link"
                 text="Settings"
                 className={styles.actionButtons}
                 onClick={(): void => undefined}
-              />
+              /> */}
               <Button
                 theme="link"
                 text="Sign out"
