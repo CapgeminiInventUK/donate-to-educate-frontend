@@ -24,6 +24,8 @@ import { FormButtonThemes } from '@/types/props';
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
   const [selectedLa, setSelectedLa] = useState('');
+  const [schoolOrCharityName, setSchoolOrCharityName] = useState('');
+
   const navigate = useNavigate();
   const [shouldSignOut, setShouldSignOut] = useState(false);
 
@@ -176,24 +178,9 @@ const AdminDashboard: FC = () => {
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
 
-                <Button
-                  theme="midBlue"
-                  text="Approve request school"
-                  onClick={(): void => {
-                    setStage('request_approval_school');
-                  }}
-                />
-
-                <Button
-                  theme="midBlue"
-                  text="Approve request charity"
-                  onClick={(): void => {
-                    setStage('request_approval_charity');
-                  }}
-                />
-
                 <JoinRequests
                   setStage={setStage}
+                  setSchoolOrCharityName={setSchoolOrCharityName}
                   data={data}
                   name={selectedLa}
                   setSelectedLa={setSelectedLa}
@@ -203,9 +190,11 @@ const AdminDashboard: FC = () => {
           </div>
         </div>
       )}
-      {stage === 'request_approval_school' && <ApprovalRequest setStage={setStage} type="school" />}
+      {stage === 'request_approval_school' && (
+        <ApprovalRequest setStage={setStage} type="school" name={schoolOrCharityName} />
+      )}
       {stage === 'request_approval_charity' && (
-        <ApprovalRequest setStage={setStage} type="charity" />
+        <ApprovalRequest setStage={setStage} type="charity" name={schoolOrCharityName} />
       )}
       {stage === 'la_sign_up' && (
         <>
