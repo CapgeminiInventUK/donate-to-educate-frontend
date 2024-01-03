@@ -34,6 +34,12 @@ export type SchoolProfile = {
   excess?: string | null;
 };
 
+export type SignUpData = {
+  __typename: 'SignUpData';
+  id: string;
+  email: string;
+};
+
 export type getAdminPageRequestsQueryVariables = {};
 
 export type getAdminPageRequestsQuery = {
@@ -85,6 +91,15 @@ export type UpdateJoinRequestMutationVariables = {
 
 export type UpdateJoinRequestMutation = {
   updateJoinRequest: boolean;
+};
+
+export type InsertSignUpDataMutationVariables = {
+  id: string;
+  email: string;
+};
+
+export type InsertSignUpDataMutation = {
+  insertSignUpData: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -165,4 +180,16 @@ export type GetSchoolProfileQuery = {
     donate?: string | null;
     excess?: string | null;
   };
+};
+
+export type GetSignUpDataQueryVariables = {
+  id: string;
+};
+
+export type GetSignUpDataQuery = {
+  getSignUpData?: {
+    __typename: 'SignUpData';
+    id: string;
+    email: string;
+  } | null;
 };

@@ -4,9 +4,15 @@ import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
 import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useSearchParams } from 'react-router-dom';
 import Paths from '@/config/paths';
 import styles from './AddUser.module.scss';
+import Spinner from '@/components/Spinner/Spinner';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from '@aws-amplify/api-graphql';
+import { GetSignUpDataQuery } from '@/types/api';
+import { getSignUpData } from '@/graphql/queries';
 
 interface SignUpParameters {
   password: string;
@@ -60,32 +66,60 @@ async function handleSignUp({ email, password }: SignUpParameters): Promise<stri
 
 const NewUser: FC = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [step, setStep] = useState('SIGN_UP');
   const [verificationCode, setVerificationCode] = useState('');
   const [submitCode, setSubmitCode] = useState(false);
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('id');
+
+  const { isLoading, data } = useQuery({
+    queryKey: [`sign-up-${id}`],
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetSignUpDataQuery>>({
+        query: getSignUpData,
+        variables: {
+          id,
+        },
+      });
+
+      return data;
+    },
+  });
 
   useEffect(() => {
-    if (submitted) {
+    if (submitted && !isLoading) {
+      const email = String(data?.getSignUpData?.email);
       handleSignUp({ email, password })
         .then((step) => setStep(step))
         .catch(console.error);
       setSubmitted(false);
     }
-  }, [submitted, email, password]);
+  }, [submitted, data?.getSignUpData?.email, password, isLoading]);
 
   useEffect(() => {
-    if (submitCode) {
+    if (submitCode && !isLoading) {
+      const email = String(data?.getSignUpData?.email);
       handleConfirmSignUp({ email, code: verificationCode })
         .then((step) => setStep(step))
         .catch(console.error);
       setSubmitCode(false);
     }
-  }, [submitCode, email, verificationCode]);
+  }, [submitCode, data?.getSignUpData?.email, verificationCode, isLoading]);
 
   if (step === 'DONE') {
+    // TODO when done need to delete the entry from the sign up table.
     return <Navigate to={Paths.LOGIN} />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const email = data?.getSignUpData?.email;
+
+  if (email === undefined) {
+    return <Navigate to={Paths.HOME} />;
   }
 
   return (
@@ -94,12 +128,7 @@ const NewUser: FC = () => {
         {step === 'SIGN_UP' && (
           <>
             <h2>Create user</h2>
-            <TextInput
-              header="Email"
-              onChange={(value): void => {
-                setEmail(value);
-              }}
-            />
+            <TextInput header="Email" value={email} disabled />
             <TextInput
               header="Password"
               password

@@ -82,6 +82,10 @@ $modal-backdrop: rgba(17, 53, 111, 0.75);
   box-shadow: 0 4px 4px 0 $box-shadow-black;
   height: 28px;
   width: 300px;
+
+  &:disabled {
+    background-color: $box-shadow-black;
+  }
 }
 
 // Headers

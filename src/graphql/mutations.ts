@@ -56,3 +56,11 @@ export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   APITypes.UpdateJoinRequestMutationVariables,
   APITypes.UpdateJoinRequestMutation
 >;
+export const insertSignUpData =
+  /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!) {
+  insertSignUpData(id: $id, email: $email)
+}
+` as GeneratedMutation<
+    APITypes.InsertSignUpDataMutationVariables,
+    APITypes.InsertSignUpDataMutation
+  >;

@@ -148,6 +148,7 @@ export interface CommonInputProps {
   onChange?: (value: string, meta?: FormMeta) => void;
   formMeta?: FormMeta;
   value?: string;
+  disabled?: boolean;
 }
 
 export interface TextInputProps extends CommonInputProps {

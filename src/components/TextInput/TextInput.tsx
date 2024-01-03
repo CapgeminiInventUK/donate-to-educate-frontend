@@ -13,6 +13,7 @@ const TextInput: FC<TextInputProps> = ({
   isSmall,
   formMeta,
   value,
+  disabled = false,
 }) => {
   const [inputType, setInputType] = useState('password');
 
@@ -43,6 +44,7 @@ const TextInput: FC<TextInputProps> = ({
           isSmall ? styles.inputSmall : ''
         }`}
         placeholder={placeholder ?? ''}
+        disabled={disabled}
       />
     </div>
   );

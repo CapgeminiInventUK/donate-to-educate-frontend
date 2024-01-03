@@ -70,3 +70,11 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
+  getSignUpData(id: $id) {
+    id
+    email
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;
