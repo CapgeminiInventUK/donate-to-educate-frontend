@@ -18,6 +18,7 @@ const FormButton: FC<FormButtonProps> = ({
       case 'formButtonMidBlue':
         return RightArrowWhite;
       case 'formButtonGrey':
+      case 'formButtonDisabled':
         return RightArrowGrey;
       case 'formButtonRed':
         return RightArrowBlue;
@@ -25,7 +26,13 @@ const FormButton: FC<FormButtonProps> = ({
   };
   return (
     <button
-      onClick={onClick}
+      onClick={
+        theme === 'formButtonDisabled'
+          ? (): void => {
+              return;
+            }
+          : onClick
+      }
       className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''}`}
     >
       <span className={styles.text}>{text}</span>

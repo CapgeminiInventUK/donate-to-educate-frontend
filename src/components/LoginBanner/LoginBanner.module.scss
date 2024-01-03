@@ -1,0 +1,20 @@
+@use '@assets/global.scss' as g;
+
+.loginBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: g.$primary-dark-blue;
+  padding: 20px 145px;
+  border-radius: 10px;
+
+  svg {
+    height: 56px;
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .loginBanner {
+    padding: 20px 0px;
+  }
+}

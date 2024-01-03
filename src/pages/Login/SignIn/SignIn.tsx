@@ -1,33 +1,37 @@
-import { SignInOutput, signIn } from 'aws-amplify/auth';
-import TextInput from '../TextInput/TextInput';
 import { FC, useEffect, useState } from 'react';
-import LogoWhite from '@assets/logo/LogoWhite';
-import styles from './SignIn.module.scss';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { SignInOutput, signIn } from 'aws-amplify/auth';
+import FormButton from '@components/FormButton/FormButton';
+import Spinner from '@components/Spinner/Spinner';
+import TextInput from '@components/TextInput/TextInput';
+import LoginBanner from '@/components/LoginBanner/LoginBanner';
 import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
-import Spinner from '../Spinner/Spinner';
-import { Link } from 'react-router-dom';
-import FormButton from '../FormButton/FormButton';
+import { breakpoints } from '@utils/globals';
+import styles from './SignIn.module.scss';
 
 export const SignIn: FC = () => {
-  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const { isLoggedIn, type } = useCheckCurrentUser();
+  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
+  const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
 
   useEffect(() => {
     if (submitted) {
-      userLogin(username, password)
-        .then(() => {
+      userLogin(email, password)
+        .catch(handleError)
+        .finally(() => {
           setSubmitted(false);
-        })
-        .catch(handleError);
+        });
     }
-  }, [submitted, password, username]);
+  }, [submitted, password, email]);
 
   if (isLoggedIn && !submitted && type) {
     navigate(getRedirectUrl(type));
@@ -35,22 +39,22 @@ export const SignIn: FC = () => {
   }
 
   const handleError = (): void => {
-    setValidationMessage('Incorrect username or password');
+    setValidationMessage('Incorrect email or password');
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.loginBanner}>
-        <LogoWhite />
-      </div>
+      <LoginBanner />
       <h2>Sign in</h2>
       <TextInput
-        header="Username"
+        header="Email"
         onChange={(value): void => {
-          if (username !== value) {
-            setUsername(value);
+          if (email !== value) {
+            setEmail(value);
           }
         }}
+        isLarge={isNotMobile}
+        isSmall={isSmallMobile}
       />
       <TextInput
         header="Password"
@@ -60,6 +64,7 @@ export const SignIn: FC = () => {
             setPassword(value);
           }
         }}
+        isSmall={isSmallMobile}
       />
       <Link to={Paths.RESET_PASSWORD} className={styles.forgotPassword}>
         I have forgotten my password
@@ -68,8 +73,12 @@ export const SignIn: FC = () => {
         <span>{validationMessage}</span>
       </div>
       <FormButton
-        text={'Login'}
-        theme={'formButtonDarkBlue'}
+        text={'Sign in'}
+        theme={
+          !submitted && email.length && password.length
+            ? 'formButtonDarkBlue'
+            : 'formButtonDisabled'
+        }
         onClick={(): void => setSubmitted(true)}
         useArrow={true}
       />

@@ -1,16 +1,18 @@
 /* eslint-disable no-console */
 import { FC, useState } from 'react';
-import styles from './ResetPassword.module.scss';
-import LogoWhite from '@/assets/logo/LogoWhite';
-import TextInput from '@/components/TextInput/TextInput';
-import { ConfirmResetPasswordInput, confirmResetPassword, resetPassword } from 'aws-amplify/auth';
-import VerificationInput from 'react-verification-input';
-import Paths from '@/config/paths';
 import { Link } from 'react-router-dom';
-import FormButton from '../../components/FormButton/FormButton';
+import { useMediaQuery } from 'react-responsive';
+import VerificationInput from 'react-verification-input';
+import { ConfirmResetPasswordInput, confirmResetPassword, resetPassword } from 'aws-amplify/auth';
+import Paths from '@/config/paths';
+import TextInput from '@/components/TextInput/TextInput';
+import FormButton from '@/components/FormButton/FormButton';
+import LoginBanner from '@/components/LoginBanner/LoginBanner';
+import { breakpoints } from '@/utils/globals';
+import styles from './ResetPassword.module.scss';
 
 const ResetPassword: FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordRepeat, setNewPasswordRepeat] = useState('');
@@ -21,13 +23,16 @@ const ResetPassword: FC = () => {
   const [firstErrorText, setFirstErrorText] = useState('');
   const [secondErrorText, setSecondErrorText] = useState('');
 
+  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
+  const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
+
   function handleResetPassword(username: string): void {
     resetPassword({ username: username })
       .then(() => {
         setStepNumber(1);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setFirstErrorText('Error resetting the password for this user. ');
       });
   }
@@ -42,7 +47,7 @@ const ResetPassword: FC = () => {
         setStepNumber(3);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setSecondErrorText('Error resetting the password for this user. ');
       });
   }
@@ -50,58 +55,53 @@ const ResetPassword: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerInner}>
+        <LoginBanner />
         {stepNumber === 0 ? (
           <>
-            <div className={styles.loginBanner}>
-              <LogoWhite />
-            </div>
             <h2>Reset Password</h2>
             <TextInput
               header="Your Email"
               onChange={(value): void => {
-                setUsername(value);
+                setEmail(value);
 
                 if (!(firstErrorText === '')) {
                   setFirstErrorText('');
                 }
               }}
+              isLarge={isNotMobile}
+              isSmall={isSmallMobile}
             />
             <p className={styles.errorText}>{firstErrorText}</p>
             <FormButton
-              text={'Submit'}
-              theme={'formButtonDarkBlue'}
-              onClick={(): void => handleResetPassword(username)}
+              text="Submit"
+              theme={email.length ? 'formButtonDarkBlue' : 'formButtonDisabled'}
+              onClick={(): void => handleResetPassword(email)}
               useArrow={true}
             />
           </>
         ) : stepNumber === 1 ? (
-          <>
-            <div className={styles.loginBanner}>
-              <LogoWhite />
-            </div>
-            <div className={styles.verificationCodeInputContainer}>
-              <p>Please enter the verification code sent to your email address.</p>
-              <VerificationInput
-                value={verificationCode}
-                onChange={(input: string) => {
-                  if (input.match(/^[0-9]*$/)) {
-                    setVerificationCode(input);
-                  }
-                }}
-              />
-              <br />
-              <FormButton
-                text={'Next'}
-                theme={'formButtonDarkBlue'}
-                useArrow={true}
-                onClick={(): void => {
-                  if (verificationCode.length === 6) {
-                    setStepNumber(2);
-                  }
-                }}
-              />
-            </div>
-          </>
+          <div className={styles.verificationCodeInputContainer}>
+            <p>Please enter the verification code sent to your email address.</p>
+            <VerificationInput
+              value={verificationCode}
+              onChange={(input: string) => {
+                if (input.match(/^[0-9]*$/)) {
+                  setVerificationCode(input);
+                }
+              }}
+            />
+            <br />
+            <FormButton
+              text={'Next'}
+              theme={'formButtonDarkBlue'}
+              useArrow={true}
+              onClick={(): void => {
+                if (verificationCode.length === 6) {
+                  setStepNumber(2);
+                }
+              }}
+            />
+          </div>
         ) : stepNumber === 2 ? (
           <>
             <TextInput
@@ -114,6 +114,7 @@ const ResetPassword: FC = () => {
                   setSecondErrorText('');
                 }
               }}
+              isSmall={isSmallMobile}
             />
             <TextInput
               header="Repeat Password"
@@ -124,6 +125,7 @@ const ResetPassword: FC = () => {
                   setSecondErrorText('');
                 }
               }}
+              isSmall={isSmallMobile}
             />
             <p className={styles.errorText}>{secondErrorText}</p>
             <FormButton
@@ -142,7 +144,7 @@ const ResetPassword: FC = () => {
                 }
 
                 handleConfirmResetPassword({
-                  username: username,
+                  username: email,
                   confirmationCode: verificationCode,
                   newPassword: newPassword,
                 });
@@ -151,9 +153,6 @@ const ResetPassword: FC = () => {
           </>
         ) : (
           <>
-            <div className={styles.loginBanner}>
-              <LogoWhite />
-            </div>
             <p>Password changed successfully.</p>
             <Link className={styles.login} to={Paths.LOGIN}>
               Back to Login

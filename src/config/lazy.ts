@@ -11,6 +11,22 @@ const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
 const TermsAndConditions = lazy(() => import('@pages/TermsAndConditions/TermsAndConditions'));
 const Login = lazy(() => import('@pages/Login/Login'));
 const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDashboard'));
+const AdminDashboardManageLocalAuthorities = lazy(
+  () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
+);
+const AdminDashboardViewLocalAuthority = lazy(
+  () => import('@pages/AdminDashboard/ViewLocalAuthority/ViewLocalAuthority')
+);
+const AdminDashboardLocalAuthoritySignUp = lazy(
+  () => import('@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUp')
+);
+const AdminDashboardLocalAuthoritySignUpConfirmation = lazy(
+  () =>
+    import(
+      '@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUpConfirmation/LocalAuthoritySignUpConfirmation'
+    )
+);
+const AdminDashboardRequests = lazy(() => import('@pages/AdminDashboard/Requests/Requests'));
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
@@ -29,6 +45,11 @@ export {
   TermsAndConditions,
   Login,
   AdminDashboard,
+  AdminDashboardManageLocalAuthorities,
+  AdminDashboardViewLocalAuthority,
+  AdminDashboardLocalAuthoritySignUp,
+  AdminDashboardLocalAuthoritySignUpConfirmation,
+  AdminDashboardRequests,
   Form,
   ResetPassword,
   AddUser,

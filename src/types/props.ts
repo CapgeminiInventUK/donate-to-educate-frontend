@@ -21,6 +21,7 @@ export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonGrey'
+  | 'formButtonDisabled'
   | 'formButtonRed';
 
 export interface ButtonProps {
