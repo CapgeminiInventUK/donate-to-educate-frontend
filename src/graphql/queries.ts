@@ -57,6 +57,7 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     type
     requestTime
     status
+    email
     __typename
   }
 }
@@ -74,6 +75,7 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id
     email
+    type
     __typename
   }
 }

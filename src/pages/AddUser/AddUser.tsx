@@ -17,6 +17,7 @@ import { getSignUpData } from '@/graphql/queries';
 interface SignUpParameters {
   password: string;
   email: string;
+  type: string;
 }
 
 interface ConfirmSignUpParameters {
@@ -39,7 +40,7 @@ async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Pr
   return 'FAILED';
 }
 
-async function handleSignUp({ email, password }: SignUpParameters): Promise<string> {
+async function handleSignUp({ email, password, type }: SignUpParameters): Promise<string> {
   try {
     const lowercaseEmail = email.toLowerCase();
     const { isSignUpComplete, userId, nextStep } = await signUp({
@@ -48,7 +49,7 @@ async function handleSignUp({ email, password }: SignUpParameters): Promise<stri
       options: {
         userAttributes: {
           email: lowercaseEmail,
-          'custom:type': 'localAuthority',
+          'custom:type': type,
         },
       },
     });
@@ -89,21 +90,25 @@ const NewUser: FC = () => {
 
   useEffect(() => {
     if (submitted && !isLoading) {
-      const email = String(data?.getSignUpData?.email);
-      handleSignUp({ email, password })
-        .then((step) => setStep(step))
-        .catch(console.error);
-      setSubmitted(false);
+      const { email, type } = data?.getSignUpData ?? {};
+      if (email && type) {
+        handleSignUp({ email, password, type })
+          .then((step) => setStep(step))
+          .catch(console.error);
+        setSubmitted(false);
+      }
     }
-  }, [submitted, data?.getSignUpData?.email, password, isLoading]);
+  }, [submitted, data?.getSignUpData, password, isLoading]);
 
   useEffect(() => {
     if (submitCode && !isLoading) {
       const email = String(data?.getSignUpData?.email);
-      handleConfirmSignUp({ email, code: verificationCode })
-        .then((step) => setStep(step))
-        .catch(console.error);
-      setSubmitCode(false);
+      if (email) {
+        handleConfirmSignUp({ email, code: verificationCode })
+          .then((step) => setStep(step))
+          .catch(console.error);
+        setSubmitCode(false);
+      }
     }
   }, [submitCode, data?.getSignUpData?.email, verificationCode, isLoading]);
 

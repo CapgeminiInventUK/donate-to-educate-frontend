@@ -16,6 +16,7 @@ export type JoinRequest = {
   type: string;
   requestTime: number;
   status: string;
+  email: string;
 };
 
 export type School = {
@@ -38,6 +39,7 @@ export type SignUpData = {
   __typename: 'SignUpData';
   id: string;
   email: string;
+  type: string;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -166,6 +168,7 @@ export type GetJoinRequestsQuery = {
     type: string;
     requestTime: number;
     status: string;
+    email: string;
   }>;
 };
 
@@ -191,5 +194,6 @@ export type GetSignUpDataQuery = {
     __typename: 'SignUpData';
     id: string;
     email: string;
+    type: string;
   } | null;
 };
