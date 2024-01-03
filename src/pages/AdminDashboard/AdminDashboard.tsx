@@ -11,6 +11,11 @@ import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 import styles from './AdminDashboard.module.scss';
 
+export interface SchoolOrCharityProperties {
+  name: string;
+  la: string;
+}
+
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();

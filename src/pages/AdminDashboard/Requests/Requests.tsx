@@ -13,9 +13,12 @@ import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
 import JoinRequests from './JoinRequests/JoinRequests';
 import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
+import { SchoolOrCharityProperties } from '../AdminDashboard';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
+  const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
+    useState<SchoolOrCharityProperties>({ name: '', la: '' });
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
@@ -57,28 +60,28 @@ const Requests: FC = () => {
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
               theme="white"
             />
-            <Button
-              theme="midBlue"
-              text="Approve request school"
-              onClick={(): void => {
-                setStage('request_approval_school');
-              }}
+            <JoinRequests
+              setStage={setStage}
+              data={data}
+              setSchoolOrCharityProperties={setSchoolOrCharityProperties}
             />
-            <Button
-              theme="midBlue"
-              text="Approve request charity"
-              onClick={(): void => {
-                setStage('request_approval_charity');
-              }}
-            />
-            <JoinRequests setStage={setStage} data={data} />
           </>
         )}
         {!isLoading && stage === 'request_approval_school' && (
-          <ApprovalRequest setStage={setStage} type="school" />
+          <ApprovalRequest
+            setStage={setStage}
+            type="school"
+            name={schoolOrCharityProperties.name}
+            la={schoolOrCharityProperties.la}
+          />
         )}
         {!isLoading && stage === 'request_approval_charity' && (
-          <ApprovalRequest setStage={setStage} type="charity" />
+          <ApprovalRequest
+            setStage={setStage}
+            type="charity"
+            name={schoolOrCharityProperties.name}
+            la={schoolOrCharityProperties.la}
+          />
         )}
       </div>
     </div>

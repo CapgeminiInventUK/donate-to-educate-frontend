@@ -41,3 +41,26 @@ export const updateSchoolProfile =
     APITypes.UpdateSchoolProfileMutationVariables,
     APITypes.UpdateSchoolProfileMutation
   >;
+export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
+  $localAuthority: String!
+  $name: String!
+  $status: String!
+) {
+  updateJoinRequest(
+    localAuthority: $localAuthority
+    name: $name
+    status: $status
+  )
+}
+` as GeneratedMutation<
+  APITypes.UpdateJoinRequestMutationVariables,
+  APITypes.UpdateJoinRequestMutation
+>;
+export const insertSignUpData =
+  /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!) {
+  insertSignUpData(id: $id, email: $email)
+}
+` as GeneratedMutation<
+    APITypes.InsertSignUpDataMutationVariables,
+    APITypes.InsertSignUpDataMutation
+  >;

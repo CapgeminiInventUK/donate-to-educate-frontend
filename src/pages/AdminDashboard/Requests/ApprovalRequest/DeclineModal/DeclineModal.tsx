@@ -5,9 +5,10 @@ import styles from './DeclineModal.module.scss';
 interface DeclineModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   showModal: boolean;
+  doSomething: () => void;
 }
 
-const DeclineModal: FC<DeclineModalProps> = ({ showModal, setShowModal }) => {
+const DeclineModal: FC<DeclineModalProps> = ({ showModal, setShowModal, doSomething }) => {
   if (!showModal) {
     return null;
   }
@@ -28,7 +29,10 @@ const DeclineModal: FC<DeclineModalProps> = ({ showModal, setShowModal }) => {
           />
           <FormButton
             theme={'formButtonRed'}
-            onClick={(): void => undefined}
+            onClick={() => {
+              setShowModal(false);
+              doSomething();
+            }}
             text={'Decline request'}
           />
         </div>

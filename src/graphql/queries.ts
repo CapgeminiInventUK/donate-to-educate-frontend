@@ -56,6 +56,8 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     localAuthority
     type
     requestTime
+    status
+    email
     __typename
   }
 }
@@ -69,3 +71,12 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
+  getSignUpData(id: $id) {
+    id
+    email
+    type
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;

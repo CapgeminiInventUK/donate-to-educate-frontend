@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styles from './Pill.module.scss';
 
 export const Pill: FC<PillProps> = ({ color, text }) => {
-  const getText = (color: 'green' | 'blue' | 'yellow' | 'grey' | 'red'): string => {
+  const getText = (color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red'): string => {
     switch (color) {
       case 'green':
         return 'STOCK AVAILABLE';

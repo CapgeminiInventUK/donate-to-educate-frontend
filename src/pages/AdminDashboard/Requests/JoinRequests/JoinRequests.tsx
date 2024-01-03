@@ -7,13 +7,15 @@ import { SearchOutlined, CaretUpFilled, CaretDownFilled } from '@ant-design/icon
 import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
 import Button from '@/components/Button/Button';
 import styles from './JoinRequests.module.scss';
+import { SchoolOrCharityProperties } from '../../AdminDashboard';
 
 interface JoinRequestsProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
+  setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
   data?: GetJoinRequestsQuery;
 }
 
-const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
+const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
@@ -133,15 +135,22 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage }) => {
     },
     {
       title: 'Action',
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      render: (_: unknown, _joinRequest: JoinRequest) => (
+      render: (_: unknown, joinRequest: JoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button
             theme="link-blue"
             className={styles.actionButtons}
-            text="View request"
+            text={`View request`}
             onClick={(): void => {
-              setStage('overview');
+              setSchoolOrCharityProperties({
+                name: joinRequest.name,
+                la: joinRequest.localAuthority,
+              });
+              setStage(
+                joinRequest.type === 'school'
+                  ? 'request_approval_school'
+                  : 'request_approval_charity'
+              );
             }}
           />
         </div>
