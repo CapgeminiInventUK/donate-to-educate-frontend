@@ -189,3 +189,10 @@ export interface CheckYourAnswersProps {
   setPageNumber?: Dispatch<SetStateAction<number>>;
   formMeta: FormMeta;
 }
+
+export interface SummaryProps {
+  icon?: JSX.Element;
+  header: string;
+  body: string[];
+  logo?: JSX.Element;
+}

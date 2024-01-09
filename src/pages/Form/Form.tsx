@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import styles from './Form.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
 import FormContainer from './FormContainer';
 import {
   ComponentType,
@@ -10,21 +9,18 @@ import {
   FormSections,
   FormTemplate,
 } from '@/types/data';
+import LogoBlue from '@/assets/logo/LogoBlue';
+import SchoolQuestion from '@/assets/Form/SchoolQuestion';
+import LogoWhite from '@/assets/logo/LogoWhite';
 
 const Form: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [formData, setFormData] = useState<FormDataItem[]>([]);
 
-  const onBackButtonClick = (): void => {
-    if (pageNumber > 0) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const onChange = (value: string, formMeta: FormMeta | undefined): void => {
+  const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
     const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
-    setFormData([...removeOldValue, { field: field, value, section, page }]);
+    setFormData([...removeOldValue, { field, value, section, page }]);
   };
 
   const formTemplate: FormTemplate[] = [
@@ -273,19 +269,82 @@ const Form: FC = () => {
         },
       ],
     },
+    {
+      logo: <LogoBlue />,
+      header: 'This service is [--------]',
+      subHeader:
+        'Explanation into things like security and how it is one account per supporter [-----------------------]',
+      formComponents: [
+        {
+          componentType: ComponentType.CHECKBOX,
+          componentData: {
+            label: 'GDPR content and statement [---------------]',
+            onChange: (value: boolean): void => {
+              onChange(value, { field: 'GDPR content and statement [---------------]', page: 6 });
+            },
+            formMeta: {
+              page: 6,
+            },
+          },
+          classNameSuffix: 'checkbox',
+        },
+        {
+          componentType: ComponentType.CHECKBOX,
+          componentData: {
+            label: 'Legal understanding [---------------]',
+            onChange: (value: boolean): void => {
+              onChange(value, { field: 'Legal understanding [---------------]', page: 6 });
+            },
+            formMeta: {
+              page: 6,
+            },
+          },
+          classNameSuffix: 'checkbox',
+        },
+        {
+          componentType: ComponentType.CHECKBOX,
+          componentData: {
+            label: 'I will be administrating the account [---------------]',
+            onChange: (value: boolean): void => {
+              onChange(value, {
+                field: 'I will be administrating the account [---------------]',
+                page: 6,
+              });
+            },
+            formMeta: {
+              page: 6,
+            },
+          },
+          classNameSuffix: 'checkbox',
+        },
+      ],
+    },
+    {
+      formComponents: [
+        {
+          componentType: ComponentType.SUMMARY,
+          componentData: {
+            icon: <SchoolQuestion />,
+            header: 'Thanks for supporting Donate to Educate',
+            body: [
+              'Your local authority or local council will review your details to check whether you can join us.',
+              "We'll email you with the results as soon as we have them.",
+            ],
+            logo: <LogoWhite />,
+          },
+        },
+      ],
+    },
   ];
 
   return (
     <div className={styles.container}>
-      <div>
-        <BackButton onClick={onBackButtonClick} theme="blue" />
-        <FormContainer
-          formTemplate={formTemplate}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          formData={formData}
-        />
-      </div>
+      <FormContainer
+        formTemplate={formTemplate}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        formData={formData}
+      />
     </div>
   );
 };
