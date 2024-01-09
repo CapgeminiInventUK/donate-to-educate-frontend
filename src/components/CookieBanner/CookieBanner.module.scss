@@ -1,0 +1,35 @@
+@use '@assets/global.scss' as g;
+
+.cookieBanner {
+  bottom: 0;
+  position: fixed;
+  background-color: g.$dark-blue;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  padding: 0px 40px;
+  color: g.$primary-white;
+  gap: 44px;
+
+  p {
+    font-size: 14px;
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  button {
+    font-size: 14px;
+    height: 44px;
+    width: 160px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.cookie {
+  flex-shrink: 0;
+}

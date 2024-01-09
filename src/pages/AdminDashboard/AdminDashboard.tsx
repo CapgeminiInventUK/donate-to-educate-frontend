@@ -18,11 +18,20 @@ import FormButton from '@/components/FormButton/FormButton';
 import ApprovalRequest from './ApprovalRequest';
 import LocalAuthorityManage from './LocalAuthorityManage';
 import JoinRequests from './JoinRequests';
+import { FormButtonThemes } from '@/types/props';
+
+export interface SchoolOrCharityProperties {
+  name: string;
+  la: string;
+}
 
 // Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const [stage, setStage] = useState('overview');
   const [selectedLa, setSelectedLa] = useState('');
+  const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
+    useState<SchoolOrCharityProperties>({ name: '', la: '' });
+
   const navigate = useNavigate();
   const [shouldSignOut, setShouldSignOut] = useState(false);
 
@@ -83,12 +92,16 @@ const AdminDashboard: FC = () => {
           <div className={styles.header}>
             <h1>{getHeader(stage)}</h1>
             <div>
+              {/*
+              ###
+              Hidden for now might be added back in the future
+              ###
               <Button
                 theme="link"
                 text="Settings"
                 className={styles.actionButtons}
                 onClick={(): void => undefined}
-              />
+              /> */}
               <Button
                 theme="link"
                 text="Sign out"
@@ -103,46 +116,49 @@ const AdminDashboard: FC = () => {
                 <h2>Hello, team</h2>
                 <hr />
                 <div className={styles.cardContainer}>
-                  <div className={`${styles.card} ${styles.la}`}>
-                    {isLoading && <Spinner />}
-                    {!isLoading && (
+                  <AdminDashboardCard
+                    isLoading={isLoading}
+                    title="Manage local authorities"
+                    body="View, add and edit your local authorities."
+                    onClick={(): void => setStage('manage_las')}
+                    stats={
                       <>
-                        <h3>Manage local authorities</h3>
-                        <div className={styles.laBorder}>{registered} joined</div>
-                        <div className={styles.laBorder}>{notRegistered} to join</div>
-                        <br />
-                        <div>View, add and edit your local authorities.</div>
-                        <br />
-                        <FormButton
-                          text={'Start'}
-                          theme={'formButtonMidBlue'}
-                          onClick={(): void => setStage('manage_las')}
-                          fullWidth
-                        />
+                        <div>{registered} joined</div>
+                        <div>{notRegistered} to join</div>
                       </>
-                    )}
-                  </div>
-                  <div className={`${styles.card} ${styles.requests}`}>
-                    {isLoading && <Spinner />}
-                    {!isLoading && (
+                    }
+                    className={styles.la}
+                    buttonTheme="formButtonMidBlue"
+                  />
+                  <AdminDashboardCard
+                    isLoading={isLoading}
+                    title="Manage schools, charities and volunteers"
+                    body="View who's asked to join Donate to Educate."
+                    onClick={(): void => setStage('view_requests')}
+                    stats={
                       <>
-                        <h3>Manage schools, charities and volunteers</h3>
-                        <div className={styles.requestsBorder}>
-                          {data?.getJoinRequests?.length ?? 0}
-                          {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
-                        </div>
-                        <br />
-                        <div>View who&apos;s asked to join Donate to Educate.</div>
-                        <br />
-                        <FormButton
-                          text={'Start'}
-                          theme="formButtonGrey"
-                          onClick={(): void => setStage('view_requests')}
-                          fullWidth
-                        />
+                        {data?.getJoinRequests?.length ?? 0}
+                        {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
                       </>
-                    )}
-                  </div>
+                    }
+                    className={styles.requests}
+                  />
+                  <AdminDashboardCard
+                    isLoading={isLoading}
+                    title="Manage registered schools"
+                    body="View, add and edit registered schools."
+                    onClick={(): void => setStage('manage_schools')}
+                    stats={<>0 joined</>}
+                    className={styles.schools}
+                  />
+                  <AdminDashboardCard
+                    isLoading={isLoading}
+                    title="Manage registered charities and volunteers"
+                    body="View, add and edit registered charities and volunteers."
+                    onClick={(): void => setStage('manage_charities')}
+                    stats={<>0 joined</>}
+                    className={styles.charities}
+                  />
                 </div>
               </>
             )}
@@ -168,24 +184,9 @@ const AdminDashboard: FC = () => {
               <>
                 <BackButton onClick={(): void => setStage('overview')} theme="white" />
 
-                <Button
-                  theme="midBlue"
-                  text="Approve request school"
-                  onClick={(): void => {
-                    setStage('request_approval_school');
-                  }}
-                />
-
-                <Button
-                  theme="midBlue"
-                  text="Approve request charity"
-                  onClick={(): void => {
-                    setStage('request_approval_charity');
-                  }}
-                />
-
                 <JoinRequests
                   setStage={setStage}
+                  setSchoolOrCharityProperties={setSchoolOrCharityProperties}
                   data={data}
                   name={selectedLa}
                   setSelectedLa={setSelectedLa}
@@ -195,9 +196,21 @@ const AdminDashboard: FC = () => {
           </div>
         </div>
       )}
-      {stage === 'request_approval_school' && <ApprovalRequest setStage={setStage} type="school" />}
+      {stage === 'request_approval_school' && (
+        <ApprovalRequest
+          setStage={setStage}
+          type="school"
+          name={schoolOrCharityProperties.name}
+          la={schoolOrCharityProperties.la}
+        />
+      )}
       {stage === 'request_approval_charity' && (
-        <ApprovalRequest setStage={setStage} type="charity" />
+        <ApprovalRequest
+          setStage={setStage}
+          type="charity"
+          name={schoolOrCharityProperties.name}
+          la={schoolOrCharityProperties.la}
+        />
       )}
       {stage === 'la_sign_up' && (
         <>
@@ -212,6 +225,42 @@ const AdminDashboard: FC = () => {
           title={`You have created an account for ${selectedLa} County Council`}
           message={<p>The main user has been emailed with instructions to set up their profile</p>}
         />
+      )}
+    </div>
+  );
+};
+
+interface AdminDashboardCardProps {
+  isLoading: boolean;
+  title: string;
+  body: string;
+  onClick: () => void;
+  stats: JSX.Element;
+  className: string;
+  buttonTheme?: FormButtonThemes;
+}
+
+const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
+  isLoading,
+  title,
+  body,
+  onClick,
+  stats,
+  className,
+  buttonTheme = 'formButtonGrey',
+}): JSX.Element => {
+  return (
+    <div className={`${styles.card} ${className}`}>
+      {isLoading && <Spinner />}
+      {!isLoading && (
+        <>
+          <h3>{title}</h3>
+          <div className={styles.border}>{stats}</div>
+          <br />
+          <div>{body}</div>
+          <br />
+          <FormButton text={'Start'} theme={buttonTheme} onClick={onClick} fullWidth />
+        </>
       )}
     </div>
   );

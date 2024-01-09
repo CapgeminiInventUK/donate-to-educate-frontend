@@ -75,11 +75,17 @@ export const getItemsIcon = (type: ItemsIconType): JSX.Element => {
   }
 };
 
-type SectionsIconType = 'shirt' | 'ball' | 'brush' | 'book' | 'sink' | 'computer';
+export type SectionsIconType =
+  | 'Clothing and uniform'
+  | 'Sports'
+  | 'Art and music'
+  | 'Study'
+  | 'Toiletries'
+  | 'Computing and technology';
 
 export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
   switch (type) {
-    case 'shirt':
+    case 'Clothing and uniform':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +103,7 @@ export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
           />
         </svg>
       );
-    case 'ball':
+    case 'Sports':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +142,7 @@ export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
           />
         </svg>
       );
-    case 'brush':
+    case 'Art and music':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +167,7 @@ export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
           />
         </svg>
       );
-    case 'book':
+    case 'Study':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +213,7 @@ export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
           />
         </svg>
       );
-    case 'sink':
+    case 'Toiletries':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +245,7 @@ export const getSectionsIcon = (type: SectionsIconType): JSX.Element => {
           />
         </svg>
       );
-    case 'computer':
+    case 'Computing and technology':
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"

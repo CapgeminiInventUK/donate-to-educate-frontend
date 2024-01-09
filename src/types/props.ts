@@ -15,7 +15,7 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
-export type Themes = 'darkBlue' | 'midBlue' | 'link' | 'link-blue';
+export type Themes = 'darkBlue' | 'midBlue' | 'link' | 'link-blue' | 'outline-light' | 'light';
 
 export type FormButtonThemes =
   | 'formButtonDarkBlue'
@@ -72,8 +72,12 @@ export interface HeaderProps {
 }
 
 export interface PillProps {
-  color: 'green' | 'blue' | 'yellow' | 'grey' | 'red';
+  color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red';
   text?: string;
+}
+
+export interface CookiesSelection {
+  selection: 'consented' | 'rejected';
 }
 
 export interface NavLinksProps {
@@ -94,6 +98,8 @@ export interface CheckboxProps {
   className?: string;
   formMeta?: FormMeta;
   onChange?: (value: boolean) => void;
+  initialValue?: boolean;
+  value?: boolean;
 }
 
 export interface CheckmarkProps {
@@ -142,6 +148,7 @@ export interface CommonInputProps {
   onChange?: (value: string, meta?: FormMeta) => void;
   formMeta?: FormMeta;
   value?: string;
+  disabled?: boolean;
 }
 
 export interface TextInputProps extends CommonInputProps {

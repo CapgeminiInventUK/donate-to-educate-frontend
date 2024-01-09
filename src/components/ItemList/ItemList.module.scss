@@ -6,6 +6,7 @@
     align-content: center;
     justify-items: center;
     padding: 10px 0 30px 0;
+    color: g.$primary-dark-blue;
 
     h3 {
       margin: 0 10px;
@@ -35,10 +36,19 @@
       width: fit-content;
       display: inline-block;
       min-width: 275px;
+      height: 35px;
+      color: g.$primary-dark-blue;
+      display: flex;
+      align-items: center;
 
       span {
         padding-left: 10px;
+        margin-bottom: 2px;
       }
     }
   }
+}
+
+.bold {
+  font-weight: 600;
 }

@@ -1,34 +1,48 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './ItemList.module.scss';
 import { getFullItemList } from './getFullItemList';
 import Checkbox from '../Checkbox/Checkbox';
-import { ItemsIconType } from './getIcons';
+import { SectionsIconType, getSectionsIcon } from './getIcons';
 
 interface ItemListEditProps {
-  type: ItemsIconType;
+  setItems: React.Dispatch<React.SetStateAction<Record<string, SectionsIconType>>>;
+  items: Record<string, SectionsIconType>;
 }
-const ItemListEdit: FC<ItemListEditProps> = ({ type }) => {
-  const [items, setItems] = useState({});
 
-  const handleToggle = (value: boolean, itemKey: string): void =>
-    setItems((previousItems) => ({ ...previousItems, [itemKey]: value }));
-  // eslint-disable-next-line no-console
-  console.log(items);
+const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
+  const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
+    setItems((previousItems) => {
+      if (value) {
+        return { ...previousItems, [itemKey]: name };
+      }
+
+      const { [itemKey]: _, ...rest } = previousItems;
+      return rest;
+    });
+  };
+
   return (
     <div className={styles.container}>
-      {getFullItemList(type).map(({ icon, name, items }) => {
+      {getFullItemList().map(({ name, items: itemsList }) => {
         return (
           <div key={`${name}-edit`}>
             <div className={styles.sectionHeader}>
-              {icon}
+              {getSectionsIcon(name)}
               <h3>{name}</h3>
               <div className={styles.hr}></div>
             </div>
             <ul className={styles.list}>
-              {items.map((item) => {
+              {itemsList.map((item) => {
+                const checkValue = item in items && name === items[item];
                 return (
-                  <li key={`${name}-${item}-edit`} className={styles.listItem}>
-                    <Checkbox onChange={(checked) => handleToggle(checked, item)} />
+                  <li
+                    key={`${name}-${item}-edit`}
+                    className={`${styles.listItem} ${checkValue ? styles.bold : ''}`}
+                  >
+                    <Checkbox
+                      onChange={(checked) => handleToggle(checked, item, name)}
+                      value={checkValue}
+                    />
                     <span>{item}</span>
                   </li>
                 );

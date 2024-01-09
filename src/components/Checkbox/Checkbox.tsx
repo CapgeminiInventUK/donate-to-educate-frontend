@@ -1,10 +1,23 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Checkbox.module.scss';
 import { CheckboxProps } from '@/types/props';
 import Checkmark from '@/assets/tiles/Checkmark';
 
-const Checkbox: FC<CheckboxProps> = ({ label, className, onChange }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const Checkbox: FC<CheckboxProps> = ({
+  label,
+  className,
+  onChange,
+  initialValue = false,
+  value,
+}) => {
+  const [isChecked, setIsChecked] = useState<boolean>(initialValue);
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setIsChecked(value);
+    }
+  }, [value]);
+
   return (
     <label>
       <input

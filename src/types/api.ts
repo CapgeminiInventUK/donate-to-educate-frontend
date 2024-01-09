@@ -15,6 +15,8 @@ export type JoinRequest = {
   localAuthority: string;
   type: string;
   requestTime: number;
+  status: string;
+  email: string;
 };
 
 export type School = {
@@ -24,6 +26,20 @@ export type School = {
   localAuthority: string;
   postcode?: string | null;
   registered: boolean;
+};
+
+export type SchoolProfile = {
+  __typename: 'SchoolProfile';
+  request?: string | null;
+  donate?: string | null;
+  excess?: string | null;
+};
+
+export type SignUpData = {
+  __typename: 'SignUpData';
+  id: string;
+  email: string;
+  type: string;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -57,6 +73,35 @@ export type RegisterLocalAuthorityMutationVariables = {
 
 export type RegisterLocalAuthorityMutation = {
   registerLocalAuthority: boolean;
+};
+
+export type UpdateSchoolProfileMutationVariables = {
+  name: string;
+  key: string;
+  value: string;
+};
+
+export type UpdateSchoolProfileMutation = {
+  updateSchoolProfile: boolean;
+};
+
+export type UpdateJoinRequestMutationVariables = {
+  localAuthority: string;
+  name: string;
+  status: string;
+};
+
+export type UpdateJoinRequestMutation = {
+  updateJoinRequest: boolean;
+};
+
+export type InsertSignUpDataMutationVariables = {
+  id: string;
+  email: string;
+};
+
+export type InsertSignUpDataMutation = {
+  insertSignUpData: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -105,26 +150,50 @@ export type GetSchoolsQuery = {
 export type GetLocalAuthoritiesQueryVariables = {};
 
 export type GetLocalAuthoritiesQuery = {
-  getLocalAuthorities: Array<GetLocalAuthority>;
-};
-
-export type GetLocalAuthority = {
-  __typename: 'LocalAuthority';
-  code: string;
-  name: string;
-  registered: boolean;
+  getLocalAuthorities: Array<{
+    __typename: 'LocalAuthority';
+    code: string;
+    name: string;
+    registered: boolean;
+  }>;
 };
 
 export type GetJoinRequestsQueryVariables = {};
 
 export type GetJoinRequestsQuery = {
-  getJoinRequests: Array<GetJoinRequest>;
+  getJoinRequests: Array<{
+    __typename: 'JoinRequest';
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
+    status: string;
+    email: string;
+  }>;
 };
 
-export type GetJoinRequest = {
-  __typename: 'JoinRequest';
+export type GetSchoolProfileQueryVariables = {
   name: string;
-  localAuthority: string;
-  type: string;
-  requestTime: number;
+};
+
+export type GetSchoolProfileQuery = {
+  getSchoolProfile: {
+    __typename: 'SchoolProfile';
+    request?: string | null;
+    donate?: string | null;
+    excess?: string | null;
+  };
+};
+
+export type GetSignUpDataQueryVariables = {
+  id: string;
+};
+
+export type GetSignUpDataQuery = {
+  getSignUpData?: {
+    __typename: 'SignUpData';
+    id: string;
+    email: string;
+    type: string;
+  } | null;
 };

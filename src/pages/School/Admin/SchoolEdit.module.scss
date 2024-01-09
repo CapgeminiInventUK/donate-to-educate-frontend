@@ -2,7 +2,7 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 50px;
+  padding: 48px 150px;
 
   .banner {
     padding: 40px;
@@ -30,5 +30,33 @@
     background: g.$primary-white;
     border-radius: 0 0 10px 10px;
     padding: 60px 82px;
+
+    .helpBanner {
+      padding: 40px;
+      background: g.$help-gray;
+      border-radius: 10px;
+    }
+
+    .whatToExpect {
+      margin: 40px 0;
+      padding: 40px;
+      border: solid 2px g.$greyscale-disabled;
+      border-radius: 10px;
+
+      h2 {
+        padding-bottom: 20px;
+      }
+    }
+
+    .helpContact {
+      margin: 40px 0;
+      padding: 40px;
+      border: solid 2px g.$greyscale-disabled;
+      border-radius: 10px;
+    }
+
+    .actionButtons {
+      display: flex;
+    }
   }
 }
