@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import styles from './Form.module.scss';
-import FormContainer from './FormContainer';
+import styles from './SignUpSchool.module.scss';
+import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
 import {
   ComponentType,
   FormDataItem,
@@ -13,8 +13,7 @@ import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
-const Form: FC = () => {
-  const [pageNumber, setPageNumber] = useState(0);
+const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
@@ -339,14 +338,9 @@ const Form: FC = () => {
 
   return (
     <div className={styles.container}>
-      <FormContainer
-        formTemplate={formTemplate}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        formData={formData}
-      />
+      <MultiStepForm formTemplate={formTemplate} formData={formData} />
     </div>
   );
 };
 
-export default Form;
+export default SignUpSchool;

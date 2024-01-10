@@ -9,11 +9,12 @@ import {
   TermsAndConditions,
   Login,
   AdminDashboard,
-  Form,
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
   SchoolEdit,
+  SignUpCharity,
+  SignUpSchool,
 } from './lazy';
 
 const routes = [
@@ -77,8 +78,12 @@ const routes = [
     element: <AddUser />,
   },
   {
-    path: Paths.FORM,
-    element: <Form />,
+    path: Paths.SIGN_UP_CHARITY,
+    element: <SignUpCharity />,
+  },
+  {
+    path: Paths.SIGN_UP_SCHOOL,
+    element: <SignUpSchool />,
   },
   {
     path: Paths.RESET_PASSWORD,

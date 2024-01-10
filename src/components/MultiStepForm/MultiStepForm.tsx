@@ -1,6 +1,6 @@
-import { FormContainerProps } from '@/types/props';
+import { MultiStepFormProps } from '@/types/props';
 import { FC, useEffect, useState } from 'react';
-import styles from './Form.module.scss';
+import styles from './MultiStepForm.module.scss';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
 import FormButton from '@/components/FormButton/FormButton';
@@ -8,14 +8,10 @@ import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 
-const FormContainer: FC<FormContainerProps> = ({
-  formTemplate,
-  pageNumber,
-  setPageNumber,
-  formData,
-}) => {
+const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
   const [cyaPageNumber, setCyaPageNumber] = useState<number>();
   const [isLastPage, setIsLastPage] = useState(false);
 

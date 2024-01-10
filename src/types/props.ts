@@ -157,10 +157,8 @@ export interface TextInputProps extends CommonInputProps {
   isSmall?: boolean;
 }
 
-export interface FormContainerProps {
+export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
-  pageNumber: number;
-  setPageNumber: Dispatch<SetStateAction<number>>;
   formData: FormDataItem[];
 }
 export interface DropdownProps extends CommonInputProps {

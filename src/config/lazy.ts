@@ -3,7 +3,8 @@ import { lazy } from 'react';
 const Home = lazy(() => import('@pages/Home/Home'));
 const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('@pages/Contact/Contact'));
-const Form = lazy(() => import('@pages/Form/Form'));
+const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
+const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
@@ -29,7 +30,8 @@ export {
   TermsAndConditions,
   Login,
   AdminDashboard,
-  Form,
+  SignUpCharity,
+  SignUpSchool,
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
