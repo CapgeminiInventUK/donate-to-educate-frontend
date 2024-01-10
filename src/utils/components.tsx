@@ -7,6 +7,7 @@ import {
   DropdownProps,
   FormIntroPageProps,
   RadioGroupProps,
+  SummaryProps,
   TextAreaProps,
   TextInputProps,
 } from '@/types/props';
@@ -18,6 +19,7 @@ import Dropdown from '@/components/Dropdown/Dropdown';
 import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
 import { findValueFromFormData } from './formUtils';
+import Summary from '@/components/Summary/Summary';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -49,6 +51,8 @@ export const createFormComponent = (
           setPageNumber={setPageNumber}
         />
       );
+    case ComponentType.SUMMARY:
+      return <Summary {...(componentData as SummaryProps)} />;
     default:
       return <></>;
   }

@@ -6,6 +6,7 @@ import {
   ExternalLinkProps,
   FormIntroPageProps,
   RadioGroupProps,
+  SummaryProps,
   TextAreaProps,
   TextInputProps,
 } from './props';
@@ -26,6 +27,7 @@ export interface FormComponent {
   componentType: ComponentType;
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
+  classNameSuffix?: string;
 }
 
 export type ComponentDataPropsType =
@@ -35,12 +37,14 @@ export type ComponentDataPropsType =
   | TextAreaProps
   | DropdownProps
   | FormIntroPageProps
-  | CheckYourAnswersProps;
+  | CheckYourAnswersProps
+  | SummaryProps;
 
 export interface FormTemplate {
   formComponents: FormComponent[];
   header?: string;
   subHeader?: string;
+  logo?: JSX.Element;
 }
 
 export interface FormMeta {
@@ -51,7 +55,7 @@ export interface FormMeta {
 
 export interface FormDataItem {
   field: string;
-  value: string | number;
+  value: string | number | boolean;
   page?: number;
   section?: FormSections;
 }
@@ -73,6 +77,7 @@ export enum ComponentType {
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
   CYA = 'checkYourAnswers',
+  SUMMARY = 'summaryPage',
 }
 
 export interface DropdownOption {

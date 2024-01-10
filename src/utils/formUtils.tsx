@@ -14,7 +14,7 @@ const excludedValues = [
 export const findValueFromFormData = (
   formData: FormDataItem[],
   fieldName: string
-): string | number => {
+): string | number | boolean => {
   return formData.find(({ field }) => field === fieldName)?.value ?? '';
 };
 

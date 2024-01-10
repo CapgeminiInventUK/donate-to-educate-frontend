@@ -24,6 +24,11 @@
       margin-bottom: 40px;
     }
 
+    .logoContainer {
+      width: 300px;
+      margin-bottom: 60px;
+    }
+
     .headerContainer {
       margin: 0 0 40px;
       color: g.$primary-dark-blue;
@@ -61,6 +66,14 @@
         letter-spacing: -0.09px;
       }
 
+      label {
+        color: g.$primary-dark-blue;
+
+        > div {
+          margin-right: 15px;
+        }
+      }
+
       > div {
         padding-bottom: 0;
       }
@@ -68,6 +81,28 @@
       .link {
         margin-top: 40px;
       }
+    }
+
+    .checkbox {
+      margin-bottom: 20px;
+
+      &:last-of-type {
+        margin-bottom: 40px;
+      }
+    }
+
+    .returnHomeLink {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+  }
+
+  .lastPageContainer {
+    background: g.$primary-dark-blue;
+    .pagination {
+      color: g.$primary-white;
     }
   }
 }
