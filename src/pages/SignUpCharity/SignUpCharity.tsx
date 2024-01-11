@@ -260,7 +260,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.CYA,
           componentData: {
             sections: [FormSections.YOUR_DETAILS_SECTION, FormSections.CHARITY_SECTION],
-            formName: FormNames.JOIN,
+            formName: FormNames.CHARITY,
             formMeta: {
               page: 5,
             },

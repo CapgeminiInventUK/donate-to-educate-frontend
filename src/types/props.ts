@@ -178,6 +178,8 @@ export interface ExternalLinkProps {
   className?: string;
 }
 
+export type InternalLinkProps = ExternalLinkProps;
+
 export interface FormIntroPageProps {
   header: string;
   infoText: string;

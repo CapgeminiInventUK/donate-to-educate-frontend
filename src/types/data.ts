@@ -5,6 +5,7 @@ import {
   DropdownProps,
   ExternalLinkProps,
   FormIntroPageProps,
+  InternalLinkProps,
   RadioGroupProps,
   SummaryProps,
   TextAreaProps,
@@ -27,6 +28,7 @@ export interface FormComponent {
   componentType: ComponentType;
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
+  formComponentInternalLink?: InternalLinkProps;
   classNameSuffix?: string;
 }
 
@@ -66,7 +68,8 @@ export enum FormSections {
 }
 
 export enum FormNames {
-  JOIN = 'Join Donate to Educate',
+  CHARITY = 'Sign up charity',
+  SCHOOL = 'Sign up school',
 }
 
 export enum ComponentType {
