@@ -50,6 +50,14 @@
   color: g.$form-button-grey-text;
 }
 
+.formButtonGreen {
+  @extend %button;
+  border: g.$form-button-green-background 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$form-button-green-border;
+  background: g.$form-button-green-background;
+  color: g.$primary-white;
+}
+
 @media only screen and (max-width: g.$screen-large) {
   %button {
     line-height: 16px;

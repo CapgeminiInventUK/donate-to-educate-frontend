@@ -30,7 +30,14 @@ export type School = {
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
-  request?: string | null;
+  request?: {
+    items: string | null;
+    banner: string | null;
+    helpBannerTitle: string | null;
+    helpBannerBody: string | null;
+    whatToExpect: string | null;
+    actionText: string | null;
+  } | null;
   donate?: string | null;
   excess?: string | null;
 };
@@ -179,7 +186,14 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile: {
     __typename: 'SchoolProfile';
-    request?: string | null;
+    request?: {
+      items: string | null;
+      banner: string | null;
+      helpBannerTitle: string | null;
+      helpBannerBody: string | null;
+      whatToExpect: string | null;
+      actionText: string | null;
+    };
     donate?: string | null;
     excess?: string | null;
   };

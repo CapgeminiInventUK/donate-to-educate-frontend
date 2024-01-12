@@ -21,8 +21,8 @@ export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonGrey'
-  | 'formButtonRed';
-
+  | 'formButtonRed'
+  | 'formButtonGreen';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;

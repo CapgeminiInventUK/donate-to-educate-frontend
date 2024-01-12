@@ -64,9 +64,30 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
 ` as GeneratedQuery<APITypes.GetJoinRequestsQueryVariables, APITypes.GetJoinRequestsQuery>;
 export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: String!) {
   getSchoolProfile(name: $name) {
-    request
-    donate
-    excess
+    request {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+    }
+    donate {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+    }
+    excess {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+    }
     __typename
   }
 }

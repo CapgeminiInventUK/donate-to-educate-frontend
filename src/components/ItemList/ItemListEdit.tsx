@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
 import { getFullItemList } from './getFullItemList';
@@ -12,6 +13,8 @@ interface ItemListEditProps {
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
     setItems((previousItems) => {
+      console.log(previousItems);
+
       if (value) {
         return { ...previousItems, [itemKey]: name };
       }

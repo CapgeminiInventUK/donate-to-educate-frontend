@@ -48,6 +48,14 @@
       }
     }
 
+    .cancelButton {
+      color: g.$secondary-mid-blue;
+    }
+
+    .actionContainer {
+      display: flex;
+    }
+
     .helpContact {
       margin: 40px 0;
       padding: 40px;
