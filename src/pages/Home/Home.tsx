@@ -71,6 +71,7 @@ const Home: FC = () => {
             return (
               <Button
                 key="text"
+                collectData={true}
                 className={styles.buttons}
                 theme={theme as Themes}
                 text={
