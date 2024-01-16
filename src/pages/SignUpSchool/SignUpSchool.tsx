@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import styles from './Form.module.scss';
-import FormContainer from './FormContainer';
+import styles from './SignUpSchool.module.scss';
+import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
 import {
   ComponentType,
   FormDataItem,
@@ -13,8 +13,7 @@ import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
-const Form: FC = () => {
-  const [pageNumber, setPageNumber] = useState(0);
+const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
@@ -30,64 +29,46 @@ const Form: FC = () => {
           componentType: ComponentType.INTRO,
           componentData: {
             header: 'Join Donate to Educate',
-            infoText: 'To support us and help families and schools, you need to:',
+            infoText: 'To add your school, you need to:',
             listItems: [
-              'work at a charity or be a volunteer',
-              'have a work address or premises to store school products',
+              'be a PTA member, governor, or senior teaching staff at your school',
               'provide us with your contact details',
               'review and agree to our GDPR statements and policies',
-              'agree that we can share your information with your local authority or local council to confirm your identity',
+              'agree that we can share your information with your local authority to confirm your identity',
             ],
             secondaryHeading: 'What to expect',
-            secondaryInfoText: `One you give us your details, we will:`,
+            secondaryInfoText: 'One you give us your details, we will:',
             secondaryListItems: [
-              `send you details to your local authority or local council`,
-              `your local authority or local council will confirm your identity`,
-              `you will get an email to confirm whether you can join`,
+              'send your details to your local authority',
+              'ask your local authority to confirm your identity',
+              'email you to confirm whether you can join us',
             ],
           },
         },
       ],
     },
     {
-      header: 'Name of charity or volunteer group',
-      formComponents: [
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            isLarge: true,
-            onChange,
-            formMeta: {
-              page: 1,
-              field: 'Name',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-      ],
-    },
-    {
-      header: "What is the name of your charity or volunteer group's local council?",
+      header: 'Find your school',
       formComponents: [
         {
           componentType: ComponentType.DROPDOWN,
           componentData: {
-            subHeading: 'If you have locations across the country, choose one main local council.',
+            subHeading: "Enter your school's name or postcode.",
             options: [
-              { value: 'westBerks', label: 'West Berkshire' },
-              { value: 'westNorthants', label: 'West Northamptonshire' },
-              { value: 'westSussex', label: 'West Sussex County Council' },
+              { value: 'School one', label: 'School one' },
+              { value: 'School two', label: 'School two' },
+              { value: 'School three', label: 'School three' },
             ],
             isLarge: true,
             formMeta: {
-              page: 2,
-              field: 'Main local council',
-              section: FormSections.CHARITY_SECTION,
+              page: 1,
+              field: 'School',
+              section: FormSections.YOUR_DETAILS_SECTION,
             },
             onChange,
           },
-          formComponentLink: {
-            linkText: 'Find my local council (opens in a new tab).',
+          formComponentInternalLink: {
+            linkText: 'I cannot find my school',
             linkUrl: 'https://www.gov.uk/find-local-council',
           },
         },
@@ -103,7 +84,7 @@ const Form: FC = () => {
             isLarge: true,
             onChange,
             formMeta: {
-              page: 3,
+              page: 2,
               field: 'First name',
               section: FormSections.YOUR_DETAILS_SECTION,
             },
@@ -116,7 +97,7 @@ const Form: FC = () => {
             isLarge: true,
             onChange,
             formMeta: {
-              page: 3,
+              page: 2,
               field: 'Last name',
               section: FormSections.YOUR_DETAILS_SECTION,
             },
@@ -126,11 +107,11 @@ const Form: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Job title or role',
-            subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
+            subHeading: 'For example, PTA member, governor or teaching staff.',
             isLarge: true,
             onChange,
             formMeta: {
-              page: 3,
+              page: 2,
               field: 'Job title or role',
               section: FormSections.YOUR_DETAILS_SECTION,
             },
@@ -141,11 +122,11 @@ const Form: FC = () => {
           componentData: {
             header: 'Email',
             subHeading:
-              "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
+              "Use your school email address if you're staff, or personal email address if you're a PTA member or parent. You will need this email to sign in.",
             isLarge: true,
             onChange,
             formMeta: {
-              page: 3,
+              page: 2,
               field: 'Email',
               section: FormSections.YOUR_DETAILS_SECTION,
             },
@@ -157,98 +138,9 @@ const Form: FC = () => {
             header: 'Phone',
             onChange,
             formMeta: {
-              page: 3,
+              page: 2,
               field: 'Phone',
               section: FormSections.YOUR_DETAILS_SECTION,
-            },
-          },
-        },
-      ],
-    },
-    {
-      header: "What is your charity or volunteer group's main address?",
-      subHeader: 'This can be your work address or where you store your school products',
-      formComponents: [
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            header: 'Address line 1',
-            isLarge: true,
-            onChange,
-            formMeta: {
-              page: 4,
-              field: 'Address line 1',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            header: 'Address line 2 (optional)',
-            isLarge: true,
-            onChange,
-            formMeta: {
-              page: 4,
-              field: 'Address line 2',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            header: 'Town or city',
-            onChange,
-            formMeta: {
-              page: 4,
-              field: 'Town',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            header: 'County',
-            onChange,
-            formMeta: {
-              page: 4,
-              field: 'County',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-        {
-          componentType: ComponentType.TEXT,
-          componentData: {
-            header: 'Postcode',
-            onChange,
-            isSmall: true,
-            formMeta: {
-              page: 4,
-              field: 'Postcode',
-              section: FormSections.CHARITY_SECTION,
-            },
-          },
-        },
-      ],
-    },
-    {
-      header: 'Tell us about your charity or volunteer group',
-      formComponents: [
-        {
-          componentType: ComponentType.TEXTAREA,
-          componentData: {
-            subHeading:
-              'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
-            hint: 'This information can only be seen by Donate to Educate administrators.',
-            characterLimit: 1000,
-            onChange,
-            formMeta: {
-              page: 4,
-              field: 'About',
-              section: FormSections.CHARITY_SECTION,
             },
           },
         },
@@ -260,8 +152,8 @@ const Form: FC = () => {
         {
           componentType: ComponentType.CYA,
           componentData: {
-            sections: [FormSections.YOUR_DETAILS_SECTION, FormSections.CHARITY_SECTION],
-            formName: FormNames.JOIN,
+            sections: [FormSections.YOUR_DETAILS_SECTION],
+            formName: FormNames.SCHOOL,
             formMeta: {
               page: 5,
             },
@@ -339,14 +231,9 @@ const Form: FC = () => {
 
   return (
     <div className={styles.container}>
-      <FormContainer
-        formTemplate={formTemplate}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        formData={formData}
-      />
+      <MultiStepForm formTemplate={formTemplate} formData={formData} />
     </div>
   );
 };
 
-export default Form;
+export default SignUpSchool;

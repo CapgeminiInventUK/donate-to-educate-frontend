@@ -38,7 +38,23 @@ const nameBuilder = (formData: FormDataItem[]): string => {
   return `${String(firstName)} ${String(lastName)}`;
 };
 
-const getJoinD2ECyaData = (formData: FormDataItem[]): Record<string, FormDataItem[]> => {
+const assignDataToSections = (
+  data: FormDataItem[],
+  sections: FormSections[]
+): Record<string, FormDataItem[]> => {
+  const accumulator: Record<string, FormDataItem[]> = sections.reduce((acc, section) => {
+    return { [section]: [], ...acc };
+  }, {});
+  return data.reduce((acc, { field, value, page, section }) => {
+    if (field === 'First name' || field === 'Last name' || !section) {
+      return acc;
+    }
+    acc[section] = [...acc[section], { field, value, page }];
+    return acc;
+  }, accumulator);
+};
+
+const getCharityCyaData = (formData: FormDataItem[]): Record<string, FormDataItem[]> => {
   const fullName = nameBuilder(formData);
   const address = addressBuilder(formData);
   const data = [
@@ -47,19 +63,19 @@ const getJoinD2ECyaData = (formData: FormDataItem[]): Record<string, FormDataIte
     ...formData,
   ].filter(({ field }) => !excludedValues.includes(field));
 
-  return data.reduce(
-    (acc, { field, value, page, section }) => {
-      if (field === 'First name' || field === 'Last name' || !section) {
-        return acc;
-      }
-      acc[section] = [...acc[section], { field, value, page }];
-      return acc;
-    },
-    {
-      [FormSections.YOUR_DETAILS_SECTION]: [] as FormDataItem[],
-      [FormSections.CHARITY_SECTION]: [] as FormDataItem[],
-    }
-  );
+  return assignDataToSections(data, [
+    FormSections.YOUR_DETAILS_SECTION,
+    FormSections.CHARITY_SECTION,
+  ]);
+};
+
+const getSchoolCyaData = (formData: FormDataItem[]): Record<string, FormDataItem[]> => {
+  const fullName = nameBuilder(formData);
+  const data = [
+    { field: 'Name', value: fullName, page: 2, section: FormSections.YOUR_DETAILS_SECTION },
+    ...formData,
+  ].filter(({ field }) => !excludedValues.includes(field));
+  return assignDataToSections(data, [FormSections.YOUR_DETAILS_SECTION]);
 };
 
 export const checkYourAnswersDataMap = (
@@ -70,8 +86,10 @@ export const checkYourAnswersDataMap = (
     return {};
   }
   switch (formName) {
-    case FormNames.JOIN:
-      return getJoinD2ECyaData(formData);
+    case FormNames.CHARITY:
+      return getCharityCyaData(formData);
+    case FormNames.SCHOOL:
+      return getSchoolCyaData(formData);
     default:
       return {};
   }
