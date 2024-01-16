@@ -50,6 +50,7 @@ export interface ImageProps {
 export interface ErrorBoundaryProps {
   children?: ReactNode;
   name?: ErrorBoundaryType;
+  location?: string;
 }
 
 export type ErrorBoundaryType = 'Router' | 'Generic';

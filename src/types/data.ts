@@ -16,6 +16,7 @@ export interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
   errorInfo?: ErrorInfo;
+  location?: string;
 }
 
 export interface CarouselItem {

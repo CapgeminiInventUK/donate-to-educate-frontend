@@ -13,6 +13,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { ConfigProvider } from 'antd';
 import CookieBanner from '../CookieBanner/CookieBanner';
+import ErrorBoundaryWithLocation from '../ErrorBoundary/ErrorBoundaryWithLocation';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,13 +40,13 @@ const App = (): JSX.Element => {
                       element={
                         <Layout
                           page={
-                            <ErrorBoundary name="Router">
+                            <ErrorBoundaryWithLocation name="Router">
                               {requiresAuth ? (
                                 <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
                               ) : (
                                 element
                               )}
-                            </ErrorBoundary>
+                            </ErrorBoundaryWithLocation>
                           }
                           header={isMobile ? <Sidebar /> : <Navbar />}
                           footer={<Footer />}
