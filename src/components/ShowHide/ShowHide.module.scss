@@ -2,7 +2,9 @@
 
 .pointer {
   cursor: pointer;
-  position: absolute;
-  right: 15px;
-  top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: end;
+  left: 300px;
+  top: 37px;
 }

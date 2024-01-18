@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import styles from './TextInput.module.scss';
 import { TextInputProps } from '@/types/props';
 import ShowHide from '../ShowHide/ShowHide';
+import styles from './TextInput.module.scss';
 
 const TextInput: FC<TextInputProps> = ({
   header,
