@@ -28,13 +28,13 @@ const LocalAuthoritySignUpConfirmation: FC = () => {
             }}
           />
         </div>
-      </div>
-      <div className={dashboardStyles.body}>
-        <Email />
-        <h2>You have created an account for SELECTED_LA County Council</h2>
-        <p>The main user has been emailed with instructions to set up their profile</p>
-        <LogoWhite className={styles.logo} />
-        <a onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)}>Return to dashboard</a>
+        <div className={dashboardStyles.body}>
+          <Email />
+          <h2>You have created an account for SELECTED_LA County Council</h2>
+          <p>The main user has been emailed with instructions to set up their profile</p>
+          <LogoWhite className={styles.logo} />
+          <a onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)}>Return to dashboard</a>
+        </div>
       </div>
     </div>
   );

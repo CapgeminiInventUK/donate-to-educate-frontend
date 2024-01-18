@@ -215,26 +215,26 @@ const ManageLocalAuthorities: FC = () => {
             }}
           />
         </div>
-      </div>
-      <div className={dashboardStyles.body}>
-        <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)} theme="white" />
-        {isLoading && <Spinner />}
-        {!isLoading && (
-          <div className={styles.cardContainer}>
-            <div className={styles.lasCard}>
-              <div className={styles.laBorder}>{registered} joined</div>
-              <div className={styles.laBorder}>{notRegistered} to join</div>
-              <br />
+        <div className={dashboardStyles.body}>
+          <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)} theme="white" />
+          {isLoading && <Spinner />}
+          {!isLoading && (
+            <div className={styles.cardContainer}>
+              <div className={styles.lasCard}>
+                <div className={styles.laBorder}>{registered} joined</div>
+                <div className={styles.laBorder}>{notRegistered} to join</div>
+                <br />
 
-              <Table
-                className={styles.lasTable}
-                dataSource={data?.getLocalAuthorities}
-                columns={columns}
-                scroll={{ x: 'max-content' }}
-              />
+                <Table
+                  className={styles.lasTable}
+                  dataSource={data?.getLocalAuthorities}
+                  columns={columns}
+                  scroll={{ x: 'max-content' }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   buttonTheme = 'formButtonGrey',
 }): JSX.Element => {
   return (
-    <div className={`${styles.card} ${className}`}>
+    <div className={`${styles.card} ${styles[`${className}`]}`}>
       {isLoading && <Spinner />}
       {!isLoading && (
         <>

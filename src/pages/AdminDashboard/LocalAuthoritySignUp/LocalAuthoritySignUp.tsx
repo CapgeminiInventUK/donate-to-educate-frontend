@@ -89,87 +89,90 @@ const LocalAuthoritySignUp: FC = () => {
             }}
           />
         </div>
-      </div>
-      <div className={dashboardStyles.body}>
-        <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)} theme="white" />
-        <div className={styles.card}>
-          <h1>{la}</h1>
-          <hr />
-          <TextInput
-            header="First name"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                firstName: value,
-              }));
-            }}
+        <div className={dashboardStyles.body}>
+          <BackButton
+            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
+            theme="white"
           />
-          <TextInput
-            header="Last name"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                lastName: value,
-              }));
-            }}
-          />
-          <TextInput
-            header="Job title or role"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                jobTitle: value,
-              }));
-            }}
-          />
-          <TextInput
-            header="Department"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                department: value,
-              }));
-            }}
-          />
-          <TextInput
-            header="Email"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                email: value,
-              }));
-            }}
-          />
-          <TextInput
-            header="Phone"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                phone: value,
-              }));
-            }}
-          />
-          <TextArea
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                notes: value,
-              }));
-            }}
-            header="Notes about this user (optional)"
-            subHeading="This information can only be seen by Donate to Educate administrators."
-            characterLimit={1000}
-          />
-          <FormButton
-            text={'Create account'}
-            theme={'formButtonMidBlue'}
-            onClick={(): void => {
-              refetch()
-                .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
-                // eslint-disable-next-line no-console
-                .catch(console.error);
-            }}
-          />
+          <div className={styles.card}>
+            <h1>{la}</h1>
+            <hr />
+            <TextInput
+              header="First name"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  firstName: value,
+                }));
+              }}
+            />
+            <TextInput
+              header="Last name"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  lastName: value,
+                }));
+              }}
+            />
+            <TextInput
+              header="Job title or role"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  jobTitle: value,
+                }));
+              }}
+            />
+            <TextInput
+              header="Department"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  department: value,
+                }));
+              }}
+            />
+            <TextInput
+              header="Email"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  email: value,
+                }));
+              }}
+            />
+            <TextInput
+              header="Phone"
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  phone: value,
+                }));
+              }}
+            />
+            <TextArea
+              onChange={(value) => {
+                setFormState((prevState) => ({
+                  ...prevState,
+                  notes: value,
+                }));
+              }}
+              header="Notes about this user (optional)"
+              subHeading="This information can only be seen by Donate to Educate administrators."
+              characterLimit={1000}
+            />
+            <FormButton
+              text={'Create account'}
+              theme={'formButtonMidBlue'}
+              onClick={(): void => {
+                refetch()
+                  .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
+                  // eslint-disable-next-line no-console
+                  .catch(console.error);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

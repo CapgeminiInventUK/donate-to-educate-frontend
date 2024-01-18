@@ -86,7 +86,7 @@ const AdminDashboard: FC = () => {
                   <div>{notRegistered} to join</div>
                 </>
               }
-              className={styles.la}
+              className="la"
               buttonTheme="formButtonMidBlue"
             />
             <AdminDashboardCard
@@ -100,7 +100,7 @@ const AdminDashboard: FC = () => {
                   {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
                 </>
               }
-              className={styles.requests}
+              className="requests"
             />
             <AdminDashboardCard
               isLoading={isLoading}
@@ -108,7 +108,7 @@ const AdminDashboard: FC = () => {
               body="View, add and edit registered schools."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS_SCHOOL)}
               stats={<>0 joined</>}
-              className={styles.schools}
+              className="schools"
             />
             <AdminDashboardCard
               isLoading={isLoading}
@@ -116,7 +116,7 @@ const AdminDashboard: FC = () => {
               body="View, add and edit registered charities and volunteers."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS_CHARITY)}
               stats={<>0 joined</>}
-              className={styles.charities}
+              className="charities"
             />
           </div>
         </div>
