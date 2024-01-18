@@ -13,7 +13,7 @@ import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import { client } from '@/graphqlClient';
-import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
+import { GetLocalAuthoritiesQuery } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { getLocalAuthorities } from '@/graphql/queries';
@@ -30,9 +30,7 @@ const SignUpCharity: FC = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['la'],
     queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
-      >({
+      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
         query: getLocalAuthorities,
       });
 
@@ -41,12 +39,12 @@ const SignUpCharity: FC = () => {
   });
 
   if (error) {
-    throw new Error();
+    throw new Error('Failed to fetch LocalAuthorities data.');
   }
 
-  const options = data?.getLocalAuthorities.map((option) => ({
-    value: option.code,
-    label: option.name,
+  const options = data?.getLocalAuthorities.map(({ code, name }) => ({
+    value: code,
+    label: name,
   }));
 
   const formTemplate: FormTemplate[] = [
@@ -99,7 +97,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.DROPDOWN,
           componentData: {
             subHeading: 'If you have locations across the country, choose one main local council.',
-            options: options,
+            options,
             isLarge: true,
             formMeta: {
               page: 2,
