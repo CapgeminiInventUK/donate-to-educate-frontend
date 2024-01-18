@@ -1,0 +1,9 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

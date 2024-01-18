@@ -23,7 +23,8 @@ enum Paths {
   FUNDED = 'https://www.funded.org.uk',
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
   RESET_PASSWORD = '/reset-password',
-  FORM = '/form',
+  SIGN_UP_CHARITY = '/sign-up-charity',
+  SIGN_UP_SCHOOL = '/sign-up-school',
   ADD_USER = '/add-user',
   SCHOOL_EDIT = '/school-edit',
 }

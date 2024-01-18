@@ -1,0 +1,100 @@
+@use '@assets/global.scss' as g;
+
+.formContainer {
+  @include g.card;
+  padding: 40px 82px;
+  width: 65vw;
+  margin-bottom: 50px;
+
+  .pagination {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 24px;
+    color: g.$primary-dark-blue;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.24px;
+    margin-bottom: 40px;
+  }
+
+  .logoContainer {
+    width: 300px;
+    margin-bottom: 60px;
+  }
+
+  .headerContainer {
+    margin: 0 0 40px;
+    color: g.$primary-dark-blue;
+    font-family: Poppins;
+
+    .header {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 125%;
+      letter-spacing: -0.32px;
+      margin: 0;
+    }
+
+    .subHeader {
+      margin-top: 20px;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 145%;
+      letter-spacing: -0.09px;
+    }
+  }
+
+  .formComponent {
+    margin-bottom: 40px;
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h5 {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.09px;
+    }
+
+    label {
+      color: g.$primary-dark-blue;
+
+      > div {
+        margin-right: 15px;
+      }
+    }
+
+    > div {
+      padding-bottom: 0;
+    }
+
+    .link {
+      margin-top: 40px;
+    }
+  }
+
+  .checkbox {
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  .returnHomeLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+}
+
+.lastPageContainer {
+  background: g.$primary-dark-blue;
+  .pagination {
+    color: g.$primary-white;
+  }
+}

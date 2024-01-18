@@ -88,7 +88,7 @@ const Home: FC = () => {
           {[
             {
               text: 'School sign up',
-              path: Paths.FORM,
+              path: Paths.SIGN_UP_SCHOOL,
               color: 'blue',
               pillText: 'IN PROGRESS',
               theme: 'midBlue',
@@ -102,7 +102,7 @@ const Home: FC = () => {
             },
             {
               text: 'Charity sign up',
-              path: Paths.FORM,
+              path: Paths.SIGN_UP_CHARITY,
               color: 'blue',
               pillText: 'IN PROGRESS',
               theme: 'midBlue',

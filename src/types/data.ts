@@ -5,7 +5,9 @@ import {
   DropdownProps,
   ExternalLinkProps,
   FormIntroPageProps,
+  InternalLinkProps,
   RadioGroupProps,
+  SummaryProps,
   TextAreaProps,
   TextInputProps,
 } from './props';
@@ -14,6 +16,7 @@ export interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
   errorInfo?: ErrorInfo;
+  location?: string;
 }
 
 export interface CarouselItem {
@@ -26,6 +29,8 @@ export interface FormComponent {
   componentType: ComponentType;
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
+  formComponentInternalLink?: InternalLinkProps;
+  classNameSuffix?: string;
 }
 
 export type ComponentDataPropsType =
@@ -35,12 +40,14 @@ export type ComponentDataPropsType =
   | TextAreaProps
   | DropdownProps
   | FormIntroPageProps
-  | CheckYourAnswersProps;
+  | CheckYourAnswersProps
+  | SummaryProps;
 
 export interface FormTemplate {
   formComponents: FormComponent[];
   header?: string;
   subHeader?: string;
+  logo?: JSX.Element;
 }
 
 export interface FormMeta {
@@ -51,7 +58,7 @@ export interface FormMeta {
 
 export interface FormDataItem {
   field: string;
-  value: string | number;
+  value: string | number | boolean;
   page?: number;
   section?: FormSections;
 }
@@ -62,7 +69,8 @@ export enum FormSections {
 }
 
 export enum FormNames {
-  JOIN = 'Join Donate to Educate',
+  CHARITY = 'Sign up charity',
+  SCHOOL = 'Sign up school',
 }
 
 export enum ComponentType {
@@ -73,6 +81,7 @@ export enum ComponentType {
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
   CYA = 'checkYourAnswers',
+  SUMMARY = 'summaryPage',
 }
 
 export interface DropdownOption {

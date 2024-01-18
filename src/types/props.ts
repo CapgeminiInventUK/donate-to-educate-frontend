@@ -51,6 +51,7 @@ export interface ImageProps {
 export interface ErrorBoundaryProps {
   children?: ReactNode;
   name?: ErrorBoundaryType;
+  location?: string;
 }
 
 export type ErrorBoundaryType = 'Router' | 'Generic';
@@ -158,10 +159,8 @@ export interface TextInputProps extends CommonInputProps {
   isSmall?: boolean;
 }
 
-export interface FormContainerProps {
+export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
-  pageNumber: number;
-  setPageNumber: Dispatch<SetStateAction<number>>;
   formData: FormDataItem[];
 }
 export interface DropdownProps extends CommonInputProps {
@@ -181,6 +180,8 @@ export interface ExternalLinkProps {
   className?: string;
 }
 
+export type InternalLinkProps = ExternalLinkProps;
+
 export interface FormIntroPageProps {
   header: string;
   infoText: string;
@@ -196,4 +197,11 @@ export interface CheckYourAnswersProps {
   formData?: FormDataItem[];
   setPageNumber?: Dispatch<SetStateAction<number>>;
   formMeta: FormMeta;
+}
+
+export interface SummaryProps {
+  icon?: JSX.Element;
+  header: string;
+  body: string[];
+  logo?: JSX.Element;
 }
