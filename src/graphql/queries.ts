@@ -71,6 +71,7 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
       helpBannerBody
       whatToExpect
       actionText
+      __typename
     }
     donate {
       items
@@ -79,6 +80,7 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
       helpBannerBody
       whatToExpect
       actionText
+      __typename
     }
     excess {
       items
@@ -87,6 +89,7 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
       helpBannerBody
       whatToExpect
       actionText
+      __typename
     }
     __typename
   }

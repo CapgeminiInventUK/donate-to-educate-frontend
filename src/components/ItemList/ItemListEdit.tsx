@@ -36,7 +36,9 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
-                const checkValue = item in items && name === items[item];
+                const checkValue = !(items === null)
+                  ? item in items && name === items[item]
+                  : false;
                 return (
                   <li
                     key={`${name}-${item}-edit`}

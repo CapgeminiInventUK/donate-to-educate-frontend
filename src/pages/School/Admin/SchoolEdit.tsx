@@ -81,12 +81,12 @@ const SchoolEdit: FC = () => {
           name: 'Test School Profile',
           //value: JSON.stringify(items),
           value: JSON.stringify({
+            items: items,
             banner: banner,
             helpBannerTitle: helpBannerTitle,
             helpBannerBody: helpBannerBody,
             whatToExpect: whatToExpectText,
             actionText: actionText,
-            items: items,
           }),
         },
       });
