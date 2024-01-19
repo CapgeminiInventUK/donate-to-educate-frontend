@@ -48,9 +48,6 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
   };
 
   const onBackButtonClick = (): void => {
-    if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
-      return setPageNumber(cyaPageNumber);
-    }
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
     }
