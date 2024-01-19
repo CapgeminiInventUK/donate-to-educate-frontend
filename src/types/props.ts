@@ -27,6 +27,7 @@ export type FormButtonThemes =
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
+  collectData?: boolean;
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
