@@ -34,7 +34,7 @@ h2 {
   .bannerContainer {
     flex-direction: column;
     align-items: center;
-    padding: 10px 0px;
+    padding: 30px;
   }
 
   .textContainer {
@@ -47,11 +47,5 @@ h2 {
     height: auto;
     max-width: 90%;
     max-height: 90%;
-  }
-
-  .diagonalTextContainer {
-    text-align: center;
-    font-size: 2rem;
-    padding-bottom: 20px;
   }
 }

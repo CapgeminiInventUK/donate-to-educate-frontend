@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Pill } from '@/components/Pill/Pill';
 import Paths from '@/config/paths';
 import { Themes } from '@/types/props';
+import Header from '@/components/Header/Header';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -127,9 +128,11 @@ const Home: FC = () => {
       <HeroBanner />
 
       <div className={styles.councilBanner}>
-        <h2 className={styles.title}>
-          First launching in partnership with West Sussex County Council
-        </h2>
+        <Header
+          className={styles.title}
+          text="First launching in partnership with West Sussex County Council"
+          size="small"
+        />
         <Image
           image={westSussexCouncilLogo}
           alt="west sussex county council logo"

@@ -71,6 +71,7 @@ export interface BackLinkProps {
 export interface HeaderProps {
   text: string;
   className?: string;
+  size?: 'normal' | 'small';
 }
 
 export interface PillProps {
