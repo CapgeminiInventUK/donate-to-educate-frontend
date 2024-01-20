@@ -9,6 +9,10 @@ import { Pill } from '@/components/Pill/Pill';
 import Paths from '@/config/paths';
 import { Themes } from '@/types/props';
 import Header from '@/components/Header/Header';
+import Tile from './Tile/Tile';
+import People from '@/assets/home/tiles/People';
+import Hat from '@/assets/home/tiles/Hat';
+import Heart from '@/assets/home/tiles/Heart';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -138,6 +142,37 @@ const Home: FC = () => {
           alt="west sussex county council logo"
           width={250}
           className={styles.westSussexLogo}
+        />
+      </div>
+      <div className={styles.tileContainer}>
+        <Tile
+          title="A place for families"
+          onClick={(): void => undefined}
+          body={[
+            "Find new and pre-loved school essentials at your child' school or in nearby charities.",
+            "Donate the things you don't need to help the next pupil and the planet.",
+          ]}
+          icon={<People />}
+        />
+
+        <Tile
+          title="A place for schools"
+          onClick={(): void => undefined}
+          body={[
+            'Create a school profile to show which products you have in stock and ask for donations.',
+            'Help families with product requests and get support from charities.',
+          ]}
+          icon={<Hat />}
+        />
+
+        <Tile
+          title="A place for charities"
+          onClick={(): void => undefined}
+          body={[
+            'Create a charity profile to show which products you stock.',
+            'Help children get the things they need by connecting with nearby schools, PTAs and local communities.',
+          ]}
+          icon={<Heart />}
         />
       </div>
     </div>

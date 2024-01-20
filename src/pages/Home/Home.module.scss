@@ -73,3 +73,13 @@
     }
   }
 }
+
+.tileContainer {
+  background: g.$primary-dark-blue;
+  padding: 40px 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
