@@ -5,7 +5,7 @@ import { signOut } from 'aws-amplify/auth';
 import Button from '@/components/Button/Button';
 import Paths from '@/config/paths';
 import Email from '@/assets/admin/Email';
-import dashboardStyles from '../AdminDashboard.module.scss';
+import dashboardStyles from '../../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUpConfirmation.module.scss';
 
 const LocalAuthoritySignUpConfirmation: FC = () => {
