@@ -7,16 +7,16 @@
   justify-content: space-around;
   align-items: center;
   background-color: g.$primary-light-blue;
-  padding: 30px;
 }
 
 .textContainer {
   width: 30%;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   font-size: 1.1rem;
-  margin-left: 70px;
+  margin: 30px;
 }
 
 .imageStyles {
@@ -30,12 +30,10 @@
   .bannerContainer {
     flex-direction: column;
     align-items: center;
-    padding: 30px;
   }
 
   .textContainer {
-    width: 90%;
-    margin-left: 0;
+    width: 80%;
   }
 
   .imageStyles {
