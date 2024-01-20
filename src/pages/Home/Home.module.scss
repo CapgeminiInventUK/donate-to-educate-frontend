@@ -55,3 +55,42 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.howItWorks {
+  background: g.$primary-white;
+  padding-top: 60px;
+  display: flex;
+  gap: 50px;
+
+  h1,
+  h2,
+  p {
+    margin-bottom: 40px;
+  }
+
+  .textContainer {
+    padding: 40px;
+  }
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .howItWorks {
+    flex-direction: column-reverse;
+    justify-items: center;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 90%;
+      max-height: 90%;
+    }
+  }
+}

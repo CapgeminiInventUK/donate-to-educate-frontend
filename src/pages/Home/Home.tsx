@@ -8,6 +8,8 @@ import Tile from './Tile/Tile';
 import People from '@/assets/home/tiles/People';
 import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';
+import FormButton from '@/components/FormButton/FormButton';
+import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
 
 const Home: FC = () => {
   return (
@@ -57,6 +59,19 @@ const Home: FC = () => {
           ]}
           icon={<Heart />}
         />
+      </div>
+
+      <div className={styles.howItWorks}>
+        <Image alt="How it works" image={PupilsTalking} />
+        <div className={styles.textContainer}>
+          <Header text="How it works" />
+          <p>Giving communities one place to collaborate and help children thrive at school.</p>
+          <FormButton
+            theme="formButtonMidBlue"
+            onClick={(): void => undefined}
+            text="Find out more"
+          />
+        </div>
       </div>
     </div>
   );
