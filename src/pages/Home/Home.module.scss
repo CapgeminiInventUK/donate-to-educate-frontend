@@ -27,6 +27,35 @@
   max-height: 60%;
 }
 
+.helpingPupils {
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+  padding: 60px;
+
+  .content {
+    display: flex;
+    gap: 50px;
+    padding-bottom: 80px;
+  }
+
+  .button {
+    margin-top: 40px;
+    padding: 40px;
+    text-decoration: none;
+    background: g.$primary-white;
+    color: g.$primary-dark-blue;
+    display: flex;
+    border-radius: 10px;
+    min-width: 300px;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
 @media only screen and (min-width: calc(g.$screen-medium + 1px)) {
   .councilBanner {
     flex-direction: row;

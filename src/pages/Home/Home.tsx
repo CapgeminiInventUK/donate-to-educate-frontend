@@ -10,6 +10,9 @@ import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';
 import FormButton from '@/components/FormButton/FormButton';
 import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
+import { Link } from 'react-router-dom';
+import Star from '@/assets/home/helpPupils/Star';
+import Archive from '@/assets/home/helpPupils/Archive';
 
 const Home: FC = () => {
   return (
@@ -72,6 +75,33 @@ const Home: FC = () => {
             text="Find out more"
           />
         </div>
+      </div>
+
+      <div className={styles.helpingPupils}>
+        <div className={styles.content}>
+          <div>
+            <Header text="Helping pupils and the planet" />
+            <p>
+              Every year, pupils experiencing education poverty miss days off school because they
+              don&apos;t have the things they need.
+            </p>
+            <p>
+              With over 100 million items of school uniform, laptops and other essentials destined
+              for landfill, it&apos;s time to create circularity within education.
+            </p>
+          </div>
+          <div className={styles.actionButtons}>
+            <Link to="/" className={styles.button}>
+              <Archive />
+              <h3>Donate products</h3>
+            </Link>
+            <Link to="/" className={styles.button}>
+              <Star />
+              <h3>Support us</h3>
+            </Link>
+          </div>
+        </div>
+        <Image alt="Supporters" image={''} />
       </div>
     </div>
   );
