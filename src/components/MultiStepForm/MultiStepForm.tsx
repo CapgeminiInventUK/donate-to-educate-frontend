@@ -7,8 +7,9 @@ import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
-const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
+const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoading = false }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -63,56 +64,62 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
   return (
     <div>
       <BackButton onClick={onBackButtonClick} theme="blue" />
-      <div className={`${styles.formContainer} ${isLastPage ? styles.lastPageContainer : ''}`}>
-        {pageNumber > 0 && (
-          <div className={styles.pagination}>
-            Step {pageNumber} of {formTemplate.length - 1}
-          </div>
-        )}
-        {logo && <div className={styles.logoContainer}>{logo}</div>}
-        <div className={styles.headerContainer}>
-          {header && <h2 className={styles.header}>{header}</h2>}
-          {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
-        </div>
-        {formComponents.map(
-          ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => (
-            <div
-              className={`${styles.formComponent} ${
-                classNameSuffix ? styles[classNameSuffix] : ''
-              }`}
-              key={index}
-            >
-              {createFormComponent(componentType, formData, componentData, setPageNumber)}
-              {formComponentLink && (
-                <div className={styles.link}>
-                  <ExternalLink {...formComponentLink} />
-                </div>
-              )}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className={`${styles.formContainer} ${isLastPage ? styles.lastPageContainer : ''}`}>
+          {pageNumber > 0 && (
+            <div className={styles.pagination}>
+              Step {pageNumber} of {formTemplate.length - 1}
             </div>
-          )
-        )}
-        {isLastPage ? (
-          <div className={styles.returnHomeLink}>
-            <Button theme={'link'} text={'Return to homepage'} onClick={returnHome} />
+          )}
+          {logo && <div className={styles.logoContainer}>{logo}</div>}
+          <div className={styles.headerContainer}>
+            {header && <h2 className={styles.header}>{header}</h2>}
+            {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
           </div>
-        ) : cyaPageNumber && pageNumber < cyaPageNumber ? (
-          <FormButton
-            text={pageNumber === 0 ? 'Start' : 'Next'}
-            theme={'formButtonDarkBlue'}
-            onClick={onButtonClick}
-            useArrow={true}
-          />
-        ) : (
-          <FormButton
-            text={'Confirm'}
-            theme={
-              cyaPageNumber && pageNumber > cyaPageNumber ? 'formButtonDarkBlue' : 'formButtonGrey'
-            }
-            onClick={onButtonClick}
-            useArrow={true}
-          />
-        )}
-      </div>
+          {formComponents.map(
+            ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => (
+              <div
+                className={`${styles.formComponent} ${
+                  classNameSuffix ? styles[classNameSuffix] : ''
+                }`}
+                key={index}
+              >
+                {createFormComponent(componentType, formData, componentData, setPageNumber)}
+                {formComponentLink && (
+                  <div className={styles.link}>
+                    <ExternalLink {...formComponentLink} />
+                  </div>
+                )}
+              </div>
+            )
+          )}
+          {isLastPage ? (
+            <div className={styles.returnHomeLink}>
+              <Button theme={'link'} text={'Return to homepage'} onClick={returnHome} />
+            </div>
+          ) : cyaPageNumber && pageNumber < cyaPageNumber ? (
+            <FormButton
+              text={pageNumber === 0 ? 'Start' : 'Next'}
+              theme={'formButtonDarkBlue'}
+              onClick={onButtonClick}
+              useArrow={true}
+            />
+          ) : (
+            <FormButton
+              text={'Confirm'}
+              theme={
+                cyaPageNumber && pageNumber > cyaPageNumber
+                  ? 'formButtonDarkBlue'
+                  : 'formButtonGrey'
+              }
+              onClick={onButtonClick}
+              useArrow={true}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

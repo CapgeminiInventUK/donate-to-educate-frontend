@@ -163,6 +163,7 @@ export interface TextInputProps extends CommonInputProps {
 export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];
+  isLoading?: boolean;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
