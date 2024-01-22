@@ -12,7 +12,7 @@ interface TileProps {
 const Tile: FC<TileProps> = ({ onClick, title, body, icon }) => {
   return (
     <div className={styles.tile}>
-      <div className={styles.iconContainer}>{icon}</div>
+      {icon}
       <h2>{title}</h2>
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>

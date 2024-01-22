@@ -13,6 +13,7 @@ import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
 import { Link } from 'react-router-dom';
 import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
+import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 
 const Home: FC = () => {
   return (
@@ -101,7 +102,7 @@ const Home: FC = () => {
             </Link>
           </div>
         </div>
-        <Image alt="Supporters" image={''} />
+        <Image alt="Supporters" image={donateToUs} />
       </div>
     </div>
   );
