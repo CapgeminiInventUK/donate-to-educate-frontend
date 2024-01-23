@@ -1,0 +1,13 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  border-left: 8px solid #9ea3ae;
+  padding-left: 20px;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin: 10px 0;
+    color: g.$primary-dark-blue;
+  }
+}

@@ -8,16 +8,18 @@ import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import AddressInset from '../AddressInset/AddressInset';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
   formData,
   setHappyPathTemplate,
   isLoading = false,
+  pageNumber,
+  setPageNumber,
 }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
   const [cyaPageNumber, setCyaPageNumber] = useState<number>();
   const [isLastPage, setIsLastPage] = useState(false);
 
@@ -83,7 +85,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             isLastPage && !isUnhappyPath ? styles.lastPageContainer : ''
           }`}
         >
-          {pageNumber > 0 && (
+          {pageNumber > 0 && !isUnhappyPath && (
             <div className={styles.pagination}>
               Step {pageNumber} of {formTemplate.length - 1}
             </div>
@@ -106,6 +108,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
                   <div className={styles.link}>
                     <ExternalLink {...formComponentLink} />
                   </div>
+                )}
+                {componentData && (
+                  <AddressInset formData={formData} componentData={componentData} />
                 )}
               </div>
             )

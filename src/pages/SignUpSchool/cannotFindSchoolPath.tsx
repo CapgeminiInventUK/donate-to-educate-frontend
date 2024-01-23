@@ -1,12 +1,17 @@
-import { ComponentType, FormMeta, FormTemplate } from '@/types/data';
+import { ComponentType, DropdownOption, FormMeta, FormTemplate } from '@/types/data';
 import getHappyPath from './happyPath';
 import LogoBlue from '@/assets/logo/LogoBlue';
 
 const getCannotFindSchoolPath = (
-  onChange: (value: string | number | boolean, formMeta: FormMeta | undefined) => void,
+  onChange: (
+    value: string | number | boolean,
+    formMeta?: FormMeta,
+    fullValue?: Record<string, unknown>
+  ) => void,
+  schoolOptions: DropdownOption[],
   cannotFindSchool: () => void
 ): FormTemplate[] => {
-  const happyPath = getHappyPath(onChange, cannotFindSchool);
+  const happyPath = getHappyPath(onChange, schoolOptions, cannotFindSchool);
   const cannotFindSchoolPage = {
     formComponents: [
       {

@@ -20,6 +20,7 @@ import { getLocalAuthorities } from '@/graphql/queries';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
@@ -359,7 +360,13 @@ const SignUpCharity: FC = () => {
 
   return (
     <div className={styles.container}>
-      <MultiStepForm formTemplate={formTemplate} formData={formData} isLoading={isLoading} />
+      <MultiStepForm
+        formTemplate={formTemplate}
+        formData={formData}
+        isLoading={isLoading}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+      />
     </div>
   );
 };

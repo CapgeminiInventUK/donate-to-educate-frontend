@@ -1,10 +1,22 @@
-import { FormMeta, FormTemplate, ComponentType, FormNames, FormSections } from '@/types/data';
+import {
+  FormMeta,
+  FormTemplate,
+  ComponentType,
+  FormNames,
+  FormSections,
+  DropdownOption,
+} from '@/types/data';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
 const getHappyPath = (
-  onChange: (value: string | number | boolean, formMeta: FormMeta | undefined) => void,
+  onChange: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void,
+  schoolOptions: DropdownOption[],
   cannotFindSchool: () => void
 ): FormTemplate[] => {
   return [
@@ -39,11 +51,7 @@ const getHappyPath = (
           componentType: ComponentType.DROPDOWN,
           componentData: {
             subHeading: "Enter your school's name or postcode.",
-            options: [
-              { value: 'School one', label: 'School one' },
-              { value: 'School two', label: 'School two' },
-              { value: 'School three', label: 'School three' },
-            ],
+            options: schoolOptions,
             isLarge: true,
             formMeta: {
               page: 1,

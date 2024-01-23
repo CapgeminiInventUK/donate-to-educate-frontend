@@ -18,6 +18,13 @@ export const findValueFromFormData = (
   return formData.find(({ field }) => field === fieldName)?.value ?? '';
 };
 
+export const findFullValueFromFormData = (
+  formData: FormDataItem[],
+  fieldName: string
+): Record<string, unknown> | undefined => {
+  return formData.find(({ field }) => field === fieldName)?.fullValue;
+};
+
 const addressBuilder = (formData: FormDataItem[]): string => {
   const addressLineOne = findValueFromFormData(formData, 'Address line 1');
   const addressLineTwo = findValueFromFormData(formData, 'Address line 2');

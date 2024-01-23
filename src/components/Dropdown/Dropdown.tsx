@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import styles from './Dropdown.module.scss';
 import { DropdownProps } from '@/types/props';
 import Select, { SingleValue } from 'react-select';
-import { DropdownOption } from '@/types/data';
+import { DropdownOption, FilterDropdownOption } from '@/types/data';
 import './ReactSelectOverrides.scss';
 import { getValueFromOptionsByLabel } from '@/utils/formUtils';
 
@@ -16,10 +16,35 @@ const Dropdown: FC<DropdownProps> = ({
   value,
 }) => {
   const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
+  const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
-    onChange && onChange(option?.label ?? '', formMeta);
+    onChange && onChange(option?.label ?? '', formMeta, { ...option });
+  };
+
+  const onSearch = (newValue: string): void => {
+    const newOptions = options.filter(
+      ({ label, postcode }) =>
+        label.includes(newValue) || postcode?.includes(newValue.toUpperCase())
+    );
+
+    if (newOptions?.length > 2000) {
+      setDisplayedOptions([]);
+    } else {
+      setDisplayedOptions(newOptions);
+    }
+  };
+
+  const filterOptions = (option: FilterDropdownOption, input: string): boolean => {
+    if (!input) {
+      return true;
+    }
+    const {
+      label,
+      data: { postcode },
+    } = option;
+    return !!(label.includes(input) || postcode?.includes(input.toUpperCase()));
   };
 
   return (
@@ -29,10 +54,13 @@ const Dropdown: FC<DropdownProps> = ({
       <Select
         className={styles.select}
         classNamePrefix={`${isLarge ? 'selectLarge' : 'select'}`}
-        options={options}
+        options={displayedOptions}
         onChange={handleSelect}
         value={dropDownValue}
         placeholder={value}
+        onInputChange={onSearch}
+        filterOption={filterOptions}
+        isClearable
       />
     </div>
   );

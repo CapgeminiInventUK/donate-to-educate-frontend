@@ -63,6 +63,7 @@ export interface FormDataItem {
   value: string | number | boolean;
   page?: number;
   section?: FormSections;
+  fullValue?: Record<string, unknown>;
 }
 
 export enum FormSections {
@@ -90,4 +91,11 @@ export enum ComponentType {
 export interface DropdownOption {
   value: string | number;
   label: string;
+  postcode?: string | null;
+}
+
+export interface FilterDropdownOption {
+  value: string;
+  label: string;
+  data: DropdownOption;
 }
