@@ -13,24 +13,9 @@
   width: 30%;
   display: flex;
   justify-content: center;
-  align-items: left;
   flex-direction: column;
   font-size: 1.1rem;
-  margin-left: 70px;
-}
-
-h2 {
-  font-size: 3rem;
-}
-
-.diagonalTextContainer {
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-  transform: rotate(-4deg);
-  font-size: 1.5rem;
-  letter-spacing: 0.5rem;
-  font-family: Microsoft Sans Serif;
-  text-align: center;
+  margin: 30px;
 }
 
 .imageStyles {
@@ -44,12 +29,10 @@ h2 {
   .bannerContainer {
     flex-direction: column;
     align-items: center;
-    padding: 10px 0px;
   }
 
   .textContainer {
-    width: 90%;
-    margin-left: 0;
+    width: 80%;
   }
 
   .imageStyles {
@@ -57,11 +40,5 @@ h2 {
     height: auto;
     max-width: 90%;
     max-height: 90%;
-  }
-
-  .diagonalTextContainer {
-    text-align: center;
-    font-size: 2rem;
-    padding-bottom: 20px;
   }
 }

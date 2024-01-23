@@ -35,55 +35,6 @@
         &.lasCardContainer {
           width: 100%;
         }
-
-        .card {
-          background: g.$primary-white;
-          border-radius: 10px;
-          border-top: 18px solid transparent;
-          color: g.$primary-dark-blue;
-          padding: 30px 40px;
-          margin: 10px;
-          width: 380px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .la {
-          border-color: g.$primary-light-blue;
-
-          .border {
-            border-left: solid 10px g.$primary-light-blue;
-            padding-left: 20px;
-          }
-        }
-
-        .requests {
-          border-color: g.$secondary-blue;
-
-          .border {
-            border-left: solid 10px g.$secondary-blue;
-            padding-left: 20px;
-          }
-        }
-
-        .schools {
-          border-color: g.$primary-mid-blue;
-
-          .border {
-            border-left: solid 10px g.$primary-mid-blue;
-            padding-left: 20px;
-          }
-        }
-
-        .charities {
-          border-color: g.$secondary-green;
-
-          .border {
-            border-left: solid 10px g.$secondary-green;
-            padding-left: 20px;
-          }
-        }
       }
 
       .lasTable {

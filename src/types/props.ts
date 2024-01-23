@@ -21,6 +21,7 @@ export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonGrey'
+  | 'formButtonDisabled'
   | 'formButtonRed';
 
 export interface ButtonProps {
@@ -70,6 +71,7 @@ export interface BackLinkProps {
 export interface HeaderProps {
   text: string;
   className?: string;
+  size?: 'normal' | 'small';
 }
 
 export interface PillProps {
@@ -162,6 +164,7 @@ export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];
   setHappyPathTemplate?: () => void;
+  isLoading?: boolean;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];

@@ -11,12 +11,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: g.$primary-light-blue;
-  padding: 40px 20px;
+  background: g.$dark-blue;
+  padding: 20px;
 
   .title {
     text-align: center;
-    padding-bottom: 20px;
+    color: g.$primary-white;
   }
 }
 
@@ -27,46 +27,122 @@
   max-height: 60%;
 }
 
+.helpingPupils {
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+  padding: 60px 60px 0 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 80px;
+  }
+
+  .button {
+    margin-top: 40px;
+    padding: 40px;
+    text-decoration: none;
+    background: g.$primary-white;
+    color: g.$primary-dark-blue;
+    display: flex;
+    border-radius: 10px;
+    min-width: 250px;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 60%;
+    max-height: 60%;
+  }
+}
+
 @media only screen and (min-width: calc(g.$screen-medium + 1px)) {
   .councilBanner {
     flex-direction: row;
-    padding: 89px 222px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 
     .title {
       padding-bottom: 0;
+      max-width: 580px;
     }
   }
 
   .westSussexLogo {
     padding-left: 74px;
-    width: 300px;
+    width: 150px;
+  }
+
+  .helpingPupils {
+    .content {
+      flex-direction: row;
+      gap: 50px;
+    }
+
+    .button {
+      min-width: 300px;
+    }
   }
 }
 
-.actionButtons {
+.tileContainer {
+  background: g.$primary-dark-blue;
+  padding: 40px 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 20px;
   align-items: center;
-  padding: 10px;
+  justify-content: center;
   flex-wrap: wrap;
+}
 
-  h2 {
-    width: 100%;
-    text-align: center;
-    color: g.$primary-dark-blue;
+.howItWorks {
+  background: g.$primary-white;
+  padding-top: 60px;
+  display: flex;
+  gap: 50px;
+
+  h1,
+  h2,
+  p {
+    margin-bottom: 40px;
   }
 
-  div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 200px;
+  .textContainer {
+    padding: 40px;
+  }
 
-    .buttons {
-      margin: 5px;
+  img {
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .howItWorks {
+    flex-direction: column-reverse;
+    justify-items: center;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 90%;
+      max-height: 90%;
     }
   }
 }

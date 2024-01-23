@@ -12,6 +12,11 @@ import {
 import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import { client } from '@/graphqlClient';
+import { GetLocalAuthoritiesQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { getLocalAuthorities } from '@/graphql/queries';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -21,6 +26,26 @@ const SignUpCharity: FC = () => {
     const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
     setFormData([...removeOldValue, { field, value, section, page }]);
   };
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['la'],
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
+        query: getLocalAuthorities,
+      });
+
+      return data;
+    },
+  });
+
+  if (error) {
+    throw new Error('Failed to fetch LocalAuthorities data.');
+  }
+
+  const options = data?.getLocalAuthorities.map(({ code, name }) => ({
+    value: code,
+    label: name,
+  }));
 
   const formTemplate: FormTemplate[] = [
     {
@@ -72,11 +97,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.DROPDOWN,
           componentData: {
             subHeading: 'If you have locations across the country, choose one main local council.',
-            options: [
-              { value: 'westBerks', label: 'West Berkshire' },
-              { value: 'westNorthants', label: 'West Northamptonshire' },
-              { value: 'westSussex', label: 'West Sussex County Council' },
-            ],
+            options,
             isLarge: true,
             formMeta: {
               page: 2,
@@ -338,7 +359,7 @@ const SignUpCharity: FC = () => {
 
   return (
     <div className={styles.container}>
-      <MultiStepForm formTemplate={formTemplate} formData={formData} />
+      <MultiStepForm formTemplate={formTemplate} formData={formData} isLoading={isLoading} />
     </div>
   );
 };
