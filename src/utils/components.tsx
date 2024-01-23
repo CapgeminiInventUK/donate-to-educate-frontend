@@ -20,6 +20,7 @@ import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
 import { findValueFromFormData } from './formUtils';
 import Summary from '@/components/Summary/Summary';
+import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -43,6 +44,8 @@ export const createFormComponent = (
       return <Checkbox {...(componentData as CheckboxProps)} />;
     case ComponentType.DROPDOWN:
       return <Dropdown {...(componentData as DropdownProps)} value={String(value)} />;
+    case ComponentType.SCHOOL_NOT_FOUND:
+      return <CannotFindSchool />;
     case ComponentType.CYA:
       return (
         <CheckYourAnswers

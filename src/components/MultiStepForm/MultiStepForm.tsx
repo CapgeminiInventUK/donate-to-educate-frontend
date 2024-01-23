@@ -8,7 +8,11 @@ import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 
-const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
+const FormContainer: FC<MultiStepFormProps> = ({
+  formTemplate,
+  formData,
+  setHappyPathTemplate,
+}) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -20,6 +24,9 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
     subHeader = undefined,
     formComponents = [],
     logo = undefined,
+    footerLogo = undefined,
+    isUnhappyPath = false,
+    formComponentInternalLink = undefined,
   } = formTemplate[pageNumber];
 
   useEffect(() => {
@@ -48,6 +55,9 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
   };
 
   const onBackButtonClick = (): void => {
+    if (isUnhappyPath && setHappyPathTemplate) {
+      setHappyPathTemplate();
+    }
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
       return setPageNumber(cyaPageNumber);
     }
@@ -63,7 +73,11 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
   return (
     <div>
       <BackButton onClick={onBackButtonClick} theme="blue" />
-      <div className={`${styles.formContainer} ${isLastPage ? styles.lastPageContainer : ''}`}>
+      <div
+        className={`${styles.formContainer} ${
+          isLastPage && !isUnhappyPath ? styles.lastPageContainer : ''
+        }`}
+      >
         {pageNumber > 0 && (
           <div className={styles.pagination}>
             Step {pageNumber} of {formTemplate.length - 1}
@@ -92,10 +106,12 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
           )
         )}
         {isLastPage ? (
-          <div className={styles.returnHomeLink}>
+          <div
+            className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
+          >
             <Button theme={'link'} text={'Return to homepage'} onClick={returnHome} />
           </div>
-        ) : cyaPageNumber && pageNumber < cyaPageNumber ? (
+        ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
           <FormButton
             text={pageNumber === 0 ? 'Start' : 'Next'}
             theme={'formButtonDarkBlue'}
@@ -112,6 +128,19 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData }) => {
             useArrow={true}
           />
         )}
+        {formComponentInternalLink && (
+          <div className={styles.link}>
+            <Button
+              text={formComponentInternalLink.text}
+              theme={formComponentInternalLink.theme}
+              onClick={() => {
+                formComponentInternalLink.onClick();
+                onButtonClick();
+              }}
+            />
+          </div>
+        )}
+        {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
       </div>
     </div>
   );

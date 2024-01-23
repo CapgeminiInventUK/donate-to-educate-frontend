@@ -1,11 +1,11 @@
 import { ErrorInfo } from 'react';
 import {
+  ButtonProps,
   CheckYourAnswersProps,
   CheckboxProps,
   DropdownProps,
   ExternalLinkProps,
   FormIntroPageProps,
-  InternalLinkProps,
   RadioGroupProps,
   SummaryProps,
   TextAreaProps,
@@ -29,7 +29,6 @@ export interface FormComponent {
   componentType: ComponentType;
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
-  formComponentInternalLink?: InternalLinkProps;
   classNameSuffix?: string;
 }
 
@@ -48,6 +47,9 @@ export interface FormTemplate {
   header?: string;
   subHeader?: string;
   logo?: JSX.Element;
+  footerLogo?: JSX.Element;
+  isUnhappyPath?: boolean;
+  formComponentInternalLink?: ButtonProps;
 }
 
 export interface FormMeta {
@@ -80,6 +82,7 @@ export enum ComponentType {
   TEXTAREA = 'textArea',
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
+  SCHOOL_NOT_FOUND = 'schoolNotFound',
   CYA = 'checkYourAnswers',
   SUMMARY = 'summaryPage',
 }
