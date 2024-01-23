@@ -28,7 +28,7 @@
     "@tanstack/react-query-devtools": "^5.17.19",
     "antd": "^5.13.2",
     "aws-amplify": "^6.0.12",
-    "framer-motion": "^10.18.0",
+    "framer-motion": "^11.0.0",
     "is-ci": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
