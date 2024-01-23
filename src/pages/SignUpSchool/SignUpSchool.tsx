@@ -42,26 +42,23 @@ const SignUpSchool: FC = () => {
     setSchoolOptions(options ?? []);
   }, [data]);
 
-  const onChange = useCallback(
-    (
-      value: string | number | boolean,
-      formMeta: FormMeta | undefined,
-      fullValue?: Record<string, unknown>
-    ): void => {
-      const { page = 0, field = '', section } = formMeta ?? {};
-      const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
-      setFormData([...removeOldValue, { field, value, section, page, fullValue }]);
-    },
-    [formData]
-  );
+  const onChange = (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ): void => {
+    const { page = 0, field = '', section } = formMeta ?? {};
+    const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
+    setFormData([...removeOldValue, { field, value, section, page, fullValue }]);
+  };
 
   const cannotFindSchool = useCallback((): void => {
-    setFormTemplate(getCannotFindSchoolPath(onChange, schoolOptions, cannotFindSchool));
-  }, [onChange, schoolOptions]);
+    setFormTemplate(getCannotFindSchoolPath(schoolOptions, cannotFindSchool));
+  }, [schoolOptions]);
 
   const setHappyPathTemplate = useCallback((): void => {
-    setFormTemplate(getHappyPath(onChange, schoolOptions, cannotFindSchool));
-  }, [cannotFindSchool, onChange, schoolOptions]);
+    setFormTemplate(getHappyPath(schoolOptions, cannotFindSchool));
+  }, [cannotFindSchool, schoolOptions]);
 
   useEffect(() => {
     if (!schoolOptions.length) {
@@ -84,6 +81,7 @@ const SignUpSchool: FC = () => {
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
           isLoading={isLoading}
+          onChange={onChange}
         />
       )}
     </div>

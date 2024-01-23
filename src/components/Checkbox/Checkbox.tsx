@@ -9,6 +9,7 @@ const Checkbox: FC<CheckboxProps> = ({
   onChange,
   initialValue = false,
   value,
+  formMeta,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(initialValue);
 
@@ -25,7 +26,7 @@ const Checkbox: FC<CheckboxProps> = ({
         onChange={(): void => {
           setIsChecked(!isChecked);
           if (onChange) {
-            onChange(!isChecked);
+            onChange(!isChecked, formMeta);
           }
         }}
       />

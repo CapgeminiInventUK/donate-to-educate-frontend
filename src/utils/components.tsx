@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { ComponentDataPropsType, ComponentType, FormDataItem } from '@/types/data';
+import { ComponentDataPropsType, ComponentType, FormDataItem, FormMeta } from '@/types/data';
 import {
   CheckYourAnswersProps,
   CheckboxProps,
@@ -26,7 +26,12 @@ export const createFormComponent = (
   componentType: ComponentType,
   formData: FormDataItem[],
   componentData?: ComponentDataPropsType,
-  setPageNumber?: Dispatch<SetStateAction<number>>
+  setPageNumber?: Dispatch<SetStateAction<number>>,
+  onChange?: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void
 ): ReactNode => {
   const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
 
@@ -35,15 +40,25 @@ export const createFormComponent = (
     case ComponentType.INTRO:
       return <FormIntroPage {...(componentData as FormIntroPageProps)} />;
     case ComponentType.TEXT:
-      return <TextInput {...(componentData as TextInputProps)} value={String(value)} />;
+      return (
+        <TextInput
+          {...(componentData as TextInputProps)}
+          value={String(value)}
+          onChange={onChange}
+        />
+      );
     case ComponentType.TEXTAREA:
-      return <TextArea {...(componentData as TextAreaProps)} value={String(value)} />;
+      return (
+        <TextArea {...(componentData as TextAreaProps)} value={String(value)} onChange={onChange} />
+      );
     case ComponentType.RADIO:
       return <RadioGroup {...(componentData as RadioGroupProps)} />;
     case ComponentType.CHECKBOX:
       return <Checkbox {...(componentData as CheckboxProps)} />;
     case ComponentType.DROPDOWN:
-      return <Dropdown {...(componentData as DropdownProps)} value={String(value)} />;
+      return (
+        <Dropdown {...(componentData as DropdownProps)} value={String(value)} onChange={onChange} />
+      );
     case ComponentType.SCHOOL_NOT_FOUND:
       return <CannotFindSchool />;
     case ComponentType.CYA:

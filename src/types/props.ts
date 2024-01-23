@@ -101,7 +101,7 @@ export interface CheckboxProps {
   label?: string;
   className?: string;
   formMeta?: FormMeta;
-  onChange?: (value: boolean) => void;
+  onChange?: (value: boolean, formMeta: FormMeta | undefined) => void;
   initialValue?: boolean;
   value?: boolean;
 }
@@ -168,6 +168,11 @@ export interface MultiStepFormProps {
   setPageNumber: Dispatch<SetStateAction<number>>;
   setHappyPathTemplate?: () => void;
   isLoading?: boolean;
+  onChange: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];

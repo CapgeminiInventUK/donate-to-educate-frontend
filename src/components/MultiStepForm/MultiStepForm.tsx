@@ -17,6 +17,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   isLoading = false,
   pageNumber,
   setPageNumber,
+  onChange,
 }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
@@ -103,7 +104,13 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 }`}
                 key={index}
               >
-                {createFormComponent(componentType, formData, componentData, setPageNumber)}
+                {createFormComponent(
+                  componentType,
+                  formData,
+                  componentData,
+                  setPageNumber,
+                  onChange
+                )}
                 {formComponentLink && (
                   <div className={styles.link}>
                     <ExternalLink {...formComponentLink} />

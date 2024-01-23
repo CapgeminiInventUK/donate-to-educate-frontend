@@ -1,21 +1,9 @@
-import {
-  FormMeta,
-  FormTemplate,
-  ComponentType,
-  FormNames,
-  FormSections,
-  DropdownOption,
-} from '@/types/data';
+import { FormTemplate, ComponentType, FormNames, FormSections, DropdownOption } from '@/types/data';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
 const getHappyPath = (
-  onChange: (
-    value: string | number | boolean,
-    formMeta: FormMeta | undefined,
-    fullValue?: Record<string, unknown>
-  ) => void,
   schoolOptions: DropdownOption[],
   cannotFindSchool: () => void
 ): FormTemplate[] => {
@@ -58,7 +46,6 @@ const getHappyPath = (
               field: 'School',
               section: FormSections.YOUR_DETAILS_SECTION,
             },
-            onChange,
           },
         },
       ],
@@ -76,7 +63,6 @@ const getHappyPath = (
           componentData: {
             header: 'First name',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 2,
               field: 'First name',
@@ -89,7 +75,6 @@ const getHappyPath = (
           componentData: {
             header: 'Last name',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 2,
               field: 'Last name',
@@ -103,7 +88,6 @@ const getHappyPath = (
             header: 'Job title or role',
             subHeading: 'For example, PTA member, governor or teaching staff.',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 2,
               field: 'Job title or role',
@@ -118,7 +102,6 @@ const getHappyPath = (
             subHeading:
               "Use your school email address if you're staff, or personal email address if you're a PTA member or parent. You will need this email to sign in.",
             isLarge: true,
-            onChange,
             formMeta: {
               page: 2,
               field: 'Email',
@@ -130,7 +113,6 @@ const getHappyPath = (
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Phone',
-            onChange,
             formMeta: {
               page: 2,
               field: 'Phone',
@@ -165,11 +147,9 @@ const getHappyPath = (
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'GDPR content and statement [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, { field: 'GDPR content and statement [---------------]', page: 6 });
-            },
             formMeta: {
               page: 6,
+              field: 'GDPR content and statement [---------------]',
             },
           },
           classNameSuffix: 'checkbox',
@@ -178,11 +158,9 @@ const getHappyPath = (
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'Legal understanding [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, { field: 'Legal understanding [---------------]', page: 6 });
-            },
             formMeta: {
               page: 6,
+              field: 'Legal understanding [---------------]',
             },
           },
           classNameSuffix: 'checkbox',
@@ -191,13 +169,8 @@ const getHappyPath = (
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'I will be administrating the account [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, {
-                field: 'I will be administrating the account [---------------]',
-                page: 6,
-              });
-            },
             formMeta: {
+              field: 'I will be administrating the account [---------------]',
               page: 6,
             },
           },
