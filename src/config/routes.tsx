@@ -20,6 +20,7 @@ import {
   SchoolEdit,
   SignUpCharity,
   SignUpSchool,
+  SchoolsDashboard,
 } from './lazy';
 
 const routes = [
@@ -54,6 +55,10 @@ const routes = [
     path: Paths.DONATE,
     element: <Home />,
     name: 'Donate',
+  },
+  {
+    path: Paths.SCHOOLS_DASHBOARD,
+    element: <SchoolsDashboard />,
   },
   {
     path: Paths.LOGIN,
