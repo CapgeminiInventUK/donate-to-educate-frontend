@@ -37,6 +37,7 @@
     "react-router-dom": "^6.21.3",
     "react-select": "^5.8.0",
     "react-verification-input": "^4.1.0",
+    "validator": "^13.11.0",
     "vite-plugin-node-polyfills": "^0.19.0",
     "zod": "^3.22.4"
   },
@@ -48,6 +49,7 @@
     "@types/react-dom": "^18.2.18",
     "@types/react-highlight-words": "^0.16.7",
     "@types/react-test-renderer": "^18.0.7",
+    "@types/validator": "^13.11.8",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "@vitejs/plugin-react-swc": "^3.5.0",

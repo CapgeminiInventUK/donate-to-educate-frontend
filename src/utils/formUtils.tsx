@@ -1,5 +1,8 @@
+import { EMAIL_ERROR_MESSAGE, PHONE_ERROR_MESSAGE } from '@/config/errors';
 import { DropdownOption, FormDataItem, FormNames, FormSections } from '@/types/data';
 import { SingleValue } from 'react-select';
+import isEmail from 'validator/lib/isEmail';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 
 const excludedValues = [
   'First name',
@@ -16,6 +19,28 @@ export const findValueFromFormData = (
   fieldName: string
 ): string | number | boolean => {
   return formData.find(({ field }) => field === fieldName)?.value ?? '';
+};
+
+export const validateFormInputField = (
+  formData: FormDataItem[],
+  fieldName: string
+): string | null => {
+  const value = formData.find(({ field }) => field === fieldName)?.value ?? '';
+  if (typeof value === 'string') {
+    switch (fieldName) {
+      case 'Email':
+        if (!isEmail(value)) {
+          return EMAIL_ERROR_MESSAGE;
+        }
+        break;
+      case 'Phone':
+        if (!isMobilePhone(value, 'en-GB')) {
+          return PHONE_ERROR_MESSAGE;
+        }
+        break;
+    }
+  }
+  return null;
 };
 
 const addressBuilder = (formData: FormDataItem[]): string => {

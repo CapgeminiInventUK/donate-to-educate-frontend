@@ -1,5 +1,5 @@
-import { MultiStepFormProps } from '@/types/props';
-import { FC, useEffect, useState } from 'react';
+import { CommonInputProps, MultiStepFormProps } from '@/types/props';
+import { FC, FormEvent, useEffect, useState } from 'react';
 import styles from './MultiStepForm.module.scss';
 import ExternalLink from '@/components/ExternalLink/ExternalLink';
 import { createFormComponent } from '@/utils/components';
@@ -8,6 +8,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import { validateFormInputField } from '@/utils/formUtils';
 
 const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoading = false }) => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
   const [pageNumber, setPageNumber] = useState(0);
   const [cyaPageNumber, setCyaPageNumber] = useState<number>();
   const [isLastPage, setIsLastPage] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const {
     header = undefined,
@@ -38,7 +40,25 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
     }
   }, [header, pageNumber]);
 
-  const onButtonClick = (): void => {
+  const onButtonClick = (e: FormEvent<Element>): void => {
+    e.preventDefault();
+
+    const errors: Record<string, string> = {};
+    for (const component of formComponents) {
+      const { formMeta: { field = '' } = {} } = component.componentData as CommonInputProps;
+      const error = validateFormInputField(formData, field);
+      if (error) {
+        errors[field] = error;
+      }
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormErrors({});
+
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
       return setPageNumber(cyaPageNumber);
@@ -49,6 +69,8 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
   };
 
   const onBackButtonClick = (): void => {
+    setFormErrors({});
+
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
       return setPageNumber(cyaPageNumber);
     }
@@ -62,12 +84,22 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
   };
 
   return (
-    <div>
+    <form onSubmit={onButtonClick}>
       <BackButton onClick={onBackButtonClick} theme="blue" />
       {isLoading ? (
         <Spinner />
       ) : (
         <div className={`${styles.formContainer} ${isLastPage ? styles.lastPageContainer : ''}`}>
+          {Object.keys(formErrors).length > 0 && (
+            <div className={styles.wrapperError}>
+              <h3>There is a problem</h3>
+              {Object.values(formErrors).map((error) => (
+                <h4 className={styles.errorMessage} key={error}>
+                  {error}
+                </h4>
+              ))}
+            </div>
+          )}
           {pageNumber > 0 && (
             <div className={styles.pagination}>
               Step {pageNumber} of {formTemplate.length - 1}
@@ -79,21 +111,34 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
             {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
           </div>
           {formComponents.map(
-            ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => (
-              <div
-                className={`${styles.formComponent} ${
-                  classNameSuffix ? styles[classNameSuffix] : ''
-                }`}
-                key={index}
-              >
-                {createFormComponent(componentType, formData, componentData, setPageNumber)}
-                {formComponentLink && (
-                  <div className={styles.link}>
-                    <ExternalLink {...formComponentLink} />
-                  </div>
-                )}
-              </div>
-            )
+            ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => {
+              let errorMessage;
+              const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+              if (field in formErrors) {
+                errorMessage = formErrors[field];
+              }
+              return (
+                <div
+                  className={`${styles.formComponent} ${
+                    classNameSuffix ? styles[classNameSuffix] : ''
+                  }`}
+                  key={index}
+                >
+                  {createFormComponent(
+                    componentType,
+                    formData,
+                    componentData,
+                    setPageNumber,
+                    errorMessage
+                  )}
+                  {formComponentLink && (
+                    <div className={styles.link}>
+                      <ExternalLink {...formComponentLink} />
+                    </div>
+                  )}
+                </div>
+              );
+            }
           )}
           {isLastPage ? (
             <div className={styles.returnHomeLink}>
@@ -103,7 +148,6 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
               theme={'formButtonDarkBlue'}
-              onClick={onButtonClick}
               useArrow={true}
             />
           ) : (
@@ -114,13 +158,12 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
                   ? 'formButtonDarkBlue'
                   : 'formButtonGrey'
               }
-              onClick={onButtonClick}
               useArrow={true}
             />
           )}
         </div>
       )}
-    </div>
+    </form>
   );
 };
 export default FormContainer;

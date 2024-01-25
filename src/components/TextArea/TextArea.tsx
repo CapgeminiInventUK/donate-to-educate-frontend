@@ -34,6 +34,7 @@ const TextArea: FC<TextAreaProps> = ({
         onChange={handleChange}
         className={styles.textArea}
         placeholder={placeholder ?? ''}
+        maxLength={1000}
       />
       <div className={styles.characterCount}>
         <span>
