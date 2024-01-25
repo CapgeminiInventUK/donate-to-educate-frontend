@@ -1,3 +1,4 @@
+/*  eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
 import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
@@ -12,7 +13,7 @@ import { updateSchoolProfile } from '@/graphql/mutations';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
-import TextArea from '@/components/TextArea/TextArea';
+import { EditDescription } from './EditDescription/EditDescription';
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -30,15 +31,14 @@ const getKeyFromType = (type: string): string => {
 const SchoolEdit: FC = () => {
   const [type, setType] = useState<ItemsIconType>('tick');
   const [preview, setPreview] = useState(false);
-  const { banner, helpBannerTitle, helpBannerBody, whatToExpect, actionText } = getPageText(type);
-  const [whatToExpectText, setWhatToExpectText] = useState(whatToExpect);
-  const [whatToExpectTextEdited, setWhatToExpectTextEdited] = useState(whatToExpect);
-  const [actionDescription, setActionDescription] = useState(actionText);
   const [items, setItems] = useState<Record<string, SectionsIconType>>({});
   const [editState, setEditState] = useState(false);
+  const [editStateActionText, setEditStateActionText] = useState(false);
+  const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
+  const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
 
   interface ContentType {
-    items: Record<string, SectionsIconType>;
+    items: string;
     banner: string;
     helpBannerTitle: string;
     helpBannerBody: string;
@@ -47,7 +47,7 @@ const SchoolEdit: FC = () => {
   }
 
   const [content, setContent] = useState<ContentType>({
-    items: {},
+    items: '',
     banner: '',
     helpBannerBody: '',
     helpBannerTitle: '',
@@ -59,14 +59,14 @@ const SchoolEdit: FC = () => {
   const { isLoading, data } = useQuery({
     queryKey: ['profile'],
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
+      const data = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
         variables: {
-          name: 'Test School Profile',
+          name: 'Test School Profile 5',
         },
       });
 
-      return data;
+      return data.data;
     },
   });
 
@@ -78,18 +78,15 @@ const SchoolEdit: FC = () => {
         query: updateSchoolProfile,
         variables: {
           key: getKeyFromType(type),
-          name: 'Test School Profile',
-          //value: JSON.stringify(items),
+          name: 'Test School Profile 5',
           value: JSON.stringify({
-            items: items,
-            banner: banner,
-            helpBannerTitle: helpBannerTitle,
-            helpBannerBody: helpBannerBody,
-            whatToExpect: whatToExpectText,
-            actionText: actionText,
+            ...content,
+            items: JSON.stringify(items),
           }),
         },
       });
+
+      console.log(items);
 
       return result;
     },
@@ -99,16 +96,16 @@ const SchoolEdit: FC = () => {
     if (!isLoading) {
       if (data?.getSchoolProfile && getKeyFromType(type) in (data?.getSchoolProfile ?? {})) {
         const { donate, request, excess } = data.getSchoolProfile;
+
         switch (type) {
           case 'tick':
-            // eslint-disable-next-line
-            setContent(JSON.parse(JSON.stringify(request)));
+            setContent(JSON.parse(JSON.stringify(request)) as ContentType);
             break;
           case 'heart':
-            setItems(donate ? (JSON.parse(donate) as Record<string, SectionsIconType>) : {});
+            setContent(JSON.parse(JSON.stringify(donate)) as ContentType);
             break;
           case 'plus':
-            setItems(excess ? (JSON.parse(excess) as Record<string, SectionsIconType>) : {});
+            setContent(JSON.parse(JSON.stringify(excess)) as ContentType);
             break;
         }
       }
@@ -116,17 +113,9 @@ const SchoolEdit: FC = () => {
   }, [isLoading, type, data?.getSchoolProfile]);
 
   useEffect(() => {
-    setWhatToExpectText(whatToExpect);
-  }, [whatToExpect]);
-
-  useEffect(() => {
-    setActionDescription(actionText);
-  }, [actionText]);
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(items);
-  }, [items]);
+    console.log(content.items);
+    content.items !== '' && setItems(JSON.parse(content.items) as Record<string, SectionsIconType>);
+  }, [content, type]);
 
   if (isLoading) {
     return <Spinner />;
@@ -138,23 +127,25 @@ const SchoolEdit: FC = () => {
       <Button theme="darkBlue" onClick={() => setType('heart')} text="Donate" />
       <Button theme="darkBlue" onClick={() => setType('plus')} text="Excess" />
       <div className={`${styles.banner} ${styles[type]}`}>
-        <h2>{banner}</h2>
+        <h2>{content.banner}</h2>
       </div>
+
       <div className={styles.card}>
         {!preview && (
           <>
             <div className={styles.helpBanner}>
-              <h2>{helpBannerTitle}</h2>
-              <p>{helpBannerBody}</p>
+              <h2>{content.helpBannerTitle}</h2>
+              <p>{content.helpBannerBody}</p>
             </div>
             <div className={styles.whatToExpect}>
               <h2>What to expect</h2>
               {!editState ? (
                 <>
-                  <p>{whatToExpectText}</p>
+                  <p>{content.whatToExpect}</p>
                   <FormButton
                     text={'Edit'}
                     onClick={(): void => {
+                      setWhatToExpectTestBeforeEdit(content.whatToExpect);
                       setEditState(true);
                     }}
                     theme="formButtonGrey"
@@ -162,46 +153,54 @@ const SchoolEdit: FC = () => {
                 </>
               ) : (
                 <>
-                  <TextArea
-                    characterLimit={1000}
-                    value={whatToExpectTextEdited}
-                    onChange={(val) => {
-                      setWhatToExpectTextEdited(val);
+                  <EditDescription
+                    value={content.whatToExpect}
+                    setValue={(val) => {
+                      setContent({ ...content, whatToExpect: val });
+                    }}
+                    handleSave={() => {
+                      setEditState(false);
+                      refetch().then(console.log).catch(console.error);
+                    }}
+                    handleCancel={() => {
+                      setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
+                      setEditState(false);
                     }}
                   />
-                  <div className={styles.actionContainer}>
-                    <FormButton
-                      text={'Save'}
-                      onClick={(): void => {
-                        // eslint-disable-next-line no-console
-                        console.log('edit button pressed');
-                        setEditState(false);
-                        setWhatToExpectText(whatToExpectTextEdited);
-                        // refetch()
-                        //   // eslint-disable-next-line no-console
-                        //   .then(console.log)
-                        //   // eslint-disable-next-line no-console
-                        //   .catch(console.error);
-                      }}
-                      theme="formButtonGreen"
-                    />
-                    <Button
-                      theme="link"
-                      className={styles.cancelButton}
-                      text={'Cancel'}
-                      onClick={function (): void {
-                        setEditState(false);
-                        setWhatToExpectTextEdited(whatToExpectText);
-                      }}
-                    />
-                  </div>
                 </>
               )}
             </div>
-            <ItemListEdit setItems={setItems} items={content.items} />
+            <ItemListEdit setItems={setItems} items={items} />
+
             <div className={styles.helpContact}>
-              <p>{actionDescription}</p>
-              <FormButton text={'Edit'} onClick={(): void => undefined} theme="formButtonGrey" />
+              {!editStateActionText ? (
+                <>
+                  <p>{content.actionText}</p>
+                  <FormButton
+                    text={'Edit'}
+                    onClick={(): void => {
+                      setActionTextBeforeEdit(content.actionText);
+                      setEditStateActionText(true);
+                    }}
+                    theme="formButtonGrey"
+                  />
+                </>
+              ) : (
+                <EditDescription
+                  value={content.actionText}
+                  setValue={(val) => {
+                    setContent({ ...content, actionText: val });
+                  }}
+                  handleSave={() => {
+                    setEditStateActionText(false);
+                    refetch().then(console.log).catch(console.error);
+                  }}
+                  handleCancel={() => {
+                    setContent({ ...content, actionText: actionTextBeforeEdit });
+                    setEditStateActionText(false);
+                  }}
+                />
+              )}
             </div>
             <div className={styles.actionButtons}>
               <FormButton
@@ -212,11 +211,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    // eslint-disable-next-line no-console
-                    .then(console.log)
-                    // eslint-disable-next-line no-console
-                    .catch(console.error);
+                  refetch().then(console.log).catch(console.error);
                 }}
                 text={'Save'}
               />
@@ -235,11 +230,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    // eslint-disable-next-line no-console
-                    .then(console.log)
-                    // eslint-disable-next-line no-console
-                    .catch(console.error);
+                  refetch().then(console.log).catch(console.error);
                 }}
                 text={'Save'}
               />
@@ -249,54 +240,6 @@ const SchoolEdit: FC = () => {
       </div>
     </div>
   );
-};
-
-const getPageText = (
-  type: ItemsIconType
-): {
-  banner: string;
-  helpBannerTitle: string;
-  helpBannerBody: string;
-  whatToExpect: string;
-  actionText: string;
-} => {
-  switch (type) {
-    case 'tick':
-      return {
-        banner: 'Request products',
-        helpBannerTitle: 'Build your request products page',
-        helpBannerBody:
-          'Tell your visitors what to expect when they request products. Include your collection or delivery times to manage their expectations. Select which products you have in stock and include details, if you need them.',
-        whatToExpect:
-          'View the products we have in stock. While we update our stock levels regularly, they may change daily.',
-        actionText:
-          "Once we have your request for the products you need, we'll contact you to arrange the next steps as soon as we can.",
-      };
-    case 'heart':
-      return {
-        banner: 'Donate products',
-        helpBannerTitle: 'Build your donate products page',
-        helpBannerBody:
-          'Select the products your school needs so that charities and volunteer groups know what to donate',
-        whatToExpect:
-          "View the products we need. When you select 'donate', you can tell us how you can help.",
-        actionText:
-          "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
-      };
-    case 'plus':
-      return {
-        banner: 'Extra stock to share with the community',
-        helpBannerTitle: 'Build your extra stock page',
-        helpBannerBody:
-          'Select the products you have too much of so that charities and volunteer groups can help share it with people that need it.',
-        whatToExpect:
-          'View the products we have too much of, take it from us and share it with people who need it.',
-        actionText:
-          "Once we know what extra stock you can take from us, we'll contact you to arrange the next steps as soon as we can.",
-      };
-    default:
-      throw new Error(`Unknown type ${String(type)}`);
-  }
 };
 
 export default SchoolEdit;

@@ -48,14 +48,6 @@
       }
     }
 
-    .cancelButton {
-      color: g.$secondary-mid-blue;
-    }
-
-    .actionContainer {
-      display: flex;
-    }
-
     .helpContact {
       margin: 40px 0;
       padding: 40px;
@@ -66,5 +58,11 @@
     .actionButtons {
       display: flex;
     }
+  }
+
+  .actionCard {
+    border: solid 2px g.$greyscale-disabled;
+    background-color: g.$primary-white;
+    border-radius: 10px;
   }
 }
