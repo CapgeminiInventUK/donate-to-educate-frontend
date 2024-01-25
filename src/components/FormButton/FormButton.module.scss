@@ -58,6 +58,15 @@
   color: g.$primary-white;
 }
 
+.formButtonDisabled {
+  @extend %button;
+  cursor: not-allowed;
+  border: g.$form-button-grey-background 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+  background: g.$form-button-grey-background;
+  color: g.$form-button-grey-text;
+}
+
 @media only screen and (max-width: g.$screen-large) {
   %button {
     line-height: 16px;

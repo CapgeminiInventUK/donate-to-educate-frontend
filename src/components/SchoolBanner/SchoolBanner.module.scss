@@ -1,0 +1,60 @@
+@use '@assets/global.scss' as g;
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: g.$primary-white;
+  }
+}
+
+.bannerContainer {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background: g.$primary-dark-blue;
+  border-top: g.$secondary-blue 18px solid;
+  border-radius: 10px 10px 0 0;
+}
+
+h1 {
+  color: g.$primary-white;
+  margin: 0;
+}
+
+.textContainer {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  font-size: 1.1rem;
+
+  .buttonLabel {
+    margin-right: 10px;
+    color: g.$dark-blue;
+  }
+
+  .interfaceArrow {
+    margin-bottom: -3px;
+  }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .bannerContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .textContainer {
+    width: 90%;
+    margin-left: 0;
+  }
+}

@@ -9,11 +9,18 @@ import {
   TermsAndConditions,
   Login,
   AdminDashboard,
-  Form,
+  AdminDashboardManageLocalAuthorities,
+  AdminDashboardViewLocalAuthority,
+  AdminDashboardLocalAuthoritySignUp,
+  AdminDashboardLocalAuthoritySignUpConfirmation,
+  AdminDashboardRequests,
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
   SchoolEdit,
+  SignUpCharity,
+  SignUpSchool,
+  SchoolsDashboard,
 } from './lazy';
 
 const routes = [
@@ -50,6 +57,10 @@ const routes = [
     name: 'Donate',
   },
   {
+    path: Paths.SCHOOLS_DASHBOARD,
+    element: <SchoolsDashboard />,
+  },
+  {
     path: Paths.LOGIN,
     element: <Login />,
     name: 'Login',
@@ -57,6 +68,36 @@ const routes = [
   {
     path: Paths.ADMIN_DASHBOARD,
     element: <AdminDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
+    element: <AdminDashboardManageLocalAuthorities />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_LA_VIEW,
+    element: <AdminDashboardViewLocalAuthority />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_SIGN_UP,
+    element: <AdminDashboardLocalAuthoritySignUp />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION,
+    element: <AdminDashboardLocalAuthoritySignUpConfirmation />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_REQUESTS,
+    element: <AdminDashboardRequests />,
     requiresAuth: true,
     redirectRoute: '/login',
   },
@@ -77,8 +118,12 @@ const routes = [
     element: <AddUser />,
   },
   {
-    path: Paths.FORM,
-    element: <Form />,
+    path: Paths.SIGN_UP_CHARITY,
+    element: <SignUpCharity />,
+  },
+  {
+    path: Paths.SIGN_UP_SCHOOL,
+    element: <SignUpSchool />,
   },
   {
     path: Paths.RESET_PASSWORD,
