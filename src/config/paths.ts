@@ -1,6 +1,14 @@
 enum Paths {
   HOME = '/',
+  FAMILIES = '/families',
+  SCHOOLS = '/schools',
+  SCHOOLS_CREATE_EDIT_PROFILE = '/schools-create-edit-profile',
+  SCHOOLS_FIND_COMMUNITIES = '/schools-find-communities',
+  CHARITIES = '/charities',
+  CHARITIES_CREATE_EDIT_PROFILE = '/charities-create-edit-profile',
+  CHARITIES_FIND_COMMUNITIES = '/charities-find-communities',
   ABOUT = '/about-us',
+  HOW_IT_WORKS = '/how-it-works',
   CONTACT = '/contact',
   DONATE = '/donate',
   LOGIN = '/login',
@@ -27,6 +35,7 @@ enum Paths {
   SIGN_UP_SCHOOL = '/sign-up-school',
   ADD_USER = '/add-user',
   SCHOOL_EDIT = '/school-edit',
+  ALL = '*',
 }
 
 export default Paths;
