@@ -26,6 +26,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   const {
     header = undefined,
+    infoText = undefined,
+    infoTextTwo = undefined,
     subHeader = undefined,
     formComponents = [],
     logo = undefined,
@@ -49,7 +51,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
   }, [header, pageNumber]);
 
-  const onButtonClick = (): void => {
+  const onContinueButtonClick = (): void => {
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
       return setPageNumber(cyaPageNumber);
@@ -95,6 +97,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
           <div className={styles.headerContainer}>
             {header && <h2 className={styles.header}>{header}</h2>}
             {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
+            {infoText && <p className={styles.infoText}>{infoText}</p>}
+            {infoTextTwo && <p className={styles.infoText}>{infoTextTwo}</p>}
           </div>
           {formComponents.map(
             ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => (
@@ -122,7 +126,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
               </div>
             )
           )}
-          {isLastPage ? (
+          {isLastPage || isUnhappyPath ? (
             <div
               className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
             >
@@ -132,7 +136,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
               theme={'formButtonDarkBlue'}
-              onClick={onButtonClick}
+              onClick={onContinueButtonClick}
               useArrow={true}
             />
           ) : (
@@ -143,7 +147,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                   ? 'formButtonDarkBlue'
                   : 'formButtonGrey'
               }
-              onClick={onButtonClick}
+              onClick={onContinueButtonClick}
               useArrow={true}
             />
           )}
@@ -154,7 +158,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 theme={formComponentInternalLink.theme}
                 onClick={() => {
                   formComponentInternalLink.onClick();
-                  onButtonClick();
+                  onContinueButtonClick();
                 }}
               />
             </div>

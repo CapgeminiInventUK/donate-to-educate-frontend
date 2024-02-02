@@ -13,7 +13,7 @@ const getCannotFindSchoolPath = (
         componentType: ComponentType.SCHOOL_NOT_FOUND,
         componentData: {
           formMeta: {
-            page: 1,
+            page: 2,
           },
         },
       },

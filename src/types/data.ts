@@ -46,6 +46,8 @@ export interface FormTemplate {
   formComponents: FormComponent[];
   header?: string;
   subHeader?: string;
+  infoText?: string;
+  infoTextTwo?: string;
   logo?: JSX.Element;
   footerLogo?: JSX.Element;
   isUnhappyPath?: boolean;

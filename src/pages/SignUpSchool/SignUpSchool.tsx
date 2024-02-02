@@ -6,21 +6,25 @@ import getHappyPath from './happyPath';
 import getCannotFindSchoolPath from './cannotFindSchoolPath';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsQuery } from '@/types/api';
+import { GetLocalAuthoritiesQuery, GetSchoolsQuery, LocalAuthority } from '@/types/api';
 import { client } from '@/graphqlClient';
-import { getSchools } from '@/graphql/queries';
+import getAuthorityNotRegisteredPath from './authorityNotRegistered';
+import { getSchoolsAndLocalAuthorities } from '@/graphql/composite';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
   const [formTemplate, setFormTemplate] = useState<FormTemplate[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
+  const [localAuthorities, setLocalAuthorities] = useState<LocalAuthority[]>([]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['la'],
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
-        query: getSchools,
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthoritiesQuery & GetSchoolsQuery>
+      >({
+        query: getSchoolsAndLocalAuthorities,
       });
 
       return data;
@@ -40,6 +44,7 @@ const SignUpSchool: FC = () => {
       registered,
     }));
     setSchoolOptions(options ?? []);
+    setLocalAuthorities(data?.getLocalAuthorities ?? []);
   }, [data]);
 
   const onChange = (
@@ -56,9 +61,25 @@ const SignUpSchool: FC = () => {
     setFormTemplate(getCannotFindSchoolPath(schoolOptions, cannotFindSchool));
   }, [schoolOptions]);
 
+  const authorityNotRegistered = useCallback((): void => {
+    getAuthorityNotRegisteredPath(schoolOptions, cannotFindSchool);
+  }, [schoolOptions, cannotFindSchool]);
+
   const setHappyPathTemplate = useCallback((): void => {
     setFormTemplate(getHappyPath(schoolOptions, cannotFindSchool));
   }, [cannotFindSchool, schoolOptions]);
+
+  useEffect(() => {
+    if (!formData[0]?.fullValue) {
+      return;
+    }
+    const selectedAuthority = localAuthorities.find(
+      ({ name }) => name === formData[1]?.fullValue?.localAuthority
+    );
+    if (!selectedAuthority?.registered) {
+      authorityNotRegistered();
+    }
+  }, [pageNumber, formData, localAuthorities, authorityNotRegistered]);
 
   useEffect(() => {
     if (!schoolOptions.length) {
