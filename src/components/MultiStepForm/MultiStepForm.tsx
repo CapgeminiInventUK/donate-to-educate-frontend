@@ -40,17 +40,17 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
     }
   }, [header, pageNumber]);
 
-  const onButtonClick = (e: FormEvent<Element>): void => {
-    e.preventDefault();
+  const onButtonClick = (event: FormEvent<Element>): void => {
+    event.preventDefault();
 
-    const errors: Record<string, string> = {};
-    for (const component of formComponents) {
-      const { formMeta: { field = '' } = {} } = component.componentData as CommonInputProps;
+    const errors = formComponents.reduce((acc: Record<string, string>, { componentData }) => {
+      const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
       const error = validateFormInputField(formData, field);
       if (error) {
-        errors[field] = error;
+        acc[field] = error;
       }
-    }
+      return acc;
+    }, {});
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -112,11 +112,9 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
           </div>
           {formComponents.map(
             ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => {
-              let errorMessage;
               const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
-              if (field in formErrors) {
-                errorMessage = formErrors[field];
-              }
+              const errorMessage = field in formErrors ? formErrors[field] : '';
+
               return (
                 <div
                   className={`${styles.formComponent} ${

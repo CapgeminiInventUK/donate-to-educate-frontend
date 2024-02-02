@@ -34,7 +34,7 @@ export interface ButtonProps {
 
 export interface FormButtonProps {
   theme: FormButtonThemes;
-  onClick?: (e: FormEvent<Element>) => void;
+  onClick?: (event: FormEvent<Element>) => void;
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;

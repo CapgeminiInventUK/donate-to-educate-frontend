@@ -1,5 +1,4 @@
-import { EMAIL_ERROR_MESSAGE, PHONE_ERROR_MESSAGE } from '@/config/errors';
-import { DropdownOption, FormDataItem, FormNames, FormSections } from '@/types/data';
+import { DropdownOption, FormDataItem, FormErrors, FormNames, FormSections } from '@/types/data';
 import { SingleValue } from 'react-select';
 import isEmail from 'validator/lib/isEmail';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -30,12 +29,12 @@ export const validateFormInputField = (
     switch (fieldName) {
       case 'Email':
         if (!isEmail(value)) {
-          return EMAIL_ERROR_MESSAGE;
+          return FormErrors.EMAIL_ERROR_MESSAGE;
         }
         break;
       case 'Phone':
         if (!isMobilePhone(value, 'en-GB')) {
-          return PHONE_ERROR_MESSAGE;
+          return FormErrors.PHONE_ERROR_MESSAGE;
         }
         break;
     }
