@@ -1,102 +1,63 @@
-import { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
-import { SignInOutput, signIn } from 'aws-amplify/auth';
 import FormButton from '@components/FormButton/FormButton';
-import Spinner from '@components/Spinner/Spinner';
-import TextInput from '@components/TextInput/TextInput';
-import LoginBanner from '@/components/LoginBanner/LoginBanner';
-import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
-import { breakpoints } from '@utils/globals';
 import styles from './SignIn.module.scss';
+import LogoIconBlue from '@/assets/logo/LogoIconBlue';
+import BackButton from '@/components/BackButton/BackButton';
 
 export const SignIn: FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [validationMessage, setValidationMessage] = useState<string>('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const navigate = useNavigate();
-  const { isLoggedIn, type } = useCheckCurrentUser();
-  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
-  const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
-
-  useEffect(() => {
-    if (submitted) {
-      userLogin(email, password)
-        .catch(handleError)
-        .finally(() => {
-          setSubmitted(false);
-        });
-    }
-  }, [submitted, password, email]);
-
-  if (isLoggedIn && !submitted && type) {
-    navigate(getRedirectUrl(type));
-    return <Spinner />;
-  }
-
-  const handleError = (): void => {
-    setValidationMessage('Incorrect email or password');
-  };
-
   return (
-    <div className={styles.container}>
-      <LoginBanner />
-      <h2>Sign in</h2>
-      <TextInput
-        header="Email"
-        onChange={(value): void => {
-          if (email !== value) {
-            setEmail(value);
-          }
+    <>
+      <BackButton
+        onClick={() => {
+          return;
         }}
-        isLarge={isNotMobile}
-        isSmall={isSmallMobile}
+        theme="blue"
       />
-      <TextInput
-        header="Password"
-        password
-        onChange={(value): void => {
-          if (password !== value) {
-            setPassword(value);
-          }
-        }}
-        isSmall={isSmallMobile}
-      />
-      <Link to={Paths.RESET_PASSWORD} className={styles.forgotPassword}>
-        I have forgotten my password
-      </Link>
-      <div className={styles.validationContainer}>
-        <span>{validationMessage}</span>
+      <div className={styles.container}>
+        <div className={styles.subContainer}>
+          <div className={styles.subContainerLine}>
+            <LogoIconBlue className={styles.logoIcon} />
+            <h2>Sign in or join</h2>
+          </div>
+
+          <p>You can easily sign in or join if you work for:</p>
+          <ul>
+            <li>A School</li>
+            <li>A Charity or Voluneer Group</li>
+          </ul>
+          <FormButton
+            theme="formButtonDarkBlue"
+            useArrow={false}
+            text={'Sign In'}
+            onClick={() => {
+              //eslint-disable-next-line no-console
+              console.log('hello');
+            }}
+          />
+        </div>
+
+        <h3>If you work for a local authority</h3>
+        <p>
+          If you work for a local authority and want to join,{' '}
+          <Link className={styles.link} to={Paths.CONTACT}>
+            contact us.
+          </Link>
+        </p>
+
+        <h3>If you are a parent or guardian</h3>
+        <p>
+          If you are a parent or guardian and need products for your child, you don’t need to sign
+          in or join.
+        </p>
+        <p>
+          Search your local area to{' '}
+          <Link className={styles.linkLight} to={Paths.CONTACT}>
+            find your child’s school or nearby charities.
+          </Link>
+        </p>
       </div>
-      <FormButton
-        text={'Sign in'}
-        theme={
-          !submitted && email.length && password.length
-            ? 'formButtonDarkBlue'
-            : 'formButtonDisabled'
-        }
-        onClick={(): void => setSubmitted(true)}
-        useArrow={true}
-      />
-    </div>
+    </>
   );
-};
-
-const userLogin = async (username: string, password: string): Promise<SignInOutput> => {
-  return await signIn({ username, password });
-};
-
-const getRedirectUrl = (type: AccountType): string => {
-  switch (type) {
-    case 'admin':
-      return Paths.ADMIN_DASHBOARD;
-    case 'localAuthority':
-      return Paths.LOCAL_AUTHORITY_DASHBOARD;
-    default:
-      throw new Error(`Unknown account type ${type}`);
-  }
 };

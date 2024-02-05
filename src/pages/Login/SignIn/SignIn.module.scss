@@ -1,9 +1,9 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  width: 1000px;
+  // width: 1000px;
   background: g.$primary-white;
-  padding: 40px 82px;
+  //padding: 40px 82px;
   border-radius: 10px;
   color: g.$primary-dark-blue;
 
@@ -23,8 +23,38 @@
   }
 }
 
+.logoIcon {
+  width: 50px;
+}
+
+.link {
+  color: g.$primary-dark-blue;
+  font-weight: bold;
+}
+
+.linkLight {
+  color: g.$secondary-mid-blue;
+  font-weight: bold;
+}
+
+.subContainer {
+  background: g.$help-gray;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 10px;
+}
+
+.subContainerLine {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+}
+
 @media only screen and (max-width: g.$screen-xlarge) {
   .container {
-    width: 80%;
+    //width: 80%;
   }
 }
