@@ -21,6 +21,7 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  HowItWorks,
 } from './lazy';
 
 const routes = [
@@ -128,6 +129,10 @@ const routes = [
   {
     path: Paths.RESET_PASSWORD,
     element: <ResetPassword />,
+  },
+  {
+    path: Paths.HOW_IT_WORKS,
+    element: <HowItWorks />,
   },
   {
     path: '*',

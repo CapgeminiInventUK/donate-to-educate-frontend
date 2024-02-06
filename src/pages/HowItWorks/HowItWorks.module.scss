@@ -1,0 +1,32 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+
+    h1 {
+      padding: 66px 0 26px;
+      margin: 0;
+    }
+
+    h3 {
+      margin-top: 60px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .card {
+      @include g.card;
+      padding: 40px 80px;
+      margin-top: 40px;
+
+      color: g.$primary-dark-blue;
+    }
+  }
+}
