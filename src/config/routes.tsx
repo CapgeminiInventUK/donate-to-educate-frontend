@@ -25,6 +25,7 @@ import {
   LocalAuthorityJoinInfo,
   FindYourCommunity,
   YourLocalArea,
+  HowItWorks,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -55,7 +56,7 @@ const routes: Route[] = [
   },
   {
     path: Paths.HOW_IT_WORKS,
-    element: <></>,
+    element: <HowItWorks />,
     name: 'How it works',
   },
   {

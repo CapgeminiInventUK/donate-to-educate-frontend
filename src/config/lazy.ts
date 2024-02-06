@@ -38,6 +38,7 @@ const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
 const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
 const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
+const HowItWorks = lazy(() => import('@/pages/HowItWorks/HowItWorks'));
 
 const LocalAuthorityJoinInfo = lazy(
   () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
@@ -72,4 +73,5 @@ export {
   LocalAuthorityJoinInfo,
   FindYourCommunity,
   YourLocalArea,
+  HowItWorks,
 };
