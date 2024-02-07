@@ -125,6 +125,7 @@ export interface RadioGroupProps {
   labels?: string[];
   className?: string;
   formMeta?: FormMeta;
+  handleChange?: (input: string) => void;
 }
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';

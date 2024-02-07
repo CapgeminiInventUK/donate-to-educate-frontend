@@ -5,6 +5,7 @@ const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('@pages/Contact/Contact'));
 const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'));
+const Join = lazy(() => import('@pages/Join/Join'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
@@ -60,4 +61,5 @@ export {
   LocalAuthorityDashboard,
   SchoolEdit,
   SchoolsDashboard,
+  Join,
 };

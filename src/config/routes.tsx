@@ -21,7 +21,9 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  Join,
 } from './lazy';
+// import Join from '@/pages/Join/Join';
 
 const routes = [
   {
@@ -128,6 +130,10 @@ const routes = [
   {
     path: Paths.RESET_PASSWORD,
     element: <ResetPassword />,
+  },
+  {
+    path: Paths.JOIN,
+    element: <Join />,
   },
   {
     path: '*',

@@ -29,6 +29,7 @@ enum Paths {
   SIGN_UP_SCHOOL = '/sign-up-school',
   ADD_USER = '/add-user',
   SCHOOL_EDIT = '/school-edit',
+  JOIN = '/join',
 }
 
 export default Paths;
