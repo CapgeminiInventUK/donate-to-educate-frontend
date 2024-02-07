@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 import {
   CarouselItem,
   DropdownOption,
@@ -34,7 +34,7 @@ export interface ButtonProps {
 
 export interface FormButtonProps {
   theme: FormButtonThemes;
-  onClick: () => void;
+  onClick?: (event: FormEvent<Element>) => void;
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;
@@ -152,6 +152,7 @@ export interface CommonInputProps {
   formMeta?: FormMeta;
   value?: string;
   disabled?: boolean;
+  errorMessage?: string;
 }
 
 export interface TextInputProps extends CommonInputProps {

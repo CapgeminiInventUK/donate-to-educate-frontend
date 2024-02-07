@@ -50,7 +50,11 @@
   margin-bottom: 20px;
 }
 
-.wrapper.error {
+.errorInput {
+  border-color: g.$error-red;
+}
+
+.wrapperError {
   border-left: 5px solid g.$error-red;
   padding-left: 20px;
 }
