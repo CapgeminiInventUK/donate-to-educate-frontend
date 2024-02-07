@@ -4,59 +4,8 @@ import NavLink from './NavLink';
 import Paths from '@/config/paths';
 import routes from '@/config/routes';
 import styles from './NavLinks.module.scss';
-
-interface NavRoute {
-  path: Paths;
-  childNavRoutes?: NavRoute[];
-}
-
-const navRoutes: NavRoute[] = [
-  {
-    path: Paths.FAMILIES,
-  },
-  {
-    path: Paths.SCHOOLS,
-    childNavRoutes: [
-      {
-        path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
-      },
-      {
-        path: Paths.SCHOOLS_FIND_COMMUNITIES,
-      },
-    ],
-  },
-  {
-    path: Paths.CHARITIES,
-    childNavRoutes: [
-      {
-        path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
-      },
-      {
-        path: Paths.CHARITIES_FIND_COMMUNITIES,
-      },
-    ],
-  },
-  {
-    path: Paths.HOME,
-  },
-  {
-    path: Paths.ABOUT,
-    childNavRoutes: [
-      {
-        path: Paths.ABOUT,
-      },
-      {
-        path: Paths.HOW_IT_WORKS,
-      },
-    ],
-  },
-  {
-    path: Paths.CONTACT,
-  },
-  {
-    path: Paths.LOGIN,
-  },
-];
+import { NavRoute } from '@/types/data';
+import { navRoutes } from '@/config/navRoutes';
 
 const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
   const getRouteFromNavRoute = (navRoute: NavRoute): Route => {
@@ -82,7 +31,7 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
   };
 
   const getChildRoutes = (path: Paths): Route[] => {
-    const [filteredRoute] = navRoutes.filter((navRoute) => {
+    const filteredRoute = navRoutes.find((navRoute) => {
       return navRoute.path === path;
     });
 

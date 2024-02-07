@@ -53,14 +53,14 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
 
       {childRoutes && childRoutes?.length > 0 && (
         <div className={`${styles.subMenu} ${showSubMenu ? styles.active : ''}`}>
-          {childRoutes?.map((childRoute) => (
+          {childRoutes?.map(({ path: childPath, name }) => (
             <Link
-              key={childRoute.path}
-              to={childRoute.path}
+              key={childPath}
+              to={childPath}
               onClick={() => handleLinkClick(path)}
               className={styles.childLink}
             >
-              {childRoute.name}
+              {name}
             </Link>
           ))}
         </div>
