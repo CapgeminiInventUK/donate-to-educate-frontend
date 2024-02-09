@@ -72,7 +72,12 @@ const SignUpSchool: FC = () => {
     if (!formData[0]?.fullValue) {
       return;
     }
-  }, [pageNumber, formData, authorityNotRegistered]);
+    if (!formData[0]?.fullValue?.isLocalAuthorityRegistered) {
+      authorityNotRegistered();
+    } else {
+      setHappyPathTemplate();
+    }
+  }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate]);
 
   useEffect(() => {
     if (!schoolOptions.length) {

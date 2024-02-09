@@ -17,7 +17,7 @@ const getAuthorityNotRegisteredPath = (
   };
   const authorityNotRegisteredPath = [
     {
-      header: 'Your details',
+      header: 'Your local authority has not signed up to Donate to Educate',
       infoText: 'Not all local authorities have joined Donate to Educate yet.',
       infoTextTwo:
         'If you would like to tell us your details, we can look into this and get back to you.',
