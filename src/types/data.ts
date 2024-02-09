@@ -11,6 +11,7 @@ import {
   TextAreaProps,
   TextInputProps,
 } from './props';
+import Paths from '@/config/paths';
 
 export interface ErrorBoundaryState {
   hasError: boolean;
@@ -92,4 +93,9 @@ export enum ComponentType {
 export interface DropdownOption {
   value: string | number;
   label: string;
+}
+
+export interface NavRoute {
+  path: Paths;
+  childNavRoutes?: NavRoute[];
 }

@@ -8,6 +8,7 @@ import {
   FormSections,
   FormTemplate,
 } from './data';
+import Paths from '@/config/paths';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -85,10 +86,32 @@ export interface CookiesSelection {
 
 export interface NavLinksProps {
   theme: Themes;
-  activeClassName?: string;
   className?: string;
-  buttonClassName?: string;
   linkClassName?: string;
+  buttonClassName?: string;
+  activeClassName?: string;
+  onLinkClicked?: () => void;
+}
+
+export interface RouteProp {
+  path: Paths;
+  name: string;
+}
+
+export interface Route {
+  path: Paths;
+  element: JSX.Element;
+  name?: string;
+  redirectRoute?: string;
+  requiresAuth?: boolean;
+}
+
+export interface NavLinkProps {
+  path: Paths;
+  name: string;
+  theme: Themes;
+  childRoutes?: Route[];
+  onLinkClicked?: () => void;
 }
 
 export interface ClickableLogoProps {
