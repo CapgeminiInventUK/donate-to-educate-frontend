@@ -10,7 +10,7 @@ const Navbar: FC = () => (
       theme="darkBlue"
       className={styles.links}
       linkClassName={styles.link}
-      activeClassName={styles.active}
+      activeClassName="active"
       buttonClassName={styles.navButton}
     />
   </nav>

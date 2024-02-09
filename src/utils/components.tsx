@@ -25,7 +25,8 @@ export const createFormComponent = (
   componentType: ComponentType,
   formData: FormDataItem[],
   componentData?: ComponentDataPropsType,
-  setPageNumber?: Dispatch<SetStateAction<number>>
+  setPageNumber?: Dispatch<SetStateAction<number>>,
+  errorMessage?: string
 ): ReactNode => {
   const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
 
@@ -34,7 +35,13 @@ export const createFormComponent = (
     case ComponentType.INTRO:
       return <FormIntroPage {...(componentData as FormIntroPageProps)} />;
     case ComponentType.TEXT:
-      return <TextInput {...(componentData as TextInputProps)} value={String(value)} />;
+      return (
+        <TextInput
+          {...(componentData as TextInputProps)}
+          value={String(value)}
+          errorMessage={errorMessage}
+        />
+      );
     case ComponentType.TEXTAREA:
       return <TextArea {...(componentData as TextAreaProps)} value={String(value)} />;
     case ComponentType.RADIO:

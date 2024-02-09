@@ -57,7 +57,7 @@
 }
 
 .links {
-  margin-top: 50px;
+  margin-top: 20px;
   user-select: none;
   list-style-type: none;
   padding: 0;
@@ -65,13 +65,13 @@
   .link {
     width: fit-content;
     height: fit-content;
-    margin-top: 40px;
+    margin-top: 20px;
     padding: 10px 12px 10px 12px;
     line-height: 11px;
+    color: g.$primary-white;
 
     a {
       text-decoration: none;
-      color: g.$primary-white;
       font-weight: 700;
       font-size: 16px;
 
@@ -79,17 +79,16 @@
         text-decoration: underline g.$primary-white 3px;
       }
     }
-  }
 
-  .active {
-    border-radius: 3px;
-    background-color: g.$primary-white;
-
-    a {
+    .active {
+      border-radius: 3px;
+      background-color: g.$primary-white;
       color: g.$primary-dark-blue;
 
-      &:hover {
-        text-decoration: underline g.$primary-dark-blue 3px;
+      a {
+        &:hover {
+          text-decoration: underline g.$primary-dark-blue 3px;
+        }
       }
     }
   }
@@ -113,7 +112,7 @@
   }
 
   .drawer {
-    min-width: 225px;
+    min-width: 270px;
   }
 }
 

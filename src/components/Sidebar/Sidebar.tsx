@@ -20,6 +20,10 @@ const Sidebar: FC = () => {
     useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen])
   );
 
+  const onLinkClicked = (): void => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <nav className={styles.container} ref={containerRef}>
       <div className={styles.nav}>
@@ -52,6 +56,7 @@ const Sidebar: FC = () => {
               linkClassName={styles.link}
               activeClassName={styles.active}
               buttonClassName={styles.navButton}
+              onLinkClicked={onLinkClicked}
             />
           </div>
         </div>
