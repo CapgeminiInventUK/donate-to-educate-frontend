@@ -70,6 +70,7 @@ const Dropdown: FC<DropdownProps> = ({
         onInputChange={onSearch}
         filterOption={filterOptions}
         isClearable
+        required={!header?.includes('optional')}
       />
     </div>
   );

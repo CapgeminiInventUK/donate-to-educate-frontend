@@ -1,5 +1,7 @@
-import { DropdownOption, FormDataItem, FormNames, FormSections } from '@/types/data';
+import { DropdownOption, FormDataItem, FormErrors, FormNames, FormSections } from '@/types/data';
 import { SingleValue } from 'react-select';
+import isEmail from 'validator/lib/isEmail';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 
 const excludedValues = [
   'First name',
@@ -23,6 +25,28 @@ export const findFullValueFromFormData = (
   fieldName: string
 ): Record<string, unknown> | undefined => {
   return formData.find(({ field }) => field === fieldName)?.fullValue;
+};
+
+export const validateFormInputField = (
+  formData: FormDataItem[],
+  fieldName: string
+): string | null => {
+  const value = formData.find(({ field }) => field === fieldName)?.value ?? '';
+  if (typeof value === 'string') {
+    switch (fieldName) {
+      case 'Email':
+        if (!isEmail(value)) {
+          return FormErrors.EMAIL_ERROR_MESSAGE;
+        }
+        break;
+      case 'Phone':
+        if (!isMobilePhone(value, 'en-GB')) {
+          return FormErrors.PHONE_ERROR_MESSAGE;
+        }
+        break;
+    }
+  }
+  return null;
 };
 
 const addressBuilder = (formData: FormDataItem[]): string => {

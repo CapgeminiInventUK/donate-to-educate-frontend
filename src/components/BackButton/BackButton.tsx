@@ -9,7 +9,11 @@ const BackButton: FC<Pick<ButtonProps, 'onClick' | 'className'> & { theme: 'whit
   theme,
 }) => {
   return (
-    <button className={`${styles.back} ${className ?? ''} ${styles[theme]}`} onClick={onClick}>
+    <button
+      className={`${styles.back} ${className ?? ''} ${styles[theme]}`}
+      onClick={onClick}
+      type="button"
+    >
       <ChevronLeft colour={theme} />
       <h4>Back</h4>
     </button>

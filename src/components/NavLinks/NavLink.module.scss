@@ -1,0 +1,142 @@
+@use '@assets/global.scss' as g;
+
+.hidden {
+  display: none;
+}
+
+.linkContainer {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 40px;
+
+  .link {
+    display: flex;
+    padding: 0 12px;
+    min-height: 76px;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: g.$primary-dark-blue;
+    text-decoration: none;
+    border-bottom: 4px solid white;
+
+    .chevronContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .chevronWhite {
+        display: none;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.accentLink {
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      min-height: 43px;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+  }
+
+  &:hover {
+    .link {
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      border-color: g.$primary-mid-blue;
+
+      .chevronContainer {
+        .chevronWhite {
+          display: block;
+        }
+
+        .chevron {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .subMenu {
+    background: g.$primary-dark-blue;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    min-width: 210px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    flex-direction: column;
+
+    .childLink {
+      padding: 10px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &:hover {
+    .subMenu {
+      display: flex;
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .linkContainer {
+    margin-left: 0;
+
+    &.loginLink {
+      order: -1;
+    }
+
+    .link {
+      color: white;
+      border-bottom: none;
+      min-width: 210px;
+
+      .chevronContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .chevronWhite {
+          display: block;
+        }
+
+        .chevron {
+          display: none;
+        }
+      }
+
+      &.accentLink {
+        background: g.$primary-light-blue;
+        color: g.$dark-blue;
+      }
+    }
+
+    .subMenu {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    &:hover {
+      .subMenu {
+        display: none;
+      }
+    }
+
+    .subMenu {
+      &.active {
+        display: flex;
+      }
+    }
+  }
+}

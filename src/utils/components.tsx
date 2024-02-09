@@ -31,7 +31,8 @@ export const createFormComponent = (
     value: string | number | boolean,
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, unknown>
-  ) => void
+  ) => void,
+  errorMessage?: string
 ): ReactNode => {
   const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
 
@@ -45,6 +46,7 @@ export const createFormComponent = (
           {...(componentData as TextInputProps)}
           value={String(value)}
           onChange={onChange}
+          errorMessage={errorMessage}
         />
       );
     case ComponentType.TEXTAREA:
