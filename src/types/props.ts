@@ -38,6 +38,7 @@ export interface FormButtonProps {
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;
+  className?: string;
 }
 
 export interface ImageProps {

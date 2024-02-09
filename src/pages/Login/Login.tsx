@@ -63,7 +63,7 @@ const Login: FC = () => {
             </p>
             <p>
               Search your local area to{' '}
-              <Link className={styles.link} to={Paths.CONTACT}>
+              <Link className={styles.link} to={Paths.FIND_YOUR_COMMUNITY}>
                 find your child’s school or nearby charities.
               </Link>
             </p>
@@ -72,7 +72,11 @@ const Login: FC = () => {
       </div>
     </div>
   ) : (
-    <SignIn />
+    <SignIn
+      backButtonPressed={() => {
+        setSignInState(false);
+      }}
+    />
   );
 };
 

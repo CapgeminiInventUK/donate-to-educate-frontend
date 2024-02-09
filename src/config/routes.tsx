@@ -22,8 +22,9 @@ import {
   SignUpSchool,
   SchoolsDashboard,
   Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
 } from './lazy';
-// import Join from '@/pages/Join/Join';
 
 const routes = [
   {
@@ -135,6 +136,17 @@ const routes = [
     path: Paths.JOIN,
     element: <Join />,
   },
+
+  {
+    path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
+    element: <LocalAuthorityJoinInfo />,
+  },
+
+  {
+    path: Paths.FIND_YOUR_COMMUNITY,
+    element: <FindYourCommunity />,
+  },
+
   {
     path: '*',
     element: <NotFound />,

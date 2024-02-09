@@ -30,6 +30,8 @@ enum Paths {
   ADD_USER = '/add-user',
   SCHOOL_EDIT = '/school-edit',
   JOIN = '/join',
+  LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-join-info',
+  FIND_YOUR_COMMUNITY = '/find-your-community',
 }
 
 export default Paths;

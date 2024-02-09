@@ -1,0 +1,37 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+}
+
+.subContainer {
+  @include g.card;
+  padding: 40px 80px;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  gap: 20px;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: 700;
+  color: g.$primary-mid-blue;
+}
+
+.home {
+  color: g.$primary-mid-blue;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration-line: underline;
+}
+
+.image {
+  width: 100%;
+}

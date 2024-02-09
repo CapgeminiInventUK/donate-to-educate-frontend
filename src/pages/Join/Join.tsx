@@ -33,7 +33,7 @@ const Join: FC = () => {
           </div>
           <h3>Which best describes you?</h3>
           <RadioGroup
-            name={'Hello'}
+            name={'role'}
             values={Object.values(labelsObj)}
             labels={Object.values(labelsObj)}
             handleChange={(input) => {
@@ -49,6 +49,9 @@ const Join: FC = () => {
                   break;
                 case labelsObj.CHARITY_ROLE:
                   navigate(Paths.SIGN_UP_CHARITY);
+                  break;
+                case labelsObj.LA_ROLE:
+                  navigate(Paths.LOCAL_AUTHORITY_JOIN_INFO);
                   break;
               }
             }}

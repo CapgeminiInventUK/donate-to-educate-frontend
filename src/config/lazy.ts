@@ -39,6 +39,12 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
 const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
 const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
 
+const LocalAuthorityJoinInfo = lazy(
+  () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
+);
+
+const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
+
 export {
   Home,
   AboutUs,
@@ -62,4 +68,6 @@ export {
   SchoolEdit,
   SchoolsDashboard,
   Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
 };
