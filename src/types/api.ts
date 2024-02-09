@@ -26,6 +26,7 @@ export type School = {
   localAuthority: string;
   postcode?: string | null;
   registered: boolean;
+  isLocalAuthorityRegistered: boolean;
 };
 
 export type SchoolProfile = {
@@ -116,6 +117,7 @@ export type GetSchoolByNameQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered: boolean;
   };
 };
 
@@ -131,6 +133,7 @@ export type GetSchoolsByLaQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered: boolean;
   }>;
 };
 
@@ -144,6 +147,7 @@ export type GetSchoolsQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered?: boolean;
   }>;
 };
 

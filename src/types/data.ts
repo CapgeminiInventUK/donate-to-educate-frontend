@@ -51,7 +51,14 @@ export interface FormTemplate {
   logo?: JSX.Element;
   footerLogo?: JSX.Element;
   isUnhappyPath?: boolean;
+  summaryPageBg?: SummaryPageColour;
   formComponentInternalLink?: ButtonProps;
+  onSend?: () => void;
+}
+
+export enum SummaryPageColour {
+  WHITE = 'white',
+  BLUE = 'blue',
 }
 
 export interface FormMeta {
@@ -94,6 +101,7 @@ export interface DropdownOption {
   value: string | number;
   label: string;
   postcode?: string | null;
+  registered?: boolean;
 }
 
 export interface FilterDropdownOption {

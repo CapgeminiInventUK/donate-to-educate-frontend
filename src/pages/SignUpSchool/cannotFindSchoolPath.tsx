@@ -1,4 +1,4 @@
-import { ComponentType, DropdownOption, FormTemplate } from '@/types/data';
+import { ComponentType, DropdownOption, FormTemplate, SummaryPageColour } from '@/types/data';
 import getHappyPath from './happyPath';
 import LogoBlue from '@/assets/logo/LogoBlue';
 
@@ -18,6 +18,7 @@ const getCannotFindSchoolPath = (
         },
       },
     ],
+    summaryPageBg: SummaryPageColour.WHITE,
     footerLogo: <LogoBlue />,
     isUnhappyPath: true,
   };

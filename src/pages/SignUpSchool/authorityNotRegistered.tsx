@@ -2,12 +2,19 @@ import { ComponentType, DropdownOption, FormTemplate } from '@/types/data';
 import getHappyPath from './happyPath';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import { Dispatch, SetStateAction } from 'react';
 
 const getAuthorityNotRegisteredPath = (
   schoolOptions: DropdownOption[],
-  cannotFindSchool: () => void
+  cannotFindSchool: () => void,
+  setPageNumber: Dispatch<SetStateAction<number>>
 ): FormTemplate[] => {
   const happyPath = getHappyPath(schoolOptions, cannotFindSchool);
+  const onSend = (): void => {
+    // eslint-disable-next-line no-console
+    console.log('Message sent');
+    setPageNumber((pageNumber) => pageNumber + 1);
+  };
   const authorityNotRegisteredPath = [
     {
       header: 'Your details',
@@ -51,6 +58,7 @@ const getAuthorityNotRegisteredPath = (
         },
       ],
       isUnhappyPath: true,
+      onSend,
     },
     {
       formComponents: [
@@ -66,6 +74,7 @@ const getAuthorityNotRegisteredPath = (
           },
         },
       ],
+      isUnhappyPath: true,
     },
   ];
   return [happyPath[0], happyPath[1], ...authorityNotRegisteredPath];

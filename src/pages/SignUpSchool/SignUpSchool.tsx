@@ -6,25 +6,22 @@ import getHappyPath from './happyPath';
 import getCannotFindSchoolPath from './cannotFindSchoolPath';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetLocalAuthoritiesQuery, GetSchoolsQuery, LocalAuthority } from '@/types/api';
+import { GetSchoolsQuery } from '@/types/api';
 import { client } from '@/graphqlClient';
 import getAuthorityNotRegisteredPath from './authorityNotRegistered';
-import { getSchoolsAndLocalAuthorities } from '@/graphql/composite';
+import { getSchools } from '@/graphql/queries';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
   const [formTemplate, setFormTemplate] = useState<FormTemplate[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
-  const [localAuthorities, setLocalAuthorities] = useState<LocalAuthority[]>([]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['la'],
     queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthoritiesQuery & GetSchoolsQuery>
-      >({
-        query: getSchoolsAndLocalAuthorities,
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
+        query: getSchools,
       });
 
       return data;
@@ -36,15 +33,17 @@ const SignUpSchool: FC = () => {
   }
 
   useEffect(() => {
-    const options = data?.getSchools.map(({ urn, name, localAuthority, postcode, registered }) => ({
-      value: urn,
-      label: name,
-      localAuthority,
-      postcode,
-      registered,
-    }));
+    const options = data?.getSchools.map(
+      ({ urn, name, localAuthority, isLocalAuthorityRegistered, postcode, registered }) => ({
+        value: urn,
+        label: name,
+        localAuthority,
+        isLocalAuthorityRegistered,
+        postcode,
+        registered,
+      })
+    );
     setSchoolOptions(options ?? []);
-    setLocalAuthorities(data?.getLocalAuthorities ?? []);
   }, [data]);
 
   const onChange = (
@@ -62,7 +61,7 @@ const SignUpSchool: FC = () => {
   }, [schoolOptions]);
 
   const authorityNotRegistered = useCallback((): void => {
-    getAuthorityNotRegisteredPath(schoolOptions, cannotFindSchool);
+    setFormTemplate(getAuthorityNotRegisteredPath(schoolOptions, cannotFindSchool, setPageNumber));
   }, [schoolOptions, cannotFindSchool]);
 
   const setHappyPathTemplate = useCallback((): void => {
@@ -73,13 +72,7 @@ const SignUpSchool: FC = () => {
     if (!formData[0]?.fullValue) {
       return;
     }
-    const selectedAuthority = localAuthorities.find(
-      ({ name }) => name === formData[1]?.fullValue?.localAuthority
-    );
-    if (!selectedAuthority?.registered) {
-      authorityNotRegistered();
-    }
-  }, [pageNumber, formData, localAuthorities, authorityNotRegistered]);
+  }, [pageNumber, formData, authorityNotRegistered]);
 
   useEffect(() => {
     if (!schoolOptions.length) {

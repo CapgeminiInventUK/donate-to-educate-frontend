@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Dropdown.module.scss';
 import { DropdownProps } from '@/types/props';
 import Select, { SingleValue } from 'react-select';
@@ -17,6 +17,7 @@ const Dropdown: FC<DropdownProps> = ({
 }) => {
   const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
+  const [placeholder, setPlaceholder] = useState(value);
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
@@ -47,6 +48,14 @@ const Dropdown: FC<DropdownProps> = ({
     return !!(label.includes(input) || postcode?.includes(input.toUpperCase()));
   };
 
+  useEffect(() => {
+    if (!value) {
+      setPlaceholder('Start typing to search');
+    } else {
+      setPlaceholder(value);
+    }
+  }, [value]);
+
   return (
     <div className={styles.wrapper}>
       {header && <h4 className={styles.header}>{header}</h4>}
@@ -57,7 +66,7 @@ const Dropdown: FC<DropdownProps> = ({
         options={displayedOptions}
         onChange={handleSelect}
         value={dropDownValue}
-        placeholder={value}
+        placeholder={placeholder}
         onInputChange={onSearch}
         filterOption={filterOptions}
         isClearable

@@ -9,6 +9,7 @@ import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import AddressInset from '../AddressInset/AddressInset';
+import { SummaryPageColour } from '@/types/data';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -33,7 +34,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
     logo = undefined,
     footerLogo = undefined,
     isUnhappyPath = false,
+    summaryPageBg = SummaryPageColour.BLUE,
     formComponentInternalLink = undefined,
+    onSend = undefined,
   } = formTemplate[pageNumber];
 
   useEffect(() => {
@@ -85,7 +88,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
       ) : (
         <div
           className={`${styles.formContainer} ${
-            isLastPage && !isUnhappyPath ? styles.lastPageContainer : ''
+            isLastPage && summaryPageBg === SummaryPageColour.BLUE ? styles.lastPageContainer : ''
           }`}
         >
           {pageNumber > 0 && !isUnhappyPath && (
@@ -150,6 +153,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
               onClick={onContinueButtonClick}
               useArrow={true}
             />
+          )}
+          {isUnhappyPath && onSend && (
+            <FormButton text={'Send'} theme={'formButtonGrey'} onClick={onSend} useArrow={true} />
           )}
           {formComponentInternalLink && (
             <div className={styles.link}>
