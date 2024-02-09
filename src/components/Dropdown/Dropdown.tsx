@@ -27,7 +27,8 @@ const Dropdown: FC<DropdownProps> = ({
   const onSearch = (newValue: string): void => {
     const newOptions = options.filter(
       ({ label, postcode }) =>
-        label.includes(newValue) || postcode?.includes(newValue.toUpperCase())
+        label.toLowerCase().includes(newValue.toLowerCase()) ||
+        postcode?.includes(newValue.toUpperCase())
     );
 
     if (newOptions?.length > 2000) {
@@ -45,7 +46,9 @@ const Dropdown: FC<DropdownProps> = ({
       label,
       data: { postcode },
     } = option;
-    return !!(label.includes(input) || postcode?.includes(input.toUpperCase()));
+    return !!(
+      label.toLowerCase().includes(input.toLowerCase()) || postcode?.includes(input.toUpperCase())
+    );
   };
 
   useEffect(() => {

@@ -26,7 +26,7 @@ export type School = {
   localAuthority: string;
   postcode?: string | null;
   registered: boolean;
-  isLocalAuthorityRegistered: boolean;
+  isLocalAuthorityRegistered?: boolean | null;
 };
 
 export type SchoolProfile = {
@@ -58,6 +58,25 @@ export type getAdminPageRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+  }>;
+};
+
+export type getSchoolsAndLocalAuthoritiesQueryVariables = {};
+
+export type getSchoolsAndLocalAuthoritiesQuery = {
+  getLocalAuthorities: Array<{
+    __typename: 'LocalAuthority';
+    code: string;
+    name: string;
+    registered: boolean;
+  }>;
+  getSchools: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
   }>;
 };
 
@@ -99,6 +118,7 @@ export type UpdateJoinRequestMutation = {
 export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
+  type: string;
 };
 
 export type InsertSignUpDataMutation = {
@@ -117,7 +137,7 @@ export type GetSchoolByNameQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
-    isLocalAuthorityRegistered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
   };
 };
 
@@ -133,7 +153,7 @@ export type GetSchoolsByLaQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
-    isLocalAuthorityRegistered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
   }>;
 };
 
@@ -147,7 +167,7 @@ export type GetSchoolsQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
-    isLocalAuthorityRegistered?: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
   }>;
 };
 
