@@ -21,6 +21,9 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -174,6 +177,21 @@ const routes: Route[] = [
     path: Paths.RESET_PASSWORD,
     element: <ResetPassword />,
   },
+  {
+    path: Paths.JOIN,
+    element: <Join />,
+  },
+
+  {
+    path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
+    element: <LocalAuthorityJoinInfo />,
+  },
+
+  {
+    path: Paths.FIND_YOUR_COMMUNITY,
+    element: <FindYourCommunity />,
+  },
+
   {
     path: Paths.ALL,
     element: <NotFound />,

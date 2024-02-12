@@ -76,6 +76,8 @@ const FormContainer: FC<MultiStepFormProps> = ({ formTemplate, formData, isLoadi
     }
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
+    } else {
+      navigate(-1);
     }
   };
 

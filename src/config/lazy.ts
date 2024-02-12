@@ -5,6 +5,7 @@ const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('@pages/Contact/Contact'));
 const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'));
+const Join = lazy(() => import('@pages/Join/Join'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
@@ -38,6 +39,12 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
 const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
 const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
 
+const LocalAuthorityJoinInfo = lazy(
+  () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
+);
+
+const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
+
 export {
   Home,
   AboutUs,
@@ -60,4 +67,7 @@ export {
   LocalAuthorityDashboard,
   SchoolEdit,
   SchoolsDashboard,
+  Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
 };

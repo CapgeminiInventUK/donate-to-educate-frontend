@@ -10,9 +10,10 @@ import LoginBanner from '@/components/LoginBanner/LoginBanner';
 import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import { breakpoints } from '@utils/globals';
-import styles from './SignIn.module.scss';
+import styles from '../Login.module.scss';
+import BackButton from '@/components/BackButton/BackButton';
 
-export const SignIn: FC = () => {
+export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPressed }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<string>('');
@@ -44,44 +45,48 @@ export const SignIn: FC = () => {
 
   return (
     <div className={styles.container}>
-      <LoginBanner />
-      <h2>Sign in</h2>
-      <TextInput
-        header="Email"
-        onChange={(value): void => {
-          if (email !== value) {
-            setEmail(value);
+      <BackButton onClick={backButtonPressed} theme="blue" />
+      <div className={styles.subContainer}>
+        <LoginBanner />
+        <h2>Sign in</h2>
+        <TextInput
+          header="Email"
+          onChange={(value): void => {
+            if (email !== value) {
+              setEmail(value);
+            }
+          }}
+          isLarge={isNotMobile}
+          isSmall={isSmallMobile}
+        />
+        <TextInput
+          header="Password"
+          password
+          onChange={(value): void => {
+            if (password !== value) {
+              setPassword(value);
+            }
+          }}
+          isSmall={isSmallMobile}
+        />
+        <Link to={Paths.RESET_PASSWORD} className={styles.altLink}>
+          I have forgotten my password
+        </Link>
+        <div className={styles.validationContainer}>
+          <span>{validationMessage}</span>
+        </div>
+        <FormButton
+          text={'Sign in'}
+          theme={
+            !submitted && email.length && password.length
+              ? 'formButtonDarkBlue'
+              : 'formButtonDisabled'
           }
-        }}
-        isLarge={isNotMobile}
-        isSmall={isSmallMobile}
-      />
-      <TextInput
-        header="Password"
-        password
-        onChange={(value): void => {
-          if (password !== value) {
-            setPassword(value);
-          }
-        }}
-        isSmall={isSmallMobile}
-      />
-      <Link to={Paths.RESET_PASSWORD} className={styles.forgotPassword}>
-        I have forgotten my password
-      </Link>
-      <div className={styles.validationContainer}>
-        <span>{validationMessage}</span>
-      </div>
-      <FormButton
-        text={'Sign in'}
-        theme={
-          !submitted && email.length && password.length
-            ? 'formButtonDarkBlue'
-            : 'formButtonDisabled'
-        }
-        onClick={(): void => setSubmitted(true)}
-        useArrow={true}
-      />
+          onClick={(): void => setSubmitted(true)}
+          useArrow={true}
+          className={styles.formButton}
+        />
+      </div>{' '}
     </div>
   );
 };

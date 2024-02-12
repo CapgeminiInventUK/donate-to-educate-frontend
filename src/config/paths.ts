@@ -37,6 +37,9 @@ enum Paths {
   SIGN_UP_SCHOOL = '/sign-up-school',
   ADD_USER = '/add-user',
   SCHOOL_EDIT = '/school-edit',
+  JOIN = '/join',
+  LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-join-info',
+  FIND_YOUR_COMMUNITY = '/find-your-community',
   ALL = '*',
 }
 

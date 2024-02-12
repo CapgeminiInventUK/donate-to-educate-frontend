@@ -11,6 +11,7 @@ const FormButton: FC<FormButtonProps> = ({
   theme,
   useArrow = false,
   fullWidth = false,
+  className,
 }) => {
   const getArrowColour = (): string => {
     switch (theme) {
@@ -33,7 +34,7 @@ const FormButton: FC<FormButtonProps> = ({
             }
           : onClick
       }
-      className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''}`}
+      className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''} ${className ? className : ''}`}
     >
       <span className={styles.text}>{text}</span>
       {useArrow && (

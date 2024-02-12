@@ -39,6 +39,7 @@ export interface FormButtonProps {
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;
+  className?: string;
 }
 
 export interface ImageProps {
@@ -148,6 +149,7 @@ export interface RadioGroupProps {
   labels?: string[];
   className?: string;
   formMeta?: FormMeta;
+  handleChange?: (input: string) => void;
 }
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
