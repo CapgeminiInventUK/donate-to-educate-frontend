@@ -44,6 +44,7 @@ const routes: Route[] = [
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
+    requiresAuth: true,
     redirectRoute: '/login',
   },
   {
@@ -60,6 +61,7 @@ const routes: Route[] = [
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
+    requiresAuth: true,
     redirectRoute: '/login',
   },
   {
