@@ -141,22 +141,20 @@ const SchoolEdit: FC = () => {
                   />
                 </>
               ) : (
-                <>
-                  <EditDescription
-                    value={content.whatToExpect}
-                    setValue={(val) => {
-                      setContent({ ...content, whatToExpect: val });
-                    }}
-                    handleSave={() => {
-                      setEditState(false);
-                      refetch().then(console.log).catch(console.error);
-                    }}
-                    handleCancel={() => {
-                      setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
-                      setEditState(false);
-                    }}
-                  />
-                </>
+                <EditDescription
+                  value={content.whatToExpect}
+                  setValue={(val) => {
+                    setContent({ ...content, whatToExpect: val });
+                  }}
+                  handleSave={() => {
+                    setEditState(false);
+                    refetch().then(console.log).catch(console.error);
+                  }}
+                  handleCancel={() => {
+                    setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
+                    setEditState(false);
+                  }}
+                />
               )}
             </div>
             <ItemListEdit setItems={setItems} items={items} />
