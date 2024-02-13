@@ -38,7 +38,12 @@ const HowItWorks: FC = () => {
           <h3>One place for charities and volunteers</h3>
           <p>Charities and volunteers can use this service to:</p>
           <ul>
-            <li></li>
+            <li>create a charity profile</li>
+            <li>list the products you have available</li>
+            <li>reply to families with product requests</li>
+            <li>help schools who need you to take their extra stock</li>
+            <li>share extra stock with schools and the community</li>
+            <li>donate products</li>
           </ul>
           <h3>What if I just want to donate?</h3>
           <p>
