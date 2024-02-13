@@ -5,14 +5,13 @@ import RadioButton from '../RadioButton/RadioButton';
 const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className, handleChange }) => {
   const [selectedInput, setSelectedInput] = useState('');
 
-  function myHandleChange(input: string): void {
+  const myHandleChange = (input: string): void => {
     setSelectedInput(input);
 
     if (handleChange !== undefined) {
       handleChange(input);
-      return;
     }
-  }
+  };
 
   return (
     <div>

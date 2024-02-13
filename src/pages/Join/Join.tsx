@@ -13,6 +13,19 @@ const labelsObj = {
   LA_ROLE: 'I work for a local authority',
 };
 
+const getLocationBasedOnRole = (role: string): string => {
+  switch (role) {
+    case labelsObj.SCHOOL_ROLE:
+      return Paths.SIGN_UP_SCHOOL;
+    case labelsObj.CHARITY_ROLE:
+      return Paths.SIGN_UP_CHARITY;
+    case labelsObj.LA_ROLE:
+      return Paths.LOCAL_AUTHORITY_JOIN_INFO;
+    default:
+      return '';
+  }
+};
+
 const Join: FC = () => {
   const [role, setRole] = useState('');
   const navigate = useNavigate();
@@ -36,25 +49,11 @@ const Join: FC = () => {
             name={'role'}
             values={Object.values(labelsObj)}
             labels={Object.values(labelsObj)}
-            handleChange={(input) => {
-              setRole(input);
-            }}
+            handleChange={(input) => setRole(input)}
           />
           <FormButton
             theme="formButtonDarkBlue"
-            onClick={() => {
-              switch (role) {
-                case labelsObj.SCHOOL_ROLE:
-                  navigate(Paths.SIGN_UP_SCHOOL);
-                  break;
-                case labelsObj.CHARITY_ROLE:
-                  navigate(Paths.SIGN_UP_CHARITY);
-                  break;
-                case labelsObj.LA_ROLE:
-                  navigate(Paths.LOCAL_AUTHORITY_JOIN_INFO);
-                  break;
-              }
-            }}
+            onClick={() => navigate(getLocationBasedOnRole(role))}
             text={'Next'}
           />
         </div>
