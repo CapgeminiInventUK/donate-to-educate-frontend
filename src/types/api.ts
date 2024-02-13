@@ -30,9 +30,19 @@ export type School = {
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
-  request?: string | null;
-  donate?: string | null;
-  excess?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+};
+
+export type ProfileItems = {
+  __typename: 'ProfileItems';
+  items?: string | null;
+  banner?: string | null;
+  helpBannerTitle?: string | null;
+  helpBannerBody?: string | null;
+  whatToExpect?: string | null;
+  actionText?: string | null;
 };
 
 export type SignUpData = {
@@ -98,6 +108,7 @@ export type UpdateJoinRequestMutation = {
 export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
+  type: string;
 };
 
 export type InsertSignUpDataMutation = {
@@ -179,9 +190,33 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile: {
     __typename: 'SchoolProfile';
-    request?: string | null;
-    donate?: string | null;
-    excess?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      banner?: string | null;
+      helpBannerTitle?: string | null;
+      helpBannerBody?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      banner?: string | null;
+      helpBannerTitle?: string | null;
+      helpBannerBody?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      banner?: string | null;
+      helpBannerTitle?: string | null;
+      helpBannerBody?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
   };
 };
 

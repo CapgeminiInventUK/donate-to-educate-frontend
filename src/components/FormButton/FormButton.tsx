@@ -23,6 +23,8 @@ const FormButton: FC<FormButtonProps> = ({
         return RightArrowGrey;
       case 'formButtonRed':
         return RightArrowBlue;
+      case 'formButtonGreen':
+        return RightArrowWhite;
     }
   };
   return (

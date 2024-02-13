@@ -22,9 +22,9 @@ export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonGrey'
-  | 'formButtonDisabled'
-  | 'formButtonRed';
-
+  | 'formButtonRed'
+  | 'formButtonGreen'
+  | 'formButtonDisabled';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
@@ -65,11 +65,23 @@ export interface SvgProps {
   height?: number;
   width?: number;
 }
-
+export interface EditDescriptionProps {
+  value: string;
+  setValue: (val: string) => void;
+  handleSave: () => void;
+  handleCancel: () => void;
+}
 export interface BackLinkProps {
   route: string;
 }
-
+export interface ContentType {
+  items: string;
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+}
 export interface HeaderProps {
   text: string;
   className?: string;
