@@ -21,23 +21,71 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
 } from './lazy';
+import { Route } from '@/types/props';
 
-const routes = [
+const routes: Route[] = [
   {
     path: Paths.HOME,
     element: <Home />,
     name: 'Home',
   },
   {
+    path: Paths.FAMILIES,
+    element: <></>,
+    name: 'Families',
+  },
+  {
+    path: Paths.SCHOOLS,
+    element: <></>,
+    name: 'Schools',
+  },
+  {
+    path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
+    element: <></>,
+    name: 'Create or edit your profile',
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.SCHOOLS_FIND_COMMUNITIES,
+    element: <></>,
+    name: 'Find your communities',
+  },
+  {
+    path: Paths.CHARITIES,
+    element: <></>,
+    name: 'Charities',
+  },
+  {
+    path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
+    element: <></>,
+    name: 'Create or edit your profile',
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.CHARITIES_FIND_COMMUNITIES,
+    element: <></>,
+    name: 'Find your communities',
+  },
+  {
     path: Paths.ABOUT,
     element: <AboutUs />,
-    name: 'About us',
+    name: 'About',
+  },
+  {
+    path: Paths.HOW_IT_WORKS,
+    element: <></>,
+    name: 'How it works',
   },
   {
     path: Paths.CONTACT,
     element: <Contact />,
-    name: 'Contact us',
+    name: 'Contact',
   },
   {
     path: Paths.ACCESSABILITY_STATEMENT,
@@ -63,7 +111,7 @@ const routes = [
   {
     path: Paths.LOGIN,
     element: <Login />,
-    name: 'Login',
+    name: 'Sign in or join',
   },
   {
     path: Paths.ADMIN_DASHBOARD,
@@ -130,7 +178,22 @@ const routes = [
     element: <ResetPassword />,
   },
   {
-    path: '*',
+    path: Paths.JOIN,
+    element: <Join />,
+  },
+
+  {
+    path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
+    element: <LocalAuthorityJoinInfo />,
+  },
+
+  {
+    path: Paths.FIND_YOUR_COMMUNITY,
+    element: <FindYourCommunity />,
+  },
+
+  {
+    path: Paths.ALL,
     element: <NotFound />,
   },
 ];

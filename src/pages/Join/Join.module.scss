@@ -4,10 +4,6 @@
   @include g.page-container;
   color: g.$primary-dark-blue;
   padding: 48px 120px;
-
-  .formButton {
-    margin: 20px 0px 0px 0px;
-  }
 }
 
 .subContainer {
@@ -25,32 +21,15 @@
   height: auto;
 }
 
-.infoContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 60px 0px;
-}
-
-.logoIcon {
-  width: 50px;
-}
-
-.link {
-  color: g.$secondary-mid-blue;
-  font-weight: bold;
-}
-
-.altLink {
-  color: g.$primary-dark-blue;
-  font-weight: bold;
-}
-
 .subContainerLine {
   display: flex;
   align-items: center;
   gap: 20px;
   height: 50px;
+}
+
+.logoIcon {
+  width: 50px;
 }
 
 @media only screen and (max-width: g.$screen-medium) {

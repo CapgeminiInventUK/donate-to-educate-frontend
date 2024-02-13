@@ -33,6 +33,7 @@ const Dropdown: FC<DropdownProps> = ({
         onChange={handleSelect}
         value={dropDownValue}
         placeholder={value}
+        required={!header?.includes('optional')}
       />
     </div>
   );

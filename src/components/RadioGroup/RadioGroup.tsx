@@ -2,11 +2,15 @@ import { FC, useState } from 'react';
 import { RadioGroupProps } from '@/types/props';
 import RadioButton from '../RadioButton/RadioButton';
 
-const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className }) => {
+const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className, handleChange }) => {
   const [selectedInput, setSelectedInput] = useState('');
 
-  const handleChange = (inputValue: string): void => {
-    setSelectedInput(inputValue);
+  const myHandleChange = (input: string): void => {
+    setSelectedInput(input);
+
+    if (handleChange !== undefined) {
+      handleChange(input);
+    }
   };
 
   return (
@@ -18,7 +22,7 @@ const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className }) =>
             name={name}
             value={values[index]}
             label={labels != null ? labels[index] : ''}
-            onChange={handleChange}
+            onChange={myHandleChange}
             className={className}
             checked={selectedInput === values[index]}
           ></RadioButton>

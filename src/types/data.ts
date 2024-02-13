@@ -11,6 +11,7 @@ import {
   TextAreaProps,
   TextInputProps,
 } from './props';
+import Paths from '@/config/paths';
 
 export interface ErrorBoundaryState {
   hasError: boolean;
@@ -73,6 +74,11 @@ export enum FormNames {
   SCHOOL = 'Sign up school',
 }
 
+export enum FormErrors {
+  EMAIL_ERROR_MESSAGE = 'Enter the email address in the correct format, like team@donatetoeducate.org.uk',
+  PHONE_ERROR_MESSAGE = 'Enter the phone number in the correct format, like 07123456789',
+}
+
 export enum ComponentType {
   TEXT = 'textInput',
   CHECKBOX = 'checkbox',
@@ -87,4 +93,9 @@ export enum ComponentType {
 export interface DropdownOption {
   value: string | number;
   label: string;
+}
+
+export interface NavRoute {
+  path: Paths;
+  childNavRoutes?: NavRoute[];
 }

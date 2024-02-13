@@ -14,6 +14,7 @@ const TextInput: FC<TextInputProps> = ({
   formMeta,
   value,
   disabled = false,
+  errorMessage,
 }) => {
   const [inputType, setInputType] = useState('password');
 
@@ -32,9 +33,12 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
       {header && <h4 className={styles.header}>{header}</h4>}
       {subHeading && <h5 className={styles.subHeading}>{subHeading}</h5>}
+      {errorMessage && (
+        <h5 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h5>
+      )}
       {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
       <input
         type={password ? inputType : 'text'}
@@ -42,9 +46,10 @@ const TextInput: FC<TextInputProps> = ({
         onChange={handleChange}
         className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
           isSmall ? styles.inputSmall : ''
-        }`}
+        } ${errorMessage ? styles.errorInput : ''}`}
         placeholder={placeholder ?? ''}
         disabled={disabled}
+        required={!header?.includes('optional')}
       />
     </div>
   );

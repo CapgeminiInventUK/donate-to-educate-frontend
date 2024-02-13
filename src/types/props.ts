@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 import {
   CarouselItem,
   DropdownOption,
@@ -8,6 +8,7 @@ import {
   FormSections,
   FormTemplate,
 } from './data';
+import Paths from '@/config/paths';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -34,10 +35,11 @@ export interface ButtonProps {
 
 export interface FormButtonProps {
   theme: FormButtonThemes;
-  onClick: () => void;
+  onClick?: (event: FormEvent<Element>) => void;
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;
+  className?: string;
 }
 
 export interface ImageProps {
@@ -97,10 +99,32 @@ export interface CookiesSelection {
 
 export interface NavLinksProps {
   theme: Themes;
-  activeClassName?: string;
   className?: string;
-  buttonClassName?: string;
   linkClassName?: string;
+  buttonClassName?: string;
+  activeClassName?: string;
+  onLinkClicked?: () => void;
+}
+
+export interface RouteProp {
+  path: Paths;
+  name: string;
+}
+
+export interface Route {
+  path: Paths;
+  element: JSX.Element;
+  name?: string;
+  redirectRoute?: string;
+  requiresAuth?: boolean;
+}
+
+export interface NavLinkProps {
+  path: Paths;
+  name: string;
+  theme: Themes;
+  childRoutes?: Route[];
+  onLinkClicked?: () => void;
 }
 
 export interface ClickableLogoProps {
@@ -137,6 +161,7 @@ export interface RadioGroupProps {
   labels?: string[];
   className?: string;
   formMeta?: FormMeta;
+  handleChange?: (input: string) => void;
 }
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
@@ -164,6 +189,7 @@ export interface CommonInputProps {
   formMeta?: FormMeta;
   value?: string;
   disabled?: boolean;
+  errorMessage?: string;
 }
 
 export interface TextInputProps extends CommonInputProps {
