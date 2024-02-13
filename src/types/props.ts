@@ -63,11 +63,23 @@ export interface SvgProps {
   height?: number;
   width?: number;
 }
-
+export interface EditDescriptionProps {
+  value: string;
+  setValue: (val: string) => void;
+  handleSave: () => void;
+  handleCancel: () => void;
+}
 export interface BackLinkProps {
   route: string;
 }
-
+export interface ContentType {
+  items: string;
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+}
 export interface HeaderProps {
   text: string;
   className?: string;

@@ -14,6 +14,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { EditDescription } from './EditDescription/EditDescription';
+import { ContentType } from '@/types/props';
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -37,15 +38,6 @@ const SchoolEdit: FC = () => {
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
 
-  interface ContentType {
-    items: string;
-    banner: string;
-    helpBannerTitle: string;
-    helpBannerBody: string;
-    whatToExpect: string;
-    actionText: string;
-  }
-
   const [content, setContent] = useState<ContentType>({
     items: '',
     banner: '',
@@ -59,14 +51,14 @@ const SchoolEdit: FC = () => {
   const { isLoading, data } = useQuery({
     queryKey: ['profile'],
     queryFn: async () => {
-      const data = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
         variables: {
           name: 'Test School Profile 5',
         },
       });
 
-      return data.data;
+      return data;
     },
   });
 
@@ -85,8 +77,6 @@ const SchoolEdit: FC = () => {
           }),
         },
       });
-
-      console.log(items);
 
       return result;
     },
@@ -113,7 +103,6 @@ const SchoolEdit: FC = () => {
   }, [isLoading, type, data?.getSchoolProfile]);
 
   useEffect(() => {
-    console.log(content.items);
     content.items !== '' && setItems(JSON.parse(content.items) as Record<string, SectionsIconType>);
   }, [content, type]);
 
