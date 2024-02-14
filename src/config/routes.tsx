@@ -34,16 +34,6 @@ const routes: Route[] = [
     name: 'Home',
   },
   {
-    path: Paths.FAMILIES,
-    element: <></>,
-    name: 'Families',
-  },
-  {
-    path: Paths.SCHOOLS,
-    element: <></>,
-    name: 'Schools',
-  },
-  {
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
@@ -51,26 +41,11 @@ const routes: Route[] = [
     redirectRoute: '/login',
   },
   {
-    path: Paths.SCHOOLS_FIND_COMMUNITIES,
-    element: <></>,
-    name: 'Find your communities',
-  },
-  {
-    path: Paths.CHARITIES,
-    element: <></>,
-    name: 'Charities',
-  },
-  {
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
     requiresAuth: true,
     redirectRoute: '/login',
-  },
-  {
-    path: Paths.CHARITIES_FIND_COMMUNITIES,
-    element: <></>,
-    name: 'Find your communities',
   },
   {
     path: Paths.ABOUT,
@@ -190,6 +165,7 @@ const routes: Route[] = [
   {
     path: Paths.FIND_YOUR_COMMUNITY,
     element: <FindYourCommunity />,
+    name: 'Find your community',
   },
 
   {

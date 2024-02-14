@@ -12,7 +12,7 @@ describe('navlinks component', () => {
 
     expect(queryByText('Home')).toBeInTheDocument();
     expect(queryAllByText('About')[0]).toBeInTheDocument();
-    expect(queryByText('Families')).toBeInTheDocument();
+    expect(queryByText('Find your community')).toBeInTheDocument();
     expect(queryByText('Contact')).toBeInTheDocument();
   });
 });
