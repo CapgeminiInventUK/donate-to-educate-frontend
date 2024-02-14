@@ -6,8 +6,10 @@ import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
 import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
+import { SchoolBannerProps } from '@/types/props';
+import EditIcon from '@/assets/school/EditIcon';
 
-export const SchoolBanner: FC = () => {
+export const SchoolBanner: FC<SchoolBannerProps> = ({ isAdminView = false }) => {
   return (
     <div className={styles.bannerContainer}>
       <h1>Ormiston Six Villages Academy</h1>
@@ -40,6 +42,7 @@ export const SchoolBanner: FC = () => {
             </span>
             <Button
               theme="light"
+              className={styles.uniformPolicyButton}
               text={
                 <div>
                   <span className={styles.buttonLabel}>View uniform policy</span>
@@ -51,6 +54,23 @@ export const SchoolBanner: FC = () => {
               }}
             />
           </li>
+          {isAdminView && (
+            <li>
+              <Button
+                text={
+                  <div className={styles.editDiv}>
+                    <EditIcon />
+                    <span className={styles.editButtonText}>Edit</span>
+                  </div>
+                }
+                theme="light"
+                className={styles.editButton}
+                onClick={function (): void {
+                  throw new Error('Function not implemented.');
+                }}
+              ></Button>
+            </li>
+          )}
         </ul>
       </div>
     </div>

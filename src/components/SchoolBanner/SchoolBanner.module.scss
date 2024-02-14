@@ -39,10 +39,46 @@ h1 {
   .buttonLabel {
     margin-right: 10px;
     color: g.$dark-blue;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 125%;
   }
 
   .interfaceArrow {
     margin-bottom: -3px;
+  }
+
+  .uniformPolicyButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    height: 30px;
+  }
+
+  .editDiv {
+    display: inline-flex;
+  }
+
+  .editButton {
+    margin-top: 40px;
+    display: flex;
+    height: 45px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+  }
+
+  .editButtonText {
+    margin-left: 10px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%; /* 30px */
+    letter-spacing: -0.24px;
   }
 }
 

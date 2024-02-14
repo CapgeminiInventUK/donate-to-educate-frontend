@@ -31,6 +31,8 @@ const AdminDashboardRequests = lazy(() => import('@pages/AdminDashboard/Requests
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
+
+const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
@@ -58,6 +60,7 @@ export {
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
+  SchoolAdminDashboard,
   SchoolEdit,
   SchoolsDashboard,
 };

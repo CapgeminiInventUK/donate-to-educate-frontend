@@ -208,3 +208,7 @@ export interface SummaryProps {
   body: string[];
   logo?: JSX.Element;
 }
+
+export interface SchoolBannerProps {
+  isAdminView?: boolean;
+}

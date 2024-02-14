@@ -21,6 +21,7 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  SchoolAdminDashboard,
 } from './lazy';
 
 const routes = [
@@ -80,6 +81,12 @@ const routes = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_VIEW,
     element: <AdminDashboardViewLocalAuthority />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_SCHOOL,
+    element: <SchoolAdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
   },
