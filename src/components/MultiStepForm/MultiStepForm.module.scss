@@ -23,7 +23,6 @@
   }
 
   .errorMessage {
-    color: g.$error-red;
     font-weight: 700;
     color: g.$error-red;
     margin-top: 0;
@@ -40,7 +39,7 @@
   .headerContainer {
     margin: 0 0 40px;
     color: g.$primary-dark-blue;
-    font-family: Poppins;
+    font-family: 'Poppins', sans-serif;
 
     .header {
       font-size: 32px;
