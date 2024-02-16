@@ -24,6 +24,7 @@ enum Paths {
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
   EQUALITY_SERVICES = 'https://www.equalityadvisoryservice.com/',
   EMAIL = 'mailto: team@donatetoeducate.org.uk',
+  PHONE = 'tel: 0134 271 8679',
   PTA = 'https://www.pta.co.uk/',
   FUNDED = 'https://www.funded.org.uk',
   INVENT = 'https://www.capgemini.com/about-us/who-we-are/our-brands/capgemini-invent/',
