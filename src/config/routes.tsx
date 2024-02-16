@@ -169,6 +169,9 @@ const routes: Route[] = [
     name: 'Find your community',
   },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
+  { path: Paths.LOCAL_SCHOOLS, element: <></> },
+  { path: Paths.LOCAL_CHARITIES, element: <></> },
+  { path: Paths.LOCAL_DONATE, element: <></> },
   {
     path: Paths.ALL,
     element: <NotFound />,

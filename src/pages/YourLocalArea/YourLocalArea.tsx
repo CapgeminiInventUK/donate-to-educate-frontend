@@ -29,9 +29,13 @@ const YourLocalArea: FC = () => {
       />
       <div className={styles.subContainer}>
         <h2>Your local area in {location.state.postcode.toUpperCase()}</h2>
-        {tiles.map(({ icon, title, body, image, colour }) => {
+        {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
           return (
-            <div key={title} className={`${styles.tile} ${styles[colour]}`}>
+            <div
+              key={title}
+              className={`${styles.tile} ${styles[colour]}`}
+              onClick={() => navigate(onClickLink)}
+            >
               {icon}
               <div className={styles.content}>
                 <h2 className={styles.header}>{title}</h2>
@@ -53,6 +57,7 @@ const tiles = [
     body: 'Request or donate products',
     image: <Image alt="hat" image={hatImg} />,
     colour: 'darkBlue',
+    onClickLink: Paths.LOCAL_SCHOOLS,
   },
   {
     icon: <Heart />,
@@ -60,6 +65,7 @@ const tiles = [
     body: 'Find out what they stock or donate products',
     image: <Image alt="heart" image={heartImg} />,
     colour: 'midBlue',
+    onClickLink: Paths.LOCAL_CHARITIES,
   },
   {
     icon: <Donate />,
@@ -67,6 +73,7 @@ const tiles = [
     body: 'Support schools and charities in your area',
     image: <Image alt="donate" image={donateImg} />,
     colour: 'lightBlue',
+    onClickLink: Paths.LOCAL_DONATE,
   },
 ];
 
