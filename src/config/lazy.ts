@@ -44,6 +44,7 @@ const LocalAuthorityJoinInfo = lazy(
 );
 
 const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
+const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
 
 export {
   Home,
@@ -70,4 +71,5 @@ export {
   Join,
   LocalAuthorityJoinInfo,
   FindYourCommunity,
+  YourLocalArea,
 };

@@ -35,6 +35,7 @@ enum Paths {
   JOIN = '/join',
   LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-join-info',
   FIND_YOUR_COMMUNITY = '/find-your-community',
+  YOUR_LOCAL_AREA = '/your-local-area',
   ALL = '*',
 }
 

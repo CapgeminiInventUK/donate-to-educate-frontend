@@ -1,9 +1,14 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './FindYourCommunity.module.scss';
 import TextInput from '@/components/TextInput/TextInput';
 import SearchIcon from '@/assets/tiles/Search';
+import Paths from '@/config/paths';
+import { useNavigate } from 'react-router';
 
 const FindYourCommunity: FC = () => {
+  const navigate = useNavigate();
+  const [postcode, setPostcode] = useState('');
+
   return (
     <div className={styles.container}>
       <div className={styles.subContainer}>
@@ -12,8 +17,11 @@ const FindYourCommunity: FC = () => {
         <p>This can be your home, school, or charity postcode</p>
 
         <div className={styles.searchBar}>
-          <TextInput />
-          <div className={styles.searchIconContainer}>
+          <TextInput onChange={(value) => setPostcode(value)} />
+          <div
+            className={styles.searchIconContainer}
+            onClick={() => navigate(Paths.YOUR_LOCAL_AREA, { state: { postcode } })}
+          >
             <SearchIcon />
           </div>
         </div>

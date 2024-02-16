@@ -24,6 +24,7 @@ import {
   Join,
   LocalAuthorityJoinInfo,
   FindYourCommunity,
+  YourLocalArea,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -167,7 +168,7 @@ const routes: Route[] = [
     element: <FindYourCommunity />,
     name: 'Find your community',
   },
-
+  { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
   {
     path: Paths.ALL,
     element: <NotFound />,

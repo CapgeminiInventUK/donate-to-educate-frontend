@@ -1,0 +1,56 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+
+  .subContainer {
+    @include g.card;
+    padding: 40px 80px;
+
+    .tile {
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+      margin-top: 20px;
+
+      svg {
+        padding: 0 20px;
+      }
+
+      img {
+        border-radius: 10px;
+        height: 50%;
+        width: 50%;
+      }
+
+      .content {
+        padding: 30px 0;
+
+        .header {
+          margin: 0;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.darkBlue {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+}
+
+.midBlue {
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+}
+
+.lightBlue {
+  background: g.$primary-light-blue;
+  color: g.$dark-blue;
+}
