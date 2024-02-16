@@ -1,25 +1,38 @@
 import { FC } from 'react';
 import styles from './HowItWorks.module.scss';
-// import BackButton from '@/components/BackButton/BackButton';
+import BackButton from '@/components/BackButton/BackButton';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import Paths from '@/config/paths';
+import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 
 const HowItWorks: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
+        <BackButton
+          onClick={() => {
+            navigate(-1);
+          }}
+          theme="blue"
+        />
         <h1 className={styles.title}>How it works</h1>
         <div className={styles.card}>
-          <h2>We’re serious about helping children reach their potential.</h2>
+          <h2>We&apos;re serious about helping children reach their potential.</h2>
           <p>
-            That’s why we’ve created one place for communities to connect with families and help
-            children get the essential things they need to learn, grow and thrive in school.
+            That&apos;s why we&apos;ve created one place for communities to connect with families
+            and help children get the essential things they need to learn, grow and thrive in
+            school.
           </p>
           <h3>One place for families</h3>
           <p>Parents, guardians and families can use this service to:</p>
           <ul>
             <li>search charities and schools in your local area</li>
-            <li>find your child’s school</li>
-            <li>view products at your child’s school</li>
-            <li>request products from your child’s school</li>
+            <li>find your child&apos;s school</li>
+            <li>view products at your child&apos;s school</li>
+            <li>request products from your child&apos;s school</li>
             <li>find local charities who may have what you need</li>
             <li>request products from your nearby charities</li>
             <li>donate products to help the next child</li>
@@ -47,10 +60,27 @@ const HowItWorks: FC = () => {
           </ul>
           <h3>What if I just want to donate?</h3>
           <p>
-            You can donate products to your local charities or schools if they have joined Donate to
-            Educate. You may also wish to contact us to support us another way.
+            You can{' '}
+            <Link to={Paths.FIND_YOUR_COMMUNITY}>
+              donate products to your local charities or schools
+            </Link>{' '}
+            if they have joined Donate to Educate. You may also wish to{' '}
+            <Link to={Paths.CONTACT}>contact us to support us another way.</Link>
           </p>
         </div>
+
+        <div className={styles.inventBanner}>
+          <p>Powered by</p>
+          <LogoCapgeminiInvent
+            className={styles.inventLogo}
+            onClick={(): Window | null =>
+              window.open(Paths.INVENT, '_blank', 'rel=noopener noreferrer')
+            }
+          />
+        </div>
+        <Link className={styles.home} to={Paths.HOME}>
+          Return to homepage
+        </Link>
       </div>
     </div>
   );
