@@ -18,7 +18,7 @@ const Tile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <FormButton theme="formButtonDarkBlue" text={buttonText} onClick={onClick} useArrow />
+      <FormButton theme="formButtonGreen" text={buttonText} onClick={onClick} useArrow />
     </div>
   );
 };
