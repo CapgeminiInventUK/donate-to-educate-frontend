@@ -27,6 +27,7 @@ const FormButton: FC<FormButtonProps> = ({
         return RightArrowWhite;
     }
   };
+
   return (
     <button
       onClick={
