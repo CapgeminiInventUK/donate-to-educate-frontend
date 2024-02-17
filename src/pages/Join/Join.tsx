@@ -32,12 +32,7 @@ const Join: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton
-        onClick={() => {
-          navigate(-1);
-        }}
-        theme="blue"
-      />
+      <BackButton theme="blue" />
       <div className={styles.subContainer}>
         <div className={styles.innerContainer}>
           <div className={styles.subContainerLine}>

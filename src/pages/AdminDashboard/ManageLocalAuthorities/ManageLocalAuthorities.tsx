@@ -216,7 +216,7 @@ const ManageLocalAuthorities: FC = () => {
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton onClick={(): void => navigate(Paths.ADMIN_DASHBOARD)} theme="white" />
+          <BackButton theme="white" />
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>

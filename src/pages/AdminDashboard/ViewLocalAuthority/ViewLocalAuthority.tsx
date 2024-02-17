@@ -27,10 +27,7 @@ const ViewLocalAuthority: FC = () => {
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton
-            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-            theme="white"
-          />
+          <BackButton theme="white" />
         </div>
       </div>
     </div>

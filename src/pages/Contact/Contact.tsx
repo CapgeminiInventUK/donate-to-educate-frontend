@@ -1,23 +1,16 @@
 import styles from './Contact.module.scss';
 import { FC } from 'react';
 import Paths from '@/config/paths';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Email from '@/assets/contact/Email';
 import Phone from '@/assets/contact/Phone';
 import BackButton from '@/components/BackButton/BackButton';
 
 const Contact: FC = () => {
-  const navigate = useNavigate();
-
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <BackButton
-          onClick={() => {
-            navigate(-1);
-          }}
-          theme="blue"
-        />
+        <BackButton theme="blue" />
         <h1 className={styles.title}>Contact us</h1>
         <div className={styles.card}>
           <Email />

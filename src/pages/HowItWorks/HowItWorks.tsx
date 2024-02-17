@@ -1,23 +1,15 @@
 import { FC } from 'react';
 import styles from './HowItWorks.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 
 const HowItWorks: FC = () => {
-  const navigate = useNavigate();
-
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <BackButton
-          onClick={() => {
-            navigate(-1);
-          }}
-          theme="blue"
-        />
+        <BackButton theme="blue" />
         <h1 className={styles.title}>How it works</h1>
         <div className={styles.card}>
           <h2>We&apos;re serious about helping children reach their potential.</h2>

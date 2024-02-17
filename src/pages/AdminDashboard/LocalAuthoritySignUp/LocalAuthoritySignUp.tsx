@@ -90,10 +90,7 @@ const LocalAuthoritySignUp: FC = () => {
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton
-            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-            theme="white"
-          />
+          <BackButton theme="white" />
           <div className={styles.card}>
             <h1>{la}</h1>
             <hr />

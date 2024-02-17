@@ -21,12 +21,7 @@ const YourLocalArea: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton
-        onClick={() => {
-          navigate(-1);
-        }}
-        theme="blue"
-      />
+      <BackButton theme="blue" />
       <div className={styles.subContainer}>
         <h2>Your local area in {location.state.postcode.toUpperCase()}</h2>
         {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
