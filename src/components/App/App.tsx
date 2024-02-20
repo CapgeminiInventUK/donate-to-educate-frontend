@@ -41,7 +41,7 @@ const App = (): JSX.Element => {
                         <Layout
                           page={
                             <ErrorBoundaryWithLocation name="Router">
-                              {requiresAuth ? (
+                              {requiresAuth && redirectRoute ? (
                                 <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
                               ) : (
                                 element

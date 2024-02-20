@@ -1,6 +1,7 @@
 import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 import {
   CarouselItem,
+  ComponentDataPropsType,
   DropdownOption,
   FormDataItem,
   FormMeta,
@@ -136,7 +137,7 @@ export interface CheckboxProps {
   label?: string;
   className?: string;
   formMeta?: FormMeta;
-  onChange?: (value: boolean) => void;
+  onChange?: (value: boolean, formMeta: FormMeta | undefined) => void;
   initialValue?: boolean;
   value?: boolean;
 }
@@ -185,7 +186,7 @@ export interface CommonInputProps {
   header?: string;
   subHeading?: string;
   placeholder?: string;
-  onChange?: (value: string, meta?: FormMeta) => void;
+  onChange?: (value: string, meta?: FormMeta, fullValue?: Record<string, unknown>) => void;
   formMeta?: FormMeta;
   value?: string;
   disabled?: boolean;
@@ -201,7 +202,15 @@ export interface TextInputProps extends CommonInputProps {
 export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];
+  pageNumber: number;
+  setPageNumber: Dispatch<SetStateAction<number>>;
+  setHappyPathTemplate?: () => void;
   isLoading?: boolean;
+  onChange: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
@@ -244,4 +253,9 @@ export interface SummaryProps {
   header: string;
   body: string[];
   logo?: JSX.Element;
+}
+
+export interface AddressInsetProps {
+  formData: FormDataItem[];
+  componentData: ComponentDataPropsType;
 }

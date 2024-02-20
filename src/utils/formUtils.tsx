@@ -20,6 +20,13 @@ export const findValueFromFormData = (
   return formData.find(({ field }) => field === fieldName)?.value ?? '';
 };
 
+export const findFullValueFromFormData = (
+  formData: FormDataItem[],
+  fieldName: string
+): Record<string, unknown> | undefined => {
+  return formData.find(({ field }) => field === fieldName)?.fullValue;
+};
+
 export const validateFormInputField = (
   formData: FormDataItem[],
   fieldName: string

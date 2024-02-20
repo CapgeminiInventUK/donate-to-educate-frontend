@@ -1,11 +1,11 @@
 import { ErrorInfo } from 'react';
 import {
+  ButtonProps,
   CheckYourAnswersProps,
   CheckboxProps,
   DropdownProps,
   ExternalLinkProps,
   FormIntroPageProps,
-  InternalLinkProps,
   RadioGroupProps,
   SummaryProps,
   TextAreaProps,
@@ -30,7 +30,6 @@ export interface FormComponent {
   componentType: ComponentType;
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
-  formComponentInternalLink?: InternalLinkProps;
   classNameSuffix?: string;
 }
 
@@ -48,7 +47,19 @@ export interface FormTemplate {
   formComponents: FormComponent[];
   header?: string;
   subHeader?: string;
+  infoText?: string;
+  infoTextTwo?: string;
   logo?: JSX.Element;
+  footerLogo?: JSX.Element;
+  isUnhappyPath?: boolean;
+  summaryPageBg?: SummaryPageColour;
+  formComponentInternalLink?: ButtonProps;
+  onSend?: () => void;
+}
+
+export enum SummaryPageColour {
+  WHITE = 'white',
+  BLUE = 'blue',
 }
 
 export interface FormMeta {
@@ -62,6 +73,7 @@ export interface FormDataItem {
   value: string | number | boolean;
   page?: number;
   section?: FormSections;
+  fullValue?: Record<string, unknown>;
 }
 
 export enum FormSections {
@@ -86,6 +98,7 @@ export enum ComponentType {
   TEXTAREA = 'textArea',
   DROPDOWN = 'dropdown',
   INTRO = 'intro',
+  SCHOOL_NOT_FOUND = 'schoolNotFound',
   CYA = 'checkYourAnswers',
   SUMMARY = 'summaryPage',
 }
@@ -93,6 +106,14 @@ export enum ComponentType {
 export interface DropdownOption {
   value: string | number;
   label: string;
+  postcode?: string | null;
+  registered?: boolean;
+}
+
+export interface FilterDropdownOption {
+  value: string;
+  label: string;
+  data: DropdownOption;
 }
 
 export interface NavRoute {
