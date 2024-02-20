@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react';
 import { TextAreaProps } from '@/types/props';
 import styles from './TextArea.module.scss';
 
+const maxCharacters = 1000;
+
 const TextArea: FC<TextAreaProps> = ({
   header,
   placeholder,
@@ -34,16 +36,27 @@ const TextArea: FC<TextAreaProps> = ({
         onChange={handleChange}
         className={styles.textArea}
         placeholder={placeholder ?? ''}
-        maxLength={1000}
+        maxLength={maxCharacters}
       />
       <div className={styles.characterCount}>
-        <span>
+        <span className={styles[getCharacterCountStyling(characterCount)]}>
           {characterCount > 0 && <span>{characterCount} out of </span>}
           {characterLimit} characters
         </span>
       </div>
     </div>
   );
+};
+
+const getCharacterCountStyling = (characterCount: number): string => {
+  switch (true) {
+    case characterCount === maxCharacters:
+      return 'red';
+    case characterCount >= 750 && characterCount < maxCharacters:
+      return 'orange';
+    default:
+      return '';
+  }
 };
 
 export default TextArea;
