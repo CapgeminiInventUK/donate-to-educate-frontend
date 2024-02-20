@@ -15,6 +15,7 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
     __typename
   }
 }
@@ -26,6 +27,7 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
     __typename
   }
 }
@@ -37,6 +39,7 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
     __typename
   }
 }

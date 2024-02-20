@@ -22,3 +22,23 @@ export const getAdminPageRequests = `query getAdminPageRequests {
   APITypes.GetJoinRequestsQueryVariables & APITypes.GetLocalAuthoritiesQueryVariables,
   APITypes.GetJoinRequestsQuery & APITypes.GetLocalAuthoritiesQuery
 >;
+
+export const getSchoolsAndLocalAuthorities = `query getSchoolsAndLocalAuthorities {
+    getLocalAuthorities {
+        code
+        name
+        registered
+        __typename
+      }
+      getSchools {
+        urn
+        name
+        localAuthority
+        postcode
+        registered
+        __typename
+      }
+}` as GeneratedQuery<
+  APITypes.GetJoinRequestsQueryVariables & APITypes.GetLocalAuthoritiesQueryVariables,
+  APITypes.GetLocalAuthoritiesQuery & APITypes.GetSchoolsQuery
+>;

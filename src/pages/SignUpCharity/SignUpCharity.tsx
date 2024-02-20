@@ -20,6 +20,7 @@ import { getLocalAuthorities } from '@/graphql/queries';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
@@ -80,7 +81,6 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             isLarge: true,
-            onChange,
             formMeta: {
               page: 1,
               field: 'Name',
@@ -104,7 +104,6 @@ const SignUpCharity: FC = () => {
               field: 'Main local council',
               section: FormSections.CHARITY_SECTION,
             },
-            onChange,
           },
           formComponentLink: {
             linkText: 'Find my local council (opens in a new tab).',
@@ -121,7 +120,6 @@ const SignUpCharity: FC = () => {
           componentData: {
             header: 'First name',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 3,
               field: 'First name',
@@ -134,7 +132,6 @@ const SignUpCharity: FC = () => {
           componentData: {
             header: 'Last name',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 3,
               field: 'Last name',
@@ -148,7 +145,6 @@ const SignUpCharity: FC = () => {
             header: 'Job title or role',
             subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 3,
               field: 'Job title or role',
@@ -163,7 +159,6 @@ const SignUpCharity: FC = () => {
             subHeading:
               "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
             isLarge: true,
-            onChange,
             formMeta: {
               page: 3,
               field: 'Email',
@@ -175,7 +170,6 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Phone',
-            onChange,
             formMeta: {
               page: 3,
               field: 'Phone',
@@ -194,7 +188,6 @@ const SignUpCharity: FC = () => {
           componentData: {
             header: 'Address line 1',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 4,
               field: 'Address line 1',
@@ -207,7 +200,6 @@ const SignUpCharity: FC = () => {
           componentData: {
             header: 'Address line 2 (optional)',
             isLarge: true,
-            onChange,
             formMeta: {
               page: 4,
               field: 'Address line 2',
@@ -219,7 +211,6 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Town or city',
-            onChange,
             formMeta: {
               page: 4,
               field: 'Town',
@@ -231,7 +222,6 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'County',
-            onChange,
             formMeta: {
               page: 4,
               field: 'County',
@@ -243,7 +233,6 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Postcode',
-            onChange,
             isSmall: true,
             formMeta: {
               page: 4,
@@ -264,7 +253,6 @@ const SignUpCharity: FC = () => {
               'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
             hint: 'This information can only be seen by Donate to Educate administrators.',
             characterLimit: 1000,
-            onChange,
             formMeta: {
               page: 4,
               field: 'About',
@@ -299,11 +287,9 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'GDPR content and statement [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, { field: 'GDPR content and statement [---------------]', page: 6 });
-            },
             formMeta: {
               page: 6,
+              field: 'GDPR content and statement [---------------]',
             },
           },
           classNameSuffix: 'checkbox',
@@ -312,11 +298,10 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'Legal understanding [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, { field: 'Legal understanding [---------------]', page: 6 });
-            },
+
             formMeta: {
               page: 6,
+              field: 'Legal understanding [---------------]',
             },
           },
           classNameSuffix: 'checkbox',
@@ -325,14 +310,9 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.CHECKBOX,
           componentData: {
             label: 'I will be administrating the account [---------------]',
-            onChange: (value: boolean): void => {
-              onChange(value, {
-                field: 'I will be administrating the account [---------------]',
-                page: 6,
-              });
-            },
             formMeta: {
               page: 6,
+              field: 'I will be administrating the account [---------------]',
             },
           },
           classNameSuffix: 'checkbox',
@@ -359,7 +339,14 @@ const SignUpCharity: FC = () => {
 
   return (
     <div className={styles.container}>
-      <MultiStepForm formTemplate={formTemplate} formData={formData} isLoading={isLoading} />
+      <MultiStepForm
+        formTemplate={formTemplate}
+        formData={formData}
+        isLoading={isLoading}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        onChange={onChange}
+      />
     </div>
   );
 };

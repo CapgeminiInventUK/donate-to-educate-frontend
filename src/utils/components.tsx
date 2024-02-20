@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { ComponentDataPropsType, ComponentType, FormDataItem } from '@/types/data';
+import { ComponentDataPropsType, ComponentType, FormDataItem, FormMeta } from '@/types/data';
 import {
   CheckYourAnswersProps,
   CheckboxProps,
@@ -20,12 +20,18 @@ import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
 import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
 import { findValueFromFormData } from './formUtils';
 import Summary from '@/components/Summary/Summary';
+import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
 
 export const createFormComponent = (
   componentType: ComponentType,
   formData: FormDataItem[],
   componentData?: ComponentDataPropsType,
   setPageNumber?: Dispatch<SetStateAction<number>>,
+  onChange?: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void,
   errorMessage?: string
 ): ReactNode => {
   const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
@@ -39,17 +45,24 @@ export const createFormComponent = (
         <TextInput
           {...(componentData as TextInputProps)}
           value={String(value)}
+          onChange={onChange}
           errorMessage={errorMessage}
         />
       );
     case ComponentType.TEXTAREA:
-      return <TextArea {...(componentData as TextAreaProps)} value={String(value)} />;
+      return (
+        <TextArea {...(componentData as TextAreaProps)} value={String(value)} onChange={onChange} />
+      );
     case ComponentType.RADIO:
       return <RadioGroup {...(componentData as RadioGroupProps)} />;
     case ComponentType.CHECKBOX:
       return <Checkbox {...(componentData as CheckboxProps)} />;
     case ComponentType.DROPDOWN:
-      return <Dropdown {...(componentData as DropdownProps)} value={String(value)} />;
+      return (
+        <Dropdown {...(componentData as DropdownProps)} value={String(value)} onChange={onChange} />
+      );
+    case ComponentType.SCHOOL_NOT_FOUND:
+      return <CannotFindSchool />;
     case ComponentType.CYA:
       return (
         <CheckYourAnswers
