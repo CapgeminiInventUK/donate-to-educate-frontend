@@ -10,10 +10,10 @@ const AddressInset: FC<AddressInsetProps> = ({ componentData, formData }) => {
   if (!data) {
     return <></>;
   }
-  const { label, localAuthority, postcode } = data;
+  const { name, localAuthority, postcode } = data;
   return (
     <div className={styles.container}>
-      {!!label && <p>{String(label)}</p>}
+      {!!name && <p>{String(name)}</p>}
       {!!localAuthority && <p>{String(localAuthority)}</p>}
       {!!postcode && <p>{String(postcode)}</p>}
     </div>

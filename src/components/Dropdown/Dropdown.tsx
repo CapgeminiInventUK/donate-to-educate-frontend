@@ -19,16 +19,17 @@ const Dropdown: FC<DropdownProps> = ({
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
   const [placeholder, setPlaceholder] = useState(value);
 
+  // eslint-disable-next-line no-console
+  console.log(header);
+
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
     onChange && onChange(option?.label ?? '', formMeta, { ...option });
   };
 
   const onSearch = (newValue: string): void => {
-    const newOptions = options.filter(
-      ({ label, postcode }) =>
-        label.toLowerCase().includes(newValue.toLowerCase()) ||
-        postcode?.includes(newValue.toUpperCase())
+    const newOptions = options.filter(({ label }) =>
+      label?.toLowerCase().includes(newValue.toLowerCase())
     );
 
     if (newOptions?.length > 2000) {
@@ -38,17 +39,11 @@ const Dropdown: FC<DropdownProps> = ({
     }
   };
 
-  const filterOptions = (option: FilterDropdownOption, input: string): boolean => {
+  const filterOptions = ({ label }: FilterDropdownOption, input: string): boolean => {
     if (!input) {
       return true;
     }
-    const {
-      label,
-      data: { postcode },
-    } = option;
-    return !!(
-      label.toLowerCase().includes(input.toLowerCase()) || postcode?.includes(input.toUpperCase())
-    );
+    return !!label?.toLowerCase().includes(input.toLowerCase());
   };
 
   useEffect(() => {

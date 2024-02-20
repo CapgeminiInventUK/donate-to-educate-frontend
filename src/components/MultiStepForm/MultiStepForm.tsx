@@ -28,7 +28,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const {
-    header = undefined,
+    header = '',
     infoText = undefined,
     infoTextTwo = undefined,
     subHeader = undefined,
@@ -74,6 +74,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     setFormErrors({});
+
+    if (onSend) {
+      return onSend();
+    }
 
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
@@ -191,7 +195,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             />
           )}
           {isUnhappyPath && onSend && (
-            <FormButton text={'Send'} theme={'formButtonGrey'} onClick={onSend} useArrow={true} />
+            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} />
           )}
           {formComponentInternalLink && (
             <div className={styles.link}>

@@ -130,5 +130,7 @@ export const getValueFromOptionsByLabel = (
   options: DropdownOption[],
   valueLabel?: string
 ): SingleValue<DropdownOption> | undefined => {
+  // eslint-disable-next-line no-console
+  console.log(valueLabel);
   return options.find(({ label = '' }) => label === valueLabel);
 };

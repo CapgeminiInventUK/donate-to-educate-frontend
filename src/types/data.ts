@@ -106,6 +106,7 @@ export enum ComponentType {
 export interface DropdownOption {
   value: string | number;
   label: string;
+  name?: string;
   postcode?: string | null;
   registered?: boolean;
 }

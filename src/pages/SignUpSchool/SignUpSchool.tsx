@@ -18,7 +18,7 @@ const SignUpSchool: FC = () => {
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['sc'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
         query: getSchools,
@@ -36,7 +36,8 @@ const SignUpSchool: FC = () => {
     const options = data?.getSchools.map(
       ({ urn, name, localAuthority, isLocalAuthorityRegistered, postcode, registered }) => ({
         value: urn,
-        label: name,
+        label: `${name} - ${postcode}`,
+        name,
         localAuthority,
         isLocalAuthorityRegistered,
         postcode,
