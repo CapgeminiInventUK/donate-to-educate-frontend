@@ -1,17 +1,21 @@
 import { FC } from 'react';
 import styles from './BackButton.module.scss';
-import { ButtonProps } from '@/types/props';
 import ChevronLeft from '@/assets/navigation/ChevronLeft';
+import { useNavigate } from 'react-router';
 
-const BackButton: FC<Pick<ButtonProps, 'onClick' | 'className'> & { theme: 'white' | 'blue' }> = ({
-  onClick,
-  className,
-  theme,
-}) => {
+interface BackButtonProps {
+  onClick?: () => void;
+  className?: string;
+  theme: 'white' | 'blue';
+}
+
+const BackButton: FC<BackButtonProps> = ({ onClick, className, theme }) => {
+  const navigate = useNavigate();
+
   return (
     <button
       className={`${styles.back} ${className ?? ''} ${styles[theme]}`}
-      onClick={onClick}
+      onClick={onClick ?? ((): void => navigate(-1))}
       type="button"
     >
       <ChevronLeft colour={theme} />

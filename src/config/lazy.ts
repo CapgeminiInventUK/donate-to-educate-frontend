@@ -5,6 +5,7 @@ const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
 const Contact = lazy(() => import('@pages/Contact/Contact'));
 const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'));
+const Join = lazy(() => import('@pages/Join/Join'));
 const AccessabilityStatement = lazy(
   () => import('@pages/AccessibilityStatement/AccessibilityStatement')
 );
@@ -37,6 +38,14 @@ const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
 const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
 const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
+const HowItWorks = lazy(() => import('@/pages/HowItWorks/HowItWorks'));
+
+const LocalAuthorityJoinInfo = lazy(
+  () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
+);
+
+const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
+const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
 
 export {
   Home,
@@ -60,4 +69,9 @@ export {
   LocalAuthorityDashboard,
   SchoolEdit,
   SchoolsDashboard,
+  Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
+  YourLocalArea,
+  HowItWorks,
 };

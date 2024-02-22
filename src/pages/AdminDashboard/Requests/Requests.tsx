@@ -55,10 +55,7 @@ const Requests: FC = () => {
           {isLoading && <Spinner />}
           {!isLoading && stage === 'view_requests' && (
             <>
-              <BackButton
-                onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-                theme="white"
-              />
+              <BackButton theme="white" />
               <JoinRequests
                 setStage={setStage}
                 data={data}

@@ -16,7 +16,6 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
 
 interface FormState {
-  name: string;
   firstName: string;
   lastName: string;
   jobTitle: string;
@@ -28,7 +27,6 @@ interface FormState {
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
-    name: '',
     firstName: '',
     lastName: '',
     jobTitle: '',
@@ -58,7 +56,7 @@ const LocalAuthoritySignUp: FC = () => {
       const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
-          name,
+          name: la,
           firstName: formState.firstName,
           lastName: formState.lastName,
           jobTitle: formState.jobTitle,
@@ -90,10 +88,7 @@ const LocalAuthoritySignUp: FC = () => {
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton
-            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-            theme="white"
-          />
+          <BackButton theme="white" />
           <div className={styles.card}>
             <h1>{la}</h1>
             <hr />
@@ -167,7 +162,9 @@ const LocalAuthoritySignUp: FC = () => {
               theme={'formButtonMidBlue'}
               onClick={(): void => {
                 refetch()
-                  .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
+                  .then(() =>
+                    navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } })
+                  )
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}

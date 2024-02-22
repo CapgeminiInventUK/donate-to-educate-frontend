@@ -1,0 +1,25 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+}
+
+.subContainer {
+  @include g.card;
+  padding: 40px 80px;
+}
+
+.searchBar {
+  display: flex;
+}
+
+.searchIconContainer {
+  background-color: g.$primary-dark-blue;
+  width: 165px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

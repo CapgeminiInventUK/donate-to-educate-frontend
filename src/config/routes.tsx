@@ -21,6 +21,11 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  Join,
+  LocalAuthorityJoinInfo,
+  FindYourCommunity,
+  YourLocalArea,
+  HowItWorks,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -31,41 +36,18 @@ const routes: Route[] = [
     name: 'Home',
   },
   {
-    path: Paths.FAMILIES,
-    element: <></>,
-    name: 'Families',
-  },
-  {
-    path: Paths.SCHOOLS,
-    element: <></>,
-    name: 'Schools',
-  },
-  {
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
+    requiresAuth: true,
     redirectRoute: '/login',
-  },
-  {
-    path: Paths.SCHOOLS_FIND_COMMUNITIES,
-    element: <></>,
-    name: 'Find your communities',
-  },
-  {
-    path: Paths.CHARITIES,
-    element: <></>,
-    name: 'Charities',
   },
   {
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
     element: <></>,
     name: 'Create or edit your profile',
+    requiresAuth: true,
     redirectRoute: '/login',
-  },
-  {
-    path: Paths.CHARITIES_FIND_COMMUNITIES,
-    element: <></>,
-    name: 'Find your communities',
   },
   {
     path: Paths.ABOUT,
@@ -74,7 +56,7 @@ const routes: Route[] = [
   },
   {
     path: Paths.HOW_IT_WORKS,
-    element: <></>,
+    element: <HowItWorks />,
     name: 'How it works',
   },
   {
@@ -172,6 +154,25 @@ const routes: Route[] = [
     path: Paths.RESET_PASSWORD,
     element: <ResetPassword />,
   },
+  {
+    path: Paths.JOIN,
+    element: <Join />,
+  },
+
+  {
+    path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
+    element: <LocalAuthorityJoinInfo />,
+  },
+
+  {
+    path: Paths.FIND_YOUR_COMMUNITY,
+    element: <FindYourCommunity />,
+    name: 'Find your community',
+  },
+  { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
+  { path: Paths.LOCAL_SCHOOLS, element: <></> },
+  { path: Paths.LOCAL_CHARITIES, element: <></> },
+  { path: Paths.LOCAL_DONATE, element: <></> },
   {
     path: Paths.ALL,
     element: <NotFound />,

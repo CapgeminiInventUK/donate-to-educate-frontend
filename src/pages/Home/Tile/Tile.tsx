@@ -7,9 +7,10 @@ interface TileProps {
   onClick: () => void;
   body: string[];
   icon: JSX.Element;
+  buttonText: string;
 }
 
-const Tile: FC<TileProps> = ({ onClick, title, body, icon }) => {
+const Tile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
   return (
     <div className={styles.tile}>
       {icon}
@@ -17,7 +18,7 @@ const Tile: FC<TileProps> = ({ onClick, title, body, icon }) => {
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <FormButton theme="formButtonDarkBlue" text="Get started" onClick={onClick} useArrow />
+      <FormButton theme="formButtonGreen" text={buttonText} onClick={onClick} useArrow />
     </div>
   );
 };

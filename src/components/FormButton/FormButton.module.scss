@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   margin: 5px;
+  z-index: 100;
 }
 
 .text {
@@ -50,11 +51,19 @@
   color: g.$form-button-grey-text;
 }
 
+.formButtonGreen {
+  @extend %button;
+  border: g.$form-button-green-background 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$form-button-green-border;
+  background: g.$form-button-green-background;
+  color: g.$primary-white;
+}
+
 .formButtonDisabled {
   @extend %button;
   cursor: not-allowed;
   border: g.$form-button-grey-background 1px solid;
-  box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+  box-shadow: 2px 2px 0 2px g.$form-button-grey-border;
   background: g.$form-button-grey-background;
   color: g.$form-button-grey-text;
 }

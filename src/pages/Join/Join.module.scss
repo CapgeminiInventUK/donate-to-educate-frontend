@@ -1,0 +1,43 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+}
+
+.subContainer {
+  @include g.card;
+  padding: 40px 80px;
+}
+
+.innerContainer {
+  background-color: g.$help-gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  height: auto;
+}
+
+.subContainerLine {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+}
+
+.logoIcon {
+  width: 50px;
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    padding: 17px 19px;
+  }
+
+  .subContainer {
+    padding: 40px 20px;
+  }
+}
