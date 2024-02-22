@@ -19,9 +19,6 @@ const Dropdown: FC<DropdownProps> = ({
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
   const [placeholder, setPlaceholder] = useState(value);
 
-  // eslint-disable-next-line no-console
-  console.log(header);
-
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
     onChange && onChange(option?.label ?? '', formMeta, { ...option });
