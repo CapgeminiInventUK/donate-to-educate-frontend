@@ -16,6 +16,7 @@ const SignUpSchool: FC = () => {
   const [formTemplate, setFormTemplate] = useState<FormTemplate[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
+  const [isSchoolRegistered, setIsSchoolRegistered] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['sc'],
@@ -73,11 +74,15 @@ const SignUpSchool: FC = () => {
     if (!formData[0]?.fullValue) {
       return;
     }
-    if (!formData[0]?.fullValue?.isLocalAuthorityRegistered) {
+    const {
+      fullValue: { isLocalAuthorityRegistered, registered },
+    } = formData[0];
+    if (!isLocalAuthorityRegistered) {
       authorityNotRegistered();
     } else {
       setHappyPathTemplate();
     }
+    setIsSchoolRegistered(!!registered);
   }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate]);
 
   useEffect(() => {
@@ -102,6 +107,7 @@ const SignUpSchool: FC = () => {
           setPageNumber={setPageNumber}
           isLoading={isLoading}
           onChange={onChange}
+          isSchoolRegistered={isSchoolRegistered}
         />
       )}
     </div>

@@ -11,6 +11,7 @@ import Spinner from '../Spinner/Spinner';
 import AddressInset from '../AddressInset/AddressInset';
 import { SummaryPageColour } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
+import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -20,6 +21,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   pageNumber,
   setPageNumber,
   onChange,
+  isSchoolRegistered,
 }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
@@ -173,6 +175,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
               );
             }
           )}
+          {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
           {isLastPage || isUnhappyPath ? (
             <div
               className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}

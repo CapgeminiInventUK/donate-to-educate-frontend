@@ -211,6 +211,7 @@ export interface MultiStepFormProps {
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, unknown>
   ) => void;
+  isSchoolRegistered?: boolean;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
