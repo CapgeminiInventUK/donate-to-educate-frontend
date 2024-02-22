@@ -41,6 +41,7 @@ export interface FormButtonProps {
   useArrow?: boolean;
   fullWidth?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 export interface ImageProps {

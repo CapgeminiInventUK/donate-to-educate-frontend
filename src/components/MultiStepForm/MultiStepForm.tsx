@@ -185,8 +185,11 @@ const FormContainer: FC<MultiStepFormProps> = ({
           ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
-              theme={'formButtonDarkBlue'}
+              theme={
+                pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
+              }
               useArrow={true}
+              disabled={pageNumber === 1 && isSchoolRegistered}
             />
           ) : (
             <FormButton
