@@ -29,6 +29,12 @@ const AdminDashboardLocalAuthoritySignUpConfirmation = lazy(
     )
 );
 const AdminDashboardRequests = lazy(() => import('@pages/AdminDashboard/Requests/Requests'));
+const AdminDashboardManageSchools = lazy(
+  () => import('@pages/AdminDashboard/ManageSchools/ManageSchools')
+);
+const AdminDashboardManageCharities = lazy(
+  () => import('@pages/AdminDashboard/ManageCharities/ManageCharities')
+);
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
@@ -62,6 +68,8 @@ export {
   AdminDashboardLocalAuthoritySignUp,
   AdminDashboardLocalAuthoritySignUpConfirmation,
   AdminDashboardRequests,
+  AdminDashboardManageSchools,
+  AdminDashboardManageCharities,
   SignUpCharity,
   SignUpSchool,
   ResetPassword,

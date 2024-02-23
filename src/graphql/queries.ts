@@ -44,6 +44,21 @@ export const getSchools = /* GraphQL */ `query GetSchools {
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolsQueryVariables, APITypes.GetSchoolsQuery>;
+export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
+  getRegisteredSchools {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    isLocalAuthorityRegistered
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetRegisteredSchoolsQueryVariables,
+  APITypes.GetRegisteredSchoolsQuery
+>;
 export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
   getLocalAuthorities {
     code
