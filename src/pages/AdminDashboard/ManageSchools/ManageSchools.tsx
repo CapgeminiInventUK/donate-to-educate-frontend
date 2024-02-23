@@ -93,7 +93,7 @@ const ManageSchools: FC = () => {
     ),
     filterIcon: () => <SearchOutlined className={styles.filterIcon} />,
     onFilter: (value, record): boolean => {
-      return record[dataIndex]
+      return (record[dataIndex] ?? '')
         .toString()
         .toLowerCase()
         .includes((value as string).toLowerCase());
