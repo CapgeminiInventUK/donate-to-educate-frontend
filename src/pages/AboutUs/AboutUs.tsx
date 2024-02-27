@@ -8,11 +8,13 @@ import Image from '@/components/Image/Image';
 import magazines from '@/assets/about/magazines.webp';
 import facebook from '@/assets/about/facebook.webp';
 import green from '@/assets/about/green-up-your-school.webp';
+import BackButton from '@/components/BackButton/BackButton';
 
 const AboutUs: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
+        <BackButton theme="blue" />
         <h1 className={styles.title}>About us</h1>
         <div className={styles.card}>
           <div className={styles.imageContainer}>
