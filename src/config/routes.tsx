@@ -26,6 +26,7 @@ import {
   FindYourCommunity,
   YourLocalArea,
   HowItWorks,
+  RequestSchoolProducts,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -84,6 +85,11 @@ const routes: Route[] = [
   {
     path: Paths.SCHOOLS_DASHBOARD,
     element: <SchoolsDashboard />,
+  },
+  {
+    path: Paths.REQUEST_SCHOOL_PRODUCTS,
+    element: <RequestSchoolProducts />,
+    name: 'Request',
   },
   {
     path: Paths.LOGIN,

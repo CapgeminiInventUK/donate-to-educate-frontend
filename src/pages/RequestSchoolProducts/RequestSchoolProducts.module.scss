@@ -1,0 +1,20 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  color: g.$primary-dark-blue;
+  padding: 50px;
+  .subheading {
+    margin-bottom: 40px;
+  }
+  .fieldHeadings {
+    margin-bottom: 10px;
+  }
+  .textAreaHeadings {
+    margin-bottom: 15px;
+  }
+  .mainHeading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+}
