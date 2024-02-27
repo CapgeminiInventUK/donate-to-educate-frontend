@@ -181,6 +181,20 @@ export type GetSchoolsQuery = {
   }>;
 };
 
+export type GetRegisteredSchoolsQueryVariables = {};
+
+export type GetRegisteredSchoolsQuery = {
+  getRegisteredSchools: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+  }>;
+};
+
 export type GetLocalAuthoritiesQueryVariables = {};
 
 export type GetLocalAuthoritiesQuery = {

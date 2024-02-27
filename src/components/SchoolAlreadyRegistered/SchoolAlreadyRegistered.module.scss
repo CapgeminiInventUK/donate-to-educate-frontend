@@ -1,0 +1,21 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  background-color: g.$help-grey;
+  padding: 40px;
+  color: g.$primary-dark-blue;
+  margin-bottom: 40px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  a {
+    color: g.$primary-dark-blue;
+  }
+
+  .bold {
+    font-weight: 700;
+    font-size: 18px;
+  }
+}

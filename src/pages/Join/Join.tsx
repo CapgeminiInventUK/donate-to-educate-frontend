@@ -44,7 +44,7 @@ const Join: FC = () => {
             name={'role'}
             values={Object.values(labelsObj)}
             labels={Object.values(labelsObj)}
-            handleChange={(input) => setRole(input)}
+            handleChange={(input: string): void => setRole(input)}
           />
           <FormButton
             theme="formButtonDarkBlue"

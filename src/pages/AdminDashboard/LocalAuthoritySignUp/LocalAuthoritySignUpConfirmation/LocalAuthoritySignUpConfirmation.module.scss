@@ -1,23 +1,28 @@
 @use '@assets/global.scss' as g;
 
-.errorPage {
-  color: g.$primary-white;
-  background: g.$primary-dark-blue;
-  padding: 40px 82px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+.container {
+  @include g.page-container;
+  padding: 48px 50px;
 
-.logo {
-  width: 300px;
-  padding: 60px 0;
-}
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 50px 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-a {
-  color: g.$primary-white;
-  text-decoration: underline;
-  cursor: pointer;
+    .logo {
+      width: 300px;
+      padding: 60px 0;
+    }
+
+    a {
+      color: g.$primary-white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 }

@@ -36,6 +36,9 @@
     font-style: normal;
     font-weight: 700;
     letter-spacing: -0.16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 

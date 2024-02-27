@@ -26,6 +26,8 @@ import {
   FindYourCommunity,
   YourLocalArea,
   HowItWorks,
+  AdminDashboardManageSchools,
+  AdminDashboardManageCharities,
   RequestSchoolProducts,
 } from './lazy';
 import { Route } from '@/types/props';
@@ -174,6 +176,14 @@ const routes: Route[] = [
     path: Paths.FIND_YOUR_COMMUNITY,
     element: <FindYourCommunity />,
     name: 'Find your community',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS,
+    element: <AdminDashboardManageSchools />,
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
+    element: <AdminDashboardManageCharities />,
   },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
   { path: Paths.LOCAL_SCHOOLS, element: <></> },

@@ -41,6 +41,7 @@ export interface FormButtonProps {
   useArrow?: boolean;
   fullWidth?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 export interface ImageProps {
@@ -211,6 +212,7 @@ export interface MultiStepFormProps {
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, unknown>
   ) => void;
+  isSchoolRegistered?: boolean;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
