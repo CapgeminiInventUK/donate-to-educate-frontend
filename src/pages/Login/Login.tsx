@@ -22,8 +22,8 @@ const Login: FC = () => {
           </div>
           <p>You can easily sign in or join if you work for:</p>
           <ul>
-            <li>A School</li>
-            <li>A Charity or Voluneer Group</li>
+            <li>A school</li>
+            <li>A charity or volunteer Group</li>
           </ul>
           <div className={styles.subContainerLine}>
             <FormButton
