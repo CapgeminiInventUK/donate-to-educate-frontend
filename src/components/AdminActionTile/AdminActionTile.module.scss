@@ -1,0 +1,64 @@
+.buttonDiv {
+  width: 100%;
+  float: left;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2.5rem;
+  gap: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid #e5e6eb;
+  background: var(--primary-FEFCFD, #fefcfd);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  align-self: stretch;
+
+  h3 {
+    color: var(--primary-11356F, #11356f);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Poppins;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%; /* 1.875rem */
+    letter-spacing: -0.015rem;
+  }
+}
+
+.addSectionButton {
+  display: flex;
+  height: 2.8125rem;
+  width: 13.625rem;
+  padding: 1.25rem;
+  align-items: center;
+}
+
+.addSectionDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addSectionButtonText {
+  color: var(--primary-FEFCFD, #fefcfd);
+  leading-trim: both;
+  text-edge: cap;
+
+  /* H3 Heading 24px */
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 1.875rem */
+  letter-spacing: -0.015rem;
+}

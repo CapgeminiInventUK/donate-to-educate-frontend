@@ -5,10 +5,22 @@ import { SchoolBanner } from '@/components/SchoolBanner/SchoolBanner';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
-import HorizontalLine from '@/assets/school/HorizontalLine';
+import InformationTile from '@/components/InformationTile/InformationTile';
+import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
+import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 
 const SchoolAdminDashboard: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
+
+  function toggleIsEditingAboutUs(): void {
+    setIsEditingAboutUs((isEditingAboutUs) => !isEditingAboutUs);
+  }
+
+  // TODO - Make POST request to API to save new "About us" when user clicks Save button
+  function saveAboutUs(): void {
+    toggleIsEditingAboutUs();
+  }
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
@@ -16,48 +28,45 @@ const SchoolAdminDashboard: FC = () => {
     }
   };
 
+  // TODO - Use useEffect to fetch information from API (about us, request/donate/extra stock data)
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton onClick={onBackButtonClick} theme="blue" />
         <SchoolBanner isAdminView />
-
         <div className={styles.card}>
-          <div className={styles.titleContainer}>
-            <h2>About us</h2>
-            <div className={styles.svgContainer}>
-              <HorizontalLine className={styles.horizontalLine} />
-            </div>
-          </div>
+          <InformationTile
+            heading="Build your school's profile"
+            subtext="Add, edit and save details about how your school can help children and the community."
+          />
 
-          <p>
-            Ormiston Six Villages Academy has pre-loved school products to help children thrive at
-            school. Aaaaaaaaaaaaaaaaaaaaaaaaaa
-          </p>
-
-          <p>
-            Request the things you need or donate products to help the next child. Charities can
-            also take our extra stock to share with the communities that need it most.
-          </p>
+          <EditableInformationTile
+            onClick={toggleIsEditingAboutUs}
+            saveOnClick={saveAboutUs}
+            heading="About us"
+            subtext={''}
+            isEditing={isEditingAboutUs}
+          />
 
           <div className={styles.productsTilesContainer}>
-            <div className={styles.requestProductsTile}>
-              <Hanger /> <h3>Request products</h3>
-            </div>
-            <div className={styles.donateProductsTile}>
-              <Heart /> <h3>Donate products</h3>
-            </div>
+            <AdminActionTile
+              heading="Let visitors request products from you"
+              icon={<Hanger height="2.875rem" width="2.875rem" />}
+              onClick={() => null}
+            />
+            <AdminActionTile
+              heading="Let visitors donate products to you"
+              icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
+              onClick={() => null}
+            />
           </div>
           <div className={styles.extraStockTileContainer}>
-            <div className={styles.extraStockTile}>
-              <ExtraStock />
-              <div className={styles.extraStockText}>
-                <h3>Check extra stock to share with the community</h3>
-                <h4>
-                  Charities can take our extra products to share them with people who need it.
-                </h4>
-              </div>
-            </div>
+            <AdminActionTile
+              heading="Let charities take your extra stock to share with the community"
+              icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
+              onClick={() => null}
+            />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ const HorizontalLine = ({ className }: SvgProps): JSX.Element => {
   return (
     <svg
       className={className}
-      height="3"
+      height="auto"
       viewBox="0 0 712 3"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

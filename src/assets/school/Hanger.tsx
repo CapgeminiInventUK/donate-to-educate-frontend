@@ -1,11 +1,11 @@
 import { SvgProps } from '@/types/props';
 
-const Hanger = ({ className }: SvgProps): JSX.Element => {
+const Hanger = ({ className, colour, width, height }: SvgProps): JSX.Element => {
   return (
     <svg
       className={className}
-      width="31"
-      height="30"
+      width={width ?? '31'}
+      height={height ?? '30'}
       viewBox="0 0 31 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ const Hanger = ({ className }: SvgProps): JSX.Element => {
           <path
             id="Vector"
             d="M19.7843 6.42829C19.7843 5.58066 19.533 4.75206 19.062 4.04728C18.5911 3.3425 17.9218 2.79319 17.1387 2.46881C16.3556 2.14444 15.4939 2.05956 14.6625 2.22493C13.8312 2.39029 13.0675 2.79847 12.4681 3.39784C11.8688 3.9972 11.4606 4.76085 11.2952 5.59219C11.1299 6.42354 11.2147 7.28525 11.5391 8.06837C11.8635 8.85148 12.4128 9.52082 13.1176 9.99174C13.8224 10.4627 14.651 10.714 15.4986 10.714V12.8569"
-            stroke="#050E33"
+            stroke={colour ?? '#050E33'}
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"

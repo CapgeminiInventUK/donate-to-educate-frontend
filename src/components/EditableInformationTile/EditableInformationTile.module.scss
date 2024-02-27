@@ -1,0 +1,80 @@
+.heading {
+  h2 {
+    width: 11rem;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: auto;
+  padding: 2.5rem;
+  flex-direction: column;
+  gap: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid #e5e6eb;
+  background: var(--primary-FEFCFD, #fefcfd);
+  margin-top: 2.5rem;
+}
+
+.addSectionButton {
+  display: flex;
+  height: 2.8125rem;
+  width: 13.625rem;
+  padding: 1.25rem;
+  align-items: center;
+}
+
+.addSectionDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addSectionButtonText {
+  color: var(--primary-FEFCFD, #fefcfd);
+  leading-trim: both;
+  text-edge: cap;
+
+  /* H3 Heading 24px */
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 1.875rem */
+  letter-spacing: -0.015rem;
+}
+
+.saveButton {
+  display: flex;
+  height: 2.8125rem;
+  padding: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.125rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
+  background: #2f6e41;
+
+  color: #fff;
+  text-align: center;
+  leading-trim: both;
+  text-edge: cap;
+
+  /* H3 Heading 24px */
+  font-family: Poppins;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%; /* 1.875rem */
+  letter-spacing: -0.015rem;
+}
+
+.footerButtons {
+  display: flex;
+  width: 50rem;
+  align-items: center;
+  gap: 1.875rem;
+}

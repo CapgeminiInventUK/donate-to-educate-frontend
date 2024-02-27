@@ -13,20 +13,6 @@
       padding: 40px 82px 60px;
       border-radius: 0 0 10px 10px;
 
-      .titleContainer {
-        display: flex;
-      }
-
-      .svgContainer {
-        flex: 1;
-        display: flex;
-        align-items: center;
-
-        .horizontalLine {
-          height: 100%;
-        }
-      }
-
       h2 {
         color: g.$primary-dark-blue;
         margin-right: 10px;
@@ -37,58 +23,17 @@
       }
 
       .productsTilesContainer {
+        margin-top: 2.5rem;
         display: flex;
+        width: 100%;
         justify-content: space-between;
-
-        .requestProductsTile {
-          display: flex;
-          flex: 1;
-          padding: 30px 40px;
-          margin-right: 25px;
-          align-items: center;
-          gap: 20px;
-          border-radius: 10px;
-          background: g.$primary-light-blue;
-          color: g.$dark-blue;
-        }
-
-        .donateProductsTile {
-          display: flex;
-          flex: 1;
-          padding: 30px 40px;
-          align-items: center;
-          gap: 20px;
-          border-radius: 10px;
-          background: g.$primary-mid-blue;
-          color: g.$primary-white;
-        }
+        gap: 1.5625rem;
       }
 
       .extraStockTileContainer {
         border-radius: 10px;
         background: g.$primary-dark-blue;
         margin-top: 25px;
-
-        .extraStockTile {
-          display: flex;
-          padding: 30px 40px;
-          align-items: center;
-          gap: 20px;
-
-          .extraStockText {
-            flex-direction: column;
-
-            h3 {
-              margin: 0;
-              color: g.$primary-white;
-            }
-
-            h4 {
-              color: g.$primary-white;
-              font-weight: 400;
-            }
-          }
-        }
       }
     }
   }
@@ -103,6 +48,10 @@
     .contentContainer {
       padding-top: 66px;
     }
+  }
+
+  .productsTilesContainer {
+    flex-direction: column;
   }
 }
 
