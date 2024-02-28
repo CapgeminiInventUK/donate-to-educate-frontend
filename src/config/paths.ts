@@ -40,8 +40,8 @@ enum Paths {
   LOCAL_SCHOOLS = '/your-local-area/schools',
   LOCAL_CHARITIES = '/your-local-area/charities',
   LOCAL_DONATE = '/your-local-area/donate',
-  ALL = '*',
   REQUEST_SCHOOL_PRODUCTS = '/request-school-products',
+  ALL = '*',
 }
 
 export default Paths;
