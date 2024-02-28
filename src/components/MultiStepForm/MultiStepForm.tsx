@@ -11,6 +11,7 @@ import Spinner from '../Spinner/Spinner';
 import AddressInset from '../AddressInset/AddressInset';
 import { SummaryPageColour } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
+import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -20,6 +21,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   pageNumber,
   setPageNumber,
   onChange,
+  isSchoolRegistered,
 }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
@@ -28,7 +30,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const {
-    header = undefined,
+    header = '',
     infoText = undefined,
     infoTextTwo = undefined,
     subHeader = undefined,
@@ -74,6 +76,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     setFormErrors({});
+
+    if (onSend) {
+      return onSend();
+    }
 
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
@@ -169,6 +175,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
               );
             }
           )}
+          {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
           {isLastPage || isUnhappyPath ? (
             <div
               className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
@@ -178,8 +185,11 @@ const FormContainer: FC<MultiStepFormProps> = ({
           ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
-              theme={'formButtonDarkBlue'}
+              theme={
+                pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
+              }
               useArrow={true}
+              disabled={pageNumber === 1 && isSchoolRegistered}
             />
           ) : (
             <FormButton
@@ -193,7 +203,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             />
           )}
           {isUnhappyPath && onSend && (
-            <FormButton text={'Send'} theme={'formButtonGrey'} onClick={onSend} useArrow={true} />
+            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} />
           )}
           {formComponentInternalLink && (
             <div className={styles.link}>

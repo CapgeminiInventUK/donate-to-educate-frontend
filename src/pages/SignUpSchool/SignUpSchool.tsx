@@ -16,9 +16,10 @@ const SignUpSchool: FC = () => {
   const [formTemplate, setFormTemplate] = useState<FormTemplate[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
+  const [isSchoolRegistered, setIsSchoolRegistered] = useState(false);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['sc'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
         query: getSchools,
@@ -36,7 +37,8 @@ const SignUpSchool: FC = () => {
     const options = data?.getSchools.map(
       ({ urn, name, localAuthority, isLocalAuthorityRegistered, postcode, registered }) => ({
         value: urn,
-        label: name,
+        label: `${name} - ${postcode}`,
+        name,
         localAuthority,
         isLocalAuthorityRegistered,
         postcode,
@@ -72,11 +74,15 @@ const SignUpSchool: FC = () => {
     if (!formData[0]?.fullValue) {
       return;
     }
-    if (!formData[0]?.fullValue?.isLocalAuthorityRegistered) {
+    const {
+      fullValue: { isLocalAuthorityRegistered, registered },
+    } = formData[0];
+    if (!isLocalAuthorityRegistered) {
       authorityNotRegistered();
     } else {
       setHappyPathTemplate();
     }
+    setIsSchoolRegistered(!!registered);
   }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate]);
 
   useEffect(() => {
@@ -101,6 +107,7 @@ const SignUpSchool: FC = () => {
           setPageNumber={setPageNumber}
           isLoading={isLoading}
           onChange={onChange}
+          isSchoolRegistered={isSchoolRegistered}
         />
       )}
     </div>
