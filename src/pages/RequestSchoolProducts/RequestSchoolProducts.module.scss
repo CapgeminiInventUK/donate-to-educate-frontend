@@ -1,20 +1,38 @@
 @use '@assets/global.scss' as g;
 
 .container {
-  color: g.$primary-dark-blue;
-  padding: 50px;
-  .subheading {
-    margin-bottom: 40px;
-  }
-  .fieldHeadings {
-    margin-bottom: 10px;
-  }
-  .textAreaHeadings {
-    margin-bottom: 15px;
-  }
-  .mainHeading {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 0px;
+  @include g.page-container;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+    padding-top: 66px;
+    color: g.$primary-dark-blue;
+    padding: 50px;
+
+    .card {
+      @include g.card;
+      padding: 40px 82px 60px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      border-top: solid 18px g.$secondary-green;
+
+      .subheading {
+        margin-bottom: 40px;
+      }
+      .fieldHeadings {
+        margin-bottom: 10px;
+      }
+      .textAreaHeadings {
+        margin-bottom: 15px;
+      }
+      .mainHeading {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 0px;
+      }
+    }
   }
 }
