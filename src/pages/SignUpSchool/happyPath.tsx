@@ -142,6 +142,7 @@ const getHappyPath = (
       header: 'This service is [--------]',
       subHeader:
         'Explanation into things like security and how it is one account per supporter [-----------------------]',
+      isDeclarationPage: true,
       formComponents: [
         {
           componentType: ComponentType.CHECKBOX,

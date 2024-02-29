@@ -44,6 +44,21 @@ export const getSchools = /* GraphQL */ `query GetSchools {
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolsQueryVariables, APITypes.GetSchoolsQuery>;
+export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
+  getRegisteredSchools {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    isLocalAuthorityRegistered
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetRegisteredSchoolsQueryVariables,
+  APITypes.GetRegisteredSchoolsQuery
+>;
 export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
   getLocalAuthorities {
     code
@@ -61,6 +76,17 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     requestTime
     status
     email
+    schoolSignUpDetails {
+      name
+      school
+      jobTitle
+      email
+      phone
+      __typename
+    }
+    charitySignUpDetails {
+      __typename
+    }
     __typename
   }
 }
@@ -98,6 +124,23 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser($email: String!) {
+  getLocalAuthorityUser(email: $email) {
+    name
+    firstName
+    lastName
+    jobTitle
+    department
+    email
+    phone
+    notes
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetLocalAuthorityUserQueryVariables,
+  APITypes.GetLocalAuthorityUserQuery
+>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id

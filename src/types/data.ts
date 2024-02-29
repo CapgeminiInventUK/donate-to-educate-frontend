@@ -55,6 +55,7 @@ export interface FormTemplate {
   summaryPageBg?: SummaryPageColour;
   formComponentInternalLink?: ButtonProps;
   onSend?: () => void;
+  isDeclarationPage?: boolean;
 }
 
 export enum SummaryPageColour {
@@ -120,4 +121,15 @@ export interface FilterDropdownOption {
 export interface NavRoute {
   path: Paths;
   childNavRoutes?: NavRoute[];
+}
+
+export interface SubmittedFormData {
+  name: string;
+  email: string;
+  jobTitle: string;
+  school?: string | null;
+  phone?: string | null;
+  charityName?: string | null;
+  charityAddress?: string | null;
+  aboutCharity?: string | null;
 }
