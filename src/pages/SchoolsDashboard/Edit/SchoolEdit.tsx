@@ -60,7 +60,7 @@ const SchoolEdit: FC = () => {
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}
             fullWidth
-            onClick={() => navigate(Paths.HOME)}
+            onClick={() => navigate(Paths.REQUEST_SCHOOL_PRODUCTS, { state: { type } })}
           />
         </div>
       </div>
