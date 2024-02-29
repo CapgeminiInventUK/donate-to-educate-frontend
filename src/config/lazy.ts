@@ -40,6 +40,9 @@ const LocalAuthorityDashboard = lazy(
 );
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
 const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/SchoolEdit'));
+const SchoolContactConfirmation = lazy(
+  () => import('@/pages/SchoolsDashboard/Confirmation/SchoolContactConfirmation')
+);
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
@@ -88,4 +91,5 @@ export {
   HowItWorks,
   RequestSchoolProducts,
   SchoolDashboardItems,
+  SchoolContactConfirmation,
 };

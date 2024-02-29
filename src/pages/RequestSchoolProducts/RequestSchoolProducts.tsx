@@ -6,7 +6,7 @@ import TextArea from '@/components/TextArea/TextArea';
 import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 
@@ -86,6 +86,7 @@ const getTextContent = (type: string): TextContent => {
 
 const RequestSchoolProducts: FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
     type: '',
     name: '',
@@ -168,7 +169,16 @@ const RequestSchoolProducts: FC = () => {
             }}
             value={notes}
           />
-          <FormButton text={buttonText} theme={'formButtonGreen'} fullWidth={true} />
+          <FormButton
+            text={buttonText}
+            theme={'formButtonGreen'}
+            fullWidth={true}
+            onClick={() =>
+              navigate(Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, {
+                state: { name: 'Test School Name' },
+              })
+            }
+          />
         </div>
       </div>
     </div>
