@@ -2,9 +2,10 @@ import { FC, useState } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
 import styles from './SchoolEdit.module.scss';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
+import FormButton from '@/components/FormButton/FormButton';
 
 const getTitleFromType = (type: string): string => {
   switch (type) {
@@ -19,8 +20,22 @@ const getTitleFromType = (type: string): string => {
   }
 };
 
+const getButtonTextFromType = (type: string): string => {
+  switch (type) {
+    case 'tick':
+      return 'Request products';
+    case 'heart':
+      return 'Donate products';
+    case 'plus':
+      return 'Take extra stock';
+    default:
+      throw new Error(`Unknown type ${type}`);
+  }
+};
+
 const SchoolEdit: FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [items] = useState<Record<string, SectionsIconType>>({
     Blazer: 'Clothing and uniform',
     Computer: 'Computing and technology',
@@ -40,6 +55,14 @@ const SchoolEdit: FC = () => {
       </div>
       <div className={styles.card}>
         <ItemList type={type} items={items} />
+        <div className={styles.actionButtons}>
+          <FormButton
+            theme="formButtonGreen"
+            text={getButtonTextFromType(type)}
+            fullWidth
+            onClick={() => navigate(Paths.HOME)}
+          />
+        </div>
       </div>
     </div>
   );
