@@ -128,4 +128,5 @@ export interface RequestFormState {
   phone: string;
   notes: string;
   who: string;
+  connection?: string;
 }

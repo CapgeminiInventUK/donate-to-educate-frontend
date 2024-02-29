@@ -19,6 +19,19 @@
       flex-direction: column;
       border-top: solid 18px transparent;
 
+      .connection {
+        margin-left: 30px;
+        border-left: solid 4px g.$primary-mid-blue;
+        z-index: 10;
+
+        div,
+        h4 {
+          padding: 0;
+          margin-left: 20px;
+          margin-top: 0;
+        }
+      }
+
       .subheading {
         margin-bottom: 40px;
       }

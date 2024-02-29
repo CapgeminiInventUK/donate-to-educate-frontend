@@ -115,6 +115,7 @@ const RequestSchoolProducts: FC = () => {
           message: formState.notes,
           type,
           who: formState.who,
+          ...(formState?.connection && { connection: formState.connection }),
         },
       });
       return result;
@@ -125,7 +126,7 @@ const RequestSchoolProducts: FC = () => {
     return <Navigate to={Paths.HOME} />;
   }
 
-  const { name, email, phone, notes } = formState;
+  const { name, email, phone, notes, connection } = formState;
   const { radioButtonLabels, radioButtonValues, buttonText, heading, subHeading } =
     getTextContent(type);
 
@@ -149,6 +150,21 @@ const RequestSchoolProducts: FC = () => {
               }))
             }
           />
+          {formState.who === 'somethingElse' && (
+            <div className={styles.connection}>
+              <h4>Describe your role or connection to Donate to Educate</h4>
+              <TextInput
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    connection: value,
+                  }));
+                }}
+                value={connection}
+                isLarge
+              />
+            </div>
+          )}
           <h3 className={styles.fieldHeadings}>Name</h3>
           <TextInput
             onChange={(value) => {

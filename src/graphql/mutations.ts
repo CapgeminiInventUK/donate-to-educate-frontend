@@ -71,6 +71,7 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   $message: String!
   $who: String!
   $phone: String!
+  $connection: String
 ) {
   insertItemQuery(
     name: $name
@@ -79,6 +80,7 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
     message: $message
     who: $who
     phone: $phone
+    connection: $connection
   )
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;

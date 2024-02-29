@@ -154,6 +154,7 @@ export type InsertItemQueryMutationVariables = {
   message: string;
   who: string;
   phone: string;
+  connection?: string | null;
 };
 
 export type InsertItemQueryMutation = {
