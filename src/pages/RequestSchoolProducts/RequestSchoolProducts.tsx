@@ -5,14 +5,7 @@ import TextInput from '@/components/TextInput/TextInput';
 import TextArea from '@/components/TextArea/TextArea';
 import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
-
-interface FormState {
-  type: string;
-  name: string;
-  email: string;
-  phone: string;
-  notes: string;
-}
+import { RequestFormState } from '@/types/data';
 
 const radioButtonLabels = [
   'I am a parent or guardian',
@@ -28,7 +21,7 @@ const radioButtonValues = [
 ];
 
 const RequestSchoolProducts: FC = () => {
-  const [formState, setFormState] = useState<FormState>({
+  const [formState, setFormState] = useState<RequestFormState>({
     type: '',
     name: '',
     email: '',
