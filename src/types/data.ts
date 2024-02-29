@@ -121,3 +121,11 @@ export interface NavRoute {
   path: Paths;
   childNavRoutes?: NavRoute[];
 }
+
+export interface RequestFormState {
+  type: string;
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
+}
