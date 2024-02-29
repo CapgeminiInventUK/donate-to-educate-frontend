@@ -19,7 +19,7 @@ const SchoolContactConfirmation: FC = () => {
         <h2>{location.state.name} have got your message</h2>
         <p>They&apos;ll contact you to arrange the next steps.</p>
         <LogoWhite className={styles.logo} />
-        <Link to={Paths.ADMIN_DASHBOARD}>Return to dashboard</Link>
+        <Link to={Paths.HOME}>Return to homepage</Link>
       </div>
     </div>
   );
