@@ -19,6 +19,7 @@ enum Paths {
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   YOUR_SCHOOL = '/school/your-school',
   SCHOOLS_DASHBOARD = '/school/schools-dashboard',
+  SCHOOLS_DASHBOARD_ITEMS = '/school/schools-dashboard/items',
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
