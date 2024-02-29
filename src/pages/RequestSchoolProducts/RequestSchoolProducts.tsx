@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { FC, useState } from 'react';
 import styles from './RequestSchoolProducts.module.scss';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
@@ -9,6 +10,11 @@ import { RequestFormState } from '@/types/data';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { insertItemQuery } from '@/graphql/mutations';
+import { InsertItemQueryMutation } from '@/types/api';
 
 interface TextContent {
   radioButtonLabels: string[];
@@ -88,18 +94,36 @@ const RequestSchoolProducts: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
-    type: '',
+    who: '',
     name: '',
     email: '',
     phone: '',
     notes: '',
   });
+  const [type] = useState<string>((location?.state as { type: ItemsIconType }).type);
+
+  const { refetch } = useQuery({
+    queryKey: ['itemQuery'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<InsertItemQueryMutation>>({
+        query: insertItemQuery,
+        variables: {
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          message: formState.notes,
+          type,
+          who: formState.who,
+        },
+      });
+      return result;
+    },
+  });
 
   if (!(location.state && 'type' in location.state)) {
     return <Navigate to={Paths.HOME} />;
   }
-
-  const { type } = location.state as { type: ItemsIconType };
 
   const { name, email, phone, notes } = formState;
   const { radioButtonLabels, radioButtonValues, buttonText, heading, subHeading } =
@@ -121,7 +145,7 @@ const RequestSchoolProducts: FC = () => {
             handleChange={(value: string): void =>
               setFormState((prevState) => ({
                 ...prevState,
-                type: value,
+                who: value,
               }))
             }
           />
@@ -173,11 +197,12 @@ const RequestSchoolProducts: FC = () => {
             text={buttonText}
             theme={'formButtonGreen'}
             fullWidth={true}
-            onClick={() =>
+            onClick={() => {
+              refetch().then(console.log).catch(console.error);
               navigate(Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, {
                 state: { name: 'Test School Name' },
-              })
-            }
+              });
+            }}
           />
         </div>
       </div>

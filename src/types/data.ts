@@ -123,9 +123,9 @@ export interface NavRoute {
 }
 
 export interface RequestFormState {
-  type: string;
   name: string;
   email: string;
   phone: string;
   notes: string;
+  who: string;
 }

@@ -14,15 +14,21 @@ type School {
 }
 
 type ProfileItems {
-  items: String
-  banner: String
-  helpBannerTitle: String
-  helpBannerBody: String
-  whatToExpect: String
-  actionText: String
+  items: String!
+  banner: String!
+  helpBannerTitle: String!
+  helpBannerBody: String!
+  whatToExpect: String!
+  actionText: String!
 }
 
 type SchoolProfile {
+  request: ProfileItems
+  donate: ProfileItems
+  excess: ProfileItems
+}
+
+type CharityProfile {
   request: ProfileItems
   donate: ProfileItems
   excess: ProfileItems
@@ -39,10 +45,27 @@ type LocalAuthorityUser {
   notes: String
 }
 
+type SchoolUser {
+  name: String!
+  firstName: String!
+  lastName: String!
+}
+
+type CharityUser {
+  name: String!
+  firstName: String!
+  lastName: String!
+}
+
 type LocalAuthority {
   code: String!
   name: String!
   registered: Boolean!
+}
+
+type LocalAuthorityProfile {
+  user: LocalAuthorityUser!
+  localAuthority: LocalAuthority!
 }
 
 type JoinRequest {
@@ -54,17 +77,24 @@ type JoinRequest {
   email: String!
 }
 
+type ItemQuery {
+  name: String!
+  type: String!
+  who: String!
+  email: String!
+  phone: String!
+  message: String!
+}
+
 type Query {
   getSchoolByName(name: String!): School!
   getSchoolsByLa(name: String!): [School!]!
   getSchools: [School!]!
   getRegisteredSchools: [School!]!
-
   getLocalAuthorities: [LocalAuthority!]!
   getJoinRequests: [JoinRequest!]!
-
   getSchoolProfile(name: String!): SchoolProfile!
-
+  getLocalAuthorityUser(email: String!): LocalAuthorityUser!
   getSignUpData(id: String!): SignUpData
 }
 
@@ -84,6 +114,14 @@ type Mutation {
   updateJoinRequest(localAuthority: String!, name: String!, status: String!): Boolean!
 
   insertSignUpData(id: String!, email: String!, type: String!): Boolean!
+  insertItemQuery(
+    name: String!
+    email: String!
+    type: String!
+    message: String!
+    who: String!
+    phone: String!
+  ): Boolean!
 }
 
 schema {

@@ -64,3 +64,21 @@ export const insertSignUpData =
     APITypes.InsertSignUpDataMutationVariables,
     APITypes.InsertSignUpDataMutation
   >;
+export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
+  $name: String!
+  $email: String!
+  $type: String!
+  $message: String!
+  $who: String!
+  $phone: String!
+) {
+  insertItemQuery(
+    name: $name
+    email: $email
+    type: $type
+    message: $message
+    who: $who
+    phone: $phone
+  )
+}
+` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;

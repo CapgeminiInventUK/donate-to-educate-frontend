@@ -38,12 +38,24 @@ export type SchoolProfile = {
 
 export type ProfileItems = {
   __typename: 'ProfileItems';
-  items?: string | null;
-  banner?: string | null;
-  helpBannerTitle?: string | null;
-  helpBannerBody?: string | null;
-  whatToExpect?: string | null;
-  actionText?: string | null;
+  items: string;
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+};
+
+export type LocalAuthorityUser = {
+  __typename: 'LocalAuthorityUser';
+  name: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  department: string;
+  email: string;
+  phone: string;
+  notes?: string | null;
 };
 
 export type SignUpData = {
@@ -133,6 +145,19 @@ export type InsertSignUpDataMutationVariables = {
 
 export type InsertSignUpDataMutation = {
   insertSignUpData: boolean;
+};
+
+export type InsertItemQueryMutationVariables = {
+  name: string;
+  email: string;
+  type: string;
+  message: string;
+  who: string;
+  phone: string;
+};
+
+export type InsertItemQueryMutation = {
+  insertItemQuery: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -229,31 +254,49 @@ export type GetSchoolProfileQuery = {
     __typename: 'SchoolProfile';
     request?: {
       __typename: 'ProfileItems';
-      items?: string | null;
-      banner?: string | null;
-      helpBannerTitle?: string | null;
-      helpBannerBody?: string | null;
-      whatToExpect?: string | null;
-      actionText?: string | null;
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
     } | null;
     donate?: {
       __typename: 'ProfileItems';
-      items?: string | null;
-      banner?: string | null;
-      helpBannerTitle?: string | null;
-      helpBannerBody?: string | null;
-      whatToExpect?: string | null;
-      actionText?: string | null;
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
     } | null;
     excess?: {
       __typename: 'ProfileItems';
-      items?: string | null;
-      banner?: string | null;
-      helpBannerTitle?: string | null;
-      helpBannerBody?: string | null;
-      whatToExpect?: string | null;
-      actionText?: string | null;
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
     } | null;
+  };
+};
+
+export type GetLocalAuthorityUserQueryVariables = {
+  email: string;
+};
+
+export type GetLocalAuthorityUserQuery = {
+  getLocalAuthorityUser: {
+    __typename: 'LocalAuthorityUser';
+    name: string;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    department: string;
+    email: string;
+    phone: string;
+    notes?: string | null;
   };
 };
 
