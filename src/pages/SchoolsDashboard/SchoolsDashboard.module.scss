@@ -50,6 +50,7 @@
           border-radius: 10px;
           background: g.$primary-light-blue;
           color: g.$dark-blue;
+          cursor: pointer;
         }
 
         .donateProductsTile {
@@ -61,6 +62,7 @@
           border-radius: 10px;
           background: g.$primary-mid-blue;
           color: g.$primary-white;
+          cursor: pointer;
         }
       }
 
@@ -68,6 +70,7 @@
         border-radius: 10px;
         background: g.$primary-dark-blue;
         margin-top: 25px;
+        cursor: pointer;
 
         .extraStockTile {
           display: flex;

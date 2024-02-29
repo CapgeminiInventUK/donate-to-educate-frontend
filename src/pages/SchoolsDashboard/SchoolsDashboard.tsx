@@ -6,8 +6,11 @@ import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
 import HorizontalLine from '@/assets/school/HorizontalLine';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 const SchoolsDashboard: FC = () => {
+  const navigate = useNavigate();
   const [pageNumber, setPageNumber] = useState(0);
 
   const onBackButtonClick = (): void => {
@@ -41,14 +44,23 @@ const SchoolsDashboard: FC = () => {
           </p>
 
           <div className={styles.productsTilesContainer}>
-            <div className={styles.requestProductsTile}>
+            <div
+              className={styles.requestProductsTile}
+              onClick={() => navigate(Paths.SCHOOLS_DASHBOARD_ITEMS, { state: { type: 'tick' } })}
+            >
               <Hanger /> <h3>Request products</h3>
             </div>
-            <div className={styles.donateProductsTile}>
+            <div
+              className={styles.donateProductsTile}
+              onClick={() => navigate(Paths.SCHOOLS_DASHBOARD_ITEMS, { state: { type: 'heart' } })}
+            >
               <Heart /> <h3>Donate products</h3>
             </div>
           </div>
-          <div className={styles.extraStockTileContainer}>
+          <div
+            className={styles.extraStockTileContainer}
+            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD_ITEMS, { state: { type: 'plus' } })}
+          >
             <div className={styles.extraStockTile}>
               <ExtraStock />
               <div className={styles.extraStockText}>

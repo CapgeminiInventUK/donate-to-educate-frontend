@@ -28,6 +28,7 @@ import {
   HowItWorks,
   AdminDashboardManageSchools,
   AdminDashboardManageCharities,
+  SchoolDashboardItems,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -178,6 +179,10 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
     element: <AdminDashboardManageCharities />,
+  },
+  {
+    path: Paths.SCHOOLS_DASHBOARD_ITEMS,
+    element: <SchoolDashboardItems />,
   },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
   { path: Paths.LOCAL_SCHOOLS, element: <></> },
