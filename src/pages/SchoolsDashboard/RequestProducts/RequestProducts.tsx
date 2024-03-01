@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { FC, useState } from 'react';
-import styles from './RequestSchoolProducts.module.scss';
+import styles from './RequestProducts.module.scss';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
 import TextInput from '@/components/TextInput/TextInput';
 import TextArea from '@/components/TextArea/TextArea';
@@ -90,7 +90,7 @@ const getTextContent = (type: string): TextContent => {
   }
 };
 
-const RequestSchoolProducts: FC = () => {
+const RequestProducts: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
@@ -226,4 +226,4 @@ const RequestSchoolProducts: FC = () => {
   );
 };
 
-export default RequestSchoolProducts;
+export default RequestProducts;

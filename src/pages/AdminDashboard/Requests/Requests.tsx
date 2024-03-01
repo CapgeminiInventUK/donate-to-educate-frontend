@@ -18,7 +18,11 @@ import { SchoolOrCharityProperties } from '../AdminDashboard';
 const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
   const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
-    useState<SchoolOrCharityProperties>({ name: '', la: '' });
+    useState<SchoolOrCharityProperties>({
+      name: '',
+      la: '',
+      user: { name: '', title: '', email: '', phone: '' },
+    });
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
@@ -69,6 +73,7 @@ const Requests: FC = () => {
               type="school"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
             />
           )}
           {!isLoading && stage === 'request_approval_charity' && (
@@ -77,6 +82,7 @@ const Requests: FC = () => {
               type="charity"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
             />
           )}
         </div>

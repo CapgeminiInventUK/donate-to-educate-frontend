@@ -57,7 +57,7 @@ const LocalAuthorityJoinInfo = lazy(
 const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
 const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
 const RequestSchoolProducts = lazy(
-  () => import('@/pages/RequestSchoolProducts/RequestSchoolProducts')
+  () => import('@/pages/SchoolsDashboard/RequestProducts/RequestProducts')
 );
 
 export {

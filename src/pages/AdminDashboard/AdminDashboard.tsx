@@ -14,6 +14,14 @@ import styles from './AdminDashboard.module.scss';
 export interface SchoolOrCharityProperties {
   name: string;
   la: string;
+  user: RequestUser;
+}
+
+export interface RequestUser {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
 }
 
 // Need to make this a protected route only for logged in users of type admin.

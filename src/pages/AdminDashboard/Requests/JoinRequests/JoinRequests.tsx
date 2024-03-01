@@ -143,8 +143,16 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             text={`View request`}
             onClick={(): void => {
               setSchoolOrCharityProperties({
-                name: joinRequest.name,
+                name:
+                  (joinRequest.type === 'school' ? joinRequest.school : joinRequest.charityName) ??
+                  '',
                 la: joinRequest.localAuthority,
+                user: {
+                  name: joinRequest.name,
+                  title: joinRequest.jobTitle ?? '',
+                  email: joinRequest.email,
+                  phone: joinRequest.phone ?? '',
+                },
               });
               setStage(
                 joinRequest.type === 'school'
@@ -160,18 +168,18 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
   const schoolColumns = [
     {
       title: 'School',
-      dataIndex: 'name',
-      key: 'name',
-      ...getColumnSearchProps('name'),
+      dataIndex: 'school',
+      key: 'school',
+      ...getColumnSearchProps('school'),
     },
     ...baseColumns,
   ];
   const charityColumns = [
     {
       title: 'Charity',
-      dataIndex: 'name',
-      key: 'name',
-      ...getColumnSearchProps('name'),
+      dataIndex: 'charityName',
+      key: 'charityName',
+      ...getColumnSearchProps('charityName'),
     },
     ...baseColumns,
   ];

@@ -147,8 +147,6 @@ export type InsertJoinRequestMutationVariables = {
   name: string;
   localAuthority: string;
   type: string;
-  requestTime: number;
-  status: string;
   email: string;
   school?: string | null;
   jobTitle?: string | null;

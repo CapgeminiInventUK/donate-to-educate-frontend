@@ -13,17 +13,19 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
 import { UpdateJoinRequestMutation } from '@/types/api';
 import { updateJoinRequest } from '@/graphql/mutations';
+import { RequestUser } from '../../AdminDashboard';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
   type: 'school' | 'charity';
   name: string;
   la: string;
+  user: RequestUser;
 }
 
 type myStageType = 'deciding' | 'approved' | 'denied';
 
-const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la }) => {
+const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, user }) => {
   const [showModal, setShowModal] = useState(false);
 
   const [myStage, setMyStage] = useState<myStageType>('deciding');
@@ -98,22 +100,22 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la })
               <div className={styles.requestDecisionCard}>
                 <div className={styles.informationLine}>
                   <b>Name</b>
-                  <span>Alexander Isak</span>
+                  <span>{user.name}</span>
                 </div>
                 <hr />
                 <div className={styles.informationLine}>
                   <b>Job title or role</b>
-                  <span>Head of Chemistry</span>
+                  <span>{user.title}</span>
                 </div>
                 <hr />
                 <div className={styles.informationLine}>
                   <b>Email</b>
-                  <span>Isak-chemistry@mgail.com</span>
+                  <span>{user.email}</span>
                 </div>
                 <hr />
                 <div className={styles.informationLine}>
                   <b>Phone</b>
-                  <span>07123456789</span>
+                  <span>{user.phone}</span>
                 </div>
                 <hr />
                 <div className={styles.actionButtons}>
