@@ -3,9 +3,9 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import Paths from '@/config/paths';
 import Email from '@/assets/admin/Email';
-import styles from './LocalAuthoritySignUpConfirmation.module.scss';
+import styles from './SchoolContactConfirmation.module.scss';
 
-const LocalAuthoritySignUpConfirmation: FC = () => {
+const SchoolContactConfirmation: FC = () => {
   const location = useLocation() as { state: { name: string } };
 
   if (!(location.state && 'name' in location.state)) {
@@ -16,13 +16,13 @@ const LocalAuthoritySignUpConfirmation: FC = () => {
     <div className={styles.container}>
       <div className={styles.body}>
         <Email />
-        <h2>You have created an account for {location.state.name} County Council</h2>
-        <p>The main user has been emailed with instructions to set up their profile</p>
+        <h2>{location.state.name} have got your message</h2>
+        <p>They&apos;ll contact you to arrange the next steps.</p>
         <LogoWhite className={styles.logo} />
-        <Link to={Paths.ADMIN_DASHBOARD}>Return to dashboard</Link>
+        <Link to={Paths.HOME}>Return to homepage</Link>
       </div>
     </div>
   );
 };
 
-export default LocalAuthoritySignUpConfirmation;
+export default SchoolContactConfirmation;

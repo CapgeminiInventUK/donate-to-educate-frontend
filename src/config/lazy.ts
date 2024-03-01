@@ -29,10 +29,20 @@ const AdminDashboardLocalAuthoritySignUpConfirmation = lazy(
     )
 );
 const AdminDashboardRequests = lazy(() => import('@pages/AdminDashboard/Requests/Requests'));
+const AdminDashboardManageSchools = lazy(
+  () => import('@pages/AdminDashboard/ManageSchools/ManageSchools')
+);
+const AdminDashboardManageCharities = lazy(
+  () => import('@pages/AdminDashboard/ManageCharities/ManageCharities')
+);
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
+const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/SchoolEdit'));
+const SchoolContactConfirmation = lazy(
+  () => import('@/pages/SchoolsDashboard/Confirmation/SchoolContactConfirmation')
+);
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
@@ -46,6 +56,9 @@ const LocalAuthorityJoinInfo = lazy(
 
 const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
 const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
+const RequestSchoolProducts = lazy(
+  () => import('@/pages/RequestSchoolProducts/RequestSchoolProducts')
+);
 
 export {
   Home,
@@ -62,6 +75,8 @@ export {
   AdminDashboardLocalAuthoritySignUp,
   AdminDashboardLocalAuthoritySignUpConfirmation,
   AdminDashboardRequests,
+  AdminDashboardManageSchools,
+  AdminDashboardManageCharities,
   SignUpCharity,
   SignUpSchool,
   ResetPassword,
@@ -74,4 +89,7 @@ export {
   FindYourCommunity,
   YourLocalArea,
   HowItWorks,
+  RequestSchoolProducts,
+  SchoolDashboardItems,
+  SchoolContactConfirmation,
 };

@@ -1,0 +1,40 @@
+@use '@assets/global.scss' as g;
+
+.CharitiesCard {
+  background: g.$primary-white;
+  border-radius: 10px;
+  border-top: 18px solid transparent;
+  color: g.$primary-dark-blue;
+  padding: 30px 40px;
+  margin: 10px;
+
+  thead {
+    th {
+      background: g.$primary-mid-blue !important;
+      color: g.$primary-white !important;
+    }
+  }
+
+  tbody {
+    tr {
+      td:first-child {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .actionsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.filterIcon {
+  color: g.$primary-white;
+}
+
+.charitiesBorder {
+  border-left: solid 10px g.$primary-light-blue;
+  padding-left: 20px;
+}

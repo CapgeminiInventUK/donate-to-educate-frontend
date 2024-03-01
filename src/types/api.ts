@@ -199,6 +199,20 @@ export type InsertSignUpDataMutation = {
   insertSignUpData: boolean;
 };
 
+export type InsertItemQueryMutationVariables = {
+  name: string;
+  email: string;
+  type: string;
+  message: string;
+  who: string;
+  phone: string;
+  connection?: string | null;
+};
+
+export type InsertItemQueryMutation = {
+  insertItemQuery: boolean;
+};
+
 export type GetSchoolByNameQueryVariables = {
   name: string;
 };

@@ -45,6 +45,18 @@ type LocalAuthorityUser {
   notes: String
 }
 
+type SchoolUser {
+  name: String!
+  firstName: String!
+  lastName: String!
+}
+
+type CharityUser {
+  name: String!
+  firstName: String!
+  lastName: String!
+}
+
 type LocalAuthority {
   code: String!
   name: String!
@@ -65,6 +77,16 @@ type JoinRequest {
   email: String!
   schoolSignUpDetails: SchoolUser
   charitySignUpDetails: CharitySignUpDetails
+}
+
+type ItemQuery {
+  name: String!
+  type: String!
+  who: String!
+  email: String!
+  phone: String!
+  message: String!
+  connection: String
 }
 
 type Query {
@@ -109,6 +131,15 @@ type Mutation {
   ): Boolean!
 
   insertSignUpData(id: String!, email: String!, type: String!): Boolean!
+  insertItemQuery(
+    name: String!
+    email: String!
+    type: String!
+    message: String!
+    who: String!
+    phone: String!
+    connection: String
+  ): Boolean!
 }
 
 schema {

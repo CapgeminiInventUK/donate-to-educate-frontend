@@ -133,3 +133,12 @@ export interface SubmittedFormData {
   charityAddress?: string | null;
   aboutCharity?: string | null;
 }
+
+export interface RequestFormState {
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
+  who: string;
+  connection?: string;
+}

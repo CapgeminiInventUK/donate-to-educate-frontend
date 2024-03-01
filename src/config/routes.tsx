@@ -26,6 +26,11 @@ import {
   FindYourCommunity,
   YourLocalArea,
   HowItWorks,
+  AdminDashboardManageSchools,
+  AdminDashboardManageCharities,
+  RequestSchoolProducts,
+  SchoolDashboardItems,
+  SchoolContactConfirmation,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -84,6 +89,11 @@ const routes: Route[] = [
   {
     path: Paths.SCHOOLS_DASHBOARD,
     element: <SchoolsDashboard />,
+  },
+  {
+    path: Paths.REQUEST_SCHOOL_PRODUCTS,
+    element: <RequestSchoolProducts />,
+    name: 'Request',
   },
   {
     path: Paths.LOGIN,
@@ -169,6 +179,19 @@ const routes: Route[] = [
     element: <FindYourCommunity />,
     name: 'Find your community',
   },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS,
+    element: <AdminDashboardManageSchools />,
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
+    element: <AdminDashboardManageCharities />,
+  },
+  {
+    path: Paths.SCHOOLS_DASHBOARD_ITEMS,
+    element: <SchoolDashboardItems />,
+  },
+  { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
   { path: Paths.LOCAL_SCHOOLS, element: <></> },
   { path: Paths.LOCAL_CHARITIES, element: <></> },
