@@ -57,7 +57,7 @@ const SignUpCharity: FC = () => {
         variables: {
           name: formDataForSubmission?.name,
           localAuthority: selectedLocalAuthority,
-          type: FormNames.CHARITY,
+          type: 'charity',
           email: formDataForSubmission?.email,
           school: formDataForSubmission?.school,
           jobTitle: formDataForSubmission?.jobTitle,
