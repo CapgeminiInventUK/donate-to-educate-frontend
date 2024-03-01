@@ -76,17 +76,12 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     requestTime
     status
     email
-    schoolSignUpDetails {
-      name
-      school
-      jobTitle
-      email
-      phone
-      __typename
-    }
-    charitySignUpDetails {
-      __typename
-    }
+    school
+    jobTitle
+    phone
+    charityName
+    charityAddress
+    aboutCharity
     __typename
   }
 }
