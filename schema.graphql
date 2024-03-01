@@ -45,18 +45,6 @@ type LocalAuthorityUser {
   notes: String
 }
 
-type SchoolUser {
-  name: String!
-  firstName: String!
-  lastName: String!
-}
-
-type CharityUser {
-  name: String!
-  firstName: String!
-  lastName: String!
-}
-
 type LocalAuthority {
   code: String!
   name: String!
@@ -75,8 +63,12 @@ type JoinRequest {
   requestTime: Float!
   status: String!
   email: String!
-  schoolSignUpDetails: SchoolUser
-  charitySignUpDetails: CharitySignUpDetails
+  school: String
+  jobTitle: String
+  phone: String
+  charityName: String
+  charityAddress: String
+  aboutCharity: String
 }
 
 type ItemQuery {
