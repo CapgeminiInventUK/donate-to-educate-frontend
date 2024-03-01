@@ -60,8 +60,6 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $name: String!
   $localAuthority: String!
   $type: String!
-  $requestTime: Float!
-  $status: String!
   $email: String!
   $school: String
   $jobTitle: String
@@ -74,8 +72,6 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     name: $name
     localAuthority: $localAuthority
     type: $type
-    requestTime: $requestTime
-    status: $status
     email: $email
     school: $school
     jobTitle: $jobTitle
