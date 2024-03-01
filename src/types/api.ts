@@ -17,6 +17,39 @@ export type JoinRequest = {
   requestTime: number;
   status: string;
   email: string;
+  schoolSignUpDetails?: SchoolUser | null;
+  charitySignUpDetails?: CharitySignUpDetails | null;
+};
+
+export type SchoolUser = {
+  __typename: 'SchoolUser';
+  name: string;
+  school: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+};
+
+export type CharitySignUpDetails = {
+  __typename: 'CharitySignUpDetails';
+  charityUser: CharityUser;
+  charityDetails: CharityDetails;
+};
+
+export type CharityUser = {
+  __typename: 'CharityUser';
+  name: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+};
+
+export type CharityDetails = {
+  __typename: 'CharityDetails';
+  name: string;
+  address: string;
+  localAuthority: string;
+  about?: string | null;
 };
 
 export type School = {
@@ -137,6 +170,25 @@ export type UpdateJoinRequestMutation = {
   updateJoinRequest: boolean;
 };
 
+export type InsertJoinRequestMutationVariables = {
+  name: string;
+  localAuthority: string;
+  type: string;
+  requestTime: number;
+  status: string;
+  email: string;
+  school?: string | null;
+  jobTitle?: string | null;
+  phone?: string | null;
+  charityName?: string | null;
+  charityAddress?: string | null;
+  aboutCharity?: string | null;
+};
+
+export type InsertJoinRequestMutation = {
+  insertJoinRequest: boolean;
+};
+
 export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
@@ -243,6 +295,17 @@ export type GetJoinRequestsQuery = {
     requestTime: number;
     status: string;
     email: string;
+    schoolSignUpDetails?: {
+      __typename: 'SchoolUser';
+      name: string;
+      school: string;
+      jobTitle: string;
+      email: string;
+      phone: string;
+    } | null;
+    charitySignUpDetails?: {
+      __typename: 'CharitySignUpDetails';
+    } | null;
   }>;
 };
 

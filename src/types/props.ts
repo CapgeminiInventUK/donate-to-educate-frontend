@@ -10,6 +10,9 @@ import {
   FormTemplate,
 } from './data';
 import Paths from '@/config/paths';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
+import { InsertJoinRequestMutationVariables } from './api';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -213,6 +216,11 @@ export interface MultiStepFormProps {
     fullValue?: Record<string, unknown>
   ) => void;
   isSchoolRegistered?: boolean;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<GraphQLResult<GraphQLQuery<InsertJoinRequestMutationVariables>>, Error>
+  >;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];

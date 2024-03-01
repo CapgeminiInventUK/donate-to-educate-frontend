@@ -56,6 +56,39 @@ export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   APITypes.UpdateJoinRequestMutationVariables,
   APITypes.UpdateJoinRequestMutation
 >;
+export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
+  $name: String!
+  $localAuthority: String!
+  $type: String!
+  $requestTime: Float!
+  $status: String!
+  $email: String!
+  $school: String
+  $jobTitle: String
+  $phone: String
+  $charityName: String
+  $charityAddress: String
+  $aboutCharity: String
+) {
+  insertJoinRequest(
+    name: $name
+    localAuthority: $localAuthority
+    type: $type
+    requestTime: $requestTime
+    status: $status
+    email: $email
+    school: $school
+    jobTitle: $jobTitle
+    phone: $phone
+    charityName: $charityName
+    charityAddress: $charityAddress
+    aboutCharity: $aboutCharity
+  )
+}
+` as GeneratedMutation<
+  APITypes.InsertJoinRequestMutationVariables,
+  APITypes.InsertJoinRequestMutation
+>;
 export const insertSignUpData =
   /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!, $type: String!) {
   insertSignUpData(id: $id, email: $email, type: $type)

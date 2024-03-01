@@ -20,7 +20,7 @@ const CheckYourAnswers: FC<CheckYourAnswersProps> = ({
   return sections.map((section, index) => (
     <div key={index} className={styles.container}>
       <h3 className={styles.header}>{section}</h3>
-      {cyaData[section].map(({ field, value, page }, index) => (
+      {cyaData?.[section].map(({ field, value, page }, index) => (
         <div key={index} className={styles.row}>
           <div className={styles.field}>{field}</div>
           <div className={`${styles.value} ${field === 'Address' ? styles.addressCell : ''}`}>

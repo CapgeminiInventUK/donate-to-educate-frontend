@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SignUpCharity.module.scss';
 import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
 import {
@@ -8,19 +8,24 @@ import {
   FormNames,
   FormSections,
   FormTemplate,
+  SubmittedFormData,
 } from '@/types/data';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import { client } from '@/graphqlClient';
-import { GetLocalAuthoritiesQuery } from '@/types/api';
+import { GetLocalAuthoritiesQuery, InsertJoinRequestMutationVariables } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { getLocalAuthorities } from '@/graphql/queries';
+import { checkYourAnswersDataMap, getFormDataForSubmission } from '@/utils/formUtils';
+import { insertJoinRequest } from '@/graphql/mutations';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
+  const [selectedLocalAuthority, setSelectedLocalAuthority] = useState('');
+  const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
@@ -43,10 +48,42 @@ const SignUpCharity: FC = () => {
     throw new Error('Failed to fetch LocalAuthorities data.');
   }
 
+  const { refetch } = useQuery({
+    queryKey: ['register'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
+        query: insertJoinRequest,
+        variables: {
+          name: formDataForSubmission?.name,
+          localAuthority: selectedLocalAuthority,
+          type: FormNames.CHARITY,
+          email: formDataForSubmission?.email,
+          school: formDataForSubmission?.school,
+          jobTitle: formDataForSubmission?.jobTitle,
+          phone: formDataForSubmission?.phone,
+          charityName: formDataForSubmission?.charityName,
+          charityAddress: formDataForSubmission?.charityAddress,
+          aboutCharity: formDataForSubmission?.aboutCharity,
+        },
+      });
+      return result;
+    },
+  });
+
   const options = data?.getLocalAuthorities.map(({ code, name }) => ({
     value: code,
     label: name,
   }));
+
+  useEffect(() => {
+    if (pageNumber === 6) {
+      const refinedData = checkYourAnswersDataMap(FormNames.CHARITY, formData);
+      refinedData &&
+        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.CHARITY));
+    }
+    formData[1]?.value && setSelectedLocalAuthority(String(formData[1].value));
+  }, [pageNumber, formData]);
 
   const formTemplate: FormTemplate[] = [
     {
@@ -282,6 +319,7 @@ const SignUpCharity: FC = () => {
       header: 'This service is [--------]',
       subHeader:
         'Explanation into things like security and how it is one account per supporter [-----------------------]',
+      isDeclarationPage: true,
       formComponents: [
         {
           componentType: ComponentType.CHECKBOX,
@@ -346,6 +384,7 @@ const SignUpCharity: FC = () => {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         onChange={onChange}
+        refetch={refetch}
       />
     </div>
   );

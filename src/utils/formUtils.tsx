@@ -1,4 +1,11 @@
-import { DropdownOption, FormDataItem, FormErrors, FormNames, FormSections } from '@/types/data';
+import {
+  DropdownOption,
+  FormDataItem,
+  FormErrors,
+  FormNames,
+  FormSections,
+  SubmittedFormData,
+} from '@/types/data';
 import { SingleValue } from 'react-select';
 import isEmail from 'validator/lib/isEmail';
 import isMobilePhone from 'validator/lib/isMobilePhone';
@@ -13,11 +20,8 @@ const excludedValues = [
   'Postcode',
 ];
 
-export const findValueFromFormData = (
-  formData: FormDataItem[],
-  fieldName: string
-): string | number | boolean => {
-  return formData.find(({ field }) => field === fieldName)?.value ?? '';
+export const findValueFromFormData = (formData: FormDataItem[], fieldName: string): string => {
+  return formData.find(({ field }) => field === fieldName)?.value?.toString() ?? '';
 };
 
 export const findFullValueFromFormData = (
@@ -72,7 +76,7 @@ const nameBuilder = (formData: FormDataItem[]): string => {
 const assignDataToSections = (
   data: FormDataItem[],
   sections: FormSections[]
-): Record<string, FormDataItem[]> => {
+): Record<FormSections, FormDataItem[]> => {
   const accumulator: Record<string, FormDataItem[]> = sections.reduce((acc, section) => {
     return { [section]: [], ...acc };
   }, {});
@@ -85,7 +89,7 @@ const assignDataToSections = (
   }, accumulator);
 };
 
-const getCharityCyaData = (formData: FormDataItem[]): Record<string, FormDataItem[]> => {
+const getCharityCyaData = (formData: FormDataItem[]): Record<FormSections, FormDataItem[]> => {
   const fullName = nameBuilder(formData);
   const address = addressBuilder(formData);
   const data = [
@@ -100,7 +104,7 @@ const getCharityCyaData = (formData: FormDataItem[]): Record<string, FormDataIte
   ]);
 };
 
-const getSchoolCyaData = (formData: FormDataItem[]): Record<string, FormDataItem[]> => {
+const getSchoolCyaData = (formData: FormDataItem[]): Record<FormSections, FormDataItem[]> => {
   const fullName = nameBuilder(formData);
   const data = [
     { field: 'Name', value: fullName, page: 2, section: FormSections.YOUR_DETAILS_SECTION },
@@ -112,9 +116,9 @@ const getSchoolCyaData = (formData: FormDataItem[]): Record<string, FormDataItem
 export const checkYourAnswersDataMap = (
   formName: FormNames,
   formData?: FormDataItem[]
-): Record<string, FormDataItem[]> => {
+): Record<string, FormDataItem[]> | undefined => {
   if (!formData) {
-    return {};
+    return;
   }
   switch (formName) {
     case FormNames.CHARITY:
@@ -122,7 +126,7 @@ export const checkYourAnswersDataMap = (
     case FormNames.SCHOOL:
       return getSchoolCyaData(formData);
     default:
-      return {};
+      return;
   }
 };
 
@@ -131,4 +135,61 @@ export const getValueFromOptionsByLabel = (
   valueLabel?: string
 ): SingleValue<DropdownOption> | undefined => {
   return options.find(({ label = '' }) => label === valueLabel);
+};
+
+export const getFormDataForSubmission = (
+  cyaData: Record<FormSections, FormDataItem[]>,
+  type: FormNames
+): SubmittedFormData => {
+  const joinRequestVariables: SubmittedFormData = {
+    name: '',
+    email: '',
+    jobTitle: '',
+    school: undefined,
+    phone: undefined,
+    charityName: undefined,
+    charityAddress: undefined,
+    aboutCharity: undefined,
+  };
+
+  if (type === FormNames.CHARITY) {
+    joinRequestVariables.charityName = findValueFromFormData(
+      cyaData[FormSections.CHARITY_SECTION],
+      'Name'
+    );
+
+    joinRequestVariables.charityAddress = findValueFromFormData(
+      cyaData[FormSections.CHARITY_SECTION],
+      'Address'
+    );
+
+    joinRequestVariables.aboutCharity = findValueFromFormData(
+      cyaData[FormSections.CHARITY_SECTION],
+      'About'
+    );
+  }
+
+  joinRequestVariables.name = String(
+    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Name')
+  );
+
+  joinRequestVariables.email = String(
+    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Email')
+  );
+
+  joinRequestVariables.jobTitle = String(
+    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Job title or role')
+  );
+
+  joinRequestVariables.school = findValueFromFormData(
+    cyaData[FormSections.YOUR_DETAILS_SECTION],
+    'School'
+  );
+
+  joinRequestVariables.phone = findValueFromFormData(
+    cyaData[FormSections.YOUR_DETAILS_SECTION],
+    'Phone'
+  );
+
+  return { ...joinRequestVariables };
 };
