@@ -14,6 +14,8 @@ import { GraphQLQuery } from '@aws-amplify/api-graphql';
 import { UpdateJoinRequestMutation } from '@/types/api';
 import { updateJoinRequest } from '@/graphql/mutations';
 import { RequestUser } from '../../AdminDashboard';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -26,6 +28,7 @@ interface ApprovalRequestProps {
 type myStageType = 'deciding' | 'approved' | 'denied';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, user }) => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   const [myStage, setMyStage] = useState<myStageType>('deciding');
@@ -38,7 +41,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
         query: updateJoinRequest,
         variables: {
           localAuthority: la,
-          name,
+          name: user.name,
           status: myStage === 'approved' ? 'APPROVED' : 'DENIED',
         },
       });
@@ -138,13 +141,13 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
                 showModal={showModal}
                 doSomething={() => {
                   setMyStage('denied');
+                  navigate(Paths.DELETE_CONFIRMATION);
                 }}
               />
             </>
           )}
         </>
-        {myStage === 'approved' && <ResultBanner name="Some Name" type="approved" />}
-        {myStage === 'denied' && <ResultBanner type="declined" />}
+        {myStage === 'approved' && <ResultBanner name={user.name} type="approved" />}
       </div>
     </>
   );

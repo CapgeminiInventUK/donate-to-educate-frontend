@@ -1,0 +1,28 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  padding: 48px 50px;
+
+  .body {
+    background: g.$dark-blue;
+    color: g.$primary-white;
+    padding: 50px 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      width: 300px;
+      padding: 60px 0;
+    }
+
+    a {
+      color: g.$primary-white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

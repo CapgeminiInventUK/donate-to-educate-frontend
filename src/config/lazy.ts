@@ -59,6 +59,10 @@ const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
 const RequestSchoolProducts = lazy(
   () => import('@/pages/SchoolsDashboard/RequestProducts/RequestProducts')
 );
+const DeleteConfirmation = lazy(
+  () =>
+    import('@/pages/AdminDashboard/Requests/ApprovalRequest/DeleteConfirmation/DeleteConfirmation')
+);
 
 export {
   Home,
@@ -92,4 +96,5 @@ export {
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,
+  DeleteConfirmation,
 };

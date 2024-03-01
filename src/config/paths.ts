@@ -43,6 +43,7 @@ enum Paths {
   LOCAL_CHARITIES = '/your-local-area/charities',
   LOCAL_DONATE = '/your-local-area/donate',
   REQUEST_SCHOOL_PRODUCTS = '/request-school-products',
+  DELETE_CONFIRMATION = '/admin-dashboard/requests/delete',
   ALL = '*',
 }
 

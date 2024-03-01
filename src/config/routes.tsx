@@ -31,6 +31,7 @@ import {
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,
+  DeleteConfirmation,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -168,12 +169,10 @@ const routes: Route[] = [
     path: Paths.JOIN,
     element: <Join />,
   },
-
   {
     path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
     element: <LocalAuthorityJoinInfo />,
   },
-
   {
     path: Paths.FIND_YOUR_COMMUNITY,
     element: <FindYourCommunity />,
@@ -190,6 +189,12 @@ const routes: Route[] = [
   {
     path: Paths.SCHOOLS_DASHBOARD_ITEMS,
     element: <SchoolDashboardItems />,
+  },
+  {
+    path: Paths.DELETE_CONFIRMATION,
+    element: <DeleteConfirmation />,
+    requiresAuth: true,
+    redirectRoute: '/login',
   },
   { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
