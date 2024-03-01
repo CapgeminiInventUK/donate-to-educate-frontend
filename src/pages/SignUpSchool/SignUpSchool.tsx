@@ -119,7 +119,7 @@ const SignUpSchool: FC = () => {
     if (localAuthority) {
       setSelectedLocalAuthority(String(localAuthority));
     }
-    if (pageNumber === 6) {
+    if (pageNumber === 4) {
       const refinedData = checkYourAnswersDataMap(FormNames.SCHOOL, formData);
       refinedData &&
         setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.SCHOOL));

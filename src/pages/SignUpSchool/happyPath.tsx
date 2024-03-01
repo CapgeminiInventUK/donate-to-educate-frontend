@@ -131,7 +131,7 @@ const getHappyPath = (
             sections: [FormSections.YOUR_DETAILS_SECTION],
             formName: FormNames.SCHOOL,
             formMeta: {
-              page: 5,
+              page: 3,
             },
           },
         },
@@ -149,7 +149,7 @@ const getHappyPath = (
           componentData: {
             label: 'GDPR content and statement [---------------]',
             formMeta: {
-              page: 6,
+              page: 4,
               field: 'GDPR content and statement [---------------]',
             },
           },
@@ -160,7 +160,7 @@ const getHappyPath = (
           componentData: {
             label: 'Legal understanding [---------------]',
             formMeta: {
-              page: 6,
+              page: 4,
               field: 'Legal understanding [---------------]',
             },
           },
@@ -172,7 +172,7 @@ const getHappyPath = (
             label: 'I will be administrating the account [---------------]',
             formMeta: {
               field: 'I will be administrating the account [---------------]',
-              page: 6,
+              page: 4,
             },
           },
           classNameSuffix: 'checkbox',
