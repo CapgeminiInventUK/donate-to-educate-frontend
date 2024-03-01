@@ -85,6 +85,22 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   APITypes.InsertJoinRequestMutationVariables,
   APITypes.InsertJoinRequestMutation
 >;
+export const insertLocalAuthorityRegisterRequest =
+  /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
+  $name: String!
+  $email: String!
+  $message: String!
+) {
+  insertLocalAuthorityRegisterRequest(
+    name: $name
+    email: $email
+    message: $message
+  )
+}
+` as GeneratedMutation<
+    APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
+    APITypes.InsertLocalAuthorityRegisterRequestMutation
+  >;
 export const insertSignUpData =
   /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!, $type: String!) {
   insertSignUpData(id: $id, email: $email, type: $type)
@@ -113,3 +129,11 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   )
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
+export const deleteDeniedJoinRequest =
+  /* GraphQL */ `mutation DeleteDeniedJoinRequest($name: String!) {
+  deleteDeniedJoinRequest(name: $name)
+}
+` as GeneratedMutation<
+    APITypes.DeleteDeniedJoinRequestMutationVariables,
+    APITypes.DeleteDeniedJoinRequestMutation
+  >;

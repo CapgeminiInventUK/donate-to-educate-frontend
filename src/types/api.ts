@@ -86,6 +86,14 @@ export type getAdminPageRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
   }>;
 };
 
@@ -160,6 +168,16 @@ export type InsertJoinRequestMutation = {
   insertJoinRequest: boolean;
 };
 
+export type InsertLocalAuthorityRegisterRequestMutationVariables = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+export type InsertLocalAuthorityRegisterRequestMutation = {
+  insertLocalAuthorityRegisterRequest: boolean;
+};
+
 export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
@@ -182,6 +200,14 @@ export type InsertItemQueryMutationVariables = {
 
 export type InsertItemQueryMutation = {
   insertItemQuery: boolean;
+};
+
+export type DeleteDeniedJoinRequestMutationVariables = {
+  name: string;
+};
+
+export type DeleteDeniedJoinRequestMutation = {
+  deleteDeniedJoinRequest: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {

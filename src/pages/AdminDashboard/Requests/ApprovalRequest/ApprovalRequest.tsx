@@ -11,8 +11,8 @@ import { Pill } from '@/components/Pill/Pill';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
-import { UpdateJoinRequestMutation } from '@/types/api';
-import { updateJoinRequest } from '@/graphql/mutations';
+import { DeleteDeniedJoinRequestMutation, UpdateJoinRequestMutation } from '@/types/api';
+import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
 import { RequestUser } from '../../AdminDashboard';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -50,12 +50,33 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
     },
   });
 
+  const { refetch: deleteProfile } = useQuery({
+    queryKey: ['deleteProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<DeleteDeniedJoinRequestMutation>>({
+        query: deleteDeniedJoinRequest,
+        variables: {
+          name: user.name,
+        },
+      });
+
+      return result;
+    },
+  });
+
   useEffect(() => {
-    if (myStage === 'approved' || myStage === 'denied') {
+    if (myStage === 'approved') {
       // eslint-disable-next-line no-console
       refetch().then(console.log).catch(console.error);
     }
-  }, [myStage, refetch]);
+    if (myStage === 'denied') {
+      deleteProfile()
+        .then(() => navigate(Paths.DELETE_CONFIRMATION))
+        // eslint-disable-next-line no-console
+        .catch(console.error);
+    }
+  }, [myStage, refetch, deleteProfile, navigate]);
 
   return (
     <>
@@ -139,10 +160,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
               <DeclineModal
                 setShowModal={setShowModal}
                 showModal={showModal}
-                doSomething={() => {
-                  setMyStage('denied');
-                  navigate(Paths.DELETE_CONFIRMATION);
-                }}
+                doSomething={() => setMyStage('denied')}
               />
             </>
           )}
