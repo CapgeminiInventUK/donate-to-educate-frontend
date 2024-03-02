@@ -16,7 +16,6 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsQuery, InsertJoinRequestMutationVariables } from '@/types/api';
 import { client } from '@/graphqlClient';
 import getAuthorityNotRegisteredPath from './authorityNotRegistered';
-import { getSchools } from '@/graphql/queries';
 import { insertJoinRequest } from '@/graphql/mutations';
 import { checkYourAnswersDataMap, getFormDataForSubmission } from '@/utils/formUtils';
 
@@ -33,7 +32,16 @@ const SignUpSchool: FC = () => {
     queryKey: ['sc'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
-        query: getSchools,
+        query: `query GetSchools {
+          getSchools {
+            urn
+            name
+            localAuthority
+            postcode
+            registered
+            isLocalAuthorityRegistered
+          }
+        }`,
       });
 
       return data;
