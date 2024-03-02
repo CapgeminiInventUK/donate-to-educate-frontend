@@ -15,6 +15,7 @@ export interface SchoolOrCharityProperties {
   name: string;
   la: string;
   user: RequestUser;
+  charity?: { mainAddress: string; about: string };
 }
 
 export interface RequestUser {

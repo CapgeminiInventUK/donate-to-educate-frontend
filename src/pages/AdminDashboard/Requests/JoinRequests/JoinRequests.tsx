@@ -153,6 +153,12 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
                   email: joinRequest.email,
                   phone: joinRequest.phone ?? '',
                 },
+                ...(joinRequest.charityName && {
+                  charity: {
+                    mainAddress: joinRequest.charityAddress ?? '',
+                    about: joinRequest.aboutCharity ?? '',
+                  },
+                }),
               });
               setStage(
                 joinRequest.type === 'school'

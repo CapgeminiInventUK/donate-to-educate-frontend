@@ -83,6 +83,7 @@ const Requests: FC = () => {
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
               user={schoolOrCharityProperties.user}
+              charity={schoolOrCharityProperties.charity}
             />
           )}
         </div>

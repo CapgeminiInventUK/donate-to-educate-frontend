@@ -33,6 +33,13 @@ export type School = {
   postcode?: string | null;
   registered: boolean;
   isLocalAuthorityRegistered?: boolean | null;
+  address3?: string | null;
+  county?: string | null;
+  locality?: string | null;
+  street?: string | null;
+  phone?: string | null;
+  town?: string | null;
+  website?: string | null;
 };
 
 export type SchoolProfile = {
@@ -223,6 +230,13 @@ export type GetSchoolByNameQuery = {
     postcode?: string | null;
     registered: boolean;
     isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
   };
 };
 
@@ -239,6 +253,13 @@ export type GetSchoolsByLaQuery = {
     postcode?: string | null;
     registered: boolean;
     isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
   }>;
 };
 
@@ -253,6 +274,13 @@ export type GetSchoolsQuery = {
     postcode?: string | null;
     registered: boolean;
     isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
   }>;
 };
 
@@ -267,6 +295,13 @@ export type GetRegisteredSchoolsQuery = {
     postcode?: string | null;
     registered: boolean;
     isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
   }>;
 };
 
