@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ApprovalRequest.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import Email from '@/assets/tiles/Email';
 import Phone from '@/assets/admin/Phone';
 import ToolTip from '@/assets/admin/ToolTip';
 import DeclineModal from './DeclineModal/DeclineModal';
@@ -22,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { getSchoolByName } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
+import Globe from '@/assets/tiles/Globe';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -121,7 +121,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
                 <div>{data?.getSchoolByName.phone}</div>
               </div>
               <div className={styles.contactInfo}>
-                <Email />
+                <Globe />
                 <div>{data?.getSchoolByName.website}</div>
               </div>
               <div className={styles.detailsCard}>
