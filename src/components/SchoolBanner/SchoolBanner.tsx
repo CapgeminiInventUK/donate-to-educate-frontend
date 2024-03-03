@@ -6,6 +6,7 @@ import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
 import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
+import { Link } from 'react-router-dom';
 
 export const SchoolBanner: FC = () => {
   return (
@@ -29,7 +30,13 @@ export const SchoolBanner: FC = () => {
             <span>
               <Globe />
             </span>
-            http://www.ormistonsixvillagesacademy.co.uk/
+            <Link
+              to="http://www.ormistonsixvillagesacademy.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              http://www.ormistonsixvillagesacademy.co.uk/
+            </Link>
           </li>
         </ul>
 
