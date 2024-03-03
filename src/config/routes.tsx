@@ -32,6 +32,9 @@ import {
   SchoolDashboardItems,
   SchoolContactConfirmation,
   DeleteConfirmation,
+  Donate,
+  FindSchools,
+  FindCharities,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -198,9 +201,9 @@ const routes: Route[] = [
   },
   { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
-  { path: Paths.LOCAL_SCHOOLS, element: <></> },
-  { path: Paths.LOCAL_CHARITIES, element: <></> },
-  { path: Paths.LOCAL_DONATE, element: <></> },
+  { path: Paths.LOCAL_SCHOOLS, element: <FindSchools /> },
+  { path: Paths.LOCAL_CHARITIES, element: <FindCharities /> },
+  { path: Paths.LOCAL_DONATE, element: <Donate /> },
   {
     path: Paths.ALL,
     element: <NotFound />,

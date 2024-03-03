@@ -1,0 +1,31 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+
+  .subContainer {
+    @include g.card;
+    padding: 40px 80px;
+
+    a {
+      color: g.$secondary-mid-blue;
+    }
+
+    .expander {
+      display: inline-block;
+      margin-top: 20px;
+      color: g.$secondary-mid-blue;
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+
+    .missingSchoolDescription {
+      margin-top: 20px;
+      padding: 40px;
+      background: g.$help-grey;
+      border-radius: 10px;
+    }
+  }
+}

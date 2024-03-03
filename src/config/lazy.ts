@@ -56,6 +56,9 @@ const LocalAuthorityJoinInfo = lazy(
 
 const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
 const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
+const Donate = lazy(() => import('@/pages/YourLocalArea/Donate/Donate'));
+const FindSchools = lazy(() => import('@/pages/YourLocalArea/FindSchool/FindSchool'));
+const FindCharities = lazy(() => import('@/pages/YourLocalArea/FindCharity/FindCharity'));
 const RequestSchoolProducts = lazy(
   () => import('@/pages/SchoolsDashboard/RequestProducts/RequestProducts')
 );
@@ -97,4 +100,7 @@ export {
   SchoolDashboardItems,
   SchoolContactConfirmation,
   DeleteConfirmation,
+  Donate,
+  FindCharities,
+  FindSchools,
 };
