@@ -23,6 +23,7 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
     phone
     town
     website
+    distance
     __typename
   }
 }
@@ -42,6 +43,7 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     phone
     town
     website
+    distance
     __typename
   }
 }
@@ -61,6 +63,7 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     phone
     town
     website
+    distance
     __typename
   }
 }
@@ -80,6 +83,7 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
     phone
     town
     website
+    distance
     __typename
   }
 }
@@ -173,3 +177,23 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;
+export const getSchoolsNearby = /* GraphQL */ `query GetSchoolsNearby {
+  getSchoolsNearby {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolsNearbyQueryVariables, APITypes.GetSchoolsNearbyQuery>;

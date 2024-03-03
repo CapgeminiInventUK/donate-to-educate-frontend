@@ -40,6 +40,7 @@ export type School = {
   phone?: string | null;
   town?: string | null;
   website?: string | null;
+  distance?: string | null;
 };
 
 export type SchoolProfile = {
@@ -237,6 +238,7 @@ export type GetSchoolByNameQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
   };
 };
 
@@ -260,6 +262,7 @@ export type GetSchoolsByLaQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
   }>;
 };
 
@@ -281,6 +284,7 @@ export type GetSchoolsQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
   }>;
 };
 
@@ -302,6 +306,7 @@ export type GetRegisteredSchoolsQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
   }>;
 };
 
@@ -402,4 +407,26 @@ export type GetSignUpDataQuery = {
     email: string;
     type: string;
   } | null;
+};
+
+export type GetSchoolsNearbyQueryVariables = {};
+
+export type GetSchoolsNearbyQuery = {
+  getSchoolsNearby?: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
+  } | null> | null;
 };
