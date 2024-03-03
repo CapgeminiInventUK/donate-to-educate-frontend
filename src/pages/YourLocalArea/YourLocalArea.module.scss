@@ -55,3 +55,13 @@
   background: g.$primary-light-blue;
   color: g.$dark-blue;
 }
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    padding: 17px 19px;
+
+    .subContainer {
+      padding: 40px 20px;
+    }
+  }
+}
