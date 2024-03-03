@@ -409,7 +409,10 @@ export type GetSignUpDataQuery = {
   } | null;
 };
 
-export type GetSchoolsNearbyQueryVariables = {};
+export type GetSchoolsNearbyQueryVariables = {
+  postcode: string;
+  distance: number;
+};
 
 export type GetSchoolsNearbyQuery = {
   getSchoolsNearby?: Array<{

@@ -10,8 +10,10 @@ import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsNearbyQuery, School } from '@/types/api';
-import { convertMetersToMiles } from '@/utils/distance';
+import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+
+const maxDistance = convertMilesToMeters(10);
 
 const FindSchool: FC = () => {
   const [showDescription, toggleDescription] = useState(false);
@@ -20,17 +22,21 @@ const FindSchool: FC = () => {
   );
 
   const { data, isLoading } = useQuery({
-    queryKey: ['getSchoolsNearby'],
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
-        query: `query GetSchoolsNearby {
-            getSchoolsNearby {
-              name
-              distance
-            }
+        query: `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
+          getSchoolsNearby(postcode: $postcode, distance: $distance) {
+            name
+            distance
           }
-          `,
+        }
+        `,
+        variables: {
+          postcode: state.postcode,
+          distance: maxDistance,
+        },
       });
 
       return data;

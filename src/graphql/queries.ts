@@ -177,8 +177,9 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;
-export const getSchoolsNearby = /* GraphQL */ `query GetSchoolsNearby {
-  getSchoolsNearby {
+export const getSchoolsNearby =
+  /* GraphQL */ `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
+  getSchoolsNearby(postcode: $postcode, distance: $distance) {
     urn
     name
     localAuthority
