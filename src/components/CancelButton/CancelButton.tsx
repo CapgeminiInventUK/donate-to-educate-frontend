@@ -11,7 +11,7 @@ const CancelButton: FC<
       onClick={onClick}
       type="button"
     >
-      <h4>Cancel</h4>
+      Cancel
     </button>
   );
 };

@@ -1,19 +1,14 @@
+@use '@assets/global.scss' as g;
+
 .cancel {
-  color: #386eb3;
+  color: g.$primary-mid-blue;
   font-family: Poppins;
   font-size: 1.125rem;
-  font-style: normal;
   font-weight: 700;
-  line-height: 125%; /* 1.40625rem */
-  letter-spacing: -0.01125rem;
   text-decoration-line: underline;
 
   background: none;
-  outline: none;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   &:hover {
     cursor: pointer;

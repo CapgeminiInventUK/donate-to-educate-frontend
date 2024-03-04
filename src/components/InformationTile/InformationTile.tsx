@@ -5,8 +5,8 @@ import { FC } from 'react';
 const InformationTile: FC<InformationTileProps> = ({ heading, subtext }: InformationTileProps) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>{heading}</h2>
-      <p className={styles.subtext}>{subtext}</p>
+      <h2>{heading}</h2>
+      <p>{subtext}</p>
     </div>
   );
 };

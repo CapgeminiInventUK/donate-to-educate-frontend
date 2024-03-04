@@ -1,3 +1,5 @@
+@use '@assets/global.scss' as g;
+
 .buttonDiv {
   width: 100%;
   float: left;
@@ -13,7 +15,7 @@
   gap: 2.5rem;
   border-radius: 0.625rem;
   border: 2px solid #e5e6eb;
-  background: var(--primary-FEFCFD, #fefcfd);
+  background: g.$primary-white;
 }
 
 .heading {
@@ -23,15 +25,7 @@
   align-self: stretch;
 
   h3 {
-    color: var(--primary-11356F, #11356f);
-    leading-trim: both;
-    text-edge: cap;
-    font-family: Poppins;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 125%; /* 1.875rem */
-    letter-spacing: -0.015rem;
+    color: g.$primary-dark-blue;
   }
 }
 
@@ -50,15 +44,6 @@
 }
 
 .addSectionButtonText {
-  color: var(--primary-FEFCFD, #fefcfd);
-  leading-trim: both;
-  text-edge: cap;
-
-  /* H3 Heading 24px */
-  font-family: Poppins;
   font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 125%; /* 1.875rem */
   letter-spacing: -0.015rem;
 }

@@ -13,14 +13,14 @@ const SchoolAdminDashboard: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
 
-  function toggleIsEditingAboutUs(): void {
+  const toggleIsEditingAboutUs = (): void => {
     setIsEditingAboutUs((isEditingAboutUs) => !isEditingAboutUs);
-  }
+  };
 
   // TODO - Make POST request to API to save new "About us" when user clicks Save button
-  function saveAboutUs(): void {
+  const saveAboutUs = (): void => {
     toggleIsEditingAboutUs();
-  }
+  };
 
   const onBackButtonClick = (): void => {
     if (pageNumber > 0) {
