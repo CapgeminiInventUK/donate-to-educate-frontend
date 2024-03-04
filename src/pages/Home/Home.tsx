@@ -80,6 +80,7 @@ const Home: FC = () => {
             theme="formButtonMidBlue"
             onClick={() => navigate(Paths.HOW_IT_WORKS)}
             text="Find out more"
+            ariaLabel="find out more"
           />
         </div>
       </div>

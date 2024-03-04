@@ -33,6 +33,7 @@ const Login: FC = () => {
               onClick={() => {
                 setSignInState(true);
               }}
+              ariaLabel="sign in"
             />
             <Link className={styles.link} to={Paths.JOIN}>
               Join Donate to Educate

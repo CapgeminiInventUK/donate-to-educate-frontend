@@ -53,6 +53,7 @@ export const SchoolBanner: FC = () => {
                   <InterfaceArrowTopRight className={styles.interfaceArrow} />
                 </div>
               }
+              ariaLabel="view uniform policy"
               onClick={(): void => {
                 undefined;
               }}

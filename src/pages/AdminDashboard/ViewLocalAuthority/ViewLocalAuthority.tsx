@@ -24,6 +24,7 @@ const ViewLocalAuthority: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>

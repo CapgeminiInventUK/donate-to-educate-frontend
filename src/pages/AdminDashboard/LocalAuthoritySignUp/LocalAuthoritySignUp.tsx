@@ -85,6 +85,7 @@ const LocalAuthoritySignUp: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>
@@ -100,6 +101,7 @@ const LocalAuthoritySignUp: FC = () => {
                   firstName: value,
                 }));
               }}
+              ariaLabel="first name"
             />
             <TextInput
               header="Last name"
@@ -109,6 +111,7 @@ const LocalAuthoritySignUp: FC = () => {
                   lastName: value,
                 }));
               }}
+              ariaLabel="last name"
             />
             <TextInput
               header="Job title or role"
@@ -118,6 +121,7 @@ const LocalAuthoritySignUp: FC = () => {
                   jobTitle: value,
                 }));
               }}
+              ariaLabel="title"
             />
             <TextInput
               header="Department"
@@ -127,6 +131,7 @@ const LocalAuthoritySignUp: FC = () => {
                   department: value,
                 }));
               }}
+              ariaLabel="department"
             />
             <TextInput
               header="Email"
@@ -136,6 +141,7 @@ const LocalAuthoritySignUp: FC = () => {
                   email: value,
                 }));
               }}
+              ariaLabel="email"
             />
             <TextInput
               header="Phone"
@@ -145,6 +151,7 @@ const LocalAuthoritySignUp: FC = () => {
                   phone: value,
                 }));
               }}
+              ariaLabel="phone"
             />
             <TextArea
               onChange={(value) => {
@@ -156,6 +163,7 @@ const LocalAuthoritySignUp: FC = () => {
               header="Notes about this user (optional)"
               subHeading="This information can only be seen by Donate to Educate administrators."
               characterLimit={1000}
+              ariaLabel="notes"
             />
             <FormButton
               text={'Create account'}
@@ -168,6 +176,7 @@ const LocalAuthoritySignUp: FC = () => {
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}
+              ariaLabel="create account"
             />
           </div>
         </div>

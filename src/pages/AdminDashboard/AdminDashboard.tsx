@@ -77,6 +77,7 @@ const AdminDashboard: FC = () => {
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}
+              ariaLabel="sign out"
             />
           </div>
         </div>

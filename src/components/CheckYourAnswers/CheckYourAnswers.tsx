@@ -31,7 +31,12 @@ const CheckYourAnswers: FC<CheckYourAnswersProps> = ({
               field === 'Address' ? styles.changeAddressLink : ''
             }`}
           >
-            <Button theme="link" onClick={() => handleClick(page)} text="Change" />
+            <Button
+              theme="link"
+              onClick={() => handleClick(page)}
+              text="Change"
+              ariaLabel="change"
+            />
           </div>
         </div>
       ))}

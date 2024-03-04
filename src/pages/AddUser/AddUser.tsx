@@ -125,7 +125,7 @@ const NewUser: FC = () => {
         {step === 'SIGN_UP' && (
           <>
             <h2>Create user</h2>
-            <TextInput header="Email" value={email} disabled />
+            <TextInput header="Email" value={email} disabled ariaLabel="email" />
             <TextInput
               header="Password"
               password
@@ -133,11 +133,13 @@ const NewUser: FC = () => {
                 setPassword(value);
               }}
               errorMessage={error}
+              ariaLabel="password"
             />
             <FormButton
               theme={'formButtonDarkBlue'}
               onClick={(): void => setSubmitted(true)}
               text={'Create user'}
+              ariaLabel="createUser"
             />
           </>
         )}
@@ -161,6 +163,7 @@ const NewUser: FC = () => {
                   setSubmitCode(true);
                 }
               }}
+              ariaLabel="next"
             />
           </>
         )}

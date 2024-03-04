@@ -415,7 +415,7 @@ export type GetSchoolsNearbyQueryVariables = {
 };
 
 export type GetSchoolsNearbyQuery = {
-  getSchoolsNearby?: Array<{
+  getSchoolsNearby: Array<{
     __typename: 'School';
     urn: string;
     name: string;
@@ -431,5 +431,5 @@ export type GetSchoolsNearbyQuery = {
     town?: string | null;
     website?: string | null;
     distance?: string | null;
-  } | null> | null;
+  }>;
 };

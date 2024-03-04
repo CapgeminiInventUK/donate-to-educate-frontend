@@ -160,6 +160,7 @@ const RequestProducts: FC = () => {
                     connection: value,
                   }));
                 }}
+                ariaLabel="connection"
                 value={connection}
                 isLarge
               />
@@ -173,6 +174,7 @@ const RequestProducts: FC = () => {
                 name: value,
               }));
             }}
+            ariaLabel="name"
             value={name}
             isLarge={true}
           />
@@ -184,6 +186,7 @@ const RequestProducts: FC = () => {
                 email: value,
               }));
             }}
+            ariaLabel="email"
             value={email}
             isLarge={true}
           />
@@ -195,6 +198,7 @@ const RequestProducts: FC = () => {
                 phone: value,
               }));
             }}
+            ariaLabel="phone"
             value={phone}
           />
           <h3 className={styles.textAreaHeadings}>Tell us what you need</h3>
@@ -207,6 +211,7 @@ const RequestProducts: FC = () => {
                 notes: value,
               }));
             }}
+            ariaLabel="notes"
             value={notes}
           />
           <FormButton
@@ -219,6 +224,7 @@ const RequestProducts: FC = () => {
                 state: { name: 'Test School Name' },
               });
             }}
+            ariaLabel="submit"
           />
         </div>
       </div>

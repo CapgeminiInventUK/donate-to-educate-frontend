@@ -66,7 +66,7 @@ const FindSchool: FC = () => {
         <h2>Find your child&apos;s school near {state.postcode.toUpperCase()}</h2>
 
         <Table
-          dataSource={data?.getSchoolsNearby}
+          dataSource={data?.getSchoolsNearby ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
         />

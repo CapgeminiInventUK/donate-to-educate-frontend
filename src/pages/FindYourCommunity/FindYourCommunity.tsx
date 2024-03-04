@@ -19,7 +19,7 @@ const FindYourCommunity: FC = () => {
         <p>This can be your home, school, or charity postcode</p>
 
         <div className={styles.searchBar}>
-          <TextInput onChange={(value) => setPostcode(value)} />
+          <TextInput onChange={(value) => setPostcode(value)} ariaLabel="postcode" />
           <div
             className={styles.searchIconContainer}
             onClick={() => navigate(Paths.YOUR_LOCAL_AREA, { state: { postcode } })}

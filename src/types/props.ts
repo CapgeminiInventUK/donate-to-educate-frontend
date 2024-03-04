@@ -35,6 +35,7 @@ export interface ButtonProps {
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface FormButtonProps {
@@ -45,6 +46,7 @@ export interface FormButtonProps {
   fullWidth?: boolean;
   className?: string;
   disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface ImageProps {
@@ -144,6 +146,7 @@ export interface CheckboxProps {
   onChange?: (value: boolean, formMeta: FormMeta | undefined) => void;
   initialValue?: boolean;
   value?: boolean;
+  ariaLabel: string;
 }
 
 export interface CheckmarkProps {
@@ -158,6 +161,7 @@ export interface RadioButtonProps {
   checked: boolean;
   label?: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export interface RadioGroupProps {
@@ -195,6 +199,7 @@ export interface CommonInputProps {
   value?: string;
   disabled?: boolean;
   errorMessage?: string;
+  ariaLabel: string;
 }
 
 export interface TextInputProps extends CommonInputProps {
@@ -237,6 +242,7 @@ export interface ExternalLinkProps {
   linkText: string;
   linkUrl: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export type InternalLinkProps = ExternalLinkProps;

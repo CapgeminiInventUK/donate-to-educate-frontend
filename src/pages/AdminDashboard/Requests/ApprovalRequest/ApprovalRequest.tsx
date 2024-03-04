@@ -175,11 +175,13 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
                     onClick={(): void => {
                       setMyStage('approved');
                     }}
+                    ariaLabel="confirm request"
                   />
                   <FormButton
                     theme="formButtonGrey"
                     text="Decline request"
                     onClick={(): void => setShowModal(true)}
+                    ariaLabel="decline request"
                   />
                 </div>
               </div>
@@ -250,11 +252,13 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
                     onClick={(): void => {
                       setMyStage('approved');
                     }}
+                    ariaLabel="confirm request"
                   />
                   <FormButton
                     theme="formButtonGrey"
                     text="Decline request"
                     onClick={(): void => setShowModal(true)}
+                    ariaLabel="decline request"
                   />
                 </div>
               </div>

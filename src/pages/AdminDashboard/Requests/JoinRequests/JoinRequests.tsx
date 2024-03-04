@@ -48,6 +48,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
+          aria-label="search input"
         />
         <Space>
           <SearchButton
@@ -56,6 +57,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
+            aria-label="search"
           >
             Search
           </SearchButton>
@@ -63,6 +65,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
+            aria-label="reset"
           >
             Reset
           </SearchButton>
@@ -72,6 +75,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             onClick={() => {
               close();
             }}
+            aria-label="close"
           >
             Close
           </SearchButton>
@@ -138,6 +142,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
       render: (_: unknown, joinRequest: JoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button
+            ariaLabel="view request"
             theme="link-blue"
             className={styles.actionButtons}
             text={`View request`}

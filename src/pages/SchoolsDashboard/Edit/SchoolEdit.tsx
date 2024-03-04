@@ -61,6 +61,7 @@ const SchoolEdit: FC = () => {
             text={getButtonTextFromType(type)}
             fullWidth
             onClick={() => navigate(Paths.REQUEST_SCHOOL_PRODUCTS, { state: { type } })}
+            ariaLabel="contact"
           />
         </div>
       </div>

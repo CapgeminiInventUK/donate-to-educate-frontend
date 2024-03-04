@@ -42,6 +42,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
                     <Checkbox
                       onChange={(checked) => handleToggle(checked, item, name)}
                       value={checkValue}
+                      ariaLabel={`${name}-${item}-edit`}
                     />
                     <span>{item}</span>
                   </li>

@@ -33,7 +33,13 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
           <br />
           <div>{body}</div>
           <br />
-          <FormButton text={'Start'} theme={buttonTheme} onClick={onClick} fullWidth />
+          <FormButton
+            text={'Start'}
+            theme={buttonTheme}
+            onClick={onClick}
+            fullWidth
+            ariaLabel="start"
+          />
         </>
       )}
     </div>
