@@ -10,12 +10,15 @@ import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';
 import FormButton from '@/components/FormButton/FormButton';
 import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
 import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
+import Paths from '@/config/paths';
 
 const Home: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <HeroBanner />
@@ -36,32 +39,35 @@ const Home: FC = () => {
       <div className={styles.tileContainer}>
         <Tile
           title="A place for families"
-          onClick={(): void => undefined}
+          onClick={() => navigate(Paths.FIND_YOUR_COMMUNITY)}
           body={[
             "Find new and pre-loved school essentials at your child' school or in nearby charities.",
             "Donate the things you don't need to help the next pupil and the planet.",
           ]}
           icon={<People />}
+          buttonText="Get started"
         />
 
         <Tile
           title="A place for schools"
-          onClick={(): void => undefined}
+          onClick={() => navigate(Paths.JOIN)}
           body={[
             'Create a school profile to show which products you have in stock and ask for donations.',
             'Help families with product requests and get support from charities.',
           ]}
           icon={<Hat />}
+          buttonText="Sign in or join"
         />
 
         <Tile
           title="A place for charities"
-          onClick={(): void => undefined}
+          onClick={() => navigate(Paths.JOIN)}
           body={[
             'Create a charity profile to show which products you stock.',
             'Help children get the things they need by connecting with nearby schools, PTAs and local communities.',
           ]}
           icon={<Heart />}
+          buttonText="Sign in or join"
         />
       </div>
 
@@ -72,8 +78,9 @@ const Home: FC = () => {
           <p>Giving communities one place to collaborate and help children thrive at school.</p>
           <FormButton
             theme="formButtonMidBlue"
-            onClick={(): void => undefined}
+            onClick={() => navigate(Paths.HOW_IT_WORKS)}
             text="Find out more"
+            ariaLabel="find out more"
           />
         </div>
       </div>
@@ -92,11 +99,11 @@ const Home: FC = () => {
             </p>
           </div>
           <div className={styles.actionButtons}>
-            <Link to="/" className={styles.button}>
+            <Link to={Paths.FIND_YOUR_COMMUNITY} className={styles.button}>
               <Archive />
               <h3>Donate products</h3>
             </Link>
-            <Link to="/" className={styles.button}>
+            <Link to={Paths.CONTACT} className={styles.button}>
               <Star />
               <h3>Support us</h3>
             </Link>

@@ -16,7 +16,6 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
 
 interface FormState {
-  name: string;
   firstName: string;
   lastName: string;
   jobTitle: string;
@@ -28,7 +27,6 @@ interface FormState {
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
-    name: '',
     firstName: '',
     lastName: '',
     jobTitle: '',
@@ -58,7 +56,7 @@ const LocalAuthoritySignUp: FC = () => {
       const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
-          name,
+          name: la,
           firstName: formState.firstName,
           lastName: formState.lastName,
           jobTitle: formState.jobTitle,
@@ -87,13 +85,11 @@ const LocalAuthoritySignUp: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton
-            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-            theme="white"
-          />
+          <BackButton theme="white" />
           <div className={styles.card}>
             <h1>{la}</h1>
             <hr />
@@ -105,6 +101,7 @@ const LocalAuthoritySignUp: FC = () => {
                   firstName: value,
                 }));
               }}
+              ariaLabel="first name"
             />
             <TextInput
               header="Last name"
@@ -114,6 +111,7 @@ const LocalAuthoritySignUp: FC = () => {
                   lastName: value,
                 }));
               }}
+              ariaLabel="last name"
             />
             <TextInput
               header="Job title or role"
@@ -123,6 +121,7 @@ const LocalAuthoritySignUp: FC = () => {
                   jobTitle: value,
                 }));
               }}
+              ariaLabel="title"
             />
             <TextInput
               header="Department"
@@ -132,6 +131,7 @@ const LocalAuthoritySignUp: FC = () => {
                   department: value,
                 }));
               }}
+              ariaLabel="department"
             />
             <TextInput
               header="Email"
@@ -141,6 +141,7 @@ const LocalAuthoritySignUp: FC = () => {
                   email: value,
                 }));
               }}
+              ariaLabel="email"
             />
             <TextInput
               header="Phone"
@@ -150,6 +151,7 @@ const LocalAuthoritySignUp: FC = () => {
                   phone: value,
                 }));
               }}
+              ariaLabel="phone"
             />
             <TextArea
               onChange={(value) => {
@@ -161,16 +163,20 @@ const LocalAuthoritySignUp: FC = () => {
               header="Notes about this user (optional)"
               subHeading="This information can only be seen by Donate to Educate administrators."
               characterLimit={1000}
+              ariaLabel="notes"
             />
             <FormButton
               text={'Create account'}
               theme={'formButtonMidBlue'}
               onClick={(): void => {
                 refetch()
-                  .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
+                  .then(() =>
+                    navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } })
+                  )
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}
+              ariaLabel="create account"
             />
           </div>
         </div>

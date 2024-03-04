@@ -1,3 +1,5 @@
+@use '@assets/global.scss' as g;
+
 .logoGrey {
   height: 20px;
   margin-right: 10px;
@@ -11,4 +13,20 @@
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .linksContainer {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    overflow-y: hidden;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      flex: 1;
+    }
+  }
 }

@@ -33,7 +33,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
-                const checkValue = item in items && name === items[item];
+                const checkValue = items && item in items && name === items[item];
                 return (
                   <li
                     key={`${name}-${item}-edit`}
@@ -42,6 +42,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
                     <Checkbox
                       onChange={(checked) => handleToggle(checked, item, name)}
                       value={checkValue}
+                      ariaLabel={`${name}-${item}-edit`}
                     />
                     <span>{item}</span>
                   </li>

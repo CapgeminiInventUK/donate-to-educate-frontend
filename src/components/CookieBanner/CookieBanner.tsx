@@ -24,6 +24,7 @@ const CookieBanner: FC = () => {
             localStorage.setItem('cookieConsent', 'FALSE');
             setBannerHidden(true);
           }}
+          ariaLabel="decline"
         />
         <Button
           theme="light"
@@ -32,6 +33,7 @@ const CookieBanner: FC = () => {
             localStorage.setItem('cookieConsent', 'TRUE');
             setBannerHidden(true);
           }}
+          ariaLabel="allow"
         />
       </div>
     </>

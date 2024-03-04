@@ -1,6 +1,7 @@
 import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 import {
   CarouselItem,
+  ComponentDataPropsType,
   DropdownOption,
   FormDataItem,
   FormMeta,
@@ -8,6 +9,10 @@ import {
   FormSections,
   FormTemplate,
 } from './data';
+import Paths from '@/config/paths';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
+import { InsertJoinRequestMutationVariables } from './api';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -21,15 +26,16 @@ export type FormButtonThemes =
   | 'formButtonDarkBlue'
   | 'formButtonMidBlue'
   | 'formButtonGrey'
-  | 'formButtonDisabled'
-  | 'formButtonRed';
-
+  | 'formButtonRed'
+  | 'formButtonGreen'
+  | 'formButtonDisabled';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface FormButtonProps {
@@ -38,6 +44,9 @@ export interface FormButtonProps {
   text: string | JSX.Element;
   useArrow?: boolean;
   fullWidth?: boolean;
+  className?: string;
+  disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface ImageProps {
@@ -63,11 +72,23 @@ export interface SvgProps {
   height?: string;
   width?: string;
 }
-
+export interface EditDescriptionProps {
+  value: string;
+  setValue: (val: string) => void;
+  handleSave: () => void;
+  handleCancel: () => void;
+}
 export interface BackLinkProps {
   route: string;
 }
-
+export interface ContentType {
+  items: string;
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+}
 export interface HeaderProps {
   text: string;
   className?: string;
@@ -85,10 +106,32 @@ export interface CookiesSelection {
 
 export interface NavLinksProps {
   theme: Themes;
-  activeClassName?: string;
   className?: string;
-  buttonClassName?: string;
   linkClassName?: string;
+  buttonClassName?: string;
+  activeClassName?: string;
+  onLinkClicked?: () => void;
+}
+
+export interface RouteProp {
+  path: Paths;
+  name: string;
+}
+
+export interface Route {
+  path: Paths;
+  element: JSX.Element;
+  name?: string;
+  redirectRoute?: string;
+  requiresAuth?: boolean;
+}
+
+export interface NavLinkProps {
+  path: Paths;
+  name: string;
+  theme: Themes;
+  childRoutes?: Route[];
+  onLinkClicked?: () => void;
 }
 
 export interface ClickableLogoProps {
@@ -100,9 +143,10 @@ export interface CheckboxProps {
   label?: string;
   className?: string;
   formMeta?: FormMeta;
-  onChange?: (value: boolean) => void;
+  onChange?: (value: boolean, formMeta: FormMeta | undefined) => void;
   initialValue?: boolean;
   value?: boolean;
+  ariaLabel: string;
 }
 
 export interface CheckmarkProps {
@@ -117,6 +161,7 @@ export interface RadioButtonProps {
   checked: boolean;
   label?: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export interface RadioGroupProps {
@@ -125,6 +170,7 @@ export interface RadioGroupProps {
   labels?: string[];
   className?: string;
   formMeta?: FormMeta;
+  handleChange?: (input: string) => void;
 }
 export interface InfoTileProps {
   colour: 'lightBlue' | 'midBlue' | 'darkBlue';
@@ -148,11 +194,12 @@ export interface CommonInputProps {
   header?: string;
   subHeading?: string;
   placeholder?: string;
-  onChange?: (value: string, meta?: FormMeta) => void;
+  onChange?: (value: string, meta?: FormMeta, fullValue?: Record<string, unknown>) => void;
   formMeta?: FormMeta;
   value?: string;
   disabled?: boolean;
   errorMessage?: string;
+  ariaLabel: string;
 }
 
 export interface TextInputProps extends CommonInputProps {
@@ -164,7 +211,21 @@ export interface TextInputProps extends CommonInputProps {
 export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];
+  pageNumber: number;
+  setPageNumber: Dispatch<SetStateAction<number>>;
+  setHappyPathTemplate?: () => void;
   isLoading?: boolean;
+  onChange: (
+    value: string | number | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, unknown>
+  ) => void;
+  isSchoolRegistered?: boolean;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<GraphQLResult<GraphQLQuery<InsertJoinRequestMutationVariables>>, Error>
+  >;
 }
 export interface DropdownProps extends CommonInputProps {
   options: DropdownOption[];
@@ -181,6 +242,7 @@ export interface ExternalLinkProps {
   linkText: string;
   linkUrl: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export type InternalLinkProps = ExternalLinkProps;
@@ -233,4 +295,9 @@ export interface AdminActionTileProps {
   heading: string;
   icon: JSX.Element;
   onClick: () => void;
+}
+
+export interface AddressInsetProps {
+  formData: FormDataItem[];
+  componentData: ComponentDataPropsType;
 }

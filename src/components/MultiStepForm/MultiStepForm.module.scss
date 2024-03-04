@@ -23,7 +23,6 @@
   }
 
   .errorMessage {
-    color: g.$error-red;
     font-weight: 700;
     color: g.$error-red;
     margin-top: 0;
@@ -40,7 +39,7 @@
   .headerContainer {
     margin: 0 0 40px;
     color: g.$primary-dark-blue;
-    font-family: Poppins;
+    font-family: 'Poppins', sans-serif;
 
     .header {
       font-size: 32px;
@@ -85,9 +84,14 @@
     > div {
       padding-bottom: 0;
     }
+  }
 
-    .link {
-      margin-top: 40px;
+  .link {
+    margin-top: 40px;
+
+    button {
+      color: g.$primary-dark-blue;
+      padding: 0;
     }
   }
 
@@ -104,6 +108,18 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
+  }
+
+  .returnHomeLinkUnhappy {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+      color: g.$primary-dark-blue;
+      padding: 0;
+      margin-bottom: 40px;
+    }
   }
 }
 

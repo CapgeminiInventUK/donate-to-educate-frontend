@@ -26,47 +26,34 @@ interface ConfirmSignUpParameters {
 }
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
-  try {
-    const { isSignUpComplete, userId, nextStep } = await confirmSignUp({
-      username: email,
-      confirmationCode: code,
-    });
-    console.log(userId, nextStep, isSignUpComplete);
-    return nextStep.signUpStep;
-  } catch (error) {
-    console.log('error signing up:', error);
-  }
-
-  return 'FAILED';
+  const { isSignUpComplete, userId, nextStep } = await confirmSignUp({
+    username: email,
+    confirmationCode: code,
+  });
+  console.log(userId, nextStep, isSignUpComplete);
+  return nextStep.signUpStep;
 }
 
 async function handleSignUp({ email, password, type }: SignUpParameters): Promise<string> {
-  try {
-    const lowercaseEmail = email.toLowerCase();
-    const { isSignUpComplete, userId, nextStep } = await signUp({
-      username: lowercaseEmail,
-      password,
-      options: {
-        userAttributes: {
-          email: lowercaseEmail,
-          'custom:type': type,
-        },
+  const lowercaseEmail = email.toLowerCase();
+  const { isSignUpComplete, userId, nextStep } = await signUp({
+    username: lowercaseEmail,
+    password,
+    options: {
+      userAttributes: {
+        email: lowercaseEmail,
+        'custom:type': type,
       },
-    });
+    },
+  });
 
-    console.log(userId, nextStep, isSignUpComplete);
-    return nextStep.signUpStep;
-
-    // confirmSignUp(email)
-  } catch (error) {
-    console.log('error signing up:', error);
-  }
-
-  return 'FAILED';
+  console.log(userId, nextStep, isSignUpComplete);
+  return nextStep.signUpStep;
 }
 
 const NewUser: FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const [password, setPassword] = useState('');
   const [step, setStep] = useState('SIGN_UP');
   const [verificationCode, setVerificationCode] = useState('');
@@ -94,7 +81,9 @@ const NewUser: FC = () => {
       if (email && type) {
         handleSignUp({ email, password, type })
           .then((step) => setStep(step))
-          .catch(console.error);
+          .catch((error: Error) => {
+            setError(error.message.replace('Password did not conform with policy: ', ''));
+          });
         setSubmitted(false);
       }
     }
@@ -106,7 +95,9 @@ const NewUser: FC = () => {
       if (email) {
         handleConfirmSignUp({ email, code: verificationCode })
           .then((step) => setStep(step))
-          .catch(console.error);
+          .catch((error: Error) => {
+            setError(error.message);
+          });
         setSubmitCode(false);
       }
     }
@@ -114,6 +105,7 @@ const NewUser: FC = () => {
 
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
+    // TODO auto sign in?
     return <Navigate to={Paths.LOGIN} />;
   }
 
@@ -133,18 +125,21 @@ const NewUser: FC = () => {
         {step === 'SIGN_UP' && (
           <>
             <h2>Create user</h2>
-            <TextInput header="Email" value={email} disabled />
+            <TextInput header="Email" value={email} disabled ariaLabel="email" />
             <TextInput
               header="Password"
               password
               onChange={(value): void => {
                 setPassword(value);
               }}
+              errorMessage={error}
+              ariaLabel="password"
             />
             <FormButton
               theme={'formButtonDarkBlue'}
               onClick={(): void => setSubmitted(true)}
               text={'Create user'}
+              ariaLabel="createUser"
             />
           </>
         )}
@@ -168,6 +163,7 @@ const NewUser: FC = () => {
                   setSubmitCode(true);
                 }
               }}
+              ariaLabel="next"
             />
           </>
         )}

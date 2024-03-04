@@ -18,7 +18,11 @@ import { SchoolOrCharityProperties } from '../AdminDashboard';
 const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
   const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
-    useState<SchoolOrCharityProperties>({ name: '', la: '' });
+    useState<SchoolOrCharityProperties>({
+      name: '',
+      la: '',
+      user: { name: '', title: '', email: '', phone: '' },
+    });
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
@@ -49,16 +53,14 @@ const Requests: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}
           {!isLoading && stage === 'view_requests' && (
             <>
-              <BackButton
-                onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-                theme="white"
-              />
+              <BackButton theme="white" />
               <JoinRequests
                 setStage={setStage}
                 data={data}
@@ -72,6 +74,7 @@ const Requests: FC = () => {
               type="school"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
             />
           )}
           {!isLoading && stage === 'request_approval_charity' && (
@@ -80,6 +83,8 @@ const Requests: FC = () => {
               type="charity"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
+              charity={schoolOrCharityProperties.charity}
             />
           )}
         </div>

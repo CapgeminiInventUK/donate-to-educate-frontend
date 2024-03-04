@@ -1,0 +1,89 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+
+    .title {
+      padding-top: 0;
+    }
+
+    a {
+      color: g.$primary-mid-blue;
+      text-decoration: underline;
+    }
+
+    h1 {
+      padding: 66px 0 26px;
+      margin: 0;
+    }
+
+    h3 {
+      margin-top: 60px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .card {
+      @include g.card;
+      padding: 40px 80px;
+      margin-top: 40px;
+
+      color: g.$primary-dark-blue;
+    }
+
+    .inventBanner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      padding: 40px 0;
+      border-radius: 10px;
+      margin-top: 40px;
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    .inventLogo {
+      cursor: pointer;
+    }
+
+    .home {
+      width: fit-content;
+      display: block;
+      margin: auto;
+      color: g.$primary-dark-blue;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 160%; /* 25.6px */
+      text-decoration-line: underline;
+      margin-top: 40px;
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .inventLogo {
+    width: 225px;
+  }
+}
+
+@media only screen and (max-width: g.$screen-small) {
+  .inventBanner {
+    margin: 0 20px;
+
+    .inventLogo {
+      width: 200px;
+    }
+  }
+}

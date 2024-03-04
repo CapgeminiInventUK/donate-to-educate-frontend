@@ -15,6 +15,15 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
     __typename
   }
 }
@@ -26,6 +35,15 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
     __typename
   }
 }
@@ -37,10 +55,42 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     localAuthority
     postcode
     registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
     __typename
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolsQueryVariables, APITypes.GetSchoolsQuery>;
+export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
+  getRegisteredSchools {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetRegisteredSchoolsQueryVariables,
+  APITypes.GetRegisteredSchoolsQuery
+>;
 export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
   getLocalAuthorities {
     code
@@ -58,19 +108,66 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     requestTime
     status
     email
+    school
+    jobTitle
+    phone
+    charityName
+    charityAddress
+    aboutCharity
     __typename
   }
 }
 ` as GeneratedQuery<APITypes.GetJoinRequestsQueryVariables, APITypes.GetJoinRequestsQuery>;
 export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: String!) {
   getSchoolProfile(name: $name) {
-    request
-    donate
-    excess
+    request {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+      __typename
+    }
+    donate {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+      __typename
+    }
+    excess {
+      items
+      banner
+      helpBannerTitle
+      helpBannerBody
+      whatToExpect
+      actionText
+      __typename
+    }
     __typename
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser($email: String!) {
+  getLocalAuthorityUser(email: $email) {
+    name
+    firstName
+    lastName
+    jobTitle
+    department
+    email
+    phone
+    notes
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetLocalAuthorityUserQueryVariables,
+  APITypes.GetLocalAuthorityUserQuery
+>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id
@@ -80,3 +177,24 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;
+export const getSchoolsNearby =
+  /* GraphQL */ `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
+  getSchoolsNearby(postcode: $postcode, distance: $distance) {
+    urn
+    name
+    localAuthority
+    postcode
+    registered
+    isLocalAuthorityRegistered
+    address3
+    county
+    locality
+    street
+    phone
+    town
+    website
+    distance
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolsNearbyQueryVariables, APITypes.GetSchoolsNearbyQuery>;

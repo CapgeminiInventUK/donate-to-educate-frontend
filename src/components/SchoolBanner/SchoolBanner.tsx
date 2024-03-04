@@ -8,6 +8,7 @@ import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { SchoolBannerProps } from '@/types/props';
 import EditIcon from '@/assets/school/EditIcon';
+import { Link } from 'react-router-dom';
 
 export const SchoolBanner: FC<SchoolBannerProps> = ({
   isAdminView = false,

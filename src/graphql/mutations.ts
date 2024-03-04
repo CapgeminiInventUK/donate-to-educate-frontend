@@ -56,11 +56,84 @@ export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   APITypes.UpdateJoinRequestMutationVariables,
   APITypes.UpdateJoinRequestMutation
 >;
+export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
+  $name: String!
+  $localAuthority: String!
+  $type: String!
+  $email: String!
+  $school: String
+  $jobTitle: String
+  $phone: String
+  $charityName: String
+  $charityAddress: String
+  $aboutCharity: String
+) {
+  insertJoinRequest(
+    name: $name
+    localAuthority: $localAuthority
+    type: $type
+    email: $email
+    school: $school
+    jobTitle: $jobTitle
+    phone: $phone
+    charityName: $charityName
+    charityAddress: $charityAddress
+    aboutCharity: $aboutCharity
+  )
+}
+` as GeneratedMutation<
+  APITypes.InsertJoinRequestMutationVariables,
+  APITypes.InsertJoinRequestMutation
+>;
+export const insertLocalAuthorityRegisterRequest =
+  /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
+  $name: String!
+  $email: String!
+  $message: String!
+) {
+  insertLocalAuthorityRegisterRequest(
+    name: $name
+    email: $email
+    message: $message
+  )
+}
+` as GeneratedMutation<
+    APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
+    APITypes.InsertLocalAuthorityRegisterRequestMutation
+  >;
 export const insertSignUpData =
-  /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!) {
-  insertSignUpData(id: $id, email: $email)
+  /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!, $type: String!) {
+  insertSignUpData(id: $id, email: $email, type: $type)
 }
 ` as GeneratedMutation<
     APITypes.InsertSignUpDataMutationVariables,
     APITypes.InsertSignUpDataMutation
+  >;
+export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
+  $name: String!
+  $email: String!
+  $type: String!
+  $message: String!
+  $who: String!
+  $phone: String!
+  $connection: String
+) {
+  insertItemQuery(
+    name: $name
+    email: $email
+    type: $type
+    message: $message
+    who: $who
+    phone: $phone
+    connection: $connection
+  )
+}
+` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
+export const deleteDeniedJoinRequest =
+  /* GraphQL */ `mutation DeleteDeniedJoinRequest($name: String!) {
+  deleteDeniedJoinRequest(name: $name)
+}
+` as GeneratedMutation<
+    APITypes.DeleteDeniedJoinRequestMutationVariables,
+    APITypes.DeleteDeniedJoinRequestMutation
   >;

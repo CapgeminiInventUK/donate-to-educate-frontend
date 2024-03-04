@@ -9,6 +9,7 @@ const RadioButton: FC<RadioButtonProps> = ({
   onChange,
   checked,
   className,
+  ariaLabel,
 }) => {
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.id;
@@ -24,6 +25,7 @@ const RadioButton: FC<RadioButtonProps> = ({
         id={value}
         checked={checked}
         onChange={handleRadioChange}
+        aria-label={ariaLabel}
       />
       <label htmlFor={value}>
         <span>{label}</span>

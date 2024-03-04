@@ -17,6 +17,12 @@ export type JoinRequest = {
   requestTime: number;
   status: string;
   email: string;
+  school?: string | null;
+  jobTitle?: string | null;
+  phone?: string | null;
+  charityName?: string | null;
+  charityAddress?: string | null;
+  aboutCharity?: string | null;
 };
 
 export type School = {
@@ -26,13 +32,44 @@ export type School = {
   localAuthority: string;
   postcode?: string | null;
   registered: boolean;
+  isLocalAuthorityRegistered?: boolean | null;
+  address3?: string | null;
+  county?: string | null;
+  locality?: string | null;
+  street?: string | null;
+  phone?: string | null;
+  town?: string | null;
+  website?: string | null;
+  distance?: string | null;
 };
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
-  request?: string | null;
-  donate?: string | null;
-  excess?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+};
+
+export type ProfileItems = {
+  __typename: 'ProfileItems';
+  items: string;
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: string;
+  whatToExpect: string;
+  actionText: string;
+};
+
+export type LocalAuthorityUser = {
+  __typename: 'LocalAuthorityUser';
+  name: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  department: string;
+  email: string;
+  phone: string;
+  notes?: string | null;
 };
 
 export type SignUpData = {
@@ -57,6 +94,33 @@ export type getAdminPageRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
+  }>;
+};
+
+export type getSchoolsAndLocalAuthoritiesQueryVariables = {};
+
+export type getSchoolsAndLocalAuthoritiesQuery = {
+  getLocalAuthorities: Array<{
+    __typename: 'LocalAuthority';
+    code: string;
+    name: string;
+    registered: boolean;
+  }>;
+  getSchools: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
   }>;
 };
 
@@ -95,13 +159,63 @@ export type UpdateJoinRequestMutation = {
   updateJoinRequest: boolean;
 };
 
+export type InsertJoinRequestMutationVariables = {
+  name: string;
+  localAuthority: string;
+  type: string;
+  email: string;
+  school?: string | null;
+  jobTitle?: string | null;
+  phone?: string | null;
+  charityName?: string | null;
+  charityAddress?: string | null;
+  aboutCharity?: string | null;
+};
+
+export type InsertJoinRequestMutation = {
+  insertJoinRequest: boolean;
+};
+
+export type InsertLocalAuthorityRegisterRequestMutationVariables = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+export type InsertLocalAuthorityRegisterRequestMutation = {
+  insertLocalAuthorityRegisterRequest: boolean;
+};
+
 export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
+  type: string;
 };
 
 export type InsertSignUpDataMutation = {
   insertSignUpData: boolean;
+};
+
+export type InsertItemQueryMutationVariables = {
+  name: string;
+  email: string;
+  type: string;
+  message: string;
+  who: string;
+  phone: string;
+  connection?: string | null;
+};
+
+export type InsertItemQueryMutation = {
+  insertItemQuery: boolean;
+};
+
+export type DeleteDeniedJoinRequestMutationVariables = {
+  name: string;
+};
+
+export type DeleteDeniedJoinRequestMutation = {
+  deleteDeniedJoinRequest: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -116,6 +230,15 @@ export type GetSchoolByNameQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
   };
 };
 
@@ -131,6 +254,15 @@ export type GetSchoolsByLaQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
   }>;
 };
 
@@ -144,6 +276,37 @@ export type GetSchoolsQuery = {
     localAuthority: string;
     postcode?: string | null;
     registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
+  }>;
+};
+
+export type GetRegisteredSchoolsQueryVariables = {};
+
+export type GetRegisteredSchoolsQuery = {
+  getRegisteredSchools: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
   }>;
 };
 
@@ -169,6 +332,12 @@ export type GetJoinRequestsQuery = {
     requestTime: number;
     status: string;
     email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
   }>;
 };
 
@@ -179,9 +348,51 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile: {
     __typename: 'SchoolProfile';
-    request?: string | null;
-    donate?: string | null;
-    excess?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items: string;
+      banner: string;
+      helpBannerTitle: string;
+      helpBannerBody: string;
+      whatToExpect: string;
+      actionText: string;
+    } | null;
+  };
+};
+
+export type GetLocalAuthorityUserQueryVariables = {
+  email: string;
+};
+
+export type GetLocalAuthorityUserQuery = {
+  getLocalAuthorityUser: {
+    __typename: 'LocalAuthorityUser';
+    name: string;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    department: string;
+    email: string;
+    phone: string;
+    notes?: string | null;
   };
 };
 
@@ -196,4 +407,29 @@ export type GetSignUpDataQuery = {
     email: string;
     type: string;
   } | null;
+};
+
+export type GetSchoolsNearbyQueryVariables = {
+  postcode: string;
+  distance: number;
+};
+
+export type GetSchoolsNearbyQuery = {
+  getSchoolsNearby: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
+  }>;
 };

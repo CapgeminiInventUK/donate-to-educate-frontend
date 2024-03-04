@@ -24,13 +24,11 @@ const ViewLocalAuthority: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton
-            onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-            theme="white"
-          />
+          <BackButton theme="white" />
         </div>
       </div>
     </div>

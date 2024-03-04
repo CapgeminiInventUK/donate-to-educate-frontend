@@ -14,6 +14,15 @@ import styles from './AdminDashboard.module.scss';
 export interface SchoolOrCharityProperties {
   name: string;
   la: string;
+  user: RequestUser;
+  charity?: { mainAddress: string; about: string };
+}
+
+export interface RequestUser {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
 }
 
 // Need to make this a protected route only for logged in users of type admin.
@@ -68,6 +77,7 @@ const AdminDashboard: FC = () => {
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}
+              ariaLabel="sign out"
             />
           </div>
         </div>
@@ -106,7 +116,7 @@ const AdminDashboard: FC = () => {
               isLoading={isLoading}
               title="Manage registered schools"
               body="View, add and edit registered schools."
-              onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS_SCHOOL)}
+              onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS)}
               stats={<>0 joined</>}
               className="schools"
             />
@@ -114,7 +124,7 @@ const AdminDashboard: FC = () => {
               isLoading={isLoading}
               title="Manage registered charities and volunteers"
               body="View, add and edit registered charities and volunteers."
-              onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS_CHARITY)}
+              onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES)}
               stats={<>0 joined</>}
               className="charities"
             />

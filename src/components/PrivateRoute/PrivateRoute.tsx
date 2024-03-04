@@ -3,12 +3,16 @@ import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import { Navigate } from 'react-router';
 
 interface Props {
-  route: string;
+  route?: string;
   children: ReactNode;
 }
 const PrivateRoute: FC<Props> = ({ route, children }) => {
   const [lastCheck, setLastCheck] = useState<boolean>();
   const { isLoggedIn } = useCheckCurrentUser();
+
+  if (!route) {
+    return children;
+  }
 
   if (!isLoggedIn && isLoggedIn !== lastCheck) {
     setLastCheck(isLoggedIn);

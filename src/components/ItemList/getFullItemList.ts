@@ -4,8 +4,6 @@ export interface ItemList {
   name: SectionsIconType;
   items: string[];
 }
-[];
-
 export const getFullItemList = (): ItemList[] => {
   return [
     {
