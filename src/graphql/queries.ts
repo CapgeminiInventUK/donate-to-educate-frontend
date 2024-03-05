@@ -113,6 +113,23 @@ export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: Str
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser($email: String!) {
+  getLocalAuthorityUser(email: $email) {
+    name
+    firstName
+    lastName
+    jobTitle
+    department
+    email
+    phone
+    notes
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetLocalAuthorityUserQueryVariables,
+  APITypes.GetLocalAuthorityUserQuery
+>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id

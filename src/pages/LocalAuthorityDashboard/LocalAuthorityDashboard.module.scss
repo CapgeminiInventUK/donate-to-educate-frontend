@@ -1,6 +1,23 @@
 @use '@assets/global.scss' as g;
 
+$padding: 0px 20px;
+
 .container {
   @include g.page-container;
   padding: 48px 50px;
+
+  h1 {
+    color: g.$dark-blue;
+    padding: $padding;
+  }
+}
+
+.adminCard {
+  @include g.admin-card;
+}
+
+.body {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: $padding;
 }
