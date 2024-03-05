@@ -8,7 +8,6 @@ import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { SchoolBannerProps } from '@/types/props';
 import EditIcon from '@/assets/school/EditIcon';
-import { Link } from 'react-router-dom';
 
 export const SchoolBanner: FC<SchoolBannerProps> = ({
   isAdminView = false,
@@ -59,6 +58,7 @@ export const SchoolBanner: FC<SchoolBannerProps> = ({
                     <InterfaceArrowTopRight className={styles.interfaceArrow} />
                   </div>
                 }
+                ariaLabel="uniform policy"
                 onClick={() => null}
               />
             ) : (
@@ -79,6 +79,7 @@ export const SchoolBanner: FC<SchoolBannerProps> = ({
                 theme="light"
                 className={styles.editButton}
                 onClick={() => null}
+                ariaLabel="edit"
               ></Button>
             </li>
           )}

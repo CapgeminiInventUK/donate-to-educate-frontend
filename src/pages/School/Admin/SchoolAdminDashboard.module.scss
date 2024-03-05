@@ -35,6 +35,13 @@
         background: g.$primary-dark-blue;
         margin-top: 25px;
       }
+
+      .actionButtons {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
+        margin-left: 5px;
+      }
     }
   }
 }

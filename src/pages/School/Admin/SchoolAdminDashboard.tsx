@@ -8,6 +8,7 @@ import ExtraStock from '@/assets/school/ExtraStock';
 import InformationTile from '@/components/InformationTile/InformationTile';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
 import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
+import FormButton from '@/components/FormButton/FormButton';
 
 const SchoolAdminDashboard: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -66,6 +67,18 @@ const SchoolAdminDashboard: FC = () => {
               heading="Let charities take your extra stock to share with the community"
               icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
               onClick={() => null}
+            />
+          </div>
+          <div className={styles.actionButtons}>
+            <FormButton
+              theme="formButtonGreen"
+              text="Save profile and continue"
+              ariaLabel="save profile and continue"
+            />
+            <FormButton
+              theme="formButtonMidBlue"
+              text="Preview profile"
+              ariaLabel="preview profile"
             />
           </div>
         </div>
