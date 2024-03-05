@@ -69,8 +69,8 @@ export interface SvgProps {
   className?: string;
   onClick?: () => void;
   colour?: string;
-  height?: number;
-  width?: number;
+  height?: string;
+  width?: string;
 }
 export interface EditDescriptionProps {
   value: string;
@@ -269,6 +269,32 @@ export interface SummaryProps {
   header: string;
   body: string[];
   logo?: JSX.Element;
+}
+
+export interface SchoolBannerProps {
+  isAdminView?: boolean;
+  phoneNumber?: string;
+  emailAddress?: string;
+  website?: string;
+  uniformPolicy?: string;
+  onClick?: () => void;
+}
+
+export interface InformationTileProps {
+  heading: string;
+  subtext: string;
+}
+
+export interface EditableInformationTileProps extends InformationTileProps {
+  onClick: () => void;
+  saveOnClick: () => void;
+  isEditing: boolean;
+}
+
+export interface AdminActionTileProps {
+  heading: string;
+  icon: JSX.Element;
+  onClick: () => void;
 }
 
 export interface AddressInsetProps {

@@ -21,6 +21,7 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  SchoolAdminDashboard,
   Join,
   LocalAuthorityJoinInfo,
   FindYourCommunity,
@@ -119,6 +120,12 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_VIEW,
     element: <AdminDashboardViewLocalAuthority />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_SCHOOL,
+    element: <SchoolAdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
   },

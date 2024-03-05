@@ -1,0 +1,16 @@
+@use '@assets/global.scss' as g;
+
+.cancel {
+  color: g.$primary-mid-blue;
+  font-family: Poppins;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration-line: underline;
+
+  background: none;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

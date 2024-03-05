@@ -1,0 +1,9 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  display: flex;
+  padding: 2.5rem;
+  flex-direction: column;
+  border-radius: 0.625rem;
+  background: g.$help-grey;
+}

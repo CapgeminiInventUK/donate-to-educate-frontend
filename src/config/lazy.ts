@@ -38,6 +38,8 @@ const AdminDashboardManageCharities = lazy(
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
+
+const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
 const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/SchoolEdit'));
 const SchoolContactConfirmation = lazy(
@@ -89,6 +91,7 @@ export {
   ResetPassword,
   AddUser,
   LocalAuthorityDashboard,
+  SchoolAdminDashboard,
   SchoolEdit,
   SchoolsDashboard,
   Join,
