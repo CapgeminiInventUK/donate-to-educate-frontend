@@ -1,27 +1,47 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import styles from './SignUpSchool.module.scss';
 import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
-import { DropdownOption, FormDataItem, FormMeta, FormTemplate } from '@/types/data';
+import {
+  DropdownOption,
+  FormDataItem,
+  FormMeta,
+  FormNames,
+  FormTemplate,
+  SubmittedFormData,
+} from '@/types/data';
 import getHappyPath from './happyPath';
 import getCannotFindSchoolPath from './cannotFindSchoolPath';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsQuery } from '@/types/api';
+import { GetSchoolsQuery, InsertJoinRequestMutationVariables } from '@/types/api';
 import { client } from '@/graphqlClient';
 import getAuthorityNotRegisteredPath from './authorityNotRegistered';
-import { getSchools } from '@/graphql/queries';
+import { insertJoinRequest } from '@/graphql/mutations';
+import { checkYourAnswersDataMap, getFormDataForSubmission } from '@/utils/formUtils';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
   const [formTemplate, setFormTemplate] = useState<FormTemplate[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
+  const [isSchoolRegistered, setIsSchoolRegistered] = useState(false);
+  const [selectedLocalAuthority, setSelectedLocalAuthority] = useState('');
+  const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['sc'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
-        query: getSchools,
+        query: `query GetSchools {
+          getSchools {
+            urn
+            name
+            localAuthority
+            postcode
+            registered
+            isLocalAuthorityRegistered
+          }
+        }`,
       });
 
       return data;
@@ -32,11 +52,35 @@ const SignUpSchool: FC = () => {
     throw new Error('Failed to fetch Schools data.');
   }
 
+  const { refetch } = useQuery({
+    queryKey: ['register'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
+        query: insertJoinRequest,
+        variables: {
+          name: formDataForSubmission?.name,
+          localAuthority: selectedLocalAuthority,
+          type: 'school',
+          email: formDataForSubmission?.email,
+          school: formDataForSubmission?.school,
+          jobTitle: formDataForSubmission?.jobTitle,
+          phone: formDataForSubmission?.phone,
+          charityName: formDataForSubmission?.charityName,
+          charityAddress: formDataForSubmission?.charityAddress,
+          aboutCharity: formDataForSubmission?.aboutCharity,
+        },
+      });
+      return result;
+    },
+  });
+
   useEffect(() => {
     const options = data?.getSchools.map(
       ({ urn, name, localAuthority, isLocalAuthorityRegistered, postcode, registered }) => ({
         value: urn,
-        label: name,
+        label: `${name} - ${postcode}`,
+        name,
         localAuthority,
         isLocalAuthorityRegistered,
         postcode,
@@ -72,11 +116,23 @@ const SignUpSchool: FC = () => {
     if (!formData[0]?.fullValue) {
       return;
     }
-    if (!formData[0]?.fullValue?.isLocalAuthorityRegistered) {
+    const {
+      fullValue: { isLocalAuthorityRegistered, registered, localAuthority },
+    } = formData[0];
+    if (!isLocalAuthorityRegistered) {
       authorityNotRegistered();
     } else {
       setHappyPathTemplate();
     }
+    if (localAuthority) {
+      setSelectedLocalAuthority(String(localAuthority));
+    }
+    if (pageNumber === 4) {
+      const refinedData = checkYourAnswersDataMap(FormNames.SCHOOL, formData);
+      refinedData &&
+        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.SCHOOL));
+    }
+    setIsSchoolRegistered(!!registered);
   }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate]);
 
   useEffect(() => {
@@ -101,6 +157,8 @@ const SignUpSchool: FC = () => {
           setPageNumber={setPageNumber}
           isLoading={isLoading}
           onChange={onChange}
+          isSchoolRegistered={isSchoolRegistered}
+          refetch={refetch}
         />
       )}
     </div>

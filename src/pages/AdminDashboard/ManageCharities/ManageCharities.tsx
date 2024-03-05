@@ -140,6 +140,7 @@ const ManageCharities: FC = () => {
             className={styles.actionButtons}
             text="Remove"
             onClick={(): void => undefined}
+            ariaLabel="remove"
           />
         </div>
       ),
@@ -161,6 +162,7 @@ const ManageCharities: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>

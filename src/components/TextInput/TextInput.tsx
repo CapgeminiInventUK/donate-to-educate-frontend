@@ -15,6 +15,7 @@ const TextInput: FC<TextInputProps> = ({
   value,
   disabled = false,
   errorMessage,
+  ariaLabel,
 }) => {
   const [inputType, setInputType] = useState('password');
 
@@ -50,6 +51,7 @@ const TextInput: FC<TextInputProps> = ({
         placeholder={placeholder ?? ''}
         disabled={disabled}
         required={!header?.includes('optional')}
+        aria-label={ariaLabel}
       />
     </div>
   );

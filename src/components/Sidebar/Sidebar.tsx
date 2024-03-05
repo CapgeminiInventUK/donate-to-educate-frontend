@@ -40,6 +40,7 @@ const Sidebar: FC = () => {
               Donate
             </div>
           }
+          ariaLabel="donate"
           onClick={(): void => navigate(Paths.DONATE)}
           className={`${styles.hide400} ${styles.hidden}`}
           disabled

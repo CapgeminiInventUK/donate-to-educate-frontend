@@ -13,14 +13,15 @@ export const EditDescription: FC<EditDescriptionProps> = ({
 }) => {
   return (
     <>
-      <TextArea characterLimit={1000} value={value} onChange={setValue} />
+      <TextArea characterLimit={1000} value={value} onChange={setValue} ariaLabel="edit" />
       <div className={styles.actionContainer}>
-        <FormButton text={'Save'} onClick={handleSave} theme="formButtonGreen" />
+        <FormButton text={'Save'} onClick={handleSave} theme="formButtonGreen" ariaLabel="save" />
         <Button
           theme="link"
           className={styles.cancelButton}
           text={'Cancel'}
           onClick={handleCancel}
+          ariaLabel="cancel"
         />
       </div>
     </>

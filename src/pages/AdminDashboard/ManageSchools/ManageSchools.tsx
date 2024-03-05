@@ -61,6 +61,7 @@ const ManageSchools: FC = () => {
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
+          aria-label="search input"
         />
         <Space>
           <SearchButton
@@ -69,6 +70,7 @@ const ManageSchools: FC = () => {
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
+            aria-label="search"
           >
             Search
           </SearchButton>
@@ -76,6 +78,7 @@ const ManageSchools: FC = () => {
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
+            aria-label="reset"
           >
             Reset
           </SearchButton>
@@ -85,6 +88,7 @@ const ManageSchools: FC = () => {
             onClick={() => {
               close();
             }}
+            aria-label="close"
           >
             Close
           </SearchButton>
@@ -137,6 +141,7 @@ const ManageSchools: FC = () => {
             className={styles.actionButtons}
             text="Remove"
             onClick={(): void => undefined}
+            ariaLabel="remove"
           />
         </div>
       ),
@@ -158,6 +163,7 @@ const ManageSchools: FC = () => {
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>

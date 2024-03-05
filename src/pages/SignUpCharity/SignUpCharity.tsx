@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SignUpCharity.module.scss';
 import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
 import {
@@ -8,19 +8,24 @@ import {
   FormNames,
   FormSections,
   FormTemplate,
+  SubmittedFormData,
 } from '@/types/data';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import { client } from '@/graphqlClient';
-import { GetLocalAuthoritiesQuery } from '@/types/api';
+import { GetLocalAuthoritiesQuery, InsertJoinRequestMutationVariables } from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { getLocalAuthorities } from '@/graphql/queries';
+import { checkYourAnswersDataMap, getFormDataForSubmission } from '@/utils/formUtils';
+import { insertJoinRequest } from '@/graphql/mutations';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
+  const [selectedLocalAuthority, setSelectedLocalAuthority] = useState('');
+  const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
 
   const onChange = (value: string | number | boolean, formMeta: FormMeta | undefined): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
@@ -43,10 +48,42 @@ const SignUpCharity: FC = () => {
     throw new Error('Failed to fetch LocalAuthorities data.');
   }
 
+  const { refetch } = useQuery({
+    queryKey: ['register'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
+        query: insertJoinRequest,
+        variables: {
+          name: formDataForSubmission?.name,
+          localAuthority: selectedLocalAuthority,
+          type: 'charity',
+          email: formDataForSubmission?.email,
+          school: formDataForSubmission?.school,
+          jobTitle: formDataForSubmission?.jobTitle,
+          phone: formDataForSubmission?.phone,
+          charityName: formDataForSubmission?.charityName,
+          charityAddress: formDataForSubmission?.charityAddress,
+          aboutCharity: formDataForSubmission?.aboutCharity,
+        },
+      });
+      return result;
+    },
+  });
+
   const options = data?.getLocalAuthorities.map(({ code, name }) => ({
     value: code,
     label: name,
   }));
+
+  useEffect(() => {
+    if (pageNumber === 6) {
+      const refinedData = checkYourAnswersDataMap(FormNames.CHARITY, formData);
+      refinedData &&
+        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.CHARITY));
+    }
+    formData[1]?.value && setSelectedLocalAuthority(String(formData[1].value));
+  }, [pageNumber, formData]);
 
   const formTemplate: FormTemplate[] = [
     {
@@ -80,6 +117,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'name',
             isLarge: true,
             formMeta: {
               page: 1,
@@ -96,6 +134,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.DROPDOWN,
           componentData: {
+            ariaLabel: 'main local council',
             subHeading: 'If you have locations across the country, choose one main local council.',
             options,
             isLarge: true,
@@ -106,6 +145,7 @@ const SignUpCharity: FC = () => {
             },
           },
           formComponentLink: {
+            ariaLabel: 'find local council',
             linkText: 'Find my local council (opens in a new tab).',
             linkUrl: 'https://www.gov.uk/find-local-council',
           },
@@ -119,6 +159,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'First name',
+            ariaLabel: 'first name',
             isLarge: true,
             formMeta: {
               page: 3,
@@ -131,6 +172,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Last name',
+            ariaLabel: 'last name',
             isLarge: true,
             formMeta: {
               page: 3,
@@ -143,6 +185,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Job title or role',
+            ariaLabel: 'title',
             subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
             isLarge: true,
             formMeta: {
@@ -156,6 +199,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Email',
+            ariaLabel: 'email',
             subHeading:
               "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
             isLarge: true,
@@ -170,6 +214,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Phone',
+            ariaLabel: 'phone',
             formMeta: {
               page: 3,
               field: 'Phone',
@@ -187,6 +232,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Address line 1',
+            ariaLabel: 'address line 1',
             isLarge: true,
             formMeta: {
               page: 4,
@@ -199,6 +245,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Address line 2 (optional)',
+            ariaLabel: 'address line 2 (optional)',
             isLarge: true,
             formMeta: {
               page: 4,
@@ -211,6 +258,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Town or city',
+            ariaLabel: 'town or city',
             formMeta: {
               page: 4,
               field: 'Town',
@@ -222,6 +270,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'County',
+            ariaLabel: 'county',
             formMeta: {
               page: 4,
               field: 'County',
@@ -233,6 +282,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Postcode',
+            ariaLabel: 'postcode',
             isSmall: true,
             formMeta: {
               page: 4,
@@ -249,6 +299,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.TEXTAREA,
           componentData: {
+            ariaLabel: 'about',
             subHeading:
               'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
             hint: 'This information can only be seen by Donate to Educate administrators.',
@@ -282,10 +333,12 @@ const SignUpCharity: FC = () => {
       header: 'This service is [--------]',
       subHeader:
         'Explanation into things like security and how it is one account per supporter [-----------------------]',
+      isDeclarationPage: true,
       formComponents: [
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr statement',
             label: 'GDPR content and statement [---------------]',
             formMeta: {
               page: 6,
@@ -297,6 +350,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr legal understanding',
             label: 'Legal understanding [---------------]',
 
             formMeta: {
@@ -309,6 +363,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr acceptance',
             label: 'I will be administrating the account [---------------]',
             formMeta: {
               page: 6,
@@ -346,6 +401,7 @@ const SignUpCharity: FC = () => {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         onChange={onChange}
+        refetch={refetch}
       />
     </div>
   );

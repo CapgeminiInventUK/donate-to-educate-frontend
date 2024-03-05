@@ -112,9 +112,9 @@ const SchoolEdit: FC = () => {
 
   return (
     <div className={styles.container}>
-      <Button theme="darkBlue" onClick={() => setType('tick')} text="Request" />
-      <Button theme="darkBlue" onClick={() => setType('heart')} text="Donate" />
-      <Button theme="darkBlue" onClick={() => setType('plus')} text="Excess" />
+      <Button theme="darkBlue" onClick={() => setType('tick')} text="Request" ariaLabel="request" />
+      <Button theme="darkBlue" onClick={() => setType('heart')} text="Donate" ariaLabel="donate" />
+      <Button theme="darkBlue" onClick={() => setType('plus')} text="Excess" ariaLabel="excess" />
       <div className={`${styles.banner} ${styles[type]}`}>
         <h2>{content.banner}</h2>
       </div>
@@ -137,6 +137,7 @@ const SchoolEdit: FC = () => {
                       setWhatToExpectTestBeforeEdit(content.whatToExpect);
                       setEditState(true);
                     }}
+                    ariaLabel="edit"
                     theme="formButtonGrey"
                   />
                 </>
@@ -170,6 +171,7 @@ const SchoolEdit: FC = () => {
                       setEditStateActionText(true);
                     }}
                     theme="formButtonGrey"
+                    ariaLabel="edit"
                   />
                 </>
               ) : (
@@ -194,6 +196,7 @@ const SchoolEdit: FC = () => {
                 theme={'formButtonGrey'}
                 onClick={(): void => setPreview(true)}
                 text={'Preview'}
+                ariaLabel="preview"
               />
               <FormButton
                 theme={'formButtonMidBlue'}
@@ -201,6 +204,7 @@ const SchoolEdit: FC = () => {
                   refetch().then(console.log).catch(console.error);
                 }}
                 text={'Save'}
+                ariaLabel="save"
               />
             </div>
           </>
@@ -213,6 +217,7 @@ const SchoolEdit: FC = () => {
                 theme={'formButtonDarkBlue'}
                 onClick={(): void => setPreview(false)}
                 text={'Edit'}
+                ariaLabel="edit"
               />
               <FormButton
                 theme={'formButtonMidBlue'}
@@ -220,6 +225,7 @@ const SchoolEdit: FC = () => {
                   refetch().then(console.log).catch(console.error);
                 }}
                 text={'Save'}
+                ariaLabel="save"
               />
             </div>
           </>

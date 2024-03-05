@@ -22,8 +22,8 @@ const Login: FC = () => {
           </div>
           <p>You can easily sign in or join if you work for:</p>
           <ul>
-            <li>A School</li>
-            <li>A Charity or Voluneer Group</li>
+            <li>A school</li>
+            <li>A charity or volunteer group</li>
           </ul>
           <div className={styles.subContainerLine}>
             <FormButton
@@ -33,6 +33,7 @@ const Login: FC = () => {
               onClick={() => {
                 setSignInState(true);
               }}
+              ariaLabel="sign in"
             />
             <Link className={styles.link} to={Paths.JOIN}>
               Join Donate to Educate

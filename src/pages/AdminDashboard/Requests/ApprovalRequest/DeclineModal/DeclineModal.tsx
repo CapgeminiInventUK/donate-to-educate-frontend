@@ -26,6 +26,7 @@ const DeclineModal: FC<DeclineModalProps> = ({ showModal, setShowModal, doSometh
             theme={'formButtonGrey'}
             onClick={(): void => setShowModal(false)}
             text={'Go back'}
+            ariaLabel="back"
           />
           <FormButton
             theme={'formButtonRed'}
@@ -33,6 +34,7 @@ const DeclineModal: FC<DeclineModalProps> = ({ showModal, setShowModal, doSometh
               setShowModal(false);
               doSomething();
             }}
+            ariaLabel="decline"
             text={'Decline request'}
           />
         </div>

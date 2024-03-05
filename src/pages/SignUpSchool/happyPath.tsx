@@ -38,6 +38,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.DROPDOWN,
           componentData: {
+            ariaLabel: 'school',
             subHeading: "Enter your school's name or postcode.",
             options: schoolOptions,
             isLarge: true,
@@ -50,6 +51,7 @@ const getHappyPath = (
         },
       ],
       formComponentInternalLink: {
+        ariaLabel: 'cannot find school',
         text: 'I cannot find my school',
         onClick: cannotFindSchool,
         theme: 'link',
@@ -61,6 +63,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'first name',
             header: 'First name',
             isLarge: true,
             formMeta: {
@@ -73,6 +76,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'last name',
             header: 'Last name',
             isLarge: true,
             formMeta: {
@@ -85,6 +89,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'title',
             header: 'Job title or role',
             subHeading: 'For example, PTA member, governor or teaching staff.',
             isLarge: true,
@@ -98,6 +103,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'email',
             header: 'Email',
             subHeading:
               "Use your school email address if you're staff, or personal email address if you're a PTA member or parent. You will need this email to sign in.",
@@ -112,6 +118,7 @@ const getHappyPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'phone',
             header: 'Phone',
             formMeta: {
               page: 2,
@@ -131,7 +138,7 @@ const getHappyPath = (
             sections: [FormSections.YOUR_DETAILS_SECTION],
             formName: FormNames.SCHOOL,
             formMeta: {
-              page: 5,
+              page: 3,
             },
           },
         },
@@ -142,13 +149,15 @@ const getHappyPath = (
       header: 'This service is [--------]',
       subHeader:
         'Explanation into things like security and how it is one account per supporter [-----------------------]',
+      isDeclarationPage: true,
       formComponents: [
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr statement',
             label: 'GDPR content and statement [---------------]',
             formMeta: {
-              page: 6,
+              page: 4,
               field: 'GDPR content and statement [---------------]',
             },
           },
@@ -157,9 +166,10 @@ const getHappyPath = (
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr legal understanding',
             label: 'Legal understanding [---------------]',
             formMeta: {
-              page: 6,
+              page: 4,
               field: 'Legal understanding [---------------]',
             },
           },
@@ -168,10 +178,11 @@ const getHappyPath = (
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr acceptance',
             label: 'I will be administrating the account [---------------]',
             formMeta: {
               field: 'I will be administrating the account [---------------]',
-              page: 6,
+              page: 4,
             },
           },
           classNameSuffix: 'checkbox',

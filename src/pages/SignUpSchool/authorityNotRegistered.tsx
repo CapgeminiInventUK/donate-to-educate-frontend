@@ -25,6 +25,7 @@ const getAuthorityNotRegisteredPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'name',
             header: 'Name',
             isLarge: true,
             formMeta: {
@@ -36,6 +37,7 @@ const getAuthorityNotRegisteredPath = (
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'email',
             header: 'Email',
             isLarge: true,
             formMeta: {
@@ -47,6 +49,7 @@ const getAuthorityNotRegisteredPath = (
         {
           componentType: ComponentType.TEXTAREA,
           componentData: {
+            ariaLabel: 'message',
             header: 'Message',
             isLarge: true,
             characterLimit: 1000,

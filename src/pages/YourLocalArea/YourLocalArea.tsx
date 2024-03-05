@@ -29,7 +29,9 @@ const YourLocalArea: FC = () => {
             <div
               key={title}
               className={`${styles.tile} ${styles[colour]}`}
-              onClick={() => navigate(onClickLink)}
+              onClick={() =>
+                navigate(onClickLink, { state: { postcode: location.state.postcode } })
+              }
             >
               {icon}
               <div className={styles.content}>

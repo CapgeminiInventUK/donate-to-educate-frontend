@@ -56,6 +56,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
               setEmail(value);
             }
           }}
+          ariaLabel="email"
           isLarge={isNotMobile}
           isSmall={isSmallMobile}
         />
@@ -67,6 +68,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
               setPassword(value);
             }
           }}
+          ariaLabel="password"
           isSmall={isSmallMobile}
         />
         <Link to={Paths.RESET_PASSWORD} className={styles.altLink}>
@@ -85,6 +87,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
           onClick={(): void => setSubmitted(true)}
           useArrow={true}
           className={styles.formButton}
+          ariaLabel="sign in"
         />
       </div>{' '}
     </div>

@@ -1,0 +1,59 @@
+@use '@assets/global.scss' as g;
+
+.heading {
+  h2 {
+    width: 11rem;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  width: auto;
+  padding: 2.5rem;
+  flex-direction: column;
+  gap: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid g.$greyscale-disabled;
+  background: g.$primary-white;
+  margin-top: 2.5rem;
+}
+
+.addSectionButton {
+  display: flex;
+  height: 2.8125rem;
+  width: 13.625rem;
+  padding: 1.25rem;
+  align-items: center;
+}
+
+.addSectionDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addSectionButtonText {
+  font-size: 1.5rem;
+  letter-spacing: -0.015rem;
+}
+
+.saveButton {
+  display: flex;
+  height: 2.8125rem;
+  padding: 1.25rem;
+  align-items: center;
+  border-radius: 0.125rem;
+  box-shadow: g.$box-shadow-black;
+  background: g.$form-button-green-background;
+  font-size: 1.5rem;
+}
+
+.footerButtons {
+  display: flex;
+  width: 50rem;
+  align-items: center;
+  gap: 1.875rem;
+}

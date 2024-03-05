@@ -6,8 +6,16 @@ import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
 import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
+import { SchoolBannerProps } from '@/types/props';
+import EditIcon from '@/assets/school/EditIcon';
 
-export const SchoolBanner: FC = () => {
+export const SchoolBanner: FC<SchoolBannerProps> = ({
+  isAdminView = false,
+  phoneNumber,
+  emailAddress,
+  website,
+  uniformPolicy,
+}) => {
   return (
     <div className={styles.bannerContainer}>
       <h1>Ormiston Six Villages Academy</h1>
@@ -17,19 +25,21 @@ export const SchoolBanner: FC = () => {
             <span>
               <Telephone />
             </span>
-            01243 546800
+            <p className={styles.italicized}>
+              {phoneNumber ?? "You haven't added your phone number"}
+            </p>
           </li>
           <li>
             <span>
               <Email />
             </span>
-            email@ormiston.edu.ac.uk
+            <p className={styles.italicized}>{emailAddress ?? "You haven't added your email"}</p>
           </li>
           <li>
             <span>
               <Globe />
             </span>
-            http://www.ormistonsixvillagesacademy.co.uk/
+            <p className={styles.italicized}>{website ?? "You haven't added your website"}</p>
           </li>
         </ul>
 
@@ -38,19 +48,41 @@ export const SchoolBanner: FC = () => {
             <span>
               <SchoolHat />
             </span>
-            <Button
-              theme="light"
-              text={
-                <div>
-                  <span className={styles.buttonLabel}>View uniform policy</span>
-                  <InterfaceArrowTopRight className={styles.interfaceArrow} />
-                </div>
-              }
-              onClick={(): void => {
-                undefined;
-              }}
-            />
+            {uniformPolicy ? (
+              <Button
+                theme="light"
+                className={styles.uniformPolicyButton}
+                text={
+                  <div>
+                    <span className={styles.buttonLabel}>View uniform policy</span>
+                    <InterfaceArrowTopRight className={styles.interfaceArrow} />
+                  </div>
+                }
+                ariaLabel="uniform policy"
+                onClick={() => null}
+              />
+            ) : (
+              <p className={styles.italicized}>
+                You haven&apos;t added your school&apos;s uniform policy
+              </p>
+            )}
           </li>
+          {isAdminView && (
+            <li>
+              <Button
+                text={
+                  <div className={styles.editDiv}>
+                    <EditIcon />
+                    <span className={styles.editButtonText}>Edit</span>
+                  </div>
+                }
+                theme="light"
+                className={styles.editButton}
+                onClick={() => null}
+                ariaLabel="edit"
+              ></Button>
+            </li>
+          )}
         </ul>
       </div>
     </div>

@@ -11,6 +11,8 @@ import Spinner from '../Spinner/Spinner';
 import AddressInset from '../AddressInset/AddressInset';
 import { SummaryPageColour } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
+import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered/SchoolAlreadyRegistered';
+import Paths from '@/config/paths';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -20,6 +22,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
   pageNumber,
   setPageNumber,
   onChange,
+  isSchoolRegistered,
+  refetch,
 }) => {
   const navigate = useNavigate();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
@@ -28,7 +32,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const {
-    header = undefined,
+    header = '',
     infoText = undefined,
     infoTextTwo = undefined,
     subHeader = undefined,
@@ -39,6 +43,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     summaryPageBg = SummaryPageColour.BLUE,
     formComponentInternalLink = undefined,
     onSend = undefined,
+    isDeclarationPage = false,
   } = formTemplate[pageNumber];
 
   useEffect(() => {
@@ -74,6 +79,17 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     setFormErrors({});
+
+    if (onSend) {
+      return onSend();
+    }
+
+    if (isDeclarationPage) {
+      refetch()
+        .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
+        // eslint-disable-next-line no-console
+        .catch(console.error);
+    }
 
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
@@ -169,17 +185,27 @@ const FormContainer: FC<MultiStepFormProps> = ({
               );
             }
           )}
+          {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
           {isLastPage || isUnhappyPath ? (
             <div
               className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
             >
-              <Button theme={'link'} text={'Return to homepage'} onClick={returnHome} />
+              <Button
+                theme={'link'}
+                text={'Return to homepage'}
+                onClick={returnHome}
+                ariaLabel="home"
+              />
             </div>
           ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
-              theme={'formButtonDarkBlue'}
+              theme={
+                pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
+              }
+              ariaLabel={pageNumber === 0 ? 'Start' : 'Next'}
               useArrow={true}
+              disabled={pageNumber === 1 && isSchoolRegistered}
             />
           ) : (
             <FormButton
@@ -189,11 +215,12 @@ const FormContainer: FC<MultiStepFormProps> = ({
                   ? 'formButtonDarkBlue'
                   : 'formButtonGrey'
               }
+              ariaLabel="confirm"
               useArrow={true}
             />
           )}
           {isUnhappyPath && onSend && (
-            <FormButton text={'Send'} theme={'formButtonGrey'} onClick={onSend} useArrow={true} />
+            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} ariaLabel="send" />
           )}
           {formComponentInternalLink && (
             <div className={styles.link}>
@@ -203,6 +230,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 onClick={() => {
                   formComponentInternalLink.onClick();
                 }}
+                ariaLabel="internal link"
               />
             </div>
           )}

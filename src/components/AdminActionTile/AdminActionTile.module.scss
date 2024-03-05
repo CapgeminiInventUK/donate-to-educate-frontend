@@ -1,0 +1,49 @@
+@use '@assets/global.scss' as g;
+
+.buttonDiv {
+  width: 100%;
+  float: left;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2.5rem;
+  gap: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid g.$greyscale-disabled;
+  background: g.$primary-white;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  align-self: stretch;
+
+  h3 {
+    color: g.$primary-dark-blue;
+  }
+}
+
+.addSectionButton {
+  display: flex;
+  height: 2.8125rem;
+  width: 13.625rem;
+  padding: 1.25rem;
+  align-items: center;
+}
+
+.addSectionDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addSectionButtonText {
+  font-size: 1.5rem;
+  letter-spacing: -0.015rem;
+}

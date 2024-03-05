@@ -21,6 +21,7 @@ import {
   SignUpCharity,
   SignUpSchool,
   SchoolsDashboard,
+  SchoolAdminDashboard,
   Join,
   LocalAuthorityJoinInfo,
   FindYourCommunity,
@@ -30,6 +31,13 @@ import {
   AdminDashboardManageCharities,
   LocalAuthorityDashboardSchools,
   LocalAuthorityDashboardCharities,
+  RequestSchoolProducts,
+  SchoolDashboardItems,
+  SchoolContactConfirmation,
+  DeleteConfirmation,
+  Donate,
+  FindSchools,
+  FindCharities,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -90,6 +98,11 @@ const routes: Route[] = [
     element: <SchoolsDashboard />,
   },
   {
+    path: Paths.REQUEST_SCHOOL_PRODUCTS,
+    element: <RequestSchoolProducts />,
+    name: 'Request',
+  },
+  {
     path: Paths.LOGIN,
     element: <Login />,
     name: 'Sign in or join',
@@ -109,6 +122,12 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_VIEW,
     element: <AdminDashboardViewLocalAuthority />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_SCHOOL,
+    element: <SchoolAdminDashboard />,
     requiresAuth: true,
     redirectRoute: '/login',
   },
@@ -174,12 +193,10 @@ const routes: Route[] = [
     path: Paths.JOIN,
     element: <Join />,
   },
-
   {
     path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
     element: <LocalAuthorityJoinInfo />,
   },
-
   {
     path: Paths.FIND_YOUR_COMMUNITY,
     element: <FindYourCommunity />,
@@ -193,10 +210,21 @@ const routes: Route[] = [
     path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
     element: <AdminDashboardManageCharities />,
   },
+  {
+    path: Paths.SCHOOLS_DASHBOARD_ITEMS,
+    element: <SchoolDashboardItems />,
+  },
+  {
+    path: Paths.DELETE_CONFIRMATION,
+    element: <DeleteConfirmation />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
   { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
-  { path: Paths.LOCAL_SCHOOLS, element: <></> },
-  { path: Paths.LOCAL_CHARITIES, element: <></> },
-  { path: Paths.LOCAL_DONATE, element: <></> },
+  { path: Paths.LOCAL_SCHOOLS, element: <FindSchools /> },
+  { path: Paths.LOCAL_CHARITIES, element: <FindCharities /> },
+  { path: Paths.LOCAL_DONATE, element: <Donate /> },
   {
     path: Paths.ALL,
     element: <NotFound />,
