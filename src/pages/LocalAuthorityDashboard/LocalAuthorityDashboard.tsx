@@ -12,7 +12,7 @@ const LocalAuthorityDashboard: FC = () => {
   const { user } = useCheckCurrentUser();
 
   const { data } = useQuery({
-    queryKey: ['profile'],
+    queryKey: [`la-dashboard-${user?.username}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetLocalAuthorityUserQuery>>({
         query: getLocalAuthorityUser,
