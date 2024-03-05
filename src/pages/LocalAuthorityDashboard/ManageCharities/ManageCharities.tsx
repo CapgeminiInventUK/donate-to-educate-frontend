@@ -24,6 +24,7 @@ const ManageCharities: FC = () => {
             className={styles.actionButtons}
             text="Remove"
             onClick={(): void => undefined}
+            ariaLabel="remove"
           />
         </div>
       ),
