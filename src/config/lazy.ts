@@ -38,6 +38,12 @@ const AdminDashboardManageCharities = lazy(
 const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
+const LocalAuthorityDashboardSchools = lazy(
+  () => import('@pages/LocalAuthorityDashboard/ManageSchools/ManageSchools')
+);
+const LocalAuthorityDashboardCharities = lazy(
+  () => import('@pages/LocalAuthorityDashboard/ManageCharities/ManageCharities')
+);
 
 const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
@@ -99,6 +105,8 @@ export {
   FindYourCommunity,
   YourLocalArea,
   HowItWorks,
+  LocalAuthorityDashboardSchools,
+  LocalAuthorityDashboardCharities,
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,

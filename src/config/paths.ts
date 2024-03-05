@@ -19,6 +19,8 @@ enum Paths {
   ADMIN_DASHBOARD_SIGN_UP = '/admin-dashboard/la-sign-up',
   ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION = '/admin-dashboard/la-sign-up-confirmation',
   LOCAL_AUTHORITY_DASHBOARD = '/local-authority-dashboard',
+  LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority-dashboard/schools',
+  LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority-dashboard/charities',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   YOUR_SCHOOL = '/school/your-school',
   SCHOOLS_DASHBOARD = '/school/schools-dashboard',

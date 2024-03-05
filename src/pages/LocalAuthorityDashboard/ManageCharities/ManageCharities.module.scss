@@ -20,19 +20,20 @@
   padding: 60px 50px;
   border-radius: 0 0 10px 10px;
 
-  .tile {
+  .card {
+    background-color: g.$primary-white;
     border-radius: 10px;
-    padding: 40px;
-    margin: 20px 0;
-    cursor: pointer;
-  }
-
-  .tileLightBlue {
-    background: g.$primary-light-blue;
+    padding: 30px;
     color: g.$primary-dark-blue;
-  }
+    border-top: g.$secondary-blue solid 18px;
 
-  .tileDarkBlue {
-    background: g.$dark-blue;
+    .borderLeft {
+      border-left: g.$primary-light-blue solid 10px;
+      margin-bottom: 20px;
+
+      div {
+        margin-left: 20px;
+      }
+    }
   }
 }

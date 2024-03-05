@@ -5,8 +5,7 @@
   padding: 48px 50px;
 
   .adminCard {
-    border: solid g.$primary-white 2px;
-    border-radius: 10px;
+    @include g.admin-card;
 
     .header {
       display: flex;
