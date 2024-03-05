@@ -26,13 +26,14 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
         {subtext && !isEditing && <p className={styles.subtext}>{isEditing ? text : subtext}</p>}
         {isEditing ? (
           <>
-            <TextArea characterLimit={1000} onChange={setText} value={text} />
+            <TextArea characterLimit={1000} onChange={setText} value={text} ariaLabel="edit" />
             <div className={styles.footerButtons}>
               <Button
                 theme="darkBlue"
                 className={styles.saveButton}
                 onClick={saveOnClick}
                 text="Save"
+                ariaLabel="save"
               />
               <CancelButton onClick={onClick} theme={'blue'} />
             </div>
@@ -48,6 +49,7 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
                 <PlusIcon />
               </div>
             }
+            ariaLabel="add section"
           />
         )}
       </div>

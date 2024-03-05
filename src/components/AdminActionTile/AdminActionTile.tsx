@@ -29,6 +29,7 @@ const AdminActionTile: FC<AdminActionTileProps> = ({
               <PlusIcon />
             </div>
           }
+          ariaLabel="add section"
         />
       </div>
     </div>
