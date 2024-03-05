@@ -1,38 +1,36 @@
 import { FC } from 'react';
 import styles from './LocalAuthorityDashboard.module.scss';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetLocalAuthorityUserQuery } from '@/types/api';
-import { client } from '@/graphqlClient';
-import { getLocalAuthorityUser } from '@/graphql/queries';
-import { useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 // Need to make this a protected route only for logged in users of type la.
 const LocalAuthorityDashboard: FC = () => {
-  const { user } = useCheckCurrentUser();
-
-  const { data } = useQuery({
-    queryKey: [`la-dashboard-${user?.username}`],
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthorityUserQuery>>({
-        query: getLocalAuthorityUser,
-        variables: {
-          email: user?.username,
-        },
-      });
-
-      return data;
-    },
-    enabled: user?.username !== undefined,
-  });
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
       <div className={styles.adminCard}>
-        <h1>{data?.getLocalAuthorityUser.name}</h1>
+        <h1>West Sussex</h1>
         <div className={styles.body}>
           <h2>Manage your community</h2>
           <hr />
+          <div
+            className={`${styles.tileDarkBlue} ${styles.tile}`}
+            onClick={() => navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS)}
+          >
+            <h2>Manage your schools</h2>
+            <p>View, edit and remove schools from Donate to Educate in your area.</p>
+          </div>
+          <div
+            className={`${styles.tileLightBlue}  ${styles.tile}`}
+            onClick={() => navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES)}
+          >
+            <h2>Manage your charity and volunteer groups</h2>
+            <p>
+              View, edit and remove charities and volunteer groups from Donate to Educate in your
+              area.
+            </p>
+          </div>
         </div>
       </div>
     </div>

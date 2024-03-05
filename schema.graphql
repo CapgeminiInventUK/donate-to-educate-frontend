@@ -11,6 +11,14 @@ type School {
   postcode: String
   registered: Boolean!
   isLocalAuthorityRegistered: Boolean
+  address3: String
+  county: String
+  locality: String
+  street: String
+  phone: String
+  town: String
+  website: String
+  distance: String
 }
 
 type ProfileItems {
@@ -45,18 +53,6 @@ type LocalAuthorityUser {
   notes: String
 }
 
-type SchoolUser {
-  name: String!
-  firstName: String!
-  lastName: String!
-}
-
-type CharityUser {
-  name: String!
-  firstName: String!
-  lastName: String!
-}
-
 type LocalAuthority {
   code: String!
   name: String!
@@ -75,6 +71,22 @@ type JoinRequest {
   requestTime: Float!
   status: String!
   email: String!
+  school: String
+  jobTitle: String
+  phone: String
+  charityName: String
+  charityAddress: String
+  aboutCharity: String
+}
+
+type ItemQuery {
+  name: String!
+  type: String!
+  who: String!
+  email: String!
+  phone: String!
+  message: String!
+  connection: String
 }
 
 type Query {
@@ -87,6 +99,7 @@ type Query {
   getSchoolProfile(name: String!): SchoolProfile!
   getLocalAuthorityUser(email: String!): LocalAuthorityUser!
   getSignUpData(id: String!): SignUpData
+  getSchoolsNearby(postcode: String!, distance: Float!): [School!]!
 }
 
 type Mutation {
@@ -103,11 +116,69 @@ type Mutation {
 
   updateSchoolProfile(name: String!, key: String!, value: String!): Boolean!
   updateJoinRequest(localAuthority: String!, name: String!, status: String!): Boolean!
+  insertJoinRequest(
+    name: String!
+    localAuthority: String!
+    type: String!
+    email: String!
+    school: String
+    jobTitle: String
+    phone: String
+    charityName: String
+    charityAddress: String
+    aboutCharity: String
+  ): Boolean!
+
+  insertLocalAuthorityRegisterRequest(name: String!, email: String!, message: String!): Boolean!
 
   insertSignUpData(id: String!, email: String!, type: String!): Boolean!
+  insertItemQuery(
+    name: String!
+    email: String!
+    type: String!
+    message: String!
+    who: String!
+    phone: String!
+    connection: String
+  ): Boolean!
+
+  deleteDeniedJoinRequest(name: String!): Boolean!
 }
 
 schema {
   query: Query
   mutation: Mutation
+}
+
+type SchoolUser {
+  name: String!
+  school: String!
+  jobTitle: String!
+  email: String!
+  phone: String!
+}
+
+type CharityUser {
+  name: String!
+  jobTitle: String!
+  email: String!
+  phone: String!
+}
+
+type CharityDetails {
+  name: String!
+  address: String!
+  localAuthority: String!
+  about: String
+}
+
+type CharitySignUpDetails {
+  charityUser: CharityUser!
+  charityDetails: CharityDetails!
+}
+
+type LocalAuthorityRegisterRequest {
+  name: String!
+  email: String!
+  message: String!
 }

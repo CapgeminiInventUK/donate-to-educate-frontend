@@ -28,6 +28,8 @@ import {
   HowItWorks,
   AdminDashboardManageSchools,
   AdminDashboardManageCharities,
+  LocalAuthorityDashboardSchools,
+  LocalAuthorityDashboardCharities,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -131,6 +133,18 @@ const routes: Route[] = [
   {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD,
     element: <LocalAuthorityDashboard />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS,
+    element: <LocalAuthorityDashboardSchools />,
+    requiresAuth: true,
+    redirectRoute: '/login',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES,
+    element: <LocalAuthorityDashboardCharities />,
     requiresAuth: true,
     redirectRoute: '/login',
   },
