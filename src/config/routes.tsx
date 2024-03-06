@@ -129,7 +129,7 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_SCHOOL,
     element: <SchoolAdminDashboard />,
-    authType: 'admin',
+    authType: 'school',
   },
   {
     path: Paths.ADMIN_DASHBOARD_SIGN_UP,
