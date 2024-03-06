@@ -17,6 +17,7 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
   $email: String!
   $phone: String!
   $notes: String
+  $nameId: String!
 ) {
   registerLocalAuthority(
     name: $name
@@ -27,6 +28,7 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
     email: $email
     phone: $phone
     notes: $notes
+    nameId: $nameId
   )
 }
 ` as GeneratedMutation<
@@ -34,8 +36,8 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
   APITypes.RegisterLocalAuthorityMutation
 >;
 export const updateSchoolProfile =
-  /* GraphQL */ `mutation UpdateSchoolProfile($name: String!, $key: String!, $value: String!) {
-  updateSchoolProfile(name: $name, key: $key, value: $value)
+  /* GraphQL */ `mutation UpdateSchoolProfile($key: String!, $value: String!) {
+  updateSchoolProfile(key: $key, value: $value)
 }
 ` as GeneratedMutation<
     APITypes.UpdateSchoolProfileMutationVariables,
@@ -60,8 +62,6 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $name: String!
   $localAuthority: String!
   $type: String!
-  $requestTime: Float!
-  $status: String!
   $email: String!
   $school: String
   $jobTitle: String
@@ -74,8 +74,6 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     name: $name
     localAuthority: $localAuthority
     type: $type
-    requestTime: $requestTime
-    status: $status
     email: $email
     school: $school
     jobTitle: $jobTitle
@@ -89,14 +87,43 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   APITypes.InsertJoinRequestMutationVariables,
   APITypes.InsertJoinRequestMutation
 >;
-export const insertSignUpData =
-  /* GraphQL */ `mutation InsertSignUpData($id: String!, $email: String!, $type: String!) {
-  insertSignUpData(id: $id, email: $email, type: $type)
+export const insertLocalAuthorityRegisterRequest =
+  /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
+  $name: String!
+  $localAuthority: String!
+  $email: String!
+  $message: String!
+) {
+  insertLocalAuthorityRegisterRequest(
+    name: $name
+    localAuthority: $localAuthority
+    email: $email
+    message: $message
+  )
 }
 ` as GeneratedMutation<
-    APITypes.InsertSignUpDataMutationVariables,
-    APITypes.InsertSignUpDataMutation
+    APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
+    APITypes.InsertLocalAuthorityRegisterRequestMutation
   >;
+export const insertSignUpData = /* GraphQL */ `mutation InsertSignUpData(
+  $id: String!
+  $email: String!
+  $type: String!
+  $name: String!
+  $nameId: String!
+) {
+  insertSignUpData(
+    id: $id
+    email: $email
+    type: $type
+    name: $name
+    nameId: $nameId
+  )
+}
+` as GeneratedMutation<
+  APITypes.InsertSignUpDataMutationVariables,
+  APITypes.InsertSignUpDataMutation
+>;
 export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   $name: String!
   $email: String!
@@ -117,3 +144,11 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   )
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
+export const deleteDeniedJoinRequest =
+  /* GraphQL */ `mutation DeleteDeniedJoinRequest($name: String!) {
+  deleteDeniedJoinRequest(name: $name)
+}
+` as GeneratedMutation<
+    APITypes.DeleteDeniedJoinRequestMutationVariables,
+    APITypes.DeleteDeniedJoinRequestMutation
+  >;
