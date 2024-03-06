@@ -37,7 +37,7 @@ const LocalAuthoritySignUp: FC = () => {
   });
 
   const navigate = useNavigate();
-  const { la, code } = useLocation().state as { la: string; code: string };
+  const { la, id } = useLocation().state as { la: string; id: string };
 
   const { refetch } = useQuery({
     queryKey: ['register'],
@@ -54,7 +54,7 @@ const LocalAuthoritySignUp: FC = () => {
           email: formState.email,
           phone: formState.phone,
           notes: formState.notes,
-          nameId: code,
+          nameId: id,
         },
       });
       return result;
