@@ -12,6 +12,7 @@ const AccessabilityStatement = lazy(
 const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
 const TermsAndConditions = lazy(() => import('@pages/TermsAndConditions/TermsAndConditions'));
 const Login = lazy(() => import('@pages/Login/Login'));
+const SignIn = lazy(() => import('@pages/Login/SignIn/SignIn'));
 const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDashboard'));
 const AdminDashboardManageLocalAuthorities = lazy(
   () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
@@ -84,6 +85,7 @@ export {
   PrivacyPolicy,
   TermsAndConditions,
   Login,
+  SignIn,
   AdminDashboard,
   AdminDashboardManageLocalAuthorities,
   AdminDashboardViewLocalAuthority,

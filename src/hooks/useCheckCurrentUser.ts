@@ -1,58 +1,57 @@
 import {
   AuthUser,
-  getCurrentUser,
-  fetchUserAttributes,
   FetchUserAttributesOutput,
+  fetchUserAttributes,
+  getCurrentUser,
 } from 'aws-amplify/auth';
 import { useEffect, useState } from 'react';
 
-async function checkAuthState(): Promise<AuthUser> {
+export const checkAuthState = async (): Promise<AuthUser> => {
   return await getCurrentUser();
-}
+};
 
-async function getUserType(): Promise<FetchUserAttributesOutput & { 'custom:type': string }> {
-  return (await fetchUserAttributes()) as FetchUserAttributesOutput & { 'custom:type': string };
+export const getUserType = async (): Promise<FetchUserAttributesOutput & CustomAttributes> => {
+  return (await fetchUserAttributes()) as FetchUserAttributesOutput & CustomAttributes;
+};
+
+interface CustomAttributes {
+  'custom:type': string;
+  'custom:institution': string;
+  'custom:institutionId': string;
 }
 
 export type AccountType = 'admin' | 'charity' | 'school' | 'localAuthority';
+export type User = AuthUser & CustomAttributes;
 
 export const useCheckCurrentUser = (): {
-  user?: AuthUser;
-  isLoggedIn: boolean;
-  type?: AccountType;
+  user?: User;
+  isLoading: boolean;
+  error?: string;
 } => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<AuthUser>();
-  const [type, setType] = useState<AccountType>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User>();
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoading) {
       checkAuthState()
         .then((user) => {
-          setUser(user);
-          setIsLoggedIn(true);
+          getUserType()
+            .then((attributes) => {
+              setUser({ ...user, ...attributes });
+              setIsLoading(() => false);
+            })
+            .catch((error: Error) => {
+              setError(error.toString());
+              setIsLoading(() => false);
+            });
         })
-
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error);
-          setIsLoggedIn(false);
+        .catch((error: Error) => {
+          setError(error.toString());
+          setIsLoading(() => false);
         });
     }
-  });
+  }, [isLoading]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      getUserType()
-        .then((attributes) => {
-          // eslint-disable-next-line no-console
-          console.log(attributes);
-          setType(attributes['custom:type'] as AccountType);
-        })
-        // eslint-disable-next-line no-console
-        .catch(console.error);
-    }
-  }, [isLoggedIn]);
-
-  return { user, isLoggedIn, type };
+  return { isLoading, user, error };
 };

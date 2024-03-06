@@ -116,7 +116,7 @@ const NewUser: FC = () => {
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-    return <Navigate to={Paths.LOGIN} />;
+    return <Navigate to={Paths.SIGN_IN} />;
   }
 
   if (isLoading) {

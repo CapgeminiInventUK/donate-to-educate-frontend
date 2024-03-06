@@ -160,7 +160,7 @@ const ResetPassword: FC = () => {
         ) : (
           <>
             <p>Password changed successfully.</p>
-            <Link className={styles.login} to={Paths.LOGIN}>
+            <Link className={styles.login} to={Paths.SIGN_IN}>
               Back to Login
             </Link>
           </>

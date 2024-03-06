@@ -216,7 +216,7 @@ const ManageLocalAuthorities: FC = () => {
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
               void signOut()
-                .then(() => navigate(Paths.LOGIN))
+                .then(() => navigate(Paths.SIGN_IN))
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}

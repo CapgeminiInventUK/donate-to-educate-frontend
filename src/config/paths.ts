@@ -7,6 +7,7 @@ enum Paths {
   CONTACT = '/contact',
   DONATE = '/donate',
   LOGIN = '/login',
+  SIGN_IN = '/sign-in',
   ADMIN_DASHBOARD = '/admin-dashboard',
   ADMIN_DASHBOARD_LA_MANAGE = '/admin-dashboard/la-manage',
   ADMIN_DASHBOARD_LA_VIEW = '/admin-dashboard/la-view',

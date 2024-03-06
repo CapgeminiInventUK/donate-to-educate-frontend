@@ -37,15 +37,17 @@ const App = (): JSX.Element => {
               <Router>
                 <ScrollToTop />
                 <Routes>
-                  {routes.map(({ element, path, requiresAuth, redirectRoute }, index) => (
+                  {routes.map(({ element, path, authType, redirectRoute }, index) => (
                     <Route
                       key={index}
                       element={
                         <Layout
                           page={
                             <ErrorBoundaryWithLocation name="Router">
-                              {requiresAuth && redirectRoute ? (
-                                <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
+                              {authType !== undefined ? (
+                                <PrivateRoute route={redirectRoute} authType={authType}>
+                                  {element}
+                                </PrivateRoute>
                               ) : (
                                 element
                               )}

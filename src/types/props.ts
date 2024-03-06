@@ -13,6 +13,7 @@ import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import { InsertJoinRequestMutationVariables } from './api';
+import { AccountType } from '@/hooks/useCheckCurrentUser';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -123,7 +124,7 @@ export interface Route {
   element: JSX.Element;
   name?: string;
   redirectRoute?: string;
-  requiresAuth?: boolean;
+  authType?: AccountType;
 }
 
 export interface NavLinkProps {
