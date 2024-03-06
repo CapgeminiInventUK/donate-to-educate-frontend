@@ -70,6 +70,7 @@ export type LocalAuthorityUser = {
   email: string;
   phone: string;
   notes?: string | null;
+  nameId: string;
 };
 
 export type SignUpData = {
@@ -77,6 +78,8 @@ export type SignUpData = {
   id: string;
   email: string;
   type: string;
+  name: string;
+  nameId: string;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -133,6 +136,7 @@ export type RegisterLocalAuthorityMutationVariables = {
   email: string;
   phone: string;
   notes?: string | null;
+  nameId: string;
 };
 
 export type RegisterLocalAuthorityMutation = {
@@ -140,7 +144,6 @@ export type RegisterLocalAuthorityMutation = {
 };
 
 export type UpdateSchoolProfileMutationVariables = {
-  name: string;
   key: string;
   value: string;
 };
@@ -190,6 +193,8 @@ export type InsertSignUpDataMutationVariables = {
   id: string;
   email: string;
   type: string;
+  name: string;
+  nameId: string;
 };
 
 export type InsertSignUpDataMutation = {
@@ -393,6 +398,7 @@ export type GetLocalAuthorityUserQuery = {
     email: string;
     phone: string;
     notes?: string | null;
+    nameId: string;
   };
 };
 
@@ -406,6 +412,8 @@ export type GetSignUpDataQuery = {
     id: string;
     email: string;
     type: string;
+    name: string;
+    nameId: string;
   } | null;
 };
 

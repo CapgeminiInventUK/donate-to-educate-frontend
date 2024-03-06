@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
@@ -37,17 +37,7 @@ const LocalAuthoritySignUp: FC = () => {
   });
 
   const navigate = useNavigate();
-  const params = useLocation().search;
-  const la = new URLSearchParams(params).get('la');
-
-  useEffect(() => {
-    if (la) {
-      setFormState((prevState) => ({
-        ...prevState,
-        name: la,
-      }));
-    }
-  }, [la]);
+  const { la, code } = useLocation().state as { la: string; code: string };
 
   const { refetch } = useQuery({
     queryKey: ['register'],
@@ -64,6 +54,7 @@ const LocalAuthoritySignUp: FC = () => {
           email: formState.email,
           phone: formState.phone,
           notes: formState.notes,
+          nameId: code,
         },
       });
       return result;

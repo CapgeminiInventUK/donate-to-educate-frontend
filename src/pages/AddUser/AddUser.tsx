@@ -18,6 +18,8 @@ interface SignUpParameters {
   password: string;
   email: string;
   type: string;
+  name: string;
+  id: string;
 }
 
 interface ConfirmSignUpParameters {
@@ -34,7 +36,13 @@ async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Pr
   return nextStep.signUpStep;
 }
 
-async function handleSignUp({ email, password, type }: SignUpParameters): Promise<string> {
+async function handleSignUp({
+  email,
+  password,
+  type,
+  name,
+  id,
+}: SignUpParameters): Promise<string> {
   const lowercaseEmail = email.toLowerCase();
   const { isSignUpComplete, userId, nextStep } = await signUp({
     username: lowercaseEmail,
@@ -43,6 +51,8 @@ async function handleSignUp({ email, password, type }: SignUpParameters): Promis
       userAttributes: {
         email: lowercaseEmail,
         'custom:type': type,
+        'custom:institution': name,
+        'custom:institutionId': id,
       },
     },
   });
@@ -77,9 +87,9 @@ const NewUser: FC = () => {
 
   useEffect(() => {
     if (submitted && !isLoading) {
-      const { email, type } = data?.getSignUpData ?? {};
+      const { email, type, name, nameId } = data?.getSignUpData ?? {};
       if (email && type) {
-        handleSignUp({ email, password, type })
+        handleSignUp({ email, password, type, name: name ?? '', id: nameId ?? '' })
           .then((step) => setStep(step))
           .catch((error: Error) => {
             setError(error.message.replace('Password did not conform with policy: ', ''));

@@ -161,6 +161,7 @@ export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser(
     email
     phone
     notes
+    nameId
     __typename
   }
 }
@@ -173,6 +174,8 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
     id
     email
     type
+    name
+    nameId
     __typename
   }
 }
