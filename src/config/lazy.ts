@@ -53,6 +53,7 @@ const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/Sc
 const SchoolContactConfirmation = lazy(
   () => import('@/pages/SchoolsDashboard/Confirmation/SchoolContactConfirmation')
 );
+const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
@@ -118,4 +119,5 @@ export {
   FindCharities,
   FindSchools,
   CharityAdminDashboard,
+  CharityDashboard,
 };

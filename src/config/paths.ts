@@ -23,9 +23,18 @@ enum Paths {
   LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority-dashboard/charities',
   ACCESSABILITY_STATEMENT = '/accessibility-statement',
   YOUR_SCHOOL = '/school/your-school',
-  SCHOOLS_DASHBOARD = '/school/schools-dashboard',
-  SCHOOLS_DASHBOARD_ITEMS = '/school/schools-dashboard/items',
-  SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION = '/school/schools-dashboard/items/confirmation',
+
+  // Public School Dashboard
+  SCHOOLS_DASHBOARD = '/school/dashboard',
+  SCHOOLS_DASHBOARD_ITEMS = '/school/dashboard/items',
+  SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION = '/school/dashboard/items/confirmation',
+
+  // Public Charity Dashboard
+  CHARITY_DASHBOARD = '/charity/dashboard',
+  CHARITY_DASHBOARD_ITEMS = '/charity/dashboard/items',
+  CHARITY_DASHBOARD_ITEMS_CONFIRMATION = '/charity/dashboard/items/confirmation',
+
+  // Misc pages
   PRIVACY_POLICY = '/privacy-policy',
   TERMS_AND_CONDITIONS = '/terms-and-conditions',
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
