@@ -7,10 +7,11 @@ export const getRedirectUrl = (type: AccountType): string => {
       return Paths.ADMIN_DASHBOARD;
     case 'localAuthority':
       return Paths.LOCAL_AUTHORITY_DASHBOARD;
-    // TODO need to link to the relevant dashboard when built
     case 'school':
+      return Paths.SCHOOLS_CREATE_EDIT_PROFILE;
     case 'charity':
+      return Paths.CHARITIES_CREATE_EDIT_PROFILE;
     default:
-      throw new Error(`Unknown account type ${type}`);
+      throw new Error(`Unknown account type ${type as string}`);
   }
 };
