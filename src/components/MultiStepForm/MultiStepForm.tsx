@@ -117,7 +117,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   };
 
   const returnHome = (): void => {
-    navigate('/');
+    navigate(Paths.HOME);
   };
 
   return (
