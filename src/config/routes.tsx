@@ -22,7 +22,6 @@ import {
   SignUpSchool,
   SchoolsDashboard,
   SchoolAdminDashboard,
-  Join,
   LocalAuthorityJoinInfo,
   FindYourCommunity,
   YourLocalArea,
@@ -42,78 +41,12 @@ import {
   CharityAdminDashboard,
   CharityDashboard,
   CharityEdit,
+  Join,
 } from './lazy';
 import { Route } from '@/types/props';
 
 const routes: Route[] = [
-  {
-    path: Paths.HOME,
-    element: <Home />,
-    name: 'Home',
-  },
-  {
-    path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
-    element: <SchoolAdminDashboard />,
-    name: 'Create or edit your profile',
-    authType: 'school',
-  },
-  {
-    path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
-    element: <CharityAdminDashboard />,
-    name: 'Create or edit your profile',
-    authType: 'charity',
-  },
-  {
-    path: Paths.ABOUT,
-    element: <AboutUs />,
-    name: 'About',
-  },
-  {
-    path: Paths.HOW_IT_WORKS,
-    element: <HowItWorks />,
-    name: 'How it works',
-  },
-  {
-    path: Paths.CONTACT,
-    element: <Contact />,
-    name: 'Contact',
-  },
-  {
-    path: Paths.ACCESSABILITY_STATEMENT,
-    element: <AccessabilityStatement />,
-  },
-  {
-    path: Paths.PRIVACY_POLICY,
-    element: <PrivacyPolicy />,
-  },
-  {
-    path: Paths.TERMS_AND_CONDITIONS,
-    element: <TermsAndConditions />,
-  },
-  {
-    path: Paths.DONATE,
-    element: <Home />,
-    name: 'Donate',
-  },
-  {
-    path: Paths.SCHOOLS_DASHBOARD,
-    element: <SchoolsDashboard />,
-  },
-  {
-    path: Paths.REQUEST_SCHOOL_PRODUCTS,
-    element: <RequestSchoolProducts />,
-    name: 'Request',
-  },
-  {
-    path: Paths.LOGIN,
-    element: <Login />,
-    name: 'Sign in or join',
-  },
-  {
-    path: Paths.SIGN_IN,
-    element: <SignIn />,
-    name: 'Sign in or join',
-  },
+  // Admin dashboard
   {
     path: Paths.ADMIN_DASHBOARD,
     element: <AdminDashboard />,
@@ -145,6 +78,23 @@ const routes: Route[] = [
     authType: 'admin',
   },
   {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS,
+    element: <AdminDashboardManageSchools />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
+    element: <AdminDashboardManageCharities />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.DELETE_CONFIRMATION,
+    element: <DeleteConfirmation />,
+    authType: 'admin',
+  },
+
+  // Local Authority Dashboard
+  {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD,
     element: <LocalAuthorityDashboard />,
     authType: 'localAuthority',
@@ -159,70 +109,130 @@ const routes: Route[] = [
     element: <LocalAuthorityDashboardCharities />,
     authType: 'localAuthority',
   },
+
+  // Admin School
   {
     path: Paths.SCHOOL_EDIT,
     element: <SchoolEdit />,
     authType: 'school',
   },
   {
-    path: Paths.ADD_USER,
-    element: <AddUser />,
+    path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
+    element: <SchoolAdminDashboard />,
+    name: 'Create or edit your profile',
+    authType: 'school',
+  },
+
+  // Admin Charity
+  {
+    path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
+    element: <CharityAdminDashboard />,
+    name: 'Create or edit your profile',
+    authType: 'charity',
+  },
+
+  // Login
+  {
+    path: Paths.LOGIN,
+    element: <Login />,
+    name: 'Sign in or join',
   },
   {
-    path: Paths.SIGN_UP_CHARITY,
-    element: <SignUpCharity />,
-  },
-  {
-    path: Paths.SIGN_UP_SCHOOL,
-    element: <SignUpSchool />,
+    path: Paths.SIGN_IN,
+    element: <SignIn />,
+    name: 'Sign in or join',
   },
   {
     path: Paths.RESET_PASSWORD,
     element: <ResetPassword />,
   },
   {
+    path: Paths.ADD_USER,
+    element: <AddUser />,
+  },
+  {
     path: Paths.JOIN,
     element: <Join />,
+  },
+
+  // Public School
+  { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
+  {
+    path: Paths.SCHOOLS_DASHBOARD_ITEMS,
+    element: <SchoolDashboardItems />,
+  },
+  {
+    path: Paths.SCHOOLS_DASHBOARD,
+    element: <SchoolsDashboard />,
+  },
+  {
+    path: Paths.REQUEST_SCHOOL_PRODUCTS,
+    element: <RequestSchoolProducts />,
+    name: 'Request',
+  },
+  {
+    path: Paths.SIGN_UP_SCHOOL,
+    element: <SignUpSchool />,
+  },
+
+  // Public Charity
+  {
+    path: Paths.SIGN_UP_CHARITY,
+    element: <SignUpCharity />,
+  },
+  { path: Paths.REQUEST_CHARITY_PRODUCTS, element: <></> },
+  { path: Paths.CHARITY_DASHBOARD, element: <CharityDashboard /> },
+  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityEdit /> },
+  { path: Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION, element: <></> },
+
+  // Local Area
+  {
+    path: Paths.FIND_YOUR_COMMUNITY,
+    element: <FindYourCommunity />,
+    name: 'Find your community',
+  },
+  { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
+  { path: Paths.LOCAL_SCHOOLS, element: <FindSchools /> },
+  { path: Paths.LOCAL_CHARITIES, element: <FindCharities /> },
+  { path: Paths.LOCAL_DONATE, element: <Donate /> },
+
+  // Misc
+  {
+    path: Paths.HOME,
+    element: <Home />,
+    name: 'Home',
   },
   {
     path: Paths.LOCAL_AUTHORITY_JOIN_INFO,
     element: <LocalAuthorityJoinInfo />,
   },
   {
-    path: Paths.FIND_YOUR_COMMUNITY,
-    element: <FindYourCommunity />,
-    name: 'Find your community',
+    path: Paths.ABOUT,
+    element: <AboutUs />,
+    name: 'About',
   },
   {
-    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS,
-    element: <AdminDashboardManageSchools />,
+    path: Paths.HOW_IT_WORKS,
+    element: <HowItWorks />,
+    name: 'How it works',
   },
   {
-    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
-    element: <AdminDashboardManageCharities />,
+    path: Paths.CONTACT,
+    element: <Contact />,
+    name: 'Contact',
   },
   {
-    path: Paths.SCHOOLS_DASHBOARD_ITEMS,
-    element: <SchoolDashboardItems />,
+    path: Paths.ACCESSABILITY_STATEMENT,
+    element: <AccessabilityStatement />,
   },
   {
-    path: Paths.DELETE_CONFIRMATION,
-    element: <DeleteConfirmation />,
-    authType: 'admin',
+    path: Paths.PRIVACY_POLICY,
+    element: <PrivacyPolicy />,
   },
-  { path: Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, element: <SchoolContactConfirmation /> },
-  { path: Paths.YOUR_LOCAL_AREA, element: <YourLocalArea /> },
-  { path: Paths.LOCAL_SCHOOLS, element: <FindSchools /> },
-  { path: Paths.LOCAL_CHARITIES, element: <FindCharities /> },
-  { path: Paths.LOCAL_DONATE, element: <Donate /> },
-
-  // Public Charity Dashboard
-  { path: Paths.CHARITY_DASHBOARD, element: <CharityDashboard /> },
-  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityEdit /> },
-  { path: Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION, element: <></> },
-  { path: Paths.REQUEST_CHARITY_PRODUCTS, element: <></> },
-
-  // Misc
+  {
+    path: Paths.TERMS_AND_CONDITIONS,
+    element: <TermsAndConditions />,
+  },
   {
     path: Paths.ALL,
     element: <NotFound />,
