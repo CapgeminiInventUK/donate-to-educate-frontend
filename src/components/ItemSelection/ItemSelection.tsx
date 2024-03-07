@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
-import styles from './SchoolEdit.module.scss';
+import styles from './ItemSelection.module.scss';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
@@ -33,7 +33,11 @@ const getButtonTextFromType = (type: string): string => {
   }
 };
 
-const SchoolEdit: FC = () => {
+interface ItemSelectionProps {
+  schoolOrCharity: 'school' | 'charity';
+}
+
+const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [items] = useState<Record<string, SectionsIconType>>({
@@ -60,7 +64,7 @@ const SchoolEdit: FC = () => {
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}
             fullWidth
-            onClick={() => navigate(Paths.REQUEST_SCHOOL_PRODUCTS, { state: { type } })}
+            onClick={() => navigate(getPathFromType(schoolOrCharity), { state: { type } })}
             ariaLabel="contact"
           />
         </div>
@@ -69,4 +73,7 @@ const SchoolEdit: FC = () => {
   );
 };
 
-export default SchoolEdit;
+const getPathFromType = (type: string): string =>
+  type === 'school' ? Paths.REQUEST_SCHOOL_PRODUCTS : Paths.REQUEST_CHARITY_PRODUCTS;
+
+export default ItemSelection;

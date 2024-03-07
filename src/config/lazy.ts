@@ -49,11 +49,12 @@ const LocalAuthorityDashboardCharities = lazy(
 const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 const CharityAdminDashboard = lazy(() => import('@pages/Charity/Admin/CharityAdminDashboard'));
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
-const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/SchoolEdit'));
+const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/SchoolEdit'));
 const SchoolContactConfirmation = lazy(
   () => import('@/pages/SchoolsDashboard/Confirmation/SchoolContactConfirmation')
 );
 const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
+const CharityEdit = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
 
 const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
@@ -120,4 +121,5 @@ export {
   FindSchools,
   CharityAdminDashboard,
   CharityDashboard,
+  CharityEdit,
 };

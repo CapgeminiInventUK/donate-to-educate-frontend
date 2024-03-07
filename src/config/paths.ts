@@ -28,11 +28,13 @@ enum Paths {
   SCHOOLS_DASHBOARD = '/school/dashboard',
   SCHOOLS_DASHBOARD_ITEMS = '/school/dashboard/items',
   SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION = '/school/dashboard/items/confirmation',
+  REQUEST_SCHOOL_PRODUCTS = '/request-school-products',
 
   // Public Charity Dashboard
   CHARITY_DASHBOARD = '/charity/dashboard',
   CHARITY_DASHBOARD_ITEMS = '/charity/dashboard/items',
   CHARITY_DASHBOARD_ITEMS_CONFIRMATION = '/charity/dashboard/items/confirmation',
+  REQUEST_CHARITY_PRODUCTS = '/request-charity-products',
 
   // Misc pages
   PRIVACY_POLICY = '/privacy-policy',
@@ -56,7 +58,7 @@ enum Paths {
   LOCAL_SCHOOLS = '/your-local-area/schools',
   LOCAL_CHARITIES = '/your-local-area/charities',
   LOCAL_DONATE = '/your-local-area/donate',
-  REQUEST_SCHOOL_PRODUCTS = '/request-school-products',
+
   DELETE_CONFIRMATION = '/admin-dashboard/requests/delete',
   ALL = '*',
 }

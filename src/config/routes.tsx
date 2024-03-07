@@ -41,6 +41,7 @@ import {
   SignIn,
   CharityAdminDashboard,
   CharityDashboard,
+  CharityEdit,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -217,8 +218,9 @@ const routes: Route[] = [
 
   // Public Charity Dashboard
   { path: Paths.CHARITY_DASHBOARD, element: <CharityDashboard /> },
-  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <></> },
+  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityEdit /> },
   { path: Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION, element: <></> },
+  { path: Paths.REQUEST_CHARITY_PRODUCTS, element: <></> },
 
   // Misc
   {
