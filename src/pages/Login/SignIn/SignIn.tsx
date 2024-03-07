@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { SignInOutput, signIn } from 'aws-amplify/auth';
 import FormButton from '@components/FormButton/FormButton';
@@ -52,6 +52,10 @@ const SignIn: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (user) {
+    return <Navigate to={getRedirectUrl(user['custom:type'] as AccountType)} />;
   }
 
   const handleError = (): void => {
