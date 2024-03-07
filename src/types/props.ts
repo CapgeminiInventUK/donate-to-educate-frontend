@@ -272,13 +272,15 @@ export interface SummaryProps {
   logo?: JSX.Element;
 }
 
-export interface SchoolBannerProps {
+export interface InstitutionBannerProps {
   isAdminView?: boolean;
   phoneNumber?: string;
   emailAddress?: string;
   website?: string;
   uniformPolicy?: string;
   onClick?: () => void;
+  type: 'school' | 'charity';
+  address?: string;
 }
 
 export interface InformationTileProps {

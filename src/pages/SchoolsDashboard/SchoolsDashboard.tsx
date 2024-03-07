@@ -1,7 +1,7 @@
 import styles from './SchoolsDashboard.module.scss';
 import { FC, useState } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
-import { SchoolBanner } from '@/components/SchoolBanner/SchoolBanner';
+import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
@@ -23,7 +23,7 @@ const SchoolsDashboard: FC = () => {
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton onClick={onBackButtonClick} theme="blue" />
-        <SchoolBanner />
+        <InstitutionBanner type="school" />
 
         <div className={styles.card}>
           <div className={styles.titleContainer}>

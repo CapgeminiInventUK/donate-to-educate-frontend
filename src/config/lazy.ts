@@ -47,6 +47,7 @@ const LocalAuthorityDashboardCharities = lazy(
 );
 
 const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
+const CharityAdminDashboard = lazy(() => import('@pages/Charity/Admin/CharityAdminDashboard'));
 const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
 const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/Edit/SchoolEdit'));
 const SchoolContactConfirmation = lazy(
@@ -116,4 +117,5 @@ export {
   Donate,
   FindCharities,
   FindSchools,
+  CharityAdminDashboard,
 };

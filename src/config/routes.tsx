@@ -39,6 +39,7 @@ import {
   FindSchools,
   FindCharities,
   SignIn,
+  CharityAdminDashboard,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -50,13 +51,13 @@ const routes: Route[] = [
   },
   {
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
-    element: <></>,
+    element: <SchoolAdminDashboard />,
     name: 'Create or edit your profile',
     authType: 'school',
   },
   {
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
-    element: <></>,
+    element: <CharityAdminDashboard />,
     name: 'Create or edit your profile',
     authType: 'charity',
   },
@@ -125,11 +126,6 @@ const routes: Route[] = [
     path: Paths.ADMIN_DASHBOARD_LA_VIEW,
     element: <AdminDashboardViewLocalAuthority />,
     authType: 'admin',
-  },
-  {
-    path: Paths.ADMIN_DASHBOARD_SCHOOL,
-    element: <SchoolAdminDashboard />,
-    authType: 'school',
   },
   {
     path: Paths.ADMIN_DASHBOARD_SIGN_UP,

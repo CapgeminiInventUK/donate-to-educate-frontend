@@ -18,9 +18,16 @@ ul {
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  background: g.$primary-dark-blue;
   border-top: g.$secondary-blue 18px solid;
   border-radius: 10px 10px 0 0;
+
+  &.charity {
+    background: g.$dark-blue;
+  }
+
+  &.school {
+    background: g.$primary-dark-blue;
+  }
 }
 
 h1 {

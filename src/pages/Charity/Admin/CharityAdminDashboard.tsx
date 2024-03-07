@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
 
-const SchoolAdminDashboard: FC = () => {
-  return <InstitutionAdminDashboard type="school" />;
+const CharityAdminDashboard: FC = () => {
+  return <InstitutionAdminDashboard type="charity" />;
 };
 
-export default SchoolAdminDashboard;
+export default CharityAdminDashboard;
