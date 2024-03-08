@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { Navigate } from 'react-router';
 import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
 import Spinner from '../Spinner/Spinner';
-import { getRedirectUrl } from '@/utils/account';
+// import { getRedirectUrl } from '@/utils/account';
 import Paths from '@/config/paths';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   authType?: AccountType;
 }
 
-const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children, authType }) => {
+const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children }) => {
   const { isLoading, user } = useCheckCurrentUser();
 
   if (!route) {
@@ -26,10 +26,10 @@ const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children, authType }) 
     return <Navigate to={route} />;
   }
 
-  const type = user['custom:type'];
-  if (authType != type) {
-    return <Navigate to={getRedirectUrl(type as AccountType)} />;
-  }
+  // const type = user['custom:type'];
+  // if (authType != type) {
+  //   return <Navigate to={getRedirectUrl(type as AccountType)} />;
+  // }
 
   return children;
 };

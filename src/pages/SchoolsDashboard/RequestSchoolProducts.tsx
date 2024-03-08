@@ -4,7 +4,7 @@ import Paths from '@/config/paths';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import RequestItems, { RequestItemsProps } from '@/components/RequestItems/RequestItems';
 
-const getTextContent = (type: string): RequestItemsProps => {
+const getTextContent = (type: string): Omit<RequestItemsProps, 'organisationType'> => {
   switch (type) {
     case 'tick':
       return {
