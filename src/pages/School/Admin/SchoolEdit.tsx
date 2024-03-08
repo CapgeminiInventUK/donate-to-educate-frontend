@@ -148,6 +148,7 @@ const SchoolEdit: FC = () => {
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+        authMode: 'userPool',
         query: updateSchoolProfile,
         variables: {
           key: getKeyFromType(type),
