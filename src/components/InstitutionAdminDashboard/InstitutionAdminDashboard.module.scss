@@ -1,0 +1,79 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+
+    .card {
+      @include g.card;
+      padding: 40px 82px 60px;
+      border-radius: 0 0 10px 10px;
+
+      h2 {
+        color: g.$primary-dark-blue;
+        margin-right: 10px;
+      }
+
+      p {
+        color: g.$primary-dark-blue;
+      }
+
+      .productsTilesContainer {
+        margin-top: 2.5rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 1.5625rem;
+      }
+
+      .extraStockTileContainer {
+        border-radius: 10px;
+        background: g.$primary-dark-blue;
+        margin-top: 25px;
+      }
+
+      .actionButtons {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-medium)) {
+  .title {
+    display: none;
+  }
+
+  .container {
+    .contentContainer {
+      padding-top: 66px;
+    }
+  }
+
+  .productsTilesContainer {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-small)) {
+  .container {
+    .contentContainer {
+      width: 100%;
+      margin-bottom: 20px;
+      padding-top: 20px;
+
+      .card {
+        padding: 20px;
+        margin: 20px;
+        margin-top: 0;
+      }
+    }
+  }
+}

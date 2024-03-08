@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import { FC, useState } from 'react';
-import styles from './RequestSchoolProducts.module.scss';
+import styles from './RequestItems.module.scss';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
 import TextInput from '@/components/TextInput/TextInput';
 import TextArea from '@/components/TextArea/TextArea';
 import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
@@ -16,82 +16,29 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
 
-interface TextContent {
+export interface RequestItemsProps {
   radioButtonLabels: string[];
   radioButtonValues: string[];
   buttonText: string;
   heading: string;
   subHeading: string;
+  notesHeading: string;
+  notesSubHeading: string;
+  type: ItemsIconType;
+  organisationType: 'school' | 'charity';
 }
 
-const getTextContent = (type: string): TextContent => {
-  switch (type) {
-    case 'tick':
-      return {
-        radioButtonLabels: [
-          'I am a parent or guardian',
-          'I work at another school',
-          'I work for a charity or volunteer group',
-          'Something else',
-        ],
-        radioButtonValues: [
-          'parentGuardian',
-          'anotherSchool',
-          'charityVolunteerGroup',
-          'somethingElse',
-        ],
-        buttonText: 'Request products',
-        heading: 'Request school products',
-        subHeading:
-          "Tell us which things you need and we'll contact you to arrange the next steps as soon as we can.",
-      };
-    case 'heart':
-      return {
-        radioButtonLabels: [
-          'I work for a charity or volunteer group',
-          'I am a parent or guardian',
-          'I am a member of the public',
-          'I work at another school',
-          'Something else',
-        ],
-        radioButtonValues: [
-          'charityVolunteerGroup',
-          'parentGuardian',
-          'public',
-          'anotherSchool',
-          'somethingElse',
-        ],
-        buttonText: 'Donate products',
-        heading: 'Donate school products',
-        subHeading:
-          "Tell us which things you'd like to donate and we'll contact you to arrange the next steps as soon as we can.",
-      };
-    case 'plus':
-      return {
-        radioButtonLabels: [
-          'I work for a charity or volunteer group',
-          'I am a parent or guardian',
-          'I work at another school',
-          'Something else',
-        ],
-        radioButtonValues: [
-          'charityVolunteerGroup',
-          'parentGuardian',
-          'anotherSchool',
-          'somethingElse',
-        ],
-        buttonText: 'Take extra stock',
-        heading: 'Take extra stock',
-        subHeading:
-          "Tell us which things you'd like to take from us and we'll contact you to arrange the next steps as soon as we can.",
-      };
-    default:
-      throw new Error(`Unknown type ${type}`);
-  }
-};
-
-const RequestSchoolProducts: FC = () => {
-  const location = useLocation();
+const RequestItems: FC<RequestItemsProps> = ({
+  radioButtonLabels,
+  radioButtonValues,
+  buttonText,
+  heading,
+  subHeading,
+  notesHeading,
+  notesSubHeading,
+  type,
+  organisationType,
+}) => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
     who: '',
@@ -100,7 +47,6 @@ const RequestSchoolProducts: FC = () => {
     phone: '',
     notes: '',
   });
-  const [type] = useState<string>((location?.state as { type: ItemsIconType }).type);
 
   const { refetch } = useQuery({
     queryKey: ['itemQuery'],
@@ -115,6 +61,7 @@ const RequestSchoolProducts: FC = () => {
           message: formState.notes,
           type,
           who: formState.who,
+          organisationType,
           ...(formState?.connection && { connection: formState.connection }),
         },
       });
@@ -122,13 +69,7 @@ const RequestSchoolProducts: FC = () => {
     },
   });
 
-  if (!(location.state && 'type' in location.state)) {
-    return <Navigate to={Paths.HOME} />;
-  }
-
   const { name, email, phone, notes, connection } = formState;
-  const { radioButtonLabels, radioButtonValues, buttonText, heading, subHeading } =
-    getTextContent(type);
 
   return (
     <div className={styles.container}>
@@ -160,6 +101,7 @@ const RequestSchoolProducts: FC = () => {
                     connection: value,
                   }));
                 }}
+                ariaLabel="connection"
                 value={connection}
                 isLarge
               />
@@ -173,6 +115,7 @@ const RequestSchoolProducts: FC = () => {
                 name: value,
               }));
             }}
+            ariaLabel="name"
             value={name}
             isLarge={true}
           />
@@ -184,6 +127,7 @@ const RequestSchoolProducts: FC = () => {
                 email: value,
               }));
             }}
+            ariaLabel="email"
             value={email}
             isLarge={true}
           />
@@ -195,18 +139,20 @@ const RequestSchoolProducts: FC = () => {
                 phone: value,
               }));
             }}
+            ariaLabel="phone"
             value={phone}
           />
-          <h3 className={styles.textAreaHeadings}>Tell us what you need</h3>
+          <h3 className={styles.textAreaHeadings}>{notesHeading}</h3>
           <TextArea
             characterLimit={1000}
-            subHeading="Include the school products and sizes you would like"
+            subHeading={notesSubHeading}
             onChange={(value) => {
               setFormState((prevState) => ({
                 ...prevState,
                 notes: value,
               }));
             }}
+            ariaLabel="notes"
             value={notes}
           />
           <FormButton
@@ -215,10 +161,16 @@ const RequestSchoolProducts: FC = () => {
             fullWidth={true}
             onClick={() => {
               refetch().then(console.log).catch(console.error);
-              navigate(Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION, {
-                state: { name: 'Test School Name' },
-              });
+              navigate(
+                organisationType === 'school'
+                  ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
+                  : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
+                {
+                  state: { name: 'Test School Name' },
+                }
+              );
             }}
+            ariaLabel="submit"
           />
         </div>
       </div>
@@ -226,4 +178,4 @@ const RequestSchoolProducts: FC = () => {
   );
 };
 
-export default RequestSchoolProducts;
+export default RequestItems;

@@ -1,0 +1,39 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  padding: 48px 50px;
+
+  h1 {
+    color: g.$dark-blue;
+    padding: 20px 60px;
+  }
+}
+
+.adminCard {
+  @include g.admin-card;
+}
+
+.body {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: 60px 50px;
+  border-radius: 0 0 10px 10px;
+
+  .card {
+    background-color: g.$primary-white;
+    border-radius: 10px;
+    padding: 30px;
+    color: g.$primary-dark-blue;
+    border-top: g.$secondary-blue solid 18px;
+
+    .borderLeft {
+      border-left: g.$primary-light-blue solid 10px;
+      margin-bottom: 20px;
+
+      div {
+        margin-left: 20px;
+      }
+    }
+  }
+}
