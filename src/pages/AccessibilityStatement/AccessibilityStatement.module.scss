@@ -7,3 +7,11 @@
     color: g.$black;
   }
 }
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    .contentContainer {
+      width: 100%;
+    }
+  }
+}

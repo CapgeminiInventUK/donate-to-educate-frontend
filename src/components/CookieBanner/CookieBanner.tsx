@@ -17,24 +17,26 @@ const CookieBanner: FC = () => {
           use and information about your preferences and opt-out choices, please click here. By
           using our platfrom you agree to use of cookies
         </p>
-        <Button
-          theme="outline-light"
-          text="Decline"
-          onClick={(): void => {
-            localStorage.setItem('cookieConsent', 'FALSE');
-            setBannerHidden(true);
-          }}
-          ariaLabel="decline"
-        />
-        <Button
-          theme="light"
-          text="Allow"
-          onClick={(): void => {
-            localStorage.setItem('cookieConsent', 'TRUE');
-            setBannerHidden(true);
-          }}
-          ariaLabel="allow"
-        />
+        <div className={styles.buttons}>
+          <Button
+            theme="outline-light"
+            text="Decline"
+            onClick={(): void => {
+              localStorage.setItem('cookieConsent', 'FALSE');
+              setBannerHidden(true);
+            }}
+            ariaLabel="decline"
+          />
+          <Button
+            theme="light"
+            text="Allow"
+            onClick={(): void => {
+              localStorage.setItem('cookieConsent', 'TRUE');
+              setBannerHidden(true);
+            }}
+            ariaLabel="allow"
+          />
+        </div>
       </div>
     </>
   );
