@@ -3,7 +3,6 @@ import styles from './ManageSchools.module.scss';
 import { Table } from 'antd';
 import Button from '@/components/Button/Button';
 
-// Need to make this a protected route only for logged in users of type la.
 const ManageSchools: FC = () => {
   const columns = [
     {

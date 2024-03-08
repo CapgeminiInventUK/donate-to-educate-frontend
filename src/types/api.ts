@@ -52,9 +52,9 @@ export type SchoolProfile = {
 
 export type ProfileItems = {
   __typename: 'ProfileItems';
-  items: string;
-  whatToExpect: string;
-  actionText: string;
+  items?: string | null;
+  whatToExpect?: string | null;
+  actionText?: string | null;
 };
 
 export type LocalAuthorityUser = {
@@ -354,21 +354,21 @@ export type GetSchoolProfileQuery = {
     __typename: 'SchoolProfile';
     request?: {
       __typename: 'ProfileItems';
-      items: string;
-      whatToExpect: string;
-      actionText: string;
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
     } | null;
     donate?: {
       __typename: 'ProfileItems';
-      items: string;
-      whatToExpect: string;
-      actionText: string;
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
     } | null;
     excess?: {
       __typename: 'ProfileItems';
-      items: string;
-      whatToExpect: string;
-      actionText: string;
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
     } | null;
   };
 };

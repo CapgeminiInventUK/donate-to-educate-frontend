@@ -18,6 +18,7 @@ import Paths from '@/config/paths';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getButtonTextFromType } from '@/components/ItemSelection/ItemSelection';
 import { fetchAuthSession } from 'aws-amplify/auth';
+import BackButton from '@/components/BackButton/BackButton';
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -206,6 +207,7 @@ const SchoolEdit: FC = () => {
 
   return (
     <div className={styles.container}>
+      <BackButton theme="blue" />
       <div className={`${styles.banner} ${styles[type]}`}>
         <h2>{banner}</h2>
       </div>
@@ -215,7 +217,7 @@ const SchoolEdit: FC = () => {
           <>
             <div className={styles.helpBanner}>
               <h2>{helpBannerTitle}</h2>
-              <p>{helpBannerBody}</p>
+              {helpBannerBody}
             </div>
             <div className={styles.whatToExpect}>
               <h2>What to expect</h2>
