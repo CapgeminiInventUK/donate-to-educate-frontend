@@ -17,6 +17,7 @@ import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getButtonTextFromType } from '@/components/ItemSelection/ItemSelection';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -119,6 +120,7 @@ const SchoolEdit: FC = () => {
   const [editStateActionText, setEditStateActionText] = useState(false);
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
+  const [authToken, setAuthToken] = useState<string>();
 
   const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({
@@ -143,12 +145,19 @@ const SchoolEdit: FC = () => {
     },
   });
 
+  useEffect(() => {
+    fetchAuthSession()
+      .then((session) => setAuthToken(session.tokens?.idToken?.toString()))
+      .catch(console.log);
+  });
+
   const { refetch } = useQuery({
     queryKey: ['saveProfile'],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
         authMode: 'userPool',
+        authToken,
         query: updateSchoolProfile,
         variables: {
           key: getKeyFromType(type),
