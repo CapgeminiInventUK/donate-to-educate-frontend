@@ -29,7 +29,8 @@ export type FormButtonThemes =
   | 'formButtonGrey'
   | 'formButtonRed'
   | 'formButtonGreen'
-  | 'formButtonDisabled';
+  | 'formButtonDisabled'
+  | 'formButtonGreenDisabled';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
@@ -84,9 +85,6 @@ export interface BackLinkProps {
 }
 export interface ContentType {
   items: string;
-  banner: string;
-  helpBannerTitle: string;
-  helpBannerBody: string;
   whatToExpect: string;
   actionText: string;
 }

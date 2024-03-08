@@ -5,7 +5,6 @@ import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
-import Button from '@/components/Button/Button';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GetSchoolProfileQuery, UpdateSchoolProfileMutation } from '@/types/api';
@@ -15,6 +14,9 @@ import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { EditDescription } from './EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
+import Paths from '@/config/paths';
+import { Navigate, useLocation } from 'react-router-dom';
+import { getButtonTextFromType } from '@/components/ItemSelection/ItemSelection';
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -29,8 +31,88 @@ const getKeyFromType = (type: string): string => {
   }
 };
 
+const getPageContent = (
+  type: string
+): {
+  banner: string;
+  helpBannerTitle: string;
+  helpBannerBody: JSX.Element;
+  howItWorks: string;
+  actionText: string;
+} => {
+  switch (type) {
+    case 'tick':
+      return {
+        banner: 'Let visitors request products from you',
+        helpBannerTitle: 'Build your request products page',
+        helpBannerBody: (
+          <>
+            <p>
+              Tell your visitors what to expect when they request products. Include your collection
+              or delivery times to manage their expectations. Select which products you have in
+              stock and include details, if you need them.
+            </p>
+            <p>
+              Donate to Educate will forward an email to you from visitors who want to request
+              products.
+            </p>
+          </>
+        ),
+        actionText:
+          "Once we have your request for the products you need, we'll contact you to arrange the next steps as soon as we can.",
+        howItWorks:
+          'View the products we have in stock. While we update our stock levels regularly, they may change daily.',
+      };
+    case 'heart':
+      return {
+        banner: 'Let visitors donate products to you',
+        helpBannerTitle: 'Build your donate products page',
+        helpBannerBody: (
+          <>
+            <p>
+              Select the products your school needs so that the general public, other schools,
+              charities and volunteer groups know what to donate.
+            </p>
+            <p>
+              Donate to Educate will forward an email to you from visitors who want to donate
+              products.
+            </p>
+          </>
+        ),
+        actionText:
+          "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
+        howItWorks:
+          "View the products we need. When you select 'donate', you can tell us how you can help.",
+      };
+    case 'plus':
+      return {
+        banner: 'Build your extra stock page',
+        helpBannerTitle: 'Build your request products page',
+        helpBannerBody: (
+          <>
+            <p>
+              Select the products you have too much of so that the general public, other schools,
+              charities and volunteer groups can help share it with people that need it.
+            </p>
+            <p>
+              Donate to Educate will forward an email to you from visitors who want to help take
+              some of your extra stock.
+            </p>
+          </>
+        ),
+        actionText:
+          "Once we know what extra stock you can take from us, we'll contact you to arrange the next steps as soon as we can.",
+        howItWorks:
+          'View the products we have too much of, take it from us and share it with people who need it.',
+      };
+    default:
+      throw new Error(`Unknown type ${type}`);
+  }
+};
+
 const SchoolEdit: FC = () => {
-  const [type, setType] = useState<ItemsIconType>('tick');
+  const location = useLocation();
+  const type = (location?.state as { type: ItemsIconType })?.type;
   const [preview, setPreview] = useState(false);
   const [items, setItems] = useState<Record<string, SectionsIconType>>({});
   const [editState, setEditState] = useState(false);
@@ -38,13 +120,11 @@ const SchoolEdit: FC = () => {
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
 
+  const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({
     items: '',
-    banner: '',
-    helpBannerBody: '',
-    helpBannerTitle: '',
-    actionText: '',
-    whatToExpect: '',
+    actionText,
+    whatToExpect: howItWorks,
   });
 
   // TODO need to make the query key unique for each school
@@ -54,7 +134,8 @@ const SchoolEdit: FC = () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
         variables: {
-          name: 'Test School Profile 5',
+          name: 'Camelsdale Primary School',
+          id: '125821',
         },
       });
 
@@ -70,7 +151,6 @@ const SchoolEdit: FC = () => {
         query: updateSchoolProfile,
         variables: {
           key: getKeyFromType(type),
-          name: 'Test School Profile 5',
           value: JSON.stringify({
             ...content,
             items: JSON.stringify(items),
@@ -106,25 +186,26 @@ const SchoolEdit: FC = () => {
     content.items !== '' && setItems(JSON.parse(content.items) as Record<string, SectionsIconType>);
   }, [content, type]);
 
+  if (!(location.state && 'type' in location.state)) {
+    return <Navigate to={Paths.SCHOOLS_CREATE_EDIT_PROFILE} />;
+  }
+
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <div className={styles.container}>
-      <Button theme="darkBlue" onClick={() => setType('tick')} text="Request" ariaLabel="request" />
-      <Button theme="darkBlue" onClick={() => setType('heart')} text="Donate" ariaLabel="donate" />
-      <Button theme="darkBlue" onClick={() => setType('plus')} text="Excess" ariaLabel="excess" />
       <div className={`${styles.banner} ${styles[type]}`}>
-        <h2>{content.banner}</h2>
+        <h2>{banner}</h2>
       </div>
 
       <div className={styles.card}>
         {!preview && (
           <>
             <div className={styles.helpBanner}>
-              <h2>{content.helpBannerTitle}</h2>
-              <p>{content.helpBannerBody}</p>
+              <h2>{helpBannerTitle}</h2>
+              <p>{helpBannerBody}</p>
             </div>
             <div className={styles.whatToExpect}>
               <h2>What to expect</h2>
@@ -211,7 +292,22 @@ const SchoolEdit: FC = () => {
         )}
         {preview && (
           <>
+            <h2>What to expect</h2>
+            <p>{content.whatToExpect}</p>
             <ItemList type={type} items={items} />
+            {/* // TODO refactor this and the public one together */}
+            <div className={styles.helpContact}>
+              <>
+                <p>{content.actionText}</p>
+                <FormButton
+                  theme="formButtonGreenDisabled"
+                  text={getButtonTextFromType(type)}
+                  fullWidth
+                  ariaLabel="contact"
+                  disabled
+                />
+              </>
+            </div>
             <div className={styles.actionButtons}>
               <FormButton
                 theme={'formButtonDarkBlue'}

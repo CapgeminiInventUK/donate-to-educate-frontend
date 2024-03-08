@@ -9,12 +9,15 @@ import InformationTile from '@/components/InformationTile/InformationTile';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
 import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
 }
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type }) => {
+  const navigate = useNavigate();
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
 
@@ -62,19 +65,19 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type })
             <AdminActionTile
               heading="Let visitors request products from you"
               icon={<Hanger height="2.875rem" width="2.875rem" />}
-              onClick={() => null}
+              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'tick' } })}
             />
             <AdminActionTile
               heading="Let visitors donate products to you"
               icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
-              onClick={() => null}
+              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'heart' } })}
             />
           </div>
           <div className={styles.extraStockTileContainer}>
             <AdminActionTile
               heading="Let charities take your extra stock to share with the community"
               icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
-              onClick={() => null}
+              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'plus' } })}
             />
           </div>
           <div className={styles.actionButtons}>

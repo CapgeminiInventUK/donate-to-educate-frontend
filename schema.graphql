@@ -25,9 +25,6 @@ type School {
 
 type ProfileItems {
   items: String!
-  banner: String!
-  helpBannerTitle: String!
-  helpBannerBody: String!
   whatToExpect: String!
   actionText: String!
 }
@@ -100,7 +97,7 @@ type Query {
   getRegisteredSchools: [School!]!
   getLocalAuthorities: [LocalAuthority!]!
   getJoinRequests: [JoinRequest!]!
-  getSchoolProfile(name: String!): SchoolProfile!
+  getSchoolProfile(name: String!, id: String!): SchoolProfile!
   getLocalAuthorityUser(email: String!): LocalAuthorityUser!
   getSignUpData(id: String!): SignUpData
   getSchoolsNearby(postcode: String!, distance: Float!): [School!]!

@@ -53,9 +53,6 @@ export type SchoolProfile = {
 export type ProfileItems = {
   __typename: 'ProfileItems';
   items: string;
-  banner: string;
-  helpBannerTitle: string;
-  helpBannerBody: string;
   whatToExpect: string;
   actionText: string;
 };
@@ -349,6 +346,7 @@ export type GetJoinRequestsQuery = {
 
 export type GetSchoolProfileQueryVariables = {
   name: string;
+  id: string;
 };
 
 export type GetSchoolProfileQuery = {
@@ -357,27 +355,18 @@ export type GetSchoolProfileQuery = {
     request?: {
       __typename: 'ProfileItems';
       items: string;
-      banner: string;
-      helpBannerTitle: string;
-      helpBannerBody: string;
       whatToExpect: string;
       actionText: string;
     } | null;
     donate?: {
       __typename: 'ProfileItems';
       items: string;
-      banner: string;
-      helpBannerTitle: string;
-      helpBannerBody: string;
       whatToExpect: string;
       actionText: string;
     } | null;
     excess?: {
       __typename: 'ProfileItems';
       items: string;
-      banner: string;
-      helpBannerTitle: string;
-      helpBannerBody: string;
       whatToExpect: string;
       actionText: string;
     } | null;
