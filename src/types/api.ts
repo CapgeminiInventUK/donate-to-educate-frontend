@@ -313,6 +313,30 @@ export type GetRegisteredSchoolsQuery = {
   }>;
 };
 
+export type GetRegisteredSchoolsByLaQueryVariables = {
+  localAuthority: string;
+};
+
+export type GetRegisteredSchoolsByLaQuery = {
+  getRegisteredSchoolsByLa: Array<{
+    __typename: 'School';
+    urn: string;
+    name: string;
+    localAuthority: string;
+    postcode?: string | null;
+    registered: boolean;
+    isLocalAuthorityRegistered?: boolean | null;
+    address3?: string | null;
+    county?: string | null;
+    locality?: string | null;
+    street?: string | null;
+    phone?: string | null;
+    town?: string | null;
+    website?: string | null;
+    distance?: string | null;
+  }>;
+};
+
 export type GetLocalAuthoritiesQueryVariables = {};
 
 export type GetLocalAuthoritiesQuery = {

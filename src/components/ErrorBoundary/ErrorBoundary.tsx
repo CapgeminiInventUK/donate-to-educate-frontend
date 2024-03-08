@@ -41,6 +41,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       const message = this.state.error?.message.toLowerCase();
       if (
         message &&
+        !message.includes('http://localhost:5173') &&
         (message.includes('Unable to preload CSS'.toLowerCase()) ||
           message.includes('Failed to fetch dynamically imported module'.toLowerCase()))
       ) {

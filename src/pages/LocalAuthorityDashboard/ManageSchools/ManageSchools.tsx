@@ -2,8 +2,28 @@ import { FC } from 'react';
 import styles from './ManageSchools.module.scss';
 import { Table } from 'antd';
 import Button from '@/components/Button/Button';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { GetRegisteredSchoolsByLaQuery } from '../../../types/api';
+import { getRegisteredSchoolsByLa } from '@/graphql/queries';
+import Spinner from '@/components/Spinner/Spinner';
 
 const ManageSchools: FC = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['la-registered'],
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
+        query: getRegisteredSchoolsByLa,
+        variables: {
+          localAuthority: 'Hackney',
+        },
+      });
+
+      return data;
+    },
+  });
+
   const columns = [
     {
       title: 'School',
@@ -30,6 +50,10 @@ const ManageSchools: FC = () => {
     },
   ];
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.adminCard}>
@@ -42,7 +66,11 @@ const ManageSchools: FC = () => {
               <div>5 joined</div>
               <div>147 to join</div>
             </div>
-            <Table dataSource={[]} columns={columns} scroll={{ x: 'max-content' }} />
+            <Table
+              dataSource={data?.getRegisteredSchoolsByLa ?? []}
+              columns={columns}
+              scroll={{ x: 'max-content' }}
+            />
           </div>
         </div>
       </div>
