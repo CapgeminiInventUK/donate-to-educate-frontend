@@ -24,9 +24,9 @@ type School {
 }
 
 type ProfileItems {
-  items: String!
-  whatToExpect: String!
-  actionText: String!
+  items: String
+  whatToExpect: String
+  actionText: String
 }
 
 type SchoolProfile {
@@ -131,12 +131,7 @@ type Mutation {
     aboutCharity: String
   ): Boolean!
 
-  insertLocalAuthorityRegisterRequest(
-    name: String!
-    localAuthority: String!
-    email: String!
-    message: String!
-  ): Boolean!
+  insertLocalAuthorityRegisterRequest(name: String!, email: String!, message: String!): Boolean!
 
   insertSignUpData(
     id: String!
@@ -195,5 +190,4 @@ type LocalAuthorityRegisterRequest {
   name: String!
   email: String!
   message: String!
-  localAuthority: String!
 }

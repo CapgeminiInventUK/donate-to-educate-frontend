@@ -88,13 +88,11 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
 >;
 export const insertLocalAuthorityRegisterRequest = /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
   $name: String!
-  $localAuthority: String!
   $email: String!
   $message: String!
 ) {
   insertLocalAuthorityRegisterRequest(
     name: $name
-    localAuthority: $localAuthority
     email: $email
     message: $message
   )
