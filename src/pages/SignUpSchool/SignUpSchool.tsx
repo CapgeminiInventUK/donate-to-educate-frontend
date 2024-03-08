@@ -20,7 +20,6 @@ import {
 } from '@/types/api';
 import { client } from '@/graphqlClient';
 import getAuthorityNotRegisteredPath from './authorityNotRegistered';
-import { getSchools } from '@/graphql/queries';
 import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
 import {
   getFormDataForSubmission,
@@ -42,7 +41,16 @@ const SignUpSchool: FC = () => {
     queryKey: ['sc'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
-        query: getSchools,
+        query: `query GetSchools {
+          getSchools {
+            urn
+            name
+            localAuthority
+            postcode
+            registered
+            isLocalAuthorityRegistered
+          }
+        }`,
       });
 
       return data;

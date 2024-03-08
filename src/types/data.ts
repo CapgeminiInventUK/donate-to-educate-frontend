@@ -54,7 +54,7 @@ export interface FormTemplate {
   isUnhappyPath?: boolean;
   summaryPageBg?: SummaryPageColour;
   formComponentInternalLink?: ButtonProps;
-  onSend?: () => void;
+  onLocalAuthorityRegisterRequest?: () => void;
   isDeclarationPage?: boolean;
 }
 

@@ -42,7 +42,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     isUnhappyPath = false,
     summaryPageBg = SummaryPageColour.BLUE,
     formComponentInternalLink = undefined,
-    onSend = undefined,
+    onLocalAuthorityRegisterRequest = undefined,
     isDeclarationPage = false,
   } = formTemplate[pageNumber];
 
@@ -80,8 +80,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     setFormErrors({});
 
-    if (onSend) {
-      return onSend();
+    if (onLocalAuthorityRegisterRequest) {
+      return onLocalAuthorityRegisterRequest();
     }
 
     if (isDeclarationPage) {
@@ -212,7 +212,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
               useArrow={true}
             />
           )}
-          {isUnhappyPath && onSend && (
+          {isUnhappyPath && onLocalAuthorityRegisterRequest && (
             <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} />
           )}
           {formComponentInternalLink && (
