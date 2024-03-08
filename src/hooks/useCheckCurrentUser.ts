@@ -16,11 +16,13 @@ async function getUserType(): Promise<FetchUserAttributesOutput & { 'custom:type
 
 export type AccountType = 'admin' | 'charity' | 'school' | 'localAuthority';
 
-export const useCheckCurrentUser = (): {
+export interface CheckCurrentUserReturn {
   user?: AuthUser;
   isLoggedIn: boolean;
   type?: AccountType;
-} => {
+}
+
+export const useCheckCurrentUser = (): CheckCurrentUserReturn => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<AuthUser>();
   const [type, setType] = useState<AccountType>();
