@@ -209,6 +209,7 @@ export type InsertItemQueryMutationVariables = {
   who: string;
   phone: string;
   connection?: string | null;
+  organisationType: string;
 };
 
 export type InsertItemQueryMutation = {

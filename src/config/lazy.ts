@@ -22,16 +22,22 @@ export const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'
 export const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
 export const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/SchoolEdit'));
 export const SchoolContactConfirmation = lazy(
-  () => import('@/pages/SchoolsDashboard/Confirmation/SchoolContactConfirmation')
+  () => import('@/pages/SchoolsDashboard/SchoolContactConfirmation')
 );
 export const RequestSchoolProducts = lazy(
-  () => import('@/pages/SchoolsDashboard/RequestProducts/RequestProducts')
+  () => import('@/pages/SchoolsDashboard/RequestSchoolProducts')
 );
 
 // Public Charity
 export const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 export const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
 export const CharityEdit = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
+export const RequestCharityProducts = lazy(
+  () => import('@/pages/CharityDashboard/RequestCharityProducts')
+);
+export const CharityContactConfirmation = lazy(
+  () => import('@/pages/CharityDashboard/CharityContactConfirmation')
+);
 
 // Login
 export const Login = lazy(() => import('@pages/Login/Login'));

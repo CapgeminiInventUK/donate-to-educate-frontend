@@ -130,6 +130,7 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   $who: String!
   $phone: String!
   $connection: String
+  $organisationType: String!
 ) {
   insertItemQuery(
     name: $name
@@ -139,6 +140,7 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
     who: $who
     phone: $phone
     connection: $connection
+    organisationType: $organisationType
   )
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
