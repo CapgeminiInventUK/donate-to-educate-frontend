@@ -23,6 +23,7 @@ const FormButton: FC<FormButtonProps> = ({
       case 'formButtonDisabled':
         return RightArrowGrey;
       case 'formButtonRed':
+      case 'formButtonLightBlue':
         return RightArrowBlue;
       case 'formButtonGreen':
       case 'formButtonGreenDisabled':

@@ -14,7 +14,7 @@ export const getUserType = async (): Promise<FetchUserAttributesOutput & CustomA
   return (await fetchUserAttributes()) as FetchUserAttributesOutput & CustomAttributes;
 };
 
-interface CustomAttributes {
+export interface CustomAttributes {
   'custom:type': string;
   'custom:institution': string;
   'custom:institutionId': string;

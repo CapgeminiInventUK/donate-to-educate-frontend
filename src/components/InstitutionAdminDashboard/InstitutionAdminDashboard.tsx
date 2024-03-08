@@ -11,12 +11,15 @@ import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import { SchoolProfile } from '@/types/api';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
+  name: string;
+  profile: SchoolProfile;
 }
 
-const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type }) => {
+const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const navigate = useNavigate();
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
@@ -38,11 +41,13 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type })
 
   // TODO - Use useEffect to fetch information from API (about us, request/donate/extra stock data)
 
+  const { donate, excess, request } = profile;
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton onClick={onBackButtonClick} theme="blue" />
-        <InstitutionBanner isAdminView type={type} />
+        <InstitutionBanner isAdminView type={type} name={name} />
         <div className={styles.card}>
           <InformationTile
             heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
@@ -63,11 +68,15 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type })
 
           <div className={styles.productsTilesContainer}>
             <AdminActionTile
+              type="tick"
+              isPresent={!!request}
               heading="Let visitors request products from you"
               icon={<Hanger height="2.875rem" width="2.875rem" />}
               onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'tick' } })}
             />
             <AdminActionTile
+              type="heart"
+              isPresent={!!donate}
               heading="Let visitors donate products to you"
               icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
               onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'heart' } })}
@@ -75,6 +84,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type })
           </div>
           <div className={styles.extraStockTileContainer}>
             <AdminActionTile
+              type="plus"
+              isPresent={!!excess}
               heading="Let charities take your extra stock to share with the community"
               icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
               onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'plus' } })}

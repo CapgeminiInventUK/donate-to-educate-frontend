@@ -374,7 +374,7 @@ export type GetSchoolProfileQueryVariables = {
 };
 
 export type GetSchoolProfileQuery = {
-  getSchoolProfile: {
+  getSchoolProfile?: {
     __typename: 'SchoolProfile';
     request?: {
       __typename: 'ProfileItems';
@@ -394,7 +394,7 @@ export type GetSchoolProfileQuery = {
       whatToExpect?: string | null;
       actionText?: string | null;
     } | null;
-  };
+  } | null;
 };
 
 export type GetLocalAuthorityUserQueryVariables = {

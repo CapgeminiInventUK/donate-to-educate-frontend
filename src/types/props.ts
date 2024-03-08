@@ -30,6 +30,7 @@ export type FormButtonThemes =
   | 'formButtonRed'
   | 'formButtonGreen'
   | 'formButtonDisabled'
+  | 'formButtonLightBlue'
   | 'formButtonGreenDisabled';
 export interface ButtonProps {
   theme: Themes;
@@ -279,6 +280,7 @@ export interface InstitutionBannerProps {
   onClick?: () => void;
   type: 'school' | 'charity';
   address?: string;
+  name?: string;
 }
 
 export interface InformationTileProps {
@@ -296,6 +298,8 @@ export interface AdminActionTileProps {
   heading: string;
   icon: JSX.Element;
   onClick: () => void;
+  isPresent: boolean;
+  type: string;
 }
 
 export interface AddressInsetProps {

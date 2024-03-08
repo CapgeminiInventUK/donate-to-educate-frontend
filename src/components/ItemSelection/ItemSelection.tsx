@@ -20,7 +20,7 @@ const getTitleFromType = (type: string): string => {
   }
 };
 
-export const getButtonTextFromType = (type: string): string => {
+const getButtonTextFromType = (type: string): string => {
   switch (type) {
     case 'tick':
       return 'Request products';

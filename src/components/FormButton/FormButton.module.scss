@@ -35,6 +35,14 @@
   color: g.$primary-white;
 }
 
+.formButtonLightBlue {
+  @extend %button;
+  border: g.$primary-light-blue 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$primary-mid-blue;
+  background: g.$primary-light-blue;
+  color: g.$primary-dark-blue;
+}
+
 .formButtonRed {
   @extend %button;
   border: g.$greyscale-disabled 1px solid;

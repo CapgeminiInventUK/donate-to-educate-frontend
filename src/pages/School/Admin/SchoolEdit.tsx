@@ -7,18 +7,28 @@ import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
-import { GetSchoolProfileQuery, UpdateSchoolProfileMutation } from '@/types/api';
+import { SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
 import { updateSchoolProfile } from '@/graphql/mutations';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { getSchoolProfile } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
 import { EditDescription } from './EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
-import { Navigate, useLocation } from 'react-router-dom';
-import { getButtonTextFromType } from '@/components/ItemSelection/ItemSelection';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import BackButton from '@/components/BackButton/BackButton';
+
+const getButtonTextFromType = (type: string): string => {
+  switch (type) {
+    case 'tick':
+      return 'Request products';
+    case 'heart':
+      return 'Donate products';
+    case 'plus':
+      return 'Take extra stock';
+    default:
+      throw new Error(`Unknown type ${type}`);
+  }
+};
 
 const getKeyFromType = (type: string): string => {
   switch (type) {
@@ -114,7 +124,15 @@ const getPageContent = (
 
 const SchoolEdit: FC = () => {
   const location = useLocation();
-  const type = (location?.state as { type: ItemsIconType })?.type;
+  const navigate = useNavigate();
+  const { type, donate, excess, request } =
+    (location?.state as {
+      type: ItemsIconType;
+      donate: SchoolProfile;
+      excess: SchoolProfile;
+      request: SchoolProfile;
+    }) ?? {};
+
   const [preview, setPreview] = useState(false);
   const [items, setItems] = useState<Record<string, SectionsIconType>>({});
   const [editState, setEditState] = useState(false);
@@ -128,22 +146,6 @@ const SchoolEdit: FC = () => {
     items: '',
     actionText,
     whatToExpect: howItWorks,
-  });
-
-  // TODO need to make the query key unique for each school
-  const { isLoading, data } = useQuery({
-    queryKey: ['profile'],
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
-        query: getSchoolProfile,
-        variables: {
-          name: 'Camelsdale Primary School',
-          id: '125821',
-        },
-      });
-
-      return data;
-    },
   });
 
   useEffect(() => {
@@ -174,24 +176,24 @@ const SchoolEdit: FC = () => {
   });
 
   useEffect(() => {
-    if (!isLoading) {
-      if (data?.getSchoolProfile && getKeyFromType(type) in (data?.getSchoolProfile ?? {})) {
-        const { donate, request, excess } = data.getSchoolProfile;
-
-        switch (type) {
-          case 'tick':
-            setContent(JSON.parse(JSON.stringify(request)) as ContentType);
-            break;
-          case 'heart':
-            setContent(JSON.parse(JSON.stringify(donate)) as ContentType);
-            break;
-          case 'plus':
-            setContent(JSON.parse(JSON.stringify(excess)) as ContentType);
-            break;
+    switch (type) {
+      case 'tick':
+        if (request) {
+          setContent(JSON.parse(JSON.stringify(request)) as ContentType);
         }
-      }
+        break;
+      case 'heart':
+        if (donate) {
+          setContent(JSON.parse(JSON.stringify(donate)) as ContentType);
+        }
+        break;
+      case 'plus':
+        if (excess) {
+          setContent(JSON.parse(JSON.stringify(excess)) as ContentType);
+        }
+        break;
     }
-  }, [isLoading, type, data?.getSchoolProfile]);
+  }, [type, donate, excess, request]);
 
   useEffect(() => {
     content.items !== '' && setItems(JSON.parse(content.items) as Record<string, SectionsIconType>);
@@ -199,10 +201,6 @@ const SchoolEdit: FC = () => {
 
   if (!(location.state && 'type' in location.state)) {
     return <Navigate to={Paths.SCHOOLS_CREATE_EDIT_PROFILE} />;
-  }
-
-  if (isLoading) {
-    return <Spinner />;
   }
 
   return (
@@ -294,7 +292,9 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch().then(console.log).catch(console.error);
+                  refetch()
+                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
+                    .catch(console.error);
                 }}
                 text={'Save'}
                 ariaLabel="save"
@@ -330,7 +330,9 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch().then(console.log).catch(console.error);
+                  refetch()
+                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
+                    .catch(console.error);
                 }}
                 text={'Save'}
                 ariaLabel="save"

@@ -2,13 +2,14 @@ import { FC } from 'react';
 import styles from './LocalAuthorityDashboard.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import BackButton from '@/components/BackButton/BackButton';
 
-// Need to make this a protected route only for logged in users of type la.
 const LocalAuthorityDashboard: FC = () => {
   const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
+      <BackButton theme="blue" />
       <div className={styles.adminCard}>
         <h1>West Sussex</h1>
         <div className={styles.body}>

@@ -16,6 +16,30 @@
   border-radius: 0.625rem;
   border: 2px solid g.$greyscale-disabled;
   background: g.$primary-white;
+
+  &.tick {
+    background: g.$primary-light-blue;
+
+    h3 {
+      color: g.$primary-dark-blue;
+    }
+  }
+
+  &.heart {
+    background: g.$primary-mid-blue;
+
+    h3 {
+      color: g.$primary-white;
+    }
+  }
+
+  &.plus {
+    background: g.$primary-dark-blue;
+
+    h3 {
+      color: g.$primary-white;
+    }
+  }
 }
 
 .heading {

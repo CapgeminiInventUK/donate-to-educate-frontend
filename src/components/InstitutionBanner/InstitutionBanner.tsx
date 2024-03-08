@@ -18,10 +18,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   uniformPolicy,
   address,
   type,
+  name,
 }) => {
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
-      <h1>Ormiston Six Villages Academy</h1>
+      <h1>{name ?? 'Ormiston Six Villages Academy'}</h1>
       <div className={styles.textContainer}>
         <ul>
           <li>
