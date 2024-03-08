@@ -18,6 +18,8 @@ interface SignUpParameters {
   password: string;
   email: string;
   type: string;
+  name: string;
+  id: string;
 }
 
 interface ConfirmSignUpParameters {
@@ -34,7 +36,13 @@ async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Pr
   return nextStep.signUpStep;
 }
 
-async function handleSignUp({ email, password, type }: SignUpParameters): Promise<string> {
+async function handleSignUp({
+  email,
+  password,
+  type,
+  name,
+  id,
+}: SignUpParameters): Promise<string> {
   const lowercaseEmail = email.toLowerCase();
   const { isSignUpComplete, userId, nextStep } = await signUp({
     username: lowercaseEmail,
@@ -43,6 +51,8 @@ async function handleSignUp({ email, password, type }: SignUpParameters): Promis
       userAttributes: {
         email: lowercaseEmail,
         'custom:type': type,
+        'custom:institution': name,
+        'custom:institutionId': id,
       },
     },
   });
@@ -77,9 +87,9 @@ const NewUser: FC = () => {
 
   useEffect(() => {
     if (submitted && !isLoading) {
-      const { email, type } = data?.getSignUpData ?? {};
+      const { email, type, name, nameId } = data?.getSignUpData ?? {};
       if (email && type) {
-        handleSignUp({ email, password, type })
+        handleSignUp({ email, password, type, name: name ?? '', id: nameId ?? '' })
           .then((step) => setStep(step))
           .catch((error: Error) => {
             setError(error.message.replace('Password did not conform with policy: ', ''));
@@ -106,7 +116,7 @@ const NewUser: FC = () => {
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-    return <Navigate to={Paths.LOGIN} />;
+    return <Navigate to={Paths.SIGN_IN} />;
   }
 
   if (isLoading) {
@@ -125,7 +135,7 @@ const NewUser: FC = () => {
         {step === 'SIGN_UP' && (
           <>
             <h2>Create user</h2>
-            <TextInput header="Email" value={email} disabled />
+            <TextInput header="Email" value={email} disabled ariaLabel="email" />
             <TextInput
               header="Password"
               password
@@ -133,11 +143,13 @@ const NewUser: FC = () => {
                 setPassword(value);
               }}
               errorMessage={error}
+              ariaLabel="password"
             />
             <FormButton
               theme={'formButtonDarkBlue'}
               onClick={(): void => setSubmitted(true)}
               text={'Create user'}
+              ariaLabel="createUser"
             />
           </>
         )}
@@ -161,6 +173,7 @@ const NewUser: FC = () => {
                   setSubmitCode(true);
                 }
               }}
+              ariaLabel="next"
             />
           </>
         )}

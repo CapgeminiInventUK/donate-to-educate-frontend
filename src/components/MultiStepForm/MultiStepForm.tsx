@@ -117,7 +117,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   };
 
   const returnHome = (): void => {
-    navigate('/');
+    navigate(Paths.HOME);
   };
 
   return (
@@ -190,7 +190,12 @@ const FormContainer: FC<MultiStepFormProps> = ({
             <div
               className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
             >
-              <Button theme={'link'} text={'Return to homepage'} onClick={returnHome} />
+              <Button
+                theme={'link'}
+                text={'Return to homepage'}
+                onClick={returnHome}
+                ariaLabel="home"
+              />
             </div>
           ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
             <FormButton
@@ -198,6 +203,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
               theme={
                 pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
               }
+              ariaLabel={pageNumber === 0 ? 'Start' : 'Next'}
               useArrow={true}
               disabled={pageNumber === 1 && isSchoolRegistered}
             />
@@ -209,11 +215,12 @@ const FormContainer: FC<MultiStepFormProps> = ({
                   ? 'formButtonDarkBlue'
                   : 'formButtonGrey'
               }
+              ariaLabel="confirm"
               useArrow={true}
             />
           )}
           {isUnhappyPath && onLocalAuthorityRegisterRequest && (
-            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} />
+            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} ariaLabel="send" />
           )}
           {formComponentInternalLink && (
             <div className={styles.link}>
@@ -223,6 +230,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 onClick={() => {
                   formComponentInternalLink.onClick();
                 }}
+                ariaLabel="internal link"
               />
             </div>
           )}

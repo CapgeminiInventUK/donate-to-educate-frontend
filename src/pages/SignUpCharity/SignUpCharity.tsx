@@ -57,7 +57,7 @@ const SignUpCharity: FC = () => {
         variables: {
           name: formDataForSubmission?.name,
           localAuthority: selectedLocalAuthority,
-          type: FormNames.CHARITY,
+          type: 'charity',
           email: formDataForSubmission?.email,
           school: formDataForSubmission?.school,
           jobTitle: formDataForSubmission?.jobTitle,
@@ -117,6 +117,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.TEXT,
           componentData: {
+            ariaLabel: 'name',
             isLarge: true,
             formMeta: {
               page: 1,
@@ -133,6 +134,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.DROPDOWN,
           componentData: {
+            ariaLabel: 'main local council',
             subHeading: 'If you have locations across the country, choose one main local council.',
             options,
             isLarge: true,
@@ -143,6 +145,7 @@ const SignUpCharity: FC = () => {
             },
           },
           formComponentLink: {
+            ariaLabel: 'find local council',
             linkText: 'Find my local council (opens in a new tab).',
             linkUrl: 'https://www.gov.uk/find-local-council',
           },
@@ -156,6 +159,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'First name',
+            ariaLabel: 'first name',
             isLarge: true,
             formMeta: {
               page: 3,
@@ -168,6 +172,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Last name',
+            ariaLabel: 'last name',
             isLarge: true,
             formMeta: {
               page: 3,
@@ -180,6 +185,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Job title or role',
+            ariaLabel: 'title',
             subHeading: 'For example, volunteer manager, fundraiser, project coordinator.',
             isLarge: true,
             formMeta: {
@@ -193,6 +199,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Email',
+            ariaLabel: 'email',
             subHeading:
               "Use your charity email address if you're staff, or personal email address if you're a volunteer. You will need this email to sign in.",
             isLarge: true,
@@ -207,6 +214,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Phone',
+            ariaLabel: 'phone',
             formMeta: {
               page: 3,
               field: 'Phone',
@@ -224,6 +232,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Address line 1',
+            ariaLabel: 'address line 1',
             isLarge: true,
             formMeta: {
               page: 4,
@@ -236,6 +245,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Address line 2 (optional)',
+            ariaLabel: 'address line 2 (optional)',
             isLarge: true,
             formMeta: {
               page: 4,
@@ -248,6 +258,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Town or city',
+            ariaLabel: 'town or city',
             formMeta: {
               page: 4,
               field: 'Town',
@@ -259,6 +270,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'County',
+            ariaLabel: 'county',
             formMeta: {
               page: 4,
               field: 'County',
@@ -270,6 +282,7 @@ const SignUpCharity: FC = () => {
           componentType: ComponentType.TEXT,
           componentData: {
             header: 'Postcode',
+            ariaLabel: 'postcode',
             isSmall: true,
             formMeta: {
               page: 4,
@@ -286,6 +299,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.TEXTAREA,
           componentData: {
+            ariaLabel: 'about',
             subHeading:
               'Describe the great work your charity or volunteer group are doing. Let us know how you can help families and schools.',
             hint: 'This information can only be seen by Donate to Educate administrators.',
@@ -324,6 +338,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr statement',
             label: 'GDPR content and statement [---------------]',
             formMeta: {
               page: 6,
@@ -335,6 +350,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr legal understanding',
             label: 'Legal understanding [---------------]',
 
             formMeta: {
@@ -347,6 +363,7 @@ const SignUpCharity: FC = () => {
         {
           componentType: ComponentType.CHECKBOX,
           componentData: {
+            ariaLabel: 'gdpr acceptance',
             label: 'I will be administrating the account [---------------]',
             formMeta: {
               page: 6,

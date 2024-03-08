@@ -19,6 +19,7 @@ const Footer: FC = () => {
             text="Contact us"
             onClick={(): void => navigate(Paths.CONTACT)}
             className={styles.fitContent769}
+            ariaLabel="contact us"
           />
         </div>
         <div className={styles.linksContainer}>

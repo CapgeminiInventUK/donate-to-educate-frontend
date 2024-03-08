@@ -64,6 +64,11 @@ $warning-orange: #ffa500;
 
 $modal-backdrop: rgba(17, 53, 111, 0.75);
 
+@mixin admin-card {
+  border: solid $primary-white 2px;
+  border-radius: 10px;
+}
+
 @mixin card {
   border-radius: 10px;
   background: $primary-white;

@@ -50,6 +50,7 @@ const Join: FC = () => {
             theme="formButtonDarkBlue"
             onClick={() => navigate(getLocationBasedOnRole(role))}
             text={'Next'}
+            ariaLabel="next"
           />
         </div>
       </div>

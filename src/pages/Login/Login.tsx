@@ -1,17 +1,15 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import FormButton from '@/components/FormButton/FormButton';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
-import { SignIn } from './SignIn/SignIn';
 
 const Login: FC = () => {
   const navigate = useNavigate();
-  const [signInState, setSignInState] = useState(false);
 
-  return !signInState ? (
+  return (
     <div className={styles.container}>
       <BackButton theme="blue" />
       <div className={styles.subContainer}>
@@ -23,7 +21,7 @@ const Login: FC = () => {
           <p>You can easily sign in or join if you work for:</p>
           <ul>
             <li>A school</li>
-            <li>A charity or volunteer Group</li>
+            <li>A charity or volunteer group</li>
           </ul>
           <div className={styles.subContainerLine}>
             <FormButton
@@ -31,8 +29,9 @@ const Login: FC = () => {
               useArrow={false}
               text={'Sign In'}
               onClick={() => {
-                setSignInState(true);
+                navigate(Paths.SIGN_IN);
               }}
+              ariaLabel="sign in"
             />
             <Link className={styles.link} to={Paths.JOIN}>
               Join Donate to Educate
@@ -66,13 +65,6 @@ const Login: FC = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <SignIn
-      backButtonPressed={() => {
-        setSignInState(false);
-        navigate(-1);
-      }}
-    />
   );
 };
 

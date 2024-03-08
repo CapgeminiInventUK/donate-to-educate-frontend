@@ -12,6 +12,7 @@ const getCannotFindSchoolPath = (
       {
         componentType: ComponentType.SCHOOL_NOT_FOUND,
         componentData: {
+          ariaLabel: 'cannot find school',
           formMeta: {
             page: 2,
           },

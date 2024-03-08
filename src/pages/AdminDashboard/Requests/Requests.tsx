@@ -18,7 +18,11 @@ import { SchoolOrCharityProperties } from '../AdminDashboard';
 const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
   const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
-    useState<SchoolOrCharityProperties>({ name: '', la: '' });
+    useState<SchoolOrCharityProperties>({
+      name: '',
+      la: '',
+      user: { name: '', title: '', email: '', phone: '' },
+    });
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
@@ -45,10 +49,11 @@ const Requests: FC = () => {
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
               void signOut()
-                .then(() => navigate(Paths.LOGIN))
+                .then(() => navigate(Paths.SIGN_IN))
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>
@@ -69,6 +74,7 @@ const Requests: FC = () => {
               type="school"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
             />
           )}
           {!isLoading && stage === 'request_approval_charity' && (
@@ -77,6 +83,8 @@ const Requests: FC = () => {
               type="charity"
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
+              user={schoolOrCharityProperties.user}
+              charity={schoolOrCharityProperties.charity}
             />
           )}
         </div>

@@ -51,10 +51,15 @@
   }
 
   .container {
+    padding: 17px 19px;
+
     .contentContainer {
-      padding-top: 66px;
+      width: 100%;
+      padding-top: 20px;
 
       .card {
+        padding: 20px;
+
         .email {
           font-size: 20px;
         }

@@ -57,8 +57,17 @@
     display: none;
   }
 
-  .contentContainer {
-    padding-top: 66px;
+  .container {
+    padding: 17px 19px;
+
+    .contentContainer {
+      width: 100%;
+      padding-top: 66px;
+
+      .card {
+        padding: 20px;
+      }
+    }
   }
 }
 

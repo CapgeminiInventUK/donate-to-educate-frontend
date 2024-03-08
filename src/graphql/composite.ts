@@ -16,6 +16,14 @@ export const getAdminPageRequests = `query getAdminPageRequests {
         localAuthority
         type
         requestTime
+        status
+        email
+        school
+        jobTitle
+        phone
+        charityName
+        charityAddress
+        aboutCharity
         __typename
       }
 }` as GeneratedQuery<

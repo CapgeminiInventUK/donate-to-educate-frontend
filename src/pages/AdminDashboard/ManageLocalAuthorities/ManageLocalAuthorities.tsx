@@ -80,6 +80,7 @@ const ManageLocalAuthorities: FC = () => {
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
+          aria-label="search input"
         />
         <Space>
           <SearchButton
@@ -88,6 +89,7 @@ const ManageLocalAuthorities: FC = () => {
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
+            aria-label="search"
           >
             Search
           </SearchButton>
@@ -95,6 +97,7 @@ const ManageLocalAuthorities: FC = () => {
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
+            aria-label="reset"
           >
             Reset
           </SearchButton>
@@ -104,6 +107,7 @@ const ManageLocalAuthorities: FC = () => {
             onClick={() => {
               close();
             }}
+            aria-label="close"
           >
             Close
           </SearchButton>
@@ -173,6 +177,7 @@ const ManageLocalAuthorities: FC = () => {
               onClick={(): void => {
                 navigate(`${Paths.ADMIN_DASHBOARD_LA_VIEW}?la=${la.name}`);
               }}
+              ariaLabel="view profile"
             />
             <Button
               theme="link-blue"
@@ -181,6 +186,7 @@ const ManageLocalAuthorities: FC = () => {
               onClick={(): void => {
                 navigate(Paths.ADMIN_DASHBOARD);
               }}
+              ariaLabel="edit users"
             />
           </div>
         ) : (
@@ -190,8 +196,9 @@ const ManageLocalAuthorities: FC = () => {
               className={styles.actionButtons}
               text="Add user"
               onClick={(): void => {
-                navigate(`${Paths.ADMIN_DASHBOARD_SIGN_UP}?la=${la.name}`);
+                navigate(Paths.ADMIN_DASHBOARD_SIGN_UP, { state: { la: la.name, id: la.code } });
               }}
+              ariaLabel="add user"
             />
           </div>
         ),
@@ -209,10 +216,11 @@ const ManageLocalAuthorities: FC = () => {
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
               void signOut()
-                .then(() => navigate(Paths.LOGIN))
+                .then(() => navigate(Paths.SIGN_IN))
                 // eslint-disable-next-line no-console
                 .catch(console.error);
             }}
+            ariaLabel="sign out"
           />
         </div>
         <div className={dashboardStyles.body}>

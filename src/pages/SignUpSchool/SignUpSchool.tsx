@@ -70,7 +70,7 @@ const SignUpSchool: FC = () => {
         variables: {
           name: formDataForSubmission?.name,
           localAuthority: selectedLocalAuthority,
-          type: FormNames.SCHOOL,
+          type: 'school',
           email: formDataForSubmission?.email,
           school: formDataForSubmission?.school,
           jobTitle: formDataForSubmission?.jobTitle,

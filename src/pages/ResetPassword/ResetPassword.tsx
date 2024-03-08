@@ -68,6 +68,7 @@ const ResetPassword: FC = () => {
                   setFirstErrorText('');
                 }
               }}
+              ariaLabel="email"
               isLarge={isNotMobile}
               isSmall={isSmallMobile}
             />
@@ -77,6 +78,7 @@ const ResetPassword: FC = () => {
               theme={email.length ? 'formButtonDarkBlue' : 'formButtonDisabled'}
               onClick={(): void => handleResetPassword(email)}
               useArrow={true}
+              ariaLabel="submit"
             />
           </>
         ) : stepNumber === 1 ? (
@@ -100,6 +102,7 @@ const ResetPassword: FC = () => {
                   setStepNumber(2);
                 }
               }}
+              ariaLabel="next"
             />
           </div>
         ) : stepNumber === 2 ? (
@@ -115,6 +118,7 @@ const ResetPassword: FC = () => {
                 }
               }}
               isSmall={isSmallMobile}
+              ariaLabel="new password"
             />
             <TextInput
               header="Repeat Password"
@@ -126,11 +130,13 @@ const ResetPassword: FC = () => {
                 }
               }}
               isSmall={isSmallMobile}
+              ariaLabel="repeat password"
             />
             <p className={styles.errorText}>{secondErrorText}</p>
             <FormButton
               text={'Change Password'}
               theme={'formButtonDarkBlue'}
+              ariaLabel="change password"
               useArrow={true}
               onClick={(): void => {
                 if (newPassword === '' || newPasswordRepeat === '') {
@@ -154,7 +160,7 @@ const ResetPassword: FC = () => {
         ) : (
           <>
             <p>Password changed successfully.</p>
-            <Link className={styles.login} to={Paths.LOGIN}>
+            <Link className={styles.login} to={Paths.SIGN_IN}>
               Back to Login
             </Link>
           </>

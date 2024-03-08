@@ -1,42 +1,61 @@
 import { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { SignInOutput, signIn } from 'aws-amplify/auth';
 import FormButton from '@components/FormButton/FormButton';
-import Spinner from '@components/Spinner/Spinner';
 import TextInput from '@components/TextInput/TextInput';
 import LoginBanner from '@/components/LoginBanner/LoginBanner';
-import { AccountType, useCheckCurrentUser } from '@/hooks/useCheckCurrentUser';
+import {
+  AccountType,
+  checkAuthState,
+  getUserType,
+  useCheckCurrentUser,
+} from '@/hooks/useCheckCurrentUser';
 import Paths from '@/config/paths';
 import { breakpoints } from '@utils/globals';
 import styles from '../Login.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
+import Spinner from '@/components/Spinner/Spinner';
+import { getRedirectUrl } from '@/utils/account';
 
-export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPressed }) => {
+const SignIn: FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<string>('');
   const [submitted, setSubmitted] = useState(false);
 
   const navigate = useNavigate();
-  const { isLoggedIn, type } = useCheckCurrentUser();
+  const { isLoading, user } = useCheckCurrentUser();
   const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
   const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
 
   useEffect(() => {
     if (submitted) {
       userLogin(email, password)
+        .then(() => {
+          checkAuthState()
+            .then(() => {
+              getUserType()
+                .then((attributes) => {
+                  navigate(getRedirectUrl(attributes['custom:type'] as AccountType));
+                })
+                .catch(handleError);
+            })
+            .catch(handleError);
+        })
         .catch(handleError)
         .finally(() => {
           setSubmitted(false);
         });
     }
-  }, [submitted, password, email]);
+  }, [submitted, password, email, navigate, user]);
 
-  if (isLoggedIn && !submitted && type) {
-    navigate(getRedirectUrl(type));
+  if (isLoading) {
     return <Spinner />;
+  }
+
+  if (user) {
+    return <Navigate to={getRedirectUrl(user['custom:type'] as AccountType)} />;
   }
 
   const handleError = (): void => {
@@ -45,7 +64,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
 
   return (
     <div className={styles.container}>
-      <BackButton onClick={backButtonPressed} theme="blue" />
+      <BackButton theme="blue" />
       <div className={styles.subContainer}>
         <LoginBanner />
         <h2>Sign in</h2>
@@ -56,6 +75,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
               setEmail(value);
             }
           }}
+          ariaLabel="email"
           isLarge={isNotMobile}
           isSmall={isSmallMobile}
         />
@@ -67,6 +87,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
               setPassword(value);
             }
           }}
+          ariaLabel="password"
           isSmall={isSmallMobile}
         />
         <Link to={Paths.RESET_PASSWORD} className={styles.altLink}>
@@ -85,6 +106,7 @@ export const SignIn: FC<{ backButtonPressed: () => void }> = ({ backButtonPresse
           onClick={(): void => setSubmitted(true)}
           useArrow={true}
           className={styles.formButton}
+          ariaLabel="sign in"
         />
       </div>{' '}
     </div>
@@ -95,16 +117,4 @@ const userLogin = async (username: string, password: string): Promise<SignInOutp
   return await signIn({ username, password });
 };
 
-const getRedirectUrl = (type: AccountType): string => {
-  switch (type) {
-    case 'admin':
-      return Paths.ADMIN_DASHBOARD;
-    case 'localAuthority':
-      return Paths.LOCAL_AUTHORITY_DASHBOARD;
-    // TODO need to link to the relevant dashboard when built
-    case 'school':
-    case 'charity':
-    default:
-      throw new Error(`Unknown account type ${type}`);
-  }
-};
+export default SignIn;

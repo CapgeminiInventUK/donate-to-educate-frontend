@@ -19,10 +19,15 @@
     font-weight: 700;
   }
 
-  button {
-    font-size: 14px;
-    height: 44px;
-    width: 160px;
+  .buttons {
+    display: flex;
+
+    button {
+      font-size: 14px;
+      height: 44px;
+      width: 160px;
+      margin-left: 10px;
+    }
   }
 }
 
@@ -32,4 +37,20 @@
 
 .cookie {
   flex-shrink: 0;
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .cookieBanner {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 10px;
+
+    .cookie {
+      display: none;
+    }
+
+    .buttons {
+      margin-bottom: 10px;
+    }
+  }
 }

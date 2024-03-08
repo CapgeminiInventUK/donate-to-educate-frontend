@@ -25,7 +25,7 @@
     margin-bottom: 66px;
 
     h1 {
-      padding: 66px 0 26px;
+      padding: 0 0 26px;
       margin: 0;
     }
 
@@ -93,6 +93,8 @@
 
 @media only screen and (max-width: g.$screen-medium) {
   .container {
+    padding: 17px 19px;
+
     .title {
       display: none;
     }
@@ -109,7 +111,7 @@
     }
 
     .contentContainer {
-      padding-top: 40px;
+      width: 100%;
 
       .card {
         margin-top: 20px;

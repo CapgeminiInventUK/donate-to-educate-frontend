@@ -48,6 +48,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
+          aria-label="search input"
         />
         <Space>
           <SearchButton
@@ -56,6 +57,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
+            aria-label="search"
           >
             Search
           </SearchButton>
@@ -63,6 +65,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
+            aria-label="reset"
           >
             Reset
           </SearchButton>
@@ -72,6 +75,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             onClick={() => {
               close();
             }}
+            aria-label="close"
           >
             Close
           </SearchButton>
@@ -138,13 +142,28 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
       render: (_: unknown, joinRequest: JoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button
+            ariaLabel="view request"
             theme="link-blue"
             className={styles.actionButtons}
             text={`View request`}
             onClick={(): void => {
               setSchoolOrCharityProperties({
-                name: joinRequest.name,
+                name:
+                  (joinRequest.type === 'school' ? joinRequest.school : joinRequest.charityName) ??
+                  '',
                 la: joinRequest.localAuthority,
+                user: {
+                  name: joinRequest.name,
+                  title: joinRequest.jobTitle ?? '',
+                  email: joinRequest.email,
+                  phone: joinRequest.phone ?? '',
+                },
+                ...(joinRequest.charityName && {
+                  charity: {
+                    mainAddress: joinRequest.charityAddress ?? '',
+                    about: joinRequest.aboutCharity ?? '',
+                  },
+                }),
               });
               setStage(
                 joinRequest.type === 'school'
@@ -160,18 +179,18 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
   const schoolColumns = [
     {
       title: 'School',
-      dataIndex: 'name',
-      key: 'name',
-      ...getColumnSearchProps('name'),
+      dataIndex: 'school',
+      key: 'school',
+      ...getColumnSearchProps('school'),
     },
     ...baseColumns,
   ];
   const charityColumns = [
     {
       title: 'Charity',
-      dataIndex: 'name',
-      key: 'name',
-      ...getColumnSearchProps('name'),
+      dataIndex: 'charityName',
+      key: 'charityName',
+      ...getColumnSearchProps('charityName'),
     },
     ...baseColumns,
   ];

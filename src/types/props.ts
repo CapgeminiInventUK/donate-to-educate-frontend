@@ -13,6 +13,7 @@ import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import { InsertJoinRequestMutationVariables } from './api';
+import { AccountType } from '@/hooks/useCheckCurrentUser';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -28,13 +29,15 @@ export type FormButtonThemes =
   | 'formButtonGrey'
   | 'formButtonRed'
   | 'formButtonGreen'
-  | 'formButtonDisabled';
+  | 'formButtonDisabled'
+  | 'formButtonGreenDisabled';
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
   text: string | JSX.Element;
   className?: string;
   disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface FormButtonProps {
@@ -45,6 +48,7 @@ export interface FormButtonProps {
   fullWidth?: boolean;
   className?: string;
   disabled?: boolean;
+  ariaLabel: string;
 }
 
 export interface ImageProps {
@@ -67,8 +71,8 @@ export interface SvgProps {
   className?: string;
   onClick?: () => void;
   colour?: string;
-  height?: number;
-  width?: number;
+  height?: string;
+  width?: string;
 }
 export interface EditDescriptionProps {
   value: string;
@@ -81,9 +85,6 @@ export interface BackLinkProps {
 }
 export interface ContentType {
   items: string;
-  banner: string;
-  helpBannerTitle: string;
-  helpBannerBody: string;
   whatToExpect: string;
   actionText: string;
 }
@@ -121,7 +122,7 @@ export interface Route {
   element: JSX.Element;
   name?: string;
   redirectRoute?: string;
-  requiresAuth?: boolean;
+  authType?: AccountType;
 }
 
 export interface NavLinkProps {
@@ -144,6 +145,7 @@ export interface CheckboxProps {
   onChange?: (value: boolean, formMeta: FormMeta | undefined) => void;
   initialValue?: boolean;
   value?: boolean;
+  ariaLabel: string;
 }
 
 export interface CheckmarkProps {
@@ -158,6 +160,7 @@ export interface RadioButtonProps {
   checked: boolean;
   label?: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export interface RadioGroupProps {
@@ -195,6 +198,7 @@ export interface CommonInputProps {
   value?: string;
   disabled?: boolean;
   errorMessage?: string;
+  ariaLabel: string;
 }
 
 export interface TextInputProps extends CommonInputProps {
@@ -237,6 +241,7 @@ export interface ExternalLinkProps {
   linkText: string;
   linkUrl: string;
   className?: string;
+  ariaLabel: string;
 }
 
 export type InternalLinkProps = ExternalLinkProps;
@@ -263,6 +268,34 @@ export interface SummaryProps {
   header: string;
   body: string[];
   logo?: JSX.Element;
+}
+
+export interface InstitutionBannerProps {
+  isAdminView?: boolean;
+  phoneNumber?: string;
+  emailAddress?: string;
+  website?: string;
+  uniformPolicy?: string;
+  onClick?: () => void;
+  type: 'school' | 'charity';
+  address?: string;
+}
+
+export interface InformationTileProps {
+  heading: string;
+  subtext: string;
+}
+
+export interface EditableInformationTileProps extends InformationTileProps {
+  onClick: () => void;
+  saveOnClick: () => void;
+  isEditing: boolean;
+}
+
+export interface AdminActionTileProps {
+  heading: string;
+  icon: JSX.Element;
+  onClick: () => void;
 }
 
 export interface AddressInsetProps {

@@ -14,6 +14,7 @@ const TextArea: FC<TextAreaProps> = ({
   characterLimit,
   formMeta,
   value,
+  ariaLabel,
 }) => {
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -37,6 +38,7 @@ const TextArea: FC<TextAreaProps> = ({
         className={styles.textArea}
         placeholder={placeholder ?? ''}
         maxLength={maxCharacters}
+        aria-label={ariaLabel}
       />
       <div className={styles.characterCount}>
         <span className={styles[getCharacterCountStyling(characterCount)]}>

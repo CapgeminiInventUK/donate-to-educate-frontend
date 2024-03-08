@@ -14,10 +14,12 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { ConfigProvider } from 'antd';
 import CookieBanner from '../CookieBanner/CookieBanner';
 import ErrorBoundaryWithLocation from '../ErrorBoundary/ErrorBoundaryWithLocation';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      retry: false,
       staleTime: 5 * 60 * 1000,
     },
   },
@@ -33,16 +35,19 @@ const App = (): JSX.Element => {
           <Suspense>
             <ErrorBoundary name="Generic">
               <Router>
+                <ScrollToTop />
                 <Routes>
-                  {routes.map(({ element, path, requiresAuth, redirectRoute }, index) => (
+                  {routes.map(({ element, path, authType, redirectRoute }, index) => (
                     <Route
                       key={index}
                       element={
                         <Layout
                           page={
                             <ErrorBoundaryWithLocation name="Router">
-                              {requiresAuth && redirectRoute ? (
-                                <PrivateRoute route={redirectRoute}>{element}</PrivateRoute>
+                              {authType !== undefined ? (
+                                <PrivateRoute route={redirectRoute} authType={authType}>
+                                  {element}
+                                </PrivateRoute>
                               ) : (
                                 element
                               )}

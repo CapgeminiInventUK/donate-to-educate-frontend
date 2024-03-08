@@ -59,6 +59,16 @@
   color: g.$primary-white;
 }
 
+.formButtonGreenDisabled {
+  @extend %button;
+  cursor: not-allowed;
+  border: g.$form-button-green-background 1px solid;
+  box-shadow: 2px 2px 0px 2px g.$form-button-green-border;
+  background: g.$form-button-green-background;
+  color: g.$primary-white;
+  opacity: 40%;
+}
+
 .formButtonDisabled {
   @extend %button;
   cursor: not-allowed;

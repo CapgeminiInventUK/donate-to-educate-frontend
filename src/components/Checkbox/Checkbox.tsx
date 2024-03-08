@@ -10,6 +10,7 @@ const Checkbox: FC<CheckboxProps> = ({
   initialValue = false,
   value,
   formMeta,
+  ariaLabel,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(initialValue);
 
@@ -29,6 +30,7 @@ const Checkbox: FC<CheckboxProps> = ({
             onChange(!isChecked, formMeta);
           }
         }}
+        aria-label={ariaLabel}
       />
       <div tabIndex={1} className={`${styles.checkbox} ${className ?? ''}`}>
         <Checkmark isChecked={isChecked}></Checkmark>

@@ -2,18 +2,13 @@ import { FC, useState, useRef, useCallback } from 'react';
 import styles from './Sidebar.module.scss';
 import MenuIcon from '@assets/navigation/MenuIcon';
 import CloseIcon from '@assets/navigation/CloseIcon';
-import { useNavigate } from 'react-router-dom';
-import Button from '../Button/Button';
-import Paths from '@/config/paths';
 import useOnClickAwayListener from '@hooks/useOnClickAwayListener';
 import NavLinks from '../NavLinks/NavLinks';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
-import LogoGrey from '@assets/logo/LogoGrey';
 
 const Sidebar: FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
-  const navigate = useNavigate();
 
   useOnClickAwayListener(
     containerRef,
@@ -32,18 +27,6 @@ const Sidebar: FC = () => {
           onClick={(): void => setIsDrawerOpen(!isDrawerOpen)}
         />
         <ClickableLogo colour="blue" className={styles.logoBlue} />
-        <Button
-          theme="darkBlue"
-          text={
-            <div className={styles.buttonContent}>
-              <LogoGrey className={styles.logoGrey} />
-              Donate
-            </div>
-          }
-          onClick={(): void => navigate(Paths.DONATE)}
-          className={`${styles.hide400} ${styles.hidden}`}
-          disabled
-        />
       </div>
       {isDrawerOpen && (
         <div className={styles.drawer}>

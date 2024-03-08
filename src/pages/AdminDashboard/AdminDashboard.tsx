@@ -14,6 +14,15 @@ import styles from './AdminDashboard.module.scss';
 export interface SchoolOrCharityProperties {
   name: string;
   la: string;
+  user: RequestUser;
+  charity?: { mainAddress: string; about: string };
+}
+
+export interface RequestUser {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
 }
 
 // Need to make this a protected route only for logged in users of type admin.
@@ -64,10 +73,11 @@ const AdminDashboard: FC = () => {
               className={styles.actionButtons}
               onClick={(): void => {
                 void signOut()
-                  .then(() => navigate(Paths.LOGIN))
+                  .then(() => navigate(Paths.SIGN_IN))
                   // eslint-disable-next-line no-console
                   .catch(console.error);
               }}
+              ariaLabel="sign out"
             />
           </div>
         </div>
