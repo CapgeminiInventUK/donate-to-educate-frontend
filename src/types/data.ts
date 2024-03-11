@@ -90,6 +90,7 @@ export enum FormNames {
 export enum FormErrors {
   EMAIL_ERROR_MESSAGE = 'Enter the email address in the correct format, like team@donatetoeducate.org.uk',
   PHONE_ERROR_MESSAGE = 'Enter the phone number in the correct format, like 07123456789',
+  POSTCODE_ERROR_MESSAGE = 'Enter the postcode in the correct format, like LL70 9DJ',
 }
 
 export enum ComponentType {
