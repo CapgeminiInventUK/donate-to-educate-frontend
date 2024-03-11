@@ -207,6 +207,7 @@ const ManageLocalAuthorities: FC = () => {
 
   return (
     <div className={dashboardStyles.container}>
+      <BackButton theme="blue" />
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage local authorities</h1>

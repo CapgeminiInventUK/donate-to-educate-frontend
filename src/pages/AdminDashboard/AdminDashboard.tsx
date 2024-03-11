@@ -10,6 +10,7 @@ import Paths from '@/config/paths';
 import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 import styles from './AdminDashboard.module.scss';
+import BackButton from '@/components/BackButton/BackButton';
 
 export interface SchoolOrCharityProperties {
   name: string;
@@ -63,6 +64,7 @@ const AdminDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
+      <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>Admin Dashboard</h1>
