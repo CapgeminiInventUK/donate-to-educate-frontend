@@ -179,15 +179,6 @@ const ManageLocalAuthorities: FC = () => {
               }}
               ariaLabel="view profile"
             />
-            <Button
-              theme="link-blue"
-              className={styles.actionButtons}
-              text="Edit users"
-              onClick={(): void => {
-                navigate(Paths.ADMIN_DASHBOARD);
-              }}
-              ariaLabel="edit users"
-            />
           </div>
         ) : (
           <div className={styles.actionsContainer}>
