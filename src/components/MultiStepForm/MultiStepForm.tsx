@@ -13,6 +13,7 @@ import { SummaryPageColour } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Paths from '@/config/paths';
+import FormErrors from '../FormErrors/FormErrors';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -131,16 +132,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             isLastPage && summaryPageBg === SummaryPageColour.BLUE ? styles.lastPageContainer : ''
           }`}
         >
-          {Object.keys(formErrors).length > 0 && (
-            <div className={styles.wrapperError}>
-              <h3>There is a problem</h3>
-              {Object.values(formErrors).map((error) => (
-                <h4 className={styles.errorMessage} key={error}>
-                  {error}
-                </h4>
-              ))}
-            </div>
-          )}
+          <FormErrors formErrors={formErrors} />
           {pageNumber > 0 && !isUnhappyPath && (
             <div className={styles.pagination}>
               Step {pageNumber} of {formTemplate.length - 1}

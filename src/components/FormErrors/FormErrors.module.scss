@@ -1,0 +1,15 @@
+@use '@assets/global.scss' as g;
+
+.errorMessage {
+  font-weight: 700;
+  color: g.$error-red;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.wrapperError {
+  border: 5px solid g.$error-red;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}

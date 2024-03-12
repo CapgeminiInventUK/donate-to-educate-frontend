@@ -7,6 +7,7 @@ import {
   SubmittedFormData,
 } from '@/types/data';
 import { SingleValue } from 'react-select';
+import { isLength } from 'validator';
 import isEmail from 'validator/lib/isEmail';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 
@@ -37,15 +38,21 @@ export const validateFormInputField = (
 ): string | null => {
   const value = formData.find(({ field }) => field === fieldName)?.value ?? '';
   if (typeof value === 'string') {
-    switch (fieldName) {
-      case 'Email':
+    switch (fieldName.toLowerCase()) {
+      case 'email':
         if (!isEmail(value)) {
           return FormErrors.EMAIL_ERROR_MESSAGE;
         }
         break;
-      case 'Phone':
+      case 'phone':
         if (!isMobilePhone(value, 'en-GB')) {
           return FormErrors.PHONE_ERROR_MESSAGE;
+        }
+        break;
+      case 'message':
+      case 'notes':
+        if (isLength(value, { min: 1000 })) {
+          return FormErrors.TEXTAREA_MAX_LENGTH;
         }
         break;
     }
