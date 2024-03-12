@@ -186,13 +186,10 @@ const SignUpSchool: FC = () => {
     if (!schoolOptions.length) {
       return;
     }
-    if (
-      !formTemplate?.length ||
-      (!formTemplate[pageNumber]?.isUnhappyPath && formTemplate[pageNumber + 1]?.isUnhappyPath)
-    ) {
+    if (!formTemplate?.length) {
       setHappyPathTemplate();
     }
-  }, [setHappyPathTemplate, pageNumber, formTemplate, schoolOptions]);
+  }, [setHappyPathTemplate, formTemplate, schoolOptions]);
 
   return (
     <div className={styles.container}>

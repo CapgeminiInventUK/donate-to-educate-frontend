@@ -154,13 +154,10 @@ const SignUpCharity: FC = () => {
     if (!localAuthorityOptions?.length) {
       return;
     }
-    if (
-      !formTemplate?.length ||
-      (!formTemplate[pageNumber]?.isUnhappyPath && formTemplate[pageNumber + 1]?.isUnhappyPath)
-    ) {
+    if (!formTemplate?.length) {
       setHappyPathTemplate();
     }
-  }, [setHappyPathTemplate, formTemplate, localAuthorityOptions, pageNumber]);
+  }, [setHappyPathTemplate, formTemplate, localAuthorityOptions]);
 
   useEffect(() => {
     if (pageNumber === 6) {
