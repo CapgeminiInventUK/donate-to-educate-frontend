@@ -124,6 +124,11 @@ const routes: Route[] = [
     name: 'Create or edit your profile',
     authType: 'school',
   },
+  {
+    path: Paths.SCHOOL_EDIT,
+    element: <SchoolEdit />,
+    authType: 'school',
+  },
 
   // Admin Charity
   {

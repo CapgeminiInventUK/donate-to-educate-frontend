@@ -310,3 +310,6 @@ export interface AddressInsetProps {
 export interface FormErrorsProps {
   formErrors: Record<string, string>;
 }
+export interface SchoolBannerProps {
+  hideDetails?: boolean;
+}
