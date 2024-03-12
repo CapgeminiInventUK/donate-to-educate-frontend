@@ -54,7 +54,7 @@ export interface FormTemplate {
   isUnhappyPath?: boolean;
   summaryPageBg?: SummaryPageColour;
   formComponentInternalLink?: ButtonProps;
-  onSend?: () => void;
+  onLocalAuthorityRegisterRequest?: () => void;
   isDeclarationPage?: boolean;
 }
 
@@ -85,6 +85,7 @@ export enum FormSections {
 export enum FormNames {
   CHARITY = 'Sign up charity',
   SCHOOL = 'Sign up school',
+  AUTHORITY = 'Sign up Authority',
 }
 
 export enum FormErrors {
@@ -133,6 +134,7 @@ export interface SubmittedFormData {
   charityName?: string | null;
   charityAddress?: string | null;
   aboutCharity?: string | null;
+  message?: string;
 }
 
 export interface RequestFormState {

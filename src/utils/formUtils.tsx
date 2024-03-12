@@ -89,7 +89,9 @@ const assignDataToSections = (
   }, accumulator);
 };
 
-const getCharityCyaData = (formData: FormDataItem[]): Record<FormSections, FormDataItem[]> => {
+export const getCharityCyaData = (
+  formData: FormDataItem[]
+): Record<FormSections, FormDataItem[]> => {
   const fullName = nameBuilder(formData);
   const address = addressBuilder(formData);
   const data = [
@@ -104,12 +106,21 @@ const getCharityCyaData = (formData: FormDataItem[]): Record<FormSections, FormD
   ]);
 };
 
-const getSchoolCyaData = (formData: FormDataItem[]): Record<FormSections, FormDataItem[]> => {
+export const getSchoolCyaData = (
+  formData: FormDataItem[]
+): Record<FormSections, FormDataItem[]> => {
   const fullName = nameBuilder(formData);
   const data = [
     { field: 'Name', value: fullName, page: 2, section: FormSections.YOUR_DETAILS_SECTION },
     ...formData,
   ].filter(({ field }) => !excludedValues.includes(field));
+  return assignDataToSections(data, [FormSections.YOUR_DETAILS_SECTION]);
+};
+
+export const getRegisterLocalAuthorityFormData = (
+  formData: FormDataItem[]
+): Record<FormSections, FormDataItem[]> => {
+  const data = formData.filter(({ section }) => section === FormSections.YOUR_DETAILS_SECTION);
   return assignDataToSections(data, [FormSections.YOUR_DETAILS_SECTION]);
 };
 
@@ -166,6 +177,12 @@ export const getFormDataForSubmission = (
     joinRequestVariables.aboutCharity = findValueFromFormData(
       cyaData[FormSections.CHARITY_SECTION],
       'About'
+    );
+  }
+
+  if (type === FormNames.AUTHORITY) {
+    joinRequestVariables.message = String(
+      findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Message')
     );
   }
 

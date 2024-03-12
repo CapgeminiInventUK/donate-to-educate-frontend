@@ -1,20 +1,15 @@
-import { ComponentType, DropdownOption, FormTemplate } from '@/types/data';
+import { ComponentType, DropdownOption, FormSections, FormTemplate } from '@/types/data';
 import getHappyPath from './happyPath';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
-import { Dispatch, SetStateAction } from 'react';
 
 const getAuthorityNotRegisteredPath = (
   schoolOptions: DropdownOption[],
   cannotFindSchool: () => void,
-  setPageNumber: Dispatch<SetStateAction<number>>
+  onLocalAuthorityRegisterRequest: () => Promise<void>
 ): FormTemplate[] => {
   const happyPath = getHappyPath(schoolOptions, cannotFindSchool);
-  const onSend = (): void => {
-    // eslint-disable-next-line no-console
-    console.log('Message sent');
-    setPageNumber((pageNumber) => pageNumber + 1);
-  };
+
   const authorityNotRegisteredPath = [
     {
       header: 'Your local authority has not signed up to Donate to Educate',
@@ -31,6 +26,7 @@ const getAuthorityNotRegisteredPath = (
             formMeta: {
               page: 2,
               field: 'name',
+              section: FormSections.YOUR_DETAILS_SECTION,
             },
           },
         },
@@ -43,6 +39,7 @@ const getAuthorityNotRegisteredPath = (
             formMeta: {
               page: 2,
               field: 'email',
+              section: FormSections.YOUR_DETAILS_SECTION,
             },
           },
         },
@@ -56,12 +53,13 @@ const getAuthorityNotRegisteredPath = (
             formMeta: {
               page: 2,
               field: 'message',
+              section: FormSections.YOUR_DETAILS_SECTION,
             },
           },
         },
       ],
       isUnhappyPath: true,
-      onSend,
+      onLocalAuthorityRegisterRequest,
     },
     {
       formComponents: [
