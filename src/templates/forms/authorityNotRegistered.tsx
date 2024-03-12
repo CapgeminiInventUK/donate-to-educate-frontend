@@ -1,14 +1,17 @@
 import { ComponentType, DropdownOption, FormSections, FormTemplate } from '@/types/data';
-import getHappyPath from './happyPath';
+import signUpSchoolHappyPath from './signUpSchoolHappyPath';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import signUpCharityHappyPath from './signUpCharityHappyPath';
 
 const getAuthorityNotRegisteredPath = (
-  schoolOptions: DropdownOption[],
-  cannotFindSchool: () => void,
-  onLocalAuthorityRegisterRequest: () => Promise<void>
+  options: DropdownOption[],
+  onLocalAuthorityRegisterRequest: () => Promise<void>,
+  cannotFindSchool?: () => void
 ): FormTemplate[] => {
-  const happyPath = getHappyPath(schoolOptions, cannotFindSchool);
+  const happyPath = cannotFindSchool
+    ? signUpSchoolHappyPath(options, cannotFindSchool)
+    : signUpCharityHappyPath(options);
 
   const authorityNotRegisteredPath = [
     {
@@ -78,7 +81,11 @@ const getAuthorityNotRegisteredPath = (
       isUnhappyPath: true,
     },
   ];
-  return [happyPath[0], happyPath[1], ...authorityNotRegisteredPath];
+  const initialPages = cannotFindSchool
+    ? [happyPath[0], happyPath[1]]
+    : [happyPath[0], happyPath[1], happyPath[2]];
+
+  return [...initialPages, ...authorityNotRegisteredPath];
 };
 
 export default getAuthorityNotRegisteredPath;
