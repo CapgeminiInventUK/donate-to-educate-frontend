@@ -95,6 +95,16 @@ export enum FormErrors {
   TEXTAREA_MAX_LENGTH = 'Enter no more than 1000 characters',
 }
 
+export interface FormState {
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  department: string;
+  email: string;
+  phone: string;
+  notes: string;
+}
+
 export enum ComponentType {
   TEXT = 'textInput',
   CHECKBOX = 'checkbox',

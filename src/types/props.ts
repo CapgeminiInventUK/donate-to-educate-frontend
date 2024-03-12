@@ -306,3 +306,7 @@ export interface AddressInsetProps {
   formData: FormDataItem[];
   componentData: ComponentDataPropsType;
 }
+
+export interface FormErrorsProps {
+  formErrors: Record<string, string>;
+}

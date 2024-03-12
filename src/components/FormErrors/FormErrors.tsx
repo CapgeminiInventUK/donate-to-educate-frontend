@@ -1,9 +1,6 @@
 import { FC } from 'react';
 import styles from './FormErrors.module.scss';
-
-interface FormErrorsProps {
-  formErrors: Record<string, string>;
-}
+import { FormErrorsProps } from '@/types/props';
 
 const FormErrors: FC<FormErrorsProps> = ({ formErrors }) => {
   return (

@@ -16,16 +16,7 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
 import { validateFormInputField } from '@/utils/formUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
-
-interface FormState {
-  firstName: string;
-  lastName: string;
-  jobTitle: string;
-  department: string;
-  email: string;
-  phone: string;
-  notes: string;
-}
+import { FormState } from '@/types/data';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
