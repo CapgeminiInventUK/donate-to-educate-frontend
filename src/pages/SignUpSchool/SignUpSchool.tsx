@@ -9,8 +9,8 @@ import {
   FormTemplate,
   SubmittedFormData,
 } from '@/types/data';
-import getHappyPath from './happyPath';
-import getCannotFindSchoolPath from './cannotFindSchoolPath';
+import signUpSchoolHappyPath from '../../templates/forms/signUpSchoolHappyPath';
+import getCannotFindSchoolPath from '../../templates/forms/cannotFindSchoolPath';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import {
@@ -19,7 +19,7 @@ import {
   InsertLocalAuthorityRegisterRequestMutationVariables,
 } from '@/types/api';
 import { client } from '@/graphqlClient';
-import getAuthorityNotRegisteredPath from './authorityNotRegistered';
+import getAuthorityNotRegisteredPath from '../../templates/forms/authorityNotRegistered';
 import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
 import {
   getFormDataForSubmission,
@@ -141,15 +141,15 @@ const SignUpSchool: FC = () => {
     setFormTemplate(
       getAuthorityNotRegisteredPath(
         schoolOptions,
-        cannotFindSchool,
-        onLocalAuthorityRegisterRequest
+        onLocalAuthorityRegisterRequest,
+        cannotFindSchool
       )
     );
     setIsUnhappyPath(true);
   }, [schoolOptions, cannotFindSchool, registerAuthorityRefetch]);
 
   const setHappyPathTemplate = useCallback((): void => {
-    setFormTemplate(getHappyPath(schoolOptions, cannotFindSchool));
+    setFormTemplate(signUpSchoolHappyPath(schoolOptions, cannotFindSchool));
     setIsUnhappyPath(false);
   }, [cannotFindSchool, schoolOptions]);
 
@@ -186,13 +186,10 @@ const SignUpSchool: FC = () => {
     if (!schoolOptions.length) {
       return;
     }
-    if (
-      !formTemplate?.length ||
-      (!formTemplate[pageNumber]?.isUnhappyPath && formTemplate[pageNumber + 1]?.isUnhappyPath)
-    ) {
+    if (!formTemplate?.length) {
       setHappyPathTemplate();
     }
-  }, [setHappyPathTemplate, pageNumber, formTemplate, schoolOptions]);
+  }, [setHappyPathTemplate, formTemplate, schoolOptions]);
 
   return (
     <div className={styles.container}>
