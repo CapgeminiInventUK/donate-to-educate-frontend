@@ -1,5 +1,5 @@
 import { ComponentType, DropdownOption, FormTemplate, SummaryPageColour } from '@/types/data';
-import getHappyPath from './happyPath';
+import getHappyPath from './signUpSchoolHappyPath';
 import LogoBlue from '@/assets/logo/LogoBlue';
 
 const getCannotFindSchoolPath = (

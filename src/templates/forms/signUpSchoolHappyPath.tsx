@@ -3,7 +3,7 @@ import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
-const getHappyPath = (
+const signUpSchoolHappyPath = (
   schoolOptions: DropdownOption[],
   cannotFindSchool: () => void
 ): FormTemplate[] => {
@@ -208,4 +208,4 @@ const getHappyPath = (
   ];
 };
 
-export default getHappyPath;
+export default signUpSchoolHappyPath;
