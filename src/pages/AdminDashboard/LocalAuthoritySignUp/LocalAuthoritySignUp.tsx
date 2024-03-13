@@ -72,7 +72,7 @@ const LocalAuthoritySignUp: FC = () => {
       return;
     }
 
-    setFormErrors({});
+    setFormErrors(undefined);
 
     refetch()
       .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } }))
