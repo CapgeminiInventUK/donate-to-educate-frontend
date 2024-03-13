@@ -36,3 +36,8 @@
     background: g.$dark-blue;
   }
 }
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+}

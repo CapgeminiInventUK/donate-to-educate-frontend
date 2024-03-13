@@ -16,6 +16,7 @@ import Paths from '@/config/paths';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import BackButton from '@/components/BackButton/BackButton';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -205,7 +206,10 @@ const SchoolEdit: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <div className={`${styles.banner} ${styles[type]}`}>
         <h2>{banner}</h2>
       </div>

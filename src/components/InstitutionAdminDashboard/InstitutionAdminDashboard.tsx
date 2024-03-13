@@ -12,6 +12,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { SchoolProfile } from '@/types/api';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -46,7 +47,10 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <BackButton onClick={onBackButtonClick} theme="blue" />
+        <div className={styles.actionButtons}>
+          <BackButton onClick={onBackButtonClick} theme="blue" />
+          <LogoutButton />
+        </div>
         <InstitutionBanner isAdminView type={type} name={name} />
         <div className={styles.card}>
           <InformationTile

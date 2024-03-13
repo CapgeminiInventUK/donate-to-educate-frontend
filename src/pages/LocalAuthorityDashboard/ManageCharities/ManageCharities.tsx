@@ -3,6 +3,7 @@ import styles from './ManageCharities.module.scss';
 import { Table } from 'antd';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 // Need to make this a protected route only for logged in users of type la.
 const ManageCharities: FC = () => {
@@ -34,7 +35,10 @@ const ManageCharities: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <div className={styles.adminCard}>
         <h1>West Sussex</h1>
         <div className={styles.body}>

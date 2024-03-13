@@ -3,13 +3,17 @@ import styles from './LocalAuthorityDashboard.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const LocalAuthorityDashboard: FC = () => {
   const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <div className={styles.adminCard}>
         <h1>West Sussex</h1>
         <div className={styles.body}>

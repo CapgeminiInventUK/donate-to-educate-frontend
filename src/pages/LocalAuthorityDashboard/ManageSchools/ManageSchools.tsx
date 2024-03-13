@@ -9,6 +9,7 @@ import { GetRegisteredSchoolsByLaQuery } from '../../../types/api';
 import { getRegisteredSchoolsByLa } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import BackButton from '@/components/BackButton/BackButton';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const ManageSchools: FC = () => {
   const { data, isLoading } = useQuery({
@@ -57,7 +58,10 @@ const ManageSchools: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <div className={styles.adminCard}>
         <h1>West Sussex</h1>
         <div className={styles.body}>

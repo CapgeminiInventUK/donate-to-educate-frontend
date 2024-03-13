@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import styles from './FindSchool.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -12,6 +12,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsNearbyQuery, School } from '@/types/api';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import Button from '@/components/Button/Button';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -20,6 +21,7 @@ const FindSchool: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ postcode: string }>(
     Paths.FIND_YOUR_COMMUNITY
   );
+  const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
@@ -30,6 +32,7 @@ const FindSchool: FC = () => {
           getSchoolsNearby(postcode: $postcode, distance: $distance) {
             name
             distance
+            urn
           }
         }
         `,
@@ -51,6 +54,14 @@ const FindSchool: FC = () => {
     {
       title: 'Name',
       dataIndex: 'name',
+      render: (text: string, { urn, name }: School) => (
+        <Button
+          theme="link-blue"
+          text={text}
+          ariaLabel={`name-${text}`}
+          onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+        />
+      ),
     },
     {
       title: 'Distance',
