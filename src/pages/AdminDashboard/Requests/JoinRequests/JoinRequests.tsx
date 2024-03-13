@@ -8,6 +8,7 @@ import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
 import Button from '@/components/Button/Button';
 import styles from './JoinRequests.module.scss';
 import { SchoolOrCharityProperties } from '../../AdminDashboard';
+import dayjs from 'dayjs';
 
 interface JoinRequestsProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
@@ -134,7 +135,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
         );
       },
       render: (text: number): JSX.Element => {
-        return <>{new Date(text).toISOString()}</>;
+        return <>{dayjs(text).format('HH:MM DD MMMM YYYY')}</>;
       },
     },
     {
