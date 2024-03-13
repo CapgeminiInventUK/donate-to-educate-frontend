@@ -11,6 +11,10 @@
   padding: 40px 82px;
   margin: 60px 0;
 
+  @include g.sm-breakpoint {
+    padding: 30px 60px;
+  }
+
   .email {
     transform: scale(3);
   }
