@@ -126,6 +126,14 @@ const ManageSchools: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
+      render: (text: string, { urn, name }: School) => (
+        <Button
+          theme="link-blue"
+          text={text}
+          ariaLabel={`name-${text}`}
+          onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+        />
+      ),
     },
     {
       title: 'Local Authority',

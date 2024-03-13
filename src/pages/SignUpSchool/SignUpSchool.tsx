@@ -26,6 +26,7 @@ import {
   getRegisterLocalAuthorityFormData,
   getSchoolCyaData,
 } from '@/utils/formUtils';
+import Spinner from '@/components/Spinner/Spinner';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -190,6 +191,14 @@ const SignUpSchool: FC = () => {
       setHappyPathTemplate();
     }
   }, [setHappyPathTemplate, formTemplate, schoolOptions]);
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
