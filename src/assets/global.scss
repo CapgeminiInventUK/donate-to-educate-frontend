@@ -55,6 +55,30 @@ $screen-medium: 768px;
 $screen-large: 1024px;
 $screen-xlarge: 1200px;
 
+@mixin xs-breakpoint {
+  @media only screen and (max-width: $screen-small) {
+    @content;
+  }
+}
+
+@mixin sm-breakpoint {
+  @media only screen and (max-width: $screen-medium) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (max-width: $screen-large) {
+    @content;
+  }
+}
+
+@mixin lg-breakpoint {
+  @media only screen and (max-width: $screen-xlarge) {
+    @content;
+  }
+}
+
 // Navigation
 $nav-height: 80px;
 

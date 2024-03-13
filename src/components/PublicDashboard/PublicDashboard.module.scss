@@ -40,6 +40,11 @@
         display: flex;
         justify-content: space-between;
 
+        @include g.sm-breakpoint {
+          flex-direction: column;
+          align-items: center;
+        }
+
         .requestProductsTile {
           display: flex;
           flex: 1;
@@ -51,6 +56,10 @@
           background: g.$primary-light-blue;
           color: g.$dark-blue;
           cursor: pointer;
+
+          @include g.sm-breakpoint {
+            margin: 10px 0;
+          }
         }
 
         .donateProductsTile {

@@ -4,6 +4,10 @@
   @include g.page-container;
   padding: 48px 150px;
 
+  @include g.sm-breakpoint {
+    padding: 24px 60px;
+  }
+
   .banner {
     padding: 40px;
     color: g.$primary-white;
@@ -30,6 +34,10 @@
     background: g.$primary-white;
     border-radius: 0 0 10px 10px;
     padding: 60px 82px;
+
+    @include g.sm-breakpoint {
+      padding: 20px 28px;
+    }
 
     .actionButtons {
       margin: 40px 0;
