@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
@@ -14,16 +14,9 @@ import Paths from '@/config/paths';
 import { RegisterLocalAuthorityMutation } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
-
-interface FormState {
-  firstName: string;
-  lastName: string;
-  jobTitle: string;
-  department: string;
-  email: string;
-  phone: string;
-  notes: string;
-}
+import { validateFormInputField } from '@/utils/formUtils';
+import FormErrors from '@/components/FormErrors/FormErrors';
+import { FormState } from '@/types/data';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -35,6 +28,7 @@ const LocalAuthoritySignUp: FC = () => {
     phone: '',
     notes: '',
   });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>();
 
   const navigate = useNavigate();
   const { la, id } = useLocation().state as { la: string; id: string };
@@ -61,6 +55,31 @@ const LocalAuthoritySignUp: FC = () => {
     },
   });
 
+  const onSubmit = (event: FormEvent<Element>): void => {
+    event.preventDefault();
+
+    const errors = Object.keys(formState).reduce((acc: Record<string, string>, field) => {
+      const formData = [{ field, value: formState[field as keyof FormState] }];
+      const error = validateFormInputField(formData, field);
+      if (error) {
+        acc[field] = error;
+      }
+      return acc;
+    }, {});
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormErrors(undefined);
+
+    refetch()
+      .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } }))
+      // eslint-disable-next-line no-console
+      .catch(console.error);
+  };
+
   return (
     <div className={dashboardStyles.container}>
       <BackButton theme="blue" />
@@ -82,7 +101,8 @@ const LocalAuthoritySignUp: FC = () => {
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />
-          <div className={styles.card}>
+          <form onSubmit={onSubmit} className={styles.card}>
+            {formErrors && <FormErrors formErrors={formErrors} />}
             <h1>{la}</h1>
             <hr />
             <TextInput
@@ -160,17 +180,9 @@ const LocalAuthoritySignUp: FC = () => {
             <FormButton
               text={'Create account'}
               theme={'formButtonMidBlue'}
-              onClick={(): void => {
-                refetch()
-                  .then(() =>
-                    navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } })
-                  )
-                  // eslint-disable-next-line no-console
-                  .catch(console.error);
-              }}
               ariaLabel="create account"
             />
-          </div>
+          </form>
         </div>
       </div>
     </div>

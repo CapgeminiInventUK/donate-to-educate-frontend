@@ -92,6 +92,17 @@ export enum FormErrors {
   EMAIL_ERROR_MESSAGE = 'Enter the email address in the correct format, like team@donatetoeducate.org.uk',
   PHONE_ERROR_MESSAGE = 'Enter the phone number in the correct format, like 07123456789',
   POSTCODE_ERROR_MESSAGE = 'Enter the postcode in the correct format, like LL70 9DJ',
+  TEXTAREA_MAX_LENGTH = 'Enter no more than 1000 characters',
+}
+
+export interface FormState {
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  department: string;
+  email: string;
+  phone: string;
+  notes: string;
 }
 
 export enum ComponentType {
