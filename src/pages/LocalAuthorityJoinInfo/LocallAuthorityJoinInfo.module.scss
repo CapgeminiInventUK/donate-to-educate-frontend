@@ -4,11 +4,19 @@
   @include g.page-container;
   color: g.$primary-dark-blue;
   padding: 48px 120px;
+
+  @include g.sm-breakpoint {
+    padding: 12px 30px;
+  }
 }
 
 .subContainer {
   @include g.card;
   padding: 40px 80px;
+
+  @include g.sm-breakpoint {
+    padding: 20px 40px;
+  }
 }
 
 .linksContainer {
@@ -17,12 +25,20 @@
   align-items: center;
   padding: 20px 0px;
   gap: 20px;
+
+  @include g.sm-breakpoint {
+    padding: 5px 0;
+  }
 }
 
 .link {
   font-size: 20px;
   font-weight: 700;
   color: g.$primary-mid-blue;
+
+  @include g.xs-breakpoint {
+    font-size: 12px;
+  }
 }
 
 .home {
