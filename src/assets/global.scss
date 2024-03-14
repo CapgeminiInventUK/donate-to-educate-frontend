@@ -55,6 +55,30 @@ $screen-medium: 768px;
 $screen-large: 1024px;
 $screen-xlarge: 1200px;
 
+@mixin xs-breakpoint {
+  @media only screen and (max-width: $screen-small) {
+    @content;
+  }
+}
+
+@mixin sm-breakpoint {
+  @media only screen and (max-width: $screen-medium) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (max-width: $screen-large) {
+    @content;
+  }
+}
+
+@mixin lg-breakpoint {
+  @media only screen and (max-width: $screen-xlarge) {
+    @content;
+  }
+}
+
 // Navigation
 $nav-height: 80px;
 
@@ -104,6 +128,10 @@ h1 {
   font-weight: 700;
   line-height: 140%; /* 67.2px */
   letter-spacing: -0.48px;
+
+  @include sm-breakpoint {
+    font-size: 36px;
+  }
 }
 
 h2 {
@@ -112,6 +140,10 @@ h2 {
   font-weight: 700;
   line-height: 125%; /* 40px */
   letter-spacing: -0.32px;
+
+  @include sm-breakpoint {
+    font-size: 24px;
+  }
 }
 
 h3 {
@@ -120,6 +152,10 @@ h3 {
   font-weight: 700;
   line-height: 125%; /* 30px */
   letter-spacing: -0.24px;
+
+  @include sm-breakpoint {
+    font-size: 18px;
+  }
 }
 
 h4 {
@@ -128,6 +164,10 @@ h4 {
   font-weight: 700;
   line-height: 125%; /* 20px */
   letter-spacing: -0.16px;
+
+  @include sm-breakpoint {
+    font-size: 12px;
+  }
 }
 
 p,
@@ -138,4 +178,8 @@ li {
   font-weight: 400;
   line-height: 145%; /* 26.1px */
   letter-spacing: -0.09px;
+
+  @include sm-breakpoint {
+    font-size: 14px;
+  }
 }
