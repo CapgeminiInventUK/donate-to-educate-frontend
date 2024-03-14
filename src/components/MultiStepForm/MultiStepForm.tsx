@@ -7,13 +7,13 @@ import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import AddressInset from '../AddressInset/AddressInset';
+import Spinner from '@/components/Spinner/Spinner';
+import AddressInset from '@/components/AddressInset/AddressInset';
 import { SummaryPageColour } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
-import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered/SchoolAlreadyRegistered';
+import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Paths from '@/config/paths';
-import FormErrors from '../FormErrors/FormErrors';
+import FormErrors from '@/components/FormErrors/FormErrors';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -107,9 +107,14 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
     setFormErrors({});
 
+    if (navigationFromCya && header === 'Check your Answers') {
+      setNavigationFromCya(false);
+    }
+
     if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
       return setPageNumber(cyaPageNumber);
     }
+
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
     } else {
