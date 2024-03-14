@@ -201,7 +201,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
               }
               ariaLabel={pageNumber === 0 ? 'Start' : 'Next'}
-              useArrow={true}
+              useArrow={pageNumber === 0}
               disabled={pageNumber === 1 && isSchoolRegistered}
             />
           ) : (
