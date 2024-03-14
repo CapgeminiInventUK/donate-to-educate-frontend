@@ -6,6 +6,10 @@
   width: 65vw;
   margin-bottom: 50px;
 
+  @include g.sm-breakpoint {
+    padding: 20px 41px;
+  }
+
   .pagination {
     display: flex;
     flex-direction: row-reverse;

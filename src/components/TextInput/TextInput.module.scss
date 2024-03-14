@@ -35,10 +35,19 @@
 
 .inputLarge {
   width: 600px;
+
+  @include g.md-breakpoint {
+    width: 60vw;
+  }
 }
 
 .inputSmall {
   width: 200px;
+
+  @include g.sm-breakpoint {
+    max-width: 200px;
+    width: 40vw;
+  }
 }
 
 .errorMessage {
