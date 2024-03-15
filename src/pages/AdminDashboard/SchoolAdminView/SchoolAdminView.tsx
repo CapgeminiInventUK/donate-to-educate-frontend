@@ -17,13 +17,15 @@ import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBan
 const School: FC = () => {
   const [schoolName, setSchoolName] = useState<string>();
   const navigate = useNavigate();
-  const location = useLocation() as { state: { postcode: string } };
+  const location = useLocation() as { state: { name: string } };
 
   useEffect(() => {
     if (location.state && 'name' in location.state) {
       setSchoolName(String(location.state.name));
+    } else {
+      navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE);
     }
-  }, [location.state]);
+  }, [location.state, navigate]);
 
   return (
     <div className={styles.container}>
