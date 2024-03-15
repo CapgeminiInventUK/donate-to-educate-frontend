@@ -31,6 +31,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   const [cyaPageNumber, setCyaPageNumber] = useState<number>();
   const [isLastPage, setIsLastPage] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [declarationSigned, setDeclarationSigned] = useState(false);
 
   const {
     header = '',
@@ -53,7 +54,14 @@ const FormContainer: FC<MultiStepFormProps> = ({
     } else {
       setIsLastPage(false);
     }
-  }, [pageNumber, formTemplate]);
+    if (!isDeclarationPage) {
+      return;
+    }
+    const declarationPageData = formData.find(
+      ({ field }) => field === 'I have read the Donate to Educate privacy policy'
+    );
+    setDeclarationSigned(!!declarationPageData?.value);
+  }, [pageNumber, formTemplate, isDeclarationPage, formData]);
 
   useEffect(() => {
     if (header === 'Check your Answers') {
@@ -194,7 +202,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
                 ariaLabel="home"
               />
             </div>
-          ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber) ? (
+          ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber + 1) ? (
             <FormButton
               text={pageNumber === 0 ? 'Start' : 'Next'}
               theme={
@@ -206,14 +214,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
             />
           ) : (
             <FormButton
-              text={'Confirm'}
-              theme={
-                cyaPageNumber && pageNumber > cyaPageNumber
-                  ? 'formButtonDarkBlue'
-                  : 'formButtonGrey'
-              }
-              ariaLabel="confirm"
-              useArrow={true}
+              text={'Send application'}
+              theme={!declarationSigned ? 'formButtonDisabled' : 'formButtonGreen'}
+              ariaLabel="send"
+              disabled={!declarationSigned}
             />
           )}
           {isUnhappyPath && onLocalAuthorityRegisterRequest && (

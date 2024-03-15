@@ -1,7 +1,7 @@
 import { FormTemplate, ComponentType, FormNames, FormSections, DropdownOption } from '@/types/data';
-import LogoBlue from '@/assets/logo/LogoBlue';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import getDeclarationPageTemplate from './declarationPageTemplate';
 
 const signUpSchoolHappyPath = (
   schoolOptions: DropdownOption[],
@@ -144,51 +144,7 @@ const signUpSchoolHappyPath = (
         },
       ],
     },
-    {
-      logo: <LogoBlue />,
-      header: 'This service is [--------]',
-      subHeader:
-        'Explanation into things like security and how it is one account per supporter [-----------------------]',
-      isDeclarationPage: true,
-      formComponents: [
-        {
-          componentType: ComponentType.CHECKBOX,
-          componentData: {
-            ariaLabel: 'gdpr statement',
-            label: 'GDPR content and statement [---------------]',
-            formMeta: {
-              page: 4,
-              field: 'GDPR content and statement [---------------]',
-            },
-          },
-          classNameSuffix: 'checkbox',
-        },
-        {
-          componentType: ComponentType.CHECKBOX,
-          componentData: {
-            ariaLabel: 'gdpr legal understanding',
-            label: 'Legal understanding [---------------]',
-            formMeta: {
-              page: 4,
-              field: 'Legal understanding [---------------]',
-            },
-          },
-          classNameSuffix: 'checkbox',
-        },
-        {
-          componentType: ComponentType.CHECKBOX,
-          componentData: {
-            ariaLabel: 'gdpr acceptance',
-            label: 'I will be administrating the account [---------------]',
-            formMeta: {
-              field: 'I will be administrating the account [---------------]',
-              page: 4,
-            },
-          },
-          classNameSuffix: 'checkbox',
-        },
-      ],
-    },
+    getDeclarationPageTemplate(),
     {
       formComponents: [
         {

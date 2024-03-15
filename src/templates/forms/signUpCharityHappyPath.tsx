@@ -1,7 +1,7 @@
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
-import LogoBlue from '@/assets/logo/LogoBlue';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import { ComponentType, DropdownOption, FormNames, FormSections, FormTemplate } from '@/types/data';
+import getDeclarationPageTemplate from './declarationPageTemplate';
 
 const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTemplate[] => [
   {
@@ -246,52 +246,7 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
       },
     ],
   },
-  {
-    logo: <LogoBlue />,
-    header: 'This service is [--------]',
-    subHeader:
-      'Explanation into things like security and how it is one account per supporter [-----------------------]',
-    isDeclarationPage: true,
-    formComponents: [
-      {
-        componentType: ComponentType.CHECKBOX,
-        componentData: {
-          ariaLabel: 'gdpr statement',
-          label: 'GDPR content and statement [---------------]',
-          formMeta: {
-            page: 6,
-            field: 'GDPR content and statement [---------------]',
-          },
-        },
-        classNameSuffix: 'checkbox',
-      },
-      {
-        componentType: ComponentType.CHECKBOX,
-        componentData: {
-          ariaLabel: 'gdpr legal understanding',
-          label: 'Legal understanding [---------------]',
-
-          formMeta: {
-            page: 6,
-            field: 'Legal understanding [---------------]',
-          },
-        },
-        classNameSuffix: 'checkbox',
-      },
-      {
-        componentType: ComponentType.CHECKBOX,
-        componentData: {
-          ariaLabel: 'gdpr acceptance',
-          label: 'I will be administrating the account [---------------]',
-          formMeta: {
-            page: 6,
-            field: 'I will be administrating the account [---------------]',
-          },
-        },
-        classNameSuffix: 'checkbox',
-      },
-    ],
-  },
+  getDeclarationPageTemplate(),
   {
     formComponents: [
       {
