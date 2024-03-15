@@ -1,12 +1,30 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './LocalAuthorityDashboard.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import { CustomAttributes, getUserType } from '@/hooks/useCheckCurrentUser';
+import Spinner from '@/components/Spinner/Spinner';
 
 const LocalAuthorityDashboard: FC = () => {
   const navigate = useNavigate();
+  const [attributes, setAttributes] = useState<CustomAttributes>();
+
+  useEffect(() => {
+    if (!attributes) {
+      getUserType()
+        .then((attributes) => {
+          setAttributes(attributes);
+        })
+        // eslint-disable-next-line no-console
+        .catch(console.log);
+    }
+  });
+
+  if (!attributes) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -21,7 +39,11 @@ const LocalAuthorityDashboard: FC = () => {
           <hr />
           <div
             className={`${styles.tileDarkBlue} ${styles.tile}`}
-            onClick={() => navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS)}
+            onClick={() =>
+              navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
+                state: { localAuthority: attributes['custom:institution'] },
+              })
+            }
           >
             <h2>Manage your schools</h2>
             <p>View, edit and remove schools from Donate to Educate in your area.</p>

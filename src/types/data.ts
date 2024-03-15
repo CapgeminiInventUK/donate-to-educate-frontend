@@ -156,3 +156,12 @@ export interface RequestFormState {
   who: string;
   connection?: string;
 }
+
+export interface SchoolTableData {
+  name: string;
+  status: string;
+  urn?: string;
+}
+export interface SchoolsTableProps {
+  data: SchoolTableData[];
+}
