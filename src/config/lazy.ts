@@ -51,9 +51,6 @@ export const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDash
 export const AdminDashboardManageLocalAuthorities = lazy(
   () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
 );
-export const AdminDashboardViewLocalAuthority = lazy(
-  () => import('@pages/AdminDashboard/ViewLocalAuthority/ViewLocalAuthority')
-);
 export const AdminDashboardLocalAuthoritySignUp = lazy(
   () => import('@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUp')
 );

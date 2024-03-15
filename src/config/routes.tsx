@@ -10,7 +10,6 @@ import {
   Login,
   AdminDashboard,
   AdminDashboardManageLocalAuthorities,
-  AdminDashboardViewLocalAuthority,
   AdminDashboardLocalAuthoritySignUp,
   AdminDashboardLocalAuthoritySignUpConfirmation,
   AdminDashboardRequests,
@@ -58,11 +57,6 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
     element: <AdminDashboardManageLocalAuthorities />,
-    authType: 'admin',
-  },
-  {
-    path: Paths.ADMIN_DASHBOARD_LA_VIEW,
-    element: <AdminDashboardViewLocalAuthority />,
     authType: 'admin',
   },
   {
