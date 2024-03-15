@@ -17,7 +17,7 @@ import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBan
 const School: FC = () => {
   const [schoolName, setSchoolName] = useState<string>();
   const navigate = useNavigate();
-  const location = useLocation() as { state: { name: string } };
+  const location = useLocation() as { state: { name: string; postcode: string } };
 
   useEffect(() => {
     if (location.state && 'name' in location.state) {
@@ -51,7 +51,9 @@ const School: FC = () => {
               <div
                 key={title}
                 className={`${styles.tile} ${styles[colour]}`}
-                onClick={() => navigate(onClickLink)}
+                onClick={() =>
+                  navigate(onClickLink, { state: { postcode: location.state.postcode } })
+                }
               >
                 {icon}
                 <div className={styles.content}>

@@ -7,7 +7,7 @@ const CharityAdminDashboard: FC = () => {
     <InstitutionAdminDashboard
       type="charity"
       name="Oxfam"
-      profile={{ __typename: 'SchoolProfile' }}
+      profile={{ __typename: 'SchoolProfile', name: '', id: '', localAuthority: '', postcode: '' }}
     />
   );
 };

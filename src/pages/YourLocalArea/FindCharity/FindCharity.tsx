@@ -9,7 +9,7 @@ import { ColumnsType } from 'antd/es/table';
 const FindCharity: FC = () => {
   const location = useLocation() as { state: { postcode: string } };
 
-  if (!(location.state && 'postcode' in location.state)) {
+  if (!(location?.state && 'postcode' in location.state)) {
     return <Navigate to={Paths.FIND_YOUR_COMMUNITY} />;
   }
 

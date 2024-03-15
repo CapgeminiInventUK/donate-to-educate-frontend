@@ -47,7 +47,15 @@ const SchoolAdminDashboard: FC = () => {
   return (
     <InstitutionAdminDashboard
       type="school"
-      profile={data?.getSchoolProfile ?? { __typename: 'SchoolProfile' }}
+      profile={
+        data?.getSchoolProfile ?? {
+          __typename: 'SchoolProfile',
+          name: '',
+          id: '',
+          localAuthority: '',
+          postcode: '',
+        }
+      }
       name={attributes?.['custom:institution']}
     />
   );

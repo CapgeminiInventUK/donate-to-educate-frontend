@@ -26,7 +26,7 @@ interface InstitutionAdminDashboardProps {
 }
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
-  const { donate, excess, request, about: currentAbout } = profile;
+  const { donate, excess, request, about: currentAbout, postcode } = profile;
   const navigate = useNavigate();
   const [about, setAbout] = useState(currentAbout ?? '');
   const [pageNumber, setPageNumber] = useState(0);
@@ -137,7 +137,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               theme="formButtonGreen"
               text="Save profile and continue"
               ariaLabel="save profile and continue"
-              onClick={() => navigate(Paths.SCHOOL_VIEW, { state: { name } })}
+              onClick={() => navigate(Paths.SCHOOL_VIEW, { state: { name, postcode } })}
             />
             <FormButton
               theme="formButtonMidBlue"

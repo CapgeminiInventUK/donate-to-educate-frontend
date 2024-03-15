@@ -45,6 +45,10 @@ export type School = {
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
+  name: string;
+  id: string;
+  localAuthority: string;
+  postcode: string;
   header?: SchoolProfileHeader | null;
   about?: string | null;
   request?: ProfileItems | null;
@@ -387,6 +391,10 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile?: {
     __typename: 'SchoolProfile';
+    name: string;
+    id: string;
+    localAuthority: string;
+    postcode: string;
     header?: {
       __typename: 'SchoolProfileHeader';
       phone?: string | null;
