@@ -101,14 +101,22 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               isPresent={!!request}
               heading="Let visitors request products from you"
               icon={<Hanger height="2.875rem" width="2.875rem" />}
-              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'tick' } })}
+              onClick={() =>
+                navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                  state: { type: 'tick' },
+                })
+              }
             />
             <AdminActionTile
               type="heart"
               isPresent={!!donate}
               heading="Let visitors donate products to you"
               icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
-              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'heart' } })}
+              onClick={() =>
+                navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                  state: { type: 'heart' },
+                })
+              }
             />
           </div>
           <div className={styles.extraStockTileContainer}>
@@ -117,7 +125,11 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               isPresent={!!excess}
               heading="Let charities take your extra stock to share with the community"
               icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
-              onClick={() => navigate(Paths.SCHOOL_EDIT, { state: { type: 'plus' } })}
+              onClick={() =>
+                navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                  state: { type: 'plus' },
+                })
+              }
             />
           </div>
           <div className={styles.actionButtons}>

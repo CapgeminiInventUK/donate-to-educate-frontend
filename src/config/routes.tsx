@@ -40,6 +40,7 @@ import {
   SignIn,
   CharityAdminDashboard,
   CharityDashboard,
+  CharityDashboardItems,
   CharityEdit,
   Join,
   RequestCharityProducts,
@@ -132,6 +133,11 @@ const routes: Route[] = [
     name: 'Create or edit your profile',
     authType: 'charity',
   },
+  {
+    path: Paths.CHARITIES_EDIT,
+    element: <CharityEdit />,
+    authType: 'charity',
+  },
 
   // Login
   {
@@ -184,7 +190,7 @@ const routes: Route[] = [
   },
   { path: Paths.REQUEST_CHARITY_PRODUCTS, element: <RequestCharityProducts /> },
   { path: Paths.CHARITY_DASHBOARD, element: <CharityDashboard /> },
-  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityEdit /> },
+  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityDashboardItems /> },
   { path: Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION, element: <CharityContactConfirmation /> },
 
   // Local Area
