@@ -9,6 +9,8 @@ import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { InstitutionBannerProps } from '@/types/props';
 import EditIcon from '@/assets/school/EditIcon';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -20,6 +22,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   type,
   name,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
@@ -107,9 +110,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   }
                   theme="light"
                   className={styles.editButton}
-                  onClick={() => null}
+                  onClick={() => {
+                    navigate(Paths.SCHOOL_VIEW, { state: { name } });
+                  }}
                   ariaLabel="edit"
-                ></Button>
+                />
               </li>
             )}
           </ul>

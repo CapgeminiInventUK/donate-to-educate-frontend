@@ -86,6 +86,9 @@ export const LocalAuthorityDashboardCharities = lazy(
 // Admin School
 export const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 export const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
+export const SchoolAdminView = lazy(
+  () => import('@/pages/AdminDashboard/SchoolAdminView/SchoolAdminView')
+);
 
 // Admin Charity
 export const CharityAdminDashboard = lazy(
