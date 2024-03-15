@@ -16,9 +16,17 @@ interface PublicDashboardProps {
   excess?: ProfileItems | null;
   donate?: ProfileItems | null;
   request?: ProfileItems | null;
+  about?: string;
 }
 
-const PublicDashboard: FC<PublicDashboardProps> = ({ type, name, request, donate, excess }) => {
+const PublicDashboard: FC<PublicDashboardProps> = ({
+  type,
+  name,
+  request,
+  donate,
+  excess,
+  about,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -28,22 +36,27 @@ const PublicDashboard: FC<PublicDashboardProps> = ({ type, name, request, donate
         <InstitutionBanner type={type} name={name} />
 
         <div className={styles.card}>
-          <div className={styles.titleContainer}>
-            <h2>About us</h2>
-            <div className={styles.svgContainer}>
-              <HorizontalLine className={styles.horizontalLine} />
-            </div>
-          </div>
-
-          <p>
-            Ormiston Six Villages Academy has pre-loved school products to help children thrive at
-            school.
-          </p>
-
-          <p>
-            Request the things you need or donate products to help the next child. Charities can
-            also take our extra stock to share with the communities that need it most.
-          </p>
+          {!(about && excess && donate && request) && (
+            <p>We are in the process of populating our profile, please check back later</p>
+          )}
+          {about && (
+            <>
+              <div className={styles.titleContainer}>
+                <h2>About us</h2>
+                <div className={styles.svgContainer}>
+                  <HorizontalLine className={styles.horizontalLine} />
+                </div>
+              </div>
+              <p>
+                Ormiston Six Villages Academy has pre-loved school products to help children thrive
+                at school.
+              </p>
+              <p>
+                Request the things you need or donate products to help the next child. Charities can
+                also take our extra stock to share with the communities that need it most.
+              </p>
+            </>
+          )}
 
           <div className={styles.productsTilesContainer}>
             {request && (
