@@ -195,9 +195,9 @@ const signUpSchoolHappyPath = (
           componentType: ComponentType.SUMMARY,
           componentData: {
             icon: <SchoolQuestion />,
-            header: 'Thanks for supporting Donate to Educate',
+            header: 'Thanks for applying to join Donate to Educate',
             body: [
-              'Your local authority or local council will review your details to check whether you can join us.',
+              'Your local authority will review your details to confirm your identity.',
               "We'll email you with the results as soon as we have them.",
             ],
             logo: <LogoWhite />,

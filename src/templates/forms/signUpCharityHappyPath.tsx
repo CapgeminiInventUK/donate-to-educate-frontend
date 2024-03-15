@@ -223,7 +223,7 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
           hint: 'This information can only be seen by Donate to Educate administrators.',
           characterLimit: 1000,
           formMeta: {
-            page: 4,
+            page: 5,
             field: 'About',
             section: FormSections.CHARITY_SECTION,
           },
