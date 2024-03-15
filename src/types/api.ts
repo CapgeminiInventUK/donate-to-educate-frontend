@@ -45,9 +45,19 @@ export type School = {
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
+  header?: SchoolProfileHeader | null;
+  about?: string | null;
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
+};
+
+export type SchoolProfileHeader = {
+  __typename: 'SchoolProfileHeader';
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  uniformPolicy?: string | null;
 };
 
 export type ProfileItems = {
@@ -94,6 +104,14 @@ export type getAdminPageRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
   }>;
 };
 
@@ -168,14 +186,14 @@ export type InsertJoinRequestMutation = {
   insertJoinRequest: boolean;
 };
 
-export type InsertLocalAuthorityRegisterRequestMutation = {
-  insertLocalAuthorityRegisterRequest: boolean;
-};
-
 export type InsertLocalAuthorityRegisterRequestMutationVariables = {
   name: string;
   email: string;
   message: string;
+};
+
+export type InsertLocalAuthorityRegisterRequestMutation = {
+  insertLocalAuthorityRegisterRequest: boolean;
 };
 
 export type InsertSignUpDataMutationVariables = {
@@ -368,6 +386,14 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile?: {
     __typename: 'SchoolProfile';
+    header?: {
+      __typename: 'SchoolProfileHeader';
+      phone?: string | null;
+      email?: string | null;
+      website?: string | null;
+      uniformPolicy?: string | null;
+    } | null;
+    about?: string | null;
     request?: {
       __typename: 'ProfileItems';
       items?: string | null;

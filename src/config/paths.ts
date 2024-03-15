@@ -31,6 +31,7 @@ enum Paths {
 
   // Admin Charity
   CHARITIES_CREATE_EDIT_PROFILE = '/charities-create-edit-profile',
+  CHARITIES_EDIT = '/charities-edit',
 
   // Public School
   SCHOOLS_DASHBOARD = '/school/dashboard',

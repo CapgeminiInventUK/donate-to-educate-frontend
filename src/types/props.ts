@@ -292,6 +292,8 @@ export interface EditableInformationTileProps extends InformationTileProps {
   onClick: () => void;
   saveOnClick: () => void;
   isEditing: boolean;
+  text: string;
+  setText: Dispatch<SetStateAction<string>>;
 }
 
 export interface AdminActionTileProps {

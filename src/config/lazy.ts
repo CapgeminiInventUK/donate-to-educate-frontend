@@ -31,7 +31,7 @@ export const RequestSchoolProducts = lazy(
 // Public Charity
 export const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 export const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
-export const CharityEdit = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
+export const CharityDashboardItems = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
 export const RequestCharityProducts = lazy(
   () => import('@/pages/CharityDashboard/RequestCharityProducts')
 );
@@ -97,6 +97,7 @@ export const SchoolAdminView = lazy(
 export const CharityAdminDashboard = lazy(
   () => import('@pages/Charity/Admin/CharityAdminDashboard')
 );
+export const CharityEdit = lazy(() => import('@/pages/Charity/Admin/CharityEdit'));
 
 // Local Area
 export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
