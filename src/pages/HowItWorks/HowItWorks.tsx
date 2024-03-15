@@ -9,7 +9,7 @@ const HowItWorks: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <BackButton theme="blue" />
+        <BackButton theme="blue" className={styles.backButton} />
         <h1 className={styles.title}>How it works</h1>
         <div className={styles.card}>
           <h2>We&apos;re serious about helping children reach their potential.</h2>
