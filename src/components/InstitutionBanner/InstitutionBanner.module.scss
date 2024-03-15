@@ -1,17 +1,5 @@
 @use '@assets/global.scss' as g;
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: g.$primary-white;
-  }
-}
-
 .bannerContainer {
   display: flex;
   padding: 40px;
@@ -28,11 +16,23 @@ ul {
   &.school {
     background: g.$primary-dark-blue;
   }
-}
 
-h1 {
-  color: g.$primary-white;
-  margin: 0;
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: g.$primary-white;
+    }
+  }
+
+  h1 {
+    color: g.$primary-white;
+    margin: 0;
+  }
 }
 
 .textContainer {

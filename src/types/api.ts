@@ -474,3 +474,25 @@ export type GetSchoolsNearbyQuery = {
     distance?: string | null;
   }>;
 };
+
+export type GetSchoolJoinRequestsByLaQueryVariables = {
+  localAuthority: string;
+};
+
+export type GetSchoolJoinRequestsByLaQuery = {
+  getSchoolJoinRequestsByLa: Array<{
+    __typename: 'JoinRequest';
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
+  }>;
+};
