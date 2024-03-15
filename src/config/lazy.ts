@@ -12,6 +12,7 @@ export const TermsAndConditions = lazy(
   () => import('@pages/TermsAndConditions/TermsAndConditions')
 );
 export const HowItWorks = lazy(() => import('@/pages/HowItWorks/HowItWorks'));
+export const CookiePolicy = lazy(() => import('@/pages/CookiePolicy/CookiePolicy'));
 export const LocalAuthorityJoinInfo = lazy(
   () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
 );

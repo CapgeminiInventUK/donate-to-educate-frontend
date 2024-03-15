@@ -62,6 +62,7 @@ enum Paths {
   CONTACT = '/contact',
   HOME = '/',
   LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-join-info',
+  COOKIE_POLICY = '/cookie-policy',
 
   // Links, telephone numbers and email addresses
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',

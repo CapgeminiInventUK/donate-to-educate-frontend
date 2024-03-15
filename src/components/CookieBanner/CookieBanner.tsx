@@ -2,10 +2,13 @@ import { FC, useState } from 'react';
 import styles from './CookieBanner.module.scss';
 import Cookie from '@/assets/cookie/Cookie';
 import Button from '../Button/Button';
+import { useNavigate } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 const cookiePreferencesSpecified = localStorage.getItem('cookieConsent') !== null;
 
 const CookieBanner: FC = () => {
+  const navigate = useNavigate();
   const [bannerHidden, setBannerHidden] = useState<boolean>(cookiePreferencesSpecified);
 
   return (
@@ -33,6 +36,7 @@ const CookieBanner: FC = () => {
             onClick={(): void => {
               localStorage.setItem('cookieConsent', 'TRUE');
               setBannerHidden(true);
+              navigate(Paths.COOKIE_POLICY);
             }}
             ariaLabel="allow"
           />
