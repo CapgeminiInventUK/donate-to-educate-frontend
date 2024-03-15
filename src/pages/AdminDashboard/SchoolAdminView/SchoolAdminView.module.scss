@@ -12,14 +12,26 @@
 
     .schoolProfilebanner {
       display: flex;
-      width: 1040px;
       padding: 40px;
       flex-direction: column;
       align-items: flex-start;
-      gap: 40px;
       border-radius: 10px;
       background: #f1f1f1;
+
+      h2,
+      p,
+      button {
+        margin: 0;
+      }
+      h2 {
+        margin-top: 40px;
+        margin-bottom: 30px;
+      }
+      p {
+        margin-bottom: 40px;
+      }
     }
+
     .tile {
       display: flex;
       align-items: center;
@@ -65,4 +77,22 @@
 .lightBlue {
   background: g.$primary-light-blue;
   color: g.$dark-blue;
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    padding: 17px 19px;
+
+    .subContainer {
+      padding: 40px 20px;
+
+      img {
+        display: none;
+      }
+
+      .content {
+        margin-right: 20px;
+      }
+    }
+  }
 }

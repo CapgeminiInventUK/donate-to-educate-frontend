@@ -1,44 +1,46 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SchoolAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import Heart from '@/assets/yourLocalArea/Heart';
 import Donate from '@/assets/yourLocalArea/Donate';
 import Image from '@/components/Image/Image';
-import boxImg from '@/assets/admin/box1.png';
+import boxImg from '@/assets/admin/box.png';
 import heartImg from '@/assets/yourLocalArea/heart.png';
 import donateImg from '@/assets/yourLocalArea/donate.png';
-import { SchoolBanner } from '@/components/SchoolBanner/SchoolBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
+import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 
 const School: FC = () => {
+  const [schoolName, setSchoolName] = useState<string>();
   const navigate = useNavigate();
   const location = useLocation() as { state: { postcode: string } };
 
-  if (location.state && 'postcode' in location.state) {
-    return <Navigate to={Paths.ADMIN_DASHBOARD_SCHOOL} />;
-  }
+  useEffect(() => {
+    if (location.state && 'name' in location.state) {
+      setSchoolName(String(location.state.name));
+    }
+  }, [location.state]);
 
   return (
     <div className={styles.container}>
-      {/* TODO */}
-      <BackButton
-        onClick={() => {
-          navigate(-1);
-        }}
-        theme="blue"
-      />
+      <BackButton theme="blue" />
+      <InstitutionBanner type={'school'} name={schoolName} />
 
-      <SchoolBanner hideDetails={true} />
       <div className={styles.subContainer}>
         <div className={styles.schoolProfilebanner}>
           <SchoolProfile />
           <h2>Your school&apos;s profile is active</h2>
           <p>View, edit and update your public facing profile.</p>
-          <FormButton theme="formButtonGreen" text={'View and edit profile'} />
+          <FormButton
+            theme="formButtonGreen"
+            text={'View and edit profile'}
+            ariaLabel="view and edit profile"
+            onClick={() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE)}
+          />
         </div>
         <div className={styles.localAreaContainer}>
           <h2>Your local area</h2>

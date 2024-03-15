@@ -44,6 +44,7 @@ import {
   Join,
   RequestCharityProducts,
   CharityContactConfirmation,
+  SchoolAdminView,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -125,8 +126,8 @@ const routes: Route[] = [
     authType: 'school',
   },
   {
-    path: Paths.SCHOOL_EDIT,
-    element: <SchoolEdit />,
+    path: Paths.SCHOOL_VIEW,
+    element: <SchoolAdminView />,
     authType: 'school',
   },
 
