@@ -16,8 +16,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 // import useGetAuthToken from '@/hooks/useGetAuthToken';
-import { CharityProfile } from '../../../../../donate-to-educate-backend/appsync';
 import { EditDescription } from '@/components/EditDescription/EditDescription';
+import { ProfileItems } from '@/types/api';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -130,9 +130,9 @@ const CharityEdit: FC = () => {
   const { type, donate, excess, request } =
     (location?.state as {
       type: ItemsIconType;
-      donate: CharityProfile;
-      excess: CharityProfile;
-      request: CharityProfile;
+      donate: ProfileItems;
+      excess: ProfileItems;
+      request: ProfileItems;
     }) ?? {};
 
   const [preview, setPreview] = useState(false);

@@ -51,9 +51,6 @@ export const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDash
 export const AdminDashboardManageLocalAuthorities = lazy(
   () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
 );
-export const AdminDashboardViewLocalAuthority = lazy(
-  () => import('@pages/AdminDashboard/ViewLocalAuthority/ViewLocalAuthority')
-);
 export const AdminDashboardLocalAuthoritySignUp = lazy(
   () => import('@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUp')
 );
@@ -89,6 +86,7 @@ export const LocalAuthorityDashboardCharities = lazy(
 // Admin School
 export const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 export const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
+export const SchoolAdminView = lazy(() => import('@/pages/School/Admin/SchoolAdminView'));
 
 // Admin Charity
 export const CharityAdminDashboard = lazy(

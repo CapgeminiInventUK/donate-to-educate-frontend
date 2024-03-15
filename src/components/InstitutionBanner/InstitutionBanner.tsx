@@ -107,9 +107,9 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   }
                   theme="light"
                   className={styles.editButton}
-                  onClick={() => null}
+                  onClick={() => undefined}
                   ariaLabel="edit"
-                ></Button>
+                />
               </li>
             )}
           </ul>

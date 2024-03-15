@@ -10,7 +10,6 @@ import {
   Login,
   AdminDashboard,
   AdminDashboardManageLocalAuthorities,
-  AdminDashboardViewLocalAuthority,
   AdminDashboardLocalAuthoritySignUp,
   AdminDashboardLocalAuthoritySignUpConfirmation,
   AdminDashboardRequests,
@@ -45,6 +44,7 @@ import {
   Join,
   RequestCharityProducts,
   CharityContactConfirmation,
+  SchoolAdminView,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -58,11 +58,6 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
     element: <AdminDashboardManageLocalAuthorities />,
-    authType: 'admin',
-  },
-  {
-    path: Paths.ADMIN_DASHBOARD_LA_VIEW,
-    element: <AdminDashboardViewLocalAuthority />,
     authType: 'admin',
   },
   {
@@ -123,6 +118,11 @@ const routes: Route[] = [
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
     element: <SchoolAdminDashboard />,
     name: 'Create or edit your profile',
+    authType: 'school',
+  },
+  {
+    path: Paths.SCHOOL_VIEW,
+    element: <SchoolAdminView />,
     authType: 'school',
   },
 
