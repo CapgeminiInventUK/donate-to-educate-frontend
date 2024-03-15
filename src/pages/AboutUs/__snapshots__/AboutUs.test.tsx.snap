@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     className="contentContainer"
   >
     <button
-      className="back backButton blue"
+      className="back  blue"
       onClick={[Function]}
       type="button"
     >

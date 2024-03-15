@@ -14,7 +14,7 @@ const AboutUs: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <BackButton theme="blue" className={styles.backButton} />
+        <BackButton theme="blue" />
         <h1 className={styles.title}>About us</h1>
         <div className={styles.card}>
           <div className={styles.imageContainer}>
