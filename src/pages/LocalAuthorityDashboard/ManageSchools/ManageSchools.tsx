@@ -5,13 +5,16 @@ import Button from '@/components/Button/Button';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetRegisteredSchoolsByLaQuery } from '../../../types/api';
+import { GetRegisteredSchoolsByLaQuery, School } from '../../../types/api';
 import { getRegisteredSchoolsByLa } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Paths from '@/config/paths';
+import { useNavigate } from 'react-router-dom';
 
 const ManageSchools: FC = () => {
+  const navigate = useNavigate();
   const { data, isLoading } = useQuery({
     queryKey: ['la-registered'],
     queryFn: async () => {
@@ -31,6 +34,14 @@ const ManageSchools: FC = () => {
       title: 'School',
       dataIndex: 'name',
       key: 'name',
+      render: (text: string, { urn, name }: School) => (
+        <Button
+          theme="link-blue"
+          text={text}
+          ariaLabel={`name-${text}`}
+          onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+        />
+      ),
     },
     {
       title: 'Status',
