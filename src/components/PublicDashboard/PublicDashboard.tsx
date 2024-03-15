@@ -16,7 +16,7 @@ interface PublicDashboardProps {
   excess?: ProfileItems | null;
   donate?: ProfileItems | null;
   request?: ProfileItems | null;
-  about?: string;
+  about?: string | null;
 }
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
@@ -36,7 +36,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         <InstitutionBanner type={type} name={name} />
 
         <div className={styles.card}>
-          {!(about && excess && donate && request) && (
+          {!(about ?? excess ?? donate ?? request) && (
             <p>We are in the process of populating our profile, please check back later</p>
           )}
           {about && (
@@ -47,14 +47,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                   <HorizontalLine className={styles.horizontalLine} />
                 </div>
               </div>
-              <p>
-                Ormiston Six Villages Academy has pre-loved school products to help children thrive
-                at school.
-              </p>
-              <p>
-                Request the things you need or donate products to help the next child. Charities can
-                also take our extra stock to share with the communities that need it most.
-              </p>
+              <p>{about}</p>
             </>
           )}
 

@@ -37,10 +37,17 @@ const SchoolsDashboard: FC = () => {
     return <Spinner />;
   }
 
-  const { excess, donate, request } = data?.getSchoolProfile ?? {};
+  const { excess, donate, request, about } = data?.getSchoolProfile ?? {};
 
   return (
-    <PublicDashboard type="school" name={name} excess={excess} donate={donate} request={request} />
+    <PublicDashboard
+      type="school"
+      name={name}
+      excess={excess}
+      donate={donate}
+      request={request}
+      about={about}
+    />
   );
 };
 

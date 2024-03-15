@@ -145,6 +145,14 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
 export const getSchoolProfile =
   /* GraphQL */ `query GetSchoolProfile($name: String!, $id: String!) {
   getSchoolProfile(name: $name, id: $id) {
+    header {
+      phone
+      email
+      website
+      uniformPolicy
+      __typename
+    }
+    about
     request {
       items
       whatToExpect

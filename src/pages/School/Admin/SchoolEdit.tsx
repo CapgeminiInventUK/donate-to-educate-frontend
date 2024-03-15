@@ -14,9 +14,9 @@ import { EditDescription } from './EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { fetchAuthSession } from 'aws-amplify/auth';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import useGetAuthToken from '@/hooks/useGetAuthToken';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -140,19 +140,13 @@ const SchoolEdit: FC = () => {
   const [editStateActionText, setEditStateActionText] = useState(false);
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
-  const [authToken, setAuthToken] = useState<string>();
+  const authToken = useGetAuthToken();
 
   const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({
     items: '',
     actionText,
     whatToExpect: howItWorks,
-  });
-
-  useEffect(() => {
-    fetchAuthSession()
-      .then((session) => setAuthToken(session.tokens?.idToken?.toString()))
-      .catch(console.log);
   });
 
   const { refetch } = useQuery({

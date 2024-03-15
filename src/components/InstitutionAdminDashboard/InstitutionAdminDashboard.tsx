@@ -11,8 +11,13 @@ import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { SchoolProfile } from '@/types/api';
+import { SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
 import LogoutButton from '../LogoutButton/LogoutButton';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { updateSchoolProfile } from '@/graphql/mutations';
+import useGetAuthToken from '@/hooks/useGetAuthToken';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -21,16 +26,38 @@ interface InstitutionAdminDashboardProps {
 }
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
+  const { donate, excess, request, about: currentAbout } = profile;
   const navigate = useNavigate();
+  const [about, setAbout] = useState(currentAbout ?? '');
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
+  const authToken = useGetAuthToken();
+
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+        authMode: 'userPool',
+        authToken,
+        query: updateSchoolProfile,
+        variables: {
+          key: 'about',
+          value: about,
+        },
+      });
+
+      return result;
+    },
+  });
 
   const toggleIsEditingAboutUs = (): void => {
     setIsEditingAboutUs((isEditingAboutUs) => !isEditingAboutUs);
   };
 
-  // TODO - Make POST request to API to save new "About us" when user clicks Save button
   const saveAboutUs = (): void => {
+    // eslint-disable-next-line no-console
+    refetch().catch(console.error);
     toggleIsEditingAboutUs();
   };
 
@@ -39,10 +66,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
       setPageNumber(pageNumber - 1);
     }
   };
-
-  // TODO - Use useEffect to fetch information from API (about us, request/donate/extra stock data)
-
-  const { donate, excess, request } = profile;
 
   return (
     <div className={styles.container}>
@@ -68,6 +91,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
             heading="About us"
             subtext={''}
             isEditing={isEditingAboutUs}
+            text={about}
+            setText={setAbout}
           />
 
           <div className={styles.productsTilesContainer}>
