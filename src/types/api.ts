@@ -188,6 +188,7 @@ export type InsertJoinRequestMutation = {
 
 export type InsertLocalAuthorityRegisterRequestMutationVariables = {
   name: string;
+  localAuthority: string;
   email: string;
   message: string;
 };
