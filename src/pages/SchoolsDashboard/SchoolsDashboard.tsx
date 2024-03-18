@@ -8,6 +8,8 @@ import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
+import BackButton from '@/components/BackButton/BackButton';
+import styles from './SchoolDashboard.module.scss';
 
 const SchoolsDashboard: FC = () => {
   const location = useLocation();
@@ -37,17 +39,23 @@ const SchoolsDashboard: FC = () => {
     return <Spinner />;
   }
 
-  const { excess, donate, request, about } = data?.getSchoolProfile ?? {};
+  const { excess, donate, request, about, header } = data?.getSchoolProfile ?? {};
 
   return (
-    <PublicDashboard
-      type="school"
-      name={name}
-      excess={excess}
-      donate={donate}
-      request={request}
-      about={about}
-    />
+    <div className={styles.container}>
+      <div className={styles.contentContainer}>
+        <BackButton theme="blue" />
+        <PublicDashboard
+          type="school"
+          name={name}
+          excess={excess}
+          donate={donate}
+          request={request}
+          about={about}
+          header={header}
+        />
+      </div>
+    </div>
   );
 };
 

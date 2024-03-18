@@ -273,8 +273,8 @@ export interface SummaryProps {
 
 export interface InstitutionBannerProps {
   isAdminView?: boolean;
-  phoneNumber?: string;
-  emailAddress?: string;
+  phone?: string;
+  email?: string;
   website?: string;
   uniformPolicy?: string;
   onClick?: () => void;

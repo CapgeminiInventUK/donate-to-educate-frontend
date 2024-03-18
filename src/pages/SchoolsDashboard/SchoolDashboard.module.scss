@@ -1,0 +1,29 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+
+  .contentContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 66px;
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-medium)) {
+  .container {
+    .contentContainer {
+      padding-top: 66px;
+    }
+  }
+}
+
+@media only screen and (max-width: calc(g.$screen-small)) {
+  .container {
+    .contentContainer {
+      width: 100%;
+      margin-bottom: 20px;
+      padding-top: 20px;
+    }
+  }
+}

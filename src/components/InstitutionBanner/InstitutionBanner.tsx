@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './InstitutionBanner.module.scss';
 import SchoolHat from '@/assets/school/SchoolHat';
 import Telephone from '@/assets/school/Telephone';
@@ -9,41 +9,110 @@ import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { InstitutionBannerProps } from '@/types/props';
 import EditIcon from '@/assets/school/EditIcon';
+import TextInput from '../TextInput/TextInput';
+import FormButton from '../FormButton/FormButton';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { UpdateSchoolProfileMutation } from '@/types/api';
+import { updateSchoolProfile } from '@/graphql/mutations';
+import useGetAuthToken from '@/hooks/useGetAuthToken';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
-  phoneNumber,
-  emailAddress,
+  phone,
+  email,
   website,
   uniformPolicy,
   address,
   type,
   name,
+  onClick,
 }) => {
+  const [isEditMode, toggleEditMode] = useState(false);
+  const [banner, setBanner] = useState({
+    phone,
+    email,
+    website,
+    uniformPolicy,
+    address,
+  });
+  const authToken = useGetAuthToken();
+
+  const { refetch } = useQuery({
+    queryKey: ['saveBanner'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+        authMode: 'userPool',
+        authToken,
+        query: updateSchoolProfile,
+        variables: {
+          key: 'header',
+          value: JSON.stringify(banner),
+        },
+      });
+
+      return result;
+    },
+  });
+
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
-      {hasContactInfo(phoneNumber, emailAddress, website, uniformPolicy, isAdminView) && (
+      {hasContactInfo(
+        banner.phone,
+        banner.email,
+        banner.website,
+        banner.uniformPolicy,
+        isAdminView
+      ) && (
         <div className={styles.textContainer}>
           <ul>
-            {(phoneNumber ?? isAdminView) && (
+            {(banner.phone ?? isAdminView) && (
               <li>
                 <span>
                   <Telephone />
                 </span>
-                <p className={styles.italicized}>
-                  {phoneNumber ?? "You haven't added your phone number"}
-                </p>
+                {!isEditMode ? (
+                  <p className={styles.italicized}>
+                    {banner.phone ?? "You haven't added your phone number"}
+                  </p>
+                ) : (
+                  <TextInput
+                    onChange={(value) => {
+                      setBanner((prevState) => ({
+                        ...prevState,
+                        phone: value,
+                      }));
+                    }}
+                    ariaLabel="Phone Number"
+                    value={banner.phone}
+                  />
+                )}
               </li>
             )}
-            {(emailAddress ?? isAdminView) && (
+            {(banner.email ?? isAdminView) && (
               <li>
                 <span>
                   <Email />
                 </span>
-                <p className={styles.italicized}>
-                  {emailAddress ?? "You haven't added your email"}
-                </p>
+                {!isEditMode ? (
+                  <p className={styles.italicized}>
+                    {banner.email ?? "You haven't added your email"}
+                  </p>
+                ) : (
+                  <TextInput
+                    onChange={(value) => {
+                      setBanner((prevState) => ({
+                        ...prevState,
+                        email: value,
+                      }));
+                    }}
+                    ariaLabel="Email address"
+                    value={banner.email}
+                  />
+                )}
               </li>
             )}
             {(website ?? isAdminView) && (
@@ -51,14 +120,29 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                 <span>
                   <Globe />
                 </span>
-                <p className={styles.italicized}>{website ?? "You haven't added your website"}</p>
+                {!isEditMode ? (
+                  <p className={styles.italicized}>
+                    {banner.website ?? "You haven't added your website"}
+                  </p>
+                ) : (
+                  <TextInput
+                    onChange={(value) => {
+                      setBanner((prevState) => ({
+                        ...prevState,
+                        website: value,
+                      }));
+                    }}
+                    ariaLabel="website"
+                    value={banner.website}
+                  />
+                )}
               </li>
             )}
           </ul>
 
           <ul>
             <li>
-              {uniformPolicy && type === 'school' && (
+              {uniformPolicy && type === 'school' && !isAdminView && (
                 <>
                   <span>
                     <SchoolHat />
@@ -73,18 +157,31 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       </div>
                     }
                     ariaLabel="uniform policy"
-                    onClick={() => null}
+                    onClick={() => (onClick ? onClick() : undefined)}
                   />
                 </>
               )}
-              {!uniformPolicy && type === 'school' && isAdminView && (
+              {type === 'school' && isAdminView && (
                 <>
                   <span>
                     <SchoolHat />
                   </span>
-                  <p className={styles.italicized}>
-                    You haven&apos;t added your school&apos;s uniform policy
-                  </p>
+                  {!isEditMode ? (
+                    <p className={styles.italicized}>
+                      {banner.uniformPolicy ?? "You haven't added your school's uniform policy"}
+                    </p>
+                  ) : (
+                    <TextInput
+                      onChange={(value) => {
+                        setBanner((prevState) => ({
+                          ...prevState,
+                          uniformPolicy: value,
+                        }));
+                      }}
+                      ariaLabel="uniform policy"
+                      value={banner.uniformPolicy}
+                    />
+                  )}
                 </>
               )}
               {type === 'charity' && (
@@ -92,24 +189,49 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   <span>
                     <House />
                   </span>
-                  <p className={styles.italicized}>{address ?? 'Address not given'}</p>
+                  {!isEditMode ? (
+                    <p className={styles.italicized}>{banner.address ?? 'Address not given'}</p>
+                  ) : (
+                    <TextInput
+                      onChange={(value) => {
+                        setBanner((prevState) => ({
+                          ...prevState,
+                          address: value,
+                        }));
+                      }}
+                      ariaLabel="address"
+                      value={banner.address}
+                    />
+                  )}
                 </>
               )}
             </li>
             {isAdminView && (
               <li>
-                <Button
-                  text={
-                    <div className={styles.editDiv}>
-                      <EditIcon />
-                      <span className={styles.editButtonText}>Edit</span>
-                    </div>
-                  }
-                  theme="light"
-                  className={styles.editButton}
-                  onClick={() => undefined}
-                  ariaLabel="edit"
-                />
+                {!isEditMode ? (
+                  <FormButton
+                    text={
+                      <div className={styles.editDiv}>
+                        <EditIcon />
+                        <span className={styles.editButtonText}>Edit</span>
+                      </div>
+                    }
+                    theme="formButtonGrey"
+                    onClick={() => toggleEditMode(true)}
+                    ariaLabel="edit"
+                  />
+                ) : (
+                  <FormButton
+                    text="Save"
+                    theme="formButtonGreen"
+                    onClick={() => {
+                      toggleEditMode(false);
+                      // eslint-disable-next-line no-console
+                      refetch().catch(console.error);
+                    }}
+                    ariaLabel="save"
+                  />
+                )}
               </li>
             )}
           </ul>
@@ -120,15 +242,15 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
 };
 
 const hasContactInfo = (
-  phoneNumber?: string,
-  emailAddress?: string,
+  phone?: string,
+  email?: string,
   website?: string,
   uniformPolicy?: string,
   isAdminView?: boolean
 ): boolean => {
   return (
-    phoneNumber !== undefined ||
-    emailAddress !== undefined ||
+    phone !== undefined ||
+    email !== undefined ||
     website !== undefined ||
     uniformPolicy !== undefined ||
     isAdminView === true
