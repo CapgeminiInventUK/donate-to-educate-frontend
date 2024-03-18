@@ -71,6 +71,27 @@ export type ProfileItems = {
   actionText?: string | null;
 };
 
+export type CharityProfile = {
+  __typename: 'CharityProfile';
+  name: string;
+  id: string;
+  localAuthority: string;
+  postcode: string;
+  header?: CharityProfileHeader | null;
+  about?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+};
+
+export type CharityProfileHeader = {
+  __typename: 'CharityProfileHeader';
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  address?: string | null;
+};
+
 export type LocalAuthorityUser = {
   __typename: 'LocalAuthorityUser';
   name: string;
@@ -161,6 +182,15 @@ export type UpdateSchoolProfileMutationVariables = {
 
 export type UpdateSchoolProfileMutation = {
   updateSchoolProfile: boolean;
+};
+
+export type UpdateCharityProfileMutationVariables = {
+  key: string;
+  value: string;
+};
+
+export type UpdateCharityProfileMutation = {
+  updateCharityProfile: boolean;
 };
 
 export type UpdateJoinRequestMutationVariables = {
@@ -401,6 +431,47 @@ export type GetSchoolProfileQuery = {
       email?: string | null;
       website?: string | null;
       uniformPolicy?: string | null;
+    } | null;
+    about?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+  } | null;
+};
+
+export type GetCharityProfileQueryVariables = {
+  name: string;
+  id: string;
+};
+
+export type GetCharityProfileQuery = {
+  getCharityProfile?: {
+    __typename: 'CharityProfile';
+    name: string;
+    id: string;
+    localAuthority: string;
+    postcode: string;
+    header?: {
+      __typename: 'CharityProfileHeader';
+      phone?: string | null;
+      email?: string | null;
+      website?: string | null;
+      address?: string | null;
     } | null;
     about?: string | null;
     request?: {

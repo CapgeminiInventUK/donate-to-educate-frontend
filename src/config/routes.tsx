@@ -45,6 +45,7 @@ import {
   RequestCharityProducts,
   CharityContactConfirmation,
   SchoolAdminView,
+  CharityAdminView,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -136,6 +137,11 @@ const routes: Route[] = [
   {
     path: Paths.CHARITIES_EDIT,
     element: <CharityEdit />,
+    authType: 'charity',
+  },
+  {
+    path: Paths.CHARITIES_VIEW,
+    element: <CharityAdminView />,
     authType: 'charity',
   },
 

@@ -93,6 +93,7 @@ export const CharityAdminDashboard = lazy(
   () => import('@pages/Charity/Admin/CharityAdminDashboard')
 );
 export const CharityEdit = lazy(() => import('@/pages/Charity/Admin/CharityEdit'));
+export const CharityAdminView = lazy(() => import('@/pages/Charity/Admin/CharityAdminView'));
 
 // Local Area
 export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));

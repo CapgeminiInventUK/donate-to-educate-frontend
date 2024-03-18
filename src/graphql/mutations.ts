@@ -43,6 +43,14 @@ export const updateSchoolProfile =
     APITypes.UpdateSchoolProfileMutationVariables,
     APITypes.UpdateSchoolProfileMutation
   >;
+export const updateCharityProfile =
+  /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
+  updateCharityProfile(key: $key, value: $value)
+}
+` as GeneratedMutation<
+    APITypes.UpdateCharityProfileMutationVariables,
+    APITypes.UpdateCharityProfileMutation
+  >;
 export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   $localAuthority: String!
   $name: String!

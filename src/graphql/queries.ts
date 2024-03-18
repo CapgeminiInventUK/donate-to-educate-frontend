@@ -179,6 +179,43 @@ export const getSchoolProfile =
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
+export const getCharityProfile =
+  /* GraphQL */ `query GetCharityProfile($name: String!, $id: String!) {
+  getCharityProfile(name: $name, id: $id) {
+    name
+    id
+    localAuthority
+    postcode
+    header {
+      phone
+      email
+      website
+      address
+      __typename
+    }
+    about
+    request {
+      items
+      whatToExpect
+      actionText
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetCharityProfileQueryVariables, APITypes.GetCharityProfileQuery>;
 export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser($email: String!) {
   getLocalAuthorityUser(email: $email) {
     name
