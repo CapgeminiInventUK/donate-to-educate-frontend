@@ -11,7 +11,7 @@ import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
+import { CharityProfile, SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -23,7 +23,7 @@ import PublicDashboard from '../PublicDashboard/PublicDashboard';
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
   name: string;
-  profile: SchoolProfile;
+  profile: SchoolProfile | CharityProfile;
 }
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
@@ -85,7 +85,10 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               phone={header?.phone ?? undefined}
               email={header?.email ?? undefined}
               website={header?.website ?? undefined}
-              uniformPolicy={header?.uniformPolicy ?? undefined}
+              uniformPolicy={
+                header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined
+              }
+              address={header && 'address' in header ? header?.address ?? undefined : undefined}
             />
             <div className={styles.card}>
               <InformationTile

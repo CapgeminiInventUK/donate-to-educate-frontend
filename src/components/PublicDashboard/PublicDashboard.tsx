@@ -7,7 +7,7 @@ import ExtraStock from '@/assets/school/ExtraStock';
 import HorizontalLine from '@/assets/school/HorizontalLine';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { ProfileItems, SchoolProfileHeader } from '@/types/api';
+import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types/api';
 import FormButton from '../FormButton/FormButton';
 
 interface PublicDashboardProps {
@@ -17,7 +17,7 @@ interface PublicDashboardProps {
   donate?: ProfileItems | null;
   request?: ProfileItems | null;
   about?: string | null;
-  header?: SchoolProfileHeader | null;
+  header?: SchoolProfileHeader | CharityProfileHeader | null;
   postcode?: string | null;
   setPreview?: (value: boolean) => void;
 }
@@ -43,7 +43,10 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         phone={header?.phone ?? undefined}
         email={header?.email ?? undefined}
         website={header?.website ?? undefined}
-        uniformPolicy={header?.uniformPolicy ?? undefined}
+        uniformPolicy={
+          header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined
+        }
+        address={header && 'address' in header ? header?.address ?? undefined : undefined}
       />
       <div className={styles.card}>
         {!(about ?? excess ?? donate ?? request) && (
