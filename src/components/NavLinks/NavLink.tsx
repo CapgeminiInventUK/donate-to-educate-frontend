@@ -15,7 +15,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
     return;
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, path: string): void => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>, path: Paths): void => {
     e.preventDefault();
 
     if (childRoutes && childRoutes?.length > 0) {
@@ -26,7 +26,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
   };
 
   const pathIsLogin = path === Paths.LOGIN;
-  const handleLinkClick = (path: string): void => {
+  const handleLinkClick = (path: Paths): void => {
     if (onLinkClicked) {
       onLinkClicked();
     }
@@ -35,7 +35,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
       checkAuthState()
         .then(() => navigate(Paths.SIGN_IN))
         .catch(() => navigate(path));
-    } else {
+    } else if (path !== Paths.ABOUT) {
       navigate(path);
     }
   };
