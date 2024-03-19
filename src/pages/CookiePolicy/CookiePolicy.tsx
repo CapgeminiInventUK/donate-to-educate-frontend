@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './CookiePolicy.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
+import Paths from '@/config/paths';
 
 const CookiePolicy: FC = () => {
   return (
@@ -42,10 +43,10 @@ const CookiePolicy: FC = () => {
             would like to raise with us please contact us:
           </p>
           <p>
-            Email: <a href="mailto:info@communityinspired.co.uk">info@communityinspired.co.uk</a>
+            Email: <a href={Paths.EMAIL}>info@communityinspired.co.uk</a>
           </p>
           <p>
-            Phone: <a href="tel:PHONE_NUM">01342 718679</a>
+            Phone: <a href={Paths.PHONE}>01342 718679</a>
           </p>
           <p>
             Community Inspired Ltd
