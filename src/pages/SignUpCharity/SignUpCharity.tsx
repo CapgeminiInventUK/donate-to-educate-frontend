@@ -97,6 +97,7 @@ const SignUpCharity: FC = () => {
           localAuthority: selectedLocalAuthority,
           email: formDataForSubmission?.email,
           message: formDataForSubmission?.message,
+          type: 'charity',
         },
       });
       return result;

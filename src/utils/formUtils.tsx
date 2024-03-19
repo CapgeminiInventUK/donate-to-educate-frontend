@@ -22,7 +22,11 @@ const excludedValues = [
 ];
 
 export const findValueFromFormData = (formData: FormDataItem[], fieldName: string): string => {
-  return formData.find(({ field }) => field === fieldName)?.value?.toString() ?? '';
+  return (
+    formData
+      .find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())
+      ?.value?.toString() ?? ''
+  );
 };
 
 export const findFullValueFromFormData = (
