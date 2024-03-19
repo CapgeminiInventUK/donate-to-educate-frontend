@@ -50,7 +50,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
       />
       <div className={styles.card}>
         {!(about ?? excess ?? donate ?? request) && (
-          <p>We are in the process of populating our profile, please check back later</p>
+          <p>We are still populating our profile, please check back later</p>
         )}
         {about && (
           <>
