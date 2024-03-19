@@ -32,7 +32,7 @@ export const RequestSchoolProducts = lazy(
 // Public Charity
 export const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
 export const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
-export const CharityEdit = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
+export const CharityDashboardItems = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
 export const RequestCharityProducts = lazy(
   () => import('@/pages/CharityDashboard/RequestCharityProducts')
 );
@@ -51,9 +51,6 @@ export const Join = lazy(() => import('@/pages/Join/Join'));
 export const AdminDashboard = lazy(() => import('@pages/AdminDashboard/AdminDashboard'));
 export const AdminDashboardManageLocalAuthorities = lazy(
   () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
-);
-export const AdminDashboardViewLocalAuthority = lazy(
-  () => import('@pages/AdminDashboard/ViewLocalAuthority/ViewLocalAuthority')
 );
 export const AdminDashboardLocalAuthoritySignUp = lazy(
   () => import('@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUp')
@@ -90,11 +87,14 @@ export const LocalAuthorityDashboardCharities = lazy(
 // Admin School
 export const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));
 export const SchoolEdit = lazy(() => import('@/pages/School/Admin/SchoolEdit'));
+export const SchoolAdminView = lazy(() => import('@/pages/School/Admin/SchoolAdminView'));
 
 // Admin Charity
 export const CharityAdminDashboard = lazy(
   () => import('@pages/Charity/Admin/CharityAdminDashboard')
 );
+export const CharityEdit = lazy(() => import('@/pages/Charity/Admin/CharityEdit'));
+export const CharityAdminView = lazy(() => import('@/pages/Charity/Admin/CharityAdminView'));
 
 // Local Area
 export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));

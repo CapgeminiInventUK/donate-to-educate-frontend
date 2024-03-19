@@ -12,8 +12,8 @@ const CookiePolicy: FC = () => {
         <div className={styles.card}>
           <h2>Cookie Policy</h2>
           <p>
-            Cookie Policy Our site uses cookies which are small text files that are placed on your
-            computer to help us provide the best service to you.
+            Our site uses cookies which are small text files that are placed on your computer to
+            help us provide the best service to you.
           </p>
           <p>
             If you use this site without adjusting your cookie settings then we will assume that you

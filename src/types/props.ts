@@ -273,8 +273,8 @@ export interface SummaryProps {
 
 export interface InstitutionBannerProps {
   isAdminView?: boolean;
-  phoneNumber?: string;
-  emailAddress?: string;
+  phone?: string;
+  email?: string;
   website?: string;
   uniformPolicy?: string;
   onClick?: () => void;
@@ -292,6 +292,8 @@ export interface EditableInformationTileProps extends InformationTileProps {
   onClick: () => void;
   saveOnClick: () => void;
   isEditing: boolean;
+  text: string;
+  setText: Dispatch<SetStateAction<string>>;
 }
 
 export interface AdminActionTileProps {

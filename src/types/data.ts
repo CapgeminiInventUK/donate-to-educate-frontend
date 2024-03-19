@@ -1,4 +1,4 @@
-import { ErrorInfo } from 'react';
+import { ErrorInfo, ReactNode } from 'react';
 import {
   ButtonProps,
   CheckYourAnswersProps,
@@ -45,8 +45,8 @@ export type ComponentDataPropsType =
 
 export interface FormTemplate {
   formComponents: FormComponent[];
-  header?: string;
-  subHeader?: string;
+  header?: ReactNode;
+  subHeader?: ReactNode;
   infoText?: string;
   infoTextTwo?: string;
   logo?: JSX.Element;
@@ -80,6 +80,7 @@ export interface FormDataItem {
 export enum FormSections {
   CHARITY_SECTION = 'Your charity or volunteer group',
   YOUR_DETAILS_SECTION = 'Your details',
+  DECLARATION = 'Declaration',
 }
 
 export enum FormNames {
@@ -155,4 +156,13 @@ export interface RequestFormState {
   notes: string;
   who: string;
   connection?: string;
+}
+
+export interface SchoolTableData {
+  name: string;
+  status: string;
+  urn?: string;
+}
+export interface SchoolsTableProps {
+  data: SchoolTableData[];
 }

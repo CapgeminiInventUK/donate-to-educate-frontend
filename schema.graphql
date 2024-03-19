@@ -29,13 +29,39 @@ type ProfileItems {
   actionText: String
 }
 
+type SchoolProfileHeader {
+  phone: String
+  email: String
+  website: String
+  uniformPolicy: String
+}
+
+type CharityProfileHeader {
+  phone: String
+  email: String
+  website: String
+  address: String
+}
+
 type SchoolProfile {
+  name: String!
+  id: String!
+  localAuthority: String!
+  postcode: String!
+  header: SchoolProfileHeader
+  about: String
   request: ProfileItems
   donate: ProfileItems
   excess: ProfileItems
 }
 
 type CharityProfile {
+  name: String!
+  id: String!
+  localAuthority: String!
+  postcode: String!
+  header: CharityProfileHeader
+  about: String
   request: ProfileItems
   donate: ProfileItems
   excess: ProfileItems
@@ -99,9 +125,11 @@ type Query {
   getLocalAuthorities: [LocalAuthority!]!
   getJoinRequests: [JoinRequest!]!
   getSchoolProfile(name: String!, id: String!): SchoolProfile
+  getCharityProfile(name: String!, id: String!): CharityProfile
   getLocalAuthorityUser(email: String!): LocalAuthorityUser!
   getSignUpData(id: String!): SignUpData
   getSchoolsNearby(postcode: String!, distance: Float!): [School!]!
+  getSchoolJoinRequestsByLa(localAuthority: String!): [JoinRequest!]!
 }
 
 type Mutation {
@@ -118,6 +146,7 @@ type Mutation {
   ): Boolean!
 
   updateSchoolProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
+  updateCharityProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
   updateJoinRequest(localAuthority: String!, name: String!, status: String!): Boolean!
   insertJoinRequest(
     name: String!
@@ -132,7 +161,12 @@ type Mutation {
     aboutCharity: String
   ): Boolean!
 
-  insertLocalAuthorityRegisterRequest(name: String!, email: String!, message: String!): Boolean!
+  insertLocalAuthorityRegisterRequest(
+    name: String!
+    localAuthority: String!
+    email: String!
+    message: String!
+  ): Boolean!
 
   insertSignUpData(
     id: String!
@@ -191,4 +225,5 @@ type LocalAuthorityRegisterRequest {
   name: String!
   email: String!
   message: String!
+  localAuthority: String!
 }

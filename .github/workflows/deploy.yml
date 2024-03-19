@@ -1,3 +1,5 @@
+name: 'Frontend'
+
 on:
   push:
     branches:

@@ -4,13 +4,18 @@ import styles from './NavLink.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import ChevronDown from '@/assets/navigation/ChevronDown';
 import Paths from '@/config/paths';
+import { checkAuthState } from '@/hooks/useCheckCurrentUser';
 
 const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, path: string): void => {
+  if (!name) {
+    return;
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>, path: Paths): void => {
     e.preventDefault();
 
     if (childRoutes && childRoutes?.length > 0) {
@@ -20,17 +25,20 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
     }
   };
 
-  const handleLinkClick = (path: string): void => {
+  const pathIsLogin = path === Paths.LOGIN;
+  const handleLinkClick = (path: Paths): void => {
     if (onLinkClicked) {
       onLinkClicked();
     }
 
-    navigate(path);
+    if (pathIsLogin) {
+      checkAuthState()
+        .then(() => navigate(Paths.SIGN_IN))
+        .catch(() => navigate(path));
+    } else if (path !== Paths.ABOUT) {
+      navigate(path);
+    }
   };
-
-  if (!name) {
-    return;
-  }
 
   return (
     <div

@@ -50,24 +50,24 @@ const Home: FC = () => {
 
         <Tile
           title="A place for schools"
-          onClick={() => navigate(Paths.JOIN)}
+          onClick={() => navigate(Paths.SIGN_UP_SCHOOL)}
           body={[
             'Create a school profile to show which products you have in stock and ask for donations.',
             'Help families with product requests and get support from charities.',
           ]}
           icon={<Hat />}
-          buttonText="Sign in or join"
+          buttonText="Join"
         />
 
         <Tile
           title="A place for charities"
-          onClick={() => navigate(Paths.JOIN)}
+          onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
           body={[
             'Create a charity profile to show which products you stock.',
             'Help children get the things they need by connecting with nearby schools, PTAs and local communities.',
           ]}
           icon={<Heart />}
-          buttonText="Sign in or join"
+          buttonText="Join"
         />
       </div>
 

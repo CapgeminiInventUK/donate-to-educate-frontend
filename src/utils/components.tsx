@@ -56,7 +56,7 @@ export const createFormComponent = (
     case ComponentType.RADIO:
       return <RadioGroup {...(componentData as RadioGroupProps)} />;
     case ComponentType.CHECKBOX:
-      return <Checkbox {...(componentData as CheckboxProps)} />;
+      return <Checkbox {...(componentData as CheckboxProps)} onChange={onChange} />;
     case ComponentType.DROPDOWN:
       return (
         <Dropdown {...(componentData as DropdownProps)} value={String(value)} onChange={onChange} />

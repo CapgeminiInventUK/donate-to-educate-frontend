@@ -45,9 +45,23 @@ export type School = {
 
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
+  name: string;
+  id: string;
+  localAuthority: string;
+  postcode: string;
+  header?: SchoolProfileHeader | null;
+  about?: string | null;
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
+};
+
+export type SchoolProfileHeader = {
+  __typename: 'SchoolProfileHeader';
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  uniformPolicy?: string | null;
 };
 
 export type ProfileItems = {
@@ -55,6 +69,27 @@ export type ProfileItems = {
   items?: string | null;
   whatToExpect?: string | null;
   actionText?: string | null;
+};
+
+export type CharityProfile = {
+  __typename: 'CharityProfile';
+  name: string;
+  id: string;
+  localAuthority: string;
+  postcode: string;
+  header?: CharityProfileHeader | null;
+  about?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+};
+
+export type CharityProfileHeader = {
+  __typename: 'CharityProfileHeader';
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  address?: string | null;
 };
 
 export type LocalAuthorityUser = {
@@ -94,6 +129,14 @@ export type getAdminPageRequestsQuery = {
     localAuthority: string;
     type: string;
     requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
   }>;
 };
 
@@ -141,6 +184,15 @@ export type UpdateSchoolProfileMutation = {
   updateSchoolProfile: boolean;
 };
 
+export type UpdateCharityProfileMutationVariables = {
+  key: string;
+  value: string;
+};
+
+export type UpdateCharityProfileMutation = {
+  updateCharityProfile: boolean;
+};
+
 export type UpdateJoinRequestMutationVariables = {
   localAuthority: string;
   name: string;
@@ -168,14 +220,15 @@ export type InsertJoinRequestMutation = {
   insertJoinRequest: boolean;
 };
 
-export type InsertLocalAuthorityRegisterRequestMutation = {
-  insertLocalAuthorityRegisterRequest: boolean;
-};
-
 export type InsertLocalAuthorityRegisterRequestMutationVariables = {
   name: string;
+  localAuthority: string;
   email: string;
   message: string;
+};
+
+export type InsertLocalAuthorityRegisterRequestMutation = {
+  insertLocalAuthorityRegisterRequest: boolean;
 };
 
 export type InsertSignUpDataMutationVariables = {
@@ -368,6 +421,59 @@ export type GetSchoolProfileQueryVariables = {
 export type GetSchoolProfileQuery = {
   getSchoolProfile?: {
     __typename: 'SchoolProfile';
+    name: string;
+    id: string;
+    localAuthority: string;
+    postcode: string;
+    header?: {
+      __typename: 'SchoolProfileHeader';
+      phone?: string | null;
+      email?: string | null;
+      website?: string | null;
+      uniformPolicy?: string | null;
+    } | null;
+    about?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+    } | null;
+  } | null;
+};
+
+export type GetCharityProfileQueryVariables = {
+  name: string;
+  id: string;
+};
+
+export type GetCharityProfileQuery = {
+  getCharityProfile?: {
+    __typename: 'CharityProfile';
+    name: string;
+    id: string;
+    localAuthority: string;
+    postcode: string;
+    header?: {
+      __typename: 'CharityProfileHeader';
+      phone?: string | null;
+      email?: string | null;
+      website?: string | null;
+      address?: string | null;
+    } | null;
+    about?: string | null;
     request?: {
       __typename: 'ProfileItems';
       items?: string | null;
@@ -445,5 +551,27 @@ export type GetSchoolsNearbyQuery = {
     town?: string | null;
     website?: string | null;
     distance?: string | null;
+  }>;
+};
+
+export type GetSchoolJoinRequestsByLaQueryVariables = {
+  localAuthority: string;
+};
+
+export type GetSchoolJoinRequestsByLaQuery = {
+  getSchoolJoinRequestsByLa: Array<{
+    __typename: 'JoinRequest';
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
   }>;
 };

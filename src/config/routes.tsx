@@ -10,7 +10,6 @@ import {
   Login,
   AdminDashboard,
   AdminDashboardManageLocalAuthorities,
-  AdminDashboardViewLocalAuthority,
   AdminDashboardLocalAuthoritySignUp,
   AdminDashboardLocalAuthoritySignUpConfirmation,
   AdminDashboardRequests,
@@ -40,10 +39,13 @@ import {
   SignIn,
   CharityAdminDashboard,
   CharityDashboard,
+  CharityDashboardItems,
   CharityEdit,
   Join,
   RequestCharityProducts,
   CharityContactConfirmation,
+  SchoolAdminView,
+  CharityAdminView,
   CookiePolicy,
 } from './lazy';
 import { Route } from '@/types/props';
@@ -58,11 +60,6 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
     element: <AdminDashboardManageLocalAuthorities />,
-    authType: 'admin',
-  },
-  {
-    path: Paths.ADMIN_DASHBOARD_LA_VIEW,
-    element: <AdminDashboardViewLocalAuthority />,
     authType: 'admin',
   },
   {
@@ -125,12 +122,27 @@ const routes: Route[] = [
     name: 'Create or edit your profile',
     authType: 'school',
   },
+  {
+    path: Paths.SCHOOL_VIEW,
+    element: <SchoolAdminView />,
+    authType: 'school',
+  },
 
   // Admin Charity
   {
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
     element: <CharityAdminDashboard />,
     name: 'Create or edit your profile',
+    authType: 'charity',
+  },
+  {
+    path: Paths.CHARITIES_EDIT,
+    element: <CharityEdit />,
+    authType: 'charity',
+  },
+  {
+    path: Paths.CHARITIES_VIEW,
+    element: <CharityAdminView />,
     authType: 'charity',
   },
 
@@ -185,7 +197,7 @@ const routes: Route[] = [
   },
   { path: Paths.REQUEST_CHARITY_PRODUCTS, element: <RequestCharityProducts /> },
   { path: Paths.CHARITY_DASHBOARD, element: <CharityDashboard /> },
-  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityEdit /> },
+  { path: Paths.CHARITY_DASHBOARD_ITEMS, element: <CharityDashboardItems /> },
   { path: Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION, element: <CharityContactConfirmation /> },
 
   // Local Area

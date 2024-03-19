@@ -43,6 +43,14 @@ export const updateSchoolProfile =
     APITypes.UpdateSchoolProfileMutationVariables,
     APITypes.UpdateSchoolProfileMutation
   >;
+export const updateCharityProfile =
+  /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
+  updateCharityProfile(key: $key, value: $value)
+}
+` as GeneratedMutation<
+    APITypes.UpdateCharityProfileMutationVariables,
+    APITypes.UpdateCharityProfileMutation
+  >;
 export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   $localAuthority: String!
   $name: String!
@@ -90,11 +98,13 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
 export const insertLocalAuthorityRegisterRequest =
   /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
   $name: String!
+  $localAuthority: String!
   $email: String!
   $message: String!
 ) {
   insertLocalAuthorityRegisterRequest(
     name: $name
+    localAuthority: $localAuthority
     email: $email
     message: $message
   )

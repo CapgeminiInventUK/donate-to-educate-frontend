@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './EditableInformationTile.module.scss';
 import Button from '../Button/Button';
 import { EditableInformationTileProps } from '@/types/props';
@@ -13,9 +13,9 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
   onClick,
   saveOnClick,
   isEditing = false,
+  text,
+  setText,
 }: EditableInformationTileProps) => {
-  const [text, setText] = useState(subtext);
-
   return (
     <div>
       <div className={styles.container}>
@@ -39,18 +39,21 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
             </div>
           </>
         ) : (
-          <Button
-            theme="darkBlue"
-            className={styles.addSectionButton}
-            onClick={onClick}
-            text={
-              <div className={styles.addSectionDiv}>
-                <span className={styles.addSectionButtonText}>Add section</span>
-                <PlusIcon />
-              </div>
-            }
-            ariaLabel="add section"
-          />
+          <>
+            {text}
+            <Button
+              theme="darkBlue"
+              className={styles.addSectionButton}
+              onClick={onClick}
+              text={
+                <div className={styles.addSectionDiv}>
+                  <span className={styles.addSectionButtonText}>Add section</span>
+                  <PlusIcon />
+                </div>
+              }
+              ariaLabel="add section"
+            />
+          </>
         )}
       </div>
     </div>

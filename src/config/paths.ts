@@ -27,9 +27,12 @@ enum Paths {
   // Admin School
   SCHOOLS_CREATE_EDIT_PROFILE = '/schools-create-edit-profile',
   SCHOOL_EDIT = '/school-edit',
+  SCHOOL_VIEW = '/school-view',
 
   // Admin Charity
   CHARITIES_CREATE_EDIT_PROFILE = '/charities-create-edit-profile',
+  CHARITIES_EDIT = '/charities-edit',
+  CHARITIES_VIEW = '/charities-view',
 
   // Public School
   SCHOOLS_DASHBOARD = '/school/dashboard',

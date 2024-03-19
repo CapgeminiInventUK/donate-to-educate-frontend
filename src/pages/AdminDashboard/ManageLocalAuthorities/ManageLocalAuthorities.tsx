@@ -168,19 +168,7 @@ const ManageLocalAuthorities: FC = () => {
     {
       title: 'Action',
       render: (_: unknown, la: LocalAuthority) =>
-        la.registered ? (
-          <div className={styles.actionsContainer}>
-            <Button
-              theme="link-blue"
-              className={styles.actionButtons}
-              text="View profile"
-              onClick={(): void => {
-                navigate(`${Paths.ADMIN_DASHBOARD_LA_VIEW}?la=${la.name}`);
-              }}
-              ariaLabel="view profile"
-            />
-          </div>
-        ) : (
+        !la.registered && (
           <div className={styles.actionsContainer}>
             <Button
               theme="link-blue"
