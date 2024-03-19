@@ -61,13 +61,13 @@ const App = (): JSX.Element => {
                     />
                   ))}
                 </Routes>
+                <CookieBanner />
               </Router>
             </ErrorBoundary>
           </Suspense>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ConfigProvider>
-      <CookieBanner />
     </>
   );
 };

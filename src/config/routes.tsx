@@ -46,6 +46,7 @@ import {
   CharityContactConfirmation,
   SchoolAdminView,
   CharityAdminView,
+  CookiePolicy,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -229,6 +230,11 @@ const routes: Route[] = [
     path: Paths.HOW_IT_WORKS,
     element: <HowItWorks />,
     name: 'How it works',
+  },
+  {
+    path: Paths.COOKIE_POLICY,
+    element: <CookiePolicy />,
+    name: 'How we use cookies',
   },
   {
     path: Paths.CONTACT,
