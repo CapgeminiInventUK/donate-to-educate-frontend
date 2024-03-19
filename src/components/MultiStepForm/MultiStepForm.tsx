@@ -95,7 +95,6 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     if (isDeclarationPage) {
       refetch()
-        .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION))
         // eslint-disable-next-line no-console
         .catch(console.error);
     }
@@ -136,7 +135,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   return (
     <form onSubmit={onButtonClick}>
-      <BackButton onClick={onBackButtonClick} theme="blue" />
+      {!isLastPage && <BackButton onClick={onBackButtonClick} theme="blue" />}
       {isLoading ? (
         <Spinner />
       ) : (
@@ -193,7 +192,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
           {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
           {isLastPage || isUnhappyPath ? (
             <div
-              className={`${isUnhappyPath ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
+              className={`${isUnhappyPath && summaryPageBg !== SummaryPageColour.BLUE ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
             >
               <Button
                 theme={'link'}
