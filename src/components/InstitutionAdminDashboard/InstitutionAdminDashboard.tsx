@@ -11,12 +11,17 @@ import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { CharityProfile, SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
+import {
+  CharityProfile,
+  SchoolProfile,
+  UpdateCharityProfileMutation,
+  UpdateSchoolProfileMutation,
+} from '@/types/api';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { updateSchoolProfile } from '@/graphql/mutations';
+import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
 
@@ -39,10 +44,12 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     queryKey: ['saveProfile'],
     enabled: false,
     queryFn: async () => {
-      const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+      const result = await client.graphql<
+        GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>
+      >({
         authMode: 'userPool',
         authToken,
-        query: updateSchoolProfile,
+        query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
         variables: {
           key: 'about',
           value: about,

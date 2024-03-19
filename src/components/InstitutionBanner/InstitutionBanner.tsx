@@ -14,8 +14,8 @@ import FormButton from '../FormButton/FormButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { UpdateSchoolProfileMutation } from '@/types/api';
-import { updateSchoolProfile } from '@/graphql/mutations';
+import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
+import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
@@ -43,10 +43,12 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     queryKey: ['saveBanner'],
     enabled: false,
     queryFn: async () => {
-      const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
+      const result = await client.graphql<
+        GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>
+      >({
         authMode: 'userPool',
         authToken,
-        query: updateSchoolProfile,
+        query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
         variables: {
           key: 'header',
           value: JSON.stringify(banner),
@@ -65,6 +67,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
         banner.email,
         banner.website,
         banner.uniformPolicy,
+        banner.address,
         isAdminView
       ) && (
         <div className={styles.textContainer}>
@@ -246,6 +249,7 @@ const hasContactInfo = (
   email?: string,
   website?: string,
   uniformPolicy?: string,
+  address?: string,
   isAdminView?: boolean
 ): boolean => {
   return (
@@ -253,6 +257,7 @@ const hasContactInfo = (
     email !== undefined ||
     website !== undefined ||
     uniformPolicy !== undefined ||
+    address !== undefined ||
     isAdminView === true
   );
 };

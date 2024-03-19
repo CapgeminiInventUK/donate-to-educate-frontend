@@ -1,23 +1,22 @@
+/*  eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
 import styles from './CharityEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
-// import { useQuery } from '@tanstack/react-query';
-// import { client } from '@/graphqlClient';
-// import { SchoolProfile, UpdateSchoolProfileMutation } from '@/types/api';
-// import { updateSchoolProfile } from '@/graphql/mutations';
-// import { GraphQLQuery } from 'aws-amplify/api';
-// import { EditDescription } from './EditDescription/EditDescription';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { CharityProfile, UpdateCharityProfileMutation } from '@/types/api';
+import { updateCharityProfile } from '@/graphql/mutations';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { EditDescription } from '../../../components/EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-// import useGetAuthToken from '@/hooks/useGetAuthToken';
-import { EditDescription } from '@/components/EditDescription/EditDescription';
-import { ProfileItems } from '@/types/api';
+import useGetAuthToken from '@/hooks/useGetAuthToken';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -32,18 +31,18 @@ const getButtonTextFromType = (type: string): string => {
   }
 };
 
-// const getKeyFromType = (type: string): string => {
-//   switch (type) {
-//     case 'tick':
-//       return 'request';
-//     case 'heart':
-//       return 'donate';
-//     case 'plus':
-//       return 'excess';
-//     default:
-//       throw new Error(`Unknown type ${type}`);
-//   }
-// };
+const getKeyFromType = (type: string): string => {
+  switch (type) {
+    case 'tick':
+      return 'request';
+    case 'heart':
+      return 'donate';
+    case 'plus':
+      return 'excess';
+    default:
+      throw new Error(`Unknown type ${type}`);
+  }
+};
 
 const getPageContent = (
   type: string
@@ -126,13 +125,13 @@ const getPageContent = (
 
 const CharityEdit: FC = () => {
   const location = useLocation();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { type, donate, excess, request } =
     (location?.state as {
       type: ItemsIconType;
-      donate: ProfileItems;
-      excess: ProfileItems;
-      request: ProfileItems;
+      donate: CharityProfile;
+      excess: CharityProfile;
+      request: CharityProfile;
     }) ?? {};
 
   const [preview, setPreview] = useState(false);
@@ -141,7 +140,7 @@ const CharityEdit: FC = () => {
   const [editStateActionText, setEditStateActionText] = useState(false);
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
-  //   const authToken = useGetAuthToken();
+  const authToken = useGetAuthToken();
 
   const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({
@@ -150,26 +149,26 @@ const CharityEdit: FC = () => {
     whatToExpect: howItWorks,
   });
 
-  //   const { refetch } = useQuery({
-  //     queryKey: ['saveProfile'],
-  //     enabled: false,
-  //     queryFn: async () => {
-  //       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
-  //         authMode: 'userPool',
-  //         authToken,
-  //         query: updateSchoolProfile,
-  //         variables: {
-  //           key: getKeyFromType(type),
-  //           value: JSON.stringify({
-  //             ...content,
-  //             items: JSON.stringify(items),
-  //           }),
-  //         },
-  //       });
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
+        authMode: 'userPool',
+        authToken,
+        query: updateCharityProfile,
+        variables: {
+          key: getKeyFromType(type),
+          value: JSON.stringify({
+            ...content,
+            items: JSON.stringify(items),
+          }),
+        },
+      });
 
-  //       return result;
-  //     },
-  //   });
+      return result;
+    },
+  });
 
   useEffect(() => {
     switch (type) {
@@ -239,7 +238,7 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    // refetch().then(console.log).catch(console.error);
+                    refetch().then(console.log).catch(console.error);
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
@@ -272,7 +271,7 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
-                    // refetch().then(console.log).catch(console.error);
+                    refetch().then(console.log).catch(console.error);
                   }}
                   handleCancel={() => {
                     setContent({ ...content, actionText: actionTextBeforeEdit });
@@ -291,9 +290,9 @@ const CharityEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  //   refetch()
-                  //     .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
-                  //     .catch(console.error);
+                  refetch()
+                    .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
+                    .catch(console.error);
                 }}
                 text={'Save'}
                 ariaLabel="save"
@@ -329,9 +328,9 @@ const CharityEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  //   refetch()
-                  //     .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
-                  //     .catch(console.error);
+                  refetch()
+                    .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
+                    .catch(console.error);
                 }}
                 text={'Save'}
                 ariaLabel="save"
