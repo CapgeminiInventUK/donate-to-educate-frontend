@@ -98,6 +98,7 @@ const SignUpSchool: FC = () => {
           localAuthority: selectedLocalAuthority,
           email: formDataForSubmission?.email,
           message: formDataForSubmission?.message,
+          type: 'localAuthority',
         },
       });
       return result;
