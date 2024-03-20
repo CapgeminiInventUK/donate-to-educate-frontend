@@ -267,6 +267,19 @@ export const getSchoolsNearby =
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolsNearbyQueryVariables, APITypes.GetSchoolsNearbyQuery>;
+export const getCharitiesNearby =
+  /* GraphQL */ `query GetCharitiesNearby($postcode: String!, $distance: Float!) {
+  getCharitiesNearby(postcode: $postcode, distance: $distance) {
+    id
+    localAuthority
+    name
+    address
+    about
+    distance
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetCharitiesNearbyQueryVariables, APITypes.GetCharitiesNearbyQuery>;
 export const getSchoolJoinRequestsByLa =
   /* GraphQL */ `query GetSchoolJoinRequestsByLa($localAuthority: String!) {
   getSchoolJoinRequestsByLa(localAuthority: $localAuthority) {

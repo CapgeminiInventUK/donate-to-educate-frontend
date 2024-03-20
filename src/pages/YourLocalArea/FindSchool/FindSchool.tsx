@@ -33,6 +33,7 @@ const FindSchool: FC = () => {
             name
             distance
             urn
+            registered
           }
         }
         `,
@@ -54,14 +55,17 @@ const FindSchool: FC = () => {
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { urn, name }: School) => (
-        <Button
-          theme="link-blue"
-          text={text}
-          ariaLabel={`name-${text}`}
-          onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
-        />
-      ),
+      render: (text: string, { urn, name, registered }: School) =>
+        registered ? (
+          <Button
+            theme="link-blue"
+            text={text}
+            ariaLabel={`name-${text}`}
+            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+          />
+        ) : (
+          text
+        ),
     },
     {
       title: 'Distance',

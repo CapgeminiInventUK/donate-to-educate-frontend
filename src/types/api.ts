@@ -115,6 +115,16 @@ export type SignUpData = {
   nameId: string;
 };
 
+export type Charity = {
+  __typename: 'Charity';
+  id: string;
+  localAuthority: string;
+  name: string;
+  address: string;
+  about: string;
+  distance?: string | null;
+};
+
 export type getAdminPageRequestsQueryVariables = {};
 
 export type getAdminPageRequestsQuery = {
@@ -126,6 +136,7 @@ export type getAdminPageRequestsQuery = {
   }>;
   getJoinRequests: Array<{
     __typename: 'JoinRequest';
+    id: string;
     name: string;
     localAuthority: string;
     type: string;
@@ -554,6 +565,23 @@ export type GetSchoolsNearbyQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
+  }>;
+};
+
+export type GetCharitiesNearbyQueryVariables = {
+  postcode: string;
+  distance: number;
+};
+
+export type GetCharitiesNearbyQuery = {
+  getCharitiesNearby: Array<{
+    __typename: 'Charity';
+    id: string;
+    localAuthority: string;
+    name: string;
+    address: string;
+    about: string;
     distance?: string | null;
   }>;
 };
