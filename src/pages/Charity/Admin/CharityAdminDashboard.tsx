@@ -6,19 +6,19 @@ import { CustomAttributes, getUserType } from '@/hooks/useCheckCurrentUser';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolProfileQuery } from '@/types/api';
-import { getSchoolProfile } from '@/graphql/queries';
+import { GetCharityProfileQuery } from '@/types/api';
+import { getCharityProfile } from '@/graphql/queries';
 
 const CharityAdminDashboard: FC = () => {
   const [attributes, setAttributes] = useState<CustomAttributes>();
 
-  // TODO need to make the query key unique for each school
-  const { isLoading } = useQuery({
+  // TODO need to make the query key unique for each charity
+  const { isLoading, data } = useQuery({
     queryKey: ['profile'],
     enabled: attributes !== undefined,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
-        query: getSchoolProfile,
+      const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
+        query: getCharityProfile,
         variables: {
           name: attributes?.['custom:institution'],
           id: attributes?.['custom:institutionId'],
@@ -47,7 +47,15 @@ const CharityAdminDashboard: FC = () => {
   return (
     <InstitutionAdminDashboard
       type="charity"
-      profile={{ __typename: 'CharityProfile', name: '', id: '', localAuthority: '', postcode: '' }}
+      profile={
+        data?.getCharityProfile ?? {
+          __typename: 'CharityProfile',
+          name: '',
+          id: '',
+          localAuthority: '',
+          postcode: '',
+        }
+      }
       name={attributes?.['custom:institution']}
     />
   );

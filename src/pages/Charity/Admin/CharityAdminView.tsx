@@ -14,8 +14,13 @@ import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import Hat from '@/assets/yourLocalArea/Hat';
 import hatImg from '@/assets/yourLocalArea/hat.png';
-import EditIcon from '@/assets/school/EditIcon';
 import TextInput from '@/components/TextInput/TextInput';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { updateCharityProfile } from '@/graphql/mutations';
+import useGetAuthToken from '@/hooks/useGetAuthToken';
+import { UpdateCharityProfileMutation } from '@/types/api';
+import { GraphQLQuery } from 'aws-amplify/api';
 
 const CharityView: FC = () => {
   const [edit, setEdit] = useState(false);
@@ -23,10 +28,30 @@ const CharityView: FC = () => {
   const [charityName, setCharityName] = useState<string>();
   const navigate = useNavigate();
   const location = useLocation() as { state: { name: string; postcode: string } };
+  const authToken = useGetAuthToken();
+
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
+        authMode: 'userPool',
+        authToken,
+        query: updateCharityProfile,
+        variables: {
+          key: 'postcode',
+          value: postcode,
+        },
+      });
+
+      return result;
+    },
+  });
 
   useEffect(() => {
     if (location.state && 'name' in location.state) {
-      setCharityName(String(location.state.name));
+      setCharityName(location.state.name);
+      setPostcode(location.state.postcode);
     } else {
       navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE);
     }
@@ -48,48 +73,56 @@ const CharityView: FC = () => {
             onClick={() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE)}
           />
         </div>
-        <div>
+        <div className={styles.postcodeContainer}>
           <h2>Your postcode</h2>
           <p>
             We will not display this specific postcode on your profile. This is to help Donate to
             Educate make you findable for local families, schools and charities. You can publicly
             display your address on your profile.
           </p>
-
-          {!edit ? (
-            <>
-              <>{postcode}</>
-              <FormButton
-                text={
-                  <div className={styles.editDiv}>
-                    <EditIcon />
-                    <span className={styles.editButtonText}>Edit</span>
-                  </div>
-                }
-                theme="formButtonGrey"
-                onClick={() => setEdit(true)}
-                ariaLabel="edit"
-              />
-            </>
-          ) : (
-            <>
-              <TextInput
-                ariaLabel="postcode"
-                value={postcode}
-                onChange={(postcode) => setPostcode(postcode)}
-              />
-              <FormButton
-                text="Save"
-                theme="formButtonGreen"
-                onClick={() => {
-                  setEdit(false);
-
-                  // refetch().catch(console.error);
-                }}
-                ariaLabel="save"
-              />
-            </>
-          )}
+          <div className={styles.buttons}>
+            {!edit ? (
+              <>
+                <h2>{postcode}</h2>
+                <FormButton
+                  text={
+                    <div className={styles.editDiv}>
+                      <span className={styles.editButtonText}>Edit</span>
+                    </div>
+                  }
+                  theme="formButtonDarkBlue"
+                  onClick={() => setEdit(true)}
+                  ariaLabel="edit"
+                />
+              </>
+            ) : (
+              <>
+                <TextInput
+                  ariaLabel="postcode"
+                  value={postcode}
+                  onChange={(postcode) => setPostcode(postcode)}
+                />
+                <FormButton
+                  text="Save"
+                  theme="formButtonGreen"
+                  onClick={() => {
+                    setEdit(false);
+                    // eslint-disable-next-line no-console
+                    refetch().catch(console.error);
+                  }}
+                  ariaLabel="save"
+                />
+                <FormButton
+                  text="Cancel"
+                  theme="formButtonGrey"
+                  onClick={() => {
+                    setEdit(false);
+                  }}
+                  ariaLabel="cancel"
+                />
+              </>
+            )}
+          </div>
         </div>
         {postcode && !edit && (
           <div className={styles.localAreaContainer}>
