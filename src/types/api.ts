@@ -44,6 +44,16 @@ export type School = {
   distance?: string | null;
 };
 
+export type Charity = {
+  __typename: 'Charity';
+  id: string;
+  localAuthority: string;
+  name: string;
+  address: string;
+  about: string;
+  distance?: string | null;
+};
+
 export type SchoolProfile = {
   __typename: 'SchoolProfile';
   name: string;
@@ -113,16 +123,6 @@ export type SignUpData = {
   type: string;
   name: string;
   nameId: string;
-};
-
-export type Charity = {
-  __typename: 'Charity';
-  id: string;
-  localAuthority: string;
-  name: string;
-  address: string;
-  about: string;
-  distance?: string | null;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -346,6 +346,20 @@ export type GetSchoolsQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
+    distance?: string | null;
+  }>;
+};
+
+export type GetCharitiesQueryVariables = {};
+
+export type GetCharitiesQuery = {
+  getCharities: Array<{
+    __typename: 'Charity';
+    id: string;
+    localAuthority: string;
+    name: string;
+    address: string;
+    about: string;
     distance?: string | null;
   }>;
 };
