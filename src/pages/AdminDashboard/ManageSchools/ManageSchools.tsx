@@ -140,20 +140,20 @@ const ManageSchools: FC = () => {
       dataIndex: 'localAuthority',
       ...getColumnSearchProps('localAuthority'),
     },
-    {
-      title: 'Action',
-      render: () => (
-        <div className={styles.actionsContainer}>
-          <Button
-            theme="link-blue"
-            className={styles.actionButtons}
-            text="Remove"
-            onClick={(): void => undefined}
-            ariaLabel="remove"
-          />
-        </div>
-      ),
-    },
+    // {
+    //   title: 'Action',
+    //   render: () => (
+    //     <div className={styles.actionsContainer}>
+    //       <Button
+    //         theme="link-blue"
+    //         className={styles.actionButtons}
+    //         text="Remove"
+    //         onClick={(): void => undefined}
+    //         ariaLabel="remove"
+    //       />
+    //     </div>
+    //   ),
+    // },
   ];
 
   return (
@@ -176,7 +176,6 @@ const ManageSchools: FC = () => {
           />
         </div>
         <div className={dashboardStyles.body}>
-          <BackButton theme="white" />
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
