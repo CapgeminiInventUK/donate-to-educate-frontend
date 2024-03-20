@@ -12,6 +12,7 @@ export const getAdminPageRequests = `query getAdminPageRequests {
         __typename
       }
     getJoinRequests {
+        id
         name
         localAuthority
         type
