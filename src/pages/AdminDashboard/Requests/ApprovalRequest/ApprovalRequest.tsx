@@ -25,6 +25,7 @@ import Globe from '@/assets/tiles/Globe';
 
 interface ApprovalRequestProps {
   setStage: React.Dispatch<React.SetStateAction<string>>;
+  id: string;
   type: 'school' | 'charity';
   name: string;
   la: string;
@@ -34,7 +35,15 @@ interface ApprovalRequestProps {
 
 type myStageType = 'deciding' | 'approved' | 'denied';
 
-const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, user, charity }) => {
+const ApprovalRequest: FC<ApprovalRequestProps> = ({
+  setStage,
+  name,
+  type,
+  la,
+  user,
+  charity,
+  id,
+}) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -47,6 +56,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({ setStage, name, type, la, u
       const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
         query: updateJoinRequest,
         variables: {
+          id,
           localAuthority: la,
           name: user.name,
           status: myStage === 'approved' ? 'APPROVED' : 'DENIED',

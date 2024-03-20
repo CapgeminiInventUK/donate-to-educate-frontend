@@ -149,6 +149,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
             text={`View request`}
             onClick={(): void => {
               setSchoolOrCharityProperties({
+                id: joinRequest.id,
                 name:
                   (joinRequest.type === 'school' ? joinRequest.school : joinRequest.charityName) ??
                   '',

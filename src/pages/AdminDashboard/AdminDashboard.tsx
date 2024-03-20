@@ -13,6 +13,7 @@ import styles from './AdminDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 
 export interface SchoolOrCharityProperties {
+  id: string;
   name: string;
   la: string;
   user: RequestUser;

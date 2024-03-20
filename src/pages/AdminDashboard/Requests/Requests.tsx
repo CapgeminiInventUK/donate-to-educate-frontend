@@ -19,6 +19,7 @@ const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
   const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
     useState<SchoolOrCharityProperties>({
+      id: '',
       name: '',
       la: '',
       user: { name: '', title: '', email: '', phone: '' },
@@ -71,6 +72,7 @@ const Requests: FC = () => {
           )}
           {!isLoading && stage === 'request_approval_school' && (
             <ApprovalRequest
+              id={schoolOrCharityProperties.id}
               setStage={setStage}
               type="school"
               name={schoolOrCharityProperties.name}
@@ -80,6 +82,7 @@ const Requests: FC = () => {
           )}
           {!isLoading && stage === 'request_approval_charity' && (
             <ApprovalRequest
+              id={schoolOrCharityProperties.id}
               setStage={setStage}
               type="charity"
               name={schoolOrCharityProperties.name}

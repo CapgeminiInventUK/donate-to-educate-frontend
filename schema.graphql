@@ -23,6 +23,14 @@ type School {
   distance: String
 }
 
+type Charity {
+  id: String!
+  localAuthority: String!
+  name: String!
+  address: String!
+  about: String!
+}
+
 type ProfileItems {
   items: String
   whatToExpect: String
@@ -91,6 +99,7 @@ type LocalAuthorityProfile {
 }
 
 type JoinRequest {
+  id: String!
   name: String!
   localAuthority: String!
   type: String!
@@ -114,84 +123,6 @@ type ItemQuery {
   message: String!
   connection: String
   organisationType: String!
-}
-
-type Query {
-  getSchoolByName(name: String!): School!
-  getSchoolsByLa(name: String!): [School!]!
-  getSchools: [School!]!
-  getRegisteredSchools: [School!]!
-  getRegisteredSchoolsByLa(localAuthority: String!): [School!]!
-  getLocalAuthorities: [LocalAuthority!]!
-  getJoinRequests: [JoinRequest!]!
-  getSchoolProfile(name: String!, id: String!): SchoolProfile
-  getCharityProfile(name: String!, id: String!): CharityProfile
-  getLocalAuthorityUser(email: String!): LocalAuthorityUser!
-  getSignUpData(id: String!): SignUpData
-  getSchoolsNearby(postcode: String!, distance: Float!): [School!]!
-  getSchoolJoinRequestsByLa(localAuthority: String!): [JoinRequest!]!
-}
-
-type Mutation {
-  registerLocalAuthority(
-    name: String!
-    firstName: String!
-    lastName: String!
-    jobTitle: String!
-    department: String!
-    email: String!
-    phone: String!
-    notes: String
-    nameId: String!
-  ): Boolean!
-
-  updateSchoolProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
-  updateCharityProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
-  updateJoinRequest(localAuthority: String!, name: String!, status: String!): Boolean!
-  insertJoinRequest(
-    name: String!
-    localAuthority: String!
-    type: String!
-    email: String!
-    school: String
-    jobTitle: String
-    phone: String
-    charityName: String
-    charityAddress: String
-    aboutCharity: String
-  ): Boolean!
-
-  insertLocalAuthorityRegisterRequest(
-    name: String!
-    localAuthority: String!
-    email: String!
-    message: String!
-  ): Boolean!
-
-  insertSignUpData(
-    id: String!
-    email: String!
-    type: String!
-    name: String!
-    nameId: String!
-  ): Boolean!
-  insertItemQuery(
-    name: String!
-    email: String!
-    type: String!
-    message: String!
-    who: String!
-    phone: String!
-    connection: String
-    organisationType: String!
-  ): Boolean!
-
-  deleteDeniedJoinRequest(name: String!): Boolean!
-}
-
-schema {
-  query: Query
-  mutation: Mutation
 }
 
 type SchoolUser {
@@ -226,4 +157,84 @@ type LocalAuthorityRegisterRequest {
   email: String!
   message: String!
   localAuthority: String!
+  type: String!
+}
+
+type Query {
+  getSchoolByName(name: String!): School!
+  getSchoolsByLa(name: String!): [School!]!
+  getSchools: [School!]!
+  getRegisteredSchools: [School!]!
+  getRegisteredSchoolsByLa(localAuthority: String!): [School!]!
+  getLocalAuthorities: [LocalAuthority!]!
+  getJoinRequests: [JoinRequest!]!
+  getSchoolProfile(name: String!, id: String!): SchoolProfile
+  getCharityProfile(name: String!, id: String!): CharityProfile
+  getLocalAuthorityUser(email: String!): LocalAuthorityUser!
+  getSignUpData(id: String!): SignUpData
+  getSchoolsNearby(postcode: String!, distance: Float!): [School!]!
+  getSchoolJoinRequestsByLa(localAuthority: String!): [JoinRequest!]!
+}
+
+type Mutation {
+  registerLocalAuthority(
+    name: String!
+    firstName: String!
+    lastName: String!
+    jobTitle: String!
+    department: String!
+    email: String!
+    phone: String!
+    notes: String
+    nameId: String!
+  ): Boolean!
+
+  updateSchoolProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
+  updateCharityProfile(key: String!, value: String!): Boolean! @aws_cognito_user_pools
+  updateJoinRequest(id: String!, localAuthority: String!, name: String!, status: String!): Boolean!
+  insertJoinRequest(
+    name: String!
+    localAuthority: String!
+    type: String!
+    email: String!
+    school: String
+    jobTitle: String
+    phone: String
+    charityName: String
+    charityAddress: String
+    aboutCharity: String
+  ): Boolean!
+
+  insertLocalAuthorityRegisterRequest(
+    name: String!
+    localAuthority: String!
+    email: String!
+    message: String!
+    type: String!
+  ): Boolean!
+
+  insertSignUpData(
+    id: String!
+    email: String!
+    type: String!
+    name: String!
+    nameId: String!
+  ): Boolean!
+  insertItemQuery(
+    name: String!
+    email: String!
+    type: String!
+    message: String!
+    who: String!
+    phone: String!
+    connection: String
+    organisationType: String!
+  ): Boolean!
+
+  deleteDeniedJoinRequest(name: String!): Boolean!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
 }

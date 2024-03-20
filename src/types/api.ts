@@ -11,6 +11,7 @@ export type LocalAuthority = {
 
 export type JoinRequest = {
   __typename: 'JoinRequest';
+  id: string;
   name: string;
   localAuthority: string;
   type: string;
@@ -194,6 +195,7 @@ export type UpdateCharityProfileMutation = {
 };
 
 export type UpdateJoinRequestMutationVariables = {
+  id: string;
   localAuthority: string;
   name: string;
   status: string;
@@ -225,6 +227,7 @@ export type InsertLocalAuthorityRegisterRequestMutationVariables = {
   localAuthority: string;
   email: string;
   message: string;
+  type: string;
 };
 
 export type InsertLocalAuthorityRegisterRequestMutation = {
@@ -398,6 +401,7 @@ export type GetJoinRequestsQueryVariables = {};
 export type GetJoinRequestsQuery = {
   getJoinRequests: Array<{
     __typename: 'JoinRequest';
+    id: string;
     name: string;
     localAuthority: string;
     type: string;
@@ -561,6 +565,7 @@ export type GetSchoolJoinRequestsByLaQueryVariables = {
 export type GetSchoolJoinRequestsByLaQuery = {
   getSchoolJoinRequestsByLa: Array<{
     __typename: 'JoinRequest';
+    id: string;
     name: string;
     localAuthority: string;
     type: string;

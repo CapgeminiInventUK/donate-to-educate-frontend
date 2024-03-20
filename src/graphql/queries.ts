@@ -126,6 +126,7 @@ export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
 ` as GeneratedQuery<APITypes.GetLocalAuthoritiesQueryVariables, APITypes.GetLocalAuthoritiesQuery>;
 export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
   getJoinRequests {
+    id
     name
     localAuthority
     type
@@ -269,6 +270,7 @@ export const getSchoolsNearby =
 export const getSchoolJoinRequestsByLa =
   /* GraphQL */ `query GetSchoolJoinRequestsByLa($localAuthority: String!) {
   getSchoolJoinRequestsByLa(localAuthority: $localAuthority) {
+    id
     name
     localAuthority
     type

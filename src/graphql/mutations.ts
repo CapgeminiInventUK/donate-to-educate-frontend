@@ -52,11 +52,13 @@ export const updateCharityProfile =
     APITypes.UpdateCharityProfileMutation
   >;
 export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
+  $id: String!
   $localAuthority: String!
   $name: String!
   $status: String!
 ) {
   updateJoinRequest(
+    id: $id
     localAuthority: $localAuthority
     name: $name
     status: $status
@@ -101,12 +103,14 @@ export const insertLocalAuthorityRegisterRequest =
   $localAuthority: String!
   $email: String!
   $message: String!
+  $type: String!
 ) {
   insertLocalAuthorityRegisterRequest(
     name: $name
     localAuthority: $localAuthority
     email: $email
     message: $message
+    type: $type
   )
 }
 ` as GeneratedMutation<
