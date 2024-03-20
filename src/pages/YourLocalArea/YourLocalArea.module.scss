@@ -19,22 +19,43 @@
       margin-top: 20px;
       cursor: pointer;
 
+      @include g.sm-breakpoint {
+        justify-content: flex-start;
+      }
+
       svg {
         padding: 0 20px;
+
+        @include g.xs-breakpoint {
+          display: none;
+        }
       }
 
       img {
         border-radius: 10px;
         height: 50%;
         width: 50%;
+
+        @include g.md-breakpoint {
+          height: 35%;
+          width: 35%;
+        }
       }
 
       .content {
         padding: 30px 0;
 
+        @include g.xs-breakpoint {
+          padding: 20px;
+        }
+
         .header {
           margin: 0;
           padding-bottom: 10px;
+
+          @include g.md-breakpoint {
+            font-size: 24px;
+          }
         }
       }
     }
