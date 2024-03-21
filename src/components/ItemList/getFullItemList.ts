@@ -4,6 +4,7 @@ export interface ItemList {
   name: SectionsIconType;
   items: string[];
 }
+
 export const getFullItemList = (): ItemList[] => {
   return [
     {
@@ -125,4 +126,42 @@ export const getFullItemList = (): ItemList[] => {
       items: ['Laptops', 'Tablets', 'Computer software', 'Internet access'].sort(),
     },
   ];
+};
+
+export const convertCategoryToNumber = (category: SectionsIconType): number => {
+  switch (category) {
+    case 'Clothing and uniform':
+      return 0;
+    case 'Sports':
+      return 1;
+    case 'Art and music':
+      return 2;
+    case 'Study':
+      return 3;
+    case 'Toiletries':
+      return 4;
+    case 'Computing and technology':
+      return 5;
+    default:
+      throw new Error(`Invalid category ${String(category)}`);
+  }
+};
+
+export const convertNumberToCategory = (number: number): SectionsIconType => {
+  switch (number) {
+    case 0:
+      return 'Clothing and uniform';
+    case 1:
+      return 'Sports';
+    case 2:
+      return 'Art and music';
+    case 3:
+      return 'Study';
+    case 4:
+      return 'Toiletries';
+    case 5:
+      return 'Computing and technology';
+    default:
+      throw new Error(`Invalid category number ${number}`);
+  }
 };

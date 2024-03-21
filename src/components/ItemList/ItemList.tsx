@@ -1,40 +1,29 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { ItemsIconType, SectionsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { ItemsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { convertNumberToCategory } from './getFullItemList';
 
 interface ItemListProps {
   type: ItemsIconType;
-  items?: Record<string, SectionsIconType>;
+  items?: Record<number, string[]>;
 }
 
 const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
-  const itemsArray = Object.entries(items).reduce(
-    (acc, [item, section]) => {
-      const existingSection = acc.findIndex((it) => it.name === section);
-      if (existingSection !== -1) {
-        acc[existingSection].items.push(item);
-      } else {
-        acc.push({ name: section, items: [item] });
-      }
-      return acc;
-    },
-    [] as { name: SectionsIconType; items: string[] }[]
-  );
-
   return (
     <div className={styles.container}>
-      {itemsArray.map(({ name, items }) => {
+      {Object.entries(items).map(([categoryNumber, itemList]) => {
+        const category = convertNumberToCategory(Number(categoryNumber));
         return (
-          <div key={name}>
+          <div key={category}>
             <div className={styles.sectionHeader}>
-              {getSectionsIcon(name)}
-              <h3>{name}</h3>
+              {getSectionsIcon(category)}
+              <h3>{category}</h3>
               <div className={styles.hr}></div>
             </div>
             <ul className={styles.list}>
-              {items.map((item) => {
+              {itemList.map((item) => {
                 return (
-                  <li key={`${name}-${item}`} className={styles.listItem}>
+                  <li key={`${category}-${item}`} className={styles.listItem}>
                     {getItemsIcon(type)}
                     <span>{item}</span>
                   </li>

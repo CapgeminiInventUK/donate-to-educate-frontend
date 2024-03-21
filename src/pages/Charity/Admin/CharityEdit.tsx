@@ -1,13 +1,13 @@
 /*  eslint-disable no-console */
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './CharityEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
+import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
-import { CharityProfile, UpdateCharityProfileMutation } from '@/types/api';
+import { ProfileItems, UpdateCharityProfileMutation } from '@/types/api';
 import { updateCharityProfile } from '@/graphql/mutations';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { EditDescription } from '../../../components/EditDescription/EditDescription';
@@ -126,16 +126,16 @@ const getPageContent = (
 const CharityEdit: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { type, donate, excess, request } =
+  const { type, profile } =
     (location?.state as {
       type: ItemsIconType;
-      donate: CharityProfile;
-      excess: CharityProfile;
-      request: CharityProfile;
+      profile: ProfileItems;
     }) ?? {};
 
   const [preview, setPreview] = useState(false);
-  const [items, setItems] = useState<Record<string, SectionsIconType>>({});
+  const [items, setItems] = useState<Record<number, string[]>>(
+    JSON.parse(profile?.items ?? '{}') as Record<number, string[]>
+  );
   const [editState, setEditState] = useState(false);
   const [editStateActionText, setEditStateActionText] = useState(false);
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
@@ -144,7 +144,6 @@ const CharityEdit: FC = () => {
 
   const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({
-    items: '',
     actionText,
     whatToExpect: howItWorks,
   });
@@ -169,30 +168,6 @@ const CharityEdit: FC = () => {
       return result;
     },
   });
-
-  useEffect(() => {
-    switch (type) {
-      case 'tick':
-        if (request) {
-          setContent(JSON.parse(JSON.stringify(request)) as ContentType);
-        }
-        break;
-      case 'heart':
-        if (donate) {
-          setContent(JSON.parse(JSON.stringify(donate)) as ContentType);
-        }
-        break;
-      case 'plus':
-        if (excess) {
-          setContent(JSON.parse(JSON.stringify(excess)) as ContentType);
-        }
-        break;
-    }
-  }, [type, donate, excess, request]);
-
-  useEffect(() => {
-    content.items !== '' && setItems(JSON.parse(content.items) as Record<string, SectionsIconType>);
-  }, [content, type]);
 
   if (!(location.state && 'type' in location.state)) {
     return <Navigate to={Paths.CHARITIES_CREATE_EDIT_PROFILE} />;

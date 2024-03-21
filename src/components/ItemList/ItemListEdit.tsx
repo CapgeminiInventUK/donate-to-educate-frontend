@@ -1,23 +1,29 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { getFullItemList } from './getFullItemList';
+import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
 import Checkbox from '../Checkbox/Checkbox';
 import { SectionsIconType, getSectionsIcon } from './getIcons';
 
 interface ItemListEditProps {
-  setItems: React.Dispatch<React.SetStateAction<Record<string, SectionsIconType>>>;
-  items: Record<string, SectionsIconType>;
+  setItems: React.Dispatch<React.SetStateAction<Record<number, string[]>>>;
+  items: Record<number, string[]>;
 }
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
+    const categoryNumber = convertCategoryToNumber(name);
     setItems((previousItems) => {
+      const currentItems = previousItems[categoryNumber] ?? [];
+
       if (value) {
-        return { ...previousItems, [itemKey]: name };
+        if (currentItems.includes(itemKey)) {
+          return previousItems;
+        }
+        return { ...previousItems, [categoryNumber]: [...currentItems, itemKey] };
       }
 
-      const { [itemKey]: _, ...rest } = previousItems;
-      return rest;
+      const newItems = currentItems.filter((item) => item !== itemKey);
+      return { ...previousItems, [categoryNumber]: newItems };
     });
   };
 
@@ -33,7 +39,9 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
-                const checkValue = items && item in items && name === items[item];
+                const categoryNumber = convertCategoryToNumber(name);
+                const checkValue =
+                  items && categoryNumber in items && items[categoryNumber].includes(item);
                 return (
                   <li
                     key={`${name}-${item}-edit`}
