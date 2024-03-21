@@ -13,12 +13,10 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
     const categoryNumber = convertCategoryToNumber(name);
     setItems((previousItems) => {
-      // Add
       if (value) {
         return { ...previousItems, [itemKey]: categoryNumber };
       }
 
-      // Remove
       const { [itemKey]: _, ...rest } = previousItems;
       return rest;
     });
