@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
+import { ItemsIconType } from '@/components/ItemList/getIcons';
 import styles from './ItemSelection.module.scss';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -40,9 +40,9 @@ interface ItemSelectionProps {
 const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [items] = useState<Record<string, SectionsIconType>>({
-    Blazer: 0 as unknown as SectionsIconType,
-    Computer: 5 as unknown as SectionsIconType,
+  const [items] = useState<Record<string, number>>({
+    Blazer: 0,
+    Computer: 5,
   });
 
   if (!(location.state && 'type' in location.state)) {

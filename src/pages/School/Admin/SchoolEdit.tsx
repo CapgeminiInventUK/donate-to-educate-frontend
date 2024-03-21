@@ -4,7 +4,7 @@ import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType, SectionsIconType } from '@/components/ItemList/getIcons';
+import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { ProfileItems, UpdateSchoolProfileMutation } from '@/types/api';
@@ -133,8 +133,8 @@ const SchoolEdit: FC = () => {
     }) ?? {};
 
   const [preview, setPreview] = useState(false);
-  const [items, setItems] = useState<Record<string, SectionsIconType>>(
-    (JSON.parse(profile?.items ?? '{}') as Record<string, SectionsIconType>) ?? {}
+  const [items, setItems] = useState<Record<string, number>>(
+    JSON.parse(profile?.items ?? '{}') as Record<string, number>
   );
 
   const [editState, setEditState] = useState(false);

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { ItemsIconType, SectionsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { ItemsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
 import { convertNumberToCategory } from './getFullItemList';
 
 interface ItemListProps {
   type: ItemsIconType;
-  items?: Record<string, SectionsIconType>;
+  items?: Record<string, number>;
 }
 
 const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
@@ -19,7 +19,7 @@ const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
       }
       return acc;
     },
-    [] as { name: SectionsIconType; items: string[] }[]
+    [] as { name: number; items: string[] }[]
   );
 
   return (

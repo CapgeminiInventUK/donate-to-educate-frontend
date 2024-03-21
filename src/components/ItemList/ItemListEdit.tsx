@@ -5,8 +5,8 @@ import Checkbox from '../Checkbox/Checkbox';
 import { SectionsIconType, getSectionsIcon } from './getIcons';
 
 interface ItemListEditProps {
-  setItems: React.Dispatch<React.SetStateAction<Record<string, SectionsIconType>>>;
-  items: Record<string, SectionsIconType>;
+  setItems: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  items: Record<string, number>;
 }
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
@@ -15,7 +15,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
     setItems((previousItems) => {
       // Add
       if (value) {
-        return { ...previousItems, [itemKey]: categoryNumber as unknown as SectionsIconType };
+        return { ...previousItems, [itemKey]: categoryNumber };
       }
 
       // Remove
@@ -36,10 +36,8 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
-                // eslint-disable-next-line no-console
-                console.log(items[item], item, items);
                 const checkValue =
-                  items && item in items && convertCategoryToNumber(name) === Number(items[item]);
+                  items && item in items && convertCategoryToNumber(name) === items[item];
                 return (
                   <li
                     key={`${name}-${item}-edit`}
