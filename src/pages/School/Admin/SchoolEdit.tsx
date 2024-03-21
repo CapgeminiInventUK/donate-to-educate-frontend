@@ -133,8 +133,8 @@ const SchoolEdit: FC = () => {
     }) ?? {};
 
   const [preview, setPreview] = useState(false);
-  const [items, setItems] = useState<Record<string, number>>(
-    JSON.parse(profile?.items ?? '{}') as Record<string, number>
+  const [items, setItems] = useState<Record<number, string[]>>(
+    JSON.parse(profile?.items ?? '{}') as Record<number, string[]>
   );
 
   const [editState, setEditState] = useState(false);

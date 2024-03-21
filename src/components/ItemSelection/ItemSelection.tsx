@@ -40,9 +40,9 @@ interface ItemSelectionProps {
 const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [items] = useState<Record<string, number>>({
-    Blazer: 0,
-    Computer: 5,
+  const [items] = useState<Record<number, string[]>>({
+    0: ['Blazer'],
+    5: ['Computer'],
   });
 
   if (!(location.state && 'type' in location.state)) {

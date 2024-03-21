@@ -5,27 +5,14 @@ import { convertNumberToCategory } from './getFullItemList';
 
 interface ItemListProps {
   type: ItemsIconType;
-  items?: Record<string, number>;
+  items?: Record<number, string[]>;
 }
 
 const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
-  const itemsArray = Object.entries(items).reduce(
-    (acc, [item, section]) => {
-      const existingSection = acc.findIndex((it) => it.name === section);
-      if (existingSection !== -1) {
-        acc[existingSection].items.push(item);
-      } else {
-        acc.push({ name: section, items: [item] });
-      }
-      return acc;
-    },
-    [] as { name: number; items: string[] }[]
-  );
-
   return (
     <div className={styles.container}>
-      {itemsArray.map(({ name, items }) => {
-        const category = convertNumberToCategory(Number(name));
+      {Object.entries(items).map(([categoryNumber, itemList]) => {
+        const category = convertNumberToCategory(Number(categoryNumber));
         return (
           <div key={category}>
             <div className={styles.sectionHeader}>
@@ -34,7 +21,7 @@ const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
               <div className={styles.hr}></div>
             </div>
             <ul className={styles.list}>
-              {items.map((item) => {
+              {itemList.map((item) => {
                 return (
                   <li key={`${category}-${item}`} className={styles.listItem}>
                     {getItemsIcon(type)}
