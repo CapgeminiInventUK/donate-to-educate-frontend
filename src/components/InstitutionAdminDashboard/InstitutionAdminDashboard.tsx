@@ -125,7 +125,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Hanger height="2.875rem" width="2.875rem" />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'tick' },
+                      state: { type: 'tick', profile: request },
                     })
                   }
                 />
@@ -136,7 +136,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'heart' },
+                      state: { type: 'heart', profile: donate },
                     })
                   }
                 />
@@ -149,7 +149,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'plus' },
+                      state: { type: 'plus', profile: excess },
                     })
                   }
                 />

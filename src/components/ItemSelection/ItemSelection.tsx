@@ -41,8 +41,8 @@ const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [items] = useState<Record<string, SectionsIconType>>({
-    Blazer: 'Clothing and uniform',
-    Computer: 'Computing and technology',
+    Blazer: 0 as unknown as SectionsIconType,
+    Computer: 5 as unknown as SectionsIconType,
   });
 
   if (!(location.state && 'type' in location.state)) {

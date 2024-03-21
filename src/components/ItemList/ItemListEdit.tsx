@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { getFullItemList } from './getFullItemList';
+import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
 import Checkbox from '../Checkbox/Checkbox';
 import { SectionsIconType, getSectionsIcon } from './getIcons';
 
@@ -11,11 +11,14 @@ interface ItemListEditProps {
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
+    const categoryNumber = convertCategoryToNumber(name);
     setItems((previousItems) => {
+      // Add
       if (value) {
-        return { ...previousItems, [itemKey]: name };
+        return { ...previousItems, [itemKey]: categoryNumber as unknown as SectionsIconType };
       }
 
+      // Remove
       const { [itemKey]: _, ...rest } = previousItems;
       return rest;
     });
@@ -33,7 +36,10 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               {itemsList.map((item) => {
-                const checkValue = items && item in items && name === items[item];
+                // eslint-disable-next-line no-console
+                console.log(items[item], item, items);
+                const checkValue =
+                  items && item in items && convertCategoryToNumber(name) === Number(items[item]);
                 return (
                   <li
                     key={`${name}-${item}-edit`}

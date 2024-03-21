@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
 import { ItemsIconType, SectionsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { convertNumberToCategory } from './getFullItemList';
 
 interface ItemListProps {
   type: ItemsIconType;
@@ -24,17 +25,18 @@ const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
   return (
     <div className={styles.container}>
       {itemsArray.map(({ name, items }) => {
+        const category = convertNumberToCategory(Number(name));
         return (
-          <div key={name}>
+          <div key={category}>
             <div className={styles.sectionHeader}>
-              {getSectionsIcon(name)}
-              <h3>{name}</h3>
+              {getSectionsIcon(category)}
+              <h3>{category}</h3>
               <div className={styles.hr}></div>
             </div>
             <ul className={styles.list}>
               {items.map((item) => {
                 return (
-                  <li key={`${name}-${item}`} className={styles.listItem}>
+                  <li key={`${category}-${item}`} className={styles.listItem}>
                     {getItemsIcon(type)}
                     <span>{item}</span>
                   </li>

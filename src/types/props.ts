@@ -85,7 +85,6 @@ export interface BackLinkProps {
   route: string;
 }
 export interface ContentType {
-  items: string;
   whatToExpect: string;
   actionText: string;
 }
