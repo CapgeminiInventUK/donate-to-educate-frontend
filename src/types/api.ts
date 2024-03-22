@@ -126,6 +126,26 @@ export type SignUpData = {
   nameId: string;
 };
 
+export type AdminStats = {
+  __typename: 'AdminStats';
+  la: LocalAuthorityStats;
+  joinRequests: JoinRequestStats;
+  registeredSchools: number;
+  registeredCharities: number;
+};
+
+export type LocalAuthorityStats = {
+  __typename: 'LocalAuthorityStats';
+  joined: number;
+  notJoined: number;
+};
+
+export type JoinRequestStats = {
+  __typename: 'JoinRequestStats';
+  school: number;
+  charity: number;
+};
+
 export type getAdminPageRequestsQueryVariables = {};
 
 export type getAdminPageRequestsQuery = {
@@ -628,4 +648,24 @@ export type GetSchoolJoinRequestsByLaQuery = {
     charityAddress?: string | null;
     aboutCharity?: string | null;
   }>;
+};
+
+export type GetAdminTileStatsQueryVariables = {};
+
+export type GetAdminTileStatsQuery = {
+  getAdminTileStats: {
+    __typename: 'AdminStats';
+    la: {
+      __typename: 'LocalAuthorityStats';
+      joined: number;
+      notJoined: number;
+    };
+    joinRequests: {
+      __typename: 'JoinRequestStats';
+      school: number;
+      charity: number;
+    };
+    registeredSchools: number;
+    registeredCharities: number;
+  };
 };

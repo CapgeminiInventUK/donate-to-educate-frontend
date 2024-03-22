@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { signOut } from 'aws-amplify/auth';
 import { GraphQLQuery } from '@aws-amplify/api';
-import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
 import Button from '@/components/Button/Button';
 import Paths from '@/config/paths';
-import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
+import { GetAdminTileStatsQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 import styles from './AdminDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
+import { getAdminTileStats } from '@/graphql/queries';
+import Spinner from '@/components/Spinner/Spinner';
 
 export interface SchoolOrCharityProperties {
   id: string;
@@ -27,41 +28,26 @@ export interface RequestUser {
   phone: string;
 }
 
-// Need to make this a protected route only for logged in users of type admin.
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+  const { data, isLoading } = useQuery({
+    queryKey: ['adminStats'],
     queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
-      >({
-        query: getAdminPageRequests,
+      const { data } = await client.graphql<GraphQLQuery<GetAdminTileStatsQuery>>({
+        query: getAdminTileStats,
       });
 
       return data;
     },
   });
 
-  const { registered, notRegistered } =
-    data?.getLocalAuthorities.reduce(
-      (acc, la) => {
-        if (la.registered) {
-          acc.registered++;
-        } else {
-          acc.notRegistered++;
-        }
-        return acc;
-      },
-      {
-        registered: 0,
-        notRegistered: 0,
-      }
-    ) ?? {};
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  // eslint-disable-next-line no-console
-  console.log(data, error, registered, notRegistered);
+  const { la, joinRequests, registeredSchools, registeredCharities } =
+    data?.getAdminTileStats ?? {};
 
   return (
     <div className={styles.container}>
@@ -95,8 +81,8 @@ const AdminDashboard: FC = () => {
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
               stats={
                 <>
-                  <div>{registered} joined</div>
-                  <div>{notRegistered} to join</div>
+                  <div>{la?.joined} joined</div>
+                  <div>{la?.notJoined} to join</div>
                 </>
               }
               className="la"
@@ -109,8 +95,16 @@ const AdminDashboard: FC = () => {
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS)}
               stats={
                 <>
-                  {data?.getJoinRequests?.length ?? 0}
-                  {data?.getJoinRequests?.length === 1 ? ' request' : ' requests'}
+                  <div>
+                    {joinRequests?.school ?? 0}
+                    {joinRequests?.school === 1 ? ' school request' : ' school requests'}
+                  </div>
+                  <div>
+                    {joinRequests?.charity ?? 0}
+                    {joinRequests?.charity === 1
+                      ? ' charity and volunteer group request'
+                      : ' charity and volunteer group requests'}
+                  </div>
                 </>
               }
               className="requests"
@@ -120,7 +114,7 @@ const AdminDashboard: FC = () => {
               title="Manage registered schools"
               body="View, add and edit registered schools."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS)}
-              stats={<>0 joined</>}
+              stats={<>{registeredSchools} joined</>}
               className="schools"
             />
             <AdminDashboardCard
@@ -128,7 +122,7 @@ const AdminDashboard: FC = () => {
               title="Manage registered charities and volunteers"
               body="View, add and edit registered charities and volunteers."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES)}
-              stats={<>0 joined</>}
+              stats={<>{registeredCharities} joined</>}
               className="charities"
             />
           </div>

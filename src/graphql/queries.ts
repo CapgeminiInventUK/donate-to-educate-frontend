@@ -321,3 +321,21 @@ export const getSchoolJoinRequestsByLa =
     APITypes.GetSchoolJoinRequestsByLaQueryVariables,
     APITypes.GetSchoolJoinRequestsByLaQuery
   >;
+export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
+  getAdminTileStats {
+    la {
+      joined
+      notJoined
+      __typename
+    }
+    joinRequests {
+      school
+      charity
+      __typename
+    }
+    registeredSchools
+    registeredCharities
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetAdminTileStatsQueryVariables, APITypes.GetAdminTileStatsQuery>;
