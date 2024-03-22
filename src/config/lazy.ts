@@ -2,49 +2,49 @@ import { lazy } from 'react';
 
 // Misc
 export const Home = lazy(() => import('@pages/Home/Home'));
-export const AboutUs = lazy(() => import('@pages/AboutUs/AboutUs'));
-export const Contact = lazy(() => import('@pages/Contact/Contact'));
+export const AboutUs = lazy(() => import('@/pages/Misc/AboutUs/AboutUs'));
+export const Contact = lazy(() => import('@/pages/Misc/Contact/Contact'));
 export const AccessabilityStatement = lazy(
-  () => import('@pages/AccessibilityStatement/AccessibilityStatement')
+  () => import('@/pages/Misc/AccessibilityStatement/AccessibilityStatement')
 );
-export const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy/PrivacyPolicy'));
+export const PrivacyPolicy = lazy(() => import('@/pages/Misc/PrivacyPolicy/PrivacyPolicy'));
 export const TermsAndConditions = lazy(
-  () => import('@pages/TermsAndConditions/TermsAndConditions')
+  () => import('@/pages/Misc/TermsAndConditions/TermsAndConditions')
 );
-export const HowItWorks = lazy(() => import('@/pages/HowItWorks/HowItWorks'));
-export const CookiePolicy = lazy(() => import('@/pages/CookiePolicy/CookiePolicy'));
+export const HowItWorks = lazy(() => import('@/pages/Misc/HowItWorks/HowItWorks'));
+export const CookiePolicy = lazy(() => import('@/pages/Misc/CookiePolicy/CookiePolicy'));
 export const LocalAuthorityJoinInfo = lazy(
-  () => import('@/pages/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
+  () => import('@/pages/Join/LocalAuthorityJoinInfo/LocalAuthorityJoinInfo')
 );
-export const NotFound = lazy(() => import('@pages/NotFound/NotFound'));
+export const NotFound = lazy(() => import('@/pages/Misc/NotFound/NotFound'));
 
 // Public School
-export const SignUpSchool = lazy(() => import('@pages/SignUpSchool/SignUpSchool'));
-export const SchoolsDashboard = lazy(() => import('@pages/SchoolsDashboard/SchoolsDashboard'));
-export const SchoolDashboardItems = lazy(() => import('@/pages/SchoolsDashboard/SchoolEdit'));
+export const SignUpSchool = lazy(() => import('@/pages/Join/SignUpSchool/SignUpSchool'));
+export const SchoolsDashboard = lazy(() => import('@/pages/School/Public/SchoolsDashboard'));
+export const SchoolDashboardItems = lazy(() => import('@/pages/School/Public/SchoolEdit'));
 export const SchoolContactConfirmation = lazy(
-  () => import('@/pages/SchoolsDashboard/SchoolContactConfirmation')
+  () => import('@/pages/School/Public/SchoolContactConfirmation')
 );
 export const RequestSchoolProducts = lazy(
-  () => import('@/pages/SchoolsDashboard/RequestSchoolProducts')
+  () => import('@/pages/School/Public/RequestSchoolProducts')
 );
 
 // Public Charity
-export const SignUpCharity = lazy(() => import('@pages/SignUpCharity/SignUpCharity'));
-export const CharityDashboard = lazy(() => import('@/pages/CharityDashboard/CharityDashboard'));
-export const CharityDashboardItems = lazy(() => import('@/pages/CharityDashboard/CharityEdit'));
+export const SignUpCharity = lazy(() => import('@/pages/Join/SignUpCharity/SignUpCharity'));
+export const CharityDashboard = lazy(() => import('@/pages/Charity/Public/CharityDashboard'));
+export const CharityDashboardItems = lazy(() => import('@/pages/Charity/Public/CharityEdit'));
 export const RequestCharityProducts = lazy(
-  () => import('@/pages/CharityDashboard/RequestCharityProducts')
+  () => import('@/pages/Charity/Public/RequestCharityProducts')
 );
 export const CharityContactConfirmation = lazy(
-  () => import('@/pages/CharityDashboard/CharityContactConfirmation')
+  () => import('@/pages/Charity/Public/CharityContactConfirmation')
 );
 
 // Login
 export const Login = lazy(() => import('@pages/Login/Login'));
 export const SignIn = lazy(() => import('@pages/Login/SignIn/SignIn'));
-export const ResetPassword = lazy(() => import('@/pages/ResetPassword/ResetPassword'));
-export const AddUser = lazy(() => import('@/pages/AddUser/AddUser'));
+export const ResetPassword = lazy(() => import('@/pages/Login/ResetPassword/ResetPassword'));
+export const AddUser = lazy(() => import('@/pages/Login/AddUser/AddUser'));
 export const Join = lazy(() => import('@/pages/Join/Join'));
 
 // Admin Dashboard
@@ -98,8 +98,14 @@ export const CharityAdminView = lazy(() => import('@/pages/Charity/Admin/Charity
 
 // Local Area
 export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
-export const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
-export const Donate = lazy(() => import('@/pages/YourLocalArea/Donate/Donate'));
-export const Excess = lazy(() => import('@/pages/YourLocalArea/Excess/Excess'));
-export const FindSchools = lazy(() => import('@/pages/YourLocalArea/FindSchool/FindSchool'));
-export const FindCharities = lazy(() => import('@/pages/YourLocalArea/FindCharity/FindCharity'));
+export const YourLocalArea = lazy(
+  () => import('@/pages/FindYourCommunity/YourLocalArea/YourLocalArea')
+);
+export const Donate = lazy(() => import('@/pages/FindYourCommunity/YourLocalArea/Donate/Donate'));
+export const Excess = lazy(() => import('@/pages/FindYourCommunity/YourLocalArea/Excess/Excess'));
+export const FindSchools = lazy(
+  () => import('@/pages/FindYourCommunity/YourLocalArea/FindSchool/FindSchool')
+);
+export const FindCharities = lazy(
+  () => import('@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharity')
+);
