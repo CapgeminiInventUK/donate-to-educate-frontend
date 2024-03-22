@@ -80,6 +80,7 @@ export type ProfileItems = {
   items?: string | null;
   whatToExpect?: string | null;
   actionText?: string | null;
+  productTypes?: Array<number | null> | null;
 };
 
 export type CharityProfile = {
@@ -467,18 +468,21 @@ export type GetSchoolProfileQuery = {
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
     donate?: {
       __typename: 'ProfileItems';
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
     excess?: {
       __typename: 'ProfileItems';
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
   } | null;
 };
@@ -508,18 +512,21 @@ export type GetCharityProfileQuery = {
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
     donate?: {
       __typename: 'ProfileItems';
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
     excess?: {
       __typename: 'ProfileItems';
       items?: string | null;
       whatToExpect?: string | null;
       actionText?: string | null;
+      productTypes?: Array<number | null> | null;
     } | null;
   } | null;
 };

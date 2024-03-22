@@ -174,18 +174,21 @@ export const getSchoolProfile =
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     donate {
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     excess {
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     __typename
@@ -211,18 +214,21 @@ export const getCharityProfile =
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     donate {
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     excess {
       items
       whatToExpect
       actionText
+      productTypes
       __typename
     }
     __typename

@@ -162,6 +162,7 @@ const SchoolEdit: FC = () => {
           value: JSON.stringify({
             ...content,
             items: JSON.stringify(items),
+            productTypes: Object.keys(items),
           }),
         },
       });
