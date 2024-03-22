@@ -32,7 +32,8 @@ export const createFormComponent = (
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, unknown>
   ) => void,
-  errorMessage?: string
+  errorMessage?: string,
+  optional?: boolean
 ): ReactNode => {
   const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
 
@@ -59,7 +60,12 @@ export const createFormComponent = (
       return <Checkbox {...(componentData as CheckboxProps)} onChange={onChange} />;
     case ComponentType.DROPDOWN:
       return (
-        <Dropdown {...(componentData as DropdownProps)} value={String(value)} onChange={onChange} />
+        <Dropdown
+          {...(componentData as DropdownProps)}
+          value={String(value)}
+          onChange={onChange}
+          optional={optional}
+        />
       );
     case ComponentType.SCHOOL_NOT_FOUND:
       return <CannotFindSchool />;
