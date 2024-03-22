@@ -7,6 +7,10 @@ const getCannotFindSchoolPath = (
   cannotFindSchool: () => void
 ): FormTemplate[] => {
   const happyPath = getHappyPath(schoolOptions, cannotFindSchool);
+  const dropdownPage = {
+    ...happyPath[1],
+    isUnhappyPath: true,
+  };
   const cannotFindSchoolPage = {
     formComponents: [
       {
@@ -14,7 +18,7 @@ const getCannotFindSchoolPath = (
         componentData: {
           ariaLabel: 'cannot find school',
           formMeta: {
-            page: 2,
+            page: 3,
           },
         },
       },
@@ -23,7 +27,7 @@ const getCannotFindSchoolPath = (
     footerLogo: <LogoBlue />,
     isUnhappyPath: true,
   };
-  return [happyPath[0], happyPath[1], cannotFindSchoolPage];
+  return [happyPath[0], dropdownPage, cannotFindSchoolPage];
 };
 
 export default getCannotFindSchoolPath;

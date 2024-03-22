@@ -199,6 +199,7 @@ export interface CommonInputProps {
   disabled?: boolean;
   errorMessage?: string;
   ariaLabel: string;
+  optional?: boolean;
 }
 
 export interface TextInputProps extends CommonInputProps {

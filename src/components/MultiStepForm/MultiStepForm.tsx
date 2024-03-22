@@ -175,7 +175,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
                     componentData,
                     setPageNumber,
                     onChange,
-                    errorMessage
+                    errorMessage,
+                    isUnhappyPath
                   )}
                   {formComponentLink && (
                     <div className={styles.link}>

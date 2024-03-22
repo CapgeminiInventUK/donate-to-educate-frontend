@@ -14,6 +14,7 @@ const Dropdown: FC<DropdownProps> = ({
   isLarge,
   formMeta,
   value,
+  optional,
 }) => {
   const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
@@ -65,7 +66,7 @@ const Dropdown: FC<DropdownProps> = ({
         onInputChange={onSearch}
         filterOption={filterOptions}
         isClearable
-        required={!header?.includes('optional')}
+        required={!optional}
       />
     </div>
   );
