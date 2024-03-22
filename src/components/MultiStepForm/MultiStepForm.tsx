@@ -133,9 +133,6 @@ const FormContainer: FC<MultiStepFormProps> = ({
     navigate(Paths.HOME);
   };
 
-  // eslint-disable-next-line no-console
-  console.log(isUnhappyPath);
-
   return (
     <form onSubmit={onButtonClick}>
       {!isLastPage && <BackButton onClick={onBackButtonClick} theme="blue" />}
