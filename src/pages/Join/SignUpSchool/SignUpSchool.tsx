@@ -9,8 +9,8 @@ import {
   FormTemplate,
   SubmittedFormData,
 } from '@/types/data';
-import signUpSchoolHappyPath from '../../templates/forms/signUpSchoolHappyPath';
-import getCannotFindSchoolPath from '../../templates/forms/cannotFindSchoolPath';
+import signUpSchoolHappyPath from '../../../templates/forms/signUpSchoolHappyPath';
+import getCannotFindSchoolPath from '../../../templates/forms/cannotFindSchoolPath';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import {
@@ -19,7 +19,7 @@ import {
   InsertLocalAuthorityRegisterRequestMutationVariables,
 } from '@/types/api';
 import { client } from '@/graphqlClient';
-import getAuthorityNotRegisteredPath from '../../templates/forms/authorityNotRegistered';
+import getAuthorityNotRegisteredPath from '../../../templates/forms/authorityNotRegistered';
 import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
 import {
   getFormDataForSubmission,

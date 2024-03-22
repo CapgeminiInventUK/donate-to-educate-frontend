@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
-import SomethingWentWrong from '@pages/SomethingWentWrong/SomethingWentWrong';
+import SomethingWentWrong from '@/pages/Misc/SomethingWentWrong/SomethingWentWrong';
 import { ErrorBoundaryProps } from '@/types/props';
 import { ErrorBoundaryState } from '@/types/data';
 
