@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import styles from './ItemSelection.module.scss';
@@ -35,15 +35,19 @@ const getButtonTextFromType = (type: string): string => {
 
 interface ItemSelectionProps {
   schoolOrCharity: 'school' | 'charity';
+  items: Record<number, string[]>;
+  whatToExpect: string;
+  actionText: string;
 }
 
-const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
+const ItemSelection: FC<ItemSelectionProps> = ({
+  schoolOrCharity,
+  items,
+  actionText,
+  whatToExpect,
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [items] = useState<Record<number, string[]>>({
-    0: ['Blazer'],
-    5: ['Computer'],
-  });
 
   if (!(location.state && 'type' in location.state)) {
     return <Navigate to={Paths.HOME} />;
@@ -58,8 +62,11 @@ const ItemSelection: FC<ItemSelectionProps> = ({ schoolOrCharity }) => {
         <h2>{getTitleFromType(type)}</h2>
       </div>
       <div className={styles.card}>
+        <h2>What to expect</h2>
+        <p>{whatToExpect ?? ''}</p>
         <ItemList type={type} items={items} />
         <div className={styles.actionButtons}>
+          <p>{actionText ?? ''}</p>
           <FormButton
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}

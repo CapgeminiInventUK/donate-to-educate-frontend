@@ -68,7 +68,11 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           {request && (
             <div
               className={styles.requestProductsTile}
-              onClick={() => navigate(getNavigateLinkFromType(type), { state: { type: 'tick' } })}
+              onClick={() =>
+                navigate(getNavigateLinkFromType(type), {
+                  state: { type: 'tick', profile: request },
+                })
+              }
             >
               <Hanger /> <h3>Request products</h3>
             </div>
@@ -76,7 +80,11 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           {donate && (
             <div
               className={styles.donateProductsTile}
-              onClick={() => navigate(getNavigateLinkFromType(type), { state: { type: 'heart' } })}
+              onClick={() =>
+                navigate(getNavigateLinkFromType(type), {
+                  state: { type: 'heart', profile: donate },
+                })
+              }
             >
               <Heart /> <h3>Donate products</h3>
             </div>
@@ -85,7 +93,9 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         {excess && (
           <div
             className={styles.extraStockTileContainer}
-            onClick={() => navigate(getNavigateLinkFromType(type), { state: { type: 'plus' } })}
+            onClick={() =>
+              navigate(getNavigateLinkFromType(type), { state: { type: 'plus', profile: excess } })
+            }
           >
             <div className={styles.extraStockTile}>
               <ExtraStock />

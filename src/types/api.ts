@@ -88,7 +88,7 @@ export type CharityProfile = {
   name: string;
   id: string;
   localAuthority: string;
-  postcode: string;
+  postcode?: string | null;
   header?: CharityProfileHeader | null;
   about?: string | null;
   request?: ProfileItems | null;
@@ -498,7 +498,7 @@ export type GetCharityProfileQuery = {
     name: string;
     id: string;
     localAuthority: string;
-    postcode: string;
+    postcode?: string | null;
     header?: {
       __typename: 'CharityProfileHeader';
       phone?: string | null;
