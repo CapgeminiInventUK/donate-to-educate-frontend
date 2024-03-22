@@ -100,5 +100,6 @@ export const CharityAdminView = lazy(() => import('@/pages/Charity/Admin/Charity
 export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/FindYourCommunity'));
 export const YourLocalArea = lazy(() => import('@/pages/YourLocalArea/YourLocalArea'));
 export const Donate = lazy(() => import('@/pages/YourLocalArea/Donate/Donate'));
+export const Excess = lazy(() => import('@/pages/YourLocalArea/Excess/Excess'));
 export const FindSchools = lazy(() => import('@/pages/YourLocalArea/FindSchool/FindSchool'));
 export const FindCharities = lazy(() => import('@/pages/YourLocalArea/FindCharity/FindCharity'));

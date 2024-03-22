@@ -47,6 +47,7 @@ import {
   SchoolAdminView,
   CharityAdminView,
   CookiePolicy,
+  Excess,
 } from './lazy';
 import { Route } from '@/types/props';
 
@@ -210,6 +211,7 @@ const routes: Route[] = [
   { path: Paths.LOCAL_SCHOOLS, element: <FindSchools /> },
   { path: Paths.LOCAL_CHARITIES, element: <FindCharities /> },
   { path: Paths.LOCAL_DONATE, element: <Donate /> },
+  { path: Paths.LOCAL_EXCESS, element: <Excess /> },
 
   // Misc
   {

@@ -54,6 +54,7 @@ enum Paths {
   LOCAL_SCHOOLS = '/your-local-area/schools',
   LOCAL_CHARITIES = '/your-local-area/charities',
   LOCAL_DONATE = '/your-local-area/donate',
+  LOCAL_EXCESS = '/your-local-area/excess',
 
   // Misc
   ALL = '*',

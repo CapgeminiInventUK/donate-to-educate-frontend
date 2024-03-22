@@ -1,0 +1,20 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 48px 120px;
+
+  @include g.sm-breakpoint {
+    padding: 24px 60px;
+  }
+
+  .subContainer {
+    @include g.card;
+    padding: 40px 80px;
+
+    @include g.sm-breakpoint {
+      padding: 20px 40px;
+    }
+  }
+}

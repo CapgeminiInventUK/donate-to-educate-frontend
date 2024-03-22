@@ -93,7 +93,7 @@ const tiles = [
     body: 'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
     image: <Image alt="package" image={boxImg} />,
     colour: 'darkBlue',
-    onClickLink: Paths.LOCAL_SCHOOLS,
+    onClickLink: Paths.LOCAL_EXCESS,
   },
 ];
 
