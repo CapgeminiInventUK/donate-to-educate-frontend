@@ -16,24 +16,13 @@ import {
   UpdateJoinRequestMutation,
 } from '@/types/api';
 import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
-import { RequestUser } from '../../AdminDashboard';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { getSchoolByName } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
-
-interface ApprovalRequestProps {
-  setStage: React.Dispatch<React.SetStateAction<string>>;
-  id: string;
-  type: 'school' | 'charity';
-  name: string;
-  la: string;
-  user: RequestUser;
-  charity?: { mainAddress: string; about: string };
-}
-
-type myStageType = 'deciding' | 'approved' | 'denied';
+import { ApprovalRequestProps } from '@/types/props';
+import { myStageType } from '@/types/data';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -46,7 +35,6 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
   const { refetch } = useQuery({

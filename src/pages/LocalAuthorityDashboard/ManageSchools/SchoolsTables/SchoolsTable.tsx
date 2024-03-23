@@ -4,10 +4,11 @@ import Button from '@/components/Button/Button';
 import styles from '../ManageSchools.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { SchoolTableData, SchoolsTableProps } from '@/types/data';
+import { SchoolTableData } from '@/types/data';
 import { Pill } from '@/components/Pill/Pill';
+import { SchoolsTableProps } from '@/types/props';
 
-const SchoolsTable: FC<SchoolsTableProps> = ({ data }) => {
+const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperties }) => {
   const navigate = useNavigate();
   const columns = [
     {
@@ -36,7 +37,10 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data }) => {
     },
     {
       title: 'Action',
-      render: (_: string, { status }: SchoolTableData): JSX.Element => {
+      render: (
+        _: string,
+        { status, name, urn, joinRequestName, phone, email, jobTitle }: SchoolTableData
+      ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
             <Button
@@ -52,7 +56,21 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data }) => {
             theme="link-blue"
             className={styles.actionButtons}
             text="View request"
-            onClick={(): void => undefined}
+            onClick={(): void => {
+              setSchoolProperties &&
+                setSchoolProperties((schoolProperties) => ({
+                  ...schoolProperties,
+                  name,
+                  id: String(urn),
+                  user: {
+                    name: joinRequestName ?? '',
+                    title: jobTitle ?? '',
+                    email: email ?? '',
+                    phone: phone ?? '',
+                  },
+                }));
+              setStage && setStage('request_approval_school');
+            }}
             ariaLabel="view"
           />
         );
