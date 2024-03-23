@@ -155,6 +155,11 @@
       .card {
         margin: 20px;
         margin-top: 0;
+        gap: 20px;
+
+        .content {
+          gap: 20px;
+        }
       }
 
       .inventBanner {
