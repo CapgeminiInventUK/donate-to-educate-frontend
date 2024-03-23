@@ -18,7 +18,7 @@ const Login: FC = () => {
             <LogoIconBlue className={styles.logoIcon} />
             <h2>Sign in or join</h2>
           </div>
-          <p>You can easily sign in or join if you work for:</p>
+          <div>You can easily sign in or join if you work for:</div>
           <ul>
             <li>A school</li>
             <li>A charity or volunteer group</li>
