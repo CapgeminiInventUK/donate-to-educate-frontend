@@ -12,7 +12,6 @@
   .link {
     display: flex;
     padding: 0 12px;
-    min-height: 76px;
     align-items: center;
     font-weight: 700;
     font-size: 16px;
@@ -72,7 +71,7 @@
     flex-direction: column;
 
     .childLink {
-      padding: 10px;
+      padding: 5px;
       text-decoration: none;
 
       &:hover {
@@ -94,6 +93,11 @@
 
     &.loginLink {
       order: -1;
+
+      a {
+        min-width: auto;
+        max-width: fit-content;
+      }
     }
 
     .link {
