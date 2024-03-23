@@ -41,17 +41,8 @@ export type School = {
   phone?: string | null;
   town?: string | null;
   website?: string | null;
-  distance?: string | null;
-};
-
-export type Charity = {
-  __typename: 'Charity';
-  id: string;
-  localAuthority: string;
-  name: string;
-  address: string;
-  about: string;
-  distance?: string | null;
+  distance?: number | null;
+  profile?: Array<SchoolProfile | null> | null;
 };
 
 export type SchoolProfile = {
@@ -81,6 +72,17 @@ export type ProfileItems = {
   whatToExpect?: string | null;
   actionText?: string | null;
   productTypes?: Array<number | null> | null;
+};
+
+export type Charity = {
+  __typename: 'Charity';
+  id: string;
+  localAuthority: string;
+  name: string;
+  address: string;
+  about: string;
+  distance?: number | null;
+  profile?: Array<CharityProfile | null> | null;
 };
 
 export type CharityProfile = {
@@ -144,6 +146,21 @@ export type JoinRequestStats = {
   __typename: 'JoinRequestStats';
   school: number;
   charity: number;
+};
+
+export enum Type {
+  donate = 'donate',
+  request = 'request',
+  excess = 'excess',
+}
+
+export type InstituteSearchResult = {
+  __typename: 'InstituteSearchResult';
+  id: string;
+  name: string;
+  distance: number;
+  productTypes: Array<number>;
+  registered: boolean;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -321,7 +338,15 @@ export type GetSchoolByNameQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   };
 };
 
@@ -345,7 +370,15 @@ export type GetSchoolsByLaQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -367,7 +400,15 @@ export type GetSchoolsQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -381,7 +422,15 @@ export type GetCharitiesQuery = {
     name: string;
     address: string;
     about: string;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'CharityProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode?: string | null;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -403,7 +452,15 @@ export type GetRegisteredSchoolsQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -427,7 +484,15 @@ export type GetRegisteredSchoolsByLaQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -606,7 +671,15 @@ export type GetSchoolsNearbyQuery = {
     phone?: string | null;
     town?: string | null;
     website?: string | null;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'SchoolProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode: string;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -623,7 +696,15 @@ export type GetCharitiesNearbyQuery = {
     name: string;
     address: string;
     about: string;
-    distance?: string | null;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'CharityProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode?: string | null;
+      about?: string | null;
+    } | null> | null;
   }>;
 };
 
@@ -668,4 +749,38 @@ export type GetAdminTileStatsQuery = {
     registeredSchools: number;
     registeredCharities: number;
   };
+};
+
+export type GetSchoolsNearbyWithProfileQueryVariables = {
+  postcode: string;
+  distance: number;
+  type: Type;
+};
+
+export type GetSchoolsNearbyWithProfileQuery = {
+  getSchoolsNearbyWithProfile: Array<{
+    __typename: 'InstituteSearchResult';
+    id: string;
+    name: string;
+    distance: number;
+    productTypes: Array<number>;
+    registered: boolean;
+  }>;
+};
+
+export type GetCharitiesNearbyWithProfileQueryVariables = {
+  postcode: string;
+  distance: number;
+  type: Type;
+};
+
+export type GetCharitiesNearbyWithProfileQuery = {
+  getCharitiesNearbyWithProfile: Array<{
+    __typename: 'InstituteSearchResult';
+    id: string;
+    name: string;
+    distance: number;
+    productTypes: Array<number>;
+    registered: boolean;
+  }>;
 };

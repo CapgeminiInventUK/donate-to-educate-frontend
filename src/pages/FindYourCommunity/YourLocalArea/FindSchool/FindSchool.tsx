@@ -9,10 +9,12 @@ import Spinner from '@/components/Spinner/Spinner';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsNearbyQuery, School } from '@/types/api';
+import { GetSchoolsNearbyWithProfileQuery, InstituteSearchResult } from '@/types/api';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Button from '@/components/Button/Button';
+import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
+import ProductTypes from '@/assets/icons/ProductTypes';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -27,19 +29,12 @@ const FindSchool: FC = () => {
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
     enabled: hasState,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
-        query: `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
-          getSchoolsNearby(postcode: $postcode, distance: $distance) {
-            name
-            distance
-            urn
-            registered
-          }
-        }
-        `,
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
+        query: getSchoolsNearbyWithProfile,
         variables: {
           postcode: state.postcode,
           distance: maxDistance,
+          type: 'request',
         },
       });
 
@@ -51,17 +46,17 @@ const FindSchool: FC = () => {
     return <Spinner />;
   }
 
-  const columns: ColumnsType<School> = [
+  const columns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { urn, name, registered }: School) =>
+      render: (text: string, { name, id, registered }: InstituteSearchResult) =>
         registered ? (
           <Button
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
-            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn: id, name } })}
           />
         ) : (
           text
@@ -72,6 +67,14 @@ const FindSchool: FC = () => {
       dataIndex: 'distance',
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
+    {
+      title: 'Product Types Available',
+      dataIndex: 'productTypes',
+      render: (text: number[]) =>
+        text.map((productType) => (
+          <ProductTypes key={productType} type={productType} className={styles.productType} />
+        )),
+    },
   ];
 
   return (
@@ -81,7 +84,7 @@ const FindSchool: FC = () => {
         <h2>Find your child&apos;s school near {state.postcode.toUpperCase()}</h2>
 
         <Table
-          dataSource={data?.getSchoolsNearby ?? []}
+          dataSource={data?.getSchoolsNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
         />

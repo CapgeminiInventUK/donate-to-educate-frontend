@@ -7,12 +7,14 @@ import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { Charity, GetCharitiesNearbyQuery } from '@/types/api';
+import { GetCharitiesNearbyWithProfileQuery, InstituteSearchResult } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
+import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
+import ProductTypes from '@/assets/icons/ProductTypes';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -26,18 +28,12 @@ const FindCharity: FC = () => {
     queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
     enabled: hasState,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyQuery>>({
-        query: `query GetCharitiesNearby($postcode: String!, $distance: Float!) {
-          getCharitiesNearby(postcode: $postcode, distance: $distance) {
-            name
-            distance
-            id
-          }
-        }
-        `,
+      const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
+        query: getCharitiesNearbyWithProfile,
         variables: {
           postcode: state.postcode,
           distance: maxDistance,
+          type: 'request',
         },
       });
 
@@ -49,11 +45,11 @@ const FindCharity: FC = () => {
     return <Spinner />;
   }
 
-  const columns: ColumnsType<Charity> = [
+  const columns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { id, name }: Charity) => (
+      render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
           theme="link-blue"
           text={text}
@@ -70,6 +66,10 @@ const FindCharity: FC = () => {
     {
       title: 'Product Types Available',
       dataIndex: 'productTypes',
+      render: (text: number[]) =>
+        text.map((productType) => (
+          <ProductTypes key={productType} type={productType} className={styles.productType} />
+        )),
     },
   ];
 
@@ -80,7 +80,7 @@ const FindCharity: FC = () => {
         <h2>Find charities near {state.postcode.toUpperCase()}</h2>
 
         <Table
-          dataSource={data?.getCharitiesNearby ?? []}
+          dataSource={data?.getCharitiesNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
         />

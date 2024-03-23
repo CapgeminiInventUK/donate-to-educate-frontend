@@ -9,10 +9,16 @@ import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { Charity, GetCharitiesNearbyQuery, GetSchoolsNearbyQuery, School } from '@/types/api';
+import {
+  GetCharitiesNearbyWithProfileQuery,
+  GetSchoolsNearbyWithProfileQuery,
+  InstituteSearchResult,
+} from '@/types/api';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
+import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
+import ProductTypes from '@/assets/icons/ProductTypes';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -26,18 +32,12 @@ const Excess: FC = () => {
     queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
     enabled: hasState,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyQuery>>({
-        query: `query GetCharitiesNearby($postcode: String!, $distance: Float!) {
-          getCharitiesNearby(postcode: $postcode, distance: $distance) {
-            name
-            distance
-            id
-          }
-        }
-        `,
+      const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
+        query: getCharitiesNearbyWithProfile,
         variables: {
           postcode: state.postcode,
           distance: maxDistance,
+          type: 'excess',
         },
       });
 
@@ -49,19 +49,12 @@ const Excess: FC = () => {
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
     enabled: hasState,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
-        query: `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
-          getSchoolsNearby(postcode: $postcode, distance: $distance) {
-            name
-            distance
-            urn
-            registered
-          }
-        }
-        `,
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
+        query: getSchoolsNearbyWithProfile,
         variables: {
           postcode: state.postcode,
           distance: maxDistance,
+          type: 'excess',
         },
       });
 
@@ -73,11 +66,11 @@ const Excess: FC = () => {
     return <Spinner />;
   }
 
-  const charityColumns: ColumnsType<Charity> = [
+  const charityColumns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { id, name }: Charity) => (
+      render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
           theme="link-blue"
           text={text}
@@ -94,20 +87,24 @@ const Excess: FC = () => {
     {
       title: 'Product Types Available',
       dataIndex: 'productTypes',
+      render: (text: number[]) =>
+        text.map((productType) => (
+          <ProductTypes key={productType} type={productType} className={styles.productType} />
+        )),
     },
   ];
 
-  const schoolColumns: ColumnsType<School> = [
+  const schoolColumns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { urn, name, registered }: School) =>
+      render: (text: string, { id, name, registered }: InstituteSearchResult) =>
         registered ? (
           <Button
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
-            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { id, name } })}
           />
         ) : (
           text
@@ -117,6 +114,14 @@ const Excess: FC = () => {
       title: 'Distance',
       dataIndex: 'distance',
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
+    },
+    {
+      title: 'Product Types Available',
+      dataIndex: 'productTypes',
+      render: (text: number[]) =>
+        text.map((productType) => (
+          <ProductTypes key={productType} type={productType} className={styles.productType} />
+        )),
     },
   ];
 
@@ -128,14 +133,14 @@ const Excess: FC = () => {
 
         <h3>Schools</h3>
         <Table
-          dataSource={schoolData?.getSchoolsNearby ?? []}
+          dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
         />
 
         <h3>Charities</h3>
         <Table
-          dataSource={charityData?.getCharitiesNearby ?? []}
+          dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
         />

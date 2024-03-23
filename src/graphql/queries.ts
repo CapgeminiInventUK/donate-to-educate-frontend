@@ -24,6 +24,14 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -44,6 +52,14 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -64,6 +80,14 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -76,6 +100,14 @@ export const getCharities = /* GraphQL */ `query GetCharities {
     address
     about
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -96,6 +128,14 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -120,6 +160,14 @@ export const getRegisteredSchoolsByLa =
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -281,6 +329,14 @@ export const getSchoolsNearby =
     town
     website
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -294,6 +350,14 @@ export const getCharitiesNearby =
     address
     about
     distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
     __typename
   }
 }
@@ -339,3 +403,47 @@ export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
   }
 }
 ` as GeneratedQuery<APITypes.GetAdminTileStatsQueryVariables, APITypes.GetAdminTileStatsQuery>;
+export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearbyWithProfile(
+  $postcode: String!
+  $distance: Float!
+  $type: Type!
+) {
+  getSchoolsNearbyWithProfile(
+    postcode: $postcode
+    distance: $distance
+    type: $type
+  ) {
+    id
+    name
+    distance
+    productTypes
+    registered
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetSchoolsNearbyWithProfileQueryVariables,
+  APITypes.GetSchoolsNearbyWithProfileQuery
+>;
+export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNearbyWithProfile(
+  $postcode: String!
+  $distance: Float!
+  $type: Type!
+) {
+  getCharitiesNearbyWithProfile(
+    postcode: $postcode
+    distance: $distance
+    type: $type
+  ) {
+    id
+    name
+    distance
+    productTypes
+    registered
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetCharitiesNearbyWithProfileQueryVariables,
+  APITypes.GetCharitiesNearbyWithProfileQuery
+>;

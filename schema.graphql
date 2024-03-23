@@ -20,7 +20,8 @@ type School {
   phone: String
   town: String
   website: String
-  distance: String
+  distance: Float
+  profile: [SchoolProfile]
 }
 
 type Charity {
@@ -29,7 +30,8 @@ type Charity {
   name: String!
   address: String!
   about: String!
-  distance: String
+  distance: Float
+  profile: [CharityProfile]
 }
 
 type ProfileItems {
@@ -179,6 +181,20 @@ type AdminStats {
   registeredCharities: Int!
 }
 
+type InstituteSearchResult {
+  id: String!
+  name: String!
+  distance: Float!
+  productTypes: [Int!]!
+  registered: Boolean!
+}
+
+enum Type {
+  donate
+  request
+  excess
+}
+
 type Query {
   getSchoolByName(name: String!): School!
   getSchoolsByLa(name: String!): [School!]!
@@ -196,6 +212,16 @@ type Query {
   getCharitiesNearby(postcode: String!, distance: Float!): [Charity!]!
   getSchoolJoinRequestsByLa(localAuthority: String!): [JoinRequest!]!
   getAdminTileStats: AdminStats!
+  getSchoolsNearbyWithProfile(
+    postcode: String!
+    distance: Float!
+    type: Type!
+  ): [InstituteSearchResult!]!
+  getCharitiesNearbyWithProfile(
+    postcode: String!
+    distance: Float!
+    type: Type!
+  ): [InstituteSearchResult!]!
 }
 
 type Mutation {
