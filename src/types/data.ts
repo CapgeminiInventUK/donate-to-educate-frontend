@@ -162,7 +162,10 @@ export interface SchoolTableData {
   name: string;
   status: string;
   urn?: string;
+  joinRequestName?: string;
+  jobTitle?: string | null;
+  email?: string;
+  phone?: string | null;
 }
-export interface SchoolsTableProps {
-  data: SchoolTableData[];
-}
+
+export type myStageType = 'deciding' | 'approved' | 'denied';

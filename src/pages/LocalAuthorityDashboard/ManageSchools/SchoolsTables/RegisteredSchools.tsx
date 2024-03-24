@@ -6,12 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getRegisteredSchoolsByLa } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import SchoolsTable from './SchoolsTable';
+import { SchoolsTablesProps } from '@/types/props';
 
-interface RegisteredSchoolsProps {
-  localAuthority: string;
-}
-
-const RegisteredSchools: FC<RegisteredSchoolsProps> = ({ localAuthority }) => {
+const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsNumber }) => {
   const { data, isLoading } = useQuery({
     queryKey: ['school-registered'],
     queryFn: async () => {
@@ -29,6 +26,8 @@ const RegisteredSchools: FC<RegisteredSchoolsProps> = ({ localAuthority }) => {
   if (isLoading) {
     return <Spinner />;
   }
+
+  setSchoolsNumber(data?.getRegisteredSchoolsByLa?.length ?? 0);
 
   const registeredSchoolData = data?.getRegisteredSchoolsByLa.map(({ name, urn }) => {
     return {
