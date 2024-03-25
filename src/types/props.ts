@@ -8,12 +8,14 @@ import {
   FormNames,
   FormSections,
   FormTemplate,
+  SchoolTableData,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import { InsertJoinRequestMutationVariables } from './api';
 import { AccountType } from '@/hooks/useCheckCurrentUser';
+import { RequestUser, SchoolOrCharityProperties } from '@/pages/AdminDashboard/AdminDashboard';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -311,4 +313,27 @@ export interface AddressInsetProps {
 
 export interface FormErrorsProps {
   formErrors: Record<string, string>;
+}
+
+export interface SchoolsTableProps {
+  data: SchoolTableData[];
+  setStage?: Dispatch<SetStateAction<string>>;
+  setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+}
+
+export interface SchoolsTablesProps {
+  localAuthority: string;
+  setSchoolsNumber: Dispatch<SetStateAction<number>>;
+  setStage: Dispatch<SetStateAction<string>>;
+  setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+}
+
+export interface ApprovalRequestProps {
+  setStage: React.Dispatch<React.SetStateAction<string>>;
+  id: string;
+  type: 'school' | 'charity';
+  name: string;
+  la: string;
+  user: RequestUser;
+  charity?: { mainAddress: string; about: string };
 }
