@@ -27,7 +27,7 @@ const Requests: FC = () => {
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['getJoinRequests'],
     queryFn: async () => {
       const { data } = await client.graphql<
         GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>

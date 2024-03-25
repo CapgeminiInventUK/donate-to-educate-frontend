@@ -41,7 +41,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const authToken = useGetAuthToken();
 
   const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+    queryKey: [`saveProfile-${about}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<

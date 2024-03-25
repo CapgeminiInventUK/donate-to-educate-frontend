@@ -25,7 +25,7 @@ const FindCharity: FC = () => {
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
+    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({

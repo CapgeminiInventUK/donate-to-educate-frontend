@@ -149,7 +149,7 @@ const SchoolEdit: FC = () => {
   });
 
   const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+    queryKey: [`saveProfileSchool-${type}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({

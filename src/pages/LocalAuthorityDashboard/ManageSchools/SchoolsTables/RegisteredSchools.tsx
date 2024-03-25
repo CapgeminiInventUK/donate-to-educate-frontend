@@ -10,7 +10,7 @@ import { SchoolsTablesProps } from '@/types/props';
 
 const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsNumber }) => {
   const { data, isLoading } = useQuery({
-    queryKey: ['school-registered'],
+    queryKey: [`school-registered-by-la-${localAuthority}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
         query: getRegisteredSchoolsByLa,

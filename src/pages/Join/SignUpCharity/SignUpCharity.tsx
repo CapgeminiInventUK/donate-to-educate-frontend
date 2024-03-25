@@ -47,7 +47,7 @@ const SignUpCharity: FC = () => {
   };
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['las'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
         query: getLocalAuthorities,
@@ -62,7 +62,9 @@ const SignUpCharity: FC = () => {
   }
 
   const { refetch } = useQuery({
-    queryKey: ['register'],
+    queryKey: [
+      `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
@@ -85,7 +87,9 @@ const SignUpCharity: FC = () => {
   });
 
   const { refetch: registerAuthorityRefetch } = useQuery({
-    queryKey: ['registerLaRequest'],
+    queryKey: [
+      `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<

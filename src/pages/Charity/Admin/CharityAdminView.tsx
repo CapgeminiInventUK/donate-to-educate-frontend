@@ -33,7 +33,7 @@ const CharityView: FC = () => {
   const authToken = useGetAuthToken();
 
   const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+    queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({

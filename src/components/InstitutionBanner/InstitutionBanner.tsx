@@ -40,7 +40,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   const authToken = useGetAuthToken();
 
   const { refetch } = useQuery({
-    queryKey: ['saveBanner'],
+    queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<

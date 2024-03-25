@@ -49,7 +49,7 @@ const RequestItems: FC<RequestItemsProps> = ({
   });
 
   const { refetch } = useQuery({
-    queryKey: ['itemQuery'],
+    queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertItemQueryMutation>>({

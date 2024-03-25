@@ -29,7 +29,7 @@ const Donate: FC = () => {
   const navigate = useNavigate();
 
   const { data: charityData, isLoading: charityLoading } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
+    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
@@ -46,7 +46,7 @@ const Donate: FC = () => {
   });
 
   const { data: schoolData, isLoading: schoolLoading } = useQuery({
-    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({

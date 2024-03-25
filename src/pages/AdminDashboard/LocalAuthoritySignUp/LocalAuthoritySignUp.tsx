@@ -33,16 +33,15 @@ const LocalAuthoritySignUp: FC = () => {
 
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ la: string; id: string }>(Paths.ADMIN_DASHBOARD);
-  const { la, id } = state;
 
   const { refetch } = useQuery({
-    queryKey: ['register'],
+    queryKey: [`register-${state.la}-${state.id}-${JSON.stringify(formState)}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
-          name: la,
+          name: state.la,
           firstName: formState.firstName,
           lastName: formState.lastName,
           jobTitle: formState.jobTitle,
@@ -50,7 +49,7 @@ const LocalAuthoritySignUp: FC = () => {
           email: formState.email,
           phone: formState.phone,
           notes: formState.notes,
-          nameId: id,
+          nameId: state.id,
         },
       });
       return result;
@@ -77,7 +76,9 @@ const LocalAuthoritySignUp: FC = () => {
     setFormErrors(undefined);
 
     refetch()
-      .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } }))
+      .then(() =>
+        navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: state.la } })
+      )
       // eslint-disable-next-line no-console
       .catch(console.error);
   };
@@ -105,7 +106,7 @@ const LocalAuthoritySignUp: FC = () => {
           <BackButton theme="white" />
           <form onSubmit={onSubmit} className={styles.card}>
             {formErrors && <FormErrors formErrors={formErrors} />}
-            <h1>{la}</h1>
+            <h1>{state.la}</h1>
             <hr />
             <TextInput
               header="First name"

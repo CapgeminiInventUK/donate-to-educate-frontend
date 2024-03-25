@@ -11,17 +11,18 @@ import { getCharityProfile } from '@/graphql/queries';
 
 const CharityAdminDashboard: FC = () => {
   const [attributes, setAttributes] = useState<CustomAttributes>();
+  const name = attributes?.['custom:institution'];
+  const id = attributes?.['custom:institutionId'];
 
-  // TODO need to make the query key unique for each charity
   const { isLoading, data } = useQuery({
-    queryKey: ['profile'],
+    queryKey: [`getProfile-${name}-${id}`],
     enabled: attributes !== undefined,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
         query: getCharityProfile,
         variables: {
-          name: attributes?.['custom:institution'],
-          id: attributes?.['custom:institutionId'],
+          name,
+          id,
         },
       });
 
@@ -56,7 +57,7 @@ const CharityAdminDashboard: FC = () => {
           postcode: '',
         }
       }
-      name={attributes?.['custom:institution']}
+      name={name ?? ''}
     />
   );
 };

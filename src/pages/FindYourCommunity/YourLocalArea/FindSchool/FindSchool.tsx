@@ -26,7 +26,7 @@ const FindSchool: FC = () => {
   const navigate = useNavigate();
 
   const { data, isLoading } = useQuery({
-    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({

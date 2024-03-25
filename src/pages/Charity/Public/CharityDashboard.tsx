@@ -16,17 +16,15 @@ const CharityDashboard: FC = () => {
     Paths.FIND_YOUR_COMMUNITY
   );
 
-  const { name, id } = state;
-
   const { isLoading, data } = useQuery({
-    queryKey: [`charity-profile-${name}-${id}`],
+    queryKey: [`get-charity-profile-${state.name}-${state.id}`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
         query: getCharityProfile,
         variables: {
-          name,
-          id,
+          name: state.name,
+          id: state.id,
         },
       });
 
@@ -46,7 +44,7 @@ const CharityDashboard: FC = () => {
         <BackButton theme="blue" />
         <PublicDashboard
           type="charity"
-          name={name}
+          name={state.name}
           about={about}
           header={header}
           excess={excess}

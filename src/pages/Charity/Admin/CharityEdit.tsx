@@ -149,7 +149,7 @@ const CharityEdit: FC = () => {
   });
 
   const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+    queryKey: [`saveProfileCharity-${type}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({

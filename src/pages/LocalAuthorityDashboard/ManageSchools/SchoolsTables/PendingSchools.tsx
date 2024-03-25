@@ -15,7 +15,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
   setSchoolProperties,
 }) => {
   const { data, isLoading } = useQuery({
-    queryKey: ['school-pending'],
+    queryKey: [`school-pending-${localAuthority}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolJoinRequestsByLaQuery>>({
         query: getSchoolJoinRequestsByLa,

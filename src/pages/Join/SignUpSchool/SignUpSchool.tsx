@@ -39,7 +39,7 @@ const SignUpSchool: FC = () => {
   const [isUnhappyPath, setIsUnhappyPath] = useState(false);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['sc'],
+    queryKey: ['schools'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
         query: `query GetSchools {
@@ -63,7 +63,9 @@ const SignUpSchool: FC = () => {
   }
 
   const { refetch } = useQuery({
-    queryKey: ['register'],
+    queryKey: [
+      `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
@@ -86,7 +88,9 @@ const SignUpSchool: FC = () => {
   });
 
   const { refetch: registerAuthorityRefetch } = useQuery({
-    queryKey: ['registerLaRequest'],
+    queryKey: [
+      `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<

@@ -38,7 +38,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
   const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+    queryKey: [`updateProfile-${id}-${la}-${user.name}-${myStage}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
@@ -71,7 +71,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   });
 
   const { refetch: deleteProfile } = useQuery({
-    queryKey: ['deleteProfile'],
+    queryKey: [`deleteProfile-${user.name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<DeleteDeniedJoinRequestMutation>>({
