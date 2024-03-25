@@ -17,6 +17,7 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -25,7 +26,7 @@ const ManageCharities: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['registeredCharities'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesQuery>>({
@@ -155,6 +156,10 @@ const ManageCharities: FC = () => {
     //   ),
     // },
   ];
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>

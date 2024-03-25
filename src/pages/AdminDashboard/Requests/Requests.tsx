@@ -14,6 +14,7 @@ import JoinRequests from './JoinRequests/JoinRequests';
 import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import { SchoolOrCharityProperties } from '../AdminDashboard';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState('view_requests');
@@ -26,7 +27,7 @@ const Requests: FC = () => {
     });
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['getJoinRequests'],
     queryFn: async () => {
       const { data } = await client.graphql<
@@ -38,6 +39,10 @@ const Requests: FC = () => {
       return data;
     },
   });
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>

@@ -12,6 +12,7 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
 import { GetSignUpDataQuery } from '@/types/api';
 import { getSignUpData } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 interface SignUpParameters {
   password: string;
@@ -69,7 +70,7 @@ const NewUser: FC = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: [`sign-up-${id}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSignUpDataQuery>>({
@@ -119,6 +120,10 @@ const NewUser: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const email = data?.getSignUpData?.email;

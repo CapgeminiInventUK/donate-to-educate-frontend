@@ -18,6 +18,7 @@ import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '
 import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -26,7 +27,7 @@ const ManageLocalAuthorities: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['getLas'],
     queryFn: async () => {
       const { data } = await client.graphql<
@@ -183,6 +184,10 @@ const ManageLocalAuthorities: FC = () => {
         ),
     },
   ];
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>

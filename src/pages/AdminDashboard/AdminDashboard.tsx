@@ -12,6 +12,7 @@ import styles from './AdminDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 export interface SchoolOrCharityProperties {
   id: string;
@@ -31,7 +32,7 @@ export interface RequestUser {
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['adminStats'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetAdminTileStatsQuery>>({
@@ -44,6 +45,10 @@ const AdminDashboard: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const { la, joinRequests, registeredSchools, registeredCharities } =

@@ -148,7 +148,7 @@ const SchoolEdit: FC = () => {
     whatToExpect: howItWorks,
   });
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`saveProfileSchool-${type}`],
     enabled: false,
     queryFn: async () => {
@@ -170,7 +170,7 @@ const SchoolEdit: FC = () => {
     },
   });
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

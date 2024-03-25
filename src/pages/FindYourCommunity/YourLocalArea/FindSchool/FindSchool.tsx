@@ -15,6 +15,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -25,7 +26,7 @@ const FindSchool: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
     queryFn: async () => {
@@ -44,6 +45,10 @@ const FindSchool: FC = () => {
 
   if (isLoading || !hasState) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const columns: ColumnsType<InstituteSearchResult> = [

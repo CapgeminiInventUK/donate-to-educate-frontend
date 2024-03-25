@@ -35,7 +35,7 @@ const LocalAuthoritySignUp: FC = () => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ la: string; id: string }>(Paths.ADMIN_DASHBOARD);
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`register-${state.la}-${state.id}-${JSON.stringify(formState)}`],
     enabled: false,
     queryFn: async () => {
@@ -81,7 +81,7 @@ const LocalAuthoritySignUp: FC = () => {
     );
   };
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

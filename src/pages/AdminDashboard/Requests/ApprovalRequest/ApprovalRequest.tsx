@@ -38,7 +38,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   const [showModal, setShowModal] = useState(false);
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`updateProfile-${id}-${la}-${user.name}-${myStage}`],
     enabled: false,
     queryFn: async () => {
@@ -56,7 +56,11 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     },
   });
 
-  const { isLoading, data } = useQuery({
+  const {
+    isLoading,
+    data,
+    isError: isErrorSchool,
+  } = useQuery({
     queryKey: [`school-details-${name}`],
     enabled: type === 'school',
     queryFn: async () => {
@@ -71,7 +75,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     },
   });
 
-  const { refetch: deleteProfile, isRefetchError: isError } = useQuery({
+  const { refetch: deleteProfile, isError: isErrorDelete } = useQuery({
     queryKey: [`deleteProfile-${user.name}`],
     enabled: false,
     queryFn: async () => {
@@ -99,7 +103,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     return <Spinner />;
   }
 
-  if (isRefetchError || isError) {
+  if (isError || isErrorDelete || isErrorSchool) {
     return <ErrorBanner />;
   }
 

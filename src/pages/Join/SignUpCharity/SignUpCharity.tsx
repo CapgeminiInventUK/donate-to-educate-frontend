@@ -26,6 +26,7 @@ import {
 import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
 import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
 import signUpCharityHappyPath from '@/templates/forms/signUpCharityHappyPath';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -61,7 +62,7 @@ const SignUpCharity: FC = () => {
     throw new Error('Failed to fetch LocalAuthorities data.');
   }
 
-  const { refetch } = useQuery({
+  const { refetch, isError: isErrorRegister } = useQuery({
     queryKey: [
       `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
     ],
@@ -86,7 +87,7 @@ const SignUpCharity: FC = () => {
     },
   });
 
-  const { refetch: registerAuthorityRefetch } = useQuery({
+  const { refetch: registerAuthorityRefetch, isError: isErrorLa } = useQuery({
     queryKey: [
       `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
     ],
@@ -170,6 +171,10 @@ const SignUpCharity: FC = () => {
     }
     formData[1]?.value && setSelectedLocalAuthority(String(formData[1].value));
   }, [pageNumber, formData]);
+
+  if (isErrorRegister || isErrorLa) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>

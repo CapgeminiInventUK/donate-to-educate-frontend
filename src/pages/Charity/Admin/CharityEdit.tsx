@@ -148,7 +148,7 @@ const CharityEdit: FC = () => {
     whatToExpect: howItWorks,
   });
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`saveProfileCharity-${type}`],
     enabled: false,
     queryFn: async () => {
@@ -170,7 +170,7 @@ const CharityEdit: FC = () => {
     },
   });
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

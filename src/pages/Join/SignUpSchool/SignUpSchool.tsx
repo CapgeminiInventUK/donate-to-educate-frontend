@@ -27,6 +27,7 @@ import {
   getSchoolCyaData,
 } from '@/utils/formUtils';
 import Spinner from '@/components/Spinner/Spinner';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -62,7 +63,7 @@ const SignUpSchool: FC = () => {
     throw new Error('Failed to fetch Schools data.');
   }
 
-  const { refetch } = useQuery({
+  const { refetch, isError: isErrorRegister } = useQuery({
     queryKey: [
       `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
     ],
@@ -87,7 +88,7 @@ const SignUpSchool: FC = () => {
     },
   });
 
-  const { refetch: registerAuthorityRefetch } = useQuery({
+  const { refetch: registerAuthorityRefetch, isError: isErrorLa } = useQuery({
     queryKey: [
       `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
     ],
@@ -203,6 +204,10 @@ const SignUpSchool: FC = () => {
         <Spinner />
       </div>
     );
+  }
+
+  if (isErrorRegister || isErrorLa) {
+    return <ErrorBanner />;
   }
 
   return (

@@ -17,6 +17,7 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageSchools.module.scss';
 import { getRegisteredSchools } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ManageSchools: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -25,7 +26,7 @@ const ManageSchools: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['registeredSchools'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsQuery>>({
@@ -155,6 +156,10 @@ const ManageSchools: FC = () => {
     //   ),
     // },
   ];
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>

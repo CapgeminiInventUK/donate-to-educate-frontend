@@ -10,13 +10,14 @@ import { useQuery } from '@tanstack/react-query';
 import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const CharityDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; id: string }>(
     Paths.FIND_YOUR_COMMUNITY
   );
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: [`get-charity-profile-${state.name}-${state.id}`],
     enabled: hasState,
     queryFn: async () => {
@@ -34,6 +35,10 @@ const CharityDashboard: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const { excess, donate, request, about, header } = data?.getCharityProfile ?? {};

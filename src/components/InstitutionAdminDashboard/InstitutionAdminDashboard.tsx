@@ -41,7 +41,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [preview, setPreview] = useState(false);
   const authToken = useGetAuthToken();
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
@@ -76,7 +76,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     }
   };
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

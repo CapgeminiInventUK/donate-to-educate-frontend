@@ -19,6 +19,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -28,7 +29,11 @@ const Donate: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data: charityData, isLoading: charityLoading } = useQuery({
+  const {
+    data: charityData,
+    isLoading: charityLoading,
+    isError: isErrorCharity,
+  } = useQuery({
     queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
@@ -45,7 +50,11 @@ const Donate: FC = () => {
     },
   });
 
-  const { data: schoolData, isLoading: schoolLoading } = useQuery({
+  const {
+    data: schoolData,
+    isLoading: schoolLoading,
+    isError: isErrorSchool,
+  } = useQuery({
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
@@ -64,6 +73,10 @@ const Donate: FC = () => {
 
   if (charityLoading || schoolLoading || !hasState) {
     return <Spinner />;
+  }
+
+  if (isErrorCharity || isErrorSchool) {
+    return <ErrorBanner />;
   }
 
   const charityColumns: ColumnsType<InstituteSearchResult> = [

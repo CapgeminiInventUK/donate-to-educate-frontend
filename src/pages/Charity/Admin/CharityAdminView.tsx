@@ -33,7 +33,7 @@ const CharityView: FC = () => {
   const navigate = useNavigate();
   const authToken = useGetAuthToken();
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],
     enabled: false,
     queryFn: async () => {
@@ -51,7 +51,7 @@ const CharityView: FC = () => {
     },
   });
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

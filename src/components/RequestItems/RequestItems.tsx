@@ -48,7 +48,7 @@ const RequestItems: FC<RequestItemsProps> = ({
     notes: '',
   });
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
     enabled: false,
     queryFn: async () => {
@@ -71,7 +71,7 @@ const RequestItems: FC<RequestItemsProps> = ({
 
   const { name, email, phone, notes, connection } = formState;
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

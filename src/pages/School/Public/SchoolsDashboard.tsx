@@ -10,6 +10,7 @@ import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './SchoolDashboard.module.scss';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SchoolsDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; urn: string }>(
@@ -17,7 +18,7 @@ const SchoolsDashboard: FC = () => {
   );
   const { name, urn } = state;
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: [`school-profile-${name}-${urn}`],
     enabled: hasState,
     queryFn: async () => {
@@ -35,6 +36,10 @@ const SchoolsDashboard: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const { excess, donate, request, about, header } = data?.getSchoolProfile ?? {};

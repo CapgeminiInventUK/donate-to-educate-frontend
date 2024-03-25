@@ -40,7 +40,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   });
   const authToken = useGetAuthToken();
 
-  const { refetch, isRefetchError } = useQuery({
+  const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
@@ -60,7 +60,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     },
   });
 
-  if (isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 

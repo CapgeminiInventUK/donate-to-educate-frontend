@@ -16,7 +16,7 @@ const SchoolAdminDashboard: FC = () => {
   const id = attributes?.['custom:institutionId'];
   const [userError, setUserError] = useState<string>();
 
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: attributes !== undefined,
     queryFn: async () => {
@@ -46,7 +46,7 @@ const SchoolAdminDashboard: FC = () => {
     return <Spinner />;
   }
 
-  if (error ?? userError) {
+  if (isError || userError) {
     return <ErrorBanner />;
   }
 
