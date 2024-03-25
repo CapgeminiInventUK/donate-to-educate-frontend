@@ -1,4 +1,3 @@
-/*  eslint-disable no-console */
 import { FC, useState } from 'react';
 import styles from './CharityEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
@@ -210,7 +209,8 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    refetch().then(console.log).catch(console.error);
+                    // eslint-disable-next-line no-console
+                    refetch().catch(console.error);
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
@@ -243,7 +243,8 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
-                    refetch().then(console.log).catch(console.error);
+                    // eslint-disable-next-line no-console
+                    refetch().catch(console.error);
                   }}
                   handleCancel={() => {
                     setContent({ ...content, actionText: actionTextBeforeEdit });
@@ -264,6 +265,7 @@ const CharityEdit: FC = () => {
                 onClick={(): void => {
                   refetch()
                     .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
+                    // eslint-disable-next-line no-console
                     .catch(console.error);
                 }}
                 text={'Save'}
@@ -302,6 +304,7 @@ const CharityEdit: FC = () => {
                 onClick={(): void => {
                   refetch()
                     .then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE))
+                    // eslint-disable-next-line no-console
                     .catch(console.error);
                 }}
                 text={'Save'}

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FC, useState } from 'react';
 import styles from './RequestItems.module.scss';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
@@ -160,7 +159,8 @@ const RequestItems: FC<RequestItemsProps> = ({
             theme={'formButtonGreen'}
             fullWidth={true}
             onClick={() => {
-              refetch().then(console.log).catch(console.error);
+              // eslint-disable-next-line no-console
+              refetch().catch(console.error);
               navigate(
                 organisationType === 'school'
                   ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION

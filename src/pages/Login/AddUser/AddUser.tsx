@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
@@ -28,11 +27,11 @@ interface ConfirmSignUpParameters {
 }
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
-  const { isSignUpComplete, userId, nextStep } = await confirmSignUp({
+  const { nextStep } = await confirmSignUp({
     username: email,
     confirmationCode: code,
   });
-  console.log(userId, nextStep, isSignUpComplete);
+
   return nextStep.signUpStep;
 }
 
@@ -44,7 +43,7 @@ async function handleSignUp({
   id,
 }: SignUpParameters): Promise<string> {
   const lowercaseEmail = email.toLowerCase();
-  const { isSignUpComplete, userId, nextStep } = await signUp({
+  const { nextStep } = await signUp({
     username: lowercaseEmail,
     password,
     options: {
@@ -57,7 +56,6 @@ async function handleSignUp({
     },
   });
 
-  console.log(userId, nextStep, isSignUpComplete);
   return nextStep.signUpStep;
 }
 

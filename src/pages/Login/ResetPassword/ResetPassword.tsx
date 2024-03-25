@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
@@ -31,8 +30,7 @@ const ResetPassword: FC = () => {
       .then(() => {
         setStepNumber(1);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         setFirstErrorText('Error resetting the password for this user. ');
       });
   }
@@ -46,8 +44,7 @@ const ResetPassword: FC = () => {
       .then(() => {
         setStepNumber(3);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         setSecondErrorText('Error resetting the password for this user. ');
       });
   }
