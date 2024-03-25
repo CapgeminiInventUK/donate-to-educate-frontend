@@ -15,10 +15,7 @@ const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
     <button
       className={`${styles.back} ${className ?? ''}`}
       onClick={(): void => {
-        void signOut()
-          .then(() => navigate(Paths.SIGN_IN))
-          // eslint-disable-next-line no-console
-          .catch(console.error);
+        void signOut().then(() => navigate(Paths.SIGN_IN));
       }}
       type="button"
     >

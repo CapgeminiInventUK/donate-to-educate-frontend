@@ -1,0 +1,14 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  border: 5px solid g.$error-red;
+  background: transparentize(g.$error-red, 0.6);
+  border-radius: 10px;
+  padding: 20px 40px;
+  margin: 20px auto;
+  max-width: 1000px;
+
+  a {
+    color: g.$secondary-mid-blue;
+  }
+}

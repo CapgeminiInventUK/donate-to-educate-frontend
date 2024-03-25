@@ -61,10 +61,7 @@ const AdminDashboard: FC = () => {
               text="Sign out"
               className={styles.actionButtons}
               onClick={(): void => {
-                void signOut()
-                  .then(() => navigate(Paths.SIGN_IN))
-                  // eslint-disable-next-line no-console
-                  .catch(console.error);
+                void signOut().then(() => navigate(Paths.SIGN_IN));
               }}
               ariaLabel="sign out"
             />

@@ -141,8 +141,6 @@ const SignUpCharity: FC = () => {
       fullValue: { registered = true },
     } = formData[1];
     if (!registered) {
-      // eslint-disable-next-line no-console
-      console.log(formData[1]);
       authorityNotRegistered();
     } else {
       setHappyPathTemplate();

@@ -8,13 +8,15 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetCharityProfileQuery } from '@/types/api';
 import { getCharityProfile } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const CharityAdminDashboard: FC = () => {
   const [attributes, setAttributes] = useState<CustomAttributes>();
   const name = attributes?.['custom:institution'];
   const id = attributes?.['custom:institutionId'];
+  const [userError, setUserError] = useState<string>();
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: attributes !== undefined,
     queryFn: async () => {
@@ -36,13 +38,16 @@ const CharityAdminDashboard: FC = () => {
         .then((attributes) => {
           setAttributes(attributes);
         })
-        // eslint-disable-next-line no-console
-        .catch(console.log);
+        .catch((err: string) => setUserError(err));
     }
   });
 
   if (!attributes || isLoading) {
     return <Spinner />;
+  }
+
+  if (error ?? userError) {
+    return <ErrorBanner />;
   }
 
   return (
