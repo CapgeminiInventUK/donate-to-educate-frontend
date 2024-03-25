@@ -18,6 +18,7 @@ import { validateFormInputField } from '@/utils/formUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -34,7 +35,7 @@ const LocalAuthoritySignUp: FC = () => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ la: string; id: string }>(Paths.ADMIN_DASHBOARD);
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`register-${state.la}-${state.id}-${JSON.stringify(formState)}`],
     enabled: false,
     queryFn: async () => {
@@ -75,13 +76,14 @@ const LocalAuthoritySignUp: FC = () => {
 
     setFormErrors(undefined);
 
-    refetch()
-      .then(() =>
-        navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: state.la } })
-      )
-      // eslint-disable-next-line no-console
-      .catch(console.error);
+    void refetch().then(() =>
+      navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: state.la } })
+    );
   };
+
+  if (isRefetchError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>

@@ -17,6 +17,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -147,7 +148,7 @@ const SchoolEdit: FC = () => {
     whatToExpect: howItWorks,
   });
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`saveProfileSchool-${type}`],
     enabled: false,
     queryFn: async () => {
@@ -168,6 +169,10 @@ const SchoolEdit: FC = () => {
       return result;
     },
   });
+
+  if (isRefetchError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -209,8 +214,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    // eslint-disable-next-line no-console
-                    refetch().catch(console.error);
+                    void refetch();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
@@ -243,8 +247,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
-                    // eslint-disable-next-line no-console
-                    refetch().catch(console.error);
+                    void refetch();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, actionText: actionTextBeforeEdit });
@@ -263,10 +266,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
-                    // eslint-disable-next-line no-console
-                    .catch(console.error);
+                  void refetch().then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE));
                 }}
                 text={'Save'}
                 ariaLabel="save"
@@ -302,10 +302,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
-                    // eslint-disable-next-line no-console
-                    .catch(console.error);
+                  void refetch().then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE));
                 }}
                 text={'Save'}
                 ariaLabel="save"

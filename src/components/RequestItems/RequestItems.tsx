@@ -14,6 +14,7 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
 
 export interface RequestItemsProps {
   radioButtonLabels: string[];
@@ -47,7 +48,7 @@ const RequestItems: FC<RequestItemsProps> = ({
     notes: '',
   });
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
     enabled: false,
     queryFn: async () => {
@@ -69,6 +70,10 @@ const RequestItems: FC<RequestItemsProps> = ({
   });
 
   const { name, email, phone, notes, connection } = formState;
+
+  if (isRefetchError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -159,16 +164,16 @@ const RequestItems: FC<RequestItemsProps> = ({
             theme={'formButtonGreen'}
             fullWidth={true}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              refetch().catch(console.error);
-              navigate(
-                organisationType === 'school'
-                  ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
-                  : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
-                {
-                  state: { name: 'Test School Name' },
-                }
-              );
+              void refetch().then(() => {
+                navigate(
+                  organisationType === 'school'
+                    ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
+                    : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
+                  {
+                    state: { name },
+                  }
+                );
+              });
             }}
             ariaLabel="submit"
           />

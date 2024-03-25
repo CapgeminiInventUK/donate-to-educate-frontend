@@ -22,6 +22,7 @@ import useGetAuthToken from '@/hooks/useGetAuthToken';
 import { UpdateCharityProfileMutation } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const CharityView: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -32,7 +33,7 @@ const CharityView: FC = () => {
   const navigate = useNavigate();
   const authToken = useGetAuthToken();
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],
     enabled: false,
     queryFn: async () => {
@@ -49,6 +50,10 @@ const CharityView: FC = () => {
       return result;
     },
   });
+
+  if (isRefetchError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -100,8 +105,7 @@ const CharityView: FC = () => {
                   theme="formButtonGreen"
                   onClick={() => {
                     setEdit(false);
-                    // eslint-disable-next-line no-console
-                    refetch().catch(console.error);
+                    void refetch();
                   }}
                   ariaLabel="save"
                 />

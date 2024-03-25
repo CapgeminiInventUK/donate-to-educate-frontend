@@ -94,9 +94,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     if (isDeclarationPage) {
-      refetch()
-        // eslint-disable-next-line no-console
-        .catch(console.error);
+      void refetch();
     }
 
     setNavigationFromCya(false);

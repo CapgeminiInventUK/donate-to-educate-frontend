@@ -23,6 +23,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
 import { myStageType } from '@/types/data';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -37,7 +38,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   const [showModal, setShowModal] = useState(false);
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`updateProfile-${id}-${la}-${user.name}-${myStage}`],
     enabled: false,
     queryFn: async () => {
@@ -70,7 +71,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     },
   });
 
-  const { refetch: deleteProfile } = useQuery({
+  const { refetch: deleteProfile, isRefetchError: isError } = useQuery({
     queryKey: [`deleteProfile-${user.name}`],
     enabled: false,
     queryFn: async () => {
@@ -87,19 +88,19 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   useEffect(() => {
     if (myStage === 'approved') {
-      // eslint-disable-next-line no-console
-      refetch().then(console.log).catch(console.error);
+      void refetch();
     }
     if (myStage === 'denied') {
-      deleteProfile()
-        .then(() => navigate(Paths.DELETE_CONFIRMATION))
-        // eslint-disable-next-line no-console
-        .catch(console.error);
+      void deleteProfile().then(() => navigate(Paths.DELETE_CONFIRMATION));
     }
   }, [myStage, refetch, deleteProfile, navigate]);
 
   if (isLoading && type === 'school') {
     return <Spinner />;
+  }
+
+  if (isRefetchError || isError) {
+    return <ErrorBanner />;
   }
 
   return (

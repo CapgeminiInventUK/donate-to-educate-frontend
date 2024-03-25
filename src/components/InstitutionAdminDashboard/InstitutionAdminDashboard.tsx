@@ -24,6 +24,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -40,7 +41,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [preview, setPreview] = useState(false);
   const authToken = useGetAuthToken();
 
-  const { refetch } = useQuery({
+  const { refetch, isRefetchError } = useQuery({
     queryKey: [`saveProfile-${about}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
@@ -65,8 +66,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   };
 
   const saveAboutUs = (): void => {
-    // eslint-disable-next-line no-console
-    refetch().catch(console.error);
+    void refetch();
     toggleIsEditingAboutUs();
   };
 
@@ -75,6 +75,10 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
       setPageNumber(pageNumber - 1);
     }
   };
+
+  if (isRefetchError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>

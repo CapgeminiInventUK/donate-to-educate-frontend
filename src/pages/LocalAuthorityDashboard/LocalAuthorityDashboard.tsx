@@ -13,12 +13,9 @@ const LocalAuthorityDashboard: FC = () => {
 
   useEffect(() => {
     if (!attributes) {
-      getUserType()
-        .then((attributes) => {
-          setAttributes(attributes);
-        })
-        // eslint-disable-next-line no-console
-        .catch(console.log);
+      void getUserType().then((attributes) => {
+        setAttributes(attributes);
+      });
     }
   });
 
