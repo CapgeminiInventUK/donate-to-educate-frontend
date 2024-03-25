@@ -3,21 +3,23 @@ import PublicDashboard from '@/components/PublicDashboard/PublicDashboard';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { Navigate, useLocation } from 'react-router-dom';
 import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './SchoolDashboard.module.scss';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const SchoolsDashboard: FC = () => {
-  const location = useLocation();
-  const { name, urn } = (location?.state as { name: string; urn: string }) || {};
+  const { state, hasState } = useLocationStateOrRedirect<{ name: string; urn: string }>(
+    Paths.FIND_YOUR_COMMUNITY
+  );
+  const { name, urn } = state;
 
   const { isLoading, data } = useQuery({
     queryKey: [`school-profile-${name}-${urn}`],
-    enabled: location?.state !== undefined,
+    enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
@@ -30,10 +32,6 @@ const SchoolsDashboard: FC = () => {
       return data;
     },
   });
-
-  if (!name || !urn) {
-    return <Navigate to={Paths.FIND_YOUR_COMMUNITY} />;
-  }
 
   if (isLoading) {
     return <Spinner />;

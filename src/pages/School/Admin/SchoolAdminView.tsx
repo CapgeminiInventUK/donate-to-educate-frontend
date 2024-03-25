@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import styles from './SchoolAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,24 +13,20 @@ import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const School: FC = () => {
-  const [schoolName, setSchoolName] = useState<string>();
+  const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
+    Paths.SCHOOLS_CREATE_EDIT_PROFILE
+  );
+
   const navigate = useNavigate();
   const location = useLocation() as { state: { name: string; postcode: string } };
-
-  useEffect(() => {
-    if (location.state && 'name' in location.state) {
-      setSchoolName(String(location.state.name));
-    } else {
-      navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE);
-    }
-  }, [location.state, navigate]);
 
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <InstitutionBanner type={'school'} name={schoolName} />
+      <InstitutionBanner type={'school'} name={state.name} />
 
       <div className={styles.subContainer}>
         <div className={styles.schoolProfilebanner}>

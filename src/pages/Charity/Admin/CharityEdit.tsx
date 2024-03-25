@@ -13,10 +13,11 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { EditDescription } from '../../../components/EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -124,13 +125,12 @@ const getPageContent = (
 };
 
 const CharityEdit: FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { type, profile } =
-    (location?.state as {
-      type: ItemsIconType;
-      profile: ProfileItems;
-    }) ?? {};
+  const { state } = useLocationStateOrRedirect<{
+    type: ItemsIconType;
+    profile: ProfileItems;
+  }>(Paths.CHARITIES_CREATE_EDIT_PROFILE);
+  const { type, profile } = state;
 
   const [preview, setPreview] = useState(false);
   const [items, setItems] = useState<Record<number, string[]>>(
@@ -169,10 +169,6 @@ const CharityEdit: FC = () => {
       return result;
     },
   });
-
-  if (!(location.state && 'type' in location.state)) {
-    return <Navigate to={Paths.CHARITIES_CREATE_EDIT_PROFILE} />;
-  }
 
   return (
     <div className={styles.container}>

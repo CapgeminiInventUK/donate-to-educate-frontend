@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import RequestItems, { RequestItemsProps } from '@/components/RequestItems/RequestItems';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const getTextContent = (type: string): Omit<RequestItemsProps, 'organisationType'> => {
   switch (type) {
@@ -80,15 +80,9 @@ const getTextContent = (type: string): Omit<RequestItemsProps, 'organisationType
 };
 
 const RequestSchoolProducts: FC = () => {
-  const location = useLocation();
+  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
 
-  if (!(location.state && 'type' in location.state)) {
-    return <Navigate to={Paths.HOME} />;
-  }
-
-  const { type } = location.state as { type: ItemsIconType };
-
-  return <RequestItems {...getTextContent(type)} organisationType="school" />;
+  return <RequestItems {...getTextContent(state.type)} organisationType="school" />;
 };
 
 export default RequestSchoolProducts;

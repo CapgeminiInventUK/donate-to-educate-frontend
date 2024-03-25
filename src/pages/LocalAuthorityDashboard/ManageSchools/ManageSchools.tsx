@@ -2,14 +2,17 @@ import { FC, useState } from 'react';
 import styles from './ManageSchools.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-import { useLocation } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 import PendingSchools from './SchoolsTables/PendingSchools';
 import ApprovalRequest from '@/pages/AdminDashboard/Requests/ApprovalRequest/ApprovalRequest';
 import { SchoolOrCharityProperties } from '@/pages/AdminDashboard/AdminDashboard';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import Paths from '@/config/paths';
 
 const ManageSchools: FC = () => {
-  const { localAuthority } = useLocation().state as { localAuthority: string };
+  const {
+    state: { localAuthority },
+  } = useLocationStateOrRedirect<{ localAuthority: string }>(Paths.LOCAL_AUTHORITY_DASHBOARD);
   const [schoolsJoined, setSchoolsJoined] = useState(0);
   const [schoolsPending, setSchoolsPending] = useState(0);
   const [stage, setStage] = useState('view_requests');

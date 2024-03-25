@@ -2,7 +2,6 @@ import { FC } from 'react';
 import PublicDashboard from '@/components/PublicDashboard/PublicDashboard';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './CharityDashboard.module.scss';
-import { Navigate, useLocation } from 'react-router-dom';
 import { getCharityProfile } from '@/graphql/queries';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetCharityProfileQuery } from '@/types/api';
@@ -10,14 +9,18 @@ import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const CharityDashboard: FC = () => {
-  const location = useLocation();
-  const { name, id } = (location?.state as { name: string; id: string }) || {};
+  const { state, hasState } = useLocationStateOrRedirect<{ name: string; id: string }>(
+    Paths.FIND_YOUR_COMMUNITY
+  );
+
+  const { name, id } = state;
 
   const { isLoading, data } = useQuery({
     queryKey: [`charity-profile-${name}-${id}`],
-    enabled: location?.state !== undefined,
+    enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
         query: getCharityProfile,
@@ -30,10 +33,6 @@ const CharityDashboard: FC = () => {
       return data;
     },
   });
-
-  if (!name || !id) {
-    return <Navigate to={Paths.FIND_YOUR_COMMUNITY} />;
-  }
 
   if (isLoading) {
     return <Spinner />;

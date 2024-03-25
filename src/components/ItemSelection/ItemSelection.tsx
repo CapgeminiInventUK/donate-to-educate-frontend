@@ -2,10 +2,11 @@ import { FC } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import styles from './ItemSelection.module.scss';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import FormButton from '@/components/FormButton/FormButton';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const getTitleFromType = (type: string): string => {
   switch (type) {
@@ -46,14 +47,9 @@ const ItemSelection: FC<ItemSelectionProps> = ({
   actionText,
   whatToExpect,
 }) => {
-  const location = useLocation();
   const navigate = useNavigate();
-
-  if (!(location.state && 'type' in location.state)) {
-    return <Navigate to={Paths.HOME} />;
-  }
-
-  const { type } = location.state as { type: ItemsIconType };
+  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
+  const { type } = state;
 
   return (
     <div className={styles.container}>

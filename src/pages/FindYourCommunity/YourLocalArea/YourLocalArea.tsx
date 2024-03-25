@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './YourLocalArea.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import Hat from '@/assets/yourLocalArea/Hat';
 import Heart from '@/assets/yourLocalArea/Heart';
@@ -10,28 +10,23 @@ import Image from '@/components/Image/Image';
 import hatImg from '@/assets/yourLocalArea/hat.png';
 import heartImg from '@/assets/yourLocalArea/heart.png';
 import donateImg from '@/assets/yourLocalArea/donate.png';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
-  const location = useLocation() as { state: { postcode: string } };
-
-  if (!(location.state && 'postcode' in location.state)) {
-    return <Navigate to={Paths.FIND_YOUR_COMMUNITY} />;
-  }
+  const { state } = useLocationStateOrRedirect<{ postcode: string }>(Paths.FIND_YOUR_COMMUNITY);
 
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
       <div className={styles.subContainer}>
-        <h2>Your local area in {location.state.postcode.toUpperCase()}</h2>
+        <h2>Your local area in {state.postcode.toUpperCase()}</h2>
         {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
           return (
             <div
               key={title}
               className={`${styles.tile} ${styles[colour]}`}
-              onClick={() =>
-                navigate(onClickLink, { state: { postcode: location.state.postcode } })
-              }
+              onClick={() => navigate(onClickLink, { state: { postcode: state.postcode } })}
             >
               {icon}
               <div className={styles.content}>

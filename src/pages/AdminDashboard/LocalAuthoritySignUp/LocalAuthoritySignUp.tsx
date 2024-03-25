@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
@@ -17,6 +17,7 @@ import styles from './LocalAuthoritySignUp.module.scss';
 import { validateFormInputField } from '@/utils/formUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -31,7 +32,8 @@ const LocalAuthoritySignUp: FC = () => {
   const [formErrors, setFormErrors] = useState<Record<string, string>>();
 
   const navigate = useNavigate();
-  const { la, id } = useLocation().state as { la: string; id: string };
+  const { state } = useLocationStateOrRedirect<{ la: string; id: string }>(Paths.ADMIN_DASHBOARD);
+  const { la, id } = state;
 
   const { refetch } = useQuery({
     queryKey: ['register'],
