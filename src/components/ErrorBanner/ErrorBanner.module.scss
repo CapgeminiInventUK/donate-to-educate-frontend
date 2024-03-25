@@ -2,13 +2,23 @@
 
 .container {
   border: 5px solid g.$error-red;
-  background: transparentize(g.$error-red, 0.6);
-  border-radius: 10px;
-  padding: 20px 40px;
+  padding: 20px;
   margin: 20px auto;
   max-width: 1000px;
 
+  h3 {
+    color: g.$primary-dark-blue;
+    margin: 20px 0 0 0;
+    font-weight: 700;
+  }
+
+  p {
+    color: g.$error-red;
+    font-weight: 700;
+  }
+
   a {
     color: g.$secondary-mid-blue;
+    font-weight: 700;
   }
 }

@@ -8,8 +8,8 @@ const ErrorBanner: FC = () => {
     <div className={styles.container}>
       <h3>Something went wrong</h3>
       <p>
-        Please refresh the page and try again. If problems persist{' '}
-        <Link to={Paths.CONTACT}>contact us</Link>
+        Refresh the page and try again. If problems persist{' '}
+        <Link to={Paths.CONTACT}>contact us.</Link>
       </p>
     </div>
   );

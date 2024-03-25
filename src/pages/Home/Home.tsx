@@ -15,7 +15,6 @@ import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
 import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 import Paths from '@/config/paths';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -23,7 +22,6 @@ const Home: FC = () => {
   return (
     <div className={styles.container}>
       <HeroBanner />
-      <ErrorBanner />
 
       <div className={styles.councilBanner}>
         <Header
