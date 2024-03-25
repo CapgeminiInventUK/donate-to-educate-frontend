@@ -7,9 +7,9 @@ import Hat from '@/assets/yourLocalArea/Hat';
 import Heart from '@/assets/yourLocalArea/Heart';
 import Donate from '@/assets/yourLocalArea/Donate';
 import Image from '@/components/Image/Image';
-import hatImg from '@/assets/yourLocalArea/hat.png';
-import heartImg from '@/assets/yourLocalArea/heart.png';
-import donateImg from '@/assets/yourLocalArea/donate.png';
+import heartImg from '@/assets/yourLocalArea/heart.webp';
+import donateImg from '@/assets/yourLocalArea/donate.webp';
+import hatImg from '@/assets/yourLocalArea/hat.webp';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const YourLocalArea: FC = () => {
