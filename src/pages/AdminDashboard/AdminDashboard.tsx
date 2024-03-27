@@ -14,21 +14,6 @@ import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
-export interface SchoolOrCharityProperties {
-  id: string;
-  name: string;
-  la: string;
-  user: RequestUser;
-  charity?: { mainAddress: string; about: string };
-}
-
-export interface RequestUser {
-  name: string;
-  title: string;
-  email: string;
-  phone: string;
-}
-
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
 

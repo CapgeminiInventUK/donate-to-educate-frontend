@@ -4,17 +4,12 @@ import { Input, InputRef, Space, Table, Button as SearchButton } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
 import { SearchOutlined, CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
-import { JoinRequest, GetJoinRequestsQuery } from '@/types/api';
+import { JoinRequest } from '@/types/api';
 import Button from '@/components/Button/Button';
 import styles from './JoinRequests.module.scss';
-import { SchoolOrCharityProperties } from '../../AdminDashboard';
 import dayjs from 'dayjs';
-
-interface JoinRequestsProps {
-  setStage: React.Dispatch<React.SetStateAction<string>>;
-  setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
-  data?: GetJoinRequestsQuery;
-}
+import { StageState } from '@/types/data';
+import { JoinRequestsProps } from '@/types/props';
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {
   const [searchText, setSearchText] = useState('');
@@ -169,8 +164,8 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
               });
               setStage(
                 joinRequest.type === 'school'
-                  ? 'request_approval_school'
-                  : 'request_approval_charity'
+                  ? StageState.APPROVE_SCHOOL
+                  : StageState.APPROVE_CHARITY
               );
             }}
           />

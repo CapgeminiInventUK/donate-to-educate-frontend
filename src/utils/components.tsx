@@ -30,7 +30,7 @@ export const createFormComponent = (
   onChange?: (
     value: string | number | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, unknown>
+    fullValue?: Record<string, string | boolean>
   ) => void,
   errorMessage?: string,
   optional?: boolean

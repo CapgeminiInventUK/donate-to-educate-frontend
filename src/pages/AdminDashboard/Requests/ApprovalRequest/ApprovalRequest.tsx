@@ -22,7 +22,7 @@ import { getSchoolByName } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
-import { myStageType } from '@/types/data';
+import { StageState, myStageType } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
@@ -82,7 +82,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       const result = await client.graphql<GraphQLQuery<DeleteDeniedJoinRequestMutation>>({
         query: deleteDeniedJoinRequest,
         variables: {
-          name: user.name,
+          id,
         },
       });
 
@@ -92,7 +92,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   useEffect(() => {
     if (myStage === 'approved') {
-      void refetch();
+      void refetch().then(() => navigate(0));
     }
     if (myStage === 'denied') {
       void deleteProfile().then(() => navigate(Paths.DELETE_CONFIRMATION));
@@ -109,7 +109,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   return (
     <>
-      <BackButton onClick={(): void => setStage('view_requests')} theme="blue" />
+      <BackButton onClick={(): void => setStage(StageState.VIEW)} theme="blue" />
       <div className={styles.card}>
         <>
           <Pill

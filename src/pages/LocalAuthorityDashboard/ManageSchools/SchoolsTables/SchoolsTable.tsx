@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button';
 import styles from '../ManageSchools.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { SchoolTableData } from '@/types/data';
+import { StageState, SchoolTableData } from '@/types/data';
 import { Pill } from '@/components/Pill/Pill';
 import { SchoolsTableProps } from '@/types/props';
 
@@ -39,7 +39,7 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
       title: 'Action',
       render: (
         _: string,
-        { status, name, urn, joinRequestName, phone, email, jobTitle }: SchoolTableData
+        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
@@ -47,7 +47,21 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
               theme="link-blue"
               className={styles.actionButtons}
               text="Remove"
-              onClick={(): void => undefined}
+              onClick={(): void => {
+                setSchoolProperties &&
+                  setSchoolProperties((schoolProperties) => ({
+                    ...schoolProperties,
+                    name,
+                    id: String(urn),
+                    user: {
+                      name: joinRequestName ?? '',
+                      title: jobTitle ?? '',
+                      email: email ?? '',
+                      phone: phone ?? '',
+                    },
+                  }));
+                setStage && setStage(StageState.REMOVE);
+              }}
               ariaLabel="remove"
             />
           </div>
@@ -61,7 +75,7 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
                 setSchoolProperties((schoolProperties) => ({
                   ...schoolProperties,
                   name,
-                  id: String(urn),
+                  id: String(id),
                   user: {
                     name: joinRequestName ?? '',
                     title: jobTitle ?? '',
@@ -69,7 +83,7 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
                     phone: phone ?? '',
                   },
                 }));
-              setStage && setStage('request_approval_school');
+              setStage && setStage(StageState.APPROVE_SCHOOL);
             }}
             ariaLabel="view"
           />

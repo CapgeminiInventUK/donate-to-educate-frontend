@@ -9,9 +9,14 @@ import SchoolsTable from './SchoolsTable';
 import { SchoolsTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
-const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsNumber }) => {
+const RegisteredSchools: FC<SchoolsTablesProps> = ({
+  localAuthority,
+  setSchoolsNumber,
+  setStage,
+  setSchoolProperties,
+}) => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: [`school-registered-by-la-${localAuthority}`],
+    queryKey: ['school-registered'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
         query: getRegisteredSchoolsByLa,
@@ -43,6 +48,12 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsN
     };
   });
 
-  return <SchoolsTable data={registeredSchoolData ?? []} />;
+  return (
+    <SchoolsTable
+      data={registeredSchoolData ?? []}
+      setStage={setStage}
+      setSchoolProperties={setSchoolProperties}
+    />
+  );
 };
 export default RegisteredSchools;

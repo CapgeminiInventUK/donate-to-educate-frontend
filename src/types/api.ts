@@ -24,6 +24,7 @@ export type JoinRequest = {
   charityName?: string | null;
   charityAddress?: string | null;
   aboutCharity?: string | null;
+  urn?: string | null;
 };
 
 export type School = {
@@ -265,6 +266,7 @@ export type InsertJoinRequestMutationVariables = {
   charityName?: string | null;
   charityAddress?: string | null;
   aboutCharity?: string | null;
+  urn?: string | null;
 };
 
 export type InsertJoinRequestMutation = {
@@ -311,11 +313,20 @@ export type InsertItemQueryMutation = {
 };
 
 export type DeleteDeniedJoinRequestMutationVariables = {
-  name: string;
+  id: string;
 };
 
 export type DeleteDeniedJoinRequestMutation = {
   deleteDeniedJoinRequest: boolean;
+};
+
+export type DeleteSchoolProfileMutationVariables = {
+  name: string;
+  id: string;
+};
+
+export type DeleteSchoolProfileMutation = {
+  deleteSchoolProfile?: boolean | null;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -525,6 +536,7 @@ export type GetJoinRequestsQuery = {
     charityName?: string | null;
     charityAddress?: string | null;
     aboutCharity?: string | null;
+    urn?: string | null;
   }>;
 };
 
@@ -728,6 +740,7 @@ export type GetSchoolJoinRequestsByLaQuery = {
     charityName?: string | null;
     charityAddress?: string | null;
     aboutCharity?: string | null;
+    urn?: string | null;
   }>;
 };
 

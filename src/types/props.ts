@@ -8,14 +8,16 @@ import {
   FormNames,
   FormSections,
   FormTemplate,
+  StageState,
   SchoolTableData,
+  SchoolOrCharityProperties,
+  RequestUser,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
-import { InsertJoinRequestMutationVariables } from './api';
+import { GetJoinRequestsQuery, InsertJoinRequestMutationVariables } from './api';
 import { AccountType } from '@/hooks/useCheckCurrentUser';
-import { RequestUser, SchoolOrCharityProperties } from '@/pages/AdminDashboard/AdminDashboard';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -195,7 +197,7 @@ export interface CommonInputProps {
   header?: string;
   subHeading?: string;
   placeholder?: string;
-  onChange?: (value: string, meta?: FormMeta, fullValue?: Record<string, unknown>) => void;
+  onChange?: (value: string, meta?: FormMeta, fullValue?: Record<string, string | boolean>) => void;
   formMeta?: FormMeta;
   value?: string;
   disabled?: boolean;
@@ -220,7 +222,7 @@ export interface MultiStepFormProps {
   onChange: (
     value: string | number | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, unknown>
+    fullValue?: Record<string, string | boolean>
   ) => void;
   isSchoolRegistered?: boolean;
   refetch: (
@@ -317,23 +319,31 @@ export interface FormErrorsProps {
 
 export interface SchoolsTableProps {
   data: SchoolTableData[];
-  setStage?: Dispatch<SetStateAction<string>>;
+  setStage?: Dispatch<SetStateAction<StageState>>;
   setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
 }
 
 export interface SchoolsTablesProps {
   localAuthority: string;
   setSchoolsNumber: Dispatch<SetStateAction<number>>;
-  setStage: Dispatch<SetStateAction<string>>;
+  setStage: Dispatch<SetStateAction<StageState>>;
+  schoolProperties?: SchoolOrCharityProperties;
   setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+  stage: StageState;
 }
 
 export interface ApprovalRequestProps {
-  setStage: React.Dispatch<React.SetStateAction<string>>;
+  setStage: Dispatch<SetStateAction<StageState>>;
   id: string;
   type: 'school' | 'charity';
   name: string;
   la: string;
   user: RequestUser;
   charity?: { mainAddress: string; about: string };
+}
+
+export interface JoinRequestsProps {
+  setStage: React.Dispatch<React.SetStateAction<StageState>>;
+  setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
+  data?: GetJoinRequestsQuery;
 }

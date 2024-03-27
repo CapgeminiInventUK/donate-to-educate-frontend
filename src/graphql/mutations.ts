@@ -79,6 +79,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $charityName: String
   $charityAddress: String
   $aboutCharity: String
+  $urn: String
 ) {
   insertJoinRequest(
     name: $name
@@ -91,6 +92,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     charityName: $charityName
     charityAddress: $charityAddress
     aboutCharity: $aboutCharity
+    urn: $urn
   )
 }
 ` as GeneratedMutation<
@@ -159,10 +161,18 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
 export const deleteDeniedJoinRequest =
-  /* GraphQL */ `mutation DeleteDeniedJoinRequest($name: String!) {
-  deleteDeniedJoinRequest(name: $name)
+  /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
+  deleteDeniedJoinRequest(id: $id)
 }
 ` as GeneratedMutation<
     APITypes.DeleteDeniedJoinRequestMutationVariables,
     APITypes.DeleteDeniedJoinRequestMutation
+  >;
+export const deleteSchoolProfile =
+  /* GraphQL */ `mutation DeleteSchoolProfile($name: String!, $id: String!) {
+  deleteSchoolProfile(name: $name, id: $id)
+}
+` as GeneratedMutation<
+    APITypes.DeleteSchoolProfileMutationVariables,
+    APITypes.DeleteSchoolProfileMutation
   >;

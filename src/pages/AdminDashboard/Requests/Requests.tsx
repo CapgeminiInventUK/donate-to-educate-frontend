@@ -13,11 +13,11 @@ import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
 import JoinRequests from './JoinRequests/JoinRequests';
 import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
-import { SchoolOrCharityProperties } from '../AdminDashboard';
+import { SchoolOrCharityProperties, StageState } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const Requests: FC = () => {
-  const [stage, setStage] = useState('view_requests');
+  const [stage, setStage] = useState<StageState>(StageState.VIEW);
   const [schoolOrCharityProperties, setSchoolOrCharityProperties] =
     useState<SchoolOrCharityProperties>({
       id: '',
@@ -62,7 +62,7 @@ const Requests: FC = () => {
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}
-          {!isLoading && stage === 'view_requests' && (
+          {!isLoading && stage === StageState.VIEW && (
             <>
               <BackButton theme="white" />
               <JoinRequests
@@ -72,7 +72,7 @@ const Requests: FC = () => {
               />
             </>
           )}
-          {!isLoading && stage === 'request_approval_school' && (
+          {!isLoading && stage === StageState.APPROVE_SCHOOL && (
             <ApprovalRequest
               id={schoolOrCharityProperties.id}
               setStage={setStage}
@@ -82,7 +82,7 @@ const Requests: FC = () => {
               user={schoolOrCharityProperties.user}
             />
           )}
-          {!isLoading && stage === 'request_approval_charity' && (
+          {!isLoading && stage === StageState.APPROVE_CHARITY && (
             <ApprovalRequest
               id={schoolOrCharityProperties.id}
               setStage={setStage}

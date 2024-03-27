@@ -160,8 +160,9 @@ export const getValueFromOptionsByLabel = (
 };
 
 export const getFormDataForSubmission = (
-  cyaData: Record<FormSections, FormDataItem[]>,
-  type: FormNames
+  formData: Record<FormSections, FormDataItem[]>,
+  type: FormNames,
+  urn?: string
 ): SubmittedFormData => {
   const joinRequestVariables: SubmittedFormData = {
     name: '',
@@ -172,50 +173,51 @@ export const getFormDataForSubmission = (
     charityName: undefined,
     charityAddress: undefined,
     aboutCharity: undefined,
+    urn,
   };
 
   if (type === FormNames.CHARITY) {
     joinRequestVariables.charityName = findValueFromFormData(
-      cyaData[FormSections.CHARITY_SECTION],
+      formData[FormSections.CHARITY_SECTION],
       'Name'
     );
 
     joinRequestVariables.charityAddress = findValueFromFormData(
-      cyaData[FormSections.CHARITY_SECTION],
+      formData[FormSections.CHARITY_SECTION],
       'Address'
     );
 
     joinRequestVariables.aboutCharity = findValueFromFormData(
-      cyaData[FormSections.CHARITY_SECTION],
+      formData[FormSections.CHARITY_SECTION],
       'About'
     );
   }
 
   if (type === FormNames.AUTHORITY) {
     joinRequestVariables.message = String(
-      findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Message')
+      findValueFromFormData(formData[FormSections.YOUR_DETAILS_SECTION], 'Message')
     );
   }
 
   joinRequestVariables.name = String(
-    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Name')
+    findValueFromFormData(formData[FormSections.YOUR_DETAILS_SECTION], 'Name')
   );
 
   joinRequestVariables.email = String(
-    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Email')
+    findValueFromFormData(formData[FormSections.YOUR_DETAILS_SECTION], 'Email')
   );
 
   joinRequestVariables.jobTitle = String(
-    findValueFromFormData(cyaData[FormSections.YOUR_DETAILS_SECTION], 'Job title or role')
+    findValueFromFormData(formData[FormSections.YOUR_DETAILS_SECTION], 'Job title or role')
   );
 
   joinRequestVariables.school = findValueFromFormData(
-    cyaData[FormSections.YOUR_DETAILS_SECTION],
+    formData[FormSections.YOUR_DETAILS_SECTION],
     'School'
   );
 
   joinRequestVariables.phone = findValueFromFormData(
-    cyaData[FormSections.YOUR_DETAILS_SECTION],
+    formData[FormSections.YOUR_DETAILS_SECTION],
     'Phone'
   );
 
