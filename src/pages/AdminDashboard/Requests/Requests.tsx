@@ -14,6 +14,7 @@ import JoinRequests from './JoinRequests/JoinRequests';
 import ApprovalRequest from './ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import { SchoolOrCharityProperties, StageState } from '@/types/data';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState<StageState>(StageState.VIEW);
@@ -26,8 +27,8 @@ const Requests: FC = () => {
     });
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['la'],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['getJoinRequests'],
     queryFn: async () => {
       const { data } = await client.graphql<
         GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
@@ -38,6 +39,10 @@ const Requests: FC = () => {
       return data;
     },
   });
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>
@@ -50,10 +55,7 @@ const Requests: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              void signOut()
-                .then(() => navigate(Paths.SIGN_IN))
-                // eslint-disable-next-line no-console
-                .catch(console.error);
+              void signOut().then(() => navigate(Paths.SIGN_IN));
             }}
             ariaLabel="sign out"
           />

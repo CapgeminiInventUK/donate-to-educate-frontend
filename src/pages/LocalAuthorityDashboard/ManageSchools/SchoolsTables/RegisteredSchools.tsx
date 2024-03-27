@@ -7,6 +7,7 @@ import { getRegisteredSchoolsByLa } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import SchoolsTable from './SchoolsTable';
 import { SchoolsTablesProps } from '@/types/props';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const RegisteredSchools: FC<SchoolsTablesProps> = ({
   localAuthority,
@@ -14,7 +15,7 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({
   setStage,
   setSchoolProperties,
 }) => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['school-registered'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
@@ -30,6 +31,10 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   setSchoolsNumber(data?.getRegisteredSchoolsByLa?.length ?? 0);

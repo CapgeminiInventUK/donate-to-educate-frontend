@@ -18,6 +18,7 @@ import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '
 import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -26,8 +27,8 @@ const ManageLocalAuthorities: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['la'],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['getLas'],
     queryFn: async () => {
       const { data } = await client.graphql<
         GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
@@ -184,6 +185,10 @@ const ManageLocalAuthorities: FC = () => {
     },
   ];
 
+  if (isError) {
+    return <ErrorBanner />;
+  }
+
   return (
     <div className={dashboardStyles.container}>
       <BackButton theme="blue" />
@@ -195,10 +200,7 @@ const ManageLocalAuthorities: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              void signOut()
-                .then(() => navigate(Paths.SIGN_IN))
-                // eslint-disable-next-line no-console
-                .catch(console.error);
+              void signOut().then(() => navigate(Paths.SIGN_IN));
             }}
             ariaLabel="sign out"
           />
@@ -218,6 +220,7 @@ const ManageLocalAuthorities: FC = () => {
                   dataSource={data?.getLocalAuthorities}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
+                  rowKey="code"
                 />
               </div>
             </div>

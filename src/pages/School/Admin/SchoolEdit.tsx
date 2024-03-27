@@ -1,4 +1,3 @@
-/*  eslint-disable no-console */
 import { FC, useState } from 'react';
 import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
@@ -13,10 +12,12 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { EditDescription } from '../../../components/EditDescription/EditDescription';
 import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -124,13 +125,11 @@ const getPageContent = (
 };
 
 const SchoolEdit: FC = () => {
-  const location = useLocation();
+  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; profile: ProfileItems }>(
+    Paths.SCHOOLS_CREATE_EDIT_PROFILE
+  );
   const navigate = useNavigate();
-  const { type, profile } =
-    (location?.state as {
-      type: ItemsIconType;
-      profile: ProfileItems;
-    }) ?? {};
+  const { type, profile } = state;
 
   const [preview, setPreview] = useState(false);
   const [items, setItems] = useState<Record<number, string[]>>(
@@ -149,8 +148,8 @@ const SchoolEdit: FC = () => {
     whatToExpect: howItWorks,
   });
 
-  const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`saveProfileSchool-${type}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
@@ -171,8 +170,8 @@ const SchoolEdit: FC = () => {
     },
   });
 
-  if (!(location.state && 'type' in location.state)) {
-    return <Navigate to={Paths.SCHOOLS_CREATE_EDIT_PROFILE} />;
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   return (
@@ -215,7 +214,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    refetch().then(console.log).catch(console.error);
+                    void refetch();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
@@ -248,7 +247,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
-                    refetch().then(console.log).catch(console.error);
+                    void refetch();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, actionText: actionTextBeforeEdit });
@@ -267,9 +266,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
-                    .catch(console.error);
+                  void refetch().then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE));
                 }}
                 text={'Save'}
                 ariaLabel="save"
@@ -305,9 +302,7 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {
-                  refetch()
-                    .then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE))
-                    .catch(console.error);
+                  void refetch().then(() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE));
                 }}
                 text={'Save'}
                 ariaLabel="save"

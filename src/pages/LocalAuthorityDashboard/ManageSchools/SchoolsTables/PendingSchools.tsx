@@ -7,6 +7,7 @@ import { getSchoolJoinRequestsByLa } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import SchoolsTable from './SchoolsTable';
 import { SchoolsTablesProps } from '@/types/props';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const PendingSchools: FC<SchoolsTablesProps> = ({
   localAuthority,
@@ -14,8 +15,8 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
   setStage,
   setSchoolProperties,
 }) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['school-pending'],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [`school-pending-${localAuthority}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolJoinRequestsByLaQuery>>({
         query: getSchoolJoinRequestsByLa,
@@ -30,6 +31,10 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   setSchoolsNumber(data?.getSchoolJoinRequestsByLa?.length ?? 0);

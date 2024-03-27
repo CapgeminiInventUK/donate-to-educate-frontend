@@ -19,6 +19,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -28,8 +29,12 @@ const Donate: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data: charityData, isLoading: charityLoading } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
+  const {
+    data: charityData,
+    isLoading: charityLoading,
+    isError: isErrorCharity,
+  } = useQuery({
+    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
@@ -45,8 +50,12 @@ const Donate: FC = () => {
     },
   });
 
-  const { data: schoolData, isLoading: schoolLoading } = useQuery({
-    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
+  const {
+    data: schoolData,
+    isLoading: schoolLoading,
+    isError: isErrorSchool,
+  } = useQuery({
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-donate`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
@@ -66,12 +75,17 @@ const Donate: FC = () => {
     return <Spinner />;
   }
 
+  if (isErrorCharity || isErrorSchool) {
+    return <ErrorBanner />;
+  }
+
   const charityColumns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
       render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
+          key={id}
           theme="link-blue"
           text={text}
           ariaLabel={`name-${text}`}
@@ -85,7 +99,7 @@ const Donate: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types needed',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -116,7 +130,7 @@ const Donate: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types needed',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -136,6 +150,7 @@ const Donate: FC = () => {
           dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <h3>Charities</h3>
@@ -143,6 +158,7 @@ const Donate: FC = () => {
           dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>

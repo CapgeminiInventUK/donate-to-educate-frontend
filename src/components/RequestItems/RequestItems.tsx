@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FC, useState } from 'react';
 import styles from './RequestItems.module.scss';
 import RadioGroup from '@/components/RadioGroup/RadioGroup';
@@ -15,6 +14,7 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
 
 export interface RequestItemsProps {
   radioButtonLabels: string[];
@@ -48,8 +48,8 @@ const RequestItems: FC<RequestItemsProps> = ({
     notes: '',
   });
 
-  const { refetch } = useQuery({
-    queryKey: ['itemQuery'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertItemQueryMutation>>({
@@ -70,6 +70,10 @@ const RequestItems: FC<RequestItemsProps> = ({
   });
 
   const { name, email, phone, notes, connection } = formState;
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -160,15 +164,16 @@ const RequestItems: FC<RequestItemsProps> = ({
             theme={'formButtonGreen'}
             fullWidth={true}
             onClick={() => {
-              refetch().then(console.log).catch(console.error);
-              navigate(
-                organisationType === 'school'
-                  ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
-                  : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
-                {
-                  state: { name: 'Test School Name' },
-                }
-              );
+              void refetch().then(() => {
+                navigate(
+                  organisationType === 'school'
+                    ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
+                    : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
+                  {
+                    state: { name },
+                  }
+                );
+              });
             }}
             ariaLabel="submit"
           />

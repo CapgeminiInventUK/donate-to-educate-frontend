@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import styles from './ManageSchools.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 import PendingSchools from './SchoolsTables/PendingSchools';
 import ApprovalRequest from '@/pages/AdminDashboard/Requests/ApprovalRequest/ApprovalRequest';
@@ -13,9 +13,13 @@ import { DeleteSchoolProfileMutation } from '@/types/api';
 import { deleteSchoolProfile } from '@/graphql/mutations';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import Paths from '@/config/paths';
 
 const ManageSchools: FC = () => {
-  const { localAuthority } = useLocation().state as { localAuthority: string };
+  const {
+    state: { localAuthority },
+  } = useLocationStateOrRedirect<{ localAuthority: string }>(Paths.LOCAL_AUTHORITY_DASHBOARD);
   const navigate = useNavigate();
   const [schoolsJoined, setSchoolsJoined] = useState(0);
   const [schoolsPending, setSchoolsPending] = useState(0);
@@ -70,7 +74,7 @@ const ManageSchools: FC = () => {
             <LogoutButton />
           </div>
           <div className={styles.adminCard}>
-            <h1>West Sussex</h1>
+            <h1>{localAuthority}</h1>
             <div className={styles.body}>
               <div className={styles.card}>
                 <h2>Schools in your area</h2>

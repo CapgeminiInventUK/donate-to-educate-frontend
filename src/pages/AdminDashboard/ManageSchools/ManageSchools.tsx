@@ -17,6 +17,7 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageSchools.module.scss';
 import { getRegisteredSchools } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ManageSchools: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -25,7 +26,7 @@ const ManageSchools: FC = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['registeredSchools'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsQuery>>({
@@ -156,6 +157,10 @@ const ManageSchools: FC = () => {
     // },
   ];
 
+  if (isError) {
+    return <ErrorBanner />;
+  }
+
   return (
     <div className={dashboardStyles.container}>
       <BackButton theme="blue" />
@@ -167,10 +172,7 @@ const ManageSchools: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              void signOut()
-                .then(() => navigate(Paths.SIGN_IN))
-                // eslint-disable-next-line no-console
-                .catch(console.error);
+              void signOut().then(() => navigate(Paths.SIGN_IN));
             }}
             ariaLabel="sign out"
           />
@@ -190,6 +192,7 @@ const ManageSchools: FC = () => {
                   dataSource={data?.getRegisteredSchools ?? []}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
+                  rowKey="urn"
                 />
               </div>
             </div>

@@ -1,19 +1,19 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './CharityAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import Heart from '@/assets/yourLocalArea/Heart';
 import Donate from '@/assets/yourLocalArea/Donate';
 import Image from '@/components/Image/Image';
-import boxImg from '@/assets/admin/box.png';
-import heartImg from '@/assets/yourLocalArea/heart.png';
-import donateImg from '@/assets/yourLocalArea/donate.png';
+import boxImg from '@/assets/yourLocalArea/box.webp';
+import heartImg from '@/assets/yourLocalArea/heart.webp';
+import donateImg from '@/assets/yourLocalArea/donate.webp';
+import hatImg from '@/assets/yourLocalArea/hat.webp';
 import FormButton from '@/components/FormButton/FormButton';
 import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import Hat from '@/assets/yourLocalArea/Hat';
-import hatImg from '@/assets/yourLocalArea/hat.png';
 import TextInput from '@/components/TextInput/TextInput';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -21,17 +21,20 @@ import { updateCharityProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 import { UpdateCharityProfileMutation } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const CharityView: FC = () => {
+  const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
+    Paths.CHARITIES_CREATE_EDIT_PROFILE
+  );
   const [edit, setEdit] = useState(false);
-  const [postcode, setPostcode] = useState<string>();
-  const [charityName, setCharityName] = useState<string>();
+  const [postcode, setPostcode] = useState<string>(state.postcode);
   const navigate = useNavigate();
-  const location = useLocation() as { state: { name: string; postcode: string } };
   const authToken = useGetAuthToken();
 
-  const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
@@ -48,19 +51,14 @@ const CharityView: FC = () => {
     },
   });
 
-  useEffect(() => {
-    if (location.state && 'name' in location.state) {
-      setCharityName(location.state.name);
-      setPostcode(location.state.postcode);
-    } else {
-      navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE);
-    }
-  }, [location.state, navigate]);
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <InstitutionBanner type={'charity'} name={charityName} />
+      <InstitutionBanner type={'charity'} name={state.name} />
 
       <div className={styles.subContainer}>
         <div className={styles.profilebanner}>
@@ -107,8 +105,7 @@ const CharityView: FC = () => {
                   theme="formButtonGreen"
                   onClick={() => {
                     setEdit(false);
-                    // eslint-disable-next-line no-console
-                    refetch().catch(console.error);
+                    void refetch();
                   }}
                   ariaLabel="save"
                 />
@@ -132,9 +129,7 @@ const CharityView: FC = () => {
                 <div
                   key={title}
                   className={`${styles.tile} ${styles[colour]}`}
-                  onClick={() =>
-                    navigate(onClickLink, { state: { postcode: location.state.postcode } })
-                  }
+                  onClick={() => navigate(onClickLink, { state: { postcode: state.postcode } })}
                 >
                   {icon}
                   <div className={styles.content}>

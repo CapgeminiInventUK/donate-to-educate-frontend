@@ -23,6 +23,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
 import { StageState, myStageType } from '@/types/data';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -37,23 +38,8 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   const [showModal, setShowModal] = useState(false);
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
-  const { isLoading, data } = useQuery({
-    queryKey: [`school-details-${name}`],
-    enabled: type === 'school',
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
-        query: getSchoolByName,
-        variables: {
-          name: name.split('-')[0].trim(),
-        },
-      });
-
-      return data;
-    },
-  });
-
-  const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`updateProfile-${id}-${la}-${user.name}-${myStage}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
@@ -70,8 +56,27 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     },
   });
 
-  const { refetch: deleteProfile } = useQuery({
-    queryKey: ['deleteProfile'],
+  const {
+    isLoading,
+    data,
+    isError: isErrorSchool,
+  } = useQuery({
+    queryKey: [`school-details-${name}`],
+    enabled: type === 'school',
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
+        query: getSchoolByName,
+        variables: {
+          name: name.split('-')[0].trim(),
+        },
+      });
+
+      return data;
+    },
+  });
+
+  const { refetch: deleteProfile, isError: isErrorDelete } = useQuery({
+    queryKey: [`deleteProfile-${user.name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<DeleteDeniedJoinRequestMutation>>({
@@ -87,19 +92,19 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   useEffect(() => {
     if (myStage === 'approved') {
-      // eslint-disable-next-line no-console
-      refetch().then(console.log).catch(console.error);
+      void refetch();
     }
     if (myStage === 'denied') {
-      deleteProfile()
-        .then(() => navigate(Paths.DELETE_CONFIRMATION))
-        // eslint-disable-next-line no-console
-        .catch(console.error);
+      void deleteProfile().then(() => navigate(Paths.DELETE_CONFIRMATION));
     }
   }, [myStage, refetch, deleteProfile, navigate]);
 
   if (isLoading && type === 'school') {
     return <Spinner />;
+  }
+
+  if (isError || isErrorDelete || isErrorSchool) {
+    return <ErrorBanner />;
   }
 
   return (

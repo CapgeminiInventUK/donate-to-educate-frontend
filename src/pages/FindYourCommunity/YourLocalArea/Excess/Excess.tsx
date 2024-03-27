@@ -19,6 +19,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -28,8 +29,12 @@ const Excess: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data: charityData, isLoading: charityLoading } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
+  const {
+    data: charityData,
+    isLoading: charityLoading,
+    isError: isErrorCharity,
+  } = useQuery({
+    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-excess`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
@@ -45,8 +50,12 @@ const Excess: FC = () => {
     },
   });
 
-  const { data: schoolData, isLoading: schoolLoading } = useQuery({
-    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
+  const {
+    data: schoolData,
+    isLoading: schoolLoading,
+    isError: isErrorSchool,
+  } = useQuery({
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-excess`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
@@ -64,6 +73,10 @@ const Excess: FC = () => {
 
   if (charityLoading || schoolLoading || !hasState) {
     return <Spinner />;
+  }
+
+  if (isErrorCharity || isErrorSchool) {
+    return <ErrorBanner />;
   }
 
   const charityColumns: ColumnsType<InstituteSearchResult> = [
@@ -85,7 +98,7 @@ const Excess: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Excess stock product types',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -116,7 +129,7 @@ const Excess: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Excess stock product types',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -136,6 +149,7 @@ const Excess: FC = () => {
           dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <h3>Charities</h3>
@@ -143,6 +157,7 @@ const Excess: FC = () => {
           dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>

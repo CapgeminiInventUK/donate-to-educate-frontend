@@ -8,20 +8,23 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { CustomAttributes, getUserType } from '@/hooks/useCheckCurrentUser';
 import Spinner from '@/components/Spinner/Spinner';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SchoolAdminDashboard: FC = () => {
   const [attributes, setAttributes] = useState<CustomAttributes>();
+  const name = attributes?.['custom:institution'];
+  const id = attributes?.['custom:institutionId'];
+  const [userError, setUserError] = useState<string>();
 
-  // TODO need to make the query key unique for each school
-  const { isLoading, data } = useQuery({
-    queryKey: ['profile'],
+  const { isLoading, data, isError } = useQuery({
+    queryKey: [`getProfile-${name}-${id}`],
     enabled: attributes !== undefined,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
         variables: {
-          name: attributes?.['custom:institution'],
-          id: attributes?.['custom:institutionId'],
+          name,
+          id,
         },
       });
 
@@ -35,13 +38,16 @@ const SchoolAdminDashboard: FC = () => {
         .then((attributes) => {
           setAttributes(attributes);
         })
-        // eslint-disable-next-line no-console
-        .catch(console.log);
+        .catch((err: string) => setUserError(err));
     }
   });
 
   if (!attributes || isLoading) {
     return <Spinner />;
+  }
+
+  if (isError || userError) {
+    return <ErrorBanner />;
   }
 
   return (
@@ -56,7 +62,7 @@ const SchoolAdminDashboard: FC = () => {
           postcode: '',
         }
       }
-      name={attributes?.['custom:institution']}
+      name={name ?? ''}
     />
   );
 };

@@ -27,6 +27,7 @@ import {
   getSchoolCyaData,
 } from '@/utils/formUtils';
 import Spinner from '@/components/Spinner/Spinner';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -39,7 +40,7 @@ const SignUpSchool: FC = () => {
   const [isUnhappyPath, setIsUnhappyPath] = useState(false);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['sc'],
+    queryKey: ['schools'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
         query: `query GetSchools {
@@ -62,8 +63,10 @@ const SignUpSchool: FC = () => {
     throw new Error('Failed to fetch Schools data.');
   }
 
-  const { refetch } = useQuery({
-    queryKey: ['register'],
+  const { refetch, isError: isErrorRegister } = useQuery({
+    queryKey: [
+      `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
@@ -86,8 +89,10 @@ const SignUpSchool: FC = () => {
     },
   });
 
-  const { refetch: registerAuthorityRefetch } = useQuery({
-    queryKey: ['registerLaRequest'],
+  const { refetch: registerAuthorityRefetch, isError: isErrorLa } = useQuery({
+    queryKey: [
+      `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-school`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<
@@ -206,6 +211,10 @@ const SignUpSchool: FC = () => {
         <Spinner />
       </div>
     );
+  }
+
+  if (isErrorRegister || isErrorLa) {
+    return <ErrorBanner />;
   }
 
   return (

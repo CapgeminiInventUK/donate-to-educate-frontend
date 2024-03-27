@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import { FC, useEffect, useState } from 'react';
-import { signUp, confirmSignUp } from 'aws-amplify/auth';
+import { signUp, confirmSignUp, signOut } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
 import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Paths from '@/config/paths';
 import styles from './AddUser.module.scss';
 import Spinner from '@/components/Spinner/Spinner';
@@ -13,6 +12,8 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
 import { GetSignUpDataQuery } from '@/types/api';
 import { getSignUpData } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 
 interface SignUpParameters {
   password: string;
@@ -28,11 +29,11 @@ interface ConfirmSignUpParameters {
 }
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
-  const { isSignUpComplete, userId, nextStep } = await confirmSignUp({
+  const { nextStep } = await confirmSignUp({
     username: email,
     confirmationCode: code,
   });
-  console.log(userId, nextStep, isSignUpComplete);
+
   return nextStep.signUpStep;
 }
 
@@ -44,7 +45,7 @@ async function handleSignUp({
   id,
 }: SignUpParameters): Promise<string> {
   const lowercaseEmail = email.toLowerCase();
-  const { isSignUpComplete, userId, nextStep } = await signUp({
+  const { nextStep } = await signUp({
     username: lowercaseEmail,
     password,
     options: {
@@ -57,11 +58,11 @@ async function handleSignUp({
     },
   });
 
-  console.log(userId, nextStep, isSignUpComplete);
   return nextStep.signUpStep;
 }
 
 const NewUser: FC = () => {
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -71,7 +72,7 @@ const NewUser: FC = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: [`sign-up-${id}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSignUpDataQuery>>({
@@ -116,11 +117,16 @@ const NewUser: FC = () => {
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-    return <Navigate to={Paths.SIGN_IN} />;
+    void signOut().then(() => navigate(Paths.SIGN_IN));
+    return <Spinner />;
   }
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const email = data?.getSignUpData?.email;
@@ -134,6 +140,7 @@ const NewUser: FC = () => {
       <div className={styles.card}>
         {step === 'SIGN_UP' && (
           <>
+            <LogoIconBlue className={styles.logo} />
             <h2>Create user</h2>
             <TextInput header="Email" value={email} disabled ariaLabel="email" />
             <TextInput
@@ -154,9 +161,15 @@ const NewUser: FC = () => {
           </>
         )}
         {step === 'CONFIRM_SIGN_UP' && (
-          <>
-            <p>Please enter the verification code sent to your email address.</p>
+          <div className={styles.verificationCode}>
+            <LogoIconBlue className={styles.logo} />
+            <h2>Verification code</h2>
+            <p>Enter your verification code that we sent to your email address</p>
             <VerificationInput
+              classNames={{
+                container: styles.codeContainer,
+                character: styles.character,
+              }}
               value={verificationCode}
               onChange={(input: string) => {
                 if (input.match(/^[0-9]*$/)) {
@@ -166,6 +179,7 @@ const NewUser: FC = () => {
             />
             <FormButton
               text={'Next'}
+              className={styles.button}
               theme={'formButtonDarkBlue'}
               useArrow={true}
               onClick={(): void => {
@@ -175,7 +189,7 @@ const NewUser: FC = () => {
               }}
               ariaLabel="next"
             />
-          </>
+          </div>
         )}
       </div>
     </div>

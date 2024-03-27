@@ -5,10 +5,7 @@ const useGetAuthToken = (): string | undefined => {
   const [authToken, setAuthToken] = useState<string>();
 
   useEffect(() => {
-    fetchAuthSession()
-      .then((session) => setAuthToken(session.tokens?.idToken?.toString()))
-      // eslint-disable-next-line no-console
-      .catch(console.log);
+    void fetchAuthSession().then((session) => setAuthToken(session.tokens?.idToken?.toString()));
   });
 
   return authToken;

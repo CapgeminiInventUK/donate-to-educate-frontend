@@ -15,6 +15,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -25,8 +26,8 @@ const FindSchool: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
-    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}`],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
@@ -44,6 +45,10 @@ const FindSchool: FC = () => {
 
   if (isLoading || !hasState) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const columns: ColumnsType<InstituteSearchResult> = [
@@ -68,7 +73,7 @@ const FindSchool: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types available',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -87,6 +92,7 @@ const FindSchool: FC = () => {
           dataSource={data?.getSchoolsNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <span

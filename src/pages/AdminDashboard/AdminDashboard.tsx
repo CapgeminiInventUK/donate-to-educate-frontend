@@ -12,11 +12,12 @@ import styles from './AdminDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['adminStats'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetAdminTileStatsQuery>>({
@@ -29,6 +30,10 @@ const AdminDashboard: FC = () => {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const { la, joinRequests, registeredSchools, registeredCharities } =
@@ -46,10 +51,7 @@ const AdminDashboard: FC = () => {
               text="Sign out"
               className={styles.actionButtons}
               onClick={(): void => {
-                void signOut()
-                  .then(() => navigate(Paths.SIGN_IN))
-                  // eslint-disable-next-line no-console
-                  .catch(console.error);
+                void signOut().then(() => navigate(Paths.SIGN_IN));
               }}
               ariaLabel="sign out"
             />

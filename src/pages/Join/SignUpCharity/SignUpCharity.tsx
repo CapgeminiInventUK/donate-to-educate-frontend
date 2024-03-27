@@ -26,6 +26,7 @@ import {
 import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
 import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
 import signUpCharityHappyPath from '@/templates/forms/signUpCharityHappyPath';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);
@@ -47,7 +48,7 @@ const SignUpCharity: FC = () => {
   };
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['la'],
+    queryKey: ['las'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
         query: getLocalAuthorities,
@@ -61,8 +62,10 @@ const SignUpCharity: FC = () => {
     throw new Error('Failed to fetch LocalAuthorities data.');
   }
 
-  const { refetch } = useQuery({
-    queryKey: ['register'],
+  const { refetch, isError: isErrorRegister } = useQuery({
+    queryKey: [
+      `registerSchool-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<InsertJoinRequestMutationVariables>>({
@@ -84,8 +87,10 @@ const SignUpCharity: FC = () => {
     },
   });
 
-  const { refetch: registerAuthorityRefetch } = useQuery({
-    queryKey: ['registerLaRequest'],
+  const { refetch: registerAuthorityRefetch, isError: isErrorLa } = useQuery({
+    queryKey: [
+      `registerLaRequest-${JSON.stringify(formDataForSubmission)}-${selectedLocalAuthority}-charity`,
+    ],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<
@@ -137,8 +142,6 @@ const SignUpCharity: FC = () => {
       fullValue: { registered = true },
     } = formData[1];
     if (!registered) {
-      // eslint-disable-next-line no-console
-      console.log(formData[1]);
       authorityNotRegistered();
     } else {
       setHappyPathTemplate();
@@ -168,6 +171,10 @@ const SignUpCharity: FC = () => {
     }
     formData[1]?.value && setSelectedLocalAuthority(String(formData[1].value));
   }, [pageNumber, formData]);
+
+  if (isErrorRegister || isErrorLa) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>

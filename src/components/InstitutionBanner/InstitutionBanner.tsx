@@ -17,6 +17,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -39,8 +40,8 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   });
   const authToken = useGetAuthToken();
 
-  const { refetch } = useQuery({
-    queryKey: ['saveBanner'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<
@@ -58,6 +59,10 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
       return result;
     },
   });
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
@@ -229,8 +234,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                     theme="formButtonGreen"
                     onClick={() => {
                       toggleEditMode(false);
-                      // eslint-disable-next-line no-console
-                      refetch().catch(console.error);
+                      void refetch();
                     }}
                     ariaLabel="save"
                   />

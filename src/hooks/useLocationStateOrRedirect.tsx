@@ -6,12 +6,12 @@ export interface LocationStateOrRedirect<T> {
   hasState: boolean;
 }
 
-const useLocationStateOrRedirect = <T,>(redirect: string): LocationStateOrRedirect<T> => {
+const useLocationStateOrRedirect = <T,>(redirect?: string): LocationStateOrRedirect<T> => {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (!location?.state) {
+    if (!location?.state && redirect) {
       return navigate(redirect);
     }
   }, [location, navigate, redirect]);

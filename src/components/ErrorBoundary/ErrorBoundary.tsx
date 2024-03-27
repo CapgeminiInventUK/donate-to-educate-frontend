@@ -33,11 +33,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   public render(): ReactNode {
     if (this.state.hasError) {
-      // eslint-disable-next-line no-console
-      console.log(`Boundary Name: ${this.props.name}`);
-
-      // eslint-disable-next-line no-console
-      console.log(this.state.error);
       const message = this.state.error?.message.toLowerCase();
       if (
         message &&
@@ -45,14 +40,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         (message.includes('Unable to preload CSS'.toLowerCase()) ||
           message.includes('Failed to fetch dynamically imported module'.toLowerCase()))
       ) {
-        // eslint-disable-next-line no-console
-        console.log('Reloading due to chunk changes');
         window.location.reload();
         return null;
       }
 
-      // eslint-disable-next-line no-console
-      console.log(this.state.errorInfo);
       return <SomethingWentWrong errorBoundary={this.props?.name ?? 'Router'} />;
     }
 

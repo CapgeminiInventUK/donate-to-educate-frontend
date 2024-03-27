@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
@@ -17,6 +17,8 @@ import styles from './LocalAuthoritySignUp.module.scss';
 import { validateFormInputField } from '@/utils/formUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -31,16 +33,16 @@ const LocalAuthoritySignUp: FC = () => {
   const [formErrors, setFormErrors] = useState<Record<string, string>>();
 
   const navigate = useNavigate();
-  const { la, id } = useLocation().state as { la: string; id: string };
+  const { state } = useLocationStateOrRedirect<{ la: string; id: string }>(Paths.ADMIN_DASHBOARD);
 
-  const { refetch } = useQuery({
-    queryKey: ['register'],
+  const { refetch, isError } = useQuery({
+    queryKey: [`register-${state.la}-${state.id}-${JSON.stringify(formState)}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
-          name: la,
+          name: state.la,
           firstName: formState.firstName,
           lastName: formState.lastName,
           jobTitle: formState.jobTitle,
@@ -48,7 +50,7 @@ const LocalAuthoritySignUp: FC = () => {
           email: formState.email,
           phone: formState.phone,
           notes: formState.notes,
-          nameId: id,
+          nameId: state.id,
         },
       });
       return result;
@@ -74,11 +76,14 @@ const LocalAuthoritySignUp: FC = () => {
 
     setFormErrors(undefined);
 
-    refetch()
-      .then(() => navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: la } }))
-      // eslint-disable-next-line no-console
-      .catch(console.error);
+    void refetch().then(() =>
+      navigate(Paths.ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION, { state: { name: state.la } })
+    );
   };
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={dashboardStyles.container}>
@@ -91,10 +96,7 @@ const LocalAuthoritySignUp: FC = () => {
             text="Sign out"
             className={dashboardStyles.actionButtons}
             onClick={(): void => {
-              void signOut()
-                .then(() => navigate(Paths.SIGN_IN))
-                // eslint-disable-next-line no-console
-                .catch(console.error);
+              void signOut().then(() => navigate(Paths.SIGN_IN));
             }}
             ariaLabel="sign out"
           />
@@ -103,7 +105,7 @@ const LocalAuthoritySignUp: FC = () => {
           <BackButton theme="white" />
           <form onSubmit={onSubmit} className={styles.card}>
             {formErrors && <FormErrors formErrors={formErrors} />}
-            <h1>{la}</h1>
+            <h1>{state.la}</h1>
             <hr />
             <TextInput
               header="First name"

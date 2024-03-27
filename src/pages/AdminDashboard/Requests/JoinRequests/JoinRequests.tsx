@@ -209,6 +209,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
         dataSource={schools}
         columns={schoolColumns}
         scroll={{ x: 'max-content' }}
+        rowKey="id"
       />
 
       <Table
@@ -222,6 +223,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
         dataSource={charities}
         columns={charityColumns}
         scroll={{ x: 'max-content' }}
+        rowKey="id"
       />
     </>
   );

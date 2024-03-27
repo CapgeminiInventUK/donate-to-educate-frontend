@@ -13,18 +13,17 @@ const LocalAuthorityDashboard: FC = () => {
 
   useEffect(() => {
     if (!attributes) {
-      getUserType()
-        .then((attributes) => {
-          setAttributes(attributes);
-        })
-        // eslint-disable-next-line no-console
-        .catch(console.log);
+      void getUserType().then((attributes) => {
+        setAttributes(attributes);
+      });
     }
   });
 
   if (!attributes) {
     return <Spinner />;
   }
+
+  const localAuthority = attributes['custom:institution'];
 
   return (
     <div className={styles.container}>
@@ -33,7 +32,7 @@ const LocalAuthorityDashboard: FC = () => {
         <LogoutButton />
       </div>
       <div className={styles.adminCard}>
-        <h1>West Sussex</h1>
+        <h1>{localAuthority}</h1>
         <div className={styles.body}>
           <h2>Manage your community</h2>
           <hr />
@@ -41,7 +40,7 @@ const LocalAuthorityDashboard: FC = () => {
             className={`${styles.tileDarkBlue} ${styles.tile}`}
             onClick={() =>
               navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
-                state: { localAuthority: attributes['custom:institution'] },
+                state: { localAuthority },
               })
             }
           >
@@ -50,7 +49,11 @@ const LocalAuthorityDashboard: FC = () => {
           </div>
           <div
             className={`${styles.tileLightBlue}  ${styles.tile}`}
-            onClick={() => navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES)}
+            onClick={() =>
+              navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
+                state: { localAuthority },
+              })
+            }
           >
             <h2>Manage your charity and volunteer groups</h2>
             <p>

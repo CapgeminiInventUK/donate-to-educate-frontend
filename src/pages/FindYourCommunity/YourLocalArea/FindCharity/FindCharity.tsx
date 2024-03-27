@@ -15,6 +15,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -24,8 +25,8 @@ const FindCharity: FC = () => {
   );
   const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}`],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
@@ -43,6 +44,10 @@ const FindCharity: FC = () => {
 
   if (isLoading || !hasState) {
     return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
   }
 
   const columns: ColumnsType<InstituteSearchResult> = [
@@ -64,7 +69,7 @@ const FindCharity: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types available',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -83,6 +88,7 @@ const FindCharity: FC = () => {
           dataSource={data?.getCharitiesNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>

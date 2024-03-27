@@ -5,8 +5,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/jest/setupTests.ts'],
   moduleNameMapper: {
     '\\.(css|scss|modules.scss)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
+    '\\.(gif|webp|svg|ttf|woff|woff2)$': '<rootDir>/__mocks__/fileMock.js',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
