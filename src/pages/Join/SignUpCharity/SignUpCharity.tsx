@@ -38,9 +38,9 @@ const SignUpCharity: FC = () => {
   const [localAuthorityOptions, setLocalAuthorityOptions] = useState<DropdownOption[]>([]);
 
   const onChange = (
-    value: string | number | boolean,
+    value: string | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, unknown>
+    fullValue?: Record<string, string | boolean>
   ): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
     const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);

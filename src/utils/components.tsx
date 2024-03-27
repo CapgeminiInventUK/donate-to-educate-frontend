@@ -28,7 +28,7 @@ export const createFormComponent = (
   componentData?: ComponentDataPropsType,
   setPageNumber?: Dispatch<SetStateAction<number>>,
   onChange?: (
-    value: string | number | boolean,
+    value: string | boolean,
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, string | boolean>
   ) => void,

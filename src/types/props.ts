@@ -220,7 +220,7 @@ export interface MultiStepFormProps {
   setHappyPathTemplate?: () => void;
   isLoading?: boolean;
   onChange: (
-    value: string | number | boolean,
+    value: string | boolean,
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, string | boolean>
   ) => void;

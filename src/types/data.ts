@@ -71,7 +71,7 @@ export interface FormMeta {
 
 export interface FormDataItem {
   field: string;
-  value: string | number | boolean;
+  value: string | boolean;
   page?: number;
   section?: FormSections;
   fullValue?: Record<string, string | boolean>;
@@ -119,10 +119,10 @@ export enum ComponentType {
 }
 
 export interface DropdownOption {
-  value: string | number;
+  value: string;
   label: string;
   name?: string;
-  postcode?: string | null;
+  postcode?: string;
   registered?: boolean;
 }
 
