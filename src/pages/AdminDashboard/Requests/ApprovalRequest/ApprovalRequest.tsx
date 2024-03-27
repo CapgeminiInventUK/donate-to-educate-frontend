@@ -45,7 +45,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
         query: updateJoinRequest,
         variables: {
-          id: data?.getSchoolByName?.urn ?? id,
+          id,
           localAuthority: la,
           name: user.name,
           status: myStage === 'approved' ? 'APPROVED' : 'DENIED',
@@ -82,7 +82,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       const result = await client.graphql<GraphQLQuery<DeleteDeniedJoinRequestMutation>>({
         query: deleteDeniedJoinRequest,
         variables: {
-          name: user.name,
+          id,
         },
       });
 
@@ -92,7 +92,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   useEffect(() => {
     if (myStage === 'approved') {
-      void refetch();
+      void refetch().then(() => navigate(0));
     }
     if (myStage === 'denied') {
       void deleteProfile().then(() => navigate(Paths.DELETE_CONFIRMATION));

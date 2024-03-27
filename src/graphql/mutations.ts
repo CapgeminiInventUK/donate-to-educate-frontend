@@ -161,8 +161,8 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
 }
 ` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
 export const deleteDeniedJoinRequest =
-  /* GraphQL */ `mutation DeleteDeniedJoinRequest($name: String!) {
-  deleteDeniedJoinRequest(name: $name)
+  /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
+  deleteDeniedJoinRequest(id: $id)
 }
 ` as GeneratedMutation<
     APITypes.DeleteDeniedJoinRequestMutationVariables,

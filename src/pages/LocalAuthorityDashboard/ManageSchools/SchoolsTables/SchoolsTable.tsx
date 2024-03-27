@@ -39,7 +39,7 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
       title: 'Action',
       render: (
         _: string,
-        { status, name, urn, joinRequestName, phone, email, jobTitle }: SchoolTableData
+        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
@@ -72,12 +72,12 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
             text="View request"
             onClick={(): void => {
               // eslint-disable-next-line no-console
-              console.log(urn);
+              console.log(id);
               setSchoolProperties &&
                 setSchoolProperties((schoolProperties) => ({
                   ...schoolProperties,
                   name,
-                  id: String(urn),
+                  id: String(id),
                   user: {
                     name: joinRequestName ?? '',
                     title: jobTitle ?? '',

@@ -313,7 +313,7 @@ export type InsertItemQueryMutation = {
 };
 
 export type DeleteDeniedJoinRequestMutationVariables = {
-  name: string;
+  id: string;
 };
 
 export type DeleteDeniedJoinRequestMutation = {

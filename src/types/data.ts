@@ -162,6 +162,7 @@ export interface RequestFormState {
 export interface SchoolTableData {
   name: string;
   status: string;
+  id?: string;
   urn?: string;
   joinRequestName?: string;
   jobTitle?: string | null;
