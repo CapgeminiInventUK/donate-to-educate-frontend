@@ -98,7 +98,7 @@ const Excess: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Excess stock product types',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -129,7 +129,7 @@ const Excess: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Excess stock product types',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (

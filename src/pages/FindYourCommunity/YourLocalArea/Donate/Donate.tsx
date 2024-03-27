@@ -99,7 +99,7 @@ const Donate: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types needed',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
@@ -130,7 +130,7 @@ const Donate: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types needed',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (

@@ -73,7 +73,7 @@ const FindSchool: FC = () => {
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
     },
     {
-      title: 'Product Types Available',
+      title: 'Product types available',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => (
