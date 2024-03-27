@@ -14,4 +14,26 @@
     border-radius: 10px;
     color: g.$primary-dark-blue;
   }
+
+  .verificationCode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      width: 95px;
+      height: 95px;
+    }
+
+    .codeContainer {
+      margin: 40px 0;
+
+      .character {
+        border-radius: 10px;
+        border: solid 3px g.$primary-dark-blue;
+        color: g.$primary-dark-blue;
+      }
+    }
+  }
 }
