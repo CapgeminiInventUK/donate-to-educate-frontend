@@ -33,11 +33,7 @@ const ManageSchools: FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (stage === StageState.REMOVE) {
-      setShowModal(true);
-    } else {
-      setShowModal(false);
-    }
+    setShowModal(stage === StageState.REMOVE);
   }, [stage]);
 
   const { refetch: removeSchool } = useQuery({
@@ -57,12 +53,7 @@ const ManageSchools: FC = () => {
   });
 
   useEffect(() => {
-    if (stage === StageState.REMOVED) {
-      removeSchool()
-        .then(() => navigate(0))
-        // eslint-disable-next-line no-console
-        .catch(console.error);
-    }
+    stage === StageState.REMOVED && void removeSchool().then(() => navigate(0));
   }, [stage, removeSchool, navigate]);
 
   return (

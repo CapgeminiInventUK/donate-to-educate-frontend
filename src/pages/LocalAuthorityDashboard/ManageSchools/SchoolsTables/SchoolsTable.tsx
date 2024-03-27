@@ -71,8 +71,6 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
             className={styles.actionButtons}
             text="View request"
             onClick={(): void => {
-              // eslint-disable-next-line no-console
-              console.log(id);
               setSchoolProperties &&
                 setSchoolProperties((schoolProperties) => ({
                   ...schoolProperties,

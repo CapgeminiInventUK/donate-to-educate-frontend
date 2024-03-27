@@ -329,7 +329,6 @@ export interface SchoolsTablesProps {
   setStage: Dispatch<SetStateAction<StageState>>;
   schoolProperties?: SchoolOrCharityProperties;
   setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
-  // Todo Schools stage type
   stage: StageState;
 }
 
