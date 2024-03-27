@@ -12,6 +12,7 @@
   .link {
     display: flex;
     padding: 0 12px;
+    min-height: 76px;
     align-items: center;
     font-weight: 700;
     font-size: 16px;
@@ -104,6 +105,7 @@
       color: white;
       border-bottom: none;
       min-width: 210px;
+      min-height: fit-content;
 
       .chevronContainer {
         display: flex;
