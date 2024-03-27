@@ -220,6 +220,7 @@ const ManageLocalAuthorities: FC = () => {
                   dataSource={data?.getLocalAuthorities}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
+                  rowKey="code"
                 />
               </div>
             </div>

@@ -149,6 +149,7 @@ const Excess: FC = () => {
           dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <h3>Charities</h3>
@@ -156,6 +157,7 @@ const Excess: FC = () => {
           dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>

@@ -92,6 +92,7 @@ const FindSchool: FC = () => {
           dataSource={data?.getSchoolsNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <span

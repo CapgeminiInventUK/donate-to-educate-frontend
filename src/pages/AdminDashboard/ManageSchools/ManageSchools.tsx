@@ -192,6 +192,7 @@ const ManageSchools: FC = () => {
                   dataSource={data?.getRegisteredSchools ?? []}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
+                  rowKey="urn"
                 />
               </div>
             </div>

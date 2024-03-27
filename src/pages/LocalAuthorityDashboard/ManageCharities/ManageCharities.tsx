@@ -53,7 +53,7 @@ const ManageCharities: FC = () => {
               <div>3 requests to join</div>
               <div>5 joined</div>
             </div>
-            <Table dataSource={[]} columns={columns} scroll={{ x: 'max-content' }} />
+            <Table dataSource={[]} columns={columns} scroll={{ x: 'max-content' }} rowKey="id" />
           </div>
         </div>
       </div>

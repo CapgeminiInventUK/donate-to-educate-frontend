@@ -88,6 +88,7 @@ const FindCharity: FC = () => {
           dataSource={data?.getCharitiesNearbyWithProfile ?? []}
           columns={columns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>

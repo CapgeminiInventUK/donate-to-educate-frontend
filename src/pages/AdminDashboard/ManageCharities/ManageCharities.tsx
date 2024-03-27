@@ -190,6 +190,7 @@ const ManageCharities: FC = () => {
                   dataSource={data?.getCharities ?? []}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
+                  rowKey="id"
                 />
               </div>
             </div>

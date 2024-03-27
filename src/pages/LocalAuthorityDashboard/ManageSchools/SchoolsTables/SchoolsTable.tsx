@@ -79,7 +79,7 @@ const SchoolsTable: FC<SchoolsTableProps> = ({ data, setStage, setSchoolProperti
   ];
   return (
     <>
-      <Table dataSource={data} columns={columns} scroll={{ x: 'max-content' }} />
+      <Table dataSource={data} columns={columns} scroll={{ x: 'max-content' }} rowKey="urn" />
     </>
   );
 };

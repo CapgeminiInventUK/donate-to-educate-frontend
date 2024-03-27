@@ -85,6 +85,7 @@ const Donate: FC = () => {
       dataIndex: 'name',
       render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
+          key={id}
           theme="link-blue"
           text={text}
           ariaLabel={`name-${text}`}
@@ -149,6 +150,7 @@ const Donate: FC = () => {
           dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
 
         <h3>Charities</h3>
@@ -156,6 +158,7 @@ const Donate: FC = () => {
           dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
+          rowKey="id"
         />
       </div>
     </div>
