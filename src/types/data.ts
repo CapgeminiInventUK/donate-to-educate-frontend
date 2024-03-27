@@ -74,7 +74,7 @@ export interface FormDataItem {
   value: string | number | boolean;
   page?: number;
   section?: FormSections;
-  fullValue?: Record<string, unknown>;
+  fullValue?: Record<string, string | boolean>;
 }
 
 export enum FormSections {
@@ -147,6 +147,7 @@ export interface SubmittedFormData {
   charityAddress?: string | null;
   aboutCharity?: string | null;
   message?: string;
+  urn?: string;
 }
 
 export interface RequestFormState {
@@ -169,3 +170,26 @@ export interface SchoolTableData {
 }
 
 export type myStageType = 'deciding' | 'approved' | 'denied';
+
+export enum StageState {
+  VIEW = 'view_requests',
+  REMOVE = 'remove_school',
+  APPROVE_SCHOOL = 'request_approval_school',
+  APPROVE_CHARITY = 'request_approval_charity',
+  REMOVED = 'removed',
+}
+
+export interface SchoolOrCharityProperties {
+  id: string;
+  name: string;
+  la: string;
+  user: RequestUser;
+  charity?: { mainAddress: string; about: string };
+}
+
+export interface RequestUser {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
+}

@@ -8,7 +8,12 @@ import Spinner from '@/components/Spinner/Spinner';
 import SchoolsTable from './SchoolsTable';
 import { SchoolsTablesProps } from '@/types/props';
 
-const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsNumber }) => {
+const RegisteredSchools: FC<SchoolsTablesProps> = ({
+  localAuthority,
+  setSchoolsNumber,
+  setStage,
+  setSchoolProperties,
+}) => {
   const { data, isLoading } = useQuery({
     queryKey: ['school-registered'],
     queryFn: async () => {
@@ -38,6 +43,12 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({ localAuthority, setSchoolsN
     };
   });
 
-  return <SchoolsTable data={registeredSchoolData ?? []} />;
+  return (
+    <SchoolsTable
+      data={registeredSchoolData ?? []}
+      setStage={setStage}
+      setSchoolProperties={setSchoolProperties}
+    />
+  );
 };
 export default RegisteredSchools;

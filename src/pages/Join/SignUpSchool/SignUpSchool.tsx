@@ -79,6 +79,7 @@ const SignUpSchool: FC = () => {
           charityName: formDataForSubmission?.charityName,
           charityAddress: formDataForSubmission?.charityAddress,
           aboutCharity: formDataForSubmission?.aboutCharity,
+          urn: formDataForSubmission?.urn,
         },
       });
       return result;
@@ -123,7 +124,7 @@ const SignUpSchool: FC = () => {
   const onChange = (
     value: string | number | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, unknown>
+    fullValue?: Record<string, string | boolean>
   ): void => {
     const { page = 0, field = '', section } = formMeta ?? {};
     const removeOldValue = formData.filter(({ field: oldField }) => oldField !== field);
@@ -173,7 +174,13 @@ const SignUpSchool: FC = () => {
     if (pageNumber === 4) {
       const refinedData = getSchoolCyaData(formData);
       refinedData &&
-        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.SCHOOL));
+        setFormDataForSubmission(
+          getFormDataForSubmission(
+            refinedData,
+            FormNames.SCHOOL,
+            String(formData[0].fullValue.value)
+          )
+        );
     }
 
     if (isUnhappyPath && pageNumber === 2) {

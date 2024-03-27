@@ -199,6 +199,7 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     charityName
     charityAddress
     aboutCharity
+    urn
     __typename
   }
 }
@@ -378,6 +379,7 @@ export const getSchoolJoinRequestsByLa =
     charityName
     charityAddress
     aboutCharity
+    urn
     __typename
   }
 }

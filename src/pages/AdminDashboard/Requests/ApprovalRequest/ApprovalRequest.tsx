@@ -22,7 +22,7 @@ import { getSchoolByName } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
-import { myStageType } from '@/types/data';
+import { StageState, myStageType } from '@/types/data';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -37,24 +37,6 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   const [showModal, setShowModal] = useState(false);
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
-  const { refetch } = useQuery({
-    queryKey: ['saveProfile'],
-    enabled: false,
-    queryFn: async () => {
-      const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
-        query: updateJoinRequest,
-        variables: {
-          id,
-          localAuthority: la,
-          name: user.name,
-          status: myStage === 'approved' ? 'APPROVED' : 'DENIED',
-        },
-      });
-
-      return result;
-    },
-  });
-
   const { isLoading, data } = useQuery({
     queryKey: [`school-details-${name}`],
     enabled: type === 'school',
@@ -67,6 +49,24 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       });
 
       return data;
+    },
+  });
+
+  const { refetch } = useQuery({
+    queryKey: ['saveProfile'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<UpdateJoinRequestMutation>>({
+        query: updateJoinRequest,
+        variables: {
+          id: data?.getSchoolByName?.urn ?? id,
+          localAuthority: la,
+          name: user.name,
+          status: myStage === 'approved' ? 'APPROVED' : 'DENIED',
+        },
+      });
+
+      return result;
     },
   });
 
@@ -104,7 +104,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
 
   return (
     <>
-      <BackButton onClick={(): void => setStage('view_requests')} theme="blue" />
+      <BackButton onClick={(): void => setStage(StageState.VIEW)} theme="blue" />
       <div className={styles.card}>
         <>
           <Pill
