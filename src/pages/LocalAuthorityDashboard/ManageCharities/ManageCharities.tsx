@@ -4,9 +4,14 @@ import { Table } from 'antd';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import Paths from '@/config/paths';
 
-// Need to make this a protected route only for logged in users of type la.
 const ManageCharities: FC = () => {
+  const {
+    state: { localAuthority },
+  } = useLocationStateOrRedirect<{ localAuthority: string }>(Paths.LOCAL_AUTHORITY_DASHBOARD);
+
   const columns = [
     {
       title: 'Charity',
@@ -40,7 +45,7 @@ const ManageCharities: FC = () => {
         <LogoutButton />
       </div>
       <div className={styles.adminCard}>
-        <h1>West Sussex</h1>
+        <h1>{localAuthority}</h1>
         <div className={styles.body}>
           <div className={styles.card}>
             <h2>Charity and volunteer groups in your area</h2>

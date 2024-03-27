@@ -32,7 +32,7 @@ const ManageSchools: FC = () => {
             <LogoutButton />
           </div>
           <div className={styles.adminCard}>
-            <h1>West Sussex</h1>
+            <h1>{localAuthority}</h1>
             <div className={styles.body}>
               <div className={styles.card}>
                 <h2>Schools in your area</h2>
