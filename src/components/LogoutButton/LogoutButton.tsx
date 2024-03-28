@@ -1,21 +1,19 @@
 import { FC } from 'react';
 import styles from './LogoutButton.module.scss';
-import { useNavigate } from 'react-router';
-import Paths from '@/config/paths';
-import { signOut } from 'aws-amplify/auth';
+import { useStore } from '@/stores/useStore';
 
 interface LogoutButtonProps {
   className?: string;
 }
 
 const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
-  const navigate = useNavigate();
+  const state = useStore((state) => state);
 
   return (
     <button
       className={`${styles.back} ${className ?? ''}`}
       onClick={(): void => {
-        void signOut().then(() => navigate(Paths.SIGN_IN));
+        void state.logout();
       }}
       type="button"
     >

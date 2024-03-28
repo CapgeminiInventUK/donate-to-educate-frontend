@@ -18,11 +18,11 @@ import TextInput from '@/components/TextInput/TextInput';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { updateCharityProfile } from '@/graphql/mutations';
-import useGetAuthToken from '@/hooks/useGetAuthToken';
 import { UpdateCharityProfileMutation } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { useStore } from '@/stores/useStore';
 
 const CharityView: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -31,7 +31,7 @@ const CharityView: FC = () => {
   const [edit, setEdit] = useState(false);
   const [postcode, setPostcode] = useState<string>(state.postcode);
   const navigate = useNavigate();
-  const authToken = useGetAuthToken();
+  const authToken = useStore((state) => state.user?.token);
 
   const { refetch, isError } = useQuery({
     queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],

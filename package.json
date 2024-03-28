@@ -40,7 +40,8 @@
     "react-verification-input": "^4.1.0",
     "validator": "^13.11.0",
     "vite-plugin-node-polyfills": "^0.21.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",

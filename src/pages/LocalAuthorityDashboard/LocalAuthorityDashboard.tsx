@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-import { Attributes, getUserType } from '@/hooks/useCheckCurrentUser';
 import Spinner from '@/components/Spinner/Spinner';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import Checkbox from '@/components/Checkbox/Checkbox';
@@ -17,21 +16,15 @@ import { acceptPrivacyPolicy } from '@/graphql/mutations';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getLaStats } from '@/graphql/queries';
 import { Pill } from '@/components/Pill/Pill';
+import { useStore } from '@/stores/useStore';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
   const [hidePrivacyPolicy, setHidePrivacyPolicy] = useState(false);
   const navigate = useNavigate();
-  const [attributes, setAttributes] = useState<Attributes>();
+  const user = useStore((state) => state.user);
 
-  useEffect(() => {
-    if (!attributes) {
-      void getUserType().then((attributes) => {
-        setAttributes(attributes);
-      });
-    }
-  });
-  const { email, 'custom:institution': name, 'custom:institutionId': nameId } = attributes ?? {};
+  const { email, name, id: nameId } = user ?? {};
 
   const {
     data,
@@ -39,7 +32,7 @@ const LocalAuthorityDashboard: FC = () => {
     isError: isErrorQuery,
   } = useQuery({
     queryKey: [`getLaStats-${name}-${nameId}-${email}}`],
-    enabled: attributes !== undefined,
+    enabled: user !== undefined,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetLaStatsQuery>>({
         query: getLaStats,
@@ -73,15 +66,13 @@ const LocalAuthorityDashboard: FC = () => {
     setHidePrivacyPolicy(data?.getLaStats?.privacyPolicyAccepted ?? false);
   }, [data?.getLaStats?.privacyPolicyAccepted]);
 
-  if (!attributes || isLoading) {
+  if (isLoading) {
     return <Spinner />;
   }
 
   if (isError || isErrorQuery) {
     return <ErrorBanner />;
   }
-
-  const localAuthority = attributes['custom:institution'];
 
   if (!hidePrivacyPolicy) {
     return (
@@ -131,7 +122,7 @@ const LocalAuthorityDashboard: FC = () => {
         <LogoutButton />
       </div>
       <div className={styles.adminCard}>
-        <h1>{localAuthority}</h1>
+        <h1>{name}</h1>
         <div className={styles.body}>
           <h2>Manage your community</h2>
           <hr />
@@ -139,7 +130,7 @@ const LocalAuthorityDashboard: FC = () => {
             className={`${styles.tileDarkBlue} ${styles.tile}`}
             onClick={() =>
               navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
-                state: { localAuthority },
+                state: { localAuthority: name },
               })
             }
           >
@@ -151,7 +142,7 @@ const LocalAuthorityDashboard: FC = () => {
             className={`${styles.tileLightBlue}  ${styles.tile}`}
             onClick={() =>
               navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
-                state: { localAuthority },
+                state: { localAuthority: name },
               })
             }
           >

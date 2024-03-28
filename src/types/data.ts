@@ -194,3 +194,11 @@ export interface RequestUser {
   email: string;
   phone: string;
 }
+
+export interface CustomAttributes {
+  'custom:type': string;
+  'custom:institution': string;
+  'custom:institutionId': string;
+}
+
+export type AccountType = 'admin' | 'charity' | 'school' | 'localAuthority';

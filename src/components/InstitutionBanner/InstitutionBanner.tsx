@@ -16,10 +16,10 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
-import useGetAuthToken from '@/hooks/useGetAuthToken';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
+import { useStore } from '@/stores/useStore';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -39,7 +39,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     uniformPolicy,
     address,
   });
-  const authToken = useGetAuthToken();
+  const authToken = useStore((state) => state.user?.token);
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],

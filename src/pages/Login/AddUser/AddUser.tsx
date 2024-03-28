@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { signUp, confirmSignUp, signOut } from 'aws-amplify/auth';
+import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
 import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
@@ -14,6 +14,7 @@ import { GetSignUpDataQuery } from '@/types/api';
 import { getSignUpData } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
+import { useStore } from '@/stores/useStore';
 
 interface SignUpParameters {
   password: string;
@@ -62,6 +63,7 @@ async function handleSignUp({
 }
 
 const NewUser: FC = () => {
+  const state = useStore((state) => state);
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -117,7 +119,7 @@ const NewUser: FC = () => {
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-    void signOut().then(() => navigate(Paths.SIGN_IN));
+    void state.logout().then(() => navigate(Paths.SIGN_IN));
     return <Spinner />;
   }
 
