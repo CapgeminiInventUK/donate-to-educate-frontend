@@ -98,6 +98,7 @@ const LocalAuthorityDashboard: FC = () => {
             <Link target="__blank" to={Paths.PRIVACY_POLICY}>
               privacy policy (opens in new tab)
             </Link>
+            .
           </p>
 
           <Checkbox

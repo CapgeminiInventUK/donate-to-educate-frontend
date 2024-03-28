@@ -11,9 +11,9 @@ const getDeclarationPageTemplate = (): FormTemplate => {
       <>
         Before you join Donate to Education, you must read our{' '}
         <Link target="__blank" to={Paths.PRIVACY_POLICY}>
-          privacy policy (opens in new tab
+          privacy policy (opens in new tab)
         </Link>
-        )
+        .
       </>
     ),
     isDeclarationPage: true,

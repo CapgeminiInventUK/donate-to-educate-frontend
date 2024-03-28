@@ -15,10 +15,10 @@ const getAuthorityNotRegisteredPath = (
 
   const authorityNotRegisteredPath = [
     {
-      header: 'Your local authority has not signed up to Donate to Educate',
-      infoText: 'Not all local authorities have joined Donate to Educate yet.',
+      header: 'Sorry, you cannot join Donate to Educate just yet',
+      infoText: 'You will be able to join when your local authority joins Donate to Educate.',
       infoTextTwo:
-        'If you would like to tell us your details, we can look into this and get back to you.',
+        'Complete our contact form with your details, and we will encourage your local authority to join.',
       formComponents: [
         {
           componentType: ComponentType.TEXT,

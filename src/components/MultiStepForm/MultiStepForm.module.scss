@@ -50,7 +50,7 @@
     }
 
     a {
-      color: g.$link-blue;
+      color: g.$secondary-mid-blue;
     }
   }
 
@@ -82,15 +82,17 @@
 
   .link {
     margin-top: 40px;
+    color: g.$secondary-mid-blue;
 
     button {
-      color: g.$primary-dark-blue;
       padding: 0;
+      font-weight: 400;
     }
   }
 
   .checkbox {
     margin-bottom: 20px;
+    font-size: 18px;
 
     &:last-of-type {
       margin-bottom: 40px;
@@ -110,7 +112,7 @@
     align-items: center;
 
     button {
-      color: g.$primary-dark-blue;
+      color: g.$secondary-mid-blue;
       padding: 0;
       margin-bottom: 40px;
     }
