@@ -18,6 +18,8 @@ import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/typ
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import useGetAuthToken from '@/hooks/useGetAuthToken';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import CancelButton from '../CancelButton/CancelButton';
+import { Link } from 'react-router-dom';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -28,7 +30,6 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   address,
   type,
   name,
-  onClick,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const [banner, setBanner] = useState({
@@ -83,9 +84,15 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   <Telephone />
                 </span>
                 {!isEditMode ? (
-                  <p className={styles.italicized}>
-                    {banner.phone ?? "You haven't added your phone number"}
-                  </p>
+                  <>
+                    {banner.phone ? (
+                      <Link to={`tel: ${banner.phone}`} className={styles.italicized}>
+                        {banner.phone}
+                      </Link>
+                    ) : (
+                      <p className={styles.italicized}>{"You haven't added your phone number"}</p>
+                    )}
+                  </>
                 ) : (
                   <TextInput
                     onChange={(value) => {
@@ -106,9 +113,15 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   <Email />
                 </span>
                 {!isEditMode ? (
-                  <p className={styles.italicized}>
-                    {banner.email ?? "You haven't added your email"}
-                  </p>
+                  <>
+                    {banner.email ? (
+                      <Link to={`mailto: ${banner.email}`} className={styles.italicized}>
+                        {banner.email}
+                      </Link>
+                    ) : (
+                      <p className={styles.italicized}>{"You haven't added your email"}</p>
+                    )}
+                  </>
                 ) : (
                   <TextInput
                     onChange={(value) => {
@@ -129,9 +142,20 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   <Globe />
                 </span>
                 {!isEditMode ? (
-                  <p className={styles.italicized}>
-                    {banner.website ?? "You haven't added your website"}
-                  </p>
+                  <>
+                    {banner.website ? (
+                      <Link
+                        to={banner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.italicized}
+                      >
+                        {banner.website}
+                      </Link>
+                    ) : (
+                      <p className={styles.italicized}>{"You haven't added your website"}</p>
+                    )}
+                  </>
                 ) : (
                   <TextInput
                     onChange={(value) => {
@@ -150,23 +174,22 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
 
           <ul>
             <li>
-              {uniformPolicy && type === 'school' && !isAdminView && (
+              {banner.uniformPolicy && type === 'school' && !isAdminView && (
                 <>
                   <span>
                     <SchoolHat />
                   </span>
-                  <Button
-                    theme="light"
+                  <Link
                     className={styles.uniformPolicyButton}
-                    text={
-                      <div>
-                        <span className={styles.buttonLabel}>View uniform policy</span>
-                        <InterfaceArrowTopRight className={styles.interfaceArrow} />
-                      </div>
-                    }
-                    ariaLabel="uniform policy"
-                    onClick={() => (onClick ? onClick() : undefined)}
-                  />
+                    to={banner.uniformPolicy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div>
+                      <span className={styles.buttonLabel}>View uniform policy</span>
+                      <InterfaceArrowTopRight className={styles.interfaceArrow} />
+                    </div>
+                  </Link>
                 </>
               )}
               {type === 'school' && isAdminView && (
@@ -229,15 +252,21 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                     ariaLabel="edit"
                   />
                 ) : (
-                  <FormButton
-                    text="Save"
-                    theme="formButtonGreen"
-                    onClick={() => {
-                      toggleEditMode(false);
-                      void refetch();
-                    }}
-                    ariaLabel="save"
-                  />
+                  <>
+                    <div className={styles.footerButtons}>
+                      <Button
+                        theme="darkBlue"
+                        className={styles.saveButton}
+                        onClick={() => {
+                          toggleEditMode(false);
+                          void refetch();
+                        }}
+                        text="Save"
+                        ariaLabel="save"
+                      />
+                      <CancelButton onClick={() => toggleEditMode(false)} theme={'white'} />
+                    </div>
+                  </>
                 )}
               </li>
             )}

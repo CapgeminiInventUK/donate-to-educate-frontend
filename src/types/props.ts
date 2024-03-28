@@ -281,7 +281,6 @@ export interface InstitutionBannerProps {
   email?: string;
   website?: string;
   uniformPolicy?: string;
-  onClick?: () => void;
   type: 'school' | 'charity';
   address?: string;
   name?: string;

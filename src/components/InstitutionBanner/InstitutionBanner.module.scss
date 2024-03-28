@@ -58,13 +58,35 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-    height: 30px;
+    background-color: g.$primary-white;
+    border: g.$primary-white 2px solid;
+    padding: 5px 12px 5px 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
   }
 
   .editDiv {
     display: inline-flex;
+  }
+
+  .saveButton {
+    display: flex;
+    height: 2.8125rem;
+    padding: 1.25rem;
+    align-items: center;
+    border-radius: 0.125rem;
+    box-shadow: g.$box-shadow-black;
+    background: g.$form-button-green-background;
+    font-size: 1.5rem;
+  }
+
+  .footerButtons {
+    display: flex;
+    width: 50rem;
+    align-items: center;
+    gap: 1.875rem;
   }
 
   .editButton {
