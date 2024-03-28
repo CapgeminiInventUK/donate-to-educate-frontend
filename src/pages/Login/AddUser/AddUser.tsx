@@ -63,8 +63,6 @@ async function handleSignUp({
 }
 
 const NewUser: FC = () => {
-  const state = useStore((state) => state);
-  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -73,6 +71,7 @@ const NewUser: FC = () => {
   const [submitCode, setSubmitCode] = useState(false);
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
+  const navigate = useNavigate();
 
   const { isLoading, data, isError } = useQuery({
     queryKey: [`sign-up-${id}`],
@@ -119,7 +118,11 @@ const NewUser: FC = () => {
   if (step === 'DONE') {
     // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-    void state.logout().then(() => navigate(Paths.SIGN_IN));
+
+    void useStore
+      .getState()
+      .logout()
+      .then(() => navigate(Paths.SIGN_IN));
     return <Spinner />;
   }
 
