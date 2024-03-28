@@ -3,7 +3,7 @@ import styles from './ApprovalRequest.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import Phone from '@/assets/admin/Phone';
 import ToolTip from '@/assets/admin/ToolTip';
-import DeclineModal from './DeclineModal/DeclineModal';
+import DeclineDeleteModal from '../DeclineDeleteModal/DeclineDeleteModal';
 import ResultBanner from './ResultBanner/ResultBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import { Pill } from '@/components/Pill/Pill';
@@ -188,10 +188,13 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
                   />
                 </div>
               </div>
-              <DeclineModal
+              <DeclineDeleteModal
                 setShowModal={setShowModal}
                 showModal={showModal}
-                doSomething={() => setMyStage('denied')}
+                onConfirm={() => setMyStage('denied')}
+                bodyText=" If you cannot identify this connection or confirm they are connected to the school, you
+                may decline them."
+                confirmText="Decline request"
               />
             </>
           )}
@@ -265,10 +268,13 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
                   />
                 </div>
               </div>
-              <DeclineModal
+              <DeclineDeleteModal
                 setShowModal={setShowModal}
                 showModal={showModal}
-                doSomething={() => setMyStage('denied')}
+                onConfirm={() => setMyStage('denied')}
+                bodyText=" If you cannot identify this connection or confirm they are connected to the school, you
+                may decline them."
+                confirmText="Decline request"
               />
             </>
           )}

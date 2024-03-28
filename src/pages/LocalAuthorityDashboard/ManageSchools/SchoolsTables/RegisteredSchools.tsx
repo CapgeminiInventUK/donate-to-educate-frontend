@@ -52,7 +52,7 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({
     <SchoolsTable
       data={registeredSchoolData ?? []}
       setStage={setStage}
-      setSchoolProperties={setSchoolProperties}
+      setProperties={setSchoolProperties}
     />
   );
 };

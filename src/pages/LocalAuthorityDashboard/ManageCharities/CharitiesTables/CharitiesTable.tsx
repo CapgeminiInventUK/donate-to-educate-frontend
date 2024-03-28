@@ -1,27 +1,26 @@
 import { FC } from 'react';
 import { Table } from 'antd';
 import Button from '@/components/Button/Button';
-import styles from '../ManageSchools.module.scss';
+import styles from '../ManageCharities.module.scss';
+import { SchoolsOrCharityTableProps } from '@/types/props';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { StageState, SchoolOrCharityTableData } from '@/types/data';
+import { SchoolOrCharityTableData, StageState } from '@/types/data';
 import { Pill } from '@/components/Pill/Pill';
-import { SchoolsOrCharityTableProps } from '@/types/props';
-
-const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
+const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
   const columns = [
     {
-      title: 'School',
+      title: 'Charity',
       dataIndex: 'name',
       key: 'name',
-      render: (text: string, { urn, name, status }: SchoolOrCharityTableData): JSX.Element => {
+      render: (text: string, { id, name, status }: SchoolOrCharityTableData): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <Button
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
-            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
+            onClick={() => navigate(Paths.CHARITY_DASHBOARD, { state: { id, name } })}
           />
         ) : (
           <>{text}</>
@@ -39,7 +38,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       title: 'Action',
       render: (
         _: string,
-        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolTableData
+        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
@@ -91,11 +90,6 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       },
     },
   ];
-
-  return (
-    <>
-      <Table dataSource={data} columns={columns} scroll={{ x: 'max-content' }} rowKey="urn" />
-    </>
-  );
+  return <Table dataSource={data} columns={columns} scroll={{ x: 'max-content' }} rowKey="id" />;
 };
-export default SchoolsTable;
+export default CharitiesTable;

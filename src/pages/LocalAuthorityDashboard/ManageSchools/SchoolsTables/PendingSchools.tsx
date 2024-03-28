@@ -58,7 +58,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
     <SchoolsTable
       data={pendingSchoolsData ?? []}
       setStage={setStage}
-      setSchoolProperties={setSchoolProperties}
+      setProperties={setSchoolProperties}
     />
   );
 };

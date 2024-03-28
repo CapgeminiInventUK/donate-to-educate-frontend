@@ -159,7 +159,7 @@ export interface RequestFormState {
   connection?: string;
 }
 
-export interface SchoolTableData {
+export interface SchoolOrCharityTableData {
   name: string;
   status: string;
   id?: string;

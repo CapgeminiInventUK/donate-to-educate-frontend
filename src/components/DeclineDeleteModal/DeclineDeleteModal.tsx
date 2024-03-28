@@ -1,14 +1,15 @@
 import FormButton from '@/components/FormButton/FormButton';
 import { FC } from 'react';
-import styles from './DeleteModal.module.scss';
+import styles from './DeclineDeleteModal.module.scss';
+import { DeclineDeleteModalProps } from '@/types/props';
 
-interface DeleteModalProps {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  showModal: boolean;
-  onConfirm: () => void;
-}
-
-const DeleteModal: FC<DeleteModalProps> = ({ showModal, setShowModal, onConfirm }) => {
+const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
+  showModal,
+  setShowModal,
+  onConfirm,
+  bodyText,
+  confirmText,
+}) => {
   if (!showModal) {
     return null;
   }
@@ -17,10 +18,7 @@ const DeleteModal: FC<DeleteModalProps> = ({ showModal, setShowModal, onConfirm 
     <div className={styles.modal}>
       <div className={styles.card}>
         <h2>Are you sure?</h2>
-        <p>
-          This will remove the school&aposs profile and information. They will need to resubmit an
-          application to rejoin Donate to Educate.
-        </p>
+        <p>{bodyText}</p>
         <div className={styles.actionButtons}>
           <FormButton
             theme={'formButtonGrey'}
@@ -34,8 +32,8 @@ const DeleteModal: FC<DeleteModalProps> = ({ showModal, setShowModal, onConfirm 
               setShowModal(false);
               onConfirm();
             }}
-            ariaLabel="decline"
-            text={'Remove connection'}
+            ariaLabel={confirmText}
+            text={confirmText}
           />
         </div>
       </div>
@@ -43,4 +41,4 @@ const DeleteModal: FC<DeleteModalProps> = ({ showModal, setShowModal, onConfirm 
   );
 };
 
-export default DeleteModal;
+export default DeclineDeleteModal;
