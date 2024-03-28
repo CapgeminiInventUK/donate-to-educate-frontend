@@ -118,6 +118,7 @@ export type LocalAuthorityUser = {
   phone: string;
   notes?: string | null;
   nameId: string;
+  privacyPolicyAccepted?: boolean | null;
 };
 
 export type SignUpData = {
@@ -147,6 +148,13 @@ export type JoinRequestStats = {
   __typename: 'JoinRequestStats';
   school: number;
   charity: number;
+};
+
+export type LaStats = {
+  __typename: 'LaStats';
+  schoolRequests: number;
+  charityRequests: number;
+  privacyPolicyAccepted: boolean;
 };
 
 export enum Type {
@@ -327,6 +335,16 @@ export type DeleteSchoolProfileMutationVariables = {
 
 export type DeleteSchoolProfileMutation = {
   deleteSchoolProfile?: boolean | null;
+};
+
+export type AcceptPrivacyPolicyMutationVariables = {
+  name: string;
+  nameId: string;
+  email: string;
+};
+
+export type AcceptPrivacyPolicyMutation = {
+  acceptPrivacyPolicy: boolean;
 };
 
 export type GetSchoolByNameQueryVariables = {
@@ -644,6 +662,7 @@ export type GetLocalAuthorityUserQuery = {
     phone: string;
     notes?: string | null;
     nameId: string;
+    privacyPolicyAccepted?: boolean | null;
   };
 };
 
@@ -761,6 +780,21 @@ export type GetAdminTileStatsQuery = {
     };
     registeredSchools: number;
     registeredCharities: number;
+  };
+};
+
+export type GetLaStatsQueryVariables = {
+  name: string;
+  nameId: string;
+  email: string;
+};
+
+export type GetLaStatsQuery = {
+  getLaStats: {
+    __typename: 'LaStats';
+    schoolRequests: number;
+    charityRequests: number;
+    privacyPolicyAccepted: boolean;
   };
 };
 

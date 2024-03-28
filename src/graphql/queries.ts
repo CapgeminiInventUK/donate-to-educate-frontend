@@ -295,6 +295,7 @@ export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser(
     phone
     notes
     nameId
+    privacyPolicyAccepted
     __typename
   }
 }
@@ -405,6 +406,16 @@ export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
   }
 }
 ` as GeneratedQuery<APITypes.GetAdminTileStatsQueryVariables, APITypes.GetAdminTileStatsQuery>;
+export const getLaStats =
+  /* GraphQL */ `query GetLaStats($name: String!, $nameId: String!, $email: String!) {
+  getLaStats(name: $name, nameId: $nameId, email: $email) {
+    schoolRequests
+    charityRequests
+    privacyPolicyAccepted
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetLaStatsQueryVariables, APITypes.GetLaStatsQuery>;
 export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearbyWithProfile(
   $postcode: String!
   $distance: Float!

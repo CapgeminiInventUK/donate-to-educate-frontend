@@ -176,3 +176,14 @@ export const deleteSchoolProfile =
     APITypes.DeleteSchoolProfileMutationVariables,
     APITypes.DeleteSchoolProfileMutation
   >;
+export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
+  $name: String!
+  $nameId: String!
+  $email: String!
+) {
+  acceptPrivacyPolicy(name: $name, nameId: $nameId, email: $email)
+}
+` as GeneratedMutation<
+  APITypes.AcceptPrivacyPolicyMutationVariables,
+  APITypes.AcceptPrivacyPolicyMutation
+>;
