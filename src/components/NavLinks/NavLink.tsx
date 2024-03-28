@@ -4,11 +4,11 @@ import styles from './NavLink.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import ChevronDown from '@/assets/navigation/ChevronDown';
 import Paths from '@/config/paths';
-import { checkAuthState } from '@/hooks/useCheckCurrentUser';
+import { useStore } from '@/stores/useStore';
 
 const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
-
+  const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
   if (!name) {
@@ -32,9 +32,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
     }
 
     if (pathIsLogin) {
-      checkAuthState()
-        .then(() => navigate(Paths.SIGN_IN))
-        .catch(() => navigate(path));
+      navigate(user !== undefined ? Paths.SIGN_IN : path);
     } else if (path !== Paths.ABOUT) {
       navigate(path);
     }

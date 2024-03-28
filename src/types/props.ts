@@ -12,12 +12,12 @@ import {
   SchoolTableData,
   SchoolOrCharityProperties,
   RequestUser,
+  AccountType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import { GetJoinRequestsQuery, InsertJoinRequestMutationVariables } from './api';
-import { AccountType } from '@/hooks/useCheckCurrentUser';
 
 export interface LayoutProps {
   header?: ReactNode;

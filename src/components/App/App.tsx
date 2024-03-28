@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from '@/config/routes';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Layout from '../Layout/Layout';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
@@ -15,6 +15,7 @@ import { ConfigProvider } from 'antd';
 import CookieBanner from '../CookieBanner/CookieBanner';
 import ErrorBoundaryWithLocation from '../ErrorBoundary/ErrorBoundaryWithLocation';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import { useStore } from '@/stores/useStore';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,10 @@ const queryClient = new QueryClient({
 
 const App = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenMedium})` });
+
+  useEffect(() => {
+    void useStore.getState().getCurrentUser();
+  }, []);
 
   return (
     <>
