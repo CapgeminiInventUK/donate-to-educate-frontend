@@ -11,6 +11,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
 import { getRedirectUrl } from '@/utils/account';
 import { useStore } from '@/stores/useStore';
+import { AccountType } from '@/types/data';
 
 const SignIn: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -27,7 +28,7 @@ const SignIn: FC = () => {
   }
 
   if (user) {
-    return <Navigate to={getRedirectUrl(user.type)} />;
+    return <Navigate to={getRedirectUrl(user.type as AccountType)} />;
   }
 
   return (

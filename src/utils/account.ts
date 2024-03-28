@@ -1,5 +1,5 @@
 import Paths from '@/config/paths';
-import { AccountType } from '@/hooks/useCheckCurrentUser';
+import { AccountType } from '@/types/data';
 
 export const getRedirectUrl = (type: AccountType): string => {
   switch (type) {
