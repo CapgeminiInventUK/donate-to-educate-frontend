@@ -15,13 +15,10 @@ import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
 import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 import Paths from '@/config/paths';
-import { useStore } from '@/stores/useStore';
 
 const Home: FC = () => {
   const navigate = useNavigate();
-  const user = useStore((state) => state.user);
-  // eslint-disable-next-line no-console
-  console.log(user);
+
   return (
     <div className={styles.container}>
       <HeroBanner />
