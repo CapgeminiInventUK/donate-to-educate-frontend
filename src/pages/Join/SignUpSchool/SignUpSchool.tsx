@@ -117,9 +117,9 @@ const SignUpSchool: FC = () => {
         value: urn,
         label: `${name} - ${postcode}`,
         name,
-        localAuthority,
+        localAuthority: localAuthority && localAuthority,
         isLocalAuthorityRegistered,
-        postcode,
+        postcode: String(postcode),
         registered,
       })
     );
@@ -127,7 +127,7 @@ const SignUpSchool: FC = () => {
   }, [data]);
 
   const onChange = (
-    value: string | number | boolean,
+    value: string | boolean,
     formMeta: FormMeta | undefined,
     fullValue?: Record<string, string | boolean>
   ): void => {
