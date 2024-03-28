@@ -15,9 +15,9 @@ import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
-import useGetAuthToken from '@/hooks/useGetAuthToken';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { useStore } from '@/stores/useStore';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -140,7 +140,7 @@ const CharityEdit: FC = () => {
   const [editStateActionText, setEditStateActionText] = useState(false);
   const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
-  const authToken = useGetAuthToken();
+  const authToken = useStore((state) => state.user?.token);
 
   const { banner, helpBannerTitle, helpBannerBody, howItWorks, actionText } = getPageContent(type);
   const [content, setContent] = useState<ContentType>({

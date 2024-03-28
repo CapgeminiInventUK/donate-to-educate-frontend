@@ -22,9 +22,9 @@ import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
-import useGetAuthToken from '@/hooks/useGetAuthToken';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import { useStore } from '@/stores/useStore';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -39,7 +39,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
-  const authToken = useGetAuthToken();
+  const authToken = useStore((state) => state.user?.token);
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about}-${type}-${name}`],

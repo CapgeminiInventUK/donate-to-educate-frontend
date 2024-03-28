@@ -1,6 +1,7 @@
 import { CustomAttributes } from '@/types/data';
 import {
   FetchUserAttributesOutput,
+  fetchAuthSession,
   fetchUserAttributes,
   getCurrentUser,
   signIn,
@@ -15,6 +16,7 @@ interface User {
   type: string;
   name: string;
   id: string;
+  token: string;
 }
 
 export interface UserSlice {
@@ -64,5 +66,14 @@ const getUser = async (): Promise<User> => {
     'custom:institution': name,
     'custom:institutionId': id,
   } = (await fetchUserAttributes()) as FetchUserAttributesOutput & CustomAttributes;
-  return { userId, username, email: email ?? '', type, name, id };
+  const session = await fetchAuthSession();
+  return {
+    userId,
+    username,
+    email: email ?? '',
+    type,
+    name,
+    id,
+    token: session.tokens?.idToken?.toString() ?? '',
+  };
 };
