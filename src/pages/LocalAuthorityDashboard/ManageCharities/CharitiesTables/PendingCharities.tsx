@@ -9,7 +9,7 @@ import CharitiesTable from './CharitiesTable';
 import { CharitiesTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
-const PendingSchools: FC<CharitiesTablesProps> = ({
+const PendingCharities: FC<CharitiesTablesProps> = ({
   localAuthority,
   setCharitiesNumber,
   setStage,
@@ -62,4 +62,4 @@ const PendingSchools: FC<CharitiesTablesProps> = ({
     />
   );
 };
-export default PendingSchools;
+export default PendingCharities;

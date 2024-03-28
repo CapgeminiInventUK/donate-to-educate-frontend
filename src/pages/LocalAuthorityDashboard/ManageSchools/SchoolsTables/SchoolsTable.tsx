@@ -39,7 +39,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       title: 'Action',
       render: (
         _: string,
-        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolTableData
+        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>

@@ -72,6 +72,7 @@ enum Paths {
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
   EQUALITY_SERVICES = 'https://www.equalityadvisoryservice.com/',
   EMAIL = 'mailto: team@donatetoeducate.org.uk',
+  COMMUNITY_EMAIL = 'mailto: info@communityinspired.co.uk',
   PHONE = 'tel: 0134 271 8679',
   PTA = 'https://www.pta.co.uk/',
   FUNDED = 'https://www.funded.org.uk',

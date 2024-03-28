@@ -41,3 +41,22 @@
   display: flex;
   justify-content: space-between;
 }
+
+.card {
+  @include g.card;
+  padding: 82px;
+  color: g.$primary-dark-blue;
+
+  .logo {
+    width: 300px;
+    margin-bottom: 40px;
+  }
+
+  a {
+    color: g.$link-blue;
+  }
+
+  .checkbox {
+    margin: 40px 15px 40px 0;
+  }
+}

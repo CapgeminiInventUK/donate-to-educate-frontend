@@ -10,14 +10,18 @@ export const checkAuthState = async (): Promise<AuthUser> => {
   return await getCurrentUser();
 };
 
-export const getUserType = async (): Promise<FetchUserAttributesOutput & CustomAttributes> => {
-  return (await fetchUserAttributes()) as FetchUserAttributesOutput & CustomAttributes;
+export const getUserType = async (): Promise<FetchUserAttributesOutput & Attributes> => {
+  return (await fetchUserAttributes()) as FetchUserAttributesOutput & Attributes;
 };
 
 export interface CustomAttributes {
   'custom:type': string;
   'custom:institution': string;
   'custom:institutionId': string;
+}
+
+export interface Attributes extends CustomAttributes {
+  email: string;
 }
 
 export type AccountType = 'admin' | 'charity' | 'school' | 'localAuthority';

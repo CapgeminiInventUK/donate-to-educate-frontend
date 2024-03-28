@@ -1,7 +1,6 @@
 @use '@assets/global.scss' as g;
 
 .cancel {
-  color: g.$primary-mid-blue;
   font-family: Poppins;
   font-size: 1.125rem;
   font-weight: 700;
@@ -13,4 +12,12 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.white {
+  color: g.$primary-white;
+}
+
+.blue {
+  color: g.$primary-mid-blue;
 }

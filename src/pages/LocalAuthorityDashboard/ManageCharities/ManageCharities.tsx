@@ -12,6 +12,9 @@ import { DeleteCharityProfileMutation } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import RegisteredCharities from './CharitiesTables/RegisteredCharities';
+import PendingCharities from './CharitiesTables/PendingCharities';
+import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 
 const ManageCharities: FC = () => {
   const {
@@ -56,28 +59,61 @@ const ManageCharities: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
-        <LogoutButton />
-      </div>
-      <div className={styles.adminCard}>
-        <h1>{localAuthority}</h1>
-        <div className={styles.body}>
-          <div className={styles.card}>
-            <h2>Charity and volunteer groups in your area</h2>
-            <div className={styles.borderLeft}>
-              <div>{charitiesPending} requests to join</div>
-              <div>{charitiesJoined} joined</div>
-            </div>
-            <RegisteredCharities
-              localAuthority={localAuthority}
-              setCharitiesNumber={setCharitiesJoined}
-              setStage={setStage}
-              stage={stage}
-            />
+      {stage === StageState.VIEW && (
+        <>
+          <div className={styles.actionButtons}>
+            <BackButton theme="blue" />
+            <LogoutButton />
           </div>
-        </div>
-      </div>
+          <div className={styles.adminCard}>
+            <h1>{localAuthority}</h1>
+            <div className={styles.body}>
+              <div className={styles.card}>
+                <h2>Charity and volunteer groups in your area</h2>
+                <div className={styles.borderLeft}>
+                  <div>{charitiesPending} requests to join</div>
+                  <div>{charitiesJoined} joined</div>
+                </div>
+                <RegisteredCharities
+                  localAuthority={localAuthority}
+                  setCharitiesNumber={setCharitiesJoined}
+                  setStage={setStage}
+                  stage={stage}
+                  setCharityProperties={setCharityProperties}
+                />
+                <PendingCharities
+                  localAuthority={localAuthority}
+                  setCharitiesNumber={setCharitiesPending}
+                  setCharityProperties={setCharityProperties}
+                  setStage={setStage}
+                  stage={stage}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      {stage === StageState.APPROVE_SCHOOL && (
+        <ApprovalRequest
+          id={charityProperties.id}
+          setStage={setStage}
+          type="school"
+          name={charityProperties.name}
+          la={charityProperties.la}
+          user={charityProperties.user}
+        />
+      )}
+      <DeclineDeleteModal
+        setShowModal={() => {
+          setShowModal(false);
+          setStage(StageState.VIEW);
+        }}
+        showModal={showModal}
+        onConfirm={() => setStage(StageState.REMOVED)}
+        bodyText="This will remove the school&aposs profile and information. They will need to resubmit an
+        application to rejoin Donate to Educate."
+        confirmText="Remove connection"
+      />
     </div>
   );
 };

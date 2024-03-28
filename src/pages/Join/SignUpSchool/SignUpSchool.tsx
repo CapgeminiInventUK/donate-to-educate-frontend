@@ -117,7 +117,7 @@ const SignUpSchool: FC = () => {
         value: urn,
         label: `${name} - ${postcode}`,
         name,
-        localAuthority: !!localAuthority,
+        localAuthority: localAuthority && localAuthority,
         isLocalAuthorityRegistered,
         postcode: String(postcode),
         registered,
