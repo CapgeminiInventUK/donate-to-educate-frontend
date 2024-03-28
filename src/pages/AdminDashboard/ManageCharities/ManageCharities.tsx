@@ -6,7 +6,6 @@ import { FilterConfirmProps } from 'antd/es/table/interface';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import Button from '@/components/Button/Button';
@@ -18,6 +17,7 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -167,15 +167,7 @@ const ManageCharities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage Charities</h1>
-          <Button
-            theme="link"
-            text="Sign out"
-            className={dashboardStyles.actionButtons}
-            onClick={(): void => {
-              void signOut().then(() => navigate(Paths.SIGN_IN));
-            }}
-            ariaLabel="sign out"
-          />
+          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}

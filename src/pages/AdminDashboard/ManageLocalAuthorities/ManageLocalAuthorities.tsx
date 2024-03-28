@@ -6,7 +6,6 @@ import { FilterConfirmProps } from 'antd/es/table/interface';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined, FilterFilled } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { signOut } from 'aws-amplify/auth';
 import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
@@ -19,6 +18,7 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -195,15 +195,7 @@ const ManageLocalAuthorities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage local authorities</h1>
-          <Button
-            theme="link"
-            text="Sign out"
-            className={dashboardStyles.actionButtons}
-            onClick={(): void => {
-              void signOut().then(() => navigate(Paths.SIGN_IN));
-            }}
-            ariaLabel="sign out"
-          />
+          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />

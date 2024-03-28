@@ -1,7 +1,6 @@
 import { FC, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { signOut } from 'aws-amplify/auth';
 import { client } from '@/graphqlClient';
 import { registerLocalAuthority } from '@/graphql/mutations';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +8,6 @@ import TextInput from '@/components/TextInput/TextInput';
 import FormButton from '@/components/FormButton/FormButton';
 import TextArea from '@/components/TextArea/TextArea';
 import BackButton from '@/components/BackButton/BackButton';
-import Button from '@/components/Button/Button';
 import Paths from '@/config/paths';
 import { RegisterLocalAuthorityMutation } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
@@ -19,6 +17,7 @@ import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -91,15 +90,7 @@ const LocalAuthoritySignUp: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Local Authority Profile</h1>
-          <Button
-            theme="link"
-            text="Sign out"
-            className={dashboardStyles.actionButtons}
-            onClick={(): void => {
-              void signOut().then(() => navigate(Paths.SIGN_IN));
-            }}
-            ariaLabel="sign out"
-          />
+          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />

@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { signOut } from 'aws-amplify/auth';
 import { GraphQLQuery } from '@aws-amplify/api';
 import { client } from '@/graphqlClient';
-import Button from '@/components/Button/Button';
 import Paths from '@/config/paths';
 import { GetAdminTileStatsQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
@@ -13,6 +11,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -46,15 +45,7 @@ const AdminDashboard: FC = () => {
         <div className={styles.header}>
           <h1>Admin Dashboard</h1>
           <div>
-            <Button
-              theme="link"
-              text="Sign out"
-              className={styles.actionButtons}
-              onClick={(): void => {
-                void signOut().then(() => navigate(Paths.SIGN_IN));
-              }}
-              ariaLabel="sign out"
-            />
+            <LogoutButton />
           </div>
         </div>
         <div className={styles.body}>
