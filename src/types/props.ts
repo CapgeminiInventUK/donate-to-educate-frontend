@@ -9,7 +9,7 @@ import {
   FormSections,
   FormTemplate,
   StageState,
-  SchoolTableData,
+  SchoolOrCharityTableData,
   SchoolOrCharityProperties,
   RequestUser,
   AccountType,
@@ -317,7 +317,7 @@ export interface FormErrorsProps {
 }
 
 export interface SchoolsOrCharityTableProps {
-  data: SchoolTableData[];
+  data: SchoolOrCharityTableData[];
   setStage?: Dispatch<SetStateAction<StageState>>;
   setProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
 }
