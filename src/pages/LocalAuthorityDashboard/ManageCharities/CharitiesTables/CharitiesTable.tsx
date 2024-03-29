@@ -38,7 +38,7 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
       title: 'Action',
       render: (
         _: string,
-        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolOrCharityTableData
+        { status, name, id, joinRequestName, phone, email, jobTitle }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
@@ -48,10 +48,10 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
               text="Remove"
               onClick={(): void => {
                 setProperties &&
-                  setProperties((schoolProperties) => ({
-                    ...schoolProperties,
+                  setProperties((charityProperties) => ({
+                    ...charityProperties,
                     name,
-                    id: String(urn),
+                    id: String(id),
                     user: {
                       name: joinRequestName ?? '',
                       title: jobTitle ?? '',
@@ -82,7 +82,7 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
                     phone: phone ?? '',
                   },
                 }));
-              setStage && setStage(StageState.APPROVE_SCHOOL);
+              setStage && setStage(StageState.APPROVE_CHARITY);
             }}
             ariaLabel="view"
           />

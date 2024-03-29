@@ -18,7 +18,7 @@ const Dropdown: FC<DropdownProps> = ({
 }) => {
   const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
-  const noOptionsMessage = header?.includes('charity')
+  const noOptionsMessage = subHeading?.includes('council')
     ? 'Search for your local council'
     : 'Search for your school';
 

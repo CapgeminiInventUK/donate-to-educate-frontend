@@ -37,7 +37,7 @@ const ManageCharities: FC = () => {
     setShowModal(stage === StageState.REMOVE);
   }, [stage]);
 
-  const { refetch: removeSchool } = useQuery({
+  const { refetch: removeCharity } = useQuery({
     queryKey: ['removeCharity'],
     enabled: false,
     queryFn: async () => {
@@ -48,14 +48,13 @@ const ManageCharities: FC = () => {
           id: charityProperties?.id,
         },
       });
-
       return result;
     },
   });
 
   useEffect(() => {
-    stage === StageState.REMOVED && void removeSchool().then(() => navigate(0));
-  }, [stage, removeSchool, navigate]);
+    stage === StageState.REMOVED && void removeCharity().then(() => navigate(0));
+  }, [stage, removeCharity, navigate, charityProperties]);
 
   return (
     <div className={styles.container}>
@@ -93,11 +92,11 @@ const ManageCharities: FC = () => {
           </div>
         </>
       )}
-      {stage === StageState.APPROVE_SCHOOL && (
+      {stage === StageState.APPROVE_CHARITY && (
         <ApprovalRequest
           id={charityProperties.id}
           setStage={setStage}
-          type="school"
+          type="charity"
           name={charityProperties.name}
           la={charityProperties.la}
           user={charityProperties.user}
