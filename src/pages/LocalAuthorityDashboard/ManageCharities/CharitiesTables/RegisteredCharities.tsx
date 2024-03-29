@@ -42,6 +42,7 @@ const RegisteredCharities: FC<CharitiesTablesProps> = ({
   const charitiesData = data?.getCharitiesByLa.map((charity, index) => {
     return {
       ...charity,
+      name: charity!.name,
       key: index,
       status: 'Joined',
     };
