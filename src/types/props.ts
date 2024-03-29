@@ -316,10 +316,10 @@ export interface FormErrorsProps {
   formErrors: Record<string, string>;
 }
 
-export interface SchoolsTableProps {
+export interface SchoolsOrCharityTableProps {
   data: SchoolTableData[];
   setStage?: Dispatch<SetStateAction<StageState>>;
-  setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+  setProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
 }
 
 export interface SchoolsTablesProps {
@@ -328,6 +328,15 @@ export interface SchoolsTablesProps {
   setStage: Dispatch<SetStateAction<StageState>>;
   schoolProperties?: SchoolOrCharityProperties;
   setSchoolProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+  stage: StageState;
+}
+
+export interface CharitiesTablesProps {
+  localAuthority: string;
+  setCharitiesNumber: Dispatch<SetStateAction<number>>;
+  setStage: Dispatch<SetStateAction<StageState>>;
+  charityProperties?: SchoolOrCharityProperties;
+  setCharityProperties?: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
   stage: StageState;
 }
 
@@ -345,4 +354,12 @@ export interface JoinRequestsProps {
   setStage: React.Dispatch<React.SetStateAction<StageState>>;
   setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
   data?: GetJoinRequestsQuery;
+}
+
+export interface DeclineDeleteModalProps {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showModal: boolean;
+  onConfirm: () => void;
+  bodyText: string;
+  confirmText: string;
 }

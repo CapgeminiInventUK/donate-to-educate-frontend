@@ -1,62 +1,119 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './ManageCharities.module.scss';
-import { Table } from 'antd';
-import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
+import { useNavigate } from 'react-router-dom';
+import { SchoolOrCharityProperties, StageState } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import { deleteCharityProfile } from '@/graphql/mutations';
+import { DeleteCharityProfileMutation } from '@/types/api';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { client } from '@/graphqlClient';
+import RegisteredCharities from './CharitiesTables/RegisteredCharities';
+import PendingCharities from './CharitiesTables/PendingCharities';
+import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 
 const ManageCharities: FC = () => {
   const {
     state: { localAuthority },
   } = useLocationStateOrRedirect<{ localAuthority: string }>(Paths.LOCAL_AUTHORITY_DASHBOARD);
 
-  const columns = [
-    {
-      title: 'Charity',
-      dataIndex: 'name',
-      key: 'name',
+  const navigate = useNavigate();
+  const [charitiesJoined, setCharitiesJoined] = useState(0);
+  const [charitiesPending, setCharitiesPending] = useState(0);
+  const [stage, setStage] = useState<StageState>(StageState.VIEW);
+  const [charityProperties, setCharityProperties] = useState<SchoolOrCharityProperties>({
+    id: '',
+    name: '',
+    la: localAuthority,
+    user: { name: '', title: '', email: '', phone: '' },
+  });
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(stage === StageState.REMOVE);
+  }, [stage]);
+
+  const { refetch: removeSchool } = useQuery({
+    queryKey: ['removeCharity'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<DeleteCharityProfileMutation>>({
+        query: deleteCharityProfile,
+        variables: {
+          name: charityProperties?.name,
+          id: charityProperties?.id,
+        },
+      });
+
+      return result;
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-    },
-    {
-      title: 'Action',
-      render: () => (
-        <div className={styles.actionsContainer}>
-          <Button
-            theme="link-blue"
-            className={styles.actionButtons}
-            text="Remove"
-            onClick={(): void => undefined}
-            ariaLabel="remove"
-          />
-        </div>
-      ),
-    },
-  ];
+  });
+
+  useEffect(() => {
+    stage === StageState.REMOVED && void removeSchool().then(() => navigate(0));
+  }, [stage, removeSchool, navigate]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
-        <LogoutButton />
-      </div>
-      <div className={styles.adminCard}>
-        <h1>{localAuthority}</h1>
-        <div className={styles.body}>
-          <div className={styles.card}>
-            <h2>Charity and volunteer groups in your area</h2>
-            <div className={styles.borderLeft}>
-              <div>3 requests to join</div>
-              <div>5 joined</div>
-            </div>
-            <Table dataSource={[]} columns={columns} scroll={{ x: 'max-content' }} rowKey="id" />
+      {stage === StageState.VIEW && (
+        <>
+          <div className={styles.actionButtons}>
+            <BackButton theme="blue" />
+            <LogoutButton />
           </div>
-        </div>
-      </div>
+          <div className={styles.adminCard}>
+            <h1>{localAuthority}</h1>
+            <div className={styles.body}>
+              <div className={styles.card}>
+                <h2>Charity and volunteer groups in your area</h2>
+                <div className={styles.borderLeft}>
+                  <div>{charitiesPending} requests to join</div>
+                  <div>{charitiesJoined} joined</div>
+                </div>
+                <RegisteredCharities
+                  localAuthority={localAuthority}
+                  setCharitiesNumber={setCharitiesJoined}
+                  setStage={setStage}
+                  stage={stage}
+                  setCharityProperties={setCharityProperties}
+                />
+                <PendingCharities
+                  localAuthority={localAuthority}
+                  setCharitiesNumber={setCharitiesPending}
+                  setCharityProperties={setCharityProperties}
+                  setStage={setStage}
+                  stage={stage}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      {stage === StageState.APPROVE_SCHOOL && (
+        <ApprovalRequest
+          id={charityProperties.id}
+          setStage={setStage}
+          type="school"
+          name={charityProperties.name}
+          la={charityProperties.la}
+          user={charityProperties.user}
+        />
+      )}
+      <DeclineDeleteModal
+        setShowModal={() => {
+          setShowModal(false);
+          setStage(StageState.VIEW);
+        }}
+        showModal={showModal}
+        onConfirm={() => setStage(StageState.REMOVED)}
+        bodyText="This will remove the school&aposs profile and information. They will need to resubmit an
+        application to rejoin Donate to Educate."
+        confirmText="Remove connection"
+      />
     </div>
   );
 };

@@ -112,6 +112,26 @@ export const getCharities = /* GraphQL */ `query GetCharities {
   }
 }
 ` as GeneratedQuery<APITypes.GetCharitiesQueryVariables, APITypes.GetCharitiesQuery>;
+export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: String!) {
+  getCharitiesByLa(name: $name) {
+    id
+    localAuthority
+    name
+    address
+    about
+    distance
+    profile {
+      name
+      id
+      localAuthority
+      postcode
+      about
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetCharitiesByLaQueryVariables, APITypes.GetCharitiesByLaQuery>;
 export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
   getRegisteredSchools {
     urn
@@ -387,6 +407,30 @@ export const getSchoolJoinRequestsByLa =
 ` as GeneratedQuery<
     APITypes.GetSchoolJoinRequestsByLaQueryVariables,
     APITypes.GetSchoolJoinRequestsByLaQuery
+  >;
+export const getCharityJoinRequestsByLa =
+  /* GraphQL */ `query GetCharityJoinRequestsByLa($localAuthority: String!) {
+  getCharityJoinRequestsByLa(localAuthority: $localAuthority) {
+    id
+    name
+    localAuthority
+    type
+    requestTime
+    status
+    email
+    school
+    jobTitle
+    phone
+    charityName
+    charityAddress
+    aboutCharity
+    urn
+    __typename
+  }
+}
+` as GeneratedQuery<
+    APITypes.GetCharityJoinRequestsByLaQueryVariables,
+    APITypes.GetCharityJoinRequestsByLaQuery
   >;
 export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
   getAdminTileStats {

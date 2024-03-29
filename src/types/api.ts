@@ -337,6 +337,15 @@ export type DeleteSchoolProfileMutation = {
   deleteSchoolProfile?: boolean | null;
 };
 
+export type DeleteCharityProfileMutationVariables = {
+  name: string;
+  id: string;
+};
+
+export type DeleteCharityProfileMutation = {
+  deleteCharityProfile?: boolean | null;
+};
+
 export type AcceptPrivacyPolicyMutationVariables = {
   name: string;
   nameId: string;
@@ -461,6 +470,30 @@ export type GetCharitiesQuery = {
       about?: string | null;
     } | null> | null;
   }>;
+};
+
+export type GetCharitiesByLaQueryVariables = {
+  name: string;
+};
+
+export type GetCharitiesByLaQuery = {
+  getCharitiesByLa: Array<{
+    __typename: 'Charity';
+    id: string;
+    localAuthority: string;
+    name: string;
+    address: string;
+    about: string;
+    distance?: number | null;
+    profile?: Array<{
+      __typename: 'CharityProfile';
+      name: string;
+      id: string;
+      localAuthority: string;
+      postcode?: string | null;
+      about?: string | null;
+    } | null> | null;
+  } | null>;
 };
 
 export type GetRegisteredSchoolsQueryVariables = {};
@@ -745,6 +778,30 @@ export type GetSchoolJoinRequestsByLaQueryVariables = {
 
 export type GetSchoolJoinRequestsByLaQuery = {
   getSchoolJoinRequestsByLa: Array<{
+    __typename: 'JoinRequest';
+    id: string;
+    name: string;
+    localAuthority: string;
+    type: string;
+    requestTime: number;
+    status: string;
+    email: string;
+    school?: string | null;
+    jobTitle?: string | null;
+    phone?: string | null;
+    charityName?: string | null;
+    charityAddress?: string | null;
+    aboutCharity?: string | null;
+    urn?: string | null;
+  }>;
+};
+
+export type GetCharityJoinRequestsByLaQueryVariables = {
+  localAuthority: string;
+};
+
+export type GetCharityJoinRequestsByLaQuery = {
+  getCharityJoinRequestsByLa: Array<{
     __typename: 'JoinRequest';
     id: string;
     name: string;

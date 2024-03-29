@@ -5,8 +5,7 @@ import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 import PendingSchools from './SchoolsTables/PendingSchools';
-import ApprovalRequest from '@/pages/AdminDashboard/Requests/ApprovalRequest/ApprovalRequest';
-import DeleteModal from './DeleteModal/DeleteModal';
+import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
 import { SchoolOrCharityProperties, StageState } from '@/types/data';
 import { useQuery } from '@tanstack/react-query';
 import { DeleteSchoolProfileMutation } from '@/types/api';
@@ -15,6 +14,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 
 const ManageSchools: FC = () => {
   const {
@@ -102,13 +102,16 @@ const ManageSchools: FC = () => {
           user={schoolProperties.user}
         />
       )}
-      <DeleteModal
+      <DeclineDeleteModal
         setShowModal={() => {
           setShowModal(false);
           setStage(StageState.VIEW);
         }}
         showModal={showModal}
         onConfirm={() => setStage(StageState.REMOVED)}
+        bodyText="This will remove the school&aposs profile and information. They will need to resubmit an
+        application to rejoin Donate to Educate."
+        confirmText="Remove connection"
       />
     </div>
   );

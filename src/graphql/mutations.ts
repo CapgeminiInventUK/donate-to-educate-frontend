@@ -176,6 +176,14 @@ export const deleteSchoolProfile =
     APITypes.DeleteSchoolProfileMutationVariables,
     APITypes.DeleteSchoolProfileMutation
   >;
+export const deleteCharityProfile =
+  /* GraphQL */ `mutation DeleteCharityProfile($name: String!, $id: String!) {
+  deleteCharityProfile(name: $name, id: $id)
+}
+` as GeneratedMutation<
+    APITypes.DeleteCharityProfileMutationVariables,
+    APITypes.DeleteCharityProfileMutation
+  >;
 export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   $name: String!
   $nameId: String!
