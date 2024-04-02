@@ -36,6 +36,7 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
     },
     {
       title: 'Action',
+      align: 'center' as const,
       render: (
         _: string,
         { status, name, id, joinRequestName, phone, email, jobTitle }: SchoolOrCharityTableData

@@ -143,6 +143,7 @@ const ManageSchools: FC = () => {
     },
     // {
     //   title: 'Action',
+    //   align: 'center' as const,
     //   render: () => (
     //     <div className={styles.actionsContainer}>
     //       <Button
