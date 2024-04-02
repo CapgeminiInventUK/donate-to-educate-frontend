@@ -13,7 +13,7 @@ import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
-import donateToUs from '@assets/home/helpPupils/donateToUs.png';
+import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 import Paths from '@/config/paths';
 
 const Home: FC = () => {
