@@ -135,6 +135,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
     },
     {
       title: 'Action',
+      align: 'center' as const,
       render: (_: unknown, joinRequest: JoinRequest) => (
         <div className={styles.actionsContainer}>
           <Button

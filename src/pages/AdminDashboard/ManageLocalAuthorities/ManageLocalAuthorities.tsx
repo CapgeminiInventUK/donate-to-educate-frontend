@@ -168,6 +168,7 @@ const ManageLocalAuthorities: FC = () => {
     },
     {
       title: 'Action',
+      align: 'center' as const,
       render: (_: unknown, la: LocalAuthority) =>
         !la.registered && (
           <div className={styles.actionsContainer}>
