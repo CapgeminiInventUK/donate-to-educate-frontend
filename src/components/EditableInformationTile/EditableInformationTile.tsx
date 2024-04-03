@@ -6,6 +6,7 @@ import HorizontalLine from '@/assets/school/HorizontalLine';
 import PlusIcon from '@/assets/school/PlusIcon';
 import TextArea from '../TextArea/TextArea';
 import CancelButton from '../CancelButton/CancelButton';
+import FormButton from '../FormButton/FormButton';
 
 const EditableInformationTile: FC<EditableInformationTileProps> = ({
   heading,
@@ -41,18 +42,27 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
         ) : (
           <>
             {text}
-            <Button
-              theme="darkBlue"
-              className={styles.addSectionButton}
-              onClick={onClick}
-              text={
-                <div className={styles.addSectionDiv}>
-                  <span className={styles.addSectionButtonText}>Add section</span>
-                  <PlusIcon />
-                </div>
-              }
-              ariaLabel="add section"
-            />
+            {!text ? (
+              <Button
+                theme="darkBlue"
+                className={styles.addSectionButton}
+                onClick={onClick}
+                text={
+                  <div className={styles.addSectionDiv}>
+                    <span className={styles.addSectionButtonText}>Add section</span>
+                    <PlusIcon />
+                  </div>
+                }
+                ariaLabel="add section"
+              />
+            ) : (
+              <FormButton
+                onClick={onClick}
+                theme={'formButtonGrey'}
+                text="Edit"
+                ariaLabel={'edit'}
+              />
+            )}
           </>
         )}
       </div>
