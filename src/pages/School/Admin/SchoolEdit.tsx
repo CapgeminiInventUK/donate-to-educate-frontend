@@ -275,7 +275,7 @@ const SchoolEdit: FC = () => {
           </>
         )}
         {preview && (
-          <>
+          <div className={styles.preview}>
             <h2>What to expect</h2>
             <p>{content.whatToExpect}</p>
             <ItemList type={type} items={items} />
@@ -308,7 +308,7 @@ const SchoolEdit: FC = () => {
                 ariaLabel="save"
               />
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
