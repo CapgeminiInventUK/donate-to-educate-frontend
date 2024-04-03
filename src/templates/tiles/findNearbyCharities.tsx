@@ -1,5 +1,5 @@
 import Heart from '@/assets/yourLocalArea/Heart';
-import charity from '@/assets/yourLocalArea/charity.png';
+import charity from '@/assets/yourLocalArea/charity.webp';
 import Image from '@/components/Image/Image';
 import Paths from '@/config/paths';
 
