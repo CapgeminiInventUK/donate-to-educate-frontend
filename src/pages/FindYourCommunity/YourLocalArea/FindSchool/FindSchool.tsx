@@ -16,7 +16,7 @@ import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Chevron from '@/assets/yourLocalArea/chevron';
+import Chevron from '@/assets/yourLocalArea/Chevron';
 
 const maxDistance = convertMilesToMeters(10);
 
