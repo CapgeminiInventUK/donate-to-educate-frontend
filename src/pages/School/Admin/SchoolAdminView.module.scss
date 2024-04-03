@@ -10,7 +10,7 @@
     padding: 40px 80px;
     border-radius: 0 0 10px 10px;
 
-    .schoolProfilebanner {
+    .schoolProfileBanner {
       display: flex;
       padding: 40px;
       flex-direction: column;
@@ -44,12 +44,17 @@
 
       svg {
         padding: 0 20px;
+        min-width: 30px;
+
+        @include g.xs-breakpoint {
+          display: none;
+        }
       }
 
       img {
         border-radius: 10px;
-        height: 50%;
-        width: 50%;
+        width: 60%;
+        margin-left: -50px;
       }
 
       .content {

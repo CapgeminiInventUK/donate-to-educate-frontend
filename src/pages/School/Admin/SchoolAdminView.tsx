@@ -3,17 +3,13 @@ import styles from './SchoolAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import Heart from '@/assets/yourLocalArea/Heart';
-import Donate from '@/assets/yourLocalArea/Donate';
-import Image from '@/components/Image/Image';
-import heartImg from '@/assets/yourLocalArea/heart.webp';
-import donateImg from '@/assets/yourLocalArea/donate.webp';
-import boxImg from '@/assets/yourLocalArea/box.webp';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
-import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
+import donate from '@/templates/tiles/donate';
+import takeExtraStock from '@/templates/tiles/takeExtraStock';
 
 const School: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -27,9 +23,8 @@ const School: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <InstitutionBanner type={'school'} name={state.name} />
-
       <div className={styles.subContainer}>
-        <div className={styles.schoolProfilebanner}>
+        <div className={styles.schoolProfileBanner}>
           <SchoolProfile />
           <h2>Your school&apos;s profile is active</h2>
           <p>View, edit and update your public facing profile.</p>
@@ -66,31 +61,6 @@ const School: FC = () => {
   );
 };
 
-const tiles = [
-  {
-    icon: <Heart />,
-    title: 'Find nearby charities',
-    body: 'Find out what they stock or donate products',
-    image: <Image alt="heart" image={heartImg} />,
-    colour: 'midBlue',
-    onClickLink: Paths.LOCAL_CHARITIES,
-  },
-  {
-    icon: <Donate />,
-    title: 'Donate products',
-    body: 'Support schools and charities in your area',
-    image: <Image alt="donate" image={donateImg} />,
-    colour: 'lightBlue',
-    onClickLink: Paths.LOCAL_DONATE,
-  },
-  {
-    icon: <PackagePlusIcon />,
-    title: 'Help take extra stock',
-    body: 'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
-    image: <Image alt="package" image={boxImg} />,
-    colour: 'darkBlue',
-    onClickLink: Paths.LOCAL_EXCESS,
-  },
-];
+const tiles = [findNearbyCharities, donate, takeExtraStock];
 
 export default School;
