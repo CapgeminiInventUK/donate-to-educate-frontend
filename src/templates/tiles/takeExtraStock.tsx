@@ -1,5 +1,5 @@
 import Image from '@/components/Image/Image';
-import excess from '@/assets/yourLocalArea/excess.png';
+import excess from '@/assets/yourLocalArea/excess.webp';
 import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import Paths from '@/config/paths';
 

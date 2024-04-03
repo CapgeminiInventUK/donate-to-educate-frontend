@@ -1,5 +1,5 @@
 import Hat from '@/assets/yourLocalArea/Hat';
-import school from '@/assets/yourLocalArea/school.png';
+import school from '@/assets/yourLocalArea/school.webp';
 import Image from '@/components/Image/Image';
 import Paths from '@/config/paths';
 
