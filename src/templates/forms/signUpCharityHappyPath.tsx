@@ -39,7 +39,7 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
           isLarge: true,
           formMeta: {
             page: 1,
-            field: 'Name',
+            field: 'Charity Name',
             section: FormSections.CHARITY_SECTION,
           },
         },

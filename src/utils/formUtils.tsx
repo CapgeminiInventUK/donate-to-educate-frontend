@@ -179,7 +179,7 @@ export const getFormDataForSubmission = (
   if (type === FormNames.CHARITY) {
     joinRequestVariables.charityName = findValueFromFormData(
       formData[FormSections.CHARITY_SECTION],
-      'Name'
+      'Charity Name'
     );
 
     joinRequestVariables.charityAddress = findValueFromFormData(
