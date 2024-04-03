@@ -2,10 +2,12 @@
 
 .heading {
   h2 {
-    width: 11rem;
+    text-wrap: nowrap;
+    padding: 0 20px 0 0;
+    margin: 0;
   }
+
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -14,10 +16,11 @@
   width: auto;
   padding: 2.5rem;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
   border-radius: 0.625rem;
   border: 2px solid g.$greyscale-disabled;
   background: g.$primary-white;
+  color: g.$primary-dark-blue;
   margin-top: 2.5rem;
 }
 
