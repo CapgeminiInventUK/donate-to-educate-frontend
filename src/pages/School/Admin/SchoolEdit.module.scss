@@ -44,19 +44,25 @@
     }
 
     .helpBanner {
-      padding: 40px;
+      padding: 20px 40px;
       background: g.$help-grey;
       border-radius: 10px;
+      color: g.$primary-dark-blue;
     }
 
     .whatToExpect {
+      color: g.$primary-dark-blue;
       margin: 40px 0;
       padding: 40px;
       border: solid 2px g.$greyscale-disabled;
       border-radius: 10px;
 
       h2 {
-        padding-bottom: 20px;
+        margin-top: 0;
+      }
+
+      p {
+        margin: 25px 0;
       }
     }
 
@@ -65,6 +71,7 @@
       padding: 40px;
       border: solid 2px g.$greyscale-disabled;
       border-radius: 10px;
+      color: g.$primary-dark-blue;
     }
 
     .actionButtons {
@@ -82,4 +89,8 @@
 .actionButtons {
   display: flex;
   justify-content: space-between;
+}
+
+.preview {
+  color: g.$primary-dark-blue;
 }
