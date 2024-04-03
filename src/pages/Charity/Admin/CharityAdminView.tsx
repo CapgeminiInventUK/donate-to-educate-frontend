@@ -3,17 +3,8 @@ import styles from './CharityAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import Heart from '@/assets/yourLocalArea/Heart';
-import Donate from '@/assets/yourLocalArea/Donate';
-import Image from '@/components/Image/Image';
-import boxImg from '@/assets/yourLocalArea/box.webp';
-import heartImg from '@/assets/yourLocalArea/heart.webp';
-import donateImg from '@/assets/yourLocalArea/donate.webp';
-import hatImg from '@/assets/yourLocalArea/hat.webp';
 import FormButton from '@/components/FormButton/FormButton';
-import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import Hat from '@/assets/yourLocalArea/Hat';
 import TextInput from '@/components/TextInput/TextInput';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -23,6 +14,10 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
+import findSchool from '@/templates/tiles/findSchool';
+import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
+import donate from '@/templates/tiles/donate';
+import takeExtraStock from '@/templates/tiles/takeExtraStock';
 
 const CharityView: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -147,39 +142,6 @@ const CharityView: FC = () => {
   );
 };
 
-const tiles = [
-  {
-    icon: <Hat />,
-    title: "Find your child's school",
-    body: 'Request or donate products',
-    image: <Image alt="hat" image={hatImg} />,
-    colour: 'darkBlue',
-    onClickLink: Paths.LOCAL_SCHOOLS,
-  },
-  {
-    icon: <Heart />,
-    title: 'Find nearby charities',
-    body: 'Find out what they stock or donate products',
-    image: <Image alt="heart" image={heartImg} />,
-    colour: 'midBlue',
-    onClickLink: Paths.LOCAL_CHARITIES,
-  },
-  {
-    icon: <Donate />,
-    title: 'Donate products',
-    body: 'Support schools and charities in your area',
-    image: <Image alt="donate" image={donateImg} />,
-    colour: 'lightBlue',
-    onClickLink: Paths.LOCAL_DONATE,
-  },
-  {
-    icon: <PackagePlusIcon />,
-    title: 'Help take extra stock',
-    body: 'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
-    image: <Image alt="package" image={boxImg} />,
-    colour: 'veryDarkBlue',
-    onClickLink: Paths.LOCAL_EXCESS,
-  },
-];
+const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
 
 export default CharityView;
