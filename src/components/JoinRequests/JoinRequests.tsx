@@ -201,10 +201,10 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
       </p>
       <Table
         title={() => (
-          <>
+          <div className={styles.titleContainer}>
             <h2 className={styles.tableTitle}>School</h2>
             {schools && getRequestsFromData<JoinRequest>(schools)}
-          </>
+          </div>
         )}
         className={styles.schoolsTable}
         dataSource={schools}
@@ -215,10 +215,10 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
 
       <Table
         title={() => (
-          <>
+          <div className={styles.titleContainer}>
             <h2 className={styles.tableTitle}>Charities and volunteer groups</h2>
             {charities && getRequestsFromData<JoinRequest>(charities)}
-          </>
+          </div>
         )}
         className={styles.schoolsTable}
         dataSource={charities}
