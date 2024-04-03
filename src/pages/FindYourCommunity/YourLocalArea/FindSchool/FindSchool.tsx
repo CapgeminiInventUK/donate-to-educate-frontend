@@ -16,6 +16,7 @@ import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Chevron from '@/assets/yourLocalArea/Chevron';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -99,7 +100,8 @@ const FindSchool: FC = () => {
           className={styles.expander}
           onClick={() => toggleDescription((previous) => !previous)}
         >
-          I cannot find my child&apos;s school
+          <Chevron direction={showDescription ? 'down' : 'up'} />I cannot find my child&apos;s
+          school
         </span>
         {showDescription && (
           <div className={styles.missingSchoolDescription}>
