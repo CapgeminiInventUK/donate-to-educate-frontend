@@ -77,6 +77,7 @@ const Home: FC = () => {
           <Header text="How it works" />
           <p>Giving communities one place to collaborate and help children thrive at school.</p>
           <FormButton
+            className={styles.howItWorksBtn}
             theme="formButtonMidBlue"
             onClick={() => navigate(Paths.HOW_IT_WORKS)}
             text="Find out more"
