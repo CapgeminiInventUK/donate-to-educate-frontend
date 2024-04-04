@@ -40,19 +40,21 @@ const TextInput: FC<TextInputProps> = ({
       {errorMessage && (
         <h5 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h5>
       )}
-      {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
-      <input
-        type={password ? inputType : 'text'}
-        value={value}
-        onChange={handleChange}
-        className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
-          isSmall ? styles.inputSmall : ''
-        } ${errorMessage ? styles.errorInput : ''}`}
-        placeholder={placeholder ?? ''}
-        disabled={disabled}
-        required={!header?.includes('optional')}
-        aria-label={ariaLabel}
-      />
+      <div className={styles.inputContainer}>
+        {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
+        <input
+          type={password ? inputType : 'text'}
+          value={value}
+          onChange={handleChange}
+          className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
+            isSmall ? styles.inputSmall : ''
+          } ${errorMessage ? styles.errorInput : ''}`}
+          placeholder={placeholder ?? ''}
+          disabled={disabled}
+          required={!header?.includes('optional')}
+          aria-label={ariaLabel}
+        />
+      </div>
     </div>
   );
 };

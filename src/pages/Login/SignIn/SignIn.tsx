@@ -58,13 +58,11 @@ const SignIn: FC = () => {
           }}
           ariaLabel="password"
           isSmall={isSmallMobile}
+          errorMessage={error?.message}
         />
         <Link to={Paths.RESET_PASSWORD} className={styles.altLink}>
           I have forgotten my password
         </Link>
-        <div className={styles.validationContainer}>
-          <span>{error ? 'Incorrect email or password' : undefined}</span>
-        </div>
         <FormButton
           text={'Sign in'}
           theme={email.length && password.length ? 'formButtonDarkBlue' : 'formButtonDisabled'}
