@@ -56,6 +56,8 @@ const FindCharity: FC = () => {
       dataIndex: 'name',
       render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
+          key={id}
+          className={styles.nameBtn}
           theme="link-blue"
           text={text}
           ariaLabel={`name-${text}`}
