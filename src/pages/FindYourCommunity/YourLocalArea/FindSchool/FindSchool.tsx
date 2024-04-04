@@ -100,15 +100,14 @@ const FindSchool: FC = () => {
           className={styles.expander}
           onClick={() => toggleDescription((previous) => !previous)}
         >
-          <Chevron direction={showDescription ? 'down' : 'up'} />I cannot find my child&apos;s
-          school
+          <Chevron direction={showDescription ? 'down' : 'up'} />
+          My child&apos;s school has not joined.
         </span>
         {showDescription && (
           <div className={styles.missingSchoolDescription}>
-            If your child&apos;s school is not on the list they have not joined Donate to Educate
-            yet. Find nearby charities who may have the products you need.{' '}
+            If your child&apos;s school has not joined Donate to Educate,{' '}
             <Link to={Paths.LOCAL_CHARITIES} state={{ postcode: state.postcode }}>
-              Find nearby charities.
+              find nearby charities who may have the products you need.
             </Link>
           </div>
         )}
