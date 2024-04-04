@@ -17,6 +17,7 @@ import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
+import { Pill } from '@/components/Pill/Pill';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -59,6 +60,8 @@ const FindSchool: FC = () => {
       render: (text: string, { name, id, registered }: InstituteSearchResult) =>
         registered ? (
           <Button
+            key={id}
+            className={styles.nameBtn}
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
@@ -69,6 +72,13 @@ const FindSchool: FC = () => {
         ),
     },
     {
+      title: 'Status',
+      dataIndex: 'registered',
+      render: (registered: boolean) => (
+        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+      ),
+    },
+    {
       title: 'Distance',
       dataIndex: 'distance',
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
@@ -76,10 +86,14 @@ const FindSchool: FC = () => {
     {
       title: 'Product types available',
       dataIndex: 'productTypes',
-      render: (text: number[]) =>
-        text.map((productType) => (
+      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
+        if (!school.registered) {
+          return [<>N/A</>];
+        }
+        return text.map((productType) => (
           <ProductTypes key={productType} type={productType} className={styles.productType} />
-        )),
+        ));
+      },
     },
   ];
 

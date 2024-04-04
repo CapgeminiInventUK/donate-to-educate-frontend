@@ -20,6 +20,7 @@ import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { Pill } from '@/components/Pill/Pill';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -85,6 +86,8 @@ const Excess: FC = () => {
       dataIndex: 'name',
       render: (text: string, { id, name }: InstituteSearchResult) => (
         <Button
+          key={id}
+          className={styles.nameBtn}
           theme="link-blue"
           text={text}
           ariaLabel={`name-${text}`}
@@ -114,6 +117,8 @@ const Excess: FC = () => {
       render: (text: string, { id, name, registered }: InstituteSearchResult) =>
         registered ? (
           <Button
+            key={id}
+            className={styles.nameBtn}
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
@@ -124,6 +129,13 @@ const Excess: FC = () => {
         ),
     },
     {
+      title: 'Status',
+      dataIndex: 'registered',
+      render: (registered: boolean) => (
+        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+      ),
+    },
+    {
       title: 'Distance',
       dataIndex: 'distance',
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
@@ -131,10 +143,14 @@ const Excess: FC = () => {
     {
       title: 'Excess stock product types',
       dataIndex: 'productTypes',
-      render: (text: number[]) =>
-        text.map((productType) => (
+      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
+        if (!school.registered) {
+          return [<>N/A</>];
+        }
+        return text.map((productType) => (
           <ProductTypes key={productType} type={productType} className={styles.productType} />
-        )),
+        ));
+      },
     },
   ];
 
