@@ -21,7 +21,7 @@ const FindYourCommunity: FC = () => {
         <TextInputSearch
           ariaLabel="postcode"
           header="Enter your postcode"
-          subHeading="This can be your home, school, or charity postcode"
+          subHeading="This can be your home, school, or charity postcode in England and Wales"
           onChange={(value) => setPostcode(value)}
           errorMessage={error}
           onClick={() => {
