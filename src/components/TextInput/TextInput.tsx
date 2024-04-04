@@ -35,10 +35,10 @@ const TextInput: FC<TextInputProps> = ({
 
   return (
     <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
-      {header && <h4 className={styles.header}>{header}</h4>}
-      {subHeading && <h5 className={styles.subHeading}>{subHeading}</h5>}
+      {header && <h3 className={styles.header}>{header}</h3>}
+      {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {errorMessage && (
-        <h5 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h5>
+        <h4 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h4>
       )}
       <div className={styles.inputContainer}>
         {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
