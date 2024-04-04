@@ -51,6 +51,7 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
       set({
         user: await getUser(),
         isLoading: false,
+        error: undefined,
       });
     } catch (error) {
       set({ user: undefined, isLoading: false, error: error as Error });
