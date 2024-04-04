@@ -212,6 +212,10 @@ export interface TextInputProps extends CommonInputProps {
   isSmall?: boolean;
 }
 
+export interface TextInputSearchProps extends TextInputProps {
+  onClick: () => void;
+}
+
 export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];

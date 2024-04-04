@@ -1,0 +1,110 @@
+@use '@assets/global.scss' as g;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+}
+
+.header {
+  margin-bottom: 20px;
+  margin-top: 0;
+  font-family: 'Poppins', sans-serif;
+  color: g.$primary-dark-blue;
+}
+
+.label {
+  position: relative;
+  display: inline-block;
+}
+
+.subHeading {
+  color: g.$primary-dark-blue;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  margin: -20px 0 20px;
+}
+
+.input {
+  @include g.input;
+
+  border-radius: 5px 0 0 5px;
+}
+
+.inputLarge {
+  width: 600px;
+
+  @include g.md-breakpoint {
+    width: 60vw;
+  }
+}
+
+.inputSmall {
+  width: 200px;
+
+  @include g.sm-breakpoint {
+    max-width: 200px;
+    width: 40vw;
+  }
+}
+
+.errorMessage {
+  font-weight: 700;
+  color: g.$error-red;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.errorInput {
+  border-color: g.$error-red;
+}
+
+.wrapperError {
+  border-left: 5px solid g.$error-red;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .input {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.searchIconContainer {
+  background-color: g.$primary-dark-blue;
+  width: 150px;
+  height: 50px;
+  position: relative;
+  left: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+
+  @include g.md-breakpoint {
+    width: 80px;
+    height: 46px;
+  }
+
+  @include g.sm-breakpoint {
+    width: 60px;
+    height: 46px;
+  }
+}
+
+.searchContainer {
+  display: flex;
+}
