@@ -304,6 +304,7 @@ export interface EditableInformationTileProps extends InformationTileProps {
 }
 
 export interface AdminActionTileProps {
+  subheading?: string;
   heading: string;
   icon: JSX.Element;
   onClick: () => void;

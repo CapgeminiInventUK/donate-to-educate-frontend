@@ -11,6 +11,7 @@ const AdminActionTile: FC<AdminActionTileProps> = ({
   onClick,
   isPresent,
   type,
+  subheading,
 }: AdminActionTileProps) => {
   return (
     <div className={`${styles.container} ${isPresent ? styles[type] : ''}`}>
@@ -18,6 +19,7 @@ const AdminActionTile: FC<AdminActionTileProps> = ({
         {icon}
         <div>
           <h3>{heading}</h3>
+          {subheading && <p className={styles.subheading}>{subheading}</p>}
         </div>
       </div>
 

@@ -13,6 +13,11 @@ const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
     <div className={styles.container}>
       {Object.entries(items).map(([categoryNumber, itemList]) => {
         const category = convertNumberToCategory(Number(categoryNumber));
+
+        if (itemList.length === 0) {
+          return null;
+        }
+
         return (
           <div key={category}>
             <div className={styles.sectionHeader}>
