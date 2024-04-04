@@ -27,7 +27,7 @@ const TextInputSearch: FC<TextInputSearchProps> = ({
       {header && <h3 className={styles.header}>{header}</h3>}
       {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
       {errorMessage && (
-        <h5 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h5>
+        <h4 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h4>
       )}
       <div className={styles.searchContainer}>
         <input
