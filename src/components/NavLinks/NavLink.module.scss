@@ -9,6 +9,10 @@
   margin-bottom: auto;
   margin-left: 40px;
 
+  &:first-of-type .link {
+    min-width: 200.5px;
+  }
+
   .link {
     display: flex;
     padding: 0 12px;
@@ -19,6 +23,11 @@
     color: g.$primary-dark-blue;
     text-decoration: none;
     border-bottom: 4px solid white;
+    justify-content: center;
+
+    @include g.lg-breakpoint {
+      padding: 0 10px;
+    }
 
     .chevronContainer {
       display: flex;
@@ -86,6 +95,10 @@
     .subMenu {
       display: flex;
     }
+  }
+
+  @include g.lg-breakpoint {
+    margin-left: 10px;
   }
 }
 

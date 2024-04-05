@@ -24,11 +24,15 @@
 
 .logoBlue {
   height: 50px;
-  padding-left: 120px;
   cursor: pointer;
+  min-width: 80px;
 }
 
 @media only screen and (max-width: g.$screen-medium) {
+  .logoBlue {
+    padding-left: 10px;
+  }
+
   .links {
     flex: 2 2 auto;
     overflow-y: auto;
@@ -38,7 +42,7 @@
 
 @media only screen and (max-width: g.$screen-large) {
   .logoBlue {
-    padding-left: 40px;
+    padding-left: 20px;
   }
 
   .links {
