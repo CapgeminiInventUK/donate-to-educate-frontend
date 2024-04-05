@@ -185,6 +185,7 @@ export interface SchoolOrCharityProperties {
   name: string;
   la: string;
   user: RequestUser;
+  urn?: string;
   charity?: { mainAddress: string; about: string };
 }
 

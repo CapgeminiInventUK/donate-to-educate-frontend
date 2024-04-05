@@ -25,6 +25,7 @@ export const getAdminPageRequests = `query getAdminPageRequests {
         charityName
         charityAddress
         aboutCharity
+        urn
         __typename
       }
 }` as GeneratedQuery<

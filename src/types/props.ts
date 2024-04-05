@@ -351,6 +351,7 @@ export interface ApprovalRequestProps {
   type: 'school' | 'charity';
   name: string;
   la: string;
+  urn?: string;
   user: RequestUser;
   charity?: { mainAddress: string; about: string };
 }
