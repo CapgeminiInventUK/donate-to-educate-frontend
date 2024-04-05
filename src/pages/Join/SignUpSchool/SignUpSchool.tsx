@@ -38,6 +38,7 @@ const SignUpSchool: FC = () => {
   const [selectedLocalAuthority, setSelectedLocalAuthority] = useState('');
   const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
   const [isUnhappyPath, setIsUnhappyPath] = useState(false);
+  const [cannotFindSchoolState, setCannotFindSchoolState] = useState(false);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['schools'],
@@ -139,6 +140,7 @@ const SignUpSchool: FC = () => {
   const cannotFindSchool = useCallback((): void => {
     setFormTemplate(getCannotFindSchoolPath(schoolOptions, cannotFindSchool));
     setIsUnhappyPath(true);
+    setCannotFindSchoolState(true);
   }, [schoolOptions]);
 
   const authorityNotRegistered = useCallback((): void => {
@@ -170,7 +172,7 @@ const SignUpSchool: FC = () => {
     } = formData[0];
     if (!isLocalAuthorityRegistered) {
       authorityNotRegistered();
-    } else {
+    } else if (!cannotFindSchoolState) {
       setHappyPathTemplate();
     }
     if (localAuthority) {
@@ -194,7 +196,14 @@ const SignUpSchool: FC = () => {
         setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.AUTHORITY));
     }
     setIsSchoolRegistered(!!registered);
-  }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate, isUnhappyPath]);
+  }, [
+    pageNumber,
+    formData,
+    authorityNotRegistered,
+    setHappyPathTemplate,
+    isUnhappyPath,
+    cannotFindSchoolState,
+  ]);
 
   useEffect(() => {
     if (!schoolOptions.length) {
