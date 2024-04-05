@@ -54,6 +54,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
                     ...schoolProperties,
                     name,
                     id: String(urn),
+                    urn,
                     user: {
                       name: joinRequestName ?? '',
                       title: jobTitle ?? '',
@@ -77,6 +78,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
                   ...schoolProperties,
                   name,
                   id: String(id),
+                  urn,
                   user: {
                     name: joinRequestName ?? '',
                     title: jobTitle ?? '',

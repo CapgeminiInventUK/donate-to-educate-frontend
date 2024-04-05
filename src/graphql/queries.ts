@@ -8,8 +8,8 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: String!) {
-  getSchoolByName(name: $name) {
+export const getSchool = /* GraphQL */ `query GetSchool($name: String!, $urn: String!) {
+  getSchool(name: $name, urn: $urn) {
     urn
     name
     localAuthority
@@ -35,7 +35,7 @@ export const getSchoolByName = /* GraphQL */ `query GetSchoolByName($name: Strin
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolByNameQueryVariables, APITypes.GetSchoolByNameQuery>;
+` as GeneratedQuery<APITypes.GetSchoolQueryVariables, APITypes.GetSchoolQuery>;
 export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!) {
   getSchoolsByLa(name: $name) {
     urn

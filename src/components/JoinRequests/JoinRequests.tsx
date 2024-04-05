@@ -150,6 +150,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
                   (joinRequest.type === 'school' ? joinRequest.school : joinRequest.charityName) ??
                   '',
                 la: joinRequest.localAuthority,
+                ...(joinRequest.urn && { urn: joinRequest.urn }),
                 user: {
                   name: joinRequest.name,
                   title: joinRequest.jobTitle ?? '',

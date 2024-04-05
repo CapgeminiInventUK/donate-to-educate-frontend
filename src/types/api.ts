@@ -196,6 +196,7 @@ export type getAdminPageRequestsQuery = {
     charityName?: string | null;
     charityAddress?: string | null;
     aboutCharity?: string | null;
+    urn?: string | null;
   }>;
 };
 
@@ -356,12 +357,13 @@ export type AcceptPrivacyPolicyMutation = {
   acceptPrivacyPolicy: boolean;
 };
 
-export type GetSchoolByNameQueryVariables = {
+export type GetSchoolQueryVariables = {
   name: string;
+  urn: string;
 };
 
-export type GetSchoolByNameQuery = {
-  getSchoolByName: {
+export type GetSchoolQuery = {
+  getSchool: {
     __typename: 'School';
     urn: string;
     name: string;

@@ -12,13 +12,13 @@ import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
 import {
   DeleteDeniedJoinRequestMutation,
-  GetSchoolByNameQuery,
+  GetSchoolQuery,
   UpdateJoinRequestMutation,
 } from '@/types/api';
 import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { getSchoolByName } from '@/graphql/queries';
+import { getSchool } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
@@ -33,6 +33,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   user,
   charity,
   id,
+  urn,
 }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -61,13 +62,14 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     data,
     isError: isErrorSchool,
   } = useQuery({
-    queryKey: [`school-details-${name}`],
+    queryKey: [`school-details-${name}-${urn}`],
     enabled: type === 'school',
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolByNameQuery>>({
-        query: getSchoolByName,
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolQuery>>({
+        query: getSchool,
         variables: {
           name: name.split('-')[0].trim(),
+          urn,
         },
       });
 
@@ -118,22 +120,22 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
           />
           {type === 'school' && (
             <>
-              <h1>{data?.getSchoolByName.name}</h1>
+              <h1>{data?.getSchool.name}</h1>
               <div className={styles.contactInfo}>
                 <Phone />
-                <div>{data?.getSchoolByName.phone}</div>
+                <div>{data?.getSchool.phone}</div>
               </div>
               <div className={styles.contactInfo}>
                 <Globe />
-                <div>{data?.getSchoolByName.website}</div>
+                <div>{data?.getSchool.website}</div>
               </div>
               <div className={styles.detailsCard}>
-                <p>{data?.getSchoolByName.street}</p>
-                <p>{data?.getSchoolByName.locality}</p>
-                <p>{data?.getSchoolByName.address3}</p>
-                <p>{data?.getSchoolByName.town}</p>
-                <p>{data?.getSchoolByName.county}</p>
-                <p>{data?.getSchoolByName.postcode}</p>
+                <p>{data?.getSchool.street}</p>
+                <p>{data?.getSchool.locality}</p>
+                <p>{data?.getSchool.address3}</p>
+                <p>{data?.getSchool.town}</p>
+                <p>{data?.getSchool.county}</p>
+                <p>{data?.getSchool.postcode}</p>
                 <p>England</p>
               </div>{' '}
             </>

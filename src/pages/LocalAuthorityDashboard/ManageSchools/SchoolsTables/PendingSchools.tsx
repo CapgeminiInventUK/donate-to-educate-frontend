@@ -40,7 +40,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
   setSchoolsNumber(data?.getSchoolJoinRequestsByLa?.length ?? 0);
 
   const pendingSchoolsData = data?.getSchoolJoinRequestsByLa.map(
-    ({ school, email, jobTitle, name, phone, id }) => {
+    ({ school, email, jobTitle, name, phone, id, urn }) => {
       return {
         name: school ?? '',
         status: 'Pending',
@@ -50,6 +50,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
         email,
         phone,
         id,
+        urn: urn ?? '',
       };
     }
   );

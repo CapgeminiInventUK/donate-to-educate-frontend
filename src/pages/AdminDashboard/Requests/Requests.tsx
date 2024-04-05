@@ -68,6 +68,7 @@ const Requests: FC = () => {
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
               user={schoolOrCharityProperties.user}
+              urn={schoolOrCharityProperties.urn}
             />
           )}
           {!isLoading && stage === StageState.APPROVE_CHARITY && (
