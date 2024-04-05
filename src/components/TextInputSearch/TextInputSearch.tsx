@@ -1,49 +1,37 @@
-import React, { FC, useState } from 'react';
-import { TextInputProps } from '@/types/props';
-import ShowHide from '../ShowHide/ShowHide';
-import styles from './TextInput.module.scss';
+import React, { FC } from 'react';
+import { TextInputSearchProps } from '@/types/props';
+import styles from './TextInputSearch.module.scss';
+import SearchIcon from '@/assets/tiles/Search';
 
-const TextInput: FC<TextInputProps> = ({
+const TextInputSearch: FC<TextInputSearchProps> = ({
   header,
   placeholder,
-  password = false,
   onChange,
   subHeading,
   isLarge,
   isSmall,
-  formMeta,
   value,
   disabled = false,
   errorMessage,
   ariaLabel,
+  onClick,
 }) => {
-  const [inputType, setInputType] = useState('password');
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (onChange) {
-      onChange(event.target.value, formMeta);
-    }
-  };
-
-  const handleChangePasswordVisibility = (show: boolean): void => {
-    if (show) {
-      setInputType('text');
-    } else {
-      setInputType('password');
+      onChange(event.target.value);
     }
   };
 
   return (
     <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
       {header && <h3 className={styles.header}>{header}</h3>}
-      {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
+      {subHeading && <p className={styles.subHeading}>{subHeading}</p>}
       {errorMessage && (
         <h4 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h4>
       )}
-      <div className={styles.inputContainer}>
-        {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}
+      <div className={styles.searchContainer}>
         <input
-          type={password ? inputType : 'text'}
+          type={'text'}
           value={value}
           onChange={handleChange}
           className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
@@ -53,10 +41,14 @@ const TextInput: FC<TextInputProps> = ({
           disabled={disabled}
           required={!header?.includes('optional')}
           aria-label={ariaLabel}
+          onKeyDown={(event) => (event.key === 'Enter' ? onClick() : undefined)}
         />
+        <div className={styles.searchIconContainer} onClick={onClick}>
+          <SearchIcon />
+        </div>
       </div>
     </div>
   );
 };
 
-export default TextInput;
+export default TextInputSearch;

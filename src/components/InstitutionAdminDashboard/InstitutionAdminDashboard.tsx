@@ -126,7 +126,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   type="tick"
                   isPresent={!!request}
                   heading="Let visitors request products from you"
-                  icon={<Hanger height="2.875rem" width="2.875rem" />}
+                  icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
                       state: { type: 'tick', profile: request },
@@ -137,7 +137,13 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   type="heart"
                   isPresent={!!donate}
                   heading="Let visitors donate products to you"
-                  icon={<Heart height="2.875rem" width="2.875rem" colour="#11356f" />}
+                  icon={
+                    <Heart
+                      height="2.875rem"
+                      width="2.875rem"
+                      colour={donate ? '#FEFCFD' : '#11356f'}
+                    />
+                  }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
                       state: { type: 'heart', profile: donate },
@@ -150,7 +156,14 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   type="plus"
                   isPresent={!!excess}
                   heading="Let charities take your extra stock to share with the community"
-                  icon={<ExtraStock height="2.875rem" width="2.875rem" colour="#11356f" />}
+                  subheading="Charities can take our extra products to share them with people who need it."
+                  icon={
+                    <ExtraStock
+                      height="2.875rem"
+                      width="2.875rem"
+                      colour={excess ? '#FEFCFD' : '#11356f'}
+                    />
+                  }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
                       state: { type: 'plus', profile: excess },

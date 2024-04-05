@@ -100,6 +100,7 @@ const ManageSchools: FC = () => {
           name={schoolProperties.name}
           la={schoolProperties.la}
           user={schoolProperties.user}
+          urn={schoolProperties.urn}
         />
       )}
       <DeclineDeleteModal

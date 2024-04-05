@@ -37,7 +37,6 @@
       align-items: center;
       border-radius: 10px;
       justify-content: space-between;
-      max-width: 1200px;
       margin: auto;
       margin-top: 20px;
       cursor: pointer;
@@ -121,4 +120,9 @@
       padding-right: 20px;
     }
   }
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
 }

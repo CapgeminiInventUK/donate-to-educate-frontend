@@ -16,6 +16,8 @@ import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Chevron from '@/assets/yourLocalArea/Chevron';
+import { Pill } from '@/components/Pill/Pill';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -58,6 +60,8 @@ const FindSchool: FC = () => {
       render: (text: string, { name, id, registered }: InstituteSearchResult) =>
         registered ? (
           <Button
+            key={id}
+            className={styles.nameBtn}
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
@@ -68,6 +72,13 @@ const FindSchool: FC = () => {
         ),
     },
     {
+      title: 'Status',
+      dataIndex: 'registered',
+      render: (registered: boolean) => (
+        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+      ),
+    },
+    {
       title: 'Distance',
       dataIndex: 'distance',
       render: (text: string) => `${convertMetersToMiles(text)} miles`,
@@ -75,10 +86,14 @@ const FindSchool: FC = () => {
     {
       title: 'Product types available',
       dataIndex: 'productTypes',
-      render: (text: number[]) =>
-        text.map((productType) => (
+      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
+        if (!school.registered) {
+          return [<>N/A</>];
+        }
+        return text.map((productType) => (
           <ProductTypes key={productType} type={productType} className={styles.productType} />
-        )),
+        ));
+      },
     },
   ];
 
@@ -99,14 +114,14 @@ const FindSchool: FC = () => {
           className={styles.expander}
           onClick={() => toggleDescription((previous) => !previous)}
         >
-          I cannot find my child&apos;s school
+          <Chevron direction={showDescription ? 'down' : 'up'} />
+          My child&apos;s school has not joined.
         </span>
         {showDescription && (
           <div className={styles.missingSchoolDescription}>
-            If your child&apos;s school is not on the list they have not joined Donate to Educate
-            yet. Find nearby charities who may have the products you need.{' '}
+            If your child&apos;s school has not joined Donate to Educate,{' '}
             <Link to={Paths.LOCAL_CHARITIES} state={{ postcode: state.postcode }}>
-              Find nearby charities.
+              find nearby charities who may have the products you need.
             </Link>
           </div>
         )}

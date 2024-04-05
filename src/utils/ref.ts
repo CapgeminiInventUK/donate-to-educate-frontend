@@ -4,5 +4,5 @@ export const checkIfRefContainsMouseEvent = (
   ref: RefObject<HTMLElement>,
   event: MouseEvent
 ): boolean => {
-  return ref.current !== null && ref.current.contains(event.target as Node);
+  return !!ref?.current?.contains(event.target as Node);
 };

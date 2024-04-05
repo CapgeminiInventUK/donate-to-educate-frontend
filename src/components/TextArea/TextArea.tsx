@@ -28,8 +28,8 @@ const TextArea: FC<TextAreaProps> = ({
 
   return (
     <div className={styles.container}>
-      {header && <h4 className={styles.header}>{header}</h4>}
-      {subHeading && <h5 className={styles.subHeading}>{subHeading}</h5>}
+      {header && <h3 className={styles.header}>{header}</h3>}
+      {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {hint && <p className={styles.hint}>{hint}</p>}
       <textarea
         id={id}

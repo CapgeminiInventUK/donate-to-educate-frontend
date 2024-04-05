@@ -18,6 +18,7 @@ import findSchool from '@/templates/tiles/findSchool';
 import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
 import donate from '@/templates/tiles/donate';
 import takeExtraStock from '@/templates/tiles/takeExtraStock';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const CharityView: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -52,7 +53,10 @@ const CharityView: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <InstitutionBanner type={'charity'} name={state.name} />
 
       <div className={styles.subContainer}>

@@ -11,8 +11,8 @@
   flex: 1;
   flex-direction: column;
   justify-content: space-around;
-  padding: 2.5rem;
-  gap: 2.5rem;
+  padding: 2rem;
+  gap: 0.5rem;
   border-radius: 0.625rem;
   border: 2px solid g.$greyscale-disabled;
   background: g.$primary-white;
@@ -36,8 +36,11 @@
   &.plus {
     background: g.$primary-dark-blue;
 
-    h3 {
-      color: g.$primary-white;
+    .heading {
+      h3,
+      .subheading {
+        color: g.$primary-white;
+      }
     }
   }
 }

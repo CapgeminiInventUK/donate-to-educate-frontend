@@ -32,16 +32,12 @@
 
 .filterIcon {
   color: g.$primary-white;
+  font-size: 20px;
 }
 
 .sorters {
   display: flex;
   flex-direction: column;
-
-  svg {
-    height: 10px;
-    margin: -1px;
-  }
 
   .sortActive {
     color: g.$primary-dark-blue;

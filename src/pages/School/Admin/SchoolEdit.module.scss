@@ -68,10 +68,14 @@
 
     .helpContact {
       margin: 40px 0;
-      padding: 40px;
+      padding: 20px 40px;
       border: solid 2px g.$greyscale-disabled;
       border-radius: 10px;
       color: g.$primary-dark-blue;
+
+      p {
+        margin: 10px 0 25px 0;
+      }
     }
 
     .actionButtons {

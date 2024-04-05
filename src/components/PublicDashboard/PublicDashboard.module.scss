@@ -31,6 +31,8 @@
   .productsTilesContainer {
     display: flex;
     justify-content: space-between;
+    padding-top: 20px;
+    gap: 25px;
 
     @include g.sm-breakpoint {
       flex-direction: column;
@@ -41,13 +43,17 @@
       display: flex;
       flex: 1;
       padding: 30px 40px;
-      margin-right: 25px;
       align-items: center;
       gap: 20px;
       border-radius: 10px;
       background: g.$primary-light-blue;
       color: g.$dark-blue;
       cursor: pointer;
+
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
 
       @include g.sm-breakpoint {
         margin: 10px 0;
@@ -64,6 +70,11 @@
       background: g.$primary-mid-blue;
       color: g.$primary-white;
       cursor: pointer;
+
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 
@@ -81,13 +92,15 @@
 
       .extraStockText {
         flex-direction: column;
+        justify-content: center;
 
         h3 {
-          margin: 0;
+          margin: 0 0 20px 0;
           color: g.$primary-white;
         }
 
         h4 {
+          margin: 0;
           color: g.$primary-white;
           font-weight: 400;
         }

@@ -11,35 +11,12 @@
   padding: 40px 80px;
 }
 
-.searchBar {
-  display: flex;
-}
-
-.searchIconContainer {
-  background-color: g.$primary-dark-blue;
-  width: 165px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media only screen and (max-width: g.$screen-medium) {
   .container {
     padding: 17px 19px;
   }
 
-  .searchBar {
-    input {
-      width: 200px;
-    }
-  }
-
   .subContainer {
     padding: 40px 20px;
-  }
-
-  .searchIconContainer {
-    height: 45px;
   }
 }

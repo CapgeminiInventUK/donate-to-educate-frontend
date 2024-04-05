@@ -10,6 +10,8 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
 import donate from '@/templates/tiles/donate';
 import takeExtraStock from '@/templates/tiles/takeExtraStock';
+import findSchool from '@/templates/tiles/findSchool';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const School: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
@@ -21,7 +23,10 @@ const School: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <div className={styles.actionButtons}>
+        <BackButton theme="blue" />
+        <LogoutButton />
+      </div>
       <InstitutionBanner type={'school'} name={state.name} />
       <div className={styles.subContainer}>
         <div className={styles.schoolProfileBanner}>
@@ -61,6 +66,6 @@ const School: FC = () => {
   );
 };
 
-const tiles = [findNearbyCharities, donate, takeExtraStock];
+const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
 
 export default School;

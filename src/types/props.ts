@@ -212,6 +212,10 @@ export interface TextInputProps extends CommonInputProps {
   isSmall?: boolean;
 }
 
+export interface TextInputSearchProps extends TextInputProps {
+  onClick: () => void;
+}
+
 export interface MultiStepFormProps {
   formTemplate: FormTemplate[];
   formData: FormDataItem[];
@@ -300,6 +304,7 @@ export interface EditableInformationTileProps extends InformationTileProps {
 }
 
 export interface AdminActionTileProps {
+  subheading?: string;
   heading: string;
   icon: JSX.Element;
   onClick: () => void;
@@ -346,6 +351,7 @@ export interface ApprovalRequestProps {
   type: 'school' | 'charity';
   name: string;
   la: string;
+  urn?: string;
   user: RequestUser;
   charity?: { mainAddress: string; about: string };
 }
