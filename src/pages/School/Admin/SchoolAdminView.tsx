@@ -1,25 +1,53 @@
 import { FC } from 'react';
 import styles from './SchoolAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
 import donate from '@/templates/tiles/donate';
 import takeExtraStock from '@/templates/tiles/takeExtraStock';
 import findSchool from '@/templates/tiles/findSchool';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { GetSchoolProfileQuery } from '@/types/api';
+import { getSchoolProfile } from '@/graphql/queries';
+import { useStore } from '@/stores/useStore';
 
 const School: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
-    Paths.SCHOOLS_CREATE_EDIT_PROFILE
-  );
-
+  const user = useStore((state) => state.user);
+  const { name, id } = user ?? {};
   const navigate = useNavigate();
-  const location = useLocation() as { state: { name: string; postcode: string } };
+
+  const { isLoading, data, isError } = useQuery({
+    queryKey: [`getProfile-${name}-${id}`],
+    enabled: user !== undefined,
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
+        query: getSchoolProfile,
+        variables: {
+          name,
+          id,
+        },
+      });
+
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -27,7 +55,7 @@ const School: FC = () => {
         <BackButton theme="blue" />
         <LogoutButton />
       </div>
-      <InstitutionBanner type={'school'} name={state.name} />
+      <InstitutionBanner type={'school'} name={name} />
       <div className={styles.subContainer}>
         <div className={styles.schoolProfileBanner}>
           <SchoolProfile />
@@ -48,7 +76,7 @@ const School: FC = () => {
                 key={title}
                 className={`${styles.tile} ${styles[colour]}`}
                 onClick={() =>
-                  navigate(onClickLink, { state: { postcode: location.state.postcode } })
+                  navigate(onClickLink, { state: { postcode: data?.getSchoolProfile?.postcode } })
                 }
               >
                 {icon}
