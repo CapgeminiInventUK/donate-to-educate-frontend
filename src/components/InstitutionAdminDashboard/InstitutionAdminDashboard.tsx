@@ -177,9 +177,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   text="Save profile and continue"
                   ariaLabel="save profile and continue"
                   onClick={() =>
-                    navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW, {
-                      state: { name, postcode },
-                    })
+                    navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)
                   }
                 />
                 <FormButton

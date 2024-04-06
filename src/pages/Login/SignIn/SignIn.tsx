@@ -18,7 +18,7 @@ const SignIn: FC = () => {
   const [password, setPassword] = useState<string>('');
 
   const userActions = useStore((state) => state);
-  const { user, isLoading, error } = userActions;
+  const { user, isLoading, error, hasProfile } = userActions;
 
   const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
   const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
@@ -28,7 +28,7 @@ const SignIn: FC = () => {
   }
 
   if (user) {
-    return <Navigate to={getRedirectUrl(user.type as AccountType)} />;
+    return <Navigate to={getRedirectUrl(user.type as AccountType, hasProfile)} />;
   }
 
   return (
