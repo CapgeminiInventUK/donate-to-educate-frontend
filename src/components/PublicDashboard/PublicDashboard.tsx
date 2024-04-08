@@ -34,8 +34,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   setPreview,
 }) => {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-console
-  console.log(header);
   return (
     <>
       <InstitutionBanner
