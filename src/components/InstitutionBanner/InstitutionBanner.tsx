@@ -21,6 +21,14 @@ import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
 import { useStore } from '@/stores/useStore';
 
+interface Banner {
+  phone?: string;
+  email?: string;
+  website?: string;
+  uniformPolicy?: string;
+  address?: string;
+}
+
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
   phone,
@@ -32,7 +40,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   name,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
-  const [banner, setBanner] = useState({
+  const [banner, setBanner] = useState<Banner>({
     phone,
     email,
     website,
@@ -40,7 +48,6 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     address,
   });
   const authToken = useStore((state) => state.user?.token);
-
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
@@ -77,200 +84,79 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
         isAdminView
       ) && (
         <div className={styles.textContainer}>
-          <ul>
-            {(banner.phone ?? isAdminView) && (
-              <li>
-                <span>
-                  <Telephone />
-                </span>
-                {!isEditMode ? (
-                  <>
-                    {banner.phone ? (
-                      <Link to={`tel: ${banner.phone}`} className={styles.italicized}>
-                        {banner.phone}
-                      </Link>
-                    ) : (
-                      <p className={styles.italicized}>{"You haven't added your phone number"}</p>
-                    )}
-                  </>
-                ) : (
-                  <TextInput
-                    onChange={(value) => {
-                      setBanner((prevState) => ({
-                        ...prevState,
-                        phone: value,
-                      }));
-                    }}
-                    ariaLabel="Phone Number"
-                    value={banner.phone}
-                  />
-                )}
-              </li>
-            )}
-            {(banner.email ?? isAdminView) && (
-              <li>
-                <span>
-                  <Email />
-                </span>
-                {!isEditMode ? (
-                  <>
-                    {banner.email ? (
-                      <Link to={`mailto: ${banner.email}`} className={styles.italicized}>
-                        {banner.email}
-                      </Link>
-                    ) : (
-                      <p className={styles.italicized}>{"You haven't added your email"}</p>
-                    )}
-                  </>
-                ) : (
-                  <TextInput
-                    onChange={(value) => {
-                      setBanner((prevState) => ({
-                        ...prevState,
-                        email: value,
-                      }));
-                    }}
-                    ariaLabel="Email address"
-                    value={banner.email}
-                  />
-                )}
-              </li>
-            )}
-            {(website ?? isAdminView) && (
-              <li>
-                <span>
-                  <Globe />
-                </span>
-                {!isEditMode ? (
-                  <>
-                    {banner.website ? (
+          {isAdminView && (
+            <>
+              {getAdminView(banner, type, isEditMode, setBanner)}
+              {!isEditMode ? (
+                <FormButton
+                  text={
+                    <div className={styles.editDiv}>
+                      <EditIcon />
+                      <span className={styles.editButtonText}>Edit</span>
+                    </div>
+                  }
+                  theme="formButtonGrey"
+                  onClick={() => toggleEditMode(true)}
+                  ariaLabel="edit"
+                />
+              ) : (
+                <>
+                  <div className={styles.footerButtons}>
+                    <Button
+                      theme="darkBlue"
+                      className={styles.saveButton}
+                      onClick={() => {
+                        toggleEditMode(false);
+                        void refetch();
+                      }}
+                      text="Save"
+                      ariaLabel="save"
+                    />
+                    <CancelButton onClick={() => toggleEditMode(false)} theme={'white'} />
+                  </div>
+                </>
+              )}
+            </>
+          )}
+          {!isAdminView && (
+            <>
+              {(phone ?? email ?? website) && (
+                <ul>
+                  {phone && getBannerItem(<Telephone />, phone, 'tel', '')}
+                  {email && getBannerItem(<Email />, email, 'mail', '')}
+                  {website && getBannerItem(<Globe />, website, 'url', '')}
+                </ul>
+              )}
+
+              {(uniformPolicy ?? address) && (
+                <ul>
+                  {type === 'school' && uniformPolicy && (
+                    <>
                       <Link
-                        to={banner.website}
+                        className={styles.uniformPolicyButton}
+                        to={uniformPolicy}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={styles.italicized}
                       >
-                        {banner.website}
+                        <div>
+                          <span className={styles.buttonLabel}>View uniform policy</span>
+                          <InterfaceArrowTopRight className={styles.interfaceArrow} />
+                        </div>
                       </Link>
-                    ) : (
-                      <p className={styles.italicized}>{"You haven't added your website"}</p>
-                    )}
-                  </>
-                ) : (
-                  <TextInput
-                    onChange={(value) => {
-                      setBanner((prevState) => ({
-                        ...prevState,
-                        website: value,
-                      }));
-                    }}
-                    ariaLabel="website"
-                    value={banner.website}
-                  />
-                )}
-              </li>
-            )}
-          </ul>
-
-          <ul>
-            <li>
-              {banner.uniformPolicy && type === 'school' && !isAdminView && (
-                <>
-                  <span>
-                    <SchoolHat />
-                  </span>
-                  <Link
-                    className={styles.uniformPolicyButton}
-                    to={banner.uniformPolicy}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div>
-                      <span className={styles.buttonLabel}>View uniform policy</span>
-                      <InterfaceArrowTopRight className={styles.interfaceArrow} />
-                    </div>
-                  </Link>
-                </>
-              )}
-              {type === 'school' && isAdminView && (
-                <>
-                  <span>
-                    <SchoolHat />
-                  </span>
-                  {!isEditMode ? (
-                    <p className={styles.italicized}>
-                      {banner.uniformPolicy ?? "You haven't added your school's uniform policy"}
-                    </p>
-                  ) : (
-                    <TextInput
-                      onChange={(value) => {
-                        setBanner((prevState) => ({
-                          ...prevState,
-                          uniformPolicy: value,
-                        }));
-                      }}
-                      ariaLabel="uniform policy"
-                      value={banner.uniformPolicy}
-                    />
+                    </>
                   )}
-                </>
-              )}
-              {type === 'charity' && (
-                <>
-                  <span>
-                    <House />
-                  </span>
-                  {!isEditMode ? (
-                    <p className={styles.italicized}>{banner.address ?? 'Address not given'}</p>
-                  ) : (
-                    <TextInput
-                      onChange={(value) => {
-                        setBanner((prevState) => ({
-                          ...prevState,
-                          address: value,
-                        }));
-                      }}
-                      ariaLabel="address"
-                      value={banner.address}
-                    />
+                  {type === 'charity' && address && (
+                    <li>
+                      <span>
+                        <House />
+                      </span>
+                      <p className={styles.italicized}>{address ?? ''}</p>
+                    </li>
                   )}
-                </>
+                </ul>
               )}
-            </li>
-            {isAdminView && (
-              <li>
-                {!isEditMode ? (
-                  <FormButton
-                    text={
-                      <div className={styles.editDiv}>
-                        <EditIcon />
-                        <span className={styles.editButtonText}>Edit</span>
-                      </div>
-                    }
-                    theme="formButtonGrey"
-                    onClick={() => toggleEditMode(true)}
-                    ariaLabel="edit"
-                  />
-                ) : (
-                  <>
-                    <div className={styles.footerButtons}>
-                      <Button
-                        theme="darkBlue"
-                        className={styles.saveButton}
-                        onClick={() => {
-                          toggleEditMode(false);
-                          void refetch();
-                        }}
-                        text="Save"
-                        ariaLabel="save"
-                      />
-                      <CancelButton onClick={() => toggleEditMode(false)} theme={'white'} />
-                    </div>
-                  </>
-                )}
-              </li>
-            )}
-          </ul>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -293,4 +179,116 @@ const hasContactInfo = (
     address !== undefined ||
     isAdminView === true
   );
+};
+
+const getAdminView = (
+  banner: Banner,
+  type: string,
+  editMode: boolean,
+  setBanner: React.Dispatch<React.SetStateAction<Banner>>
+): JSX.Element => {
+  const { phone, email, website, uniformPolicy, address } = banner;
+  return (
+    <div className={styles.textContainer}>
+      {!editMode ? (
+        <>
+          <ul>
+            {getBannerItem(<Telephone />, phone, 'tel', "You haven't added your phone number")}
+            {getBannerItem(<Email />, email, 'mail', "You haven't added your email")}
+            {getBannerItem(<Globe />, website, 'url', "You haven't added your website")}
+          </ul>
+          <ul>
+            {type === 'school' &&
+              getBannerItem(
+                <SchoolHat />,
+                uniformPolicy,
+                'url',
+                "You haven't added your school's uniform policy"
+              )}
+            {type === 'charity' && (
+              <li>
+                <span>
+                  <House />
+                </span>
+                <p className={styles.italicized}>{address ?? 'Address not given'}</p>
+              </li>
+            )}
+          </ul>
+        </>
+      ) : (
+        <>
+          <ul>
+            {getEditModeItem(<Telephone />, setBanner, 'phone', phone)}
+            {getEditModeItem(<Email />, setBanner, 'email', email)}
+            {getEditModeItem(<Globe />, setBanner, 'website', website)}
+          </ul>
+
+          <ul>
+            {type === 'school' &&
+              getEditModeItem(<SchoolHat />, setBanner, 'uniformPolicy', uniformPolicy)}
+            {type === 'charity' && getEditModeItem(<House />, setBanner, 'address', address)}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+};
+
+const getEditModeItem = (
+  icon: JSX.Element,
+  setBanner: React.Dispatch<React.SetStateAction<Banner>>,
+  itemName: string,
+  item: string | undefined
+): JSX.Element => {
+  return (
+    <li>
+      <span>{icon}</span>
+      <TextInput
+        onChange={(value) => {
+          setBanner((prevState) => ({
+            ...prevState,
+            [itemName]: value,
+          }));
+        }}
+        ariaLabel={itemName}
+        value={item}
+      />
+    </li>
+  );
+};
+
+const getBannerItem = (
+  icon: JSX.Element,
+  item: string | undefined,
+  itemType: string,
+  defaultText: string
+): JSX.Element => {
+  return (
+    <li>
+      <span>{icon}</span>
+      {item ? (
+        <Link
+          to={getLinkFromType(itemType, item)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.italicized}
+        >
+          {item}
+        </Link>
+      ) : (
+        <p className={styles.italicized}>{defaultText}</p>
+      )}
+    </li>
+  );
+};
+
+const getLinkFromType = (type: string, item?: string): string => {
+  switch (type) {
+    case 'tel':
+      return `tel: ${item}`;
+    case 'mail':
+      return `mailto: ${item}`;
+    default:
+      return `${item}`;
+  }
 };
