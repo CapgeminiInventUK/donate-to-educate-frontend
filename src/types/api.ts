@@ -890,3 +890,21 @@ export type GetCharitiesNearbyWithProfileQuery = {
     registered: boolean;
   }>;
 };
+
+export type HasSchoolProfileQueryVariables = {
+  name: string;
+  id: string;
+};
+
+export type HasSchoolProfileQuery = {
+  hasSchoolProfile: boolean;
+};
+
+export type HasCharityProfileQueryVariables = {
+  name: string;
+  id: string;
+};
+
+export type HasCharityProfileQuery = {
+  hasCharityProfile: boolean;
+};

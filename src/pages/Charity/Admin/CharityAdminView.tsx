@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './CharityAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
@@ -9,9 +9,8 @@ import TextInput from '@/components/TextInput/TextInput';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { updateCharityProfile } from '@/graphql/mutations';
-import { UpdateCharityProfileMutation } from '@/types/api';
+import { GetCharityProfileQuery, UpdateCharityProfileMutation } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
 import findSchool from '@/templates/tiles/findSchool';
@@ -19,18 +18,42 @@ import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
 import donate from '@/templates/tiles/donate';
 import takeExtraStock from '@/templates/tiles/takeExtraStock';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import { getCharityProfile } from '@/graphql/queries';
+import Spinner from '@/components/Spinner/Spinner';
 
 const CharityView: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ name: string; postcode: string }>(
-    Paths.CHARITIES_CREATE_EDIT_PROFILE
-  );
+  const user = useStore((state) => state.user);
+  const { name, id } = user ?? {};
   const [edit, setEdit] = useState(false);
-  const [postcode, setPostcode] = useState<string>(state.postcode);
+
+  const { isLoading, data, isError } = useQuery({
+    queryKey: [`getProfile-${name}-${id}`],
+    enabled: user !== undefined,
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
+        query: getCharityProfile,
+        variables: {
+          name,
+          id,
+        },
+      });
+
+      return data;
+    },
+  });
+
+  const [postcode, setPostcode] = useState<string>();
   const navigate = useNavigate();
   const authToken = useStore((state) => state.user?.token);
 
-  const { refetch, isError } = useQuery({
-    queryKey: [`updateProfilePostcode-${postcode}-${state.name}`],
+  useEffect(() => {
+    if (data?.getCharityProfile?.postcode) {
+      setPostcode(data?.getCharityProfile.postcode);
+    }
+  }, [setPostcode, data?.getCharityProfile?.postcode]);
+
+  const { refetch, isError: isRefetchError } = useQuery({
+    queryKey: [`updateProfilePostcode-${postcode}-${name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
@@ -47,7 +70,11 @@ const CharityView: FC = () => {
     },
   });
 
-  if (isError) {
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isError || isRefetchError) {
     return <ErrorBanner />;
   }
 
@@ -57,7 +84,7 @@ const CharityView: FC = () => {
         <BackButton theme="blue" />
         <LogoutButton />
       </div>
-      <InstitutionBanner type={'charity'} name={state.name} />
+      <InstitutionBanner type={'charity'} name={name} />
 
       <div className={styles.subContainer}>
         <div className={styles.profilebanner}>
@@ -128,7 +155,7 @@ const CharityView: FC = () => {
                 <div
                   key={title}
                   className={`${styles.tile} ${styles[colour]}`}
-                  onClick={() => navigate(onClickLink, { state: { postcode: state.postcode } })}
+                  onClick={() => navigate(onClickLink, { state: { postcode } })}
                 >
                   {icon}
                   <div className={styles.content}>

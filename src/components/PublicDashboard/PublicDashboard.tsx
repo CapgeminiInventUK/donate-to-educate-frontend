@@ -34,7 +34,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   setPreview,
 }) => {
   const navigate = useNavigate();
-
   return (
     <>
       <InstitutionBanner

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children, authType }) => {
-  const { isLoading, user } = useStore((state) => state);
+  const { isLoading, user, hasProfile } = useStore((state) => state);
 
   if (!route) {
     return children;
@@ -29,7 +29,7 @@ const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children, authType }) 
 
   const type = user.type;
   if (authType != type) {
-    return <Navigate to={getRedirectUrl(type as AccountType)} />;
+    return <Navigate to={getRedirectUrl(type as AccountType, hasProfile)} />;
   }
 
   return children;

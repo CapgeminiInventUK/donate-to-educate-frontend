@@ -504,3 +504,13 @@ export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNe
   APITypes.GetCharitiesNearbyWithProfileQueryVariables,
   APITypes.GetCharitiesNearbyWithProfileQuery
 >;
+export const hasSchoolProfile =
+  /* GraphQL */ `query HasSchoolProfile($name: String!, $id: String!) {
+  hasSchoolProfile(name: $name, id: $id)
+}
+` as GeneratedQuery<APITypes.HasSchoolProfileQueryVariables, APITypes.HasSchoolProfileQuery>;
+export const hasCharityProfile =
+  /* GraphQL */ `query HasCharityProfile($name: String!, $id: String!) {
+  hasCharityProfile(name: $name, id: $id)
+}
+` as GeneratedQuery<APITypes.HasCharityProfileQueryVariables, APITypes.HasCharityProfileQuery>;
