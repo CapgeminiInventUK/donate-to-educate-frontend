@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
 import Spinner from '@/components/Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
@@ -12,8 +12,9 @@ import { useStore } from '@/stores/useStore';
 const CharityAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
+  const [dataFetched, setDataFetched] = useState(false);
 
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading, data, isError, refetch } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: user !== undefined,
     queryFn: async () => {
@@ -28,6 +29,13 @@ const CharityAdminDashboard: FC = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    if (!dataFetched) {
+      void refetch();
+      setDataFetched(true);
+    }
+  }, [refetch, setDataFetched, dataFetched]);
 
   if (isLoading) {
     return <Spinner />;
