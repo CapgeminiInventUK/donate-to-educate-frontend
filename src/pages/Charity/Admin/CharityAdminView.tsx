@@ -20,6 +20,9 @@ import takeExtraStock from '@/templates/tiles/takeExtraStock';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { getCharityProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
+import { isPostalCode } from 'validator';
+import SchoolProfile from '@/assets/admin/SchoolProfile';
+import Postcode from '@/assets/icons/Postcode';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
@@ -42,7 +45,9 @@ const CharityView: FC = () => {
     },
   });
 
-  const [postcode, setPostcode] = useState<string>();
+  const [postcode, setPostcode] = useState<string>('');
+  const [previousPostcode, setPreviousPostcode] = useState<string>('');
+  const [postcodeError, setPostcodeError] = useState<string>();
   const navigate = useNavigate();
   const authToken = useStore((state) => state.user?.token);
 
@@ -85,9 +90,9 @@ const CharityView: FC = () => {
         <LogoutButton />
       </div>
       <InstitutionBanner type={'charity'} name={name} />
-
       <div className={styles.subContainer}>
-        <div className={styles.profilebanner}>
+        <div className={styles.profileBanner}>
+          <SchoolProfile />
           <h2>Your charity profile is active</h2>
           <p>View, edit and update your public facing profile.</p>
           <FormButton
@@ -98,6 +103,7 @@ const CharityView: FC = () => {
           />
         </div>
         <div className={styles.postcodeContainer}>
+          <Postcode />
           <h2>Your postcode</h2>
           <p>
             We will not display this specific postcode on your profile. This is to help Donate to
@@ -107,7 +113,7 @@ const CharityView: FC = () => {
           <div className={styles.buttons}>
             {!edit ? (
               <>
-                <h2>{postcode}</h2>
+                <h2>{postcode ?? 'Postcode not given'}</h2>
                 <FormButton
                   text={
                     <div className={styles.editDiv}>
@@ -115,7 +121,10 @@ const CharityView: FC = () => {
                     </div>
                   }
                   theme="formButtonDarkBlue"
-                  onClick={() => setEdit(true)}
+                  onClick={() => {
+                    setPreviousPostcode(postcode);
+                    setEdit(true);
+                  }}
                   ariaLabel="edit"
                 />
               </>
@@ -125,20 +134,33 @@ const CharityView: FC = () => {
                   ariaLabel="postcode"
                   value={postcode}
                   onChange={(postcode) => setPostcode(postcode)}
+                  errorMessage={postcodeError}
                 />
                 <FormButton
+                  className={styles.formButton}
                   text="Save"
-                  theme="formButtonGreen"
+                  theme={postcode ? 'formButtonGreen' : 'formButtonGreenDisabled'}
                   onClick={() => {
-                    setEdit(false);
-                    void refetch();
+                    if (isPostalCode(postcode, 'GB')) {
+                      setEdit(false);
+                      setPostcodeError(undefined);
+                      if (postcode !== previousPostcode) {
+                        void refetch();
+                      }
+                    } else {
+                      setPostcodeError('Invalid postcode');
+                    }
                   }}
+                  disabled={!postcode}
                   ariaLabel="save"
                 />
                 <FormButton
+                  className={styles.formButton}
                   text="Cancel"
                   theme="formButtonGrey"
                   onClick={() => {
+                    setPostcode(previousPostcode);
+                    setPostcodeError(undefined);
                     setEdit(false);
                   }}
                   ariaLabel="cancel"

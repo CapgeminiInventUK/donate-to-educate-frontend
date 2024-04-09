@@ -150,7 +150,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       <span>
                         <House />
                       </span>
-                      <p className={styles.italicized}>{address ?? ''}</p>
+                      <p className={styles.item}>{address ?? ''}</p>
                     </li>
                   )}
                 </ul>
@@ -210,7 +210,7 @@ const getAdminView = (
                 <span>
                   <House />
                 </span>
-                <p className={styles.italicized}>{address ?? 'Address not given'}</p>
+                <p className={styles.item}>{address ?? 'Address not given'}</p>
               </li>
             )}
           </ul>
@@ -271,12 +271,12 @@ const getBannerItem = (
           to={getLinkFromType(itemType, item)}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.italicized}
+          className={styles.item}
         >
           {item}
         </Link>
       ) : (
-        <p className={styles.italicized}>{defaultText}</p>
+        <p className={styles.item}>{defaultText}</p>
       )}
     </li>
   );

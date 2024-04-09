@@ -9,6 +9,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import LoginBanner from '@/components/LoginBanner/LoginBanner';
 import { breakpoints } from '@/utils/globals';
 import styles from './ResetPassword.module.scss';
+import BackButton from '@/components/BackButton/BackButton';
 
 const ResetPassword: FC = () => {
   const [email, setEmail] = useState('');
@@ -51,13 +52,14 @@ const ResetPassword: FC = () => {
 
   return (
     <div className={styles.container}>
+      <BackButton theme={'blue'} />
       <div className={styles.containerInner}>
         <LoginBanner />
         {stepNumber === 0 ? (
           <>
             <h2>Reset Password</h2>
             <TextInput
-              header="Your Email"
+              header="Email"
               onChange={(value): void => {
                 setEmail(value);
 

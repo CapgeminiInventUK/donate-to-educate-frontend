@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types/api';
 import FormButton from '../FormButton/FormButton';
+import { motion } from 'framer-motion';
 
 interface PublicDashboardProps {
   type: 'school' | 'charity';
@@ -65,36 +66,42 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
 
         <div className={styles.productsTilesContainer}>
           {request && (
-            <div
+            <motion.div
               className={styles.requestProductsTile}
               onClick={() =>
                 navigate(getNavigateLinkFromType(type), {
                   state: { type: 'tick', profile: request },
                 })
               }
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Hanger /> <h3>Request products</h3>
-            </div>
+            </motion.div>
           )}
           {donate && (
-            <div
+            <motion.div
               className={styles.donateProductsTile}
               onClick={() =>
                 navigate(getNavigateLinkFromType(type), {
                   state: { type: 'heart', profile: donate },
                 })
               }
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Heart /> <h3>Donate products</h3>
-            </div>
+            </motion.div>
           )}
         </div>
         {excess && (
-          <div
+          <motion.div
             className={styles.extraStockTileContainer}
             onClick={() =>
               navigate(getNavigateLinkFromType(type), { state: { type: 'plus', profile: excess } })
             }
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
           >
             <div className={styles.extraStockTile}>
               <ExtraStock />
@@ -105,7 +112,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                 </h4>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
         {postcode && setPreview && (
           <div className={styles.actionButtons}>

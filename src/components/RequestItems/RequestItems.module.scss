@@ -19,6 +19,10 @@
       flex-direction: column;
       border-top: solid 18px transparent;
 
+      .radioGroup {
+        margin-bottom: 20px;
+      }
+
       .connection {
         margin-left: 30px;
         border-left: solid 4px g.$primary-mid-blue;
@@ -34,10 +38,6 @@
 
       .subheading {
         margin-bottom: 40px;
-      }
-
-      .fieldHeadings {
-        margin-bottom: 10px;
       }
 
       .textAreaHeadings {

@@ -121,14 +121,18 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
           {type === 'school' && (
             <>
               <h1>{data?.getSchool.name}</h1>
-              <div className={styles.contactInfo}>
-                <Phone />
-                <div>{data?.getSchool.phone}</div>
-              </div>
-              <div className={styles.contactInfo}>
-                <Globe />
-                <div>{data?.getSchool.website}</div>
-              </div>
+              {data?.getSchool.phone && (
+                <div className={styles.contactInfo}>
+                  <Phone />
+                  <div>{data?.getSchool.phone}</div>
+                </div>
+              )}
+              {data?.getSchool.website && (
+                <div className={styles.contactInfo}>
+                  <Globe />
+                  <div>{data?.getSchool.website}</div>
+                </div>
+              )}
               <div className={styles.detailsCard}>
                 <p>{data?.getSchool.street}</p>
                 <p>{data?.getSchool.locality}</p>
