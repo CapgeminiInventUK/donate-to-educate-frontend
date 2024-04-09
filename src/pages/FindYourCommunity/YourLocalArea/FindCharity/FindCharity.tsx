@@ -14,8 +14,8 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
-import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -74,9 +74,7 @@ const FindCharity: FC = () => {
       title: 'Product types available',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
-        text.map((productType) => (
-          <ProductTypes key={productType} type={productType} className={styles.productType} />
-        )),
+        text.map((productType) => <ProductTypeIcon key={productType} productType={productType} />),
     },
   ];
 
@@ -85,7 +83,6 @@ const FindCharity: FC = () => {
       <BackButton theme="blue" />
       <div className={styles.subContainer}>
         <h2>Find charities near {state.postcode.toUpperCase()}</h2>
-
         <Table
           dataSource={data?.getCharitiesNearbyWithProfile ?? []}
           columns={columns}

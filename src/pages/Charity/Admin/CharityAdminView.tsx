@@ -94,7 +94,7 @@ const CharityView: FC = () => {
             theme="formButtonGreen"
             text={'View and edit profile'}
             ariaLabel="view and edit profile"
-            onClick={() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE)}
+            onClick={() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE)}
           />
         </div>
         <div className={styles.postcodeContainer}>

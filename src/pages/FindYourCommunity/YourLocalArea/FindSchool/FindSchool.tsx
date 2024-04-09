@@ -14,10 +14,10 @@ import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
-import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
 import { Pill } from '@/components/Pill/Pill';
+import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -91,7 +91,7 @@ const FindSchool: FC = () => {
           return [<>N/A</>];
         }
         return text.map((productType) => (
-          <ProductTypes key={productType} type={productType} className={styles.productType} />
+          <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
     },
