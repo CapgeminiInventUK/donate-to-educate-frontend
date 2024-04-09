@@ -48,7 +48,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
         onClick={(e) => handleClick(e, path)}
         to={path}
       >
-        <span>{name}</span>
+        <span>{user !== undefined && path === Paths.LOGIN ? 'View profile' : name}</span>
         {childRoutes && childRoutes?.length > 0 && (
           <div className={styles.chevronContainer}>
             <ChevronDown className={styles.chevron} colour="black" />

@@ -38,9 +38,11 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
   isLoading: true,
   hasProfile: false,
   getCurrentUser: async (): Promise<void> => {
-    const user = await getUser();
-    const { type, id, name } = user;
     try {
+      const user = await getUser();
+
+      const { type, id, name } = user;
+
       set({
         user,
         isLoading: false,
@@ -59,6 +61,7 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
     try {
       await signIn({ username, password });
       const user = await getUser();
+
       const { type, id, name } = user;
       set({
         user,
