@@ -203,3 +203,11 @@ export interface CustomAttributes {
 }
 
 export type AccountType = 'admin' | 'charity' | 'school' | 'localAuthority';
+
+export interface Banner {
+  phone?: string;
+  email?: string;
+  website?: string;
+  uniformPolicy?: string;
+  address?: string;
+}

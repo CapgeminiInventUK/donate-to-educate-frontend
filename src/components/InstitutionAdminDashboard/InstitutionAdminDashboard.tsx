@@ -25,6 +25,7 @@ import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
+import { Banner } from '@/types/data';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -34,6 +35,14 @@ interface InstitutionAdminDashboardProps {
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { donate, excess, request, about: currentAbout, postcode, header } = profile;
+  const [banner, setBanner] = useState<Banner>({
+    phone: header?.phone ?? undefined,
+    email: header?.email ?? undefined,
+    website: header?.website ?? undefined,
+    uniformPolicy:
+      header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined,
+    address: header && 'address' in header ? header?.address ?? undefined : undefined,
+  });
   const navigate = useNavigate();
   const [about, setAbout] = useState(currentAbout ?? '');
   const [pageNumber, setPageNumber] = useState(0);
@@ -93,13 +102,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               isAdminView
               type={type}
               name={name}
-              phone={header?.phone ?? undefined}
-              email={header?.email ?? undefined}
-              website={header?.website ?? undefined}
-              uniformPolicy={
-                header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined
-              }
-              address={header && 'address' in header ? header?.address ?? undefined : undefined}
+              banner={banner}
+              setBanner={setBanner}
             />
             <div className={styles.card}>
               <InformationTile
@@ -199,7 +203,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               donate={donate}
               request={request}
               about={about}
-              header={header}
+              header={header && { ...banner, __typename: header?.__typename }}
               setPreview={setPreview}
               postcode={postcode}
             />
