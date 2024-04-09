@@ -18,7 +18,12 @@ import {
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
-import { GetJoinRequestsQuery, InsertJoinRequestMutationVariables } from './api';
+import {
+  CharityProfile,
+  GetJoinRequestsQuery,
+  InsertJoinRequestMutationVariables,
+  SchoolProfile,
+} from './api';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -366,4 +371,10 @@ export interface DeclineDeleteModalProps {
   onConfirm: () => void;
   bodyText: string;
   confirmText: string;
+}
+
+export interface InstitutionAdminDashboardProps {
+  type: 'school' | 'charity';
+  name: string;
+  profile: SchoolProfile | CharityProfile;
 }

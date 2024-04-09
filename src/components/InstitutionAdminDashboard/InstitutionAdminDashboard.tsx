@@ -11,12 +11,7 @@ import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import {
-  CharityProfile,
-  SchoolProfile,
-  UpdateCharityProfileMutation,
-  UpdateSchoolProfileMutation,
-} from '@/types/api';
+import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -26,12 +21,7 @@ import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
 import { Banner } from '@/types/data';
-
-interface InstitutionAdminDashboardProps {
-  type: 'school' | 'charity';
-  name: string;
-  profile: SchoolProfile | CharityProfile;
-}
+import { InstitutionAdminDashboardProps } from '@/types/props';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { donate, excess, request, about: currentAbout, postcode, header } = profile;
