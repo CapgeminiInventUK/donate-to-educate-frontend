@@ -74,7 +74,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                 })
               }
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
             >
               <Hanger /> <h3>Request products</h3>
             </motion.div>
@@ -88,7 +87,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                 })
               }
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
             >
               <Heart /> <h3>Donate products</h3>
             </motion.div>
@@ -101,7 +99,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
               navigate(getNavigateLinkFromType(type), { state: { type: 'plus', profile: excess } })
             }
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
           >
             <div className={styles.extraStockTile}>
               <ExtraStock />
