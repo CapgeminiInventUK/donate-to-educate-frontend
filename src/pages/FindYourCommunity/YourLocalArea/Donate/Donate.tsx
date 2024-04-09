@@ -18,9 +18,9 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
-import ProductTypes from '@/assets/icons/ProductTypes';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { Pill } from '@/components/Pill/Pill';
+import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -104,9 +104,7 @@ const Donate: FC = () => {
       title: 'Product types needed',
       dataIndex: 'productTypes',
       render: (text: number[]) =>
-        text.map((productType) => (
-          <ProductTypes key={productType} type={productType} className={styles.productType} />
-        )),
+        text.map((productType) => <ProductTypeIcon key={productType} productType={productType} />),
     },
   ];
 
@@ -148,7 +146,7 @@ const Donate: FC = () => {
           return [<>N/A</>];
         }
         return text.map((productType) => (
-          <ProductTypes key={productType} type={productType} className={styles.productType} />
+          <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
     },

@@ -28,7 +28,8 @@ const PrivateRoute: FC<Props> = ({ route = Paths.SIGN_IN, children, authType }) 
   }
 
   const type = user.type;
-  if (authType != type) {
+
+  if (authType !== type) {
     return <Navigate to={getRedirectUrl(type as AccountType, hasProfile)} />;
   }
 
