@@ -38,9 +38,16 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
   isLoading: true,
   hasProfile: false,
   getCurrentUser: async (): Promise<void> => {
-    const user = await getUser();
-    const { type, id, name } = user;
     try {
+      const user = await getUser();
+
+      if (user === undefined) {
+        set({ user: undefined, isLoading: false, hasProfile: false });
+        return;
+      }
+
+      const { type, id, name } = user;
+
       set({
         user,
         isLoading: false,
@@ -59,6 +66,16 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
     try {
       await signIn({ username, password });
       const user = await getUser();
+
+      if (user === undefined) {
+        set({
+          user: undefined,
+          isLoading: false,
+          error: new Error('Failed to get user'),
+          hasProfile: false,
+        });
+        return;
+      }
       const { type, id, name } = user;
       set({
         user,
@@ -101,7 +118,7 @@ const hasProfile = async (
   return !!data?.hasCharityProfile;
 };
 
-const getUser = async (): Promise<User> => {
+const getUser = async (): Promise<User | undefined> => {
   const { userId, username } = await getCurrentUser();
   const {
     email,
