@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './Tile.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
+import { motion } from 'framer-motion';
 
 interface TileProps {
   title: string;
@@ -12,7 +13,7 @@ interface TileProps {
 
 const Tile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
   return (
-    <div className={styles.tile}>
+    <motion.div className={styles.tile} whileHover={{ scale: 1.05 }}>
       {icon}
       <h2>{title}</h2>
       {body.map((paragraph) => (
@@ -25,7 +26,7 @@ const Tile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
         useArrow
         ariaLabel={buttonText}
       />
-    </div>
+    </motion.div>
   );
 };
 

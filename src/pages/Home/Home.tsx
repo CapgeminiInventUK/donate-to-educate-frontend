@@ -15,6 +15,7 @@ import Star from '@/assets/home/helpPupils/Star';
 import Archive from '@/assets/home/helpPupils/Archive';
 import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 import Paths from '@/config/paths';
+import { motion } from 'framer-motion';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -100,14 +101,18 @@ const Home: FC = () => {
             </p>
           </div>
           <div className={styles.actionButtons}>
-            <Link to={Paths.FIND_YOUR_COMMUNITY} className={styles.button}>
-              <Archive />
-              <h3>Donate products</h3>
-            </Link>
-            <Link to={Paths.CONTACT} className={styles.button}>
-              <Star />
-              <h3>Support us</h3>
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Link to={Paths.FIND_YOUR_COMMUNITY} className={styles.button}>
+                <Archive />
+                <h3>Donate products</h3>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Link to={Paths.CONTACT} className={styles.button}>
+                <Star />
+                <h3>Support us</h3>
+              </Link>
+            </motion.div>
           </div>
         </div>
         <Image alt="Supporters" image={donateToUs} />
