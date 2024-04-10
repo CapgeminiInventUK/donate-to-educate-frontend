@@ -115,9 +115,13 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           <div className={styles.actionButtons}>
             <FormButton
               theme="formButtonGreen"
-              text="Save profile and continue"
-              ariaLabel="save profile and continue"
-              onClick={() => navigate(Paths.SCHOOL_VIEW, { state: { name, postcode } })}
+              text="Continue"
+              ariaLabel="Continue"
+              onClick={() =>
+                navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW, {
+                  state: { name, postcode },
+                })
+              }
             />
             <FormButton
               theme="formButtonGrey"

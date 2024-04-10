@@ -174,8 +174,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               <div className={styles.actionButtons}>
                 <FormButton
                   theme="formButtonGreen"
-                  text="Save profile and continue"
-                  ariaLabel="save profile and continue"
+                  text="Continue"
+                  ariaLabel="Continue"
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)
                   }

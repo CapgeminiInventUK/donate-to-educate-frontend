@@ -75,11 +75,20 @@ const CharityView: FC = () => {
     },
   });
 
+  useEffect(() => {
+    if (isRefetchError) {
+      setPostcodeError('Postcode not found');
+      setEdit(true);
+    } else {
+      setPostcodeError(undefined);
+    }
+  }, [setPostcodeError, isRefetchError]);
+
   if (isLoading) {
     return <Spinner />;
   }
 
-  if (isError || isRefetchError) {
+  if (isError) {
     return <ErrorBanner />;
   }
 
