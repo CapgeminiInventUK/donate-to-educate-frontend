@@ -236,6 +236,7 @@ const getEditModeItem = (
         }}
         ariaLabel={itemName}
         value={item}
+        className={styles.noPaddingBottom}
       />
     </li>
   );

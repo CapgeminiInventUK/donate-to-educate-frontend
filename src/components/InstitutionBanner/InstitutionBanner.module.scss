@@ -30,6 +30,17 @@
       align-items: center;
       gap: 20px;
       color: g.$primary-white;
+      margin: 15px 0;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 
@@ -111,6 +122,10 @@
     font-weight: 700;
     line-height: 125%; /* 30px */
     letter-spacing: -0.24px;
+  }
+
+  .noPaddingBottom {
+    padding-bottom: 0;
   }
 }
 

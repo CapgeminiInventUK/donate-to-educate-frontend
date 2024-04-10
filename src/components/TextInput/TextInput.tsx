@@ -16,6 +16,7 @@ const TextInput: FC<TextInputProps> = ({
   disabled = false,
   errorMessage,
   ariaLabel,
+  className,
 }) => {
   const [inputType, setInputType] = useState('password');
 
@@ -34,7 +35,9 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   return (
-    <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
+    <div
+      className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''} ${className ? className : ''}`}
+    >
       {header && <h3 className={styles.header}>{header}</h3>}
       {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {errorMessage && (

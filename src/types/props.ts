@@ -216,6 +216,7 @@ export interface TextInputProps extends CommonInputProps {
   password?: boolean;
   isLarge?: boolean;
   isSmall?: boolean;
+  className?: string;
 }
 
 export interface TextInputSearchProps extends TextInputProps {
