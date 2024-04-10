@@ -9,6 +9,10 @@
   border-top: g.$secondary-blue 18px solid;
   border-radius: 10px 10px 0 0;
 
+  @include g.md-breakpoint {
+    padding: 10px;
+  }
+
   &.charity {
     background: g.$dark-blue;
   }
@@ -91,9 +95,10 @@
     height: 2.8125rem;
     padding: 1.25rem;
     align-items: center;
-    border-radius: 0.125rem;
-    box-shadow: g.$box-shadow-black;
+    border-radius: 2px;
+    box-shadow: 2px 4px 4px 2px g.$box-shadow-black;
     background: g.$form-button-green-background;
+    border: g.$form-button-green-border 1px solid;
     font-size: 1.5rem;
   }
 
@@ -137,7 +142,7 @@
   .bannerContainer {
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
   }
 
   .textContainer {

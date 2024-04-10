@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import styles from './InstitutionBanner.module.scss';
-import SchoolHat from '@/assets/school/SchoolHat';
 import Telephone from '@/assets/school/Telephone';
 import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
@@ -9,7 +8,6 @@ import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { InstitutionBannerProps } from '@/types/props';
 import EditIcon from '@/assets/school/EditIcon';
-import TextInput from '../TextInput/TextInput';
 import FormButton from '../FormButton/FormButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -19,8 +17,9 @@ import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
-import { Banner } from '@/types/data';
 import useAuthToken from '@/hooks/useAuthToken';
+import AdminView from './AdminView';
+import BannerItem from './BannerItem';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -69,7 +68,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
         <div className={styles.textContainer}>
           {isAdminView && (
             <>
-              {getAdminView(banner, type, isEditMode, setBanner)}
+              <AdminView banner={banner} type={type} editMode={isEditMode} setBanner={setBanner} />
               {!isEditMode ? (
                 <FormButton
                   text={
@@ -105,9 +104,30 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
             <>
               {(banner?.phone ?? banner?.email ?? banner?.website) && (
                 <ul>
-                  {banner.phone && getBannerItem(<Telephone />, banner.phone, 'tel', '')}
-                  {banner.email && getBannerItem(<Email />, banner.email, 'mail', '')}
-                  {banner.website && getBannerItem(<Globe />, banner.website, 'url', '')}
+                  {banner.phone && (
+                    <BannerItem
+                      icon={<Telephone />}
+                      item={banner.phone}
+                      itemType="tel"
+                      defaultText=""
+                    />
+                  )}
+                  {banner.email && (
+                    <BannerItem
+                      icon={<Email />}
+                      item={banner.email}
+                      itemType="mail"
+                      defaultText=""
+                    />
+                  )}
+                  {banner.website && (
+                    <BannerItem
+                      icon={<Globe />}
+                      item={banner.website}
+                      itemType="url"
+                      defaultText=""
+                    />
+                  )}
                 </ul>
               )}
 
@@ -162,120 +182,4 @@ const hasContactInfo = (
     address !== undefined ||
     isAdminView === true
   );
-};
-
-const getAdminView = (
-  banner: Banner,
-  type: string,
-  editMode: boolean,
-  setBanner?: React.Dispatch<React.SetStateAction<Banner>>
-): JSX.Element => {
-  const { phone, email, website, uniformPolicy, address } = banner;
-  return (
-    <div className={styles.textContainer}>
-      {!editMode ? (
-        <>
-          <ul>
-            {getBannerItem(<Telephone />, phone, 'tel', "You haven't added your phone number")}
-            {getBannerItem(<Email />, email, 'mail', "You haven't added your email")}
-            {getBannerItem(<Globe />, website, 'url', "You haven't added your website")}
-          </ul>
-          <ul>
-            {type === 'school' &&
-              getBannerItem(
-                <SchoolHat />,
-                uniformPolicy,
-                'url',
-                "You haven't added your school's uniform policy"
-              )}
-            {type === 'charity' && (
-              <li>
-                <span>
-                  <House />
-                </span>
-                <p className={styles.item}>{address ?? 'Address not given'}</p>
-              </li>
-            )}
-          </ul>
-        </>
-      ) : (
-        <>
-          <ul>
-            {getEditModeItem(<Telephone />, 'phone', phone, setBanner)}
-            {getEditModeItem(<Email />, 'email', email, setBanner)}
-            {getEditModeItem(<Globe />, 'website', website, setBanner)}
-          </ul>
-
-          <ul>
-            {type === 'school' &&
-              getEditModeItem(<SchoolHat />, 'uniformPolicy', uniformPolicy, setBanner)}
-            {type === 'charity' && getEditModeItem(<House />, 'address', address, setBanner)}
-          </ul>
-        </>
-      )}
-    </div>
-  );
-};
-
-const getEditModeItem = (
-  icon: JSX.Element,
-  itemName: string,
-  item: string | undefined,
-  setBanner?: React.Dispatch<React.SetStateAction<Banner>>
-): JSX.Element => {
-  return (
-    <li>
-      <span>{icon}</span>
-      <TextInput
-        onChange={(value) => {
-          setBanner &&
-            setBanner((prevState) => ({
-              ...prevState,
-              [itemName]: value,
-            }));
-        }}
-        ariaLabel={itemName}
-        value={item}
-        className={styles.noPaddingBottom}
-      />
-    </li>
-  );
-};
-
-const getBannerItem = (
-  icon: JSX.Element,
-  item: string | undefined,
-  itemType: string,
-  defaultText: string
-): JSX.Element => {
-  return (
-    <li>
-      <span>{icon}</span>
-      {item ? (
-        <Link
-          to={getLinkFromType(itemType, item)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.item}
-        >
-          {item}
-        </Link>
-      ) : (
-        <p className={styles.item}>{defaultText}</p>
-      )}
-    </li>
-  );
-};
-
-const getLinkFromType = (type: string, item?: string): string => {
-  switch (type) {
-    case 'tel':
-      return `tel: ${item}`;
-    case 'mail':
-      return `mailto: ${item}`;
-    default:
-      return item?.includes('https://') === true || item?.includes('http://') == true
-        ? `${item}`
-        : `https://${item}`;
-  }
 };
