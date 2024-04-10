@@ -4,7 +4,7 @@ This repo contains all of the code for the frontend application written in TypeS
 
 ## Running locally
 
-Run the command `npm run dev`
+Install dependencies by running `npm i`, then run the command `npm run dev`
 
 ## Building
 
@@ -21,6 +21,7 @@ VITE_COGNITO_USER_POOLS_ID = "eu-west-2_5vqFlUEoR"
 VITE_APPSYNC_API_KEY = "somekey"
 VITE_ANALYTICS_APP_ID = "someID"
 VITE_COGNITO_IDENTITY_POOLS_ID = "someID"
+VITE_USER_POOL_WEB_CLIENT_ID = "someID"
 ```
 
 ## GraphQL type generation
