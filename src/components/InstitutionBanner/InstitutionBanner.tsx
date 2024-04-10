@@ -19,34 +19,17 @@ import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
+import { Banner } from '@/types/data';
 import useAuthToken from '@/hooks/useAuthToken';
-
-interface Banner {
-  phone?: string;
-  email?: string;
-  website?: string;
-  uniformPolicy?: string;
-  address?: string;
-}
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
-  phone,
-  email,
-  website,
-  uniformPolicy,
-  address,
+  banner,
+  setBanner,
   type,
   name,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
-  const [banner, setBanner] = useState<Banner>({
-    phone,
-    email,
-    website,
-    uniformPolicy,
-    address,
-  });
   const { token: authToken } = useAuthToken();
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
@@ -76,11 +59,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
       {hasContactInfo(
-        banner.phone,
-        banner.email,
-        banner.website,
-        banner.uniformPolicy,
-        banner.address,
+        banner?.phone,
+        banner?.email,
+        banner?.website,
+        banner?.uniformPolicy,
+        banner?.address,
         isAdminView
       ) && (
         <div className={styles.textContainer}>
@@ -120,21 +103,21 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           )}
           {!isAdminView && (
             <>
-              {(phone ?? email ?? website) && (
+              {(banner?.phone ?? banner?.email ?? banner?.website) && (
                 <ul>
-                  {phone && getBannerItem(<Telephone />, phone, 'tel', '')}
-                  {email && getBannerItem(<Email />, email, 'mail', '')}
-                  {website && getBannerItem(<Globe />, website, 'url', '')}
+                  {banner.phone && getBannerItem(<Telephone />, banner.phone, 'tel', '')}
+                  {banner.email && getBannerItem(<Email />, banner.email, 'mail', '')}
+                  {banner.website && getBannerItem(<Globe />, banner.website, 'url', '')}
                 </ul>
               )}
 
-              {(uniformPolicy ?? address) && (
+              {(banner?.uniformPolicy ?? banner?.address) && (
                 <ul>
-                  {type === 'school' && uniformPolicy && (
+                  {type === 'school' && banner.uniformPolicy && (
                     <>
                       <Link
                         className={styles.uniformPolicyButton}
-                        to={uniformPolicy}
+                        to={banner.uniformPolicy}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -145,12 +128,12 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       </Link>
                     </>
                   )}
-                  {type === 'charity' && address && (
+                  {type === 'charity' && banner.address && (
                     <li>
                       <span>
                         <House />
                       </span>
-                      <p className={styles.item}>{address ?? ''}</p>
+                      <p className={styles.item}>{banner.address ?? ''}</p>
                     </li>
                   )}
                 </ul>
@@ -185,7 +168,7 @@ const getAdminView = (
   banner: Banner,
   type: string,
   editMode: boolean,
-  setBanner: React.Dispatch<React.SetStateAction<Banner>>
+  setBanner?: React.Dispatch<React.SetStateAction<Banner>>
 ): JSX.Element => {
   const { phone, email, website, uniformPolicy, address } = banner;
   return (
@@ -218,15 +201,15 @@ const getAdminView = (
       ) : (
         <>
           <ul>
-            {getEditModeItem(<Telephone />, setBanner, 'phone', phone)}
-            {getEditModeItem(<Email />, setBanner, 'email', email)}
-            {getEditModeItem(<Globe />, setBanner, 'website', website)}
+            {getEditModeItem(<Telephone />, 'phone', phone, setBanner)}
+            {getEditModeItem(<Email />, 'email', email, setBanner)}
+            {getEditModeItem(<Globe />, 'website', website, setBanner)}
           </ul>
 
           <ul>
             {type === 'school' &&
-              getEditModeItem(<SchoolHat />, setBanner, 'uniformPolicy', uniformPolicy)}
-            {type === 'charity' && getEditModeItem(<House />, setBanner, 'address', address)}
+              getEditModeItem(<SchoolHat />, 'uniformPolicy', uniformPolicy, setBanner)}
+            {type === 'charity' && getEditModeItem(<House />, 'address', address, setBanner)}
           </ul>
         </>
       )}
@@ -236,19 +219,20 @@ const getAdminView = (
 
 const getEditModeItem = (
   icon: JSX.Element,
-  setBanner: React.Dispatch<React.SetStateAction<Banner>>,
   itemName: string,
-  item: string | undefined
+  item: string | undefined,
+  setBanner?: React.Dispatch<React.SetStateAction<Banner>>
 ): JSX.Element => {
   return (
     <li>
       <span>{icon}</span>
       <TextInput
         onChange={(value) => {
-          setBanner((prevState) => ({
-            ...prevState,
-            [itemName]: value,
-          }));
+          setBanner &&
+            setBanner((prevState) => ({
+              ...prevState,
+              [itemName]: value,
+            }));
         }}
         ariaLabel={itemName}
         value={item}

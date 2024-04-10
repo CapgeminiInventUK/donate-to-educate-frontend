@@ -35,19 +35,17 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   setPreview,
 }) => {
   const navigate = useNavigate();
+  const banner = {
+    phone: header?.phone ?? undefined,
+    email: header?.email ?? undefined,
+    website: header?.website ?? undefined,
+    uniformPolicy:
+      header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined,
+    address: header && 'address' in header ? header?.address ?? undefined : undefined,
+  };
   return (
     <>
-      <InstitutionBanner
-        type={type}
-        name={name}
-        phone={header?.phone ?? undefined}
-        email={header?.email ?? undefined}
-        website={header?.website ?? undefined}
-        uniformPolicy={
-          header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined
-        }
-        address={header && 'address' in header ? header?.address ?? undefined : undefined}
-      />
+      <InstitutionBanner type={type} name={name} banner={banner} />
       <div className={styles.card}>
         {!(about ?? excess ?? donate ?? request) && (
           <p>We are still populating our profile, please check back later</p>

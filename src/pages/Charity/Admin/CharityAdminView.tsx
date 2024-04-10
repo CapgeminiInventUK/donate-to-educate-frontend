@@ -99,7 +99,7 @@ const CharityView: FC = () => {
         <BackButton theme="blue" />
         <LogoutButton />
       </div>
-      <InstitutionBanner type={'charity'} name={name} />
+      <InstitutionBanner type={'charity'} name={name} banner={{}} />
       <div className={styles.subContainer}>
         <div className={styles.profileBanner}>
           <SchoolProfile />

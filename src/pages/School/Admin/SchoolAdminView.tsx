@@ -55,7 +55,7 @@ const School: FC = () => {
         <BackButton theme="blue" />
         <LogoutButton />
       </div>
-      <InstitutionBanner type={'school'} name={name} />
+      <InstitutionBanner type={'school'} name={name} banner={{}} />
       <div className={styles.subContainer}>
         <div className={styles.schoolProfileBanner}>
           <SchoolProfile />
