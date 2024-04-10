@@ -24,7 +24,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
-import { useStore } from '@/stores/useStore';
+import useAuthToken from '@/hooks/useAuthToken';
 
 interface InstitutionAdminDashboardProps {
   type: 'school' | 'charity';
@@ -39,7 +39,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
-  const authToken = useStore((state) => state.user?.token);
+  const { token: authToken } = useAuthToken();
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about}-${type}-${name}`],

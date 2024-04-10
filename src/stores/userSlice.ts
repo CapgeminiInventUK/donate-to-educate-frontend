@@ -20,7 +20,6 @@ interface User {
   type: string;
   name: string;
   id: string;
-  token: string;
 }
 
 export interface UserSlice {
@@ -31,12 +30,17 @@ export interface UserSlice {
   getCurrentUser(): Promise<void>;
   logout(): Promise<void>;
   login(username: string, password: string): Promise<void>;
+  getToken(): Promise<string>;
 }
 
 export const userSlice: StateCreator<UserSlice> = (set) => ({
   user: undefined,
   isLoading: true,
   hasProfile: false,
+  getToken: async (): Promise<string> => {
+    const session = await fetchAuthSession();
+    return session.tokens?.idToken?.toString() ?? '';
+  },
   getCurrentUser: async (): Promise<void> => {
     try {
       const user = await getUser();
@@ -112,7 +116,6 @@ const getUser = async (): Promise<User> => {
     'custom:institution': name,
     'custom:institutionId': id,
   } = (await fetchUserAttributes()) as FetchUserAttributesOutput & CustomAttributes;
-  const session = await fetchAuthSession();
   return {
     userId,
     username,
@@ -120,6 +123,5 @@ const getUser = async (): Promise<User> => {
     type,
     name,
     id,
-    token: session.tokens?.idToken?.toString() ?? '',
   };
 };

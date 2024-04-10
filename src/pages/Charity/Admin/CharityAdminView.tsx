@@ -23,6 +23,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { isPostalCode } from 'validator';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import Postcode from '@/assets/icons/Postcode';
+import useAuthToken from '@/hooks/useAuthToken';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
@@ -49,7 +50,7 @@ const CharityView: FC = () => {
   const [previousPostcode, setPreviousPostcode] = useState<string>('');
   const [postcodeError, setPostcodeError] = useState<string>();
   const navigate = useNavigate();
-  const authToken = useStore((state) => state.user?.token);
+  const { token: authToken } = useAuthToken();
 
   useEffect(() => {
     if (data?.getCharityProfile?.postcode) {

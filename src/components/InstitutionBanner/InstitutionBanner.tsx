@@ -19,7 +19,7 @@ import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
-import { useStore } from '@/stores/useStore';
+import useAuthToken from '@/hooks/useAuthToken';
 
 interface Banner {
   phone?: string;
@@ -47,7 +47,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     uniformPolicy,
     address,
   });
-  const authToken = useStore((state) => state.user?.token);
+  const { token: authToken } = useAuthToken();
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
@@ -289,6 +289,8 @@ const getLinkFromType = (type: string, item?: string): string => {
     case 'mail':
       return `mailto: ${item}`;
     default:
-      return `${item}`;
+      return item?.includes('https://') === true || item?.includes('http://') == true
+        ? `${item}`
+        : `https://${item}`;
   }
 };
