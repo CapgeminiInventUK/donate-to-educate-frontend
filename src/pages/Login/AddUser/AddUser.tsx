@@ -146,7 +146,7 @@ const NewUser: FC = () => {
         {step === 'SIGN_UP' && (
           <>
             <LogoIconBlue className={styles.logo} />
-            <h2>Create user</h2>
+            <h2>Create your account</h2>
             <TextInput header="Email" value={email} disabled ariaLabel="email" />
             <TextInput
               header="Password"

@@ -19,9 +19,9 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
-import { useStore } from '@/stores/useStore';
 import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
+import useAuthToken from '@/hooks/useAuthToken';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { donate, excess, request, about: currentAbout, postcode, header } = profile;
@@ -38,7 +38,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
-  const authToken = useStore((state) => state.user?.token);
+  const { token: authToken } = useAuthToken();
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about}-${type}-${name}`],
@@ -168,8 +168,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               <div className={styles.actionButtons}>
                 <FormButton
                   theme="formButtonGreen"
-                  text="Save profile and continue"
-                  ariaLabel="save profile and continue"
+                  text="Continue"
+                  ariaLabel="Continue"
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)
                   }

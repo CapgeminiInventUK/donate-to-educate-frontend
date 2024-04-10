@@ -1,0 +1,12 @@
+@use '@assets/global.scss' as g;
+
+.productType {
+  margin-right: 10px;
+  display: inline-block;
+  height: 30px;
+
+  .innerSpan {
+    display: inline-block;
+    height: 30px;
+  }
+}

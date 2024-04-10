@@ -11,6 +11,7 @@
 
     a {
       color: g.$secondary-mid-blue;
+      text-decoration: underline;
     }
 
     .expander {
@@ -28,10 +29,6 @@
       border-radius: 10px;
     }
   }
-}
-
-.productType {
-  margin-right: 10px;
 }
 
 .nameBtn {

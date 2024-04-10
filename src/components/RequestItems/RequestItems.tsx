@@ -97,8 +97,8 @@ const RequestItems: FC<RequestItemsProps> = ({
           />
           {formState.who === 'somethingElse' && (
             <div className={styles.connection}>
-              <h4>Describe your role or connection to Donate to Educate</h4>
               <TextInput
+                subHeading="Describe your role or connection to Donate to Educate"
                 onChange={(value) => {
                   setFormState((prevState) => ({
                     ...prevState,
@@ -111,8 +111,9 @@ const RequestItems: FC<RequestItemsProps> = ({
               />
             </div>
           )}
-          <h3 className={styles.fieldHeadings}>Name</h3>
+          <br />
           <TextInput
+            header="Name"
             onChange={(value) => {
               setFormState((prevState) => ({
                 ...prevState,
@@ -123,8 +124,8 @@ const RequestItems: FC<RequestItemsProps> = ({
             value={name}
             isLarge={true}
           />
-          <h3 className={styles.fieldHeadings}>Email</h3>
           <TextInput
+            header="Email"
             onChange={(value) => {
               setFormState((prevState) => ({
                 ...prevState,
@@ -135,8 +136,8 @@ const RequestItems: FC<RequestItemsProps> = ({
             value={email}
             isLarge={true}
           />
-          <h3 className={styles.fieldHeadings}>Phone</h3>
           <TextInput
+            header="Phone"
             onChange={(value) => {
               setFormState((prevState) => ({
                 ...prevState,
@@ -146,9 +147,9 @@ const RequestItems: FC<RequestItemsProps> = ({
             ariaLabel="phone"
             value={phone}
           />
-          <h3 className={styles.textAreaHeadings}>{notesHeading}</h3>
           <TextArea
             characterLimit={1000}
+            header={notesHeading}
             subHeading={notesSubHeading}
             onChange={(value) => {
               setFormState((prevState) => ({

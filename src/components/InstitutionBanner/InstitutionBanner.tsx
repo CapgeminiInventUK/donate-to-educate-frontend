@@ -19,8 +19,8 @@ import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
 import { Link } from 'react-router-dom';
-import { useStore } from '@/stores/useStore';
 import { Banner } from '@/types/data';
+import useAuthToken from '@/hooks/useAuthToken';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -30,7 +30,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   name,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
-  const authToken = useStore((state) => state.user?.token);
+  const { token: authToken } = useAuthToken();
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
@@ -133,7 +133,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       <span>
                         <House />
                       </span>
-                      <p className={styles.italicized}>{banner.address ?? ''}</p>
+                      <p className={styles.item}>{banner.address ?? ''}</p>
                     </li>
                   )}
                 </ul>
@@ -193,7 +193,7 @@ const getAdminView = (
                 <span>
                   <House />
                 </span>
-                <p className={styles.italicized}>{address ?? 'Address not given'}</p>
+                <p className={styles.item}>{address ?? 'Address not given'}</p>
               </li>
             )}
           </ul>
@@ -255,12 +255,12 @@ const getBannerItem = (
           to={getLinkFromType(itemType, item)}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.italicized}
+          className={styles.item}
         >
           {item}
         </Link>
       ) : (
-        <p className={styles.italicized}>{defaultText}</p>
+        <p className={styles.item}>{defaultText}</p>
       )}
     </li>
   );
@@ -273,6 +273,8 @@ const getLinkFromType = (type: string, item?: string): string => {
     case 'mail':
       return `mailto: ${item}`;
     default:
-      return `${item}`;
+      return item?.includes('https://') === true || item?.includes('http://') == true
+        ? `${item}`
+        : `https://${item}`;
   }
 };
