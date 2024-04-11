@@ -379,3 +379,24 @@ export interface InstitutionAdminDashboardProps {
   name: string;
   profile: SchoolProfile | CharityProfile;
 }
+
+export interface EditModeItemProps {
+  icon: JSX.Element;
+  itemName: string;
+  item: string | undefined;
+  setBanner?: Dispatch<React.SetStateAction<Banner>>;
+}
+
+export interface AdminViewProps {
+  banner: Banner;
+  type: string;
+  editMode: boolean;
+  setBanner?: React.Dispatch<React.SetStateAction<Banner>>;
+}
+
+export interface BannerItemProps {
+  icon: JSX.Element;
+  item: string | undefined;
+  itemType: string;
+  defaultText: string;
+}
