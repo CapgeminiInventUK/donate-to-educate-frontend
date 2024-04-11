@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import styles from './FindSchool.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
@@ -74,8 +74,12 @@ const FindSchool: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
-      render: (registered: boolean) => (
-        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+      render: (registered: boolean, { id }) => (
+        <Pill
+          text={registered ? 'JOINED' : 'NOT JOINED'}
+          color={registered ? 'blue' : 'grey'}
+          key={id}
+        />
       ),
     },
     {
@@ -86,9 +90,9 @@ const FindSchool: FC = () => {
     {
       title: 'Product types available',
       dataIndex: 'productTypes',
-      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
-        if (!school.registered) {
-          return [<>N/A</>];
+      render: (text: number[], { registered, id }: InstituteSearchResult): JSX.Element[] => {
+        if (!registered) {
+          return [<Fragment key={id}>N/A</Fragment>];
         }
         return text.map((productType) => (
           <ProductTypeIcon key={productType} productType={productType} />
@@ -97,6 +101,11 @@ const FindSchool: FC = () => {
     },
   ];
 
+  const schoolData = (data?.getSchoolsNearbyWithProfile ?? []).map((school, index) => ({
+    ...school,
+    key: index,
+  }));
+
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
@@ -104,7 +113,7 @@ const FindSchool: FC = () => {
         <h2>Find your child&apos;s school near {state.postcode.toUpperCase()}</h2>
 
         <Table
-          dataSource={data?.getSchoolsNearbyWithProfile ?? []}
+          dataSource={schoolData}
           columns={columns}
           scroll={{ x: 'max-content' }}
           rowKey="id"

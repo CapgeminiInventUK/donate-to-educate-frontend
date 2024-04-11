@@ -120,7 +120,7 @@ const Excess: FC = () => {
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
-            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { id, name } })}
+            onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn: id, name } })}
           />
         ) : (
           text
