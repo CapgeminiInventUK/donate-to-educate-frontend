@@ -19,13 +19,18 @@
       margin-top: 20px;
       cursor: pointer;
 
-      @include g.sm-breakpoint {
+      @include g.md-breakpoint {
         justify-content: flex-start;
       }
 
       svg {
         padding: 0 20px;
-        min-width: 30px;
+        min-width: 50px;
+
+        @include g.lg-breakpoint {
+          width: 40px;
+          min-width: 40px;
+        }
 
         @include g.xs-breakpoint {
           display: none;
