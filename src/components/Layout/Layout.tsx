@@ -13,7 +13,7 @@ const Layout: FC<LayoutProps> = ({ header, footer, page }) => {
 
   return (
     <div className={styles.layout}>
-      <motion.div className={styles.progressBar} style={{ scaleX }} />
+      <motion.div className={styles.progressBar} style={{ scaleX }} tabIndex={-1} />
       <div className={styles.header}>{header}</div>
       <main className={styles.content}>{page}</main>
       <div className={styles.footer}>{footer}</div>

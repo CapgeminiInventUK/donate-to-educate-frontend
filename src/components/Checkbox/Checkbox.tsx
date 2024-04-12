@@ -20,19 +20,17 @@ const Checkbox: FC<CheckboxProps> = ({
     }
   }, [value]);
 
+  const handleChange = (): void => {
+    setIsChecked(!isChecked);
+    if (onChange) {
+      onChange(!isChecked, formMeta);
+    }
+  };
+
   return (
-    <label>
-      <input
-        type="checkbox"
-        onChange={(): void => {
-          setIsChecked(!isChecked);
-          if (onChange) {
-            onChange(!isChecked, formMeta);
-          }
-        }}
-        aria-label={ariaLabel}
-      />
-      <div tabIndex={1} className={`${styles.checkbox} ${className ?? ''}`}>
+    <label onKeyDown={(event): void => (event.key === 'Enter' ? handleChange() : undefined)}>
+      <input type="checkbox" tabIndex={-1} onChange={handleChange} aria-label={ariaLabel} />
+      <div tabIndex={0} className={`${styles.checkbox} ${className ?? ''}`}>
         <Checkmark isChecked={isChecked}></Checkmark>
       </div>
       {label}
