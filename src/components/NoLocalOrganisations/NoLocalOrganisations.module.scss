@@ -1,0 +1,21 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  position: relative;
+  color: g.$primary-dark-blue;
+  height: 280px;
+  width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactUs {
+  text-decoration: underline;
+}
+
+.container svg {
+  position: absolute;
+  left: 21rem;
+  top: 10rem;
+}
