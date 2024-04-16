@@ -385,6 +385,7 @@ export interface EditModeItemProps {
   itemName: string;
   item: string | undefined;
   setBanner?: Dispatch<React.SetStateAction<Banner>>;
+  placeholder: string;
 }
 
 export interface AdminViewProps {
