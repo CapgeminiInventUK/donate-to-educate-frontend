@@ -21,6 +21,7 @@ import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/gr
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { Pill } from '@/components/Pill/Pill';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
+import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -172,6 +173,9 @@ const Excess: FC = () => {
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
+          locale={{
+            emptyText: <NoLocalOrganisations />,
+          }}
         />
       </div>
     </div>

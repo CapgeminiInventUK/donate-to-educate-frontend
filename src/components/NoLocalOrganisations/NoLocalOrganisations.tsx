@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import styles from './NoLocalOrganisations.module.scss';
 import HandHeart from '@/assets/logo/HandHeart';
+import { Link } from 'react-router-dom';
+import Paths from '@/config/paths';
 
 interface NoLocalOrganisationsProps {
   organisationName?: string;
@@ -13,12 +15,14 @@ const NoLocalOrganisations: FC<NoLocalOrganisationsProps> = ({
     <div className={styles.container}>
       <h3>No {organisationName} have registered within your search area</h3>
       <p>
-        <span className={styles.contactUs}>
-          <a href="/contact">Contact us</a>
-        </span>
+        <Link className={styles.contactUs} to={Paths.CONTACT}>
+          Contact us
+        </Link>
         <span> for more help.</span>
       </p>
-      <HandHeart />
+      <div>
+        <HandHeart />
+      </div>
     </div>
   );
 };
