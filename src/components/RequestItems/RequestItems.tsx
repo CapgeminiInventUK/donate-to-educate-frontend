@@ -26,6 +26,8 @@ export interface RequestItemsProps {
   notesSubHeading: string;
   type: ItemsIconType;
   organisationType: 'school' | 'charity';
+  id: string;
+  name: string;
 }
 
 const RequestItems: FC<RequestItemsProps> = ({
@@ -38,7 +40,11 @@ const RequestItems: FC<RequestItemsProps> = ({
   notesSubHeading,
   type,
   organisationType,
+  id,
+  name: organisationName,
 }) => {
+  // eslint-disable-next-line no-console
+  console.log(id, organisationName);
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
     who: '',
@@ -62,6 +68,8 @@ const RequestItems: FC<RequestItemsProps> = ({
           type,
           who: formState.who,
           organisationType,
+          organisationName,
+          organisationId: id,
           ...(formState?.connection && { connection: formState.connection }),
         },
       });
@@ -171,7 +179,7 @@ const RequestItems: FC<RequestItemsProps> = ({
                     ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
                     : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
                   {
-                    state: { name },
+                    state: { name: organisationName },
                   }
                 );
               });

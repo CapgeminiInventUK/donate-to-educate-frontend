@@ -42,7 +42,8 @@ const CharityDashboard: FC = () => {
   }
 
   const { excess, donate, request, about, header } = data?.getCharityProfile ?? {};
-
+  // eslint-disable-next-line no-console
+  console.log(state);
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -55,6 +56,8 @@ const CharityDashboard: FC = () => {
           excess={excess}
           donate={donate}
           request={request}
+          organisationName={state.name}
+          organisationId={state.id}
         />
       </div>
     </div>

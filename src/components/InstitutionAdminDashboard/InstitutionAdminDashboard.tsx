@@ -24,7 +24,16 @@ import { InstitutionAdminDashboardProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
-  const { donate, excess, request, about: currentAbout, postcode, header } = profile;
+  const {
+    donate,
+    excess,
+    request,
+    about: currentAbout,
+    postcode,
+    header,
+    name: organisatioName,
+    id,
+  } = profile;
   const [banner, setBanner] = useState<Banner>({
     phone: header?.phone ?? undefined,
     email: header?.email ?? undefined,
@@ -123,7 +132,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'tick', profile: request },
+                      state: { type: 'tick', profile: request, name: organisatioName, id },
                     })
                   }
                 />
@@ -140,7 +149,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'heart', profile: donate },
+                      state: { type: 'heart', profile: donate, name: organisatioName, id },
                     })
                   }
                 />
@@ -160,7 +169,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'plus', profile: excess },
+                      state: { type: 'plus', profile: excess, name: organisatioName, id },
                     })
                   }
                 />
