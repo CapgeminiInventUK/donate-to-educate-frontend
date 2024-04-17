@@ -38,8 +38,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   organisationId,
   organisationName,
 }) => {
-  // eslint-disable-next-line no-console
-  console.log(organisationId, organisationName);
   const navigate = useNavigate();
   const banner = {
     phone: header?.phone ?? undefined,

@@ -43,8 +43,6 @@ const RequestItems: FC<RequestItemsProps> = ({
   id,
   name: organisationName,
 }) => {
-  // eslint-disable-next-line no-console
-  console.log(id, organisationName);
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
     who: '',

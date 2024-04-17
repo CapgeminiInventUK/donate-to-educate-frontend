@@ -9,9 +9,6 @@ const CharityEdit: FC = () => {
     Paths.CHARITY_DASHBOARD
   );
 
-  // eslint-disable-next-line no-console
-  console.log('edit', state);
-
   const { profile, id, name } = state;
   const { items, actionText, whatToExpect } = profile ?? {};
 
