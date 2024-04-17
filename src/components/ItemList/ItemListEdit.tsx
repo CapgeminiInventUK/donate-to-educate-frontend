@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './ItemList.module.scss';
 import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
 import Checkbox from '../Checkbox/Checkbox';
@@ -10,6 +10,7 @@ interface ItemListEditProps {
 }
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
+  const [allSelectedNames, setAllSelectedNames] = useState<string[]>([]);
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
     const categoryNumber = convertCategoryToNumber(name);
     setItems((previousItems) => {
@@ -27,6 +28,17 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
     });
   };
 
+  const selectAll = (checked: boolean, name: SectionsIconType, itemsList: string[]): void => {
+    if (allSelectedNames.indexOf(name) > -1) {
+      allSelectedNames.splice(allSelectedNames.indexOf(name, 0), 1);
+    } else {
+      setAllSelectedNames([...allSelectedNames, name]);
+    }
+    itemsList.forEach((item) => {
+      handleToggle(checked, item, name);
+    });
+  };
+
   return (
     <div className={styles.container}>
       {getFullItemList().map(({ name, items: itemsList }) => {
@@ -38,6 +50,15 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
               <div className={styles.hr}></div>
             </div>
             <ul className={styles.list}>
+              <li
+                className={`${styles.selectAll} ${allSelectedNames.indexOf(name) > -1 ? styles.bold : ''}`}
+              >
+                <Checkbox
+                  onChange={(checked) => selectAll(checked, name, itemsList)}
+                  ariaLabel={`${name}-select-all-edit`}
+                />
+                <span>Select all</span>
+              </li>
               {itemsList.map((item) => {
                 const categoryNumber = convertCategoryToNumber(name);
                 const checkValue =
