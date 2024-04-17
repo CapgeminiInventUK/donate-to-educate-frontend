@@ -56,6 +56,8 @@ const SchoolsDashboard: FC = () => {
           request={request}
           about={about}
           header={header}
+          organisationName={name}
+          organisationId={urn}
         />
       </div>
     </div>
