@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styles from './CookiePolicy.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import Paths from '@/config/paths';
+import Card from '@/components/Card/Card';
 
 const CookiePolicy: FC = () => {
   return (
@@ -9,7 +10,7 @@ const CookiePolicy: FC = () => {
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <h1 className={styles.title}>How we use cookies</h1>
-        <div className={styles.card}>
+        <Card className={styles.cookiesCard}>
           <h2>Cookie Policy</h2>
           <p>
             Our site uses cookies which are small text files that are placed on your computer to
@@ -62,7 +63,7 @@ const CookiePolicy: FC = () => {
           <p>Registered in England & Wales: 04573509</p>
           <p>Registered Office: 112 Broadwater Street West, Worthing, West Sussex BN14 9DJ</p>
           <p>Vat reg. No. 802501090</p>
-        </div>
+        </Card>
       </div>
     </div>
   );

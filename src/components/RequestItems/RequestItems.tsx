@@ -15,6 +15,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import Card from '@/components/Card/Card';
 
 export interface RequestItemsProps {
   radioButtonLabels: string[];
@@ -79,7 +80,7 @@ const RequestItems: FC<RequestItemsProps> = ({
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <div className={`${styles.card} ${styles[type]}`}>
+        <Card className={`${styles.requestItemsCard} ${styles[type]}`}>
           <p className={styles.mainHeading}>{heading}</p>
           <p>{subHeading}</p>
 
@@ -178,7 +179,7 @@ const RequestItems: FC<RequestItemsProps> = ({
             }}
             ariaLabel="submit"
           />
-        </div>
+        </Card>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
+import Card from '@/components/Card/Card';
 
 const HowItWorks: FC = () => {
   return (
@@ -11,7 +12,7 @@ const HowItWorks: FC = () => {
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <h1 className={styles.title}>How it works</h1>
-        <div className={styles.card}>
+        <Card>
           <h2>We&apos;re serious about helping children reach their potential.</h2>
           <p>
             That&apos;s why we&apos;ve created one place for communities to connect with families
@@ -59,7 +60,7 @@ const HowItWorks: FC = () => {
             if they have joined Donate to Educate. You may also wish to{' '}
             <Link to={Paths.CONTACT}>contact us to support us another way.</Link>
           </p>
-        </div>
+        </Card>
 
         <div className={styles.inventBanner}>
           <p>Powered by</p>

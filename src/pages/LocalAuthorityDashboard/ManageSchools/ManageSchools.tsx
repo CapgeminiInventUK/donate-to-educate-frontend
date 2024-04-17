@@ -15,6 +15,7 @@ import { client } from '@/graphqlClient';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Card from '@/components/Card/Card';
 
 const ManageSchools: FC = () => {
   const {
@@ -67,7 +68,7 @@ const ManageSchools: FC = () => {
           <div className={styles.adminCard}>
             <h1>{localAuthority}</h1>
             <div className={styles.body}>
-              <div className={styles.card}>
+              <Card className={styles.schoolsCard}>
                 <h2>Schools in your area</h2>
                 <div className={styles.borderLeft}>
                   <div>{schoolsPending} pending request</div>
@@ -87,7 +88,7 @@ const ManageSchools: FC = () => {
                   setSchoolProperties={setSchoolProperties}
                   stage={stage}
                 />
-              </div>
+              </Card>
             </div>
           </div>
         </>

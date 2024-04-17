@@ -19,6 +19,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
+import Card from '@/components/Card/Card';
 
 const School: FC = () => {
   const user = useStore((state) => state.user);
@@ -56,7 +57,7 @@ const School: FC = () => {
         <LogoutButton />
       </div>
       <InstitutionBanner type={'school'} name={name} banner={{}} />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <div className={styles.schoolProfileBanner}>
           <SchoolProfile />
           <h2>Your school&apos;s profile is active</h2>
@@ -89,7 +90,7 @@ const School: FC = () => {
             );
           })}
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

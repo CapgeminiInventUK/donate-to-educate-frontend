@@ -18,6 +18,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
 import { Pill } from '@/components/Pill/Pill';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
+import Card from '@/components/Card/Card';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -109,7 +110,7 @@ const FindSchool: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <h2>Find your child&apos;s school near {state.postcode.toUpperCase()}</h2>
 
         <Table
@@ -134,7 +135,7 @@ const FindSchool: FC = () => {
             </Link>
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 };

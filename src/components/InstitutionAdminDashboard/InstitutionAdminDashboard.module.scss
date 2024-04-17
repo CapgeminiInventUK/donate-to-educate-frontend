@@ -8,10 +8,9 @@
     margin: auto;
     margin-bottom: 66px;
 
-    .card {
-      @include g.card;
-      padding: 40px 82px 60px;
+    .institutionCard {
       border-radius: 0 0 10px 10px;
+      padding: 60px 82px;
 
       h2 {
         color: g.$primary-dark-blue;
@@ -69,9 +68,7 @@
       margin-bottom: 20px;
       padding-top: 20px;
 
-      .card {
-        padding: 20px;
-        margin: 20px;
+      .institutionCard {
         margin-top: 0;
       }
     }

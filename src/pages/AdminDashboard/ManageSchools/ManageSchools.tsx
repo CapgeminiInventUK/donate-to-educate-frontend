@@ -18,6 +18,7 @@ import styles from './ManageSchools.module.scss';
 import { getRegisteredSchools } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Card from '@/components/Card/Card';
 
 const ManageSchools: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -174,7 +175,7 @@ const ManageSchools: FC = () => {
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
-              <div className={styles.schoolsCard}>
+              <Card className={styles.schoolsCard}>
                 <h1>Registered Schools</h1>
                 <div className={styles.schoolBorder}>
                   {(data?.getRegisteredSchools ?? []).length} joined
@@ -187,7 +188,7 @@ const ManageSchools: FC = () => {
                   scroll={{ x: 'max-content' }}
                   rowKey="urn"
                 />
-              </div>
+              </Card>
             </div>
           )}
         </div>

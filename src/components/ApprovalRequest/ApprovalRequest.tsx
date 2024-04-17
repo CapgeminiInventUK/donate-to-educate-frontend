@@ -24,6 +24,7 @@ import Globe from '@/assets/tiles/Globe';
 import { ApprovalRequestProps } from '@/types/props';
 import { StageState, myStageType } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Card from '@/components/Card/Card';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -112,7 +113,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   return (
     <>
       <BackButton onClick={(): void => setStage(StageState.VIEW)} theme="blue" />
-      <div className={styles.card}>
+      <Card className={styles.approvalRequestCard}>
         <>
           <Pill
             color={type == 'school' ? 'blue' : 'lightBlue'}
@@ -286,7 +287,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
           )}
         </>
         {myStage === 'approved' && <ResultBanner name={user.name} type="approved" />}
-      </div>
+      </Card>
     </>
   );
 };

@@ -22,6 +22,7 @@ import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
+import Card from '@/components/Card/Card';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { donate, excess, request, about: currentAbout, postcode, header } = profile;
@@ -95,7 +96,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               banner={banner}
               setBanner={setBanner}
             />
-            <div className={styles.card}>
+            <Card className={styles.institutionCard}>
               <InformationTile
                 heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
                 subtext={
@@ -181,7 +182,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   onClick={() => setPreview(true)}
                 />
               </div>
-            </div>
+            </Card>
           </>
         )}
         {preview && (

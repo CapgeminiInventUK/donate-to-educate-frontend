@@ -15,6 +15,7 @@ import RegisteredCharities from './CharitiesTables/RegisteredCharities';
 import PendingCharities from './CharitiesTables/PendingCharities';
 import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Card from '@/components/Card/Card';
 
 const ManageCharities: FC = () => {
   const {
@@ -67,7 +68,7 @@ const ManageCharities: FC = () => {
           <div className={styles.adminCard}>
             <h1>{localAuthority}</h1>
             <div className={styles.body}>
-              <div className={styles.card}>
+              <Card className={styles.charitiesCard}>
                 <h2>Charity and volunteer groups in your area</h2>
                 <div className={styles.borderLeft}>
                   <div>{charitiesPending} requests to join</div>
@@ -87,7 +88,7 @@ const ManageCharities: FC = () => {
                   setStage={setStage}
                   stage={stage}
                 />
-              </div>
+              </Card>
             </div>
           </div>
         </>

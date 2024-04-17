@@ -17,6 +17,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getLaStats } from '@/graphql/queries';
 import { Pill } from '@/components/Pill/Pill';
 import { useStore } from '@/stores/useStore';
+import Card from '@/components/Card/Card';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -81,7 +82,7 @@ const LocalAuthorityDashboard: FC = () => {
           <BackButton theme="blue" />
           <LogoutButton />
         </div>
-        <div className={styles.card}>
+        <Card className={styles.laDashboardCard}>
           <LogoBlue className={styles.logo} />
           <h2>Read our privacy policy</h2>
           <p>
@@ -108,7 +109,7 @@ const LocalAuthorityDashboard: FC = () => {
               void refetch().then(() => setHidePrivacyPolicy(true));
             }}
           />
-        </div>
+        </Card>
       </div>
     );
   }

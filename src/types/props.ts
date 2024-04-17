@@ -400,3 +400,25 @@ export interface BannerItemProps {
   itemType: string;
   defaultText: string;
 }
+
+export interface CardProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface ItemSelectionProps {
+  schoolOrCharity: 'school' | 'charity';
+  items: Record<number, string[]>;
+  whatToExpect: string;
+  actionText: string;
+}
+
+export interface AdminDashboardCardProps {
+  isLoading: boolean;
+  title: string;
+  body: string;
+  onClick: () => void;
+  stats: JSX.Element;
+  className: string;
+  buttonTheme?: FormButtonThemes;
+}

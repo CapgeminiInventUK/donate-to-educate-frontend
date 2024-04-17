@@ -42,10 +42,8 @@
   justify-content: space-between;
 }
 
-.card {
-  @include g.card;
+.laDashboardCard {
   padding: 82px;
-  color: g.$primary-dark-blue;
 
   .logo {
     width: 300px;

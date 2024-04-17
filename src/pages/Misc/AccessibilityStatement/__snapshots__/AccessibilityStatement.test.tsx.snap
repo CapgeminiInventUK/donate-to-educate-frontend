@@ -37,7 +37,7 @@ exports[`renders correctly 1`] = `
       Accessibility statement
     </h1>
     <div
-      className="card"
+      className="card footerCard"
     >
       <p>
         We want as many people as possible to be able to use this website. We have taken steps to make this website as accessible as possible, for instance:

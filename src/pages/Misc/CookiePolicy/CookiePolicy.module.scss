@@ -29,14 +29,6 @@
         margin-top: 0;
       }
     }
-
-    .card {
-      @include g.card;
-      padding: 40px 80px;
-      margin-top: 40px;
-
-      color: g.$primary-dark-blue;
-    }
   }
 }
 
@@ -46,10 +38,6 @@
 
     .contentContainer {
       width: 100%;
-
-      .card {
-        padding: 40px;
-      }
     }
   }
 }

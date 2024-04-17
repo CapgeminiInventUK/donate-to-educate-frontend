@@ -9,6 +9,7 @@ import magazines from '@/assets/about/magazines.webp';
 import facebook from '@/assets/about/facebook.webp';
 import green from '@/assets/about/green-up-your-school.webp';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 
 const AboutUs: FC = () => {
   return (
@@ -16,7 +17,7 @@ const AboutUs: FC = () => {
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <h1 className={styles.title}>About us</h1>
-        <div className={styles.card}>
+        <Card className={styles.aboutCard}>
           <div className={styles.imageContainer}>
             <LogoCommunityInspired className={styles.communityInspiredLogo} />
             <h2>Community Inspired</h2>
@@ -45,9 +46,9 @@ const AboutUs: FC = () => {
             </p>
           </div>
           <Image image={magazines} alt="Magazines" className={styles.image} />
-        </div>
+        </Card>
 
-        <div className={`${styles.card} ${styles.col}`}>
+        <Card className={`${styles.aboutCard} ${styles.col}`}>
           <div className={styles.content}>
             <div className={styles.imageContainer}>
               <h2>Social media and online</h2>
@@ -79,7 +80,7 @@ const AboutUs: FC = () => {
             <Image image={facebook} alt="Facebook" className={styles.image} />
           </div>
           <Image image={green} alt="Green up your school" className={styles.newsletter} />
-        </div>
+        </Card>
         <div className={styles.inventBanner}>
           <p>Powered by</p>
           <LogoCapgeminiInvent
