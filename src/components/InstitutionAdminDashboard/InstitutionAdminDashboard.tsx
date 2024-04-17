@@ -31,7 +31,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     about: currentAbout,
     postcode,
     header,
-    name: organisatioName,
+    name: organisationName,
     id,
   } = profile;
   const [banner, setBanner] = useState<Banner>({
@@ -132,7 +132,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'tick', profile: request, name: organisatioName, id },
+                      state: { type: 'tick', profile: request, name: organisationName, id },
                     })
                   }
                 />
@@ -149,7 +149,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'heart', profile: donate, name: organisatioName, id },
+                      state: { type: 'heart', profile: donate, name: organisationName, id },
                     })
                   }
                 />
@@ -169,7 +169,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'plus', profile: excess, name: organisatioName, id },
+                      state: { type: 'plus', profile: excess, name: organisationName, id },
                     })
                   }
                 />
@@ -205,6 +205,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               header={header && { ...banner, __typename: header?.__typename }}
               setPreview={setPreview}
               postcode={postcode}
+              organisationId={id}
+              organisationName={organisationName}
             />
           </>
         )}
