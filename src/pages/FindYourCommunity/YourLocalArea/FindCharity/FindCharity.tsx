@@ -16,6 +16,7 @@ import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
+import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -88,6 +89,9 @@ const FindCharity: FC = () => {
           columns={columns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
+          locale={{
+            emptyText: <NoLocalOrganisations />,
+          }}
         />
       </div>
     </div>
