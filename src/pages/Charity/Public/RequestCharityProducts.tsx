@@ -4,7 +4,9 @@ import { ItemsIconType } from '@/components/ItemList/getIcons';
 import RequestItems, { RequestItemsProps } from '@/components/RequestItems/RequestItems';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
-const getTextContent = (type: string): Omit<RequestItemsProps, 'organisationType'> => {
+const getTextContent = (
+  type: string
+): Omit<RequestItemsProps, 'organisationType' | 'id' | 'name'> => {
   switch (type) {
     case 'tick':
       return {
@@ -79,10 +81,12 @@ const getTextContent = (type: string): Omit<RequestItemsProps, 'organisationType
 };
 
 const RequestCharityProducts: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
-  const { type } = state;
+  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; id: string; name: string }>(
+    Paths.HOME
+  );
+  const { type, id, name } = state;
 
-  return <RequestItems {...getTextContent(type)} organisationType="charity" />;
+  return <RequestItems {...getTextContent(type)} organisationType="charity" id={id} name={name} />;
 };
 
 export default RequestCharityProducts;

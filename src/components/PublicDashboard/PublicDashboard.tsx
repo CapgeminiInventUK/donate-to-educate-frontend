@@ -21,6 +21,8 @@ interface PublicDashboardProps {
   header?: SchoolProfileHeader | CharityProfileHeader | null;
   postcode?: string | null;
   setPreview?: (value: boolean) => void;
+  organisationName: string;
+  organisationId: string;
 }
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
@@ -33,6 +35,8 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   header,
   postcode,
   setPreview,
+  organisationId,
+  organisationName,
 }) => {
   const navigate = useNavigate();
   const banner = {
@@ -68,7 +72,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
               className={styles.requestProductsTile}
               onClick={() =>
                 navigate(getNavigateLinkFromType(type), {
-                  state: { type: 'tick', profile: request },
+                  state: {
+                    type: 'tick',
+                    profile: request,
+                    name: organisationName,
+                    id: organisationId,
+                  },
                 })
               }
               whileHover={{ scale: 1.05 }}
@@ -81,7 +90,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
               className={styles.donateProductsTile}
               onClick={() =>
                 navigate(getNavigateLinkFromType(type), {
-                  state: { type: 'heart', profile: donate },
+                  state: {
+                    type: 'heart',
+                    profile: donate,
+                    name: organisationName,
+                    id: organisationId,
+                  },
                 })
               }
               whileHover={{ scale: 1.05 }}
@@ -94,7 +108,14 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           <motion.div
             className={styles.extraStockTileContainer}
             onClick={() =>
-              navigate(getNavigateLinkFromType(type), { state: { type: 'plus', profile: excess } })
+              navigate(getNavigateLinkFromType(type), {
+                state: {
+                  type: 'plus',
+                  profile: excess,
+                  name: organisationName,
+                  id: organisationId,
+                },
+              })
             }
             whileHover={{ scale: 1.05 }}
           >

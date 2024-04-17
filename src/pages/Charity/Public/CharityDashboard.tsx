@@ -55,6 +55,8 @@ const CharityDashboard: FC = () => {
           excess={excess}
           donate={donate}
           request={request}
+          organisationName={state.name}
+          organisationId={state.id}
         />
       </div>
     </div>

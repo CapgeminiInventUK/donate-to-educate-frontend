@@ -314,6 +314,8 @@ export type InsertItemQueryMutationVariables = {
   who: string;
   phone: string;
   connection?: string | null;
+  organisationName: string;
+  organisationId: string;
   organisationType: string;
 };
 
