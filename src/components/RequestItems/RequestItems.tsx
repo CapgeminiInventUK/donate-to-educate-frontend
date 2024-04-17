@@ -8,7 +8,6 @@ import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -16,20 +15,7 @@ import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
-
-export interface RequestItemsProps {
-  radioButtonLabels: string[];
-  radioButtonValues: string[];
-  buttonText: string;
-  heading: string;
-  subHeading: string;
-  notesHeading: string;
-  notesSubHeading: string;
-  type: ItemsIconType;
-  organisationType: 'school' | 'charity';
-  id: string;
-  name: string;
-}
+import { RequestItemsProps } from '@/types/props';
 
 const RequestItems: FC<RequestItemsProps> = ({
   radioButtonLabels,

@@ -22,6 +22,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { Pill } from '@/components/Pill/Pill';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
+import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -173,6 +174,9 @@ const Donate: FC = () => {
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
+          locale={{
+            emptyText: <NoLocalOrganisations />,
+          }}
         />
       </Card>
     </div>

@@ -1,0 +1,16 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  position: relative;
+  color: g.$primary-dark-blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactUs {
+  text-decoration: underline;
+}
+
+.container svg {
+  margin: 2rem 0;
+}
