@@ -25,7 +25,16 @@ import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
-  const { donate, excess, request, about: currentAbout, postcode, header } = profile;
+  const {
+    donate,
+    excess,
+    request,
+    about: currentAbout,
+    postcode,
+    header,
+    name: organisationName,
+    id,
+  } = profile;
   const [banner, setBanner] = useState<Banner>({
     phone: header?.phone ?? undefined,
     email: header?.email ?? undefined,
@@ -124,7 +133,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'tick', profile: request },
+                      state: { type: 'tick', profile: request, name: organisationName, id },
                     })
                   }
                 />
@@ -141,7 +150,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'heart', profile: donate },
+                      state: { type: 'heart', profile: donate, name: organisationName, id },
                     })
                   }
                 />
@@ -161,7 +170,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'plus', profile: excess },
+                      state: { type: 'plus', profile: excess, name: organisationName, id },
                     })
                   }
                 />
@@ -197,6 +206,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               header={header && { ...banner, __typename: header?.__typename }}
               setPreview={setPreview}
               postcode={postcode}
+              organisationId={id}
+              organisationName={organisationName}
             />
           </>
         )}

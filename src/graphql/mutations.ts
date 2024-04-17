@@ -146,6 +146,8 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
   $who: String!
   $phone: String!
   $connection: String
+  $organisationName: String!
+  $organisationId: String!
   $organisationType: String!
 ) {
   insertItemQuery(
@@ -156,6 +158,8 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
     who: $who
     phone: $phone
     connection: $connection
+    organisationName: $organisationName
+    organisationId: $organisationId
     organisationType: $organisationType
   )
 }

@@ -385,6 +385,7 @@ export interface EditModeItemProps {
   itemName: string;
   item: string | undefined;
   setBanner?: Dispatch<React.SetStateAction<Banner>>;
+  placeholder: string;
 }
 
 export interface AdminViewProps {
@@ -411,6 +412,8 @@ export interface ItemSelectionProps {
   items: Record<number, string[]>;
   whatToExpect: string;
   actionText: string;
+  id: string;
+  name: string;
 }
 
 export interface AdminDashboardCardProps {

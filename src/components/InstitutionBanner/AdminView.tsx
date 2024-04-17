@@ -58,13 +58,23 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
         <>
           <ul>
             <EditModeItem
+              placeholder="Add your phone number"
               icon={<Telephone />}
               itemName={'phone'}
               item={phone}
               setBanner={setBanner}
             />
-            <EditModeItem icon={<Email />} itemName={'email'} item={email} setBanner={setBanner} />
             <EditModeItem
+              placeholder="Add your email"
+              icon={<Email />}
+              itemName={'email'}
+              item={email}
+              setBanner={setBanner}
+            />
+            <EditModeItem
+              placeholder={
+                type === 'charity' ? 'Add your charities website' : "Add your school's website"
+              }
               icon={<Globe />}
               itemName={'website'}
               item={website}
@@ -79,11 +89,13 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
                 itemName={'uniformPolicy'}
                 item={uniformPolicy}
                 setBanner={setBanner}
+                placeholder="Add a website link to your school's uniform policy"
               />
             )}
 
             {type === 'charity' && (
               <EditModeItem
+                placeholder="Add your charities address"
                 icon={<House />}
                 itemName={'address'}
                 item={address}

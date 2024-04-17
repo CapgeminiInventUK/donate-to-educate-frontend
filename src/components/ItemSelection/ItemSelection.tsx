@@ -41,6 +41,8 @@ const ItemSelection: FC<ItemSelectionProps> = ({
   items,
   actionText,
   whatToExpect,
+  id,
+  name,
 }) => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
@@ -62,7 +64,9 @@ const ItemSelection: FC<ItemSelectionProps> = ({
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}
             fullWidth
-            onClick={() => navigate(getPathFromType(schoolOrCharity), { state: { type } })}
+            onClick={() =>
+              navigate(getPathFromType(schoolOrCharity), { state: { type, id, name } })
+            }
             ariaLabel="contact"
           />
         </div>
