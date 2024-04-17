@@ -21,6 +21,7 @@ import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/gr
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { Pill } from '@/components/Pill/Pill';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
+import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 
 const maxDistance = convertMilesToMeters(10);
@@ -156,7 +157,7 @@ const Donate: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card>
         <h2>Donate to schools and charities near {state.postcode.toUpperCase()}</h2>
 
         <h3>Schools</h3>
@@ -177,7 +178,7 @@ const Donate: FC = () => {
             emptyText: <NoLocalOrganisations />,
           }}
         />
-      </div>
+      </Card>
     </div>
   );
 };

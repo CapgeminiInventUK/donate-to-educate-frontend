@@ -34,14 +34,8 @@
     border-color: g.$secondary-purple;
   }
 
-  .card {
-    background: g.$primary-white;
+  .itemsCard {
     border-radius: 0 0 10px 10px;
-    padding: 60px 82px;
-
-    @include g.sm-breakpoint {
-      padding: 20px 28px;
-    }
 
     .actionButtons {
       margin: 40px 0;

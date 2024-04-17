@@ -1,9 +1,11 @@
 @use '@assets/global.scss' as g;
 
-.card {
-  @include g.card;
-  padding: 40px 82px 60px;
+.dashboardCard {
   border-radius: 0 0 10px 10px;
+
+  @include g.sm-breakpoint {
+    margin-top: 0;
+  }
 
   .titleContainer {
     display: flex;
@@ -119,13 +121,5 @@
 @media only screen and (max-width: calc(g.$screen-medium)) {
   .title {
     display: none;
-  }
-}
-
-@media only screen and (max-width: calc(g.$screen-small)) {
-  .card {
-    padding: 20px;
-    margin: 20px;
-    margin-top: 0;
   }
 }

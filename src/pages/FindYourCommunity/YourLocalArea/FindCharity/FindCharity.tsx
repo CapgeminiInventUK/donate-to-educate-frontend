@@ -16,6 +16,7 @@ import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
+import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 
 const maxDistance = convertMilesToMeters(10);
@@ -82,7 +83,7 @@ const FindCharity: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card>
         <h2>Find charities near {state.postcode.toUpperCase()}</h2>
         <Table
           dataSource={data?.getCharitiesNearbyWithProfile ?? []}
@@ -93,7 +94,7 @@ const FindCharity: FC = () => {
             emptyText: <NoLocalOrganisations />,
           }}
         />
-      </div>
+      </Card>
     </div>
   );
 };

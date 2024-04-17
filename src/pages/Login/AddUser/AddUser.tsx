@@ -15,6 +15,7 @@ import { getSignUpData } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import { useStore } from '@/stores/useStore';
+import Card from '@/components/Card/Card';
 
 interface SignUpParameters {
   password: string;
@@ -142,7 +143,7 @@ const NewUser: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <Card className={styles.signUpCard}>
         {step === 'SIGN_UP' && (
           <>
             <LogoIconBlue className={styles.logo} />
@@ -196,7 +197,7 @@ const NewUser: FC = () => {
             />
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 };

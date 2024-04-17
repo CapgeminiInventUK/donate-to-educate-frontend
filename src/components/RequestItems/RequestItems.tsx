@@ -8,27 +8,14 @@ import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { insertItemQuery } from '@/graphql/mutations';
 import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
-
-export interface RequestItemsProps {
-  radioButtonLabels: string[];
-  radioButtonValues: string[];
-  buttonText: string;
-  heading: string;
-  subHeading: string;
-  notesHeading: string;
-  notesSubHeading: string;
-  type: ItemsIconType;
-  organisationType: 'school' | 'charity';
-  id: string;
-  name: string;
-}
+import Card from '@/components/Card/Card';
+import { RequestItemsProps } from '@/types/props';
 
 const RequestItems: FC<RequestItemsProps> = ({
   radioButtonLabels,
@@ -85,7 +72,7 @@ const RequestItems: FC<RequestItemsProps> = ({
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <div className={`${styles.card} ${styles[type]}`}>
+        <Card className={`${styles.requestItemsCard} ${styles[type]}`}>
           <p className={styles.mainHeading}>{heading}</p>
           <p>{subHeading}</p>
 
@@ -184,7 +171,7 @@ const RequestItems: FC<RequestItemsProps> = ({
             }}
             ariaLabel="submit"
           />
-        </div>
+        </Card>
       </div>
     </div>
   );

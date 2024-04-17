@@ -1,10 +1,15 @@
 @use '@assets/global.scss' as g;
 
-.card {
-  color: g.$primary-dark-blue;
-  background: g.$primary-white;
-  border-radius: 10px;
+.formCard {
   padding: 60px 82px;
+
+  @include g.sm-breakpoint {
+    padding: 30px;
+  }
+
+  @include g.xs-breakpoint {
+    padding: 15px;
+  }
 
   hr {
     background: g.$primary-light-blue;

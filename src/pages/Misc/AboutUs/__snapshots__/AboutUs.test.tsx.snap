@@ -37,7 +37,7 @@ exports[`renders correctly 1`] = `
       About us
     </h1>
     <div
-      className="card"
+      className="card aboutCard"
     >
       <div
         className="imageContainer"
@@ -103,7 +103,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <div
-      className="card col"
+      className="card aboutCard col"
     >
       <div
         className="content"

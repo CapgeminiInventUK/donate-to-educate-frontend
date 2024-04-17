@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Email from '@/assets/contact/Email';
 import Phone from '@/assets/contact/Phone';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 
 const Contact: FC = () => {
   return (
@@ -12,7 +13,7 @@ const Contact: FC = () => {
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <h1 className={styles.title}>Contact us</h1>
-        <div className={styles.card}>
+        <Card className={styles.contactCard}>
           <Email />
           <Link to={Paths.EMAIL} className={styles.email}>
             team@donatetoeducate.org.uk
@@ -24,7 +25,7 @@ const Contact: FC = () => {
           <Link className={styles.home} to={Paths.HOME}>
             Return to homepage
           </Link>
-        </div>
+        </Card>
       </div>
     </div>
   );

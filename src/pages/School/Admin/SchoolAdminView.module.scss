@@ -6,8 +6,6 @@
   padding: 48px 120px;
 
   .subContainer {
-    @include g.card;
-    padding: 40px 80px;
     border-radius: 0 0 10px 10px;
 
     .schoolProfileBanner {
@@ -98,8 +96,6 @@
     padding: 17px 19px;
 
     .subContainer {
-      padding: 40px 20px;
-
       img {
         display: none;
       }

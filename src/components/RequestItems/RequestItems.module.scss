@@ -11,9 +11,7 @@
     color: g.$primary-dark-blue;
     padding: 50px;
 
-    .card {
-      @include g.card;
-      padding: 40px 82px 60px;
+    .requestItemsCard {
       display: flex;
       justify-content: center;
       flex-direction: column;

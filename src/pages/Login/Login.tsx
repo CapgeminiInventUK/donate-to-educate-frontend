@@ -5,6 +5,7 @@ import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import FormButton from '@/components/FormButton/FormButton';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 
 const Login: FC = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card>
         <div className={styles.innerContainer}>
           <div className={styles.subContainerLine}>
             <LogoIconBlue className={styles.logoIcon} />
@@ -63,7 +64,7 @@ const Login: FC = () => {
             </p>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

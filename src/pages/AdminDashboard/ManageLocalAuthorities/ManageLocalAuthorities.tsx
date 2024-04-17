@@ -19,6 +19,7 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Card from '@/components/Card/Card';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -203,7 +204,7 @@ const ManageLocalAuthorities: FC = () => {
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
-              <div className={styles.lasCard}>
+              <Card className={styles.lasCard}>
                 <div className={styles.laBorder}>{registered} joined</div>
                 <div className={styles.laBorder}>{notRegistered} to join</div>
                 <br />
@@ -215,7 +216,7 @@ const ManageLocalAuthorities: FC = () => {
                   scroll={{ x: 'max-content' }}
                   rowKey="code"
                 />
-              </div>
+              </Card>
             </div>
           )}
         </div>

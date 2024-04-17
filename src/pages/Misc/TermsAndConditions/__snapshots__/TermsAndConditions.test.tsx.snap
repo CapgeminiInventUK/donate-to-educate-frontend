@@ -37,7 +37,7 @@ exports[`renders correctly 1`] = `
       Terms and conditions
     </h1>
     <div
-      className="card"
+      className="card footerCard"
     >
       <p>
         Welcome to Donate to Educate, owned by Community Inspired. If you browse and use this website you are agreeing to comply with, and be bound by, our terms and conditions of use, which together with our privacy policy, govern Community Inspired Ltd's relationship with you in relation to this website.
