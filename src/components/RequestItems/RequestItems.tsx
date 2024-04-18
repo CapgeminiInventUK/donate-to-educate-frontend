@@ -55,7 +55,7 @@ const RequestItems: FC<RequestItemsProps> = ({
           organisationType,
           organisationName,
           organisationId: id,
-          ...(formState?.connection && { connection: formState.connection }),
+          ...(formState.who === 'somethingElse' && { connection: formState.connection }),
         },
       });
       return result;
@@ -155,8 +155,9 @@ const RequestItems: FC<RequestItemsProps> = ({
           />
           <FormButton
             text={buttonText}
-            theme={'formButtonGreen'}
+            theme={checkIfValidInput(formState) ? 'formButtonGreenDisabled' : 'formButtonGreen'}
             fullWidth={true}
+            disabled={checkIfValidInput(formState)}
             onClick={() => {
               void refetch().then(() => {
                 navigate(
@@ -176,5 +177,13 @@ const RequestItems: FC<RequestItemsProps> = ({
     </div>
   );
 };
+
+const checkIfValidInput = (formState: RequestFormState): boolean =>
+  !formState.name ||
+  !formState.email ||
+  !formState.notes ||
+  !formState.phone ||
+  !formState.who ||
+  (formState.who === 'somethingElse' && !formState.connection);
 
 export default RequestItems;
