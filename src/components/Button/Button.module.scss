@@ -22,10 +22,19 @@
 .link-blue {
   @extend %button;
   background: none;
-  color: g.$primary-dark-blue;
+  color: g.$link-blue;
   border: none;
   text-decoration: underline;
   font-weight: normal;
+}
+
+.link-blue-bold {
+  @extend %button;
+  background: none;
+  color: g.$link-blue;
+  border: none;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .darkBlue {

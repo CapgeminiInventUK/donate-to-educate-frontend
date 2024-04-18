@@ -38,7 +38,24 @@
   }
 }
 
-.actionButtons {
+.actionsContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
+  .actionButtons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.statusDiv {
+  margin-top: 6px;
+
+  .status {
+    margin-left: 10px;
+  }
+
+  .joined {
+    color: green;
+  }
 }

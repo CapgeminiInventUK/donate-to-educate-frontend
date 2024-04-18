@@ -3,7 +3,7 @@ import styles from './FindSchool.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { Table } from 'antd';
+import { Table, Popover } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import Spinner from '@/components/Spinner/Spinner';
 import { client } from '@/graphqlClient';
@@ -16,7 +16,8 @@ import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
-import { Pill } from '@/components/Pill/Pill';
+import minusIcon from '@/assets/icons/minusIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 
 const maxDistance = convertMilesToMeters(10);
@@ -75,11 +76,21 @@ const FindSchool: FC = () => {
       title: 'Status',
       dataIndex: 'registered',
       render: (registered: boolean, { id }) => (
-        <Pill
-          text={registered ? 'JOINED' : 'NOT JOINED'}
-          color={registered ? 'blue' : 'grey'}
-          key={id}
-        />
+        <div key={id} className={styles.statusDiv}>
+          <Popover
+            content={registered ? 'Registered' : 'Not yet registered'}
+            trigger="hover"
+            className={`${styles.status} ${registered ? styles.joined : ''}`}
+          >
+            <span>
+              {registered ? (
+                <img src={tickIcon} alt="mySvgImage" />
+              ) : (
+                <img src={minusIcon} alt="mySvgImage" />
+              )}
+            </span>
+          </Popover>
+        </div>
       ),
     },
     {

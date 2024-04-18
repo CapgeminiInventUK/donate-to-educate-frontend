@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { Table } from 'antd';
+import { Table, Popover } from 'antd';
 import Button from '@/components/Button/Button';
 import styles from '../ManageSchools.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { StageState, SchoolOrCharityTableData } from '@/types/data';
-import { Pill } from '@/components/Pill/Pill';
 import { SchoolsOrCharityTableProps } from '@/types/props';
+import minusIcon from '@/assets/icons/minusIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
 
 const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       render: (text: string, { urn, name, status }: SchoolOrCharityTableData): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <Button
-            theme="link-blue"
+            theme="link-blue-bold"
             text={text}
             ariaLabel={`name-${text}`}
             onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
@@ -32,7 +33,21 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       title: 'Status',
       dataIndex: 'status',
       render: (text: string) => (
-        <Pill text={text} color={text.toLowerCase() === 'pending' ? 'green' : 'blue'} />
+        <div className={styles.statusDiv}>
+          <Popover
+            content={text.toLowerCase() !== 'pending' ? 'Registered' : 'Pending'}
+            trigger="hover"
+            className={`${styles.status} ${text.toLowerCase() !== 'pending' ? styles.joined : ''}`}
+          >
+            <span>
+              {text.toLowerCase() !== 'pending' ? (
+                <img src={tickIcon} alt="mySvgImage" />
+              ) : (
+                <img src={minusIcon} alt="mySvgImage" />
+              )}
+            </span>
+          </Popover>
+        </div>
       ),
     },
     {
