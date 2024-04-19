@@ -26,6 +26,7 @@
   height: 50px;
   cursor: pointer;
   min-width: 80px;
+  padding-left: 80px;
 }
 
 @media only screen and (max-width: g.$screen-medium) {
@@ -63,10 +64,6 @@
 }
 
 @media only screen and (min-width: g.$screen-large) and (max-width: g.$screen-xlarge) {
-  .logoBlue {
-    padding-left: 80px;
-  }
-
   .links {
     padding-right: 80px;
 
