@@ -63,7 +63,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                 <HorizontalLine className={styles.horizontalLine} />
               </div>
             </div>
-            <p>{about}</p>
+            <p className={styles.paragraph}>{about}</p>
           </>
         )}
 
