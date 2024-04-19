@@ -6,8 +6,8 @@ import { SchoolsOrCharityTableProps } from '@/types/props';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { SchoolOrCharityTableData, StageState } from '@/types/data';
-import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
+import pendingIcon from '@/assets/icons/pendingIcon.svg';
 
 const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -41,9 +41,9 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
           >
             <span>
               {text.toLowerCase() !== 'pending' ? (
-                <img src={tickIcon} alt="mySvgImage" />
+                <img src={tickIcon} alt="registeredIcon" />
               ) : (
-                <img src={minusIcon} alt="mySvgImage" />
+                <img src={pendingIcon} alt="pendingIcon" />
               )}
             </span>
           </Popover>
@@ -82,27 +82,29 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
             />
           </div>
         ) : (
-          <Button
-            theme="link-blue"
-            className={styles.actionButtons}
-            text="View request"
-            onClick={(): void => {
-              setProperties &&
-                setProperties((schoolProperties) => ({
-                  ...schoolProperties,
-                  name,
-                  id: String(id),
-                  user: {
-                    name: joinRequestName ?? '',
-                    title: jobTitle ?? '',
-                    email: email ?? '',
-                    phone: phone ?? '',
-                  },
-                }));
-              setStage && setStage(StageState.APPROVE_CHARITY);
-            }}
-            ariaLabel="view"
-          />
+          <div className={styles.actionsContainer}>
+            <Button
+              theme="link-blue"
+              className={styles.actionButtons}
+              text="View request"
+              onClick={(): void => {
+                setProperties &&
+                  setProperties((schoolProperties) => ({
+                    ...schoolProperties,
+                    name,
+                    id: String(id),
+                    user: {
+                      name: joinRequestName ?? '',
+                      title: jobTitle ?? '',
+                      email: email ?? '',
+                      phone: phone ?? '',
+                    },
+                  }));
+                setStage && setStage(StageState.APPROVE_CHARITY);
+              }}
+              ariaLabel="view"
+            />
+          </div>
         );
       },
     },

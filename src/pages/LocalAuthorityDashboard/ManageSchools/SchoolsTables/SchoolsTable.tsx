@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { StageState, SchoolOrCharityTableData } from '@/types/data';
 import { SchoolsOrCharityTableProps } from '@/types/props';
-import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
+import pendingIcon from '@/assets/icons/pendingIcon.svg';
 
 const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
     },
     {
       title: 'Status',
+      align: 'center' as const,
       dataIndex: 'status',
       render: (text: string) => (
         <div className={styles.statusDiv}>
@@ -43,7 +44,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
               {text.toLowerCase() !== 'pending' ? (
                 <img src={tickIcon} alt="mySvgImage" />
               ) : (
-                <img src={minusIcon} alt="mySvgImage" />
+                <img src={pendingIcon} alt="pendingIcon" />
               )}
             </span>
           </Popover>
@@ -83,28 +84,30 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
             />
           </div>
         ) : (
-          <Button
-            theme="link-blue"
-            className={styles.actionButtons}
-            text="View request"
-            onClick={(): void => {
-              setProperties &&
-                setProperties((schoolProperties) => ({
-                  ...schoolProperties,
-                  name,
-                  id: String(id),
-                  urn,
-                  user: {
-                    name: joinRequestName ?? '',
-                    title: jobTitle ?? '',
-                    email: email ?? '',
-                    phone: phone ?? '',
-                  },
-                }));
-              setStage && setStage(StageState.APPROVE_SCHOOL);
-            }}
-            ariaLabel="view"
-          />
+          <div className={styles.actionsContainer}>
+            <Button
+              theme="link-blue"
+              className={styles.actionButtons}
+              text="View request"
+              onClick={(): void => {
+                setProperties &&
+                  setProperties((schoolProperties) => ({
+                    ...schoolProperties,
+                    name,
+                    id: String(id),
+                    urn,
+                    user: {
+                      name: joinRequestName ?? '',
+                      title: jobTitle ?? '',
+                      email: email ?? '',
+                      phone: phone ?? '',
+                    },
+                  }));
+                setStage && setStage(StageState.APPROVE_SCHOOL);
+              }}
+              ariaLabel="view"
+            />
+          </div>
         );
       },
     },
