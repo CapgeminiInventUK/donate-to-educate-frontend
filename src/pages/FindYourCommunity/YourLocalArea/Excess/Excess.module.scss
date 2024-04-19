@@ -8,6 +8,10 @@
   @include g.sm-breakpoint {
     padding: 24px 60px;
   }
+
+  @include g.xs-breakpoint {
+    padding: 24px 10px;
+  }
 }
 
 .nameBtn {

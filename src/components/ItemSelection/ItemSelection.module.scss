@@ -8,6 +8,10 @@
     padding: 24px 60px;
   }
 
+  @include g.xs-breakpoint {
+    padding: 24px 10px;
+  }
+
   .banner {
     padding: 40px;
     color: g.$primary-white;
