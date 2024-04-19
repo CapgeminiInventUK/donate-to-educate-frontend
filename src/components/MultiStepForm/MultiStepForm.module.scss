@@ -114,9 +114,11 @@
   }
 }
 
-.lastPageContainer {
-  background: g.$primary-dark-blue;
-  margin-top: 40px;
+form {
+  .lastPageContainer {
+    background: g.$primary-dark-blue;
+    margin-top: 40px;
+  }
 
   .pagination {
     color: g.$primary-white;

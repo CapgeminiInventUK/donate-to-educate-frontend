@@ -154,7 +154,7 @@ const signUpSchoolHappyPath = (
             header: 'Thanks for applying to join Donate to Educate',
             body: [
               'Your local authority will review your details to confirm your identity.',
-              "We'll email you with the results as soon as we have them.",
+              "We'll email you the results of your application as soon as have them.",
             ],
             logo: <LogoWhite />,
           },
