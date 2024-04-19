@@ -12,6 +12,10 @@
       border-radius: 0 0 10px 10px;
       padding: 60px 82px;
 
+      @include g.md-breakpoint {
+        padding: 25px;
+      }
+
       h2 {
         color: g.$primary-dark-blue;
         margin-right: 10px;
@@ -70,6 +74,7 @@
 
       .institutionCard {
         margin-top: 0;
+        padding: 15px;
       }
     }
   }
