@@ -5,6 +5,10 @@
   color: g.$primary-dark-blue;
   padding: 48px 120px;
 
+  @include g.sm-breakpoint {
+    padding: 25px 10px;
+  }
+
   .subContainer {
     a {
       color: g.$secondary-mid-blue;
