@@ -22,12 +22,11 @@
   }
 
   h2 {
-    color: g.$primary-dark-blue;
     margin-right: 10px;
   }
 
-  p {
-    color: g.$primary-dark-blue;
+  .paragraph {
+    white-space: pre-wrap;
   }
 
   .productsTilesContainer {
