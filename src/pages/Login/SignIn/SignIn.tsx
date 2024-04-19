@@ -21,7 +21,7 @@ const SignIn: FC = () => {
   const userActions = useStore((state) => state);
   const { user, isLoading, error, hasProfile } = userActions;
 
-  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
+  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenLarge})` });
   const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
 
   if (isLoading) {
