@@ -6,10 +6,10 @@ import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
-import donate from '@/templates/tiles/donate';
-import takeExtraStock from '@/templates/tiles/takeExtraStock';
-import findSchool from '@/templates/tiles/findSchool';
+// import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
+// import donate from '@/templates/tiles/donate';
+// import takeExtraStock from '@/templates/tiles/takeExtraStock';
+// import findSchool from '@/templates/tiles/findSchool';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
@@ -19,13 +19,15 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
+import Tile from '../Tile/Tile';
+import pendingIcon from '@/assets/icons/pendingIcon.svg';
 
 const School: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
   const navigate = useNavigate();
 
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading, isError } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: user !== undefined,
     queryFn: async () => {
@@ -70,7 +72,7 @@ const School: FC = () => {
         </div>
         <div className={styles.localAreaContainer}>
           <h2>Your local area</h2>
-          {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
+          {/* {tiles.map(({ title, body, image, colour, onClickLink }) => {
             return (
               <div
                 key={title}
@@ -79,7 +81,7 @@ const School: FC = () => {
                   navigate(onClickLink, { state: { postcode: data?.getSchoolProfile?.postcode } })
                 }
               >
-                {icon}
+                {pendingIcon}
                 <div className={styles.content}>
                   <h2 className={styles.header}>{title}</h2>
                   <div>{body}</div>
@@ -87,13 +89,23 @@ const School: FC = () => {
                 {image}
               </div>
             );
-          })}
+          })} */}
+          <Tile
+            title="A place for charities"
+            onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+            body={[
+              'Create a charity profile to show which products you stock.',
+              'Help children get the things they need by connecting with nearby schools, PTAs and local communities.',
+            ]}
+            icon={pendingIcon}
+            buttonText="Join"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
+//const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
 
 export default School;
