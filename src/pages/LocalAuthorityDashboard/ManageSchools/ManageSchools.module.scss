@@ -20,6 +20,10 @@
   padding: 60px 50px;
   border-radius: 0 0 10px 10px;
 
+  @include g.md-breakpoint {
+    padding: 25px;
+  }
+
   .schoolsCard {
     padding: 30px;
     border-top: g.$secondary-blue solid 18px;
