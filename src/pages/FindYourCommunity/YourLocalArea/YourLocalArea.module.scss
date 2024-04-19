@@ -15,6 +15,7 @@
       margin: auto;
       margin-top: 20px;
       cursor: pointer;
+      white-space: pre-wrap;
 
       @include g.md-breakpoint {
         justify-content: flex-start;
