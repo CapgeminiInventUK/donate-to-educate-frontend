@@ -4,6 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { Table } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import Spinner from '@/components/Spinner/Spinner';
 import { client } from '@/graphqlClient';
@@ -75,13 +76,23 @@ const FindSchool: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
-      render: (registered: boolean, { id }) => (
-        <Pill
-          text={registered ? 'JOINED' : 'NOT JOINED'}
-          color={registered ? 'blue' : 'grey'}
-          key={id}
-        />
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
+      onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
+        record.registered === value,
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
+      render: (registered: boolean) => (
+        <Pill text={registered ? 'Joined' : 'Not joined'} color={registered ? 'blue' : 'grey'} />
       ),
+      defaultFilteredValue: ['true'],
     },
     {
       title: 'Distance',

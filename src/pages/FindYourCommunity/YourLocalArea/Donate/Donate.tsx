@@ -4,6 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { Table } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
@@ -131,9 +132,23 @@ const Donate: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
+      onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
+        record.registered === value,
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean) => (
-        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+        <Pill text={registered ? 'Joined' : 'Not joined'} color={registered ? 'blue' : 'grey'} />
       ),
+      defaultFilteredValue: ['true'],
     },
     {
       title: 'Distance',
@@ -162,7 +177,11 @@ const Donate: FC = () => {
 
         <h3>Schools</h3>
         <Table
-          dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
+          dataSource={
+            schoolData?.getSchoolsNearbyWithProfile.filter(
+              (school) => school.productTypes.length !== 0
+            ) ?? []
+          }
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
