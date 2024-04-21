@@ -177,11 +177,7 @@ const Donate: FC = () => {
 
         <h3>Schools</h3>
         <Table
-          dataSource={
-            schoolData?.getSchoolsNearbyWithProfile.filter(
-              (school) => school.productTypes.length !== 0
-            ) ?? []
-          }
+          dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
