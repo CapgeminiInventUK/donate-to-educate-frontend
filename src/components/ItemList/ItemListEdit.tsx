@@ -29,7 +29,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   };
 
   const selectAll = (checked: boolean, name: SectionsIconType, itemsList: string[]): void => {
-    if (allSelectedNames.indexOf(name) > -1) {
+    if (allSelectedNames.indexOf(name) !== -1) {
       allSelectedNames.splice(allSelectedNames.indexOf(name, 0), 1);
     } else {
       setAllSelectedNames([...allSelectedNames, name]);
@@ -51,7 +51,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
             </div>
             <ul className={styles.list}>
               <li
-                className={`${styles.selectAll} ${allSelectedNames.indexOf(name) > -1 ? styles.bold : ''}`}
+                className={`${styles.selectAll} ${allSelectedNames.indexOf(name) !== -1 ? styles.bold : ''}`}
               >
                 <Checkbox
                   onChange={(checked) => selectAll(checked, name, itemsList)}
