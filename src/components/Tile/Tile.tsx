@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './Tile.module.scss';
-import FormButton from '@/components/FormButton/FormButton';
 import { motion } from 'framer-motion';
 
 interface TileProps {
@@ -8,24 +7,21 @@ interface TileProps {
   onClick: () => void;
   body: string[];
   icon: JSX.Element;
-  buttonText: string;
+  size: string;
 }
 
-const Tile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
+const Tile: FC<TileProps> = ({ onClick, title, body, icon, size }) => {
   return (
-    <motion.div className={styles.tile} whileHover={{ scale: 1.05 }}>
+    <motion.div
+      className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium}`}
+      whileHover={{ scale: 1.05 }}
+      onClick={onClick}
+    >
       {icon}
       <h2>{title}</h2>
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <FormButton
-        theme="formButtonGreen"
-        text={buttonText}
-        onClick={onClick}
-        useArrow
-        ariaLabel={buttonText}
-      />
     </motion.div>
   );
 };
