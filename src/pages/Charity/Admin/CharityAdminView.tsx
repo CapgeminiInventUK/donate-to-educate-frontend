@@ -25,6 +25,7 @@ import schoolIcon from '@/assets/icons/schoolIcon.svg';
 import heartIcon from '@/assets/icons/heartIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
 import stockIcon from '@/assets/icons/stockIcon.svg';
+import Card from '@/components/Card/Card';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
@@ -101,7 +102,7 @@ const CharityView: FC = () => {
         <LogoutButton />
       </div>
       <InstitutionBanner type={'charity'} name={name} banner={{}} />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <div className={styles.profileBanner}>
           <SchoolProfile />
           <h2>Your charity profile is active</h2>
@@ -219,7 +220,7 @@ const CharityView: FC = () => {
             </div>
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 };

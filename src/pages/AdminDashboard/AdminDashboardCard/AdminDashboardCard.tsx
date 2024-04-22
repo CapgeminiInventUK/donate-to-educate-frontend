@@ -1,18 +1,9 @@
 import { FC } from 'react';
-import { FormButtonThemes } from '@/types/props';
 import FormButton from '@/components/FormButton/FormButton';
 import Spinner from '@/components/Spinner/Spinner';
 import styles from './AdminDashboardCard.module.scss';
-
-interface AdminDashboardCardProps {
-  isLoading: boolean;
-  title: string;
-  body: string;
-  onClick: () => void;
-  stats: JSX.Element;
-  className: string;
-  buttonTheme?: FormButtonThemes;
-}
+import { AdminDashboardCardProps } from '@/types/props';
+import Card from '@/components/Card/Card';
 
 const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   isLoading,
@@ -24,7 +15,7 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   buttonTheme = 'formButtonGrey',
 }): JSX.Element => {
   return (
-    <div className={`${styles.card} ${styles[`${className}`]}`}>
+    <Card className={`${styles.dashboardCard} ${styles[`${className}`]}`}>
       {isLoading && <Spinner />}
       {!isLoading && (
         <>
@@ -42,7 +33,7 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
           />
         </>
       )}
-    </div>
+    </Card>
   );
 };
 

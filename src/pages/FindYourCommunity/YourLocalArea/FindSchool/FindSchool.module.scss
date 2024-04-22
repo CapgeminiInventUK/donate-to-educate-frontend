@@ -5,10 +5,11 @@
   color: g.$primary-dark-blue;
   padding: 48px 120px;
 
-  .subContainer {
-    @include g.card;
-    padding: 40px 80px;
+  @include g.sm-breakpoint {
+    padding: 25px 10px;
+  }
 
+  .subContainer {
     a {
       color: g.$secondary-mid-blue;
       text-decoration: underline;

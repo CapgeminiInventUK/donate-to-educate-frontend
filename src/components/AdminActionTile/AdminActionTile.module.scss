@@ -16,6 +16,7 @@
   border-radius: 0.625rem;
   border: 2px solid g.$greyscale-disabled;
   background: g.$primary-white;
+  white-space: pre-wrap;
 
   &.tick {
     background: g.$primary-light-blue;

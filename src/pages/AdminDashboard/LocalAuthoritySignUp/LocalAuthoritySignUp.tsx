@@ -18,6 +18,7 @@ import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Card from '@/components/Card/Card';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -94,87 +95,89 @@ const LocalAuthoritySignUp: FC = () => {
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />
-          <form onSubmit={onSubmit} className={styles.card}>
-            {formErrors && <FormErrors formErrors={formErrors} />}
-            <h1>{state.la}</h1>
-            <hr />
-            <TextInput
-              header="First name"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  firstName: value,
-                }));
-              }}
-              ariaLabel="first name"
-            />
-            <TextInput
-              header="Last name"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  lastName: value,
-                }));
-              }}
-              ariaLabel="last name"
-            />
-            <TextInput
-              header="Job title or role"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  jobTitle: value,
-                }));
-              }}
-              ariaLabel="title"
-            />
-            <TextInput
-              header="Department"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  department: value,
-                }));
-              }}
-              ariaLabel="department"
-            />
-            <TextInput
-              header="Email"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  email: value,
-                }));
-              }}
-              ariaLabel="email"
-            />
-            <TextInput
-              header="Phone"
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  phone: value,
-                }));
-              }}
-              ariaLabel="phone"
-            />
-            <TextArea
-              onChange={(value) => {
-                setFormState((prevState) => ({
-                  ...prevState,
-                  notes: value,
-                }));
-              }}
-              header="Notes about this user (optional)"
-              subHeading="This information can only be seen by Donate to Educate administrators."
-              characterLimit={1000}
-              ariaLabel="notes"
-            />
-            <FormButton
-              text={'Create account'}
-              theme={'formButtonMidBlue'}
-              ariaLabel="create account"
-            />
+          <form onSubmit={onSubmit}>
+            <Card className={styles.formCard}>
+              {formErrors && <FormErrors formErrors={formErrors} />}
+              <h1>{state.la}</h1>
+              <hr />
+              <TextInput
+                header="First name"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    firstName: value,
+                  }));
+                }}
+                ariaLabel="first name"
+              />
+              <TextInput
+                header="Last name"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    lastName: value,
+                  }));
+                }}
+                ariaLabel="last name"
+              />
+              <TextInput
+                header="Job title or role"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    jobTitle: value,
+                  }));
+                }}
+                ariaLabel="title"
+              />
+              <TextInput
+                header="Department"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    department: value,
+                  }));
+                }}
+                ariaLabel="department"
+              />
+              <TextInput
+                header="Email"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    email: value,
+                  }));
+                }}
+                ariaLabel="email"
+              />
+              <TextInput
+                header="Phone"
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    phone: value,
+                  }));
+                }}
+                ariaLabel="phone"
+              />
+              <TextArea
+                onChange={(value) => {
+                  setFormState((prevState) => ({
+                    ...prevState,
+                    notes: value,
+                  }));
+                }}
+                header="Notes about this user (optional)"
+                subHeading="This information can only be seen by Donate to Educate administrators."
+                characterLimit={1000}
+                ariaLabel="notes"
+              />
+              <FormButton
+                text={'Create account'}
+                theme={'formButtonMidBlue'}
+                ariaLabel="create account"
+              />
+            </Card>
           </form>
         </div>
       </div>

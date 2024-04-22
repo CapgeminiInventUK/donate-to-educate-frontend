@@ -9,6 +9,7 @@ import schoolIcon from '@/assets/icons/schoolIcon.svg';
 import heartIcon from '@/assets/icons/heartIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
 import kidsRunning from '@/assets/icons/kidsRunning.png';
+import Card from '@/components/Card/Card';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const YourLocalArea: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <h2>Your local area in {state.postcode.toUpperCase()}</h2>
         <div className={styles.tileRow}>
           <Tile
@@ -45,7 +46,7 @@ const YourLocalArea: FC = () => {
         <div className={styles.imageContainer}>
           <img src={kidsRunning} alt="myPngImage" />
         </div>
-      </div>
+      </Card>
     </div>
   );
 };
