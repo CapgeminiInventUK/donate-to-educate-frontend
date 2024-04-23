@@ -10,6 +10,11 @@
 
     .title {
       padding: 0;
+      margin-bottom: 40px;
+
+      @include g.sm-breakpoint {
+        margin-bottom: 20px;
+      }
     }
 
     a {
@@ -28,14 +33,6 @@
       &:first-child {
         margin-top: 0;
       }
-    }
-
-    .card {
-      @include g.card;
-      padding: 40px 80px;
-      margin-top: 40px;
-
-      color: g.$primary-dark-blue;
     }
 
     .inventBanner {
@@ -82,11 +79,6 @@
 
     .contentContainer {
       width: 100%;
-
-      .card {
-        padding: 40px;
-        margin-top: 20px;
-      }
     }
   }
 }

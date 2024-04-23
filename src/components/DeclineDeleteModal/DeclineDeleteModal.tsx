@@ -2,6 +2,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import { FC } from 'react';
 import styles from './DeclineDeleteModal.module.scss';
 import { DeclineDeleteModalProps } from '@/types/props';
+import Card from '@/components/Card/Card';
 
 const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
   showModal,
@@ -16,7 +17,7 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
 
   return (
     <div className={styles.modal}>
-      <div className={styles.card}>
+      <Card className={styles.modalCard}>
         <h2>Are you sure?</h2>
         <p>{bodyText}</p>
         <div className={styles.actionButtons}>
@@ -36,7 +37,7 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
             text={confirmText}
           />
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

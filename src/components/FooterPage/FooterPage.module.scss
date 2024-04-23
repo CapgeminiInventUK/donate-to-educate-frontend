@@ -27,10 +27,7 @@
       }
     }
 
-    .card {
-      @include g.card;
-      padding: 60px 82px;
-
+    .footerCard {
       .email {
         word-break: break-word;
 
@@ -63,10 +60,6 @@
     .contentContainer {
       width: 100%;
       padding-top: 66px;
-
-      .card {
-        padding: 20px;
-      }
     }
   }
 }
@@ -78,8 +71,7 @@
       margin-bottom: 20px;
       padding-top: 20px;
 
-      .card {
-        padding: 20px;
+      .footerCard {
         margin: 20px;
         margin-top: 0;
       }

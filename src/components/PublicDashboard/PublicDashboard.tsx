@@ -10,6 +10,7 @@ import Paths from '@/config/paths';
 import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types/api';
 import FormButton from '../FormButton/FormButton';
 import { motion } from 'framer-motion';
+import Card from '@/components/Card/Card';
 
 interface PublicDashboardProps {
   type: 'school' | 'charity';
@@ -50,7 +51,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
-      <div className={styles.card}>
+      <Card className={styles.dashboardCard}>
         {!(about ?? excess ?? donate ?? request) && (
           <p>We are still populating our profile, please check back later</p>
         )}
@@ -62,7 +63,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                 <HorizontalLine className={styles.horizontalLine} />
               </div>
             </div>
-            <p>{about}</p>
+            <p className={styles.paragraph}>{about}</p>
           </>
         )}
 
@@ -150,7 +151,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             />
           </div>
         )}
-      </div>
+      </Card>
     </>
   );
 };

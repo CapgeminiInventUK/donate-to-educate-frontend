@@ -12,6 +12,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { getRedirectUrl } from '@/utils/account';
 import { useStore } from '@/stores/useStore';
 import { AccountType } from '@/types/data';
+import Card from '@/components/Card/Card';
 
 const SignIn: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -20,7 +21,7 @@ const SignIn: FC = () => {
   const userActions = useStore((state) => state);
   const { user, isLoading, error, hasProfile } = userActions;
 
-  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
+  const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenLarge})` });
   const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
 
   if (isLoading) {
@@ -41,7 +42,7 @@ const SignIn: FC = () => {
       }
     >
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <LoginBanner />
         <h2>Sign in</h2>
         <TextInput
@@ -78,7 +79,7 @@ const SignIn: FC = () => {
           className={styles.formButton}
           ariaLabel="sign in"
         />
-      </div>{' '}
+      </Card>{' '}
     </div>
   );
 };

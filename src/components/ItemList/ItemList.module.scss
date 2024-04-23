@@ -49,6 +49,10 @@
       }
     }
 
+    @include g.xs-breakpoint {
+      padding-left: 10px;
+    }
+
     .listItem {
       width: fit-content;
       min-width: 275px;

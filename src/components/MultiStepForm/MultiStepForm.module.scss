@@ -1,14 +1,8 @@
 @use '@assets/global.scss' as g;
 
 .formContainer {
-  @include g.card;
-  padding: 40px 82px;
   width: 65vw;
   margin-bottom: 50px;
-
-  @include g.sm-breakpoint {
-    padding: 20px 41px;
-  }
 
   .pagination {
     display: flex;
@@ -120,9 +114,11 @@
   }
 }
 
-.lastPageContainer {
-  background: g.$primary-dark-blue;
-  margin-top: 40px;
+form {
+  .lastPageContainer {
+    background: g.$primary-dark-blue;
+    margin-top: 40px;
+  }
 
   .pagination {
     color: g.$primary-white;

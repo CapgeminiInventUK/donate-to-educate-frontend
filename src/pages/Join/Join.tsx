@@ -6,6 +6,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 
 const labelsObj = {
   SCHOOL_ROLE: 'I work at a school',
@@ -33,7 +34,7 @@ const Join: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card>
         <div className={styles.innerContainer}>
           <div className={styles.subContainerLine}>
             <LogoIconBlue className={styles.logoIcon} />
@@ -53,7 +54,7 @@ const Join: FC = () => {
             ariaLabel="next"
           />
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

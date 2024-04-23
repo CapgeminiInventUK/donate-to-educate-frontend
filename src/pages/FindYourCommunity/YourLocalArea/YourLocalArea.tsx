@@ -7,6 +7,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import findSchool from '@/templates/tiles/findSchool';
 import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
 import donate from '@/templates/tiles/donate';
+import Card from '@/components/Card/Card';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const YourLocalArea: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <h2>Your local area in {state.postcode.toUpperCase()}</h2>
         {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
           return (
@@ -33,7 +34,7 @@ const YourLocalArea: FC = () => {
             </div>
           );
         })}
-      </div>
+      </Card>
     </div>
   );
 };
