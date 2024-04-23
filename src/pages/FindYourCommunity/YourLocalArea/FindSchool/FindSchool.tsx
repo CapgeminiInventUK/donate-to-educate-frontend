@@ -84,9 +84,9 @@ const FindSchool: FC = () => {
           >
             <span>
               {registered ? (
-                <img src={tickIcon} alt="mySvgImage" />
+                <img src={tickIcon} alt="Joined" />
               ) : (
-                <img src={minusIcon} alt="mySvgImage" />
+                <img src={minusIcon} alt="Not joined" />
               )}
             </span>
           </Popover>

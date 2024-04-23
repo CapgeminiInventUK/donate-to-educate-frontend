@@ -41,9 +41,9 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
           >
             <span>
               {text.toLowerCase() !== 'pending' ? (
-                <img src={tickIcon} alt="registeredIcon" />
+                <img src={tickIcon} alt="Registered" />
               ) : (
-                <img src={pendingIcon} alt="pendingIcon" />
+                <img src={pendingIcon} alt="Pending" />
               )}
             </span>
           </Popover>
