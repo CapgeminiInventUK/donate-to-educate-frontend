@@ -1,10 +1,10 @@
 @use '@assets/global.scss' as g;
 
 %button {
-  padding: 12px 30px 12px 30px;
+  padding: 12px 30px 12px 0;
   border-radius: 5px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   line-height: 11px;
@@ -22,10 +22,19 @@
 .link-blue {
   @extend %button;
   background: none;
-  color: g.$primary-dark-blue;
+  color: g.$link-blue;
   border: none;
   text-decoration: underline;
   font-weight: normal;
+}
+
+.link-blue-bold {
+  @extend %button;
+  background: none;
+  color: g.$link-blue;
+  border: none;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .darkBlue {

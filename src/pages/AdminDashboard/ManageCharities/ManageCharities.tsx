@@ -130,7 +130,7 @@ const ManageCharities: FC = () => {
       ...getColumnSearchProps('name'),
       render: (text: string, { id, name }: Charity): JSX.Element => (
         <Button
-          theme="link-blue"
+          theme="link-blue-bold"
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() => navigate(Paths.CHARITY_DASHBOARD, { state: { id, name } })}

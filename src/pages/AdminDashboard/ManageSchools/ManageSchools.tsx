@@ -130,7 +130,7 @@ const ManageSchools: FC = () => {
       ...getColumnSearchProps('name'),
       render: (text: string, { urn, name }: School): JSX.Element => (
         <Button
-          theme="link-blue"
+          theme="link-blue-bold"
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
