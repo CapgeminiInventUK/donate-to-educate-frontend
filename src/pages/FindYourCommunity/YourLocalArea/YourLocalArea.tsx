@@ -25,26 +25,26 @@ const YourLocalArea: FC = () => {
             title="Find a nearby school"
             onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
             body={['Request or donate products']}
-            icon={<img src={schoolIcon} alt="mySvgImage" />}
+            icon={<img src={schoolIcon} alt="School" />}
             size="small"
           />
           <Tile
             title="Find nearby charities"
             onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
             body={['Find out what they stock, or donate products']}
-            icon={<img src={heartIcon} alt="mySvgImage" />}
+            icon={<img src={heartIcon} alt="Charity" />}
             size="small"
           />
           <Tile
             title="Donate products"
             onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
             body={['Support schools and charities in your area']}
-            icon={<img src={donateIcon} alt="mySvgImage" />}
+            icon={<img src={donateIcon} alt="Donate" />}
             size="small"
           />
         </div>
         <div className={styles.imageContainer}>
-          <img src={kidsRunning} alt="myPngImage" />
+          <img src={kidsRunning} alt="Kids running image" />
         </div>
       </Card>
     </div>
