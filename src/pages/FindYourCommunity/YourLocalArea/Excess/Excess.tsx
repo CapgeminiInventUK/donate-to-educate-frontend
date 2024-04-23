@@ -3,7 +3,7 @@ import styles from './Excess.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { Table } from 'antd';
+import { Table, Popover } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
@@ -19,7 +19,8 @@ import Spinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { Pill } from '@/components/Pill/Pill';
+import minusIcon from '@/assets/icons/minusIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
@@ -132,7 +133,21 @@ const Excess: FC = () => {
       title: 'Status',
       dataIndex: 'registered',
       render: (registered: boolean) => (
-        <Pill text={registered ? 'JOINED' : 'NOT JOINED'} color={registered ? 'blue' : 'grey'} />
+        <div className={styles.statusDiv}>
+          <Popover
+            content={registered ? 'Registered' : 'Not yet registered'}
+            trigger="hover"
+            className={`${styles.status} ${registered ? styles.joined : ''}`}
+          >
+            <span>
+              {registered ? (
+                <img src={tickIcon} alt="Joined" />
+              ) : (
+                <img src={minusIcon} alt="Not joined" />
+              )}
+            </span>
+          </Popover>
+        </div>
       ),
     },
     {
