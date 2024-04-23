@@ -128,7 +128,7 @@ const ManageSchools: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
-      render: (text: string, { urn, name }: School) => (
+      render: (text: string, { urn, name }: School): JSX.Element => (
         <Button
           theme="link-blue"
           text={text}

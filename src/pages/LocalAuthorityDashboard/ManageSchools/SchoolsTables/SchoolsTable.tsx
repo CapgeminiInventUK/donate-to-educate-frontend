@@ -31,7 +31,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
     {
       title: 'Status',
       dataIndex: 'status',
-      render: (text: string) => (
+      render: (text: string): JSX.Element => (
         <Pill text={text} color={text.toLowerCase() === 'pending' ? 'green' : 'blue'} />
       ),
     },

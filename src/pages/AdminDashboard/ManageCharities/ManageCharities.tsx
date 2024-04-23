@@ -128,7 +128,7 @@ const ManageCharities: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
-      render: (text: string, { id, name }: Charity) => (
+      render: (text: string, { id, name }: Charity): JSX.Element => (
         <Button
           theme="link-blue"
           text={text}

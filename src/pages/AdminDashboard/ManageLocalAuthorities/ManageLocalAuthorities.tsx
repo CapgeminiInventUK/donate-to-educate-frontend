@@ -163,14 +163,14 @@ const ManageLocalAuthorities: FC = () => {
       ],
       onFilter: (value: boolean | React.Key, record: LocalAuthority): boolean =>
         record.registered === value,
-      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-      render: (registered: boolean) =>
+      filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
+      render: (registered: boolean): JSX.Element =>
         registered ? <Pill color="blue" text="Joined" /> : <Pill color="red" text="Not Joined" />,
     },
     {
       title: 'Action',
       align: 'center' as const,
-      render: (_: unknown, la: LocalAuthority) =>
+      render: (_: unknown, la: LocalAuthority): JSX.Element | false =>
         !la.registered && (
           <div className={styles.actionsContainer}>
             <Button
