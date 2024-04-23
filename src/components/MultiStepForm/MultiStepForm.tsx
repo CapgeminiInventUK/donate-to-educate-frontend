@@ -14,6 +14,7 @@ import { validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Paths from '@/config/paths';
 import FormErrors from '@/components/FormErrors/FormErrors';
+import Card from '../Card/Card';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -137,7 +138,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
       {isLoading ? (
         <Spinner />
       ) : (
-        <div
+        <Card
           className={`${styles.formContainer} ${
             isLastPage && summaryPageBg === SummaryPageColour.BLUE ? styles.lastPageContainer : ''
           }`}
@@ -234,7 +235,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             </div>
           )}
           {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
-        </div>
+        </Card>
       )}
     </form>
   );

@@ -7,6 +7,8 @@ import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import FormButton from '@/components/FormButton/FormButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import Card from '@/components/Card/Card';
+import { ItemSelectionProps } from '@/types/props';
 
 const getTitleFromType = (type: string): string => {
   switch (type) {
@@ -34,15 +36,6 @@ const getButtonTextFromType = (type: string): string => {
   }
 };
 
-interface ItemSelectionProps {
-  schoolOrCharity: 'school' | 'charity';
-  items: Record<number, string[]>;
-  whatToExpect: string;
-  actionText: string;
-  id: string;
-  name: string;
-}
-
 const ItemSelection: FC<ItemSelectionProps> = ({
   schoolOrCharity,
   items,
@@ -61,7 +54,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
       <div className={`${styles.banner} ${styles[type]}`}>
         <h2>{getTitleFromType(type)}</h2>
       </div>
-      <div className={styles.card}>
+      <Card className={styles.itemsCard}>
         <h2>What to expect</h2>
         <p>{whatToExpect ?? ''}</p>
         <ItemList type={type} items={items} />
@@ -77,7 +70,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
             ariaLabel="contact"
           />
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

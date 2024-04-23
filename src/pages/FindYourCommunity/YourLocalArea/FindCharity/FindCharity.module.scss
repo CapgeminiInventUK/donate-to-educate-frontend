@@ -4,14 +4,18 @@
   @include g.page-container;
   color: g.$primary-dark-blue;
   padding: 48px 120px;
-
-  .subContainer {
-    @include g.card;
-    padding: 40px 80px;
-  }
 }
 
 .nameBtn {
   padding: 0;
   font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 48px 20px;
+  }
+  .subContainer {
+    padding: 48px 20px;
+  }
 }

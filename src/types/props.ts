@@ -24,6 +24,7 @@ import {
   InsertJoinRequestMutationVariables,
   SchoolProfile,
 } from './api';
+import { ItemsIconType } from '@/components/ItemList/getIcons';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -407,4 +408,42 @@ export interface BannerItemProps {
   item: string | undefined;
   itemType: string;
   defaultText: string;
+}
+
+export interface CardProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface ItemSelectionProps {
+  schoolOrCharity: 'school' | 'charity';
+  items: Record<number, string[]>;
+  whatToExpect: string;
+  actionText: string;
+  id: string;
+  name: string;
+}
+
+export interface AdminDashboardCardProps {
+  isLoading: boolean;
+  title: string;
+  body: string;
+  onClick: () => void;
+  stats: JSX.Element;
+  className: string;
+  buttonTheme?: FormButtonThemes;
+}
+
+export interface RequestItemsProps {
+  radioButtonLabels: string[];
+  radioButtonValues: string[];
+  buttonText: string;
+  heading: string;
+  subHeading: string;
+  notesHeading: string;
+  notesSubHeading: string;
+  type: ItemsIconType;
+  organisationType: 'school' | 'charity';
+  id: string;
+  name: string;
 }

@@ -6,6 +6,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import isPostalCode from 'validator/lib/isPostalCode';
 import { FormErrors } from '@/types/data';
 import TextInputSearch from '@/components/TextInputSearch/TextInputSearch';
+import Card from '@/components/Card/Card';
 
 const FindYourCommunity: FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const FindYourCommunity: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card className={styles.subContainer}>
         <h2>Find your community</h2>
 
         <TextInputSearch
@@ -30,7 +31,7 @@ const FindYourCommunity: FC = () => {
               : setError(FormErrors.POSTCODE_ERROR_MESSAGE);
           }}
         />
-      </div>
+      </Card>
     </div>
   );
 };

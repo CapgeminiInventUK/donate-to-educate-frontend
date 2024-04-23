@@ -19,6 +19,7 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Card from '@/components/Card/Card';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -162,14 +163,14 @@ const ManageLocalAuthorities: FC = () => {
       ],
       onFilter: (value: boolean | React.Key, record: LocalAuthority): boolean =>
         record.registered === value,
-      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-      render: (registered: boolean) =>
+      filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
+      render: (registered: boolean): JSX.Element =>
         registered ? <Pill color="blue" text="Joined" /> : <Pill color="red" text="Not Joined" />,
     },
     {
       title: 'Action',
       align: 'center' as const,
-      render: (_: unknown, la: LocalAuthority) =>
+      render: (_: unknown, la: LocalAuthority): JSX.Element | false =>
         !la.registered && (
           <div className={styles.actionsContainer}>
             <Button
@@ -203,7 +204,7 @@ const ManageLocalAuthorities: FC = () => {
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
-              <div className={styles.lasCard}>
+              <Card className={styles.lasCard}>
                 <div className={styles.laBorder}>{registered} joined</div>
                 <div className={styles.laBorder}>{notRegistered} to join</div>
                 <br />
@@ -215,7 +216,7 @@ const ManageLocalAuthorities: FC = () => {
                   scroll={{ x: 'max-content' }}
                   rowKey="code"
                 />
-              </div>
+              </Card>
             </div>
           )}
         </div>

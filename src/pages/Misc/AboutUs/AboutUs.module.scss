@@ -37,10 +37,7 @@
       }
     }
 
-    .card {
-      @include g.card;
-      padding: 60px 82px;
-      margin-top: 40px;
+    .aboutCard {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -113,7 +110,7 @@
     .contentContainer {
       width: 100%;
 
-      .card {
+      .aboutCard {
         margin-top: 20px;
       }
     }
@@ -127,11 +124,7 @@
     }
 
     .contentContainer {
-      .card {
-        padding: 30px 40px;
-      }
-
-      .card,
+      .aboutCard,
       .content {
         flex-direction: column;
 
@@ -152,8 +145,7 @@
       padding-top: 20px;
       margin-bottom: 20px;
 
-      .card {
-        margin: 20px;
+      .aboutCard {
         margin-top: 0;
         gap: 20px;
 

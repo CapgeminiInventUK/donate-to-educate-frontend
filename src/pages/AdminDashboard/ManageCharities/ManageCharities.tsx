@@ -18,6 +18,7 @@ import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
+import Card from '@/components/Card/Card';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -127,7 +128,7 @@ const ManageCharities: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
-      render: (text: string, { id, name }: Charity) => (
+      render: (text: string, { id, name }: Charity): JSX.Element => (
         <Button
           theme="link-blue-bold"
           text={text}
@@ -174,7 +175,7 @@ const ManageCharities: FC = () => {
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
-              <div className={styles.card}>
+              <Card className={styles.manageCard}>
                 <h1>Registered charities and volunteer groups</h1>
                 <div className={styles.border}>{(data?.getCharities ?? []).length} joined</div>
                 <br />
@@ -185,7 +186,7 @@ const ManageCharities: FC = () => {
                   scroll={{ x: 'max-content' }}
                   rowKey="id"
                 />
-              </div>
+              </Card>
             </div>
           )}
         </div>

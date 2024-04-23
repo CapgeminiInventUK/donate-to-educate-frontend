@@ -7,12 +7,13 @@ import EmailSolid from '@/assets/tiles/EmailSolid';
 import AllLocalAuthorityLogos from '@/assets/sign-up/image-all-authority-logo.webp';
 import Image from '@/components/Image/Image';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 
 const LocalAuthorityJoinInfo: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.subContainer}>
+      <Card>
         <h2>How local authorities join Donate to Educate</h2>
         <p>
           If you work for a local authority, you can support us by managing the schools and
@@ -35,7 +36,7 @@ const LocalAuthorityJoinInfo: FC = () => {
             alt="All Local autority logos"
           />
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

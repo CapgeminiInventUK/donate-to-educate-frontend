@@ -18,6 +18,7 @@ import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
+import Card from '@/components/Card/Card';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -184,7 +185,7 @@ const SchoolEdit: FC = () => {
         <h2>{banner}</h2>
       </div>
 
-      <div className={styles.card}>
+      <Card className={styles.editCard}>
         {!preview && (
           <>
             <div className={styles.helpBanner}>
@@ -312,7 +313,7 @@ const SchoolEdit: FC = () => {
             </div>
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 };
