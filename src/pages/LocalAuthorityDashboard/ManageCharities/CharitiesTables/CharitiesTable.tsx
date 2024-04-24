@@ -32,7 +32,7 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
     {
       title: 'Status',
       dataIndex: 'status',
-      render: (text: string) => (
+      render: (text: string): JSX.Element => (
         <div className={styles.statusDiv}>
           <Popover
             content={text.toLowerCase() !== 'pending' ? 'Registered' : 'Pending'}

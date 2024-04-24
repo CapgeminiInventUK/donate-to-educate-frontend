@@ -33,7 +33,7 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       title: 'Status',
       align: 'center' as const,
       dataIndex: 'status',
-      render: (text: string) => (
+      render: (text: string): JSX.Element => (
         <div className={styles.statusDiv}>
           <Popover
             content={text.toLowerCase() !== 'pending' ? 'Registered' : 'Pending'}
