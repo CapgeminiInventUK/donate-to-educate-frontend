@@ -13,6 +13,7 @@ const FormButton: FC<FormButtonProps> = ({
   fullWidth = false,
   className,
   disabled = false,
+  children,
 }) => {
   const getArrowColour = (): string => {
     switch (theme) {
@@ -43,7 +44,10 @@ const FormButton: FC<FormButtonProps> = ({
       }
       className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''} ${className ? className : ''}`}
     >
-      <span className={styles.text}>{text}</span>
+      <span className={styles.text}>
+        {children}
+        {text}
+      </span>
       {useArrow && (
         <div>
           <img src={getArrowColour()} alt="Right arrow" height={'30'} width={'30'} />
