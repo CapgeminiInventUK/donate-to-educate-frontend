@@ -23,7 +23,7 @@ const Footer: FC = () => {
           />
         </div>
         <div className={styles.linksContainer}>
-          <Link to={Paths.ACCESSABILITY_STATEMENT}>Accessibility statement</Link>
+          <Link to={Paths.ACCESSIBILITY_STATEMENT}>Accessibility statement</Link>
           <Link to={Paths.PRIVACY_POLICY}>Privacy policy</Link>
           <Link to={Paths.COOKIE_POLICY}>Cookie Policy</Link>
           <Link to={Paths.TERMS_AND_CONDITIONS}>Terms and conditions</Link>

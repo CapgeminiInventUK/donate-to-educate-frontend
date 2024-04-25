@@ -7,46 +7,46 @@ enum Paths {
   JOIN = '/join',
 
   // Admin Dashboard
-  ADMIN_DASHBOARD = '/admin-dashboard',
-  ADMIN_DASHBOARD_LA_MANAGE = '/admin-dashboard/la-manage',
-  ADMIN_DASHBOARD_LA_VIEW = '/admin-dashboard/la-view',
-  ADMIN_DASHBOARD_REQUESTS = '/admin-dashboard/requests',
-  ADMIN_DASHBOARD_REQUESTS_SCHOOL = '/admin-dashboard/requests-school',
-  ADMIN_DASHBOARD_REQUESTS_CHARITY = '/admin-dashboard/requests-charity',
-  ADMIN_DASHBOARD_MANAGE_SCHOOLS = '/admin-dashboard/manage-schools',
-  ADMIN_DASHBOARD_MANAGE_CHARITIES = '/admin-dashboard/manage-charities',
-  ADMIN_DASHBOARD_SIGN_UP = '/admin-dashboard/la-sign-up',
-  ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION = '/admin-dashboard/la-sign-up-confirmation',
-  DELETE_CONFIRMATION = '/admin-dashboard/requests/delete',
+  ADMIN_DASHBOARD = '/admin',
+  ADMIN_DASHBOARD_LA_MANAGE = '/admin/manage-local-authority',
+  ADMIN_DASHBOARD_LA_VIEW = '/admin/view-local-authority',
+  ADMIN_DASHBOARD_REQUESTS = '/admin/requests',
+  ADMIN_DASHBOARD_REQUESTS_SCHOOL = '/admin/school-requests',
+  ADMIN_DASHBOARD_REQUESTS_CHARITY = '/admin/charity-requests',
+  ADMIN_DASHBOARD_MANAGE_SCHOOLS = '/admin/manage-schools',
+  ADMIN_DASHBOARD_MANAGE_CHARITIES = '/admin/manage-charities',
+  ADMIN_DASHBOARD_SIGN_UP = '/admin/local-authority-sign-up',
+  ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION = '/admin/local-authority-confirmation',
+  DELETE_CONFIRMATION = '/admin/requests/deleted',
 
   // Local Authority Dashboard
-  LOCAL_AUTHORITY_DASHBOARD = '/local-authority-dashboard',
-  LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority-dashboard/schools',
-  LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority-dashboard/charities',
+  LOCAL_AUTHORITY_DASHBOARD = '/local-authority',
+  LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority/schools',
+  LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority/charities',
 
   // Admin School
-  SCHOOLS_CREATE_EDIT_PROFILE = '/schools-create-edit-profile',
-  SCHOOL_EDIT = '/school-edit',
-  SCHOOL_VIEW = '/school-view',
+  SCHOOLS_CREATE_EDIT_PROFILE = '/school-admin-create-profile',
+  SCHOOL_EDIT = '/school-admin-edit',
+  SCHOOL_VIEW = '/school-admin-view',
 
   // Admin Charity
-  CHARITIES_CREATE_EDIT_PROFILE = '/charities-create-edit-profile',
-  CHARITIES_EDIT = '/charities-edit',
-  CHARITIES_VIEW = '/charities-view',
+  CHARITIES_CREATE_EDIT_PROFILE = '/charity-admin-create-profile',
+  CHARITIES_EDIT = '/charities-admin-edit',
+  CHARITIES_VIEW = '/charities-admin-view',
 
   // Public School
-  SCHOOLS_DASHBOARD = '/school/dashboard',
-  SCHOOLS_DASHBOARD_ITEMS = '/school/dashboard/items',
-  SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION = '/school/dashboard/items/confirmation',
+  SCHOOLS_DASHBOARD = '/school',
+  SCHOOLS_DASHBOARD_ITEMS = '/school/items',
+  SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION = '/school/items/confirmation',
   REQUEST_SCHOOL_PRODUCTS = '/request-school-products',
-  SIGN_UP_SCHOOL = '/sign-up-school',
+  SIGN_UP_SCHOOL = '/school-sign-up',
 
   // Public Charity
-  CHARITY_DASHBOARD = '/charity/dashboard',
-  CHARITY_DASHBOARD_ITEMS = '/charity/dashboard/items',
-  CHARITY_DASHBOARD_ITEMS_CONFIRMATION = '/charity/dashboard/items/confirmation',
+  CHARITY_DASHBOARD = '/charity',
+  CHARITY_DASHBOARD_ITEMS = '/charity/items',
+  CHARITY_DASHBOARD_ITEMS_CONFIRMATION = '/charity/items/confirmation',
   REQUEST_CHARITY_PRODUCTS = '/request-charity-products',
-  SIGN_UP_CHARITY = '/sign-up-charity',
+  SIGN_UP_CHARITY = '/charity-sign-up',
 
   // Local Area
   FIND_YOUR_COMMUNITY = '/find-your-community',
@@ -54,18 +54,18 @@ enum Paths {
   LOCAL_SCHOOLS = '/your-local-area/schools',
   LOCAL_CHARITIES = '/your-local-area/charities',
   LOCAL_DONATE = '/your-local-area/donate',
-  LOCAL_EXCESS = '/your-local-area/excess',
+  LOCAL_EXCESS = '/your-local-area/excess-stock',
 
   // Misc
   ALL = '*',
   PRIVACY_POLICY = '/privacy-policy',
-  TERMS_AND_CONDITIONS = '/terms-and-conditions',
-  ACCESSABILITY_STATEMENT = '/accessibility-statement',
-  ABOUT = '/about-us',
+  TERMS_AND_CONDITIONS = '/terms-conditions',
+  ACCESSIBILITY_STATEMENT = '/accessibility',
+  ABOUT = '/about',
   HOW_IT_WORKS = '/how-it-works',
   CONTACT = '/contact',
   HOME = '/',
-  LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-join-info',
+  LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-joining-information',
   COOKIE_POLICY = '/cookie-policy',
 
   // Links, telephone numbers and email addresses
