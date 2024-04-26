@@ -47,6 +47,7 @@ export interface FormTemplate {
   formComponents: FormComponent[];
   header?: ReactNode;
   subHeader?: ReactNode;
+  secondaryHeader?: ReactNode;
   infoText?: string;
   infoTextTwo?: string;
   logo?: JSX.Element;

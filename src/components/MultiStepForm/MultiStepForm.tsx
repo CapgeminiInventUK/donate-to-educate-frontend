@@ -39,6 +39,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     infoText = undefined,
     infoTextTwo = undefined,
     subHeader = undefined,
+    secondaryHeader = undefined,
     formComponents = [],
     logo = undefined,
     footerLogo = undefined,
@@ -154,6 +155,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             {header && <h2 className={styles.header}>{header}</h2>}
             {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
             {infoText && <p className={styles.infoText}>{infoText}</p>}
+            {secondaryHeader && <h4 className={styles.secondaryHeader}>{secondaryHeader}</h4>}
             {infoTextTwo && <p className={styles.infoText}>{infoTextTwo}</p>}
           </div>
           {formComponents.map(

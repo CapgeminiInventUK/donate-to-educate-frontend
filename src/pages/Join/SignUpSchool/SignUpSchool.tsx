@@ -150,6 +150,7 @@ const SignUpSchool: FC = () => {
     };
     setFormTemplate(
       getAuthorityNotRegisteredPath(
+        true,
         schoolOptions,
         onLocalAuthorityRegisterRequest,
         cannotFindSchool

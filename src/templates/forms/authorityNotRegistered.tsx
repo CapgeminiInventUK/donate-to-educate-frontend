@@ -5,6 +5,7 @@ import LogoWhite from '@/assets/logo/LogoWhite';
 import signUpCharityHappyPath from './signUpCharityHappyPath';
 
 const getAuthorityNotRegisteredPath = (
+  isSchool: boolean,
   options: DropdownOption[],
   onLocalAuthorityRegisterRequest: () => Promise<void>,
   cannotFindSchool?: () => void
@@ -13,12 +14,14 @@ const getAuthorityNotRegisteredPath = (
     ? signUpSchoolHappyPath(options, cannotFindSchool)
     : signUpCharityHappyPath(options);
 
+  const organisationText = isSchool ? 'school' : 'charity or volunteer group';
+
   const authorityNotRegisteredPath = [
     {
       header: 'Sorry, you cannot join Donate to Educate just yet',
+      secondaryHeader: 'Complete our contact form',
       infoText: 'You will be able to join when your local authority joins Donate to Educate.',
-      infoTextTwo:
-        'Complete our contact form with your details, and we will encourage your local authority to join.',
+      infoTextTwo: `Contact us with details about your ${organisationText}, and we will encourage your local authority to join.`,
       formComponents: [
         {
           componentType: ComponentType.TEXT,
