@@ -36,7 +36,7 @@ const YourLocalArea: FC = () => {
           />
           <Tile
             title="Donate products"
-            onClick={() => navigate(Paths.LOCAL_EXCESS, { state: { postcode: state.postcode } })}
+            onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode: state.postcode } })}
             body={['Support schools and charities in your area']}
             icon={<img src={donateIcon} alt="Donate" />}
             size="small"
