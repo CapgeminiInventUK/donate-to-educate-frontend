@@ -55,15 +55,17 @@ const ItemSelection: FC<ItemSelectionProps> = ({
         <h2>{getTitleFromType(type)}</h2>
       </div>
       <Card className={styles.itemsCard}>
-        <h2>What to expect</h2>
-        <p>{whatToExpect ?? ''}</p>
+        <div className={styles.helpBanner}>
+          <h2>What to expect</h2>
+          <p>{whatToExpect ?? ''}</p>
+        </div>
         <ItemList type={type} items={items} />
         <div className={styles.actionButtons}>
+          <h2>Next steps</h2>
           <p>{actionText ?? ''}</p>
           <FormButton
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}
-            fullWidth
             onClick={() =>
               navigate(getPathFromType(schoolOrCharity), { state: { type, id, name } })
             }

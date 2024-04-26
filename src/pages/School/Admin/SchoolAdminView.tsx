@@ -6,10 +6,6 @@ import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
-import donate from '@/templates/tiles/donate';
-import takeExtraStock from '@/templates/tiles/takeExtraStock';
-import findSchool from '@/templates/tiles/findSchool';
 import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
@@ -19,6 +15,11 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
+import Tile from '../../../components/Tile/Tile';
+import schoolIcon from '@/assets/icons/schoolIcon.svg';
+import heartIcon from '@/assets/icons/heartIcon.svg';
+import donateIcon from '@/assets/icons/donateIcon.svg';
+import stockIcon from '@/assets/icons/stockIcon.svg';
 import Card from '@/components/Card/Card';
 
 const School: FC = () => {
@@ -26,7 +27,7 @@ const School: FC = () => {
   const { name, id } = user ?? {};
   const navigate = useNavigate();
 
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading, isError } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: user !== undefined,
     queryFn: async () => {
@@ -71,30 +72,44 @@ const School: FC = () => {
         </div>
         <div className={styles.localAreaContainer}>
           <h2>Your local area</h2>
-          {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
-            return (
-              <div
-                key={title}
-                className={`${styles.tile} ${styles[colour]}`}
-                onClick={() =>
-                  navigate(onClickLink, { state: { postcode: data?.getSchoolProfile?.postcode } })
-                }
-              >
-                {icon}
-                <div className={styles.content}>
-                  <h2 className={styles.header}>{title}</h2>
-                  <div>{body}</div>
-                </div>
-                {image}
-              </div>
-            );
-          })}
+          <div className={styles.tileRow}>
+            <Tile
+              title="Find a nearby school"
+              onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+              body={['Request or donate products']}
+              icon={<img src={schoolIcon} alt="School" />}
+              size="medium"
+            />
+            <Tile
+              title="Find nearby charities"
+              onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+              body={['Find out what they stock, or donate products']}
+              icon={<img src={heartIcon} alt="Charity" />}
+              size="medium"
+            />
+          </div>
+          <div className={styles.tileRow}>
+            <Tile
+              title="Donate products"
+              onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+              body={['Support schools and charities in your area']}
+              icon={<img src={donateIcon} alt="Donate" />}
+              size="medium"
+            />
+            <Tile
+              title="Help take extra stock"
+              onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+              body={[
+                'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
+              ]}
+              icon={<img src={stockIcon} alt="Stock" />}
+              size="medium"
+            />
+          </div>
         </div>
       </Card>
     </div>
   );
 };
-
-const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
 
 export default School;

@@ -67,14 +67,26 @@
 
     .helpContact {
       margin: 40px 0;
-      padding: 20px 40px;
+      padding: 10px 40px 50px 40px;
       border: solid 2px g.$greyscale-disabled;
       border-radius: 10px;
       color: g.$primary-dark-blue;
       white-space: pre-wrap;
 
       p {
-        margin: 10px 0 25px 0;
+        margin-bottom: 30px;
+      }
+
+      span {
+        margin-bottom: 6px;
+        padding: 0;
+      }
+
+      img {
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
+        transform: translateY(2px);
       }
     }
 
