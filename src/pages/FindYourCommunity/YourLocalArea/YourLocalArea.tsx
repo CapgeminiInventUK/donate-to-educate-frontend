@@ -14,7 +14,6 @@ import Card from '@/components/Card/Card';
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ postcode: string }>(Paths.FIND_YOUR_COMMUNITY);
-
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
@@ -23,21 +22,21 @@ const YourLocalArea: FC = () => {
         <div className={styles.tileRow}>
           <Tile
             title="Find a nearby school"
-            onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+            onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode: state.postcode } })}
             body={['Request or donate products']}
             icon={<img src={schoolIcon} alt="School" />}
             size="small"
           />
           <Tile
             title="Find nearby charities"
-            onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+            onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode: state.postcode } })}
             body={['Find out what they stock, or donate products']}
             icon={<img src={heartIcon} alt="Charity" />}
             size="small"
           />
           <Tile
             title="Donate products"
-            onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+            onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode: state.postcode } })}
             body={['Support schools and charities in your area']}
             icon={<img src={donateIcon} alt="Donate" />}
             size="small"
