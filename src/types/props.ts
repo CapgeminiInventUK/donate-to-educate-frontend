@@ -68,6 +68,7 @@ export interface FormButtonProps {
   className?: string;
   disabled?: boolean;
   ariaLabel: string;
+  children?: ReactNode;
 }
 
 export interface ImageProps {
