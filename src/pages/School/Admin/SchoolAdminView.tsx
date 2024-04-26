@@ -6,7 +6,6 @@ import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
@@ -55,7 +54,6 @@ const School: FC = () => {
     <div className={styles.container}>
       <div className={styles.actionButtons}>
         <BackButton theme="blue" />
-        <LogoutButton />
       </div>
       <InstitutionBanner type={'school'} name={name} banner={{}} />
       <Card className={styles.subContainer}>

@@ -17,7 +17,6 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const ManageCharities: FC = () => {
@@ -169,7 +168,6 @@ const ManageCharities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage Charities</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}

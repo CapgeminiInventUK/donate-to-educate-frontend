@@ -13,7 +13,6 @@ import { GetCharityProfileQuery, UpdateCharityProfileMutation } from '@/types/ap
 import { GraphQLQuery } from 'aws-amplify/api';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { getCharityProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { isPostalCode } from 'validator';
@@ -99,7 +98,6 @@ const CharityView: FC = () => {
     <div className={styles.container}>
       <div className={styles.actionButtons}>
         <BackButton theme="blue" />
-        <LogoutButton />
       </div>
       <InstitutionBanner type={'charity'} name={name} banner={{}} />
       <Card className={styles.subContainer}>

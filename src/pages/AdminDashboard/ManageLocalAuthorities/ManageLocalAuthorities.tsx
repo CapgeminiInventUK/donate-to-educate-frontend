@@ -18,7 +18,6 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const ManageLocalAuthorities: FC = () => {
@@ -197,7 +196,6 @@ const ManageLocalAuthorities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage local authorities</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />

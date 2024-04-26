@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ManageSchools.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 import PendingSchools from './SchoolsTables/PendingSchools';
@@ -63,7 +62,6 @@ const ManageSchools: FC = () => {
         <>
           <div className={styles.actionButtons}>
             <BackButton theme="blue" />
-            <LogoutButton />
           </div>
           <div className={styles.adminCard}>
             <h1>{localAuthority}</h1>
