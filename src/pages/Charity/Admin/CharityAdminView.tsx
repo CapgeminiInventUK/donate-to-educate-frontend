@@ -187,14 +187,14 @@ const CharityView: FC = () => {
             <div className={styles.tileRow}>
               <Tile
                 title="Find a nearby school"
-                onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+                onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode } })}
                 body={['Request or donate products']}
                 icon={<img src={schoolIcon} alt="School" />}
                 size="medium"
               />
               <Tile
                 title="Find nearby charities"
-                onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+                onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode } })}
                 body={['Find out what they stock, or donate products']}
                 icon={<img src={heartIcon} alt="Charity" />}
                 size="medium"
@@ -203,14 +203,14 @@ const CharityView: FC = () => {
             <div className={styles.tileRow}>
               <Tile
                 title="Donate products"
-                onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+                onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode } })}
                 body={['Support schools and charities in your area']}
                 icon={<img src={donateIcon} alt="Donate" />}
                 size="medium"
               />
               <Tile
                 title="Help take extra stock"
-                onClick={() => navigate(Paths.SIGN_UP_CHARITY)}
+                onClick={() => navigate(Paths.LOCAL_EXCESS, { state: { postcode } })}
                 body={[
                   'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
                 ]}
