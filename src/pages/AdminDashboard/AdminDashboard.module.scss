@@ -2,15 +2,22 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 50px;
+  padding: 20px 100px;
 
   .adminCard {
     @include g.admin-card;
+    border: none;
 
     .header {
       display: flex;
-      justify-content: space-around;
       align-items: center;
+      background: g.$dark-blue;
+      border-radius: 10px 10px 0 0;
+
+      h1 {
+        color: white;
+        margin-left: 11.9%;
+      }
 
       .actionButtons {
         color: black;
@@ -21,7 +28,7 @@
     .body {
       background: g.$primary-dark-blue;
       color: g.$primary-white;
-      padding: 50px 60px;
+      padding: 0 60px 20px;
       border-radius: 0 0 10px 10px;
 
       .cardContainer {
