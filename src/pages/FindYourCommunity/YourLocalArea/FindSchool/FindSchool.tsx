@@ -78,6 +78,16 @@ const FindSchool: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
       render: (registered: boolean, { id }) => (
         <div key={id} className={styles.statusDiv}>
           <Popover
