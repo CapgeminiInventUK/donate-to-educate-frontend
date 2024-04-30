@@ -4,6 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { Table, Popover } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles, convertMilesToMeters } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
@@ -133,6 +134,19 @@ const Excess: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
+      onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
+        record.registered === value,
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean) => (
         <div className={styles.statusDiv}>
           <Popover
@@ -150,6 +164,7 @@ const Excess: FC = () => {
           </Popover>
         </div>
       ),
+      defaultFilteredValue: ['true'],
     },
     {
       title: 'Distance',

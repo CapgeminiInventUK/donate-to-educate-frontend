@@ -4,6 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { Table, Popover } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import Spinner from '@/components/Spinner/Spinner';
 import { client } from '@/graphqlClient';
@@ -77,6 +78,16 @@ const FindSchool: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
+      filters: [
+        {
+          text: 'Joined',
+          value: true,
+        },
+        {
+          text: 'Not Joined',
+          value: false,
+        },
+      ],
       render: (registered: boolean, { id }) => (
         <div key={id} className={styles.statusDiv}>
           <Popover
@@ -94,6 +105,10 @@ const FindSchool: FC = () => {
           </Popover>
         </div>
       ),
+      onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
+        record.registered === value,
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
+      defaultFilteredValue: ['true'],
     },
     {
       title: 'Distance',
