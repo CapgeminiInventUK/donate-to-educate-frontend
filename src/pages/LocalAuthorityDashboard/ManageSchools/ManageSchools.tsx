@@ -66,7 +66,9 @@ const ManageSchools: FC = () => {
             <LogoutButton />
           </div>
           <div className={styles.adminCard}>
-            <h1>{localAuthority}</h1>
+            <div className={styles.header}>
+              <h1>{localAuthority}</h1>
+            </div>
             <div className={styles.body}>
               <Card className={styles.schoolsCard}>
                 <h2>Schools in your area</h2>

@@ -8,12 +8,14 @@ interface TileProps {
   body: string[];
   icon: JSX.Element;
   size: string;
+  children?: React.ReactNode;
+  noShadow?: boolean;
 }
 
-const Tile: FC<TileProps> = ({ onClick, title, body, icon, size }) => {
+const Tile: FC<TileProps> = ({ onClick, title, body, icon, size, noShadow, children }) => {
   return (
     <motion.div
-      className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium}`}
+      className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium} ${noShadow === true ? styles.noShadow : ''}`}
       whileHover={{ scale: 1.05 }}
       onClick={onClick}
     >
@@ -22,6 +24,7 @@ const Tile: FC<TileProps> = ({ onClick, title, body, icon, size }) => {
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
+      <div className={styles.children}>{children}</div>
     </motion.div>
   );
 };

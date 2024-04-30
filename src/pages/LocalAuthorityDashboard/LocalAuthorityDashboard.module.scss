@@ -2,42 +2,63 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 50px;
+  padding: 48px 100px;
 
-  h1 {
-    color: g.$dark-blue;
-    padding: 20px 60px;
-  }
-}
+  .adminCard {
+    @include g.admin-card;
+    border: none;
 
-.adminCard {
-  @include g.admin-card;
-}
+    .header {
+      display: flex;
+      align-items: center;
+      background: g.$dark-blue;
+      border-radius: 10px 10px 0 0;
 
-.body {
-  background: g.$primary-dark-blue;
-  color: g.$primary-white;
-  padding: 60px 50px;
-  border-radius: 0 0 10px 10px;
+      h1 {
+        color: white;
+        margin-left: 11.9%;
+      }
 
-  @include g.md-breakpoint {
-    padding: 25px;
-  }
-
-  .tile {
-    border-radius: 10px;
-    padding: 40px;
-    margin: 20px 0;
-    cursor: pointer;
+      .actionButtons {
+        color: black;
+        text-decoration: none;
+      }
+    }
   }
 
-  .tileLightBlue {
-    background: g.$primary-light-blue;
-    color: g.$primary-dark-blue;
-  }
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 30px 12% 60px;
+    border-radius: 0 0 10px 10px;
 
-  .tileDarkBlue {
-    background: g.$dark-blue;
+    @include g.md-breakpoint {
+      padding: 25px;
+    }
+
+    .tileRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 23px;
+      gap: 2.5%;
+      color: black;
+    }
+
+    .tile {
+      border-radius: 10px;
+      padding: 40px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .tileLightBlue {
+      background: g.$primary-light-blue;
+      color: g.$primary-dark-blue;
+    }
+
+    .tileDarkBlue {
+      background: g.$dark-blue;
+    }
   }
 }
 

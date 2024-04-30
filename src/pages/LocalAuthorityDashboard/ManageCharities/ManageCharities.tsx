@@ -66,7 +66,9 @@ const ManageCharities: FC = () => {
             <LogoutButton />
           </div>
           <div className={styles.adminCard}>
-            <h1>{localAuthority}</h1>
+            <div className={styles.header}>
+              <h1>{localAuthority}</h1>
+            </div>
             <div className={styles.body}>
               <Card className={styles.charitiesCard}>
                 <h2>Charity and volunteer groups in your area</h2>

@@ -4,14 +4,17 @@
   @include g.page-container;
   padding: 48px 50px;
 
-  h1 {
-    color: g.$dark-blue;
-    padding: 20px 60px;
-  }
-}
+  .header {
+    display: flex;
+    align-items: center;
+    background: g.$dark-blue;
+    border-radius: 10px 10px 0 0;
 
-.adminCard {
-  @include g.admin-card;
+    h1 {
+      color: white;
+      padding: 20px 60px;
+    }
+  }
 }
 
 .body {

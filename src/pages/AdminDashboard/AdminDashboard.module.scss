@@ -2,7 +2,7 @@
 
 .container {
   @include g.page-container;
-  padding: 20px 100px;
+  padding: 48px 50px;
 
   .adminCard {
     @include g.admin-card;
