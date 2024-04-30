@@ -40,7 +40,6 @@ const AdminDashboard: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
-      <LogoutButton />
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>Admin Dashboard</h1>

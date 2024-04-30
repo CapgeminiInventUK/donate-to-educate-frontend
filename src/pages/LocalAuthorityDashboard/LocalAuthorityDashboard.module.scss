@@ -83,3 +83,25 @@
     margin: 40px 15px 40px 0;
   }
 }
+
+@media only screen and (max-width: g.$screen-large) {
+  .container {
+    .body {
+      padding: 30px 100px;
+
+      .tileRow {
+        margin: 10px 0 10px;
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    .body {
+      padding: 10px 50px;
+    }
+  }
+}
