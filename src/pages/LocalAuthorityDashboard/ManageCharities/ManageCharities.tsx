@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ManageCharities.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
@@ -63,7 +62,6 @@ const ManageCharities: FC = () => {
         <>
           <div className={styles.actionButtons}>
             <BackButton theme="blue" />
-            <LogoutButton />
           </div>
           <div className={styles.adminCard}>
             <h1>{localAuthority}</h1>

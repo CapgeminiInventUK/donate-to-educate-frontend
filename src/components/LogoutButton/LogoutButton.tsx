@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './LogoutButton.module.scss';
 import { useStore } from '@/stores/useStore';
+import ExitIcon from '@/assets/icons/exitIcon.svg';
 
 interface LogoutButtonProps {
   className?: string;
@@ -17,7 +18,8 @@ const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
       }}
       type="button"
     >
-      <h4>Log out</h4>
+      <h4>Logout</h4>
+      <img src={ExitIcon} alt="Edit icon" className={styles.editIcon} />
     </button>
   );
 };

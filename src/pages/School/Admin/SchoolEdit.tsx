@@ -14,7 +14,6 @@ import { ContentType } from '@/types/props';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/BackButton/BackButton';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
@@ -180,7 +179,6 @@ const SchoolEdit: FC = () => {
     <div className={styles.container}>
       <div className={styles.actionButtons}>
         <BackButton theme="blue" />
-        <LogoutButton />
       </div>
       <div className={`${styles.banner} ${styles[type]}`}>
         <h2>{banner}</h2>

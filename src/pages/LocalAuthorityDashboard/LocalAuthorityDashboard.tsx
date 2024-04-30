@@ -3,7 +3,6 @@ import styles from './LocalAuthorityDashboard.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Spinner from '@/components/Spinner/Spinner';
 import LogoBlue from '@/assets/logo/LogoBlue';
 import Checkbox from '@/components/Checkbox/Checkbox';
@@ -80,7 +79,6 @@ const LocalAuthorityDashboard: FC = () => {
       <div className={styles.container}>
         <div className={styles.actionButtons}>
           <BackButton theme="blue" />
-          <LogoutButton />
         </div>
         <Card className={styles.laDashboardCard}>
           <LogoBlue className={styles.logo} />
@@ -120,7 +118,6 @@ const LocalAuthorityDashboard: FC = () => {
     <div className={styles.container}>
       <div className={styles.actionButtons}>
         <BackButton theme="blue" />
-        <LogoutButton />
       </div>
       <div className={styles.adminCard}>
         <h1>{name}</h1>

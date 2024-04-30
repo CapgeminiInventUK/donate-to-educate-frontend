@@ -8,7 +8,7 @@ import Tile from '../../../components/Tile/Tile';
 import schoolIcon from '@/assets/icons/schoolIcon.svg';
 import heartIcon from '@/assets/icons/heartIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
-import kidsRunning from '@/assets/icons/kidsRunning.png';
+import kidsRunning from '@/assets/icons/kidsRunning.webp';
 import Card from '@/components/Card/Card';
 
 const YourLocalArea: FC = () => {

@@ -17,7 +17,6 @@ import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const LocalAuthoritySignUp: FC = () => {
@@ -91,7 +90,6 @@ const LocalAuthoritySignUp: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Local Authority Profile</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />

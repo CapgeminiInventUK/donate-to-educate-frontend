@@ -6,8 +6,12 @@ import routes from '@/config/routes';
 import styles from './NavLinks.module.scss';
 import { NavRoute } from '@/types/data';
 import { navRoutes } from '@/config/navRoutes';
+import { useStore } from '@/stores/useStore';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
+  const user = useStore((state) => state.user);
+
   const getRouteFromNavRoute = (navRoute: NavRoute): Route => {
     const selectedRoutes = routes.filter((route) => {
       if (navRoute.path === route.path) {
@@ -45,7 +49,6 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
 
     return [];
   };
-
   return (
     <div className={styles.linksContainer}>
       <div className={`${className} ${styles.links}`}>
@@ -59,6 +62,7 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
             onLinkClicked={onLinkClicked}
           />
         ))}
+        {user !== undefined && <LogoutButton />}
       </div>
     </div>
   );
