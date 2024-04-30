@@ -1,16 +1,29 @@
 @use '@assets/global.scss' as g;
 
 .back {
-  background: none;
+  background: g.$primary-mid-blue;
   outline: none;
-  border: none;
+  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: g.$primary-dark-blue;
+  color: white;
   font-family: 'Poppins', sans-serif;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
+  height: 45px;
+  width: 130px;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;
+    border: 1px solid g.$primary-light-blue;
+  }
+
+  .editIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
   }
 }

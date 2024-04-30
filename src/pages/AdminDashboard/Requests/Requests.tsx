@@ -11,7 +11,6 @@ import ApprovalRequest from '../../../components/ApprovalRequest/ApprovalRequest
 import dashboardStyles from '../AdminDashboard.module.scss';
 import { SchoolOrCharityProperties, StageState } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState<StageState>(StageState.VIEW);
@@ -46,7 +45,6 @@ const Requests: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Requests to join</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}

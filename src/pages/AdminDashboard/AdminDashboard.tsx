@@ -11,7 +11,6 @@ import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();

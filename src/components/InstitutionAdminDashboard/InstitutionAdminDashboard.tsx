@@ -12,7 +12,6 @@ import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
-import LogoutButton from '../LogoutButton/LogoutButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -94,7 +93,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
       <div className={styles.contentContainer}>
         <div className={styles.actionButtons}>
           <BackButton onClick={onBackButtonClick} theme="blue" />
-          <LogoutButton />
         </div>
         {!preview && (
           <>
