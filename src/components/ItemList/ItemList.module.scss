@@ -32,6 +32,25 @@
     flex-wrap: wrap;
     list-style: none;
 
+    margin-bottom: 50px;
+
+    .selectAll {
+      width: 100%;
+      min-width: 275px;
+      color: g.$primary-dark-blue;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+
+      span {
+        padding-left: 10px;
+        margin-bottom: 2px;
+      }
+      .bold {
+        font-weight: 600;
+      }
+    }
+
     @include g.xs-breakpoint {
       padding-left: 10px;
     }
@@ -43,6 +62,7 @@
       color: g.$primary-dark-blue;
       display: flex;
       align-items: center;
+      margin-bottom: 10px;
 
       span {
         padding-left: 10px;

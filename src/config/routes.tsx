@@ -244,7 +244,7 @@ const routes: Route[] = [
     name: 'Contact',
   },
   {
-    path: Paths.ACCESSABILITY_STATEMENT,
+    path: Paths.ACCESSIBILITY_STATEMENT,
     element: <AccessabilityStatement />,
   },
   {

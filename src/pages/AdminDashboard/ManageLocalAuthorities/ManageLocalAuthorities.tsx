@@ -18,7 +18,6 @@ import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const ManageLocalAuthorities: FC = () => {
@@ -163,14 +162,14 @@ const ManageLocalAuthorities: FC = () => {
       ],
       onFilter: (value: boolean | React.Key, record: LocalAuthority): boolean =>
         record.registered === value,
-      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-      render: (registered: boolean) =>
+      filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
+      render: (registered: boolean): JSX.Element =>
         registered ? <Pill color="blue" text="Joined" /> : <Pill color="red" text="Not Joined" />,
     },
     {
       title: 'Action',
       align: 'center' as const,
-      render: (_: unknown, la: LocalAuthority) =>
+      render: (_: unknown, la: LocalAuthority): JSX.Element | false =>
         !la.registered && (
           <div className={styles.actionsContainer}>
             <Button
@@ -197,7 +196,6 @@ const ManageLocalAuthorities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage local authorities</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           <BackButton theme="white" />

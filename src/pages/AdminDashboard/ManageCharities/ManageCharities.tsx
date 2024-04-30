@@ -17,7 +17,6 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const ManageCharities: FC = () => {
@@ -128,9 +127,9 @@ const ManageCharities: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
-      render: (text: string, { id, name }: Charity) => (
+      render: (text: string, { id, name }: Charity): JSX.Element => (
         <Button
-          theme="link-blue"
+          theme="link-blue-bold"
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() => navigate(Paths.CHARITY_DASHBOARD, { state: { id, name } })}
@@ -169,7 +168,6 @@ const ManageCharities: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage Charities</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}

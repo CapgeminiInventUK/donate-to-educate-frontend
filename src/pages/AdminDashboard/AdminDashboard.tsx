@@ -11,7 +11,6 @@ import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -44,9 +43,6 @@ const AdminDashboard: FC = () => {
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>Admin Dashboard</h1>
-          <div>
-            <LogoutButton />
-          </div>
         </div>
         <div className={styles.body}>
           <h2>Hello, team</h2>

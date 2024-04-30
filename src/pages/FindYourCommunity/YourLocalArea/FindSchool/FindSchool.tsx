@@ -3,7 +3,7 @@ import styles from './FindSchool.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { Table } from 'antd';
+import { Table, Popover } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import Spinner from '@/components/Spinner/Spinner';
@@ -17,9 +17,11 @@ import Button from '@/components/Button/Button';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
-import { Pill } from '@/components/Pill/Pill';
+import minusIcon from '@/assets/icons/minusIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
+import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -76,22 +78,26 @@ const FindSchool: FC = () => {
     {
       title: 'Status',
       dataIndex: 'registered',
-      filters: [
-        {
-          text: 'Joined',
-          value: true,
-        },
-        {
-          text: 'Not Joined',
-          value: false,
-        },
-      ],
+      render: (registered: boolean, { id }) => (
+        <div key={id} className={styles.statusDiv}>
+          <Popover
+            content={registered ? 'Registered' : 'Not yet registered'}
+            trigger="hover"
+            className={`${styles.status} ${registered ? styles.joined : ''}`}
+          >
+            <span>
+              {registered ? (
+                <img src={tickIcon} alt="Joined" />
+              ) : (
+                <img src={minusIcon} alt="Not joined" />
+              )}
+            </span>
+          </Popover>
+        </div>
+      ),
       onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
         record.registered === value,
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-      render: (registered: boolean) => (
-        <Pill text={registered ? 'Joined' : 'Not joined'} color={registered ? 'blue' : 'grey'} />
-      ),
       defaultFilteredValue: ['true'],
     },
     {
@@ -110,6 +116,11 @@ const FindSchool: FC = () => {
           <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
+      filters: Array.from(Array(5)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
     },
   ];
 

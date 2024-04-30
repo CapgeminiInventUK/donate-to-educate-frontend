@@ -18,6 +18,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
+import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -60,7 +61,7 @@ const FindCharity: FC = () => {
         <Button
           key={id}
           className={styles.nameBtn}
-          theme="link-blue"
+          theme="link-blue-bold"
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() => navigate(Paths.CHARITY_DASHBOARD, { state: { id, name } })}
@@ -77,6 +78,11 @@ const FindCharity: FC = () => {
       dataIndex: 'productTypes',
       render: (text: number[]) =>
         text.map((productType) => <ProductTypeIcon key={productType} productType={productType} />),
+      filters: Array.from(Array(5)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
     },
   ];
 

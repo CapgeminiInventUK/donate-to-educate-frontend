@@ -13,17 +13,17 @@ import { GetCharityProfileQuery, UpdateCharityProfileMutation } from '@/types/ap
 import { GraphQLQuery } from 'aws-amplify/api';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
-import findSchool from '@/templates/tiles/findSchool';
-import findNearbyCharities from '@/templates/tiles/findNearbyCharities';
-import donate from '@/templates/tiles/donate';
-import takeExtraStock from '@/templates/tiles/takeExtraStock';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import { getCharityProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { isPostalCode } from 'validator';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import Postcode from '@/assets/icons/Postcode';
 import useAuthToken from '@/hooks/useAuthToken';
+import Tile from '@/components/Tile/Tile';
+import schoolIcon from '@/assets/icons/schoolIcon.svg';
+import heartIcon from '@/assets/icons/heartIcon.svg';
+import donateIcon from '@/assets/icons/donateIcon.svg';
+import stockIcon from '@/assets/icons/stockIcon.svg';
 import Card from '@/components/Card/Card';
 
 const CharityView: FC = () => {
@@ -98,7 +98,6 @@ const CharityView: FC = () => {
     <div className={styles.container}>
       <div className={styles.actionButtons}>
         <BackButton theme="blue" />
-        <LogoutButton />
       </div>
       <InstitutionBanner type={'charity'} name={name} banner={{}} />
       <Card className={styles.subContainer}>
@@ -183,29 +182,45 @@ const CharityView: FC = () => {
         {postcode && !edit && (
           <div className={styles.localAreaContainer}>
             <h2>Your local area</h2>
-            {tiles.map(({ icon, title, body, image, colour, onClickLink }) => {
-              return (
-                <div
-                  key={title}
-                  className={`${styles.tile} ${styles[colour]}`}
-                  onClick={() => navigate(onClickLink, { state: { postcode } })}
-                >
-                  {icon}
-                  <div className={styles.content}>
-                    <h2 className={styles.header}>{title}</h2>
-                    <div>{body}</div>
-                  </div>
-                  {image}
-                </div>
-              );
-            })}
+            <div className={styles.tileRow}>
+              <Tile
+                title="Find a nearby school"
+                onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode } })}
+                body={['Request or donate products']}
+                icon={<img src={schoolIcon} alt="School" />}
+                size="medium"
+              />
+              <Tile
+                title="Find nearby charities"
+                onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode } })}
+                body={['Find out what they stock, or donate products']}
+                icon={<img src={heartIcon} alt="Charity" />}
+                size="medium"
+              />
+            </div>
+            <div className={styles.tileRow}>
+              <Tile
+                title="Donate products"
+                onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode } })}
+                body={['Support schools and charities in your area']}
+                icon={<img src={donateIcon} alt="Donate" />}
+                size="medium"
+              />
+              <Tile
+                title="Help take extra stock"
+                onClick={() => navigate(Paths.LOCAL_EXCESS, { state: { postcode } })}
+                body={[
+                  'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
+                ]}
+                icon={<img src={stockIcon} alt="Stock" />}
+                size="medium"
+              />
+            </div>
           </div>
         )}
       </Card>
     </div>
   );
 };
-
-const tiles = [findSchool, findNearbyCharities, donate, takeExtraStock];
 
 export default CharityView;

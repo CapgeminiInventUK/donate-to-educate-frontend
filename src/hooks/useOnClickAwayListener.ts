@@ -16,7 +16,7 @@ const useOnClickAwayListener = (
       handler(event);
     };
     document.addEventListener('mousedown', listener);
-    return () => {
+    return (): void => {
       document.removeEventListener('mousedown', listener);
     };
   }, [ref, handler]);

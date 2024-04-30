@@ -17,7 +17,6 @@ import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageSchools.module.scss';
 import { getRegisteredSchools } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 import Card from '@/components/Card/Card';
 
 const ManageSchools: FC = () => {
@@ -128,9 +127,9 @@ const ManageSchools: FC = () => {
       dataIndex: 'name',
       key: 'name',
       ...getColumnSearchProps('name'),
-      render: (text: string, { urn, name }: School) => (
+      render: (text: string, { urn, name }: School): JSX.Element => (
         <Button
-          theme="link-blue"
+          theme="link-blue-bold"
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() => navigate(Paths.SCHOOLS_DASHBOARD, { state: { urn, name } })}
@@ -169,7 +168,6 @@ const ManageSchools: FC = () => {
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage Schools</h1>
-          <LogoutButton />
         </div>
         <div className={dashboardStyles.body}>
           {isLoading && <Spinner />}

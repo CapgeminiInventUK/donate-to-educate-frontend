@@ -124,7 +124,7 @@ const SignUpCharity: FC = () => {
       setPageNumber((pageNumber) => pageNumber + 1);
     };
     setFormTemplate(
-      getAuthorityNotRegisteredPath(localAuthorityOptions, onLocalAuthorityRegisterRequest)
+      getAuthorityNotRegisteredPath(false, localAuthorityOptions, onLocalAuthorityRegisterRequest)
     );
     setIsUnhappyPath(true);
   }, [localAuthorityOptions, registerAuthorityRefetch]);
