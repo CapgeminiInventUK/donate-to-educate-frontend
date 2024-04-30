@@ -370,13 +370,13 @@ export interface ApprovalRequestProps {
 }
 
 export interface JoinRequestsProps {
-  setStage: React.Dispatch<React.SetStateAction<StageState>>;
-  setSchoolOrCharityProperties: React.Dispatch<React.SetStateAction<SchoolOrCharityProperties>>;
+  setStage: Dispatch<SetStateAction<StageState>>;
+  setSchoolOrCharityProperties: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
   data?: GetJoinRequestsQuery;
 }
 
 export interface DeclineDeleteModalProps {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   onConfirm: () => void;
   bodyText: string;
@@ -393,7 +393,7 @@ export interface EditModeItemProps {
   icon: JSX.Element;
   itemName: string;
   item: string | undefined;
-  setBanner?: Dispatch<React.SetStateAction<Banner>>;
+  setBanner?: Dispatch<SetStateAction<Banner>>;
   placeholder: string;
 }
 
@@ -401,7 +401,7 @@ export interface AdminViewProps {
   banner: Banner;
   type: string;
   editMode: boolean;
-  setBanner?: React.Dispatch<React.SetStateAction<Banner>>;
+  setBanner?: Dispatch<SetStateAction<Banner>>;
 }
 
 export interface BannerItemProps {
