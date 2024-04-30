@@ -20,6 +20,7 @@ import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
+import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -110,6 +111,11 @@ const FindSchool: FC = () => {
           <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
+      filters: Array.from(Array(5)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
     },
   ];
 

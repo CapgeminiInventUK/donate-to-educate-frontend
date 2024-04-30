@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import styles from './Excess.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +24,7 @@ import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
+import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -158,14 +159,19 @@ const Excess: FC = () => {
     {
       title: 'Excess stock product types',
       dataIndex: 'productTypes',
-      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
+      render: (text: number[], school: InstituteSearchResult, index): JSX.Element[] => {
         if (!school.registered) {
-          return [<>N/A</>];
+          return [<Fragment key={index}>N/A</Fragment>];
         }
         return text.map((productType) => (
           <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
+      filters: Array.from(Array(5)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
     },
   ];
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import styles from './Donate.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +24,7 @@ import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Card from '@/components/Card/Card';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
+import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -158,16 +159,35 @@ const Donate: FC = () => {
     {
       title: 'Product types needed',
       dataIndex: 'productTypes',
-      render: (text: number[], school: InstituteSearchResult): JSX.Element[] => {
+      render: (text: number[], school: InstituteSearchResult, index): JSX.Element[] => {
         if (!school.registered) {
-          return [<>N/A</>];
+          return [<Fragment key={index}>N/A</Fragment>];
         }
-        return text.map((productType) => (
-          <ProductTypeIcon key={productType} productType={productType} />
+        return text.map((productType, index) => (
+          <ProductTypeIcon key={index} productType={productType} />
         ));
       },
+      filters: Array.from(Array(5)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
     },
   ];
+
+  const schoolRows = (schoolData?.getSchoolsNearbyWithProfile ?? []).map((school, key) => {
+    return {
+      ...school,
+      key,
+    };
+  });
+
+  const charityRows = (charityData?.getCharitiesNearbyWithProfile ?? []).map((charity, key) => {
+    return {
+      ...charity,
+      key,
+    };
+  });
 
   return (
     <div className={styles.container}>
@@ -177,7 +197,7 @@ const Donate: FC = () => {
 
         <h3>Schools</h3>
         <Table
-          dataSource={schoolData?.getSchoolsNearbyWithProfile ?? []}
+          dataSource={schoolRows}
           columns={schoolColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
@@ -185,7 +205,7 @@ const Donate: FC = () => {
 
         <h3>Charities</h3>
         <Table
-          dataSource={charityData?.getCharitiesNearbyWithProfile ?? []}
+          dataSource={charityRows}
           columns={charityColumns}
           scroll={{ x: 'max-content' }}
           rowKey="id"
