@@ -18,7 +18,6 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import editIcon from '@/assets/icons/editIcon.svg';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -309,9 +308,7 @@ const SchoolEdit: FC = () => {
                 }}
                 text={'Save'}
                 ariaLabel="save"
-              >
-                <img src={editIcon} alt="Edit icon" />
-              </FormButton>
+              />
             </div>
           </div>
         )}
