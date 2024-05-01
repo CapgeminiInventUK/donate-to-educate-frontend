@@ -144,14 +144,14 @@ const LocalAuthorityDashboard: FC = () => {
               <Pill color="green" text={`${schoolRequests} requests`} />
             </Tile>
             <Tile
-              title="Find a nearby school"
+              title="Manage your charity and volunteer groups"
               onClick={() =>
                 navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
                   state: { localAuthority: name },
                 })
               }
               body={[
-                'View, edit and remove charities and volunteer groups from Donate to Educate in your area.',
+                'View, edit, and remove charities and volunteer groups from Donate to Educate in your area.',
               ]}
               icon={<img src={donateIcon} alt="School" />}
               size="medium"
@@ -159,33 +159,6 @@ const LocalAuthorityDashboard: FC = () => {
             >
               <Pill color="green" text={`${charityRequests} requests`} />
             </Tile>
-            {/* <div
-              className={`${styles.tileDarkBlue} ${styles.tile}`}
-              onClick={() =>
-                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
-                  state: { localAuthority: name },
-                })
-              }
-            >
-              <Pill color="green" text={`${schoolRequests} requests`} />
-              <h2>Manage your schools</h2>
-              <p>View, edit and remove schools from Donate to Educate in your area.</p>
-            </div>
-            <div
-              className={`${styles.tileLightBlue}  ${styles.tile}`}
-              onClick={() =>
-                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
-                  state: { localAuthority: name },
-                })
-              }
-            >
-              <Pill color="green" text={`${charityRequests} requests`} />
-              <h2>Manage your charity and volunteer groups</h2>
-              <p>
-                View, edit and remove charities and volunteer groups from Donate to Educate in your
-                area.
-              </p>
-            </div> */}
           </div>
         </div>
       </div>

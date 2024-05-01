@@ -40,23 +40,20 @@ const Requests: FC = () => {
   }
 
   return (
-    <div className={dashboardStyles.container}>
+    <div className={dashboardStyles.subContainer}>
       <BackButton theme="blue" />
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Requests to join</h1>
         </div>
-        <div className={dashboardStyles.body}>
+        <div className={dashboardStyles.subBody}>
           {isLoading && <Spinner />}
           {!isLoading && stage === StageState.VIEW && (
-            <>
-              <BackButton theme="white" />
-              <JoinRequests
-                setStage={setStage}
-                data={data}
-                setSchoolOrCharityProperties={setSchoolOrCharityProperties}
-              />
-            </>
+            <JoinRequests
+              setStage={setStage}
+              data={data}
+              setSchoolOrCharityProperties={setSchoolOrCharityProperties}
+            />
           )}
           {!isLoading && stage === StageState.APPROVE_SCHOOL && (
             <ApprovalRequest

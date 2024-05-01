@@ -2,52 +2,49 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 100px;
+  padding: 66px 100px;
+}
 
-  .adminCard {
-    @include g.admin-card;
-    border: none;
+.adminCard {
+  @include g.admin-card;
+  border: none;
 
-    .header {
+  .header {
+    @include g.dashboard-header;
+
+    h1 {
+      color: white;
+      margin-left: 11.9%;
+    }
+
+    .actionButtons {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 0 60px 20px;
+    border-radius: 0 0 10px 10px;
+
+    .cardContainer {
       display: flex;
-      align-items: center;
-      background: g.$dark-blue;
-      border-radius: 10px 10px 0 0;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      padding: 35px 0;
 
-      h1 {
-        color: white;
-        margin-left: 11.9%;
-      }
-
-      .actionButtons {
-        color: black;
-        text-decoration: none;
+      &.lasCardContainer {
+        width: 100%;
       }
     }
 
-    .body {
-      background: g.$primary-dark-blue;
-      color: g.$primary-white;
-      padding: 0 60px 20px;
-      border-radius: 0 0 10px 10px;
-
-      .cardContainer {
+    .lasTable {
+      .actionsContainer {
         display: flex;
-        justify-content: center;
-        align-items: stretch;
-        flex-wrap: wrap;
-        padding: 40px 0;
-
-        &.lasCardContainer {
-          width: 100%;
-        }
-      }
-
-      .lasTable {
-        .actionsContainer {
-          display: flex;
-          flex-direction: column;
-        }
+        flex-direction: column;
       }
     }
   }
@@ -74,4 +71,16 @@
       }
     }
   }
+}
+
+.subBody {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: 30px 60px 40px;
+  border-radius: 0 0 10px 10px;
+}
+
+.subContainer {
+  @include g.page-container;
+  padding: 4px 100px 50px;
 }

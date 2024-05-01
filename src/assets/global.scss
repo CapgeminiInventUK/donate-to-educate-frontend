@@ -132,6 +132,13 @@ $modal-backdrop: rgba(17, 53, 111, 0.75);
   }
 }
 
+@mixin dashboard-header {
+  display: flex;
+  align-items: center;
+  background: $dark-blue;
+  border-radius: 10px 10px 0 0;
+}
+
 // Headers
 h1 {
   font-size: 48px;

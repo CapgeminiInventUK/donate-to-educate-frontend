@@ -196,7 +196,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
 
   return (
     <>
-      <p>
+      <p className={styles.info}>
         View who has asked their local authorities to join Donate to Educate. You may give the local
         authority two working days to review a request before you do.
       </p>
@@ -213,7 +213,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
         scroll={{ x: 'max-content' }}
         rowKey="id"
       />
-
+      <br />
       <Table
         title={() => (
           <div className={styles.titleContainer}>

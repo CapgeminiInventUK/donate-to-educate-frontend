@@ -9,10 +9,7 @@
     border: none;
 
     .header {
-      display: flex;
-      align-items: center;
-      background: g.$dark-blue;
-      border-radius: 10px 10px 0 0;
+      @include g.dashboard-header;
 
       h1 {
         color: white;
@@ -24,40 +21,40 @@
         text-decoration: none;
       }
     }
-  }
 
-  .body {
-    background: g.$primary-dark-blue;
-    color: g.$primary-white;
-    padding: 30px 12% 60px;
-    border-radius: 0 0 10px 10px;
+    .body {
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      padding: 30px 12% 60px;
+      border-radius: 0 0 10px 10px;
 
-    @include g.md-breakpoint {
-      padding: 25px;
-    }
+      @include g.md-breakpoint {
+        padding: 25px;
+      }
 
-    .tileRow {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 23px;
-      gap: 2.5%;
-      color: black;
-    }
+      .tileRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 23px;
+        gap: 2.5%;
+        color: black;
+      }
 
-    .tile {
-      border-radius: 10px;
-      padding: 40px;
-      margin: 20px 0;
-      cursor: pointer;
-    }
+      .tile {
+        border-radius: 10px;
+        padding: 40px;
+        margin: 20px 0;
+        cursor: pointer;
+      }
 
-    .tileLightBlue {
-      background: g.$primary-light-blue;
-      color: g.$primary-dark-blue;
-    }
+      .tileLightBlue {
+        background: g.$primary-light-blue;
+        color: g.$primary-dark-blue;
+      }
 
-    .tileDarkBlue {
-      background: g.$dark-blue;
+      .tileDarkBlue {
+        background: g.$dark-blue;
+      }
     }
   }
 }

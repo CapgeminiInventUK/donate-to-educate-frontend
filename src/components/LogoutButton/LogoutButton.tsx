@@ -23,7 +23,7 @@ const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
       type="button"
     >
       <h4>Logout</h4>
-      <img src={ExitIcon} alt="Exit icon" className={styles.editIcon} />
+      <img src={ExitIcon} alt="Exit icon" className={styles.exitIcon} />
     </button>
   );
 };

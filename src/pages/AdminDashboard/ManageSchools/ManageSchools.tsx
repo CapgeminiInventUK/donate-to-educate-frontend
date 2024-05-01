@@ -163,13 +163,13 @@ const ManageSchools: FC = () => {
   }
 
   return (
-    <div className={dashboardStyles.container}>
+    <div className={dashboardStyles.subContainer}>
       <BackButton theme="blue" />
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
           <h1>Manage Schools</h1>
         </div>
-        <div className={dashboardStyles.body}>
+        <div className={dashboardStyles.subBody}>
           {isLoading && <Spinner />}
           {!isLoading && (
             <div className={styles.cardContainer}>
