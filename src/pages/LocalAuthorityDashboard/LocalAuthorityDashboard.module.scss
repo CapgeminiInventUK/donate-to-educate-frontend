@@ -2,59 +2,59 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 100px;
+  padding: 66px 100px;
+}
 
-  .adminCard {
-    @include g.admin-card;
-    border: none;
+.adminCard {
+  @include g.admin-card;
+  border: none;
 
-    .header {
-      @include g.dashboard-header;
+  .header {
+    @include g.dashboard-header;
 
-      h1 {
-        color: white;
-        margin-left: 11.9%;
-      }
-
-      .actionButtons {
-        color: black;
-        text-decoration: none;
-      }
+    h1 {
+      color: white;
+      margin-left: 11.9%;
     }
 
-    .body {
-      background: g.$primary-dark-blue;
-      color: g.$primary-white;
-      padding: 30px 12% 60px;
-      border-radius: 0 0 10px 10px;
+    .actionButtons {
+      color: black;
+      text-decoration: none;
+    }
+  }
 
-      @include g.md-breakpoint {
-        padding: 25px;
-      }
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 20px 12% 60px;
+    border-radius: 0 0 10px 10px;
 
-      .tileRow {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 23px;
-        gap: 2.5%;
-        color: black;
-      }
+    @include g.md-breakpoint {
+      padding: 25px;
+    }
 
-      .tile {
-        border-radius: 10px;
-        padding: 40px;
-        margin: 20px 0;
-        cursor: pointer;
-      }
+    .tileRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 23px;
+      gap: 2.5%;
+      color: black;
+    }
 
-      .tileLightBlue {
-        background: g.$primary-light-blue;
-        color: g.$primary-dark-blue;
-      }
+    .tile {
+      border-radius: 10px;
+      padding: 40px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
 
-      .tileDarkBlue {
-        background: g.$dark-blue;
-      }
+    .tileLightBlue {
+      background: g.$primary-light-blue;
+      color: g.$primary-dark-blue;
+    }
+
+    .tileDarkBlue {
+      background: g.$dark-blue;
     }
   }
 }
@@ -101,4 +101,16 @@
       padding: 10px 50px;
     }
   }
+}
+
+.subBody {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: 30px 60px 40px;
+  border-radius: 0 0 10px 10px;
+}
+
+.subContainer {
+  @include g.page-container;
+  padding: 4px 100px 50px;
 }

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ManageSchools.module.scss';
+import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
@@ -57,17 +58,17 @@ const ManageSchools: FC = () => {
   }, [stage, removeSchool, navigate]);
 
   return (
-    <div className={styles.container}>
+    <div className={dashboardStyles.subContainer}>
       {stage === StageState.VIEW && (
         <>
           <div className={styles.actionButtons}>
             <BackButton theme="blue" />
           </div>
-          <div className={styles.adminCard}>
-            <div className={styles.header}>
+          <div className={dashboardStyles.adminCard}>
+            <div className={dashboardStyles.header}>
               <h1>{localAuthority}</h1>
             </div>
-            <div className={styles.body}>
+            <div className={dashboardStyles.subBody}>
               <Card className={styles.schoolsCard}>
                 <h2>Schools in your area</h2>
                 <div className={styles.borderLeft}>

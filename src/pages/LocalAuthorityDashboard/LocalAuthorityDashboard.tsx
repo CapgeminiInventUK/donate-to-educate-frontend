@@ -119,9 +119,6 @@ const LocalAuthorityDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
-      </div>
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>{name}</h1>
