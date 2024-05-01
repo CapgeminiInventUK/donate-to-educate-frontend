@@ -204,9 +204,7 @@ const SchoolEdit: FC = () => {
                     }}
                     ariaLabel="edit"
                     theme="formButtonGrey"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription
@@ -230,9 +228,9 @@ const SchoolEdit: FC = () => {
             <ItemListEdit setItems={setItems} items={items} />
 
             <div className={styles.helpContact}>
+              <h2>Next steps</h2>
               {!editStateActionText ? (
                 <>
-                  <h2>Next steps</h2>
                   <p>{content.actionText}</p>
                   <FormButton
                     text={'Edit'}
@@ -242,9 +240,7 @@ const SchoolEdit: FC = () => {
                     }}
                     theme="formButtonGrey"
                     ariaLabel="edit"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription

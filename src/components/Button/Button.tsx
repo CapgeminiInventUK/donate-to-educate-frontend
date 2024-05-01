@@ -9,7 +9,7 @@ const Button: FC<ButtonProps> = ({ onClick, text, theme, className, disabled = f
       className={`${styles[theme]} ${className ?? ''} ${disabled ? styles.disabled : ''}`}
       disabled={disabled}
     >
-      {text}
+      <span className={className ?? ''}>{text}</span>
     </button>
   );
 };
