@@ -2,42 +2,60 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 50px;
-
-  h1 {
-    color: g.$dark-blue;
-    padding: 20px 60px;
-  }
+  padding: 66px 100px;
 }
 
 .adminCard {
   @include g.admin-card;
-}
+  border: none;
 
-.body {
-  background: g.$primary-dark-blue;
-  color: g.$primary-white;
-  padding: 60px 50px;
-  border-radius: 0 0 10px 10px;
+  .header {
+    @include g.dashboard-header;
 
-  @include g.md-breakpoint {
-    padding: 25px;
+    h1 {
+      color: white;
+      margin-left: 11.9%;
+    }
+
+    .actionButtons {
+      color: black;
+      text-decoration: none;
+    }
   }
 
-  .tile {
-    border-radius: 10px;
-    padding: 40px;
-    margin: 20px 0;
-    cursor: pointer;
-  }
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 20px 12% 60px;
+    border-radius: 0 0 10px 10px;
 
-  .tileLightBlue {
-    background: g.$primary-light-blue;
-    color: g.$primary-dark-blue;
-  }
+    @include g.md-breakpoint {
+      padding: 25px;
+    }
 
-  .tileDarkBlue {
-    background: g.$dark-blue;
+    .tileRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 23px;
+      gap: 2.5%;
+      color: black;
+    }
+
+    .tile {
+      border-radius: 10px;
+      padding: 40px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .tileLightBlue {
+      background: g.$primary-light-blue;
+      color: g.$primary-dark-blue;
+    }
+
+    .tileDarkBlue {
+      background: g.$dark-blue;
+    }
   }
 }
 
@@ -61,4 +79,38 @@
   .checkbox {
     margin: 40px 15px 40px 0;
   }
+}
+
+@media only screen and (max-width: g.$screen-large) {
+  .container {
+    .body {
+      padding: 30px 100px;
+
+      .tileRow {
+        margin: 10px 0 10px;
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: g.$screen-medium) {
+  .container {
+    .body {
+      padding: 10px 50px;
+    }
+  }
+}
+
+.subBody {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: 30px 60px 40px;
+  border-radius: 0 0 10px 10px;
+}
+
+.subContainer {
+  @include g.page-container;
+  padding: 4px 100px 50px;
 }

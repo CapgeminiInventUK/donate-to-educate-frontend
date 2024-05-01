@@ -4,7 +4,7 @@ import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
 import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Header from '@/components/Header/Header';
-import Tile from './Tile/Tile';
+import Tile from './Tile/HomeTile';
 import People from '@/assets/home/tiles/People';
 import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';

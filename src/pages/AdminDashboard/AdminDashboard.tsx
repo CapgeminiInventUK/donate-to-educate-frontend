@@ -7,7 +7,6 @@ import Paths from '@/config/paths';
 import { GetAdminTileStatsQuery } from '@/types/api';
 import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 import styles from './AdminDashboard.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -39,14 +38,11 @@ const AdminDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>Admin Dashboard</h1>
         </div>
         <div className={styles.body}>
-          <h2>Hello, team</h2>
-          <hr />
           <div className={styles.cardContainer}>
             <AdminDashboardCard
               isLoading={isLoading}

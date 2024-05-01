@@ -13,9 +13,12 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { AcceptPrivacyPolicyMutation, GetLaStatsQuery } from '@/types/api';
 import { acceptPrivacyPolicy } from '@/graphql/mutations';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import schoolIcon from '@/assets/icons/schoolIcon.svg';
+import donateIcon from '@/assets/icons/donateIcon.svg';
 import { getLaStats } from '@/graphql/queries';
 import { Pill } from '@/components/Pill/Pill';
 import { useStore } from '@/stores/useStore';
+import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
 
 const LocalAuthorityDashboard: FC = () => {
@@ -116,40 +119,43 @@ const LocalAuthorityDashboard: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
-      </div>
       <div className={styles.adminCard}>
-        <h1>{name}</h1>
+        <div className={styles.header}>
+          <h1>{name}</h1>
+        </div>
         <div className={styles.body}>
           <h2>Manage your community</h2>
-          <hr />
-          <div
-            className={`${styles.tileDarkBlue} ${styles.tile}`}
-            onClick={() =>
-              navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
-                state: { localAuthority: name },
-              })
-            }
-          >
-            <Pill color="green" text={`${schoolRequests} requests`} />
-            <h2>Manage your schools</h2>
-            <p>View, edit and remove schools from Donate to Educate in your area.</p>
-          </div>
-          <div
-            className={`${styles.tileLightBlue}  ${styles.tile}`}
-            onClick={() =>
-              navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
-                state: { localAuthority: name },
-              })
-            }
-          >
-            <Pill color="green" text={`${charityRequests} requests`} />
-            <h2>Manage your charity and volunteer groups</h2>
-            <p>
-              View, edit and remove charities and volunteer groups from Donate to Educate in your
-              area.
-            </p>
+          <div className={styles.tileRow}>
+            <Tile
+              title="Manage your schools"
+              onClick={() =>
+                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
+                  state: { localAuthority: name },
+                })
+              }
+              body={['View, edit and remove schools from Donate to Educate in your area.']}
+              icon={<img src={schoolIcon} alt="School" />}
+              size="medium"
+              noShadow
+            >
+              <Pill color="green" text={`${schoolRequests} requests`} />
+            </Tile>
+            <Tile
+              title="Manage your charity and volunteer groups"
+              onClick={() =>
+                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
+                  state: { localAuthority: name },
+                })
+              }
+              body={[
+                'View, edit, and remove charities and volunteer groups from Donate to Educate in your area.',
+              ]}
+              icon={<img src={donateIcon} alt="School" />}
+              size="medium"
+              noShadow
+            >
+              <Pill color="green" text={`${charityRequests} requests`} />
+            </Tile>
           </div>
         </div>
       </div>

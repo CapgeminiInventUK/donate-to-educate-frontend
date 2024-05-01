@@ -1,5 +1,10 @@
 @use '@assets/global.scss' as g;
 
+.container {
+  @include g.page-container;
+  padding: 60px 100px;
+}
+
 .lasCard {
   border-top: 18px solid transparent;
   padding: 30px 40px;

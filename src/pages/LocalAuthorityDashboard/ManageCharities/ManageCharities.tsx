@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ManageCharities.module.scss';
+import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
@@ -57,15 +58,17 @@ const ManageCharities: FC = () => {
   }, [stage, removeCharity, navigate, charityProperties]);
 
   return (
-    <div className={styles.container}>
+    <div className={dashboardStyles.subContainer}>
       {stage === StageState.VIEW && (
         <>
           <div className={styles.actionButtons}>
             <BackButton theme="blue" />
           </div>
-          <div className={styles.adminCard}>
-            <h1>{localAuthority}</h1>
-            <div className={styles.body}>
+          <div className={dashboardStyles.adminCard}>
+            <div className={dashboardStyles.header}>
+              <h1>{localAuthority}</h1>
+            </div>
+            <div className={dashboardStyles.subBody}>
               <Card className={styles.charitiesCard}>
                 <h2>Charity and volunteer groups in your area</h2>
                 <div className={styles.borderLeft}>
