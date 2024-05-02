@@ -121,11 +121,11 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+    box-shadow: 2px 2px 0 2px g.$form-button-grey-border;
   }
 
   .editButtonText {
-    margin-left: 0px;
+    margin-left: 0;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
