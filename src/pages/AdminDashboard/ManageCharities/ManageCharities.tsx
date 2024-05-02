@@ -1,10 +1,6 @@
 import { useState, useRef, FC } from 'react';
-import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
-import { Button as SearchButton, Input, InputRef, Space, Table } from 'antd';
-import { FilterConfirmProps } from 'antd/es/table/interface';
-import { ColumnType } from 'antd/es/table';
-import { SearchOutlined } from '@ant-design/icons';
+import { InputRef, Table } from 'antd';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
@@ -18,6 +14,7 @@ import styles from './ManageCharities.module.scss';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
+import getColumnSearch from '@/utils/tableUtils';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -37,96 +34,31 @@ const ManageCharities: FC = () => {
     },
   });
 
-  const handleSearch = (
-    selectedKeys: string[],
-    confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string
-  ): void => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
+  const columnSearchProps = {
+    searchText,
+    setSearchText,
+    searchedColumn,
+    setSearchedColumn,
+    searchInput,
+    filterClassName: styles.filterIcon,
   };
 
-  const handleReset = (clearFilters: () => void): void => {
-    clearFilters();
-    setSearchText('');
+  const charityColumnSearchProps = {
+    dataIndex: 'name' as keyof Charity,
+    ...columnSearchProps,
   };
 
-  const getColumnSearchProps = (dataIndex: keyof Charity): ColumnType<Charity> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
-        <Input
-          ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
-          aria-label="search input"
-        />
-        <Space>
-          <SearchButton
-            type="primary"
-            onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-            aria-label="search"
-          >
-            Search
-          </SearchButton>
-          <SearchButton
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-            aria-label="reset"
-          >
-            Reset
-          </SearchButton>
-          <SearchButton
-            type="link"
-            size="small"
-            onClick={() => {
-              close();
-            }}
-            aria-label="close"
-          >
-            Close
-          </SearchButton>
-        </Space>
-      </div>
-    ),
-    filterIcon: () => <SearchOutlined className={styles.filterIcon} />,
-    onFilter: (value, record): boolean => {
-      return (record[dataIndex] ?? '')
-        .toString()
-        .toLowerCase()
-        .includes((value as string).toLowerCase());
-    },
-    onFilterDropdownOpenChange: (visible): void => {
-      if (visible) {
-        setTimeout(() => searchInput.current?.select(), 100);
-      }
-    },
-    render: (text: string) =>
-      searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ''}
-        />
-      ) : (
-        text
-      ),
-  });
+  const laColumnSearchProps = {
+    dataIndex: 'localAuthority' as keyof Charity,
+    ...columnSearchProps,
+  };
 
   const columns = [
     {
       title: 'Charity',
       dataIndex: 'name',
       key: 'name',
-      ...getColumnSearchProps('name'),
+      ...getColumnSearch<Charity>(charityColumnSearchProps),
       render: (text: string, { id, name }: Charity): JSX.Element => (
         <Button
           theme="link-blue-bold"
@@ -139,7 +71,7 @@ const ManageCharities: FC = () => {
     {
       title: 'Local Authority',
       dataIndex: 'localAuthority',
-      ...getColumnSearchProps('localAuthority'),
+      ...getColumnSearch<Charity>(laColumnSearchProps),
     },
     // {
     //   title: 'Action',
