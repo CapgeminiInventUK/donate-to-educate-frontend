@@ -100,8 +100,12 @@ export const FindYourCommunity = lazy(() => import('@/pages/FindYourCommunity/Fi
 export const YourLocalArea = lazy(
   () => import('@/pages/FindYourCommunity/YourLocalArea/YourLocalArea')
 );
-export const Donate = lazy(() => import('@/pages/FindYourCommunity/YourLocalArea/Donate/Donate'));
-export const Excess = lazy(() => import('@/pages/FindYourCommunity/YourLocalArea/Excess/Excess'));
+export const Donate = lazy(
+  () => import('@/pages/FindYourCommunity/YourLocalArea/DonateAndExcess/Donate/Donate')
+);
+export const Excess = lazy(
+  () => import('@/pages/FindYourCommunity/YourLocalArea/DonateAndExcess/Excess/Excess')
+);
 export const FindSchools = lazy(
   () => import('@/pages/FindYourCommunity/YourLocalArea/FindSchool/FindSchool')
 );
