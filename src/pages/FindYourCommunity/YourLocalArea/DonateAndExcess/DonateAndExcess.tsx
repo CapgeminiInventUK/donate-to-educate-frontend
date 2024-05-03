@@ -11,12 +11,7 @@ import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/gr
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
-
-interface DonateAndExcessProps {
-  type: 'donate' | 'excess';
-  postcode: string;
-  hasState: boolean;
-}
+import { DonateAndExcessProps } from '@/types/props';
 
 const maxDistance = convertMilesToMeters(10);
 

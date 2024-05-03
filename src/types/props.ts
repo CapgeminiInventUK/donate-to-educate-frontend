@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
+import { Dispatch, FormEvent, ReactNode, RefObject, SetStateAction } from 'react';
 import {
   CarouselItem,
   ComponentDataPropsType,
@@ -25,6 +25,8 @@ import {
   SchoolProfile,
 } from './api';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
+import { InputRef } from 'antd';
+import { NavigateFunction } from 'react-router-dom';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -447,4 +449,23 @@ export interface RequestItemsProps {
   organisationType: 'school' | 'charity';
   id: string;
   name: string;
+}
+
+export interface DonateAndExcessProps {
+  type: 'donate' | 'excess';
+  postcode: string;
+  hasState: boolean;
+}
+
+export interface getColumnSearchProps<T> {
+  dataIndex: keyof T;
+  searchText: string;
+  setSearchText: Dispatch<SetStateAction<string>>;
+  searchedColumn: string;
+  setSearchedColumn: Dispatch<SetStateAction<string>>;
+  searchInput: RefObject<InputRef>;
+  filterClassName: string;
+  dashboardLink?: Paths;
+  navigate?: NavigateFunction;
+  buttonClassName?: string;
 }

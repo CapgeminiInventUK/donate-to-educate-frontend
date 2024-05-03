@@ -1,26 +1,12 @@
-import { Button as SearchButton, Input, InputRef, Space } from 'antd';
+import { Button as SearchButton, Input, Space } from 'antd';
 import Button from '@/components/Button/Button';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined } from '@ant-design/icons';
 import { FilterConfirmProps } from 'antd/es/table/interface';
-import { Dispatch, RefObject, SetStateAction } from 'react';
 import Highlighter from 'react-highlight-words';
 import Paths from '@/config/paths';
-import { NavigateFunction } from 'react-router-dom';
 import { InstituteSearchResult } from '@/types/api';
-
-interface getColumnSearchProps<T> {
-  dataIndex: keyof T;
-  searchText: string;
-  setSearchText: Dispatch<SetStateAction<string>>;
-  searchedColumn: string;
-  setSearchedColumn: Dispatch<SetStateAction<string>>;
-  searchInput: RefObject<InputRef>;
-  filterClassName: string;
-  dashboardLink?: Paths;
-  navigate?: NavigateFunction;
-  buttonClassName?: string;
-}
+import { getColumnSearchProps } from '@/types/props';
 
 const getColumnSearch = <T,>({
   dataIndex,
