@@ -50,6 +50,10 @@
       border: 1px solid white;
       border-radius: 5px;
       min-width: 110px;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
     }
   }
 

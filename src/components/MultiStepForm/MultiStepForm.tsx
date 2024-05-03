@@ -63,6 +63,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
       ({ field }) => field === 'I have read the Donate to Educate privacy policy'
     );
     setDeclarationSigned(!!declarationPageData?.value);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [pageNumber, formTemplate, isDeclarationPage, formData]);
 
   useEffect(() => {
@@ -74,6 +78,11 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   const onButtonClick = (event: FormEvent<Element>): void => {
     event.preventDefault();
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
 
     const errors = formComponents.reduce((acc: Record<string, string>, { componentData }) => {
       const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
