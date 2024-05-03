@@ -115,7 +115,7 @@ const Home: FC = () => {
             </motion.div>
           </div>
         </div>
-        <Image alt="Supporters" image={donateToUs} />
+        <Image alt="Supporters" image={donateToUs} className={styles.donateToUs} />
       </div>
     </div>
   );

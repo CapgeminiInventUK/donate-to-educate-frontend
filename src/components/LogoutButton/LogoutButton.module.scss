@@ -16,6 +16,13 @@
   width: 130px;
   border-radius: 5px;
 
+  @include g.sm-breakpoint {
+    margin: 20px 0 0 50px;
+    h4 {
+      font-size: 14px;
+    }
+  }
+
   &:hover {
     cursor: pointer;
     border: 1px solid g.$primary-light-blue;

@@ -7,7 +7,6 @@ import House from '@/assets/school/House';
 import Button from '../Button/Button';
 import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { InstitutionBannerProps } from '@/types/props';
-import EditIcon from '@/assets/school/EditIcon';
 import FormButton from '../FormButton/FormButton';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -67,16 +66,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
       ) && (
         <div className={styles.textContainer}>
           {isAdminView && (
-            <>
+            <div className={styles.editSection}>
               <AdminView banner={banner} type={type} editMode={isEditMode} setBanner={setBanner} />
               {!isEditMode ? (
                 <FormButton
-                  text={
-                    <div className={styles.editDiv}>
-                      <EditIcon />
-                      <span className={styles.editButtonText}>Edit</span>
-                    </div>
-                  }
+                  text={<span className={styles.editButtonText}>Edit</span>}
                   theme="formButtonGrey"
                   onClick={() => toggleEditMode(true)}
                   ariaLabel="edit"
@@ -98,7 +92,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                   </div>
                 </>
               )}
-            </>
+            </div>
           )}
           {!isAdminView && (
             <>

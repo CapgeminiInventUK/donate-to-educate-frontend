@@ -18,7 +18,6 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import editIcon from '@/assets/icons/editIcon.svg';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -204,9 +203,7 @@ const CharityEdit: FC = () => {
                     }}
                     ariaLabel="edit"
                     theme="formButtonGrey"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription
@@ -239,9 +236,7 @@ const CharityEdit: FC = () => {
                     }}
                     theme="formButtonGrey"
                     ariaLabel="edit"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription
@@ -302,9 +297,7 @@ const CharityEdit: FC = () => {
                 onClick={(): void => setPreview(false)}
                 text={'Edit'}
                 ariaLabel="edit"
-              >
-                <img src={editIcon} alt="Edit icon" />
-              </FormButton>
+              />
               <FormButton
                 theme={'formButtonMidBlue'}
                 onClick={(): void => {

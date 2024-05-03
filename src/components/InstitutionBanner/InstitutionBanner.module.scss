@@ -2,12 +2,16 @@
 
 .bannerContainer {
   display: flex;
-  padding: 40px;
+  padding: 40px 80px 30px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
   border-top: g.$secondary-blue 18px solid;
   border-radius: 10px 10px 0 0;
+
+  .editSection {
+    margin-bottom: 25px;
+  }
 
   @include g.md-breakpoint {
     padding: 10px;
@@ -110,22 +114,21 @@
   }
 
   .editButton {
-    margin-top: 40px;
+    margin: 40px;
     display: flex;
     height: 45px;
     padding: 20px;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    box-shadow: 2px 2px 0px 2px g.$form-button-grey-border;
+    box-shadow: 2px 2px 0 2px g.$form-button-grey-border;
   }
 
   .editButtonText {
-    margin-left: 10px;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    line-height: 125%; /* 30px */
+    line-height: 70%;
     letter-spacing: -0.24px;
   }
 

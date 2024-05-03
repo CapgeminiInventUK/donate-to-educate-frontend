@@ -29,6 +29,10 @@
       padding: 0 10px;
     }
 
+    .linkText {
+      margin-top: 4px;
+    }
+
     .chevronContainer {
       display: flex;
       align-items: center;
@@ -50,6 +54,10 @@
       border: 1px solid white;
       border-radius: 5px;
       min-width: 110px;
+
+      @include g.sm-breakpoint {
+        margin: 20px 0 0 50px;
+      }
     }
   }
 
