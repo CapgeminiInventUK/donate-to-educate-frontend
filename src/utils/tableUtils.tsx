@@ -1,9 +1,13 @@
 import { Button as SearchButton, Input, InputRef, Space } from 'antd';
+import Button from '@/components/Button/Button';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined } from '@ant-design/icons';
 import { FilterConfirmProps } from 'antd/es/table/interface';
 import { Dispatch, RefObject, SetStateAction } from 'react';
 import Highlighter from 'react-highlight-words';
+import Paths from '@/config/paths';
+import { NavigateFunction } from 'react-router-dom';
+import { InstituteSearchResult } from '@/types/api';
 
 interface getColumnSearchProps<T> {
   dataIndex: keyof T;
@@ -13,6 +17,9 @@ interface getColumnSearchProps<T> {
   setSearchedColumn: Dispatch<SetStateAction<string>>;
   searchInput: RefObject<InputRef>;
   filterClassName: string;
+  dashboardLink?: Paths;
+  navigate?: NavigateFunction;
+  buttonClassName?: string;
 }
 
 const getColumnSearch = <T,>({
@@ -23,6 +30,9 @@ const getColumnSearch = <T,>({
   setSearchedColumn,
   searchInput,
   filterClassName,
+  dashboardLink,
+  navigate,
+  buttonClassName,
 }: getColumnSearchProps<T>): ColumnType<T> => {
   const handleTableSearch = (
     selectedKeys: string[],
@@ -95,8 +105,49 @@ const getColumnSearch = <T,>({
         setTimeout(() => searchInput.current?.select(), 100);
       }
     },
-    render: (text: string) =>
-      searchedColumn === dataIndex ? (
+    render: (text: string, record: T): React.ReactNode => {
+      if (!dashboardLink) {
+        return searchedColumn === dataIndex ? (
+          <Highlighter
+            highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+            searchWords={[searchText]}
+            autoEscape
+            textToHighlight={text ? text.toString() : ''}
+          />
+        ) : (
+          text
+        );
+      }
+      const { name, id, registered } = record as InstituteSearchResult;
+      if (registered || dashboardLink === Paths.CHARITY_DASHBOARD) {
+        return searchedColumn === dataIndex ? (
+          <Button
+            key={id}
+            className={buttonClassName}
+            theme="link-blue"
+            text={
+              <Highlighter
+                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                searchWords={[searchText]}
+                autoEscape
+                textToHighlight={text ? text.toString() : ''}
+              />
+            }
+            ariaLabel={`name-${text}`}
+            onClick={() => navigate && navigate(dashboardLink, { state: { urn: id, name, id } })}
+          />
+        ) : (
+          <Button
+            key={id}
+            className={buttonClassName}
+            theme="link-blue"
+            text={text}
+            ariaLabel={`name-${text}`}
+            onClick={() => navigate && navigate(dashboardLink, { state: { urn: id, name, id } })}
+          />
+        );
+      }
+      return searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
           searchWords={[searchText]}
@@ -105,7 +156,8 @@ const getColumnSearch = <T,>({
         />
       ) : (
         text
-      ),
+      );
+    },
   };
 };
 

@@ -1,10 +1,9 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useRef, useState } from 'react';
 import { InstituteSearchResult } from '@/types/api';
-import { Table, Popover } from 'antd';
+import { Table, Popover, InputRef } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles } from '@/utils/distance';
-import Button from '@/components/Button/Button';
 import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
@@ -13,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
 import Paths from '@/config/paths';
 import styles from './ProductsTable.module.scss';
+import getColumnSearch from '@/utils/tableUtils';
 
 interface ProductsTableProps {
   tableData: InstituteSearchResult[];
@@ -26,23 +26,28 @@ interface ProductsTableProps {
 const ProductsTable: FC<ProductsTableProps> = ({ tableData, type, productsColumnHeader }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef<InputRef>(null);
+
+  const columnSearchProps = {
+    dataIndex: 'name' as keyof InstituteSearchResult,
+    searchText,
+    setSearchText,
+    searchedColumn,
+    setSearchedColumn,
+    searchInput,
+    filterClassName: styles.filterIcon,
+    dashboardLink,
+    navigate,
+    buttonClassName: styles.nameBtn,
+  };
+
   const columns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text: string, { name, id, registered }: InstituteSearchResult) =>
-        registered || type === 'charity' ? (
-          <Button
-            key={id}
-            className={styles.nameBtn}
-            theme="link-blue"
-            text={text}
-            ariaLabel={`name-${text}`}
-            onClick={() => navigate(dashboardLink, { state: { urn: id, name, id } })}
-          />
-        ) : (
-          text
-        ),
+      ...getColumnSearch<InstituteSearchResult>(columnSearchProps),
     },
     {
       title: 'Distance',
@@ -65,6 +70,7 @@ const ProductsTable: FC<ProductsTableProps> = ({ tableData, type, productsColumn
         value: index,
       })),
       onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
     },
   ];
 
