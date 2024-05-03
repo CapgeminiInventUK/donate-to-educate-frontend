@@ -66,7 +66,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
           <FormButton
             theme="formButtonGreen"
             text={getButtonTextFromType(type)}
-            fullWidth
+            fullWidth={true}
             onClick={() =>
               navigate(getPathFromType(schoolOrCharity), { state: { type, id, name } })
             }
