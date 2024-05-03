@@ -29,6 +29,10 @@
       padding: 0 10px;
     }
 
+    .linkText {
+      margin-top: 4px;
+    }
+
     .chevronContainer {
       display: flex;
       align-items: center;
@@ -53,6 +57,10 @@
 
       &:hover {
         filter: brightness(0.9);
+      }
+
+      @include g.sm-breakpoint {
+        margin: 20px 0 0 50px;
       }
     }
   }

@@ -30,6 +30,17 @@
   padding-left: 80px;
 }
 
+@media only screen and (max-width: 940px) {
+  .container {
+    justify-content: center;
+    padding-left: 4px;
+
+    .logoBlue {
+      display: none;
+    }
+  }
+}
+
 @media only screen and (max-width: g.$screen-medium) {
   .logoBlue {
     padding-left: 10px;

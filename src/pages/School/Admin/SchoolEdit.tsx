@@ -18,7 +18,6 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import editIcon from '@/assets/icons/editIcon.svg';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -204,9 +203,7 @@ const SchoolEdit: FC = () => {
                     }}
                     ariaLabel="edit"
                     theme="formButtonGrey"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription
@@ -230,9 +227,9 @@ const SchoolEdit: FC = () => {
             <ItemListEdit setItems={setItems} items={items} />
 
             <div className={styles.helpContact}>
+              <h2>Next steps</h2>
               {!editStateActionText ? (
                 <>
-                  <h2>Next steps</h2>
                   <p>{content.actionText}</p>
                   <FormButton
                     text={'Edit'}
@@ -242,9 +239,7 @@ const SchoolEdit: FC = () => {
                     }}
                     theme="formButtonGrey"
                     ariaLabel="edit"
-                  >
-                    <img src={editIcon} alt="Edit icon" />
-                  </FormButton>
+                  />
                 </>
               ) : (
                 <EditDescription
@@ -313,9 +308,7 @@ const SchoolEdit: FC = () => {
                 }}
                 text={'Save'}
                 ariaLabel="save"
-              >
-                <img src={editIcon} alt="Edit icon" />
-              </FormButton>
+              />
             </div>
           </div>
         )}
