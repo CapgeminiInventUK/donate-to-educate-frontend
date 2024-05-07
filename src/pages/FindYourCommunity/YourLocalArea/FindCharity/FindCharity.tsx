@@ -12,8 +12,7 @@ const FindCharity: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card>
-        <h2>Find charities near {state.postcode.toUpperCase()}</h2>
-        <FindCharityTable />
+        <FindCharityTable title={`Find charities near ${state.postcode.toUpperCase()}`} />
       </Card>
     </div>
   );

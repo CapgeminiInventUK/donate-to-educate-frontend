@@ -13,7 +13,11 @@ import ProductsTable from '@/components/ProductsTable/ProductsTable';
 
 const maxDistance = convertMilesToMeters(10);
 
-const FindCharityTable: FC = () => {
+interface FindCharityTableProps {
+  title?: string;
+}
+
+const FindCharityTable: FC<FindCharityTableProps> = ({ title }) => {
   const { state, hasState } = useLocationStateOrRedirect<{ postcode: string }>(
     Paths.FIND_YOUR_COMMUNITY
   );
@@ -49,12 +53,15 @@ const FindCharityTable: FC = () => {
   }));
 
   return (
-    <ProductsTable
-      tableData={charitiesRows}
-      type="charity"
-      productsColumnHeader="Product types available"
-      postcode={state.postcode}
-    />
+    <>
+      {title ? <h2>{title}</h2> : <h2>Charities near {state.postcode.toUpperCase()}</h2>}
+      <ProductsTable
+        tableData={charitiesRows}
+        type="charity"
+        productsColumnHeader="Product types available"
+        postcode={state.postcode}
+      />
+    </>
   );
 };
 

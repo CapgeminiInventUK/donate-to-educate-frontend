@@ -54,6 +54,8 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   useEffect(() => {
     scrollToTheTop();
   }, [name]);
+  /* eslint-disable no-console */
+  console.log(postcode);
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
@@ -159,7 +161,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         )}
         <div className={styles.nearbyCharitiesTable}>
           <hr />
-          <h2>Find other nearby charities who can help</h2>
           <FindCharityTable />
         </div>
       </Card>
