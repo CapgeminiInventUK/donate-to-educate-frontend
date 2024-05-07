@@ -1,107 +1,42 @@
 import { FC, useRef, useState } from 'react';
-import Highlighter from 'react-highlight-words';
-import { Input, InputRef, Space, Table, Button as SearchButton } from 'antd';
+import { InputRef, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { ColumnType, FilterConfirmProps } from 'antd/es/table/interface';
-import { SearchOutlined, CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
+import { CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
 import { JoinRequest } from '@/types/api';
 import Button from '@/components/Button/Button';
 import styles from './JoinRequests.module.scss';
 import dayjs from 'dayjs';
 import { StageState } from '@/types/data';
 import { JoinRequestsProps } from '@/types/props';
+import getColumnSearch from '@/utils/tableUtils';
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
 
-  const handleSearch = (
-    selectedKeys: string[],
-    confirm: (param?: FilterConfirmProps) => void,
-    dataIndex: string
-  ): void => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-
-  const handleReset = (clearFilters: () => void): void => {
-    clearFilters();
-    setSearchText('');
-  };
-
   const schools = data?.getJoinRequests.filter(({ type }) => type === 'school');
   const charities = data?.getJoinRequests.filter(({ type }) => type === 'charity');
 
-  const getColumnSearchProps = (dataIndex: keyof JoinRequest): ColumnType<JoinRequest> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
-        <Input
-          ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
-          aria-label="search input"
-        />
-        <Space>
-          <SearchButton
-            type="primary"
-            onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-            aria-label="search"
-          >
-            Search
-          </SearchButton>
-          <SearchButton
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-            aria-label="reset"
-          >
-            Reset
-          </SearchButton>
-          <SearchButton
-            type="link"
-            size="small"
-            onClick={() => {
-              close();
-            }}
-            aria-label="close"
-          >
-            Close
-          </SearchButton>
-        </Space>
-      </div>
-    ),
-    filterIcon: () => <SearchOutlined className={styles.filterIcon} />,
-    onFilter: (value, record): boolean => {
-      return (record[dataIndex] ?? '')
-        .toString()
-        .toLowerCase()
-        .includes((value as string).toLowerCase());
-    },
-    onFilterDropdownOpenChange: (visible): void => {
-      if (visible) {
-        setTimeout(() => searchInput.current?.select(), 100);
-      }
-    },
-    render: (text: string) =>
-      searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ''}
-        />
-      ) : (
-        text
-      ),
-  });
+  const columnSearchProps = {
+    searchText,
+    setSearchText,
+    searchedColumn,
+    setSearchedColumn,
+    searchInput,
+    filterClassName: styles.filterIcon,
+  };
+
+  const schoolColumnSearchProps = {
+    dataIndex: 'school' as keyof JoinRequest,
+    ...columnSearchProps,
+  };
+
+  const charityColumnSearchProps = {
+    dataIndex: 'charityName' as keyof JoinRequest,
+    ...columnSearchProps,
+  };
+
   const baseColumns: ColumnsType<JoinRequest> = [
     {
       title: 'Local authority',
@@ -180,7 +115,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
       title: 'School',
       dataIndex: 'school',
       key: 'school',
-      ...getColumnSearchProps('school'),
+      ...getColumnSearch<JoinRequest>(schoolColumnSearchProps),
     },
     ...baseColumns,
   ];
@@ -189,7 +124,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
       title: 'Charity',
       dataIndex: 'charityName',
       key: 'charityName',
-      ...getColumnSearchProps('charityName'),
+      ...getColumnSearch<JoinRequest>(charityColumnSearchProps),
     },
     ...baseColumns,
   ];

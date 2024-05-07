@@ -1,0 +1,24 @@
+@use '@assets/global.scss' as g;
+
+.nameBtn {
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: g.$link-blue;
+}
+
+.statusDiv {
+  margin-top: 6px;
+
+  .status {
+    margin-left: 10px;
+  }
+
+  .joined {
+    color: green;
+  }
+}
+
+.filterIcon {
+  font-size: 20px;
+}
