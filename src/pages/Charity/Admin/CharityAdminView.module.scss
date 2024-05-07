@@ -129,8 +129,23 @@
     display: flex;
     align-items: center;
 
-    h2 {
-      padding-right: 20px;
+    .delete {
+      font-family: Poppins;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration-line: underline;
+      color: g.$secondary-red;
+      background: none;
+      border: none;
+      margin: 0 0 35px 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .editPadding {
+      margin-left: 10px;
     }
   }
 }
