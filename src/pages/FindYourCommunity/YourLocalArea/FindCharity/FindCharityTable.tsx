@@ -18,9 +18,6 @@ const FindCharityTable: FC = () => {
     Paths.FIND_YOUR_COMMUNITY
   );
 
-  /* eslint-disable no-console */
-  console.log(state.postcode);
-
   const { data, isLoading, isError } = useQuery({
     queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
