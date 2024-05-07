@@ -10,10 +10,44 @@ import heartIcon from '@/assets/icons/heartIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
 import kidsRunning from '@/assets/icons/kidsRunning.webp';
 import Card from '@/components/Card/Card';
+import { GetSchoolsNearbyQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { client } from '@/graphqlClient';
+import { getSchoolsNearby } from '@/graphql/queries';
+import Spinner from '@/components/Spinner/Spinner';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
-  const { state } = useLocationStateOrRedirect<{ postcode: string }>(Paths.FIND_YOUR_COMMUNITY);
+  const { state, hasState } = useLocationStateOrRedirect<{ postcode: string }>(
+    Paths.FIND_YOUR_COMMUNITY
+  );
+
+  const { isLoading, isError, error } = useQuery({
+    queryKey: [`getSchoolsNearby-${state.postcode}-request`],
+    enabled: hasState,
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
+        query: getSchoolsNearby,
+        variables: {
+          postcode: state.postcode,
+          distance: 5000,
+          type: 'request',
+        },
+      });
+
+      return data;
+    },
+  });
+
+  if (isLoading || !hasState) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    navigate(Paths.FIND_YOUR_COMMUNITY, { state: { error } });
+  }
+
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />

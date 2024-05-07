@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './FindYourCommunity.module.scss';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router';
@@ -7,15 +7,27 @@ import isPostalCode from 'validator/lib/isPostalCode';
 import { FormErrors } from '@/types/data';
 import TextInputSearch from '@/components/TextInputSearch/TextInputSearch';
 import Card from '@/components/Card/Card';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 
 const FindYourCommunity: FC = () => {
   const navigate = useNavigate();
   const [postcode, setPostcode] = useState('');
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<FormErrors>();
+  const { state } = useLocationStateOrRedirect<{ error: Error | null }>();
+
+  useEffect(() => {
+    if (state?.error) {
+      setError(FormErrors.POSTCODE_NOT_FOUND);
+      window.history.replaceState({}, '');
+    }
+  }, [state]);
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
+      <BackButton
+        theme="blue"
+        onClick={() => (state?.error ? navigate(Paths.HOME) : navigate(-1))}
+      />
       <Card className={styles.subContainer}>
         <h2>Find your community</h2>
 
@@ -23,7 +35,10 @@ const FindYourCommunity: FC = () => {
           ariaLabel="postcode"
           header="Enter your postcode"
           subHeading="This can be your home, school, or charity postcode in England and Wales"
-          onChange={(value) => setPostcode(value)}
+          onChange={(value) => {
+            setError(undefined);
+            setPostcode(value);
+          }}
           errorMessage={error}
           onClick={() => {
             isPostalCode(postcode, 'GB')
