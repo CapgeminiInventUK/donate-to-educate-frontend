@@ -11,6 +11,7 @@ import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types
 import FormButton from '../FormButton/FormButton';
 import { motion } from 'framer-motion';
 import Card from '@/components/Card/Card';
+import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
 
 interface PublicDashboardProps {
   type: 'school' | 'charity';
@@ -151,6 +152,11 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             />
           </div>
         )}
+        <div className={styles.nearbyCharitiesTable}>
+          <hr />
+          <h2>Find other nearby charities who can help</h2>
+          <FindCharityTable />
+        </div>
       </Card>
     </>
   );

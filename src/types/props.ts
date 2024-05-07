@@ -468,4 +468,5 @@ export interface getColumnSearchProps<T> {
   dashboardLink?: Paths;
   navigate?: NavigateFunction;
   buttonClassName?: string;
+  postcode?: string;
 }
