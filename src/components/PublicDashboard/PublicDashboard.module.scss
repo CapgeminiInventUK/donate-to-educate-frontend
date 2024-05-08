@@ -24,6 +24,20 @@
     }
   }
 
+  .nearbyCharitiesTable {
+    margin-top: 60px;
+
+    h2 {
+      padding-top: 18px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 2.5px solid g.$greyscale-disabled;
+      height: 3px;
+    }
+  }
+
   h2 {
     margin-right: 10px;
   }
