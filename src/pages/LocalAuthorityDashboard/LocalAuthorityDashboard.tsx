@@ -20,6 +20,7 @@ import { Pill } from '@/components/Pill/Pill';
 import { useStore } from '@/stores/useStore';
 import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
+import LogoSelector from './LogoSelector/LogoSelector';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -157,6 +158,9 @@ const LocalAuthorityDashboard: FC = () => {
               <Pill color="green" text={`${charityRequests} requests`} />
             </Tile>
           </div>
+        </div>
+        <div className={styles.logoDiv}>
+          <LogoSelector name={name ?? ''} />
         </div>
       </div>
     </div>
