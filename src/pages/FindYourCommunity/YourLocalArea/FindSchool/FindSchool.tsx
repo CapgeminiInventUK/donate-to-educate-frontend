@@ -24,9 +24,6 @@ const FindSchool: FC = () => {
     Paths.FIND_YOUR_COMMUNITY
   );
 
-  /* eslint-disable no-console */
-  console.log(state.postcode);
-
   const { data, isLoading, isError } = useQuery({
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-request`],
     enabled: hasState,
@@ -67,6 +64,7 @@ const FindSchool: FC = () => {
           type="school"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
+          hideNotJoined={true}
         />
         <span
           className={styles.expander}

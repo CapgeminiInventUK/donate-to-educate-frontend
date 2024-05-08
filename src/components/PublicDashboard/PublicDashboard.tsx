@@ -54,8 +54,6 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   useEffect(() => {
     scrollToTheTop();
   }, [name]);
-  /* eslint-disable no-console */
-  console.log(postcode);
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
