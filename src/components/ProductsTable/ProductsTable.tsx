@@ -52,9 +52,6 @@ const ProductsTable: FC<ProductsTableProps> = ({
     postcode,
   };
 
-  // eslint-disable-next-line no-console
-  console.log(hideNotJoined);
-
   const columns: ColumnsType<InstituteSearchResult> = [
     {
       title: 'Name',
