@@ -22,6 +22,7 @@ interface ProductsTableProps {
     | 'Excess stock product types'
     | 'Product types needed';
   postcode?: string;
+  hideNotJoined?: boolean;
 }
 
 const ProductsTable: FC<ProductsTableProps> = ({
@@ -29,6 +30,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
   type,
   productsColumnHeader,
   postcode,
+  hideNotJoined,
 }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
@@ -49,6 +51,9 @@ const ProductsTable: FC<ProductsTableProps> = ({
     buttonClassName: styles.nameBtn,
     postcode,
   };
+
+  // eslint-disable-next-line no-console
+  console.log(hideNotJoined);
 
   const columns: ColumnsType<InstituteSearchResult> = [
     {
@@ -98,7 +103,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
       render: (registered: boolean, { id }) => (
         <div key={id} className={styles.statusDiv}>
           <Popover
-            content={registered ? 'Registered' : 'Not yet registered'}
+            content={registered ? 'Joined' : 'Not joined'}
             trigger="hover"
             className={`${styles.status} ${registered ? styles.joined : ''}`}
           >
@@ -115,7 +120,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
       onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
         record.registered === value,
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-      defaultFilteredValue: ['true'],
+      defaultFilteredValue: hideNotJoined ? ['true'] : [],
     });
   }
 
