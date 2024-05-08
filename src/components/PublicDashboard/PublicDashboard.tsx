@@ -1,5 +1,5 @@
 import styles from './PublicDashboard.module.scss';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
@@ -11,6 +11,8 @@ import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types
 import FormButton from '../FormButton/FormButton';
 import { motion } from 'framer-motion';
 import Card from '@/components/Card/Card';
+import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
+import { scrollToTheTop } from '@/utils/globals';
 
 interface PublicDashboardProps {
   type: 'school' | 'charity';
@@ -48,6 +50,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
       header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined,
     address: header && 'address' in header ? header?.address ?? undefined : undefined,
   };
+
+  useEffect(() => {
+    scrollToTheTop();
+  }, [name]);
+  /* eslint-disable no-console */
+  console.log(postcode);
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
@@ -151,6 +159,10 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             />
           </div>
         )}
+        <div className={styles.nearbyCharitiesTable}>
+          <hr />
+          <FindCharityTable />
+        </div>
       </Card>
     </>
   );

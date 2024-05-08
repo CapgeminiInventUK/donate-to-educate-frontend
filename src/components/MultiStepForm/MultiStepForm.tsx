@@ -8,7 +8,6 @@ import { SummaryPageColour, FormErrors } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Card from '../Card/Card';
-import { scrollToTop } from '@/utils/scrollToTheTop';
 import { useQueryClient } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -17,6 +16,7 @@ import { getSchoolsNearby } from '@/graphql/queries';
 import FormHeader from './FormHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
+import { scrollToTheTop } from '@/utils/globals';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -67,7 +67,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
       ({ field }) => field === 'I have read the Donate to Educate privacy policy'
     );
     setDeclarationSigned(!!declarationPageData?.value);
-    scrollToTop();
+    scrollToTheTop();
   }, [pageNumber, formTemplate, isDeclarationPage, formData]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   const onButtonClick = async (event: FormEvent<Element>): Promise<void> => {
     event.preventDefault();
 
-    scrollToTop();
+    scrollToTheTop();
 
     const errors = formComponents.reduce((acc: Record<string, string>, { componentData }) => {
       const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;

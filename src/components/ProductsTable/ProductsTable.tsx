@@ -21,9 +21,15 @@ interface ProductsTableProps {
     | 'Product types available'
     | 'Excess stock product types'
     | 'Product types needed';
+  postcode?: string;
 }
 
-const ProductsTable: FC<ProductsTableProps> = ({ tableData, type, productsColumnHeader }) => {
+const ProductsTable: FC<ProductsTableProps> = ({
+  tableData,
+  type,
+  productsColumnHeader,
+  postcode,
+}) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
@@ -41,6 +47,7 @@ const ProductsTable: FC<ProductsTableProps> = ({ tableData, type, productsColumn
     dashboardLink,
     navigate,
     buttonClassName: styles.nameBtn,
+    postcode,
   };
 
   const columns: ColumnsType<InstituteSearchResult> = [

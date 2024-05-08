@@ -19,6 +19,7 @@ const getColumnSearch = <T,>({
   dashboardLink,
   navigate,
   buttonClassName,
+  postcode,
 }: getColumnSearchProps<T>): ColumnType<T> => {
   const handleTableSearch = (
     selectedKeys: string[],
@@ -120,7 +121,9 @@ const getColumnSearch = <T,>({
               />
             }
             ariaLabel={`name-${text}`}
-            onClick={() => navigate && navigate(dashboardLink, { state: { urn: id, name, id } })}
+            onClick={() =>
+              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+            }
           />
         ) : (
           <Button
@@ -129,7 +132,9 @@ const getColumnSearch = <T,>({
             theme="link-blue"
             text={text}
             ariaLabel={`name-${text}`}
-            onClick={() => navigate && navigate(dashboardLink, { state: { urn: id, name, id } })}
+            onClick={() =>
+              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+            }
           />
         );
       }
