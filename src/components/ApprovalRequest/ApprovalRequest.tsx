@@ -250,12 +250,12 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
                 <hr />
                 <div className={styles.informationLine}>
                   <b>Main Address</b>
-                  <span>{charity?.mainAddress}</span>
+                  <span>{charity?.charityAddress}</span>
                 </div>
                 <hr />
                 <div className={styles.informationLine}>
                   <b>About</b>
-                  <span>{charity?.about}</span>
+                  <span>{charity?.aboutCharity}</span>
                 </div>
                 <hr />
                 <div className={styles.actionButtons}>

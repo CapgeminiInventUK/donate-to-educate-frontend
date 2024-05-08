@@ -31,6 +31,7 @@ const ManageCharities: FC = () => {
     name: '',
     la: localAuthority,
     user: { name: '', title: '', email: '', phone: '' },
+    charity: { charityAddress: '', aboutCharity: '' },
   });
   const [showModal, setShowModal] = useState(false);
 
@@ -102,6 +103,7 @@ const ManageCharities: FC = () => {
           name={charityProperties.name}
           la={charityProperties.la}
           user={charityProperties.user}
+          charity={charityProperties.charity}
         />
       )}
       <DeclineDeleteModal

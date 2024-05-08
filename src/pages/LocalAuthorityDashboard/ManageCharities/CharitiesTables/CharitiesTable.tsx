@@ -55,7 +55,17 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
       align: 'center' as const,
       render: (
         _: string,
-        { status, name, id, joinRequestName, phone, email, jobTitle }: SchoolOrCharityTableData
+        {
+          status,
+          name,
+          id,
+          joinRequestName,
+          phone,
+          email,
+          jobTitle,
+          charityAddress,
+          aboutCharity,
+        }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
@@ -75,6 +85,10 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
                       email: email ?? '',
                       phone: phone ?? '',
                     },
+                    charity: {
+                      charityAddress: charityAddress ?? '',
+                      aboutCharity: aboutCharity ?? '',
+                    },
                   }));
                 setStage && setStage(StageState.REMOVE);
               }}
@@ -89,8 +103,8 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
               text="View request"
               onClick={(): void => {
                 setProperties &&
-                  setProperties((schoolProperties) => ({
-                    ...schoolProperties,
+                  setProperties((properties) => ({
+                    ...properties,
                     name,
                     id: String(id),
                     user: {
@@ -98,6 +112,10 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
                       title: jobTitle ?? '',
                       email: email ?? '',
                       phone: phone ?? '',
+                    },
+                    charity: {
+                      charityAddress: charityAddress ?? '',
+                      aboutCharity: aboutCharity ?? '',
                     },
                   }));
                 setStage && setStage(StageState.APPROVE_CHARITY);

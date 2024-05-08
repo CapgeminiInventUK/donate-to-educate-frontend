@@ -40,7 +40,7 @@ const PendingCharities: FC<CharitiesTablesProps> = ({
   setCharitiesNumber(data?.getCharityJoinRequestsByLa?.length ?? 0);
 
   const pendingCharitiesData = data?.getCharityJoinRequestsByLa.map(
-    ({ charityName, email, jobTitle, name, phone, id }) => {
+    ({ charityName, email, jobTitle, name, phone, id, aboutCharity, charityAddress }) => {
       return {
         name: charityName ?? '',
         status: 'Pending',
@@ -50,6 +50,8 @@ const PendingCharities: FC<CharitiesTablesProps> = ({
         email,
         phone,
         id,
+        aboutCharity,
+        charityAddress,
       };
     }
   );

@@ -370,7 +370,7 @@ export interface ApprovalRequestProps {
   la: string;
   urn?: string;
   user: RequestUser;
-  charity?: { mainAddress: string; about: string };
+  charity?: { charityAddress: string; aboutCharity: string };
 }
 
 export interface JoinRequestsProps {
