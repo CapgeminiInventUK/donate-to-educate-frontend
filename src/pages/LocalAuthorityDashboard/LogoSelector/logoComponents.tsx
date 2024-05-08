@@ -216,7 +216,7 @@ import midAndEastAntrim from '@assets/countyLogos/midAndEastAntrim.svg';
 import ulster from '@assets/countyLogos/ulster.svg';
 import newry from '@assets/countyLogos/newry.svg';
 
-const logoComponents: Record<string, React.ReactNode> = {
+const logoComponents: Record<string, string> = {
   'Barking and Dagenham': barking,
   Barnet: barnet,
   Barnsley: barnsley,
