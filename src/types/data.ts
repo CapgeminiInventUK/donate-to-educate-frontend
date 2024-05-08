@@ -170,6 +170,8 @@ export interface SchoolOrCharityTableData {
   jobTitle?: string | null;
   email?: string;
   phone?: string | null;
+  charityAddress?: string | null;
+  aboutCharity?: string | null;
 }
 
 export type myStageType = 'deciding' | 'approved' | 'denied';
@@ -188,7 +190,7 @@ export interface SchoolOrCharityProperties {
   la: string;
   user: RequestUser;
   urn?: string;
-  charity?: { mainAddress: string; about: string };
+  charity?: { charityAddress: string; aboutCharity: string };
 }
 
 export interface RequestUser {
