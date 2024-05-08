@@ -14,6 +14,8 @@ import {
   RequestUser,
   AccountType,
   Banner,
+  FormComponent,
+  SummaryPageColour,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -468,4 +470,42 @@ export interface getColumnSearchProps<T> {
   dashboardLink?: Paths;
   navigate?: NavigateFunction;
   buttonClassName?: string;
+}
+
+export interface FormHeaderProps {
+  formErrors: Record<string, string>;
+  pageNumber: number;
+  isUnhappyPath?: boolean;
+  formTemplate: FormTemplate[];
+  logo?: JSX.Element;
+  header: ReactNode;
+  infoText?: string;
+  infoTextTwo?: string;
+  subHeader?: JSX.Element;
+  secondaryHeader?: string;
+}
+
+export interface FormFieldsProps {
+  formComponents: FormComponent[];
+  formErrors: Record<string, string>;
+  formData: FormDataItem[];
+  setPageNumber: Dispatch<SetStateAction<number>>;
+  onChange: (
+    value: string | boolean,
+    formMeta: FormMeta | undefined,
+    fullValue?: Record<string, string | boolean> | undefined
+  ) => void;
+  isUnhappyPath?: boolean;
+}
+
+export interface FormButtonsProps {
+  isLastPage?: boolean;
+  isUnhappyPath?: boolean;
+  isSchoolRegistered?: boolean;
+  declarationSigned?: boolean;
+  summaryPageBg: SummaryPageColour;
+  pageNumber: number;
+  cyaPageNumber?: number;
+  onLocalAuthorityRegisterRequest?: () => void;
+  formComponentInternalLink?: ButtonProps;
 }

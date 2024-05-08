@@ -1,21 +1,22 @@
 import { CommonInputProps, MultiStepFormProps } from '@/types/props';
 import { FC, FormEvent, useEffect, useState } from 'react';
 import styles from './MultiStepForm.module.scss';
-import ExternalLink from '@/components/ExternalLink/ExternalLink';
-import { createFormComponent } from '@/utils/components';
-import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
-import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '@/components/Spinner/Spinner';
-import AddressInset from '@/components/AddressInset/AddressInset';
-import { SummaryPageColour } from '@/types/data';
+import { SummaryPageColour, FormErrors } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
-import Paths from '@/config/paths';
-import FormErrors from '@/components/FormErrors/FormErrors';
 import Card from '../Card/Card';
 import { scrollToTop } from '@/utils/scrollToTheTop';
+import { useQueryClient } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { GetSchoolsNearbyQuery } from '@/types/api';
+import { getSchoolsNearby } from '@/graphql/queries';
+import FormHeader from './FormHeader';
+import FormFields from './FormFields';
+import FormButtons from './FormButtons';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -29,6 +30,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   refetch,
 }) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [navigationFromCya, setNavigationFromCya] = useState(false);
   const [cyaPageNumber, setCyaPageNumber] = useState<number>();
   const [isLastPage, setIsLastPage] = useState(false);
@@ -52,6 +54,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   } = formTemplate[pageNumber];
 
   useEffect(() => {
+    setFormErrors({});
     if (pageNumber === formTemplate.length - 1) {
       setIsLastPage(true);
     } else {
@@ -74,7 +77,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
   }, [header, pageNumber]);
 
-  const onButtonClick = (event: FormEvent<Element>): void => {
+  const onButtonClick = async (event: FormEvent<Element>): Promise<void> => {
     event.preventDefault();
 
     scrollToTop();
@@ -88,8 +91,32 @@ const FormContainer: FC<MultiStepFormProps> = ({
       return acc;
     }, {});
 
+    const postcode = formData.find(({ field }) => field.toLowerCase() === 'postcode')?.value;
+    if (postcode) {
+      try {
+        await queryClient.fetchQuery({
+          queryKey: [`getSchoolsNearby-${postcode}-request`],
+          queryFn: async () => {
+            const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
+              query: getSchoolsNearby,
+              variables: {
+                postcode,
+                distance: 5000,
+                type: 'request',
+              },
+            });
+
+            return data;
+          },
+        });
+      } catch (error) {
+        if (error) {
+          errors.Postcode = FormErrors.POSTCODE_NOT_FOUND;
+        }
+      }
+    }
     if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
+      setFormErrors({ ...formErrors, ...errors });
       return;
     }
 
@@ -133,12 +160,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
   };
 
-  const returnHome = (): void => {
-    navigate(Paths.HOME);
-  };
-
   return (
-    <form onSubmit={onButtonClick}>
+    <form onSubmit={(e) => void onButtonClick(e)}>
       {!isLastPage && <BackButton onClick={onBackButtonClick} theme="blue" />}
       {isLoading ? (
         <Spinner />
@@ -148,98 +171,38 @@ const FormContainer: FC<MultiStepFormProps> = ({
             isLastPage && summaryPageBg === SummaryPageColour.BLUE ? styles.lastPageContainer : ''
           }`}
         >
-          <FormErrors formErrors={formErrors} />
-          {pageNumber > 0 && !isUnhappyPath && (
-            <div className={styles.pagination}>
-              Step {pageNumber} of {formTemplate.length - 1}
-            </div>
-          )}
-          {logo && <div className={styles.logoContainer}>{logo}</div>}
-          <div className={styles.headerContainer}>
-            {header && <h2 className={styles.header}>{header}</h2>}
-            {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
-            {infoText && <p className={styles.infoText}>{infoText}</p>}
-            {secondaryHeader && <h4 className={styles.secondaryHeader}>{secondaryHeader}</h4>}
-            {infoTextTwo && <p className={styles.infoText}>{infoTextTwo}</p>}
-          </div>
-          {formComponents.map(
-            ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => {
-              const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
-              const errorMessage = field in formErrors ? formErrors[field] : '';
-
-              return (
-                <div
-                  className={`${styles.formComponent} ${
-                    classNameSuffix ? styles[classNameSuffix] : ''
-                  }`}
-                  key={index}
-                >
-                  {createFormComponent(
-                    componentType,
-                    formData,
-                    componentData,
-                    setPageNumber,
-                    onChange,
-                    errorMessage,
-                    isUnhappyPath
-                  )}
-                  {formComponentLink && (
-                    <div className={styles.link}>
-                      <ExternalLink {...formComponentLink} />
-                    </div>
-                  )}
-                  {componentData && (
-                    <AddressInset formData={formData} componentData={componentData} />
-                  )}
-                </div>
-              );
-            }
-          )}
+          <FormHeader
+            formErrors={formErrors}
+            pageNumber={pageNumber}
+            isUnhappyPath={isUnhappyPath}
+            formTemplate={formTemplate}
+            logo={logo}
+            header={header}
+            infoText={infoText}
+            infoTextTwo={infoTextTwo}
+            subHeader={subHeader ? (subHeader as JSX.Element) : undefined}
+            secondaryHeader={secondaryHeader ? String(secondaryHeader) : undefined}
+          />
+          <FormFields
+            formComponents={formComponents}
+            formErrors={formErrors}
+            formData={formData}
+            setPageNumber={setPageNumber}
+            onChange={onChange}
+            isUnhappyPath={isUnhappyPath}
+          />
           {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
-          {isLastPage || isUnhappyPath ? (
-            <div
-              className={`${isUnhappyPath && summaryPageBg !== SummaryPageColour.BLUE ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
-            >
-              <Button
-                theme={'link'}
-                text={'Return to homepage'}
-                onClick={returnHome}
-                ariaLabel="home"
-              />
-            </div>
-          ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber + 1) ? (
-            <FormButton
-              text={pageNumber === 0 ? 'Start' : 'Next'}
-              theme={
-                pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
-              }
-              ariaLabel={pageNumber === 0 ? 'Start' : 'Next'}
-              useArrow={pageNumber === 0}
-              disabled={pageNumber === 1 && isSchoolRegistered}
-            />
-          ) : (
-            <FormButton
-              text={'Send application'}
-              theme={!declarationSigned ? 'formButtonDisabled' : 'formButtonGreen'}
-              ariaLabel="send"
-              disabled={!declarationSigned}
-            />
-          )}
-          {isUnhappyPath && onLocalAuthorityRegisterRequest && (
-            <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} ariaLabel="send" />
-          )}
-          {formComponentInternalLink && (
-            <div className={styles.link}>
-              <Button
-                text={formComponentInternalLink.text}
-                theme={formComponentInternalLink.theme}
-                onClick={() => {
-                  formComponentInternalLink.onClick();
-                }}
-                ariaLabel="internal link"
-              />
-            </div>
-          )}
+          <FormButtons
+            isLastPage={isLastPage}
+            isUnhappyPath={isUnhappyPath}
+            summaryPageBg={summaryPageBg}
+            cyaPageNumber={cyaPageNumber}
+            pageNumber={pageNumber}
+            isSchoolRegistered={isSchoolRegistered}
+            declarationSigned={declarationSigned}
+            onLocalAuthorityRegisterRequest={onLocalAuthorityRegisterRequest}
+            formComponentInternalLink={formComponentInternalLink}
+          />
           {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
         </Card>
       )}
