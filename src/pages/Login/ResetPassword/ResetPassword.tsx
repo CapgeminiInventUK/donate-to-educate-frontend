@@ -26,6 +26,8 @@ const ResetPassword: FC = () => {
   const isNotMobile = useMediaQuery({ query: `(min-width: ${breakpoints.screenMedium})` });
   const isSmallMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
 
+  const isPasswordFieldsFilled = newPassword !== '' && newPasswordRepeat !== '';
+
   function handleResetPassword(username: string): void {
     resetPassword({ username: username })
       .then(() => {
@@ -57,7 +59,7 @@ const ResetPassword: FC = () => {
         <LoginBanner />
         {stepNumber === 0 ? (
           <>
-            <h2>Reset Password</h2>
+            <h2>Reset password</h2>
             <TextInput
               header="Email"
               onChange={(value): void => {
@@ -105,9 +107,9 @@ const ResetPassword: FC = () => {
             />
           </div>
         ) : stepNumber === 2 ? (
-          <>
+          <div className={styles.newPasswordSection}>
             <TextInput
-              header="New Password"
+              header="New password"
               password
               onChange={(value): void => {
                 setNewPassword(value);
@@ -120,7 +122,7 @@ const ResetPassword: FC = () => {
               ariaLabel="new password"
             />
             <TextInput
-              header="Repeat Password"
+              header="Repeat password"
               password
               onChange={(value): void => {
                 setNewPasswordRepeat(value);
@@ -133,10 +135,11 @@ const ResetPassword: FC = () => {
             />
             <p className={styles.errorText}>{secondErrorText}</p>
             <FormButton
-              text={'Change Password'}
-              theme={'formButtonDarkBlue'}
+              text={'Change password'}
+              theme={isPasswordFieldsFilled ? 'formButtonDarkBlue' : 'formButtonDisabled'}
               ariaLabel="change password"
               useArrow={true}
+              disabled={!isPasswordFieldsFilled}
               onClick={(): void => {
                 if (newPassword === '' || newPasswordRepeat === '') {
                   setSecondErrorText('Please do not leave field blank');
@@ -155,14 +158,14 @@ const ResetPassword: FC = () => {
                 });
               }}
             />
-          </>
+          </div>
         ) : (
-          <>
-            <p>Password changed successfully.</p>
+          <div className={styles.passwordChangedSuccessfully}>
+            <h2>You have changed your password</h2>
             <Link className={styles.login} to={Paths.SIGN_IN}>
-              Back to Login
+              Return to sign in
             </Link>
-          </>
+          </div>
         )}
       </div>
     </div>

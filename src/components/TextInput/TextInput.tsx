@@ -27,7 +27,7 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   const handleChangePasswordVisibility = (show: boolean): void => {
-    if (show) {
+    if (!show) {
       setInputType('text');
     } else {
       setInputType('password');
