@@ -7,7 +7,7 @@ import {
   SubmittedFormData,
 } from '@/types/data';
 import { SingleValue } from 'react-select';
-import { isLength } from 'validator';
+import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 
@@ -46,6 +46,11 @@ export const validateFormInputField = (
       case 'email':
         if (!isEmail(value)) {
           return FormErrors.EMAIL_ERROR_MESSAGE;
+        }
+        break;
+      case 'postcode':
+        if (!isPostalCode(value, 'GB')) {
+          return FormErrors.POSTCODE_ERROR_MESSAGE;
         }
         break;
       case 'phone':
