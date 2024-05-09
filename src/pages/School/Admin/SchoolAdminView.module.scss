@@ -7,7 +7,6 @@
 
   .subContainer {
     border-radius: 0 0 10px 10px;
-    min-width: 472px;
 
     .schoolProfileBanner {
       display: flex;
@@ -125,5 +124,9 @@
     justify-content: space-between;
     margin-bottom: 23px;
     gap: 2.5%;
+
+    @include g.sm-breakpoint {
+      flex-direction: column;
+    }
   }
 }

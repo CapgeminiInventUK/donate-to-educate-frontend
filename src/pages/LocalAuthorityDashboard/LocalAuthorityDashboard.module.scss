@@ -3,6 +3,10 @@
 .container {
   @include g.page-container;
   padding: 66px 100px;
+
+  @include g.sm-breakpoint {
+    padding: 25px;
+  }
 }
 
 .adminCard {
@@ -90,21 +94,11 @@
 @media only screen and (max-width: g.$screen-large) {
   .container {
     .body {
-      padding: 30px 100px;
-
       .tileRow {
         margin: 10px 0 10px;
         flex-direction: column;
         gap: 15px;
       }
-    }
-  }
-}
-
-@media only screen and (max-width: g.$screen-medium) {
-  .container {
-    .body {
-      padding: 10px 50px;
     }
   }
 }

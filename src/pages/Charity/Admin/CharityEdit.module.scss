@@ -4,7 +4,7 @@
   @include g.page-container;
   padding: 48px 150px;
 
-  @include g.sm-breakpoint {
+  @include g.md-breakpoint {
     padding: 12px 38px;
   }
 

@@ -171,7 +171,7 @@ const SignUpSchool: FC = () => {
     const {
       fullValue: { isLocalAuthorityRegistered, registered, localAuthority },
     } = formData[0];
-    if (!isLocalAuthorityRegistered) {
+    if (!isLocalAuthorityRegistered && !cannotFindSchoolState) {
       authorityNotRegistered();
     } else if (!cannotFindSchoolState) {
       setHappyPathTemplate();
