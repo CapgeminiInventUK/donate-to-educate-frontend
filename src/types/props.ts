@@ -427,6 +427,7 @@ export interface ItemSelectionProps {
   actionText: string;
   id: string;
   name: string;
+  previewMode?: boolean;
 }
 
 export interface AdminDashboardCardProps {

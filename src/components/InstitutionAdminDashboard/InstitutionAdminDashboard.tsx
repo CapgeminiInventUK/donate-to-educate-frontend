@@ -206,6 +206,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               postcode={postcode}
               organisationId={id}
               organisationName={organisationName}
+              previewMode={preview}
             />
           </>
         )}
