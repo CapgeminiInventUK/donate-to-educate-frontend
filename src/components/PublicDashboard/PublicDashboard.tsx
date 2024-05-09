@@ -157,10 +157,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             />
           </div>
         )}
-        <div className={styles.nearbyCharitiesTable}>
-          <hr />
-          <FindCharityTable />
-        </div>
+        {postcode && (
+          <div className={styles.nearbyCharitiesTable}>
+            <hr />
+            <FindCharityTable postcode={postcode} />
+          </div>
+        )}
       </Card>
     </>
   );

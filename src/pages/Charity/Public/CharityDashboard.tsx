@@ -41,7 +41,7 @@ const CharityDashboard: FC = () => {
     return <ErrorBanner />;
   }
 
-  const { excess, donate, request, about, header } = data?.getCharityProfile ?? {};
+  const { excess, donate, request, about, header, postcode } = data?.getCharityProfile ?? {};
 
   return (
     <div className={styles.container}>
@@ -57,6 +57,7 @@ const CharityDashboard: FC = () => {
           request={request}
           organisationName={state.name}
           organisationId={state.id}
+          postcode={postcode}
         />
       </div>
     </div>
