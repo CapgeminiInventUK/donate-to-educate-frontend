@@ -162,6 +162,7 @@ const SignUpSchool: FC = () => {
   const setHappyPathTemplate = useCallback((): void => {
     setFormTemplate(signUpSchoolHappyPath(schoolOptions, cannotFindSchool));
     setIsUnhappyPath(false);
+    setCannotFindSchoolState(false);
   }, [cannotFindSchool, schoolOptions]);
 
   useEffect(() => {
@@ -239,6 +240,7 @@ const SignUpSchool: FC = () => {
           onChange={onChange}
           isSchoolRegistered={isSchoolRegistered}
           refetch={refetch}
+          setHappyPathTemplate={setHappyPathTemplate}
         />
       )}
     </div>
