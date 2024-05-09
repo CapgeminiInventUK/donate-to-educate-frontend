@@ -52,7 +52,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
     <div className={styles.container}>
       <BackButton theme="blue" />
       <div className={`${styles.banner} ${styles[type]}`}>
-        <h2>{getTitleFromType(type)}</h2>
+        <h1>{getTitleFromType(type)}</h1>
       </div>
       <Card className={styles.itemsCard}>
         <div className={styles.helpBanner}>
