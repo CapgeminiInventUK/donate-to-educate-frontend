@@ -1,12 +1,7 @@
-import { ErrorBoundaryType } from '@/types/props';
 import { useLocation } from 'react-router-dom';
 import { FC } from 'react';
 import ErrorBoundary from './ErrorBoundary';
-
-interface ErrorBoundaryWithLocationProps {
-  name: ErrorBoundaryType;
-  children: JSX.Element;
-}
+import { ErrorBoundaryWithLocationProps } from '@/types/props';
 
 const ErrorBoundaryWithLocation: FC<ErrorBoundaryWithLocationProps> = ({ name, children }) => {
   const location = useLocation();

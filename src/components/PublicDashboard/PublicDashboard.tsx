@@ -7,27 +7,12 @@ import ExtraStock from '@/assets/school/ExtraStock';
 import HorizontalLine from '@/assets/school/HorizontalLine';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { CharityProfileHeader, ProfileItems, SchoolProfileHeader } from '@/types/api';
 import FormButton from '../FormButton/FormButton';
 import { motion } from 'framer-motion';
 import Card from '@/components/Card/Card';
 import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
 import { scrollToTheTop } from '@/utils/globals';
-
-interface PublicDashboardProps {
-  type: 'school' | 'charity';
-  name: string;
-  excess?: ProfileItems | null;
-  donate?: ProfileItems | null;
-  request?: ProfileItems | null;
-  about?: string | null;
-  header?: SchoolProfileHeader | CharityProfileHeader | null;
-  postcode?: string | null;
-  setPreview?: (value: boolean) => void;
-  organisationName: string;
-  organisationId: string;
-  previewMode?: boolean;
-}
+import { PublicDashboardProps } from '@/types/props';
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
   type,

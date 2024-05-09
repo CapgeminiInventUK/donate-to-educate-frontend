@@ -215,3 +215,5 @@ export interface Banner {
   uniformPolicy?: string;
   address?: string;
 }
+
+export type ResultType = 'declined' | 'approved';

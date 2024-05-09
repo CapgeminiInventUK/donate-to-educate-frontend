@@ -13,17 +13,7 @@ import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrgan
 import Paths from '@/config/paths';
 import styles from './ProductsTable.module.scss';
 import getColumnSearch from '@/utils/tableUtils';
-
-interface ProductsTableProps {
-  tableData: InstituteSearchResult[];
-  type: 'school' | 'charity';
-  productsColumnHeader:
-    | 'Product types available'
-    | 'Excess stock product types'
-    | 'Product types needed';
-  postcode?: string;
-  hideNotJoined?: boolean;
-}
+import { ProductsTableProps } from '@/types/props';
 
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,
@@ -74,7 +64,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
           <ProductTypeIcon key={productType} productType={productType} />
         ));
       },
-      filters: Array.from(Array(5)).map((_, index) => ({
+      filters: Array.from(Array(6)).map((_, index) => ({
         text: convertNumberToCategory(index),
         value: index,
       })),

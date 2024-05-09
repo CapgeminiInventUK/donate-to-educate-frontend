@@ -2,12 +2,7 @@ import { FC } from 'react';
 import styles from './BackButton.module.scss';
 import ChevronLeft from '@/assets/navigation/ChevronLeft';
 import { useNavigate } from 'react-router';
-
-interface BackButtonProps {
-  onClick?: () => void;
-  className?: string;
-  theme: 'white' | 'blue';
-}
+import { BackButtonProps } from '@/types/props';
 
 const BackButton: FC<BackButtonProps> = ({ onClick, className, theme }) => {
   const navigate = useNavigate();
