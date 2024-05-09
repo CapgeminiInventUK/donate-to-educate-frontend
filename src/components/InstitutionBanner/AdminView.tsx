@@ -34,8 +34,6 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
               itemType="url"
               defaultText="You haven't added your website"
             />
-          </ul>
-          <ul>
             {type === 'school' && (
               <BannerItem
                 icon={<SchoolHat />}
@@ -45,12 +43,12 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
               />
             )}
             {type === 'charity' && (
-              <li>
-                <span>
-                  <House />
-                </span>
-                <p className={styles.item}>{address ?? 'Address not given'}</p>
-              </li>
+              <BannerItem
+                icon={<House />}
+                item={address}
+                itemType="adr"
+                defaultText="Add your charities address"
+              />
             )}
           </ul>
         </>
