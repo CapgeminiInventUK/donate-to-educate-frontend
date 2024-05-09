@@ -176,16 +176,6 @@ const CharityView: FC = () => {
                   }}
                   ariaLabel="cancel"
                 />
-                <button
-                  className={styles.delete}
-                  onClick={() => {
-                    setPostcode('');
-                    setEdit(false);
-                  }}
-                  type="button"
-                >
-                  Delete
-                </button>
               </>
             )}
           </div>

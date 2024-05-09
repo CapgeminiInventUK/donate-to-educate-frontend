@@ -180,7 +180,7 @@ const SchoolEdit: FC = () => {
         <BackButton theme="blue" />
       </div>
       <div className={`${styles.banner} ${styles[type]}`}>
-        <h2>{banner}</h2>
+        <h1>{banner}</h1>
       </div>
 
       <Card className={styles.editCard}>

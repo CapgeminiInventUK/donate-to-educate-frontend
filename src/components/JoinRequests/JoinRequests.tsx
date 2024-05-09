@@ -94,8 +94,8 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
                 },
                 ...(joinRequest.charityName && {
                   charity: {
-                    mainAddress: joinRequest.charityAddress ?? '',
-                    about: joinRequest.aboutCharity ?? '',
+                    charityAddress: joinRequest.charityAddress ?? '',
+                    aboutCharity: joinRequest.aboutCharity ?? '',
                   },
                 }),
               });
