@@ -26,6 +26,7 @@ interface PublicDashboardProps {
   setPreview?: (value: boolean) => void;
   organisationName: string;
   organisationId: string;
+  previewMode?: boolean;
 }
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
@@ -40,6 +41,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   setPreview,
   organisationId,
   organisationName,
+  previewMode,
 }) => {
   const navigate = useNavigate();
   const banner = {
@@ -84,6 +86,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     profile: request,
                     name: organisationName,
                     id: organisationId,
+                    previewMode,
                   },
                 })
               }
@@ -102,6 +105,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     profile: donate,
                     name: organisationName,
                     id: organisationId,
+                    previewMode,
                   },
                 })
               }
@@ -121,6 +125,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                   profile: excess,
                   name: organisationName,
                   id: organisationId,
+                  previewMode,
                 },
               })
             }
@@ -145,7 +150,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
               ariaLabel="Continue"
               onClick={() =>
                 navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW, {
-                  state: { name, postcode },
+                  state: { name, postcode, previewMode },
                 })
               }
             />
@@ -157,10 +162,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             />
           </div>
         )}
-        <div className={styles.nearbyCharitiesTable}>
-          <hr />
-          <FindCharityTable />
-        </div>
+        {postcode && (
+          <div className={styles.nearbyCharitiesTable}>
+            <hr />
+            <FindCharityTable postcode={postcode} />
+          </div>
+        )}
       </Card>
     </>
   );

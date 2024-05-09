@@ -43,6 +43,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
   whatToExpect,
   id,
   name,
+  previewMode,
 }) => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
@@ -64,8 +65,9 @@ const ItemSelection: FC<ItemSelectionProps> = ({
           <h2>Next steps</h2>
           <p>{actionText ?? ''}</p>
           <FormButton
-            theme="formButtonGreen"
+            theme={previewMode ? 'formButtonGreenDisabled' : 'formButtonGreen'}
             text={getButtonTextFromType(type)}
+            disabled={previewMode}
             fullWidth={true}
             onClick={() =>
               navigate(getPathFromType(schoolOrCharity), { state: { type, id, name } })

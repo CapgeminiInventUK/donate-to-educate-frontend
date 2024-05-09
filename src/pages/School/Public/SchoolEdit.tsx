@@ -5,11 +5,14 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 
 const SchoolEdit: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ profile: ProfileItems; name: string; id: string }>(
-    Paths.SCHOOLS_DASHBOARD
-  );
+  const { state } = useLocationStateOrRedirect<{
+    profile: ProfileItems;
+    name: string;
+    id: string;
+    previewMode?: boolean;
+  }>(Paths.SCHOOLS_DASHBOARD);
 
-  const { profile, id, name } = state ?? {};
+  const { profile, id, name, previewMode } = state ?? {};
   const { items, actionText, whatToExpect } = profile ?? {};
 
   const parsedItems = JSON.parse(items ?? '{}') as Record<number, string[]>;
@@ -21,6 +24,7 @@ const SchoolEdit: FC = () => {
       whatToExpect={whatToExpect ?? ''}
       id={id ?? ''}
       name={name ?? ''}
+      previewMode={previewMode}
     />
   );
 };

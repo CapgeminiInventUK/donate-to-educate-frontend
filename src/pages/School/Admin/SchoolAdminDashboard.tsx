@@ -35,7 +35,10 @@ const SchoolAdminDashboard: FC = () => {
       void refetch();
       setDataFetched(true);
     }
-  }, [refetch, setDataFetched, dataFetched]);
+    if (data) {
+      window.history.replaceState({ postcode: data?.getSchoolProfile?.postcode }, '');
+    }
+  }, [refetch, setDataFetched, dataFetched, data]);
 
   if (isLoading) {
     return <Spinner />;

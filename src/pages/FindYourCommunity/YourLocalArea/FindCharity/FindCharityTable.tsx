@@ -1,7 +1,5 @@
 import { FC } from 'react';
-import Paths from '@/config/paths';
 import { convertMilesToMeters } from '@/utils/distance';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { GetCharitiesNearbyWithProfileQuery } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
@@ -15,21 +13,18 @@ const maxDistance = convertMilesToMeters(10);
 
 interface FindCharityTableProps {
   title?: string;
+  postcode: string;
 }
 
-const FindCharityTable: FC<FindCharityTableProps> = ({ title }) => {
-  const { state, hasState } = useLocationStateOrRedirect<{ postcode: string }>(
-    Paths.FIND_YOUR_COMMUNITY
-  );
-
+const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode }) => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: [`getCharitiesNearby-${state.postcode}-${maxDistance}-request`],
-    enabled: hasState,
+    queryKey: [`getCharitiesNearby-${postcode}-${maxDistance}-request`],
+    enabled: true,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
         query: getCharitiesNearbyWithProfile,
         variables: {
-          postcode: state.postcode,
+          postcode: postcode,
           distance: maxDistance,
           type: 'request',
         },
@@ -39,7 +34,7 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title }) => {
     },
   });
 
-  if (isLoading || !hasState) {
+  if (isLoading) {
     return <Spinner />;
   }
 
@@ -54,12 +49,12 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title }) => {
 
   return (
     <>
-      {title ? <h2>{title}</h2> : <h2>Charities near {state.postcode.toUpperCase()}</h2>}
+      {title ? <h2>{title}</h2> : <h2>Charities near {postcode.toUpperCase()}</h2>}
       <ProductsTable
         tableData={charitiesRows}
         type="charity"
         productsColumnHeader="Product types available"
-        postcode={state.postcode}
+        postcode={postcode}
       />
     </>
   );
