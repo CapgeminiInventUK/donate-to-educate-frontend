@@ -1,13 +1,8 @@
 import { FC } from 'react';
 import styles from './ResultBanner.module.scss';
 import Email from '@/assets/admin/Email';
-
-type ResultType = 'declined' | 'approved';
-
-interface ResultBannerProps {
-  type: ResultType;
-  name?: string;
-}
+import { ResultBannerProps } from '@/types/props';
+import { ResultType } from '@/types/data';
 
 const ResultBanner: FC<ResultBannerProps> = ({ type, name }) => {
   return (

@@ -8,13 +8,9 @@ import Spinner from '@/components/Spinner/Spinner';
 import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
+import { FindCharityTableProps } from '@/types/props';
 
 const maxDistance = convertMilesToMeters(10);
-
-interface FindCharityTableProps {
-  title?: string;
-  postcode: string;
-}
 
 const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode }) => {
   const { data, isLoading, isError } = useQuery({

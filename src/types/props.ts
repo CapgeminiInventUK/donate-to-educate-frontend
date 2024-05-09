@@ -16,15 +16,20 @@ import {
   Banner,
   FormComponent,
   SummaryPageColour,
+  ResultType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
+  CharityProfileHeader,
   GetJoinRequestsQuery,
   InsertJoinRequestMutationVariables,
+  InstituteSearchResult,
+  ProfileItems,
   SchoolProfile,
+  SchoolProfileHeader,
 } from './api';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { InputRef } from 'antd';
@@ -510,4 +515,62 @@ export interface FormButtonsProps {
   cyaPageNumber?: number;
   onLocalAuthorityRegisterRequest?: () => void;
   formComponentInternalLink?: ButtonProps;
+}
+
+export interface ProductsTableProps {
+  tableData: InstituteSearchResult[];
+  type: 'school' | 'charity';
+  productsColumnHeader:
+    | 'Product types available'
+    | 'Excess stock product types'
+    | 'Product types needed';
+  postcode?: string;
+  hideNotJoined?: boolean;
+}
+
+export interface FindCharityTableProps {
+  title?: string;
+  postcode: string;
+}
+
+export interface LocationStateOrRedirectProps<T> {
+  state: T;
+  hasState: boolean;
+}
+
+export interface PublicDashboardProps {
+  type: 'school' | 'charity';
+  name: string;
+  excess?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  request?: ProfileItems | null;
+  about?: string | null;
+  header?: SchoolProfileHeader | CharityProfileHeader | null;
+  postcode?: string | null;
+  setPreview?: (value: boolean) => void;
+  organisationName: string;
+  organisationId: string;
+  previewMode?: boolean;
+}
+
+export interface ResultBannerProps {
+  type: ResultType;
+  name?: string;
+}
+
+export interface BackButtonProps {
+  onClick?: () => void;
+  className?: string;
+  theme: 'white' | 'blue';
+}
+
+export interface ErrorBoundaryWithLocationProps {
+  name: ErrorBoundaryType;
+  children: JSX.Element;
+}
+
+export interface ErrorPageProps {
+  icon: JSX.Element;
+  title: string;
+  message: JSX.Element;
 }

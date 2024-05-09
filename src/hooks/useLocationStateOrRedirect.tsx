@@ -1,12 +1,8 @@
+import { LocationStateOrRedirectProps } from '@/types/props';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export interface LocationStateOrRedirect<T> {
-  state: T;
-  hasState: boolean;
-}
-
-const useLocationStateOrRedirect = <T,>(redirect?: string): LocationStateOrRedirect<T> => {
+const useLocationStateOrRedirect = <T,>(redirect?: string): LocationStateOrRedirectProps<T> => {
   const navigate = useNavigate();
   const location = useLocation();
 
