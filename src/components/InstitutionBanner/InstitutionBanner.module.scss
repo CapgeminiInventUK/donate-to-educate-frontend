@@ -140,6 +140,7 @@
 
 .item {
   color: g.$primary-white;
+  word-break: break-word;
 }
 
 @media only screen and (max-width: g.$screen-large) {
