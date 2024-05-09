@@ -14,7 +14,7 @@
   }
 
   @include g.md-breakpoint {
-    padding: 10px;
+    padding: 20px;
   }
 
   &.charity {
@@ -147,7 +147,6 @@
   .bannerContainer {
     flex-direction: column;
     align-items: center;
-    padding: 10px;
   }
 
   .textContainer {

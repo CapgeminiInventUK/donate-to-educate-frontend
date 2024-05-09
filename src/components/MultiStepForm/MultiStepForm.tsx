@@ -162,7 +162,11 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   return (
     <form onSubmit={(e) => void onButtonClick(e)}>
-      {!isLastPage && <BackButton onClick={onBackButtonClick} theme="blue" />}
+      {!isLastPage ? (
+        <BackButton onClick={onBackButtonClick} theme="blue" />
+      ) : (
+        <div className={styles.emptyDiv}></div>
+      )}
       {isLoading ? (
         <Spinner />
       ) : (
