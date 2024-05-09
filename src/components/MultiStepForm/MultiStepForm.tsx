@@ -4,7 +4,7 @@ import styles from './MultiStepForm.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '@/components/Spinner/Spinner';
-import { SummaryPageColour, FormErrors } from '@/types/data';
+import { SummaryPageColour, FormErrors, ComponentType } from '@/types/data';
 import { validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Card from '../Card/Card';
@@ -162,10 +162,8 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   return (
     <form onSubmit={(e) => void onButtonClick(e)}>
-      {!isLastPage ? (
+      {(!isLastPage || formComponents[0]?.componentType === ComponentType.SCHOOL_NOT_FOUND) && (
         <BackButton onClick={onBackButtonClick} theme="blue" />
-      ) : (
-        <div className={styles.emptyDiv}></div>
       )}
       {isLoading ? (
         <Spinner />
