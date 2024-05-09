@@ -140,10 +140,6 @@ const FormContainer: FC<MultiStepFormProps> = ({
   };
 
   const onBackButtonClick = (): void => {
-    // eslint-disable-next-line no-console
-    console.log(isUnhappyPath);
-    // eslint-disable-next-line no-console
-    console.log(setHappyPathTemplate);
     if (isUnhappyPath && setHappyPathTemplate) {
       setHappyPathTemplate();
     }
