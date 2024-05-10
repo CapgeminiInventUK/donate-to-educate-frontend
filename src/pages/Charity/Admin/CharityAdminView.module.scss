@@ -101,6 +101,12 @@
   color: g.$dark-blue;
 }
 
+@media only screen and (max-width: 876px) {
+  .container {
+    padding: 48px 60px;
+  }
+}
+
 @media only screen and (max-width: g.$screen-medium) {
   .container {
     padding: 17px 19px;
@@ -161,5 +167,10 @@
     justify-content: space-between;
     margin-bottom: 23px;
     gap: 2.5%;
+
+    @include g.sm-breakpoint {
+      flex-direction: column;
+      gap: 23px;
+    }
   }
 }
