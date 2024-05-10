@@ -127,6 +127,7 @@
 
     @include g.sm-breakpoint {
       flex-direction: column;
+      gap: 23px;
     }
   }
 }
