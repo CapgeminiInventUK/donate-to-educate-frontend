@@ -7,30 +7,6 @@ exports[`renders correctly 1`] = `
   <div
     className="contentContainer"
   >
-    <button
-      className="back  blue"
-      onClick={[Function]}
-      type="button"
-    >
-      <svg
-        fill="none"
-        height="24"
-        viewBox="0 0 24 24"
-        width="24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M14.3996 16.8008L9.59961 12.0008L14.3996 7.20078"
-          stroke="#11356F"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="3"
-        />
-      </svg>
-      <h4>
-        Back
-      </h4>
-    </button>
     <h1
       className="title"
     >

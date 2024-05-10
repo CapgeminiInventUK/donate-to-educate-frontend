@@ -102,6 +102,8 @@
     padding: 17px 19px;
 
     .subContainer {
+      padding: 40px 20px;
+
       img {
         display: none;
       }
@@ -127,6 +129,7 @@
 
     @include g.sm-breakpoint {
       flex-direction: column;
+      gap: 23px;
     }
   }
 }

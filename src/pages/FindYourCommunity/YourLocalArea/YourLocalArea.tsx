@@ -57,7 +57,7 @@ const YourLocalArea: FC = () => {
           <Tile
             title="Find a nearby school"
             onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode: state.postcode } })}
-            body={['Request or donate products']}
+            body={['See products schools can provide to you or what donations they need']}
             icon={<img src={schoolIcon} alt="School" />}
             size="small"
           />
