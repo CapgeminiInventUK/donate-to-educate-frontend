@@ -58,7 +58,7 @@ const FindSchool: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card className={styles.subContainer}>
-        <h2>Find your child&apos;s school near {state.postcode.toUpperCase()}</h2>
+        <h2>Find your school near {state.postcode.toUpperCase()}</h2>
         <ProductsTable
           tableData={schoolData}
           type="school"

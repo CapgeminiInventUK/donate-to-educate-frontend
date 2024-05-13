@@ -59,16 +59,55 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             <p className={styles.paragraph}>{about}</p>
           </>
         )}
-
-        <div className={styles.productsTilesContainer}>
-          {request && (
+        <div className={styles.tilesWrapper}>
+          <div className={styles.productsTilesContainer}>
+            {request && (
+              <motion.div
+                className={styles.requestProductsTile}
+                onClick={() =>
+                  navigate(getNavigateLinkFromType(type), {
+                    state: {
+                      type: 'tick',
+                      profile: request,
+                      name: organisationName,
+                      id: organisationId,
+                      previewMode,
+                    },
+                  })
+                }
+                whileHover={{ scale: 1.05 }}
+              >
+                <Hanger /> <h3>Request products</h3>
+              </motion.div>
+            )}
+            {donate && (
+              <motion.div
+                className={styles.donateProductsTile}
+                onClick={() =>
+                  navigate(getNavigateLinkFromType(type), {
+                    state: {
+                      type: 'heart',
+                      profile: donate,
+                      name: organisationName,
+                      id: organisationId,
+                      previewMode,
+                    },
+                  })
+                }
+                whileHover={{ scale: 1.05 }}
+              >
+                <Heart /> <h3>Donate products</h3>
+              </motion.div>
+            )}
+          </div>
+          {excess && (
             <motion.div
-              className={styles.requestProductsTile}
+              className={styles.extraStockTileContainer}
               onClick={() =>
                 navigate(getNavigateLinkFromType(type), {
                   state: {
-                    type: 'tick',
-                    profile: request,
+                    type: 'plus',
+                    profile: excess,
                     name: organisationName,
                     id: organisationId,
                     previewMode,
@@ -153,7 +192,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         {postcode && (
           <div className={styles.nearbyCharitiesTable}>
             <hr />
-            <FindCharityTable postcode={postcode} />
+            <FindCharityTable postcode={postcode} type={type} />
           </div>
         )}
       </Card>

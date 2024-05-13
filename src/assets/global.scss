@@ -123,10 +123,6 @@ $modal-backdrop: rgba(17, 53, 111, 0.75);
     background-color: $box-shadow-black;
   }
 
-  @include sm-breakpoint {
-    width: 40vw;
-  }
-
   @include xs-breakpoint {
     width: 60vw;
   }

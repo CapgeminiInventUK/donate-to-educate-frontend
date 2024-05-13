@@ -25,10 +25,8 @@
 }
 
 .westSussexLogo {
-  height: auto;
-  width: auto;
-  max-width: 30%;
-  max-height: 30%;
+  width: 30%;
+  height: 30%;
   min-width: 125px;
 }
 
@@ -73,8 +71,13 @@
     min-width: 250px;
   }
 
-  .donateToUs {
-    transform: translate(-70px, 8.5px);
+  .supporters {
+    display: flex;
+    justify-content: center;
+
+    img {
+      transform: translate(-10%, 8.5px);
+    }
   }
 }
 

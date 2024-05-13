@@ -533,6 +533,7 @@ export interface ProductsTableProps {
 export interface FindCharityTableProps {
   title?: string;
   postcode: string;
+  type?: string;
 }
 
 export interface LocationStateOrRedirectProps<T> {

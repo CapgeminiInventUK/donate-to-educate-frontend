@@ -12,7 +12,7 @@ import { FindCharityTableProps } from '@/types/props';
 
 const maxDistance = convertMilesToMeters(10);
 
-const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode }) => {
+const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: [`getCharitiesNearby-${postcode}-${maxDistance}-request`],
     enabled: true,
@@ -45,7 +45,13 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode }) => {
 
   return (
     <>
-      {title ? <h2>{title}</h2> : <h2>Charities near {postcode.toUpperCase()}</h2>}
+      {title ? (
+        <h2>{title}</h2>
+      ) : type === 'school' ? (
+        <h2>Nearby charities who can also help</h2>
+      ) : (
+        <h2>Other nearby charities who can also help</h2>
+      )}
       <ProductsTable
         tableData={charitiesRows}
         type="charity"

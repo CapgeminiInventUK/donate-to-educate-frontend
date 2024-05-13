@@ -78,7 +78,7 @@ const School: FC = () => {
                   state: { postcode: data?.getSchoolProfile?.postcode },
                 })
               }
-              body={['Request or donate products']}
+              body={['See products schools can provide to you or what donations they need']}
               icon={<img src={schoolIcon} alt="School" />}
               size="medium"
             />

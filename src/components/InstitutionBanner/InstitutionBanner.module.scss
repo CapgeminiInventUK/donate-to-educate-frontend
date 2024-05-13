@@ -88,6 +88,7 @@
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    max-width: 212px;
   }
 
   .editDiv {
@@ -139,6 +140,7 @@
 
 .item {
   color: g.$primary-white;
+  word-break: break-word;
 }
 
 @media only screen and (max-width: g.$screen-large) {
