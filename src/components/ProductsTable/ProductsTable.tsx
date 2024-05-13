@@ -21,6 +21,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
   productsColumnHeader,
   postcode,
   hideNotJoined,
+  hideNoProducts,
 }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
@@ -70,6 +71,9 @@ const ProductsTable: FC<ProductsTableProps> = ({
       })),
       onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
+      defaultFilteredValue: hideNoProducts
+        ? Array.from(Array(6)).map((_, index) => `${index}`)
+        : [],
     },
   ];
 
