@@ -11,6 +11,16 @@ interface ItemListEditProps {
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   const [allSelectedNames, setAllSelectedNames] = useState<string[]>([]);
+
+  const removeEmptyItems = (items: Record<number, string[]>): Record<number, string[]> => {
+    for (const categoryNumber in items) {
+      if (items[categoryNumber].length === 0) {
+        delete items[categoryNumber];
+      }
+    }
+    return items;
+  };
+
   const handleToggle = (value: boolean, itemKey: string, name: SectionsIconType): void => {
     const categoryNumber = convertCategoryToNumber(name);
     setItems((previousItems) => {
@@ -24,7 +34,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
       }
 
       const newItems = currentItems.filter((item) => item !== itemKey);
-      return { ...previousItems, [categoryNumber]: newItems };
+      return removeEmptyItems({ ...previousItems, [categoryNumber]: newItems });
     });
   };
 
