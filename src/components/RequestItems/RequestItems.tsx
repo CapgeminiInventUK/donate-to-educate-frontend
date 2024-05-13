@@ -28,7 +28,8 @@ const RequestItems: FC<RequestItemsProps> = ({
   type,
   organisationType,
   id,
-  name: organisationName,
+  name: schoolOrCharityName,
+  postcode,
 }) => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
@@ -38,6 +39,9 @@ const RequestItems: FC<RequestItemsProps> = ({
     phone: '',
     notes: '',
   });
+
+  const organisationName =
+    organisationType === 'school' ? `${schoolOrCharityName} - ${postcode}` : schoolOrCharityName;
 
   const { refetch, isError } = useQuery({
     queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
