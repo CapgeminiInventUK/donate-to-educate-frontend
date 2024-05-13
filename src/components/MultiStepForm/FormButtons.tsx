@@ -22,10 +22,10 @@ const FormButtons: FC<FormButtonsProps> = ({
   const returnHome = (): void => {
     navigate(Paths.HOME);
   };
-  const isLastPageOrUnhappyPath = isLastPage ?? isUnhappyPath;
+
   return (
     <>
-      {isLastPageOrUnhappyPath ? (
+      {isLastPage ? (
         <div
           className={`${isUnhappyPath && summaryPageBg !== SummaryPageColour.BLUE ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
         >
@@ -36,7 +36,8 @@ const FormButtons: FC<FormButtonsProps> = ({
             ariaLabel="home"
           />
         </div>
-      ) : !cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber + 1) ? (
+      ) : !isUnhappyPath &&
+        (!cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber + 1)) ? (
         <FormButton
           text={pageNumber === 0 ? 'Start' : 'Next'}
           theme={
@@ -47,12 +48,14 @@ const FormButtons: FC<FormButtonsProps> = ({
           disabled={pageNumber === 1 && isSchoolRegistered}
         />
       ) : (
-        <FormButton
-          text={'Send application'}
-          theme={!declarationSigned ? 'formButtonDisabled' : 'formButtonGreen'}
-          ariaLabel="send"
-          disabled={!declarationSigned}
-        />
+        !isUnhappyPath && (
+          <FormButton
+            text={'Send application'}
+            theme={!declarationSigned ? 'formButtonDisabled' : 'formButtonGreen'}
+            ariaLabel="send"
+            disabled={!declarationSigned}
+          />
+        )
       )}
       {isUnhappyPath && onLocalAuthorityRegisterRequest && (
         <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} ariaLabel="send" />
