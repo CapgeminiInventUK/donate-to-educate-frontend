@@ -10,9 +10,10 @@ const SchoolEdit: FC = () => {
     name: string;
     id: string;
     previewMode?: boolean;
+    postcode?: string;
   }>(Paths.SCHOOLS_DASHBOARD);
 
-  const { profile, id, name, previewMode } = state ?? {};
+  const { profile, id, name, previewMode, postcode } = state ?? {};
   const { items, actionText, whatToExpect } = profile ?? {};
 
   const parsedItems = JSON.parse(items ?? '{}') as Record<number, string[]>;
@@ -25,6 +26,7 @@ const SchoolEdit: FC = () => {
       id={id ?? ''}
       name={name ?? ''}
       previewMode={previewMode}
+      postcode={postcode}
     />
   );
 };
