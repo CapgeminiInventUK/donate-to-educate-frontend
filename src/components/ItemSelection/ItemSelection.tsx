@@ -44,6 +44,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
   id,
   name,
   previewMode,
+  postcode,
 }) => {
   const navigate = useNavigate();
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType }>(Paths.HOME);
@@ -70,7 +71,7 @@ const ItemSelection: FC<ItemSelectionProps> = ({
             disabled={previewMode}
             fullWidth={true}
             onClick={() =>
-              navigate(getPathFromType(schoolOrCharity), { state: { type, id, name } })
+              navigate(getPathFromType(schoolOrCharity), { state: { type, id, name, postcode } })
             }
             ariaLabel="contact"
           />

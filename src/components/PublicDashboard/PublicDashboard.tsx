@@ -72,6 +72,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     name: organisationName,
                     id: organisationId,
                     previewMode,
+                    postcode,
                   },
                 })
               }
@@ -91,6 +92,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     name: organisationName,
                     id: organisationId,
                     previewMode,
+                    postcode,
                   },
                 })
               }
@@ -111,6 +113,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                   name: organisationName,
                   id: organisationId,
                   previewMode,
+                  postcode,
                 },
               })
             }
