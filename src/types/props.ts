@@ -528,6 +528,7 @@ export interface ProductsTableProps {
     | 'Product types needed';
   postcode?: string;
   hideNotJoined?: boolean;
+  hideNoProducts?: boolean;
 }
 
 export interface FindCharityTableProps {

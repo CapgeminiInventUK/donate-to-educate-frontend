@@ -106,6 +106,8 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
           tableData={schoolRows}
           type="school"
           productsColumnHeader={productsColumnHeader}
+          hideNotJoined={true}
+          hideNoProducts={true}
         />
 
         <h3>Charities</h3>
@@ -113,6 +115,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
           tableData={charityRows}
           type="charity"
           productsColumnHeader={productsColumnHeader}
+          hideNoProducts={true}
         />
       </Card>
     </div>

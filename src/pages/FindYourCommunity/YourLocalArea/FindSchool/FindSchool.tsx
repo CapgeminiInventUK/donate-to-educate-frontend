@@ -68,7 +68,6 @@ const FindSchool: FC = () => {
           type="school"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
-          hideNotJoined={true}
         />
         <span
           className={styles.expander}
