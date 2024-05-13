@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './DonateAndExcess.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { convertMilesToMeters } from '@/utils/distance';
@@ -28,9 +28,11 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
     data: charityData,
     isLoading: charityLoading,
     isError: isErrorCharity,
+    refetch: charityRefetch,
   } = useQuery({
     queryKey: [`getCharitiesNearby-${postcode}-${maxDistance}-${type}`],
     enabled: hasState,
+    refetchOnWindowFocus: true,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
         query: getCharitiesNearbyWithProfile,
@@ -49,9 +51,11 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
     data: schoolData,
     isLoading: schoolLoading,
     isError: isErrorSchool,
+    refetch: schoolRefetch,
   } = useQuery({
     queryKey: [`getSchoolsNearby-${postcode}-${maxDistance}-${type}`],
     enabled: hasState,
+    refetchOnWindowFocus: true,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
         query: getSchoolsNearbyWithProfile,
@@ -65,6 +69,11 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
       return data;
     },
   });
+
+  useEffect(() => {
+    void charityRefetch();
+    void schoolRefetch();
+  }, [schoolRefetch, charityRefetch]);
 
   if (charityLoading || schoolLoading || !hasState) {
     return <Spinner />;

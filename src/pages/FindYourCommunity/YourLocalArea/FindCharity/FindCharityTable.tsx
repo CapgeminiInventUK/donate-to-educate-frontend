@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { convertMilesToMeters } from '@/utils/distance';
 import { GetCharitiesNearbyWithProfileQuery } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -13,9 +13,10 @@ import { FindCharityTableProps } from '@/types/props';
 const maxDistance = convertMilesToMeters(10);
 
 const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [`getCharitiesNearby-${postcode}-${maxDistance}-request`],
     enabled: true,
+    refetchOnWindowFocus: true,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetCharitiesNearbyWithProfileQuery>>({
         query: getCharitiesNearbyWithProfile,
@@ -29,6 +30,10 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
       return data;
     },
   });
+
+  useEffect(() => {
+    void refetch();
+  }, [refetch]);
 
   if (isLoading) {
     return <Spinner />;
