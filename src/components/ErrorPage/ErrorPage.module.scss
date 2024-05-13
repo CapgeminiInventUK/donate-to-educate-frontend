@@ -11,6 +11,10 @@
   text-align: center;
   border-radius: 10px;
 
+  @include g.sm-breakpoint {
+    padding: 20px;
+  }
+
   a {
     color: g.$primary-white;
   }
