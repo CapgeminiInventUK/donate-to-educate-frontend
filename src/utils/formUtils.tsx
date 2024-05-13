@@ -75,12 +75,10 @@ const addressBuilder = (formData: FormDataItem[]): string => {
   const town = findValueFromFormData(formData, 'Town');
   const county = findValueFromFormData(formData, 'County');
   const postcode = findValueFromFormData(formData, 'Postcode');
-  return `${addressLineOne}
-          ${addressLineTwo}
-          ${town}
-          ${county}
-          ${postcode}
-          `;
+
+  return addressLineTwo
+    ? `${addressLineOne}\n${addressLineTwo}\n${town}\n${county}\n${postcode}`
+    : `${addressLineOne}\n${town}\n${county}\n${postcode}\n`;
 };
 
 const nameBuilder = (formData: FormDataItem[]): string => {
