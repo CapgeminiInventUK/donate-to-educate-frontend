@@ -142,7 +142,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                 isEditing={isEditingAboutUs}
                 text={about}
                 setText={setAboutText}
-                // onFocus={savePreviousAbout}
               />
 
               <div className={styles.productsTilesContainer}>
