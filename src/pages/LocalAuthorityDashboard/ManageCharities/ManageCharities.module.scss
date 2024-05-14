@@ -17,6 +17,15 @@
   }
 }
 
+.borderLeft {
+  border-left: g.$primary-light-blue solid 10px;
+  margin-bottom: 20px;
+
+  div {
+    margin-left: 20px;
+  }
+}
+
 .body {
   background: g.$primary-dark-blue;
   color: g.$primary-white;

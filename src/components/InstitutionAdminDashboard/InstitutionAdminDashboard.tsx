@@ -34,6 +34,8 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     name: organisationName,
     id,
   } = profile;
+  const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\nRequest the things you need ${type === 'school' ? 'or donate products' : ''} to help the next child. ${type === 'school' ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
+
   const [banner, setBanner] = useState<Banner>({
     phone: header?.phone ?? undefined,
     email: header?.email ?? undefined,
@@ -43,14 +45,15 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     address: header && 'address' in header ? header?.address ?? undefined : undefined,
   });
   const navigate = useNavigate();
-  const [about, setAbout] = useState(currentAbout ?? '');
+  const [about, setAbout] = useState(currentAbout ? currentAbout : placeholderAboutText);
+  const [previousAbout, setPreviousAbout] = useState<string>();
   const [pageNumber, setPageNumber] = useState(0);
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
   const { token: authToken } = useAuthToken();
 
   const { refetch, isError } = useQuery({
-    queryKey: [`saveProfile-${about}-${type}-${name}`],
+    queryKey: [`saveProfile-${about ? about : placeholderAboutText}-${type}-${name}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<
@@ -61,7 +64,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
         query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
         variables: {
           key: 'about',
-          value: about,
+          value: about ? about : placeholderAboutText,
         },
       });
 
@@ -70,12 +73,29 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   });
 
   const toggleIsEditingAboutUs = (): void => {
+    !isEditingAboutUs && savePreviousAbout();
     setIsEditingAboutUs((isEditingAboutUs) => !isEditingAboutUs);
   };
 
   const saveAboutUs = (): void => {
+    if (!about) {
+      setAbout(placeholderAboutText);
+    }
     void refetch();
     toggleIsEditingAboutUs();
+  };
+
+  const setAboutText = (text: string): void => {
+    setAbout(text);
+  };
+
+  const cancelAboutUs = (): void => {
+    previousAbout ? setAbout(previousAbout) : setAbout(placeholderAboutText);
+    toggleIsEditingAboutUs();
+  };
+
+  const savePreviousAbout = (): void => {
+    setPreviousAbout(about);
   };
 
   const onBackButtonClick = (): void => {
@@ -114,13 +134,14 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               />
 
               <EditableInformationTile
-                onClick={toggleIsEditingAboutUs}
+                editContent={toggleIsEditingAboutUs}
+                onCancel={cancelAboutUs}
                 saveOnClick={saveAboutUs}
                 heading="About us"
                 subtext={''}
                 isEditing={isEditingAboutUs}
                 text={about}
-                setText={setAbout}
+                setText={setAboutText}
               />
 
               <div className={styles.productsTilesContainer}>

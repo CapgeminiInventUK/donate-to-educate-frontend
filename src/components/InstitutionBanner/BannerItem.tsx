@@ -17,7 +17,7 @@ const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }):
           {item}
         </Link>
       ) : (
-        <p className={styles.item}>{defaultText}</p>
+        <span className={styles.item}>{defaultText}</span>
       )}
     </li>
   );

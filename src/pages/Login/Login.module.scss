@@ -45,6 +45,19 @@
   height: 50px;
 }
 
+.subContainerLineButtons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+
+  @include g.sm-breakpoint {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+}
+
 @media only screen and (max-width: g.$screen-medium) {
   .container {
     padding: 17px 19px;

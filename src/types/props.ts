@@ -318,11 +318,12 @@ export interface InformationTileProps {
 }
 
 export interface EditableInformationTileProps extends InformationTileProps {
-  onClick: () => void;
+  editContent: () => void;
+  onCancel: () => void;
   saveOnClick: () => void;
   isEditing: boolean;
   text: string;
-  setText: Dispatch<SetStateAction<string>>;
+  setText: (text: string) => void;
 }
 
 export interface AdminActionTileProps {
