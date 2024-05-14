@@ -80,6 +80,15 @@
 
     .actionButtons {
       display: flex;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      a {
+        color: g.$secondary-mid-blue;
+        text-decoration: underline;
+        align-self: center;
+      }
     }
   }
 
@@ -97,4 +106,18 @@
 
 .preview {
   color: g.$primary-dark-blue;
+}
+
+.notification {
+  background: g.$dark-blue;
+  border-radius: 8px;
+  height: 150px;
+}
+
+.notificationMessage {
+  position: absolute;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 22px 0 0 100px;
 }

@@ -131,30 +131,21 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             </motion.div>
           )}
         </div>
-        {postcode && setPreview && (
-          <div className={styles.actionButtons}>
-            <FormButton
-              theme="formButtonGreen"
-              text="Continue"
-              ariaLabel="Continue"
-              onClick={() =>
-                navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW, {
-                  state: { name, postcode, previewMode },
-                })
-              }
-            />
-            <FormButton
-              theme="formButtonGrey"
-              text="Edit profile"
-              ariaLabel="edit profile"
-              onClick={() => setPreview(false)}
-            />
-          </div>
-        )}
         {postcode && (
           <div className={styles.nearbyCharitiesTable}>
             <hr />
             <FindCharityTable postcode={postcode} type={type} />
+          </div>
+        )}
+        {postcode && setPreview && (
+          <div className={styles.actionButtons}>
+            <FormButton
+              theme="formButtonGrey"
+              text="Edit profile"
+              ariaLabel="edit profile"
+              fullWidth={true}
+              onClick={() => setPreview(false)}
+            />
           </div>
         )}
       </Card>
