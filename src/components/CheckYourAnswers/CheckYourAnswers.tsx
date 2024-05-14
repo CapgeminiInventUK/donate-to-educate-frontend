@@ -18,9 +18,6 @@ const CheckYourAnswers: FC<CheckYourAnswersProps> = ({
     setPageNumber(page);
   };
 
-  // eslint-disable-next-line no-console
-  console.log(cyaData);
-
   return sections.map((section, index) => (
     <div key={index} className={styles.container}>
       <h3 className={styles.header}>{section}</h3>
