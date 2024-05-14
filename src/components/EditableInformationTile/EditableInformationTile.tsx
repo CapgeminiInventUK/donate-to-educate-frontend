@@ -11,7 +11,8 @@ import FormButton from '../FormButton/FormButton';
 const EditableInformationTile: FC<EditableInformationTileProps> = ({
   heading,
   subtext,
-  onClick,
+  onCancel,
+  editContent,
   saveOnClick,
   isEditing = false,
   text,
@@ -36,7 +37,7 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
                 text="Save"
                 ariaLabel="save"
               />
-              <CancelButton onClick={onClick} theme={'blue'} />
+              <CancelButton onClick={onCancel} theme={'blue'} />
             </div>
           </>
         ) : (
@@ -46,7 +47,7 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
               <Button
                 theme="darkBlue"
                 className={styles.addSectionButton}
-                onClick={onClick}
+                onClick={editContent}
                 text={
                   <div className={styles.addSectionDiv}>
                     <span className={styles.addSectionButtonText}>Add section</span>
@@ -57,7 +58,7 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
               />
             ) : (
               <FormButton
-                onClick={onClick}
+                onClick={editContent}
                 theme={'formButtonGrey'}
                 text="Edit"
                 ariaLabel={'edit'}
