@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './CharityEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
@@ -18,6 +18,9 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
+import { notification } from 'antd';
+import LogoPurple from '@/assets/logo/LogoPurple';
+import { CloseOutlined } from '@ant-design/icons';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -133,6 +136,7 @@ const CharityEdit: FC = () => {
   const { type, profile } = state;
 
   const [preview, setPreview] = useState(false);
+  const [saveDisabled, setSaveDisabled] = useState(false);
   const [items, setItems] = useState<Record<number, string[]>>(
     JSON.parse(profile?.items ?? '{}') as Record<number, string[]>
   );
@@ -147,6 +151,22 @@ const CharityEdit: FC = () => {
     actionText,
     whatToExpect: howItWorks,
   });
+
+  useEffect(() => {
+    setSaveDisabled(false);
+  }, [items]);
+
+  const openNotification = (): void => {
+    setSaveDisabled(true);
+    notification.info({
+      message: <span className={styles.notificationMessage}>Save made</span>,
+      placement: 'bottomRight',
+      icon: <LogoPurple />,
+      className: styles.notification,
+      duration: 2,
+      closeIcon: <CloseOutlined style={{ color: 'white' }} />,
+    });
+  };
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfileCharity-${type}`],
@@ -257,19 +277,21 @@ const CharityEdit: FC = () => {
             </div>
             <div className={styles.actionButtons}>
               <FormButton
-                theme={'formButtonGrey'}
-                onClick={(): void => setPreview(true)}
-                text={'Preview'}
-                ariaLabel="preview"
-              />
-              <FormButton
-                theme={'formButtonMidBlue'}
+                theme={saveDisabled ? 'formButtonDisabled' : 'formButtonGreen'}
                 onClick={(): void => {
-                  void refetch().then(() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE));
+                  void refetch().then(openNotification);
                 }}
                 text={'Save'}
                 ariaLabel="save"
+                fullWidth={true}
+                disabled={saveDisabled}
               />
+              <a
+                onClick={() => navigate(Paths.CHARITIES_CREATE_EDIT_PROFILE)}
+                className={styles.previewLink}
+              >
+                Return to charity profile
+              </a>
             </div>
           </>
         )}
