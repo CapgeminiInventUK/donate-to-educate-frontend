@@ -24,7 +24,7 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
             />
             <BannerItem
               icon={<Email />}
-              item={email}
+              item={'email'}
               itemType="mail"
               defaultText="You haven't added your email"
             />

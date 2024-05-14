@@ -24,7 +24,7 @@ const Login: FC = () => {
             <li>A school</li>
             <li>A charity or volunteer group</li>
           </ul>
-          <div className={styles.subContainerLine}>
+          <div className={styles.subContainerLineButtons}>
             <FormButton
               theme="formButtonDarkBlue"
               useArrow={false}

@@ -16,7 +16,7 @@ import {
   UpdateJoinRequestMutation,
 } from '@/types/api';
 import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { getSchool } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
@@ -110,6 +110,8 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     return <ErrorBanner />;
   }
 
+  // eslint-disable-next-line no-console
+  console.log(data?.getSchool.website);
   return (
     <>
       <BackButton onClick={(): void => setStage(StageState.VIEW)} theme="blue" />
@@ -125,13 +127,29 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
               {data?.getSchool.phone && (
                 <div className={styles.contactInfo}>
                   <Phone />
-                  <div>{data?.getSchool.phone}</div>
+                  {data?.getSchool.phone && (
+                    <Link
+                      to={`tel: ${data?.getSchool.phone}`}
+                      target="_blank"
+                      className={styles.item}
+                    >
+                      {data.getSchool.phone}
+                    </Link>
+                  )}
                 </div>
               )}
               {data?.getSchool.website && (
                 <div className={styles.contactInfo}>
                   <Globe />
-                  <div>{data?.getSchool.website}</div>
+                  {data?.getSchool.website && (
+                    <Link
+                      to={`https://${data.getSchool.website}`}
+                      target="_blank"
+                      className={styles.item}
+                    >
+                      {data.getSchool.website}
+                    </Link>
+                  )}
                 </div>
               )}
               <div className={styles.detailsCard}>

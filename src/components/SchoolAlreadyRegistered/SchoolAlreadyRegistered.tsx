@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 import styles from './SchoolAlreadyRegistered.module.scss';
 import Paths from '@/config/paths';
 import { FC } from 'react';
@@ -15,11 +16,18 @@ const SchoolAlreadyRegistered: FC = () => {
         You may wish to speak with your colleagues to find out who has created your school profile.
       </p>
       <p>
-        If you need help, <Link to={Paths.CONTACT}>contact Donate to Educate.</Link>
+        If you need help,{' '}
+        <Link to={Paths.CONTACT} className={styles.link}>
+          contact Donate to Educate
+        </Link>
+        .
       </p>
-      <Link className={styles.bold} to={Paths.HOME}>
-        Return to homepage
-      </Link>
+      <div>
+        <HomeOutlined className={styles.homeIcon} /> &nbsp;
+        <Link className={styles.link} to={Paths.HOME}>
+          Return to homepage
+        </Link>
+      </div>
     </div>
   );
 };
