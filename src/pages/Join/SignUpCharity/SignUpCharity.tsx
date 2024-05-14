@@ -82,6 +82,7 @@ const SignUpCharity: FC = () => {
           charityName: formDataForSubmission?.charityName,
           charityAddress: formDataForSubmission?.charityAddress,
           aboutCharity: formDataForSubmission?.aboutCharity,
+          postcode: formDataForSubmission?.postcode,
         },
       });
       return result;
