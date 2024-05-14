@@ -12,8 +12,6 @@ const SchoolContactConfirmation: FC = () => {
   );
 
   const name = state.name.split('-')[0]?.trim();
-  // eslint-disable-next-line no-console
-  console.log(name);
 
   return (
     <div className={styles.container}>
