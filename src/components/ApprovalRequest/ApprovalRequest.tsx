@@ -110,8 +110,6 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     return <ErrorBanner />;
   }
 
-  // eslint-disable-next-line no-console
-  console.log(data?.getSchool.website);
   return (
     <>
       <BackButton onClick={(): void => setStage(StageState.VIEW)} theme="blue" />
