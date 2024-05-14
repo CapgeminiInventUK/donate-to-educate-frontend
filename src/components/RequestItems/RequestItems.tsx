@@ -169,7 +169,7 @@ const RequestItems: FC<RequestItemsProps> = ({
                     ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
                     : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
                   {
-                    state: { name: organisationName },
+                    state: { name: organisationName, id },
                   }
                 );
               });
