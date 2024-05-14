@@ -130,7 +130,7 @@ export const insertSignUpData = /* GraphQL */ `mutation InsertSignUpData(
 ) {
   insertSignUpData(
     id: $id
-    email: $email 
+    email: $email
     type: $type
     name: $name
     nameId: $nameId
