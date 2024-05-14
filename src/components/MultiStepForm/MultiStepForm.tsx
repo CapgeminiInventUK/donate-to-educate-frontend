@@ -71,7 +71,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   }, [pageNumber, formTemplate, isDeclarationPage, formData]);
 
   useEffect(() => {
-    if (header === 'Check your Answers') {
+    if (header === 'Check your answers') {
       setCyaPageNumber(pageNumber);
       setNavigationFromCya(true);
     }
@@ -131,7 +131,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     setNavigationFromCya(false);
-    if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
+    if (navigationFromCya && cyaPageNumber && header !== 'Check your answers') {
       return setPageNumber(cyaPageNumber);
     }
     if (pageNumber < formTemplate.length - 1) {
@@ -145,11 +145,11 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
     setFormErrors({});
 
-    if (navigationFromCya && header === 'Check your Answers') {
+    if (navigationFromCya && header === 'Check your answers') {
       setNavigationFromCya(false);
     }
 
-    if (navigationFromCya && cyaPageNumber && header !== 'Check your Answers') {
+    if (navigationFromCya && cyaPageNumber && header !== 'Check your answers') {
       return setPageNumber(cyaPageNumber);
     }
 
