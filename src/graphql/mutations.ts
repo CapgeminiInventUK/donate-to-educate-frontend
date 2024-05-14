@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from '../types/api';
+import * as APITypes from "../types/api";
 type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationInput: InputType;
   __generatedMutationOutput: OutputType;
@@ -35,22 +35,20 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
   APITypes.RegisterLocalAuthorityMutationVariables,
   APITypes.RegisterLocalAuthorityMutation
 >;
-export const updateSchoolProfile =
-  /* GraphQL */ `mutation UpdateSchoolProfile($key: String!, $value: String!) {
+export const updateSchoolProfile = /* GraphQL */ `mutation UpdateSchoolProfile($key: String!, $value: String!) {
   updateSchoolProfile(key: $key, value: $value)
 }
 ` as GeneratedMutation<
-    APITypes.UpdateSchoolProfileMutationVariables,
-    APITypes.UpdateSchoolProfileMutation
-  >;
-export const updateCharityProfile =
-  /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
+  APITypes.UpdateSchoolProfileMutationVariables,
+  APITypes.UpdateSchoolProfileMutation
+>;
+export const updateCharityProfile = /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
   updateCharityProfile(key: $key, value: $value)
 }
 ` as GeneratedMutation<
-    APITypes.UpdateCharityProfileMutationVariables,
-    APITypes.UpdateCharityProfileMutation
-  >;
+  APITypes.UpdateCharityProfileMutationVariables,
+  APITypes.UpdateCharityProfileMutation
+>;
 export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   $id: String!
   $localAuthority: String!
@@ -80,6 +78,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $charityAddress: String
   $aboutCharity: String
   $urn: String
+  $postcode: String
 ) {
   insertJoinRequest(
     name: $name
@@ -93,14 +92,14 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     charityAddress: $charityAddress
     aboutCharity: $aboutCharity
     urn: $urn
+    postcode: $postcode
   )
 }
 ` as GeneratedMutation<
   APITypes.InsertJoinRequestMutationVariables,
   APITypes.InsertJoinRequestMutation
 >;
-export const insertLocalAuthorityRegisterRequest =
-  /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
+export const insertLocalAuthorityRegisterRequest = /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
   $name: String!
   $localAuthority: String!
   $email: String!
@@ -116,9 +115,9 @@ export const insertLocalAuthorityRegisterRequest =
   )
 }
 ` as GeneratedMutation<
-    APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
-    APITypes.InsertLocalAuthorityRegisterRequestMutation
-  >;
+  APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
+  APITypes.InsertLocalAuthorityRegisterRequestMutation
+>;
 export const insertSignUpData = /* GraphQL */ `mutation InsertSignUpData(
   $id: String!
   $email: String!
@@ -163,31 +162,31 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
     organisationType: $organisationType
   )
 }
-` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
-export const deleteDeniedJoinRequest =
-  /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
+` as GeneratedMutation<
+  APITypes.InsertItemQueryMutationVariables,
+  APITypes.InsertItemQueryMutation
+>;
+export const deleteDeniedJoinRequest = /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
   deleteDeniedJoinRequest(id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteDeniedJoinRequestMutationVariables,
-    APITypes.DeleteDeniedJoinRequestMutation
-  >;
-export const deleteSchoolProfile =
-  /* GraphQL */ `mutation DeleteSchoolProfile($name: String!, $id: String!) {
+  APITypes.DeleteDeniedJoinRequestMutationVariables,
+  APITypes.DeleteDeniedJoinRequestMutation
+>;
+export const deleteSchoolProfile = /* GraphQL */ `mutation DeleteSchoolProfile($name: String!, $id: String!) {
   deleteSchoolProfile(name: $name, id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteSchoolProfileMutationVariables,
-    APITypes.DeleteSchoolProfileMutation
-  >;
-export const deleteCharityProfile =
-  /* GraphQL */ `mutation DeleteCharityProfile($name: String!, $id: String!) {
+  APITypes.DeleteSchoolProfileMutationVariables,
+  APITypes.DeleteSchoolProfileMutation
+>;
+export const deleteCharityProfile = /* GraphQL */ `mutation DeleteCharityProfile($name: String!, $id: String!) {
   deleteCharityProfile(name: $name, id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteCharityProfileMutationVariables,
-    APITypes.DeleteCharityProfileMutation
-  >;
+  APITypes.DeleteCharityProfileMutationVariables,
+  APITypes.DeleteCharityProfileMutation
+>;
 export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   $name: String!
   $nameId: String!
