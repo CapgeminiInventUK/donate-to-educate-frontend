@@ -8,7 +8,10 @@ const CannotFindSchool: FC = () => {
     <div className={styles.container}>
       <h2>I cannot find my school</h2>
       <p>
-        If you cannot find your school, <Link to={Paths.CONTACT}>contact us for help.</Link>
+        If you cannot find your school,{' '}
+        <Link to={Paths.CONTACT} className={styles.contact}>
+          contact us for help.
+        </Link>
       </p>
     </div>
   );

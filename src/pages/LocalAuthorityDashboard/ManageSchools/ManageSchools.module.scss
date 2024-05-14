@@ -29,16 +29,16 @@
     .schoolsCard {
       padding: 30px;
       border-top: g.$secondary-blue solid 18px;
-
-      .borderLeft {
-        border-left: g.$primary-light-blue solid 10px;
-        margin-bottom: 20px;
-
-        div {
-          margin-left: 20px;
-        }
-      }
     }
+  }
+}
+
+.borderLeft {
+  border-left: g.$primary-light-blue solid 10px;
+  margin-bottom: 20px;
+
+  div {
+    margin-left: 20px;
   }
 }
 
