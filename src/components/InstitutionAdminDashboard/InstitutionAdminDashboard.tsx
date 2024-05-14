@@ -79,8 +79,12 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   };
 
   const onBackButtonClick = (): void => {
-    if (pageNumber > 0) {
+    if (preview) {
+      setPreview(false);
+    } else if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
+    } else {
+      navigate(-1);
     }
   };
 
@@ -194,18 +198,16 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               <div className={styles.actionButtons}>
                 <FormButton
                   theme="formButtonGreen"
-                  text="Continue"
+                  text="Return to home"
                   ariaLabel="Continue"
+                  fullWidth={true}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)
                   }
                 />
-                <FormButton
-                  theme="formButtonMidBlue"
-                  text="Preview profile"
-                  ariaLabel="preview profile"
-                  onClick={() => setPreview(true)}
-                />
+                <a onClick={() => setPreview(true)} className={styles.previewLink}>
+                  Preview public profile
+                </a>
               </div>
             </Card>
           </>

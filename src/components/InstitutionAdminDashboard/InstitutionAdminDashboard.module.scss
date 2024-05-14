@@ -42,8 +42,14 @@
       .actionButtons {
         margin-top: 40px;
         display: flex;
-        gap: 20px;
-        margin-left: 5px;
+        flex-direction: column;
+        gap: 30px;
+
+        .previewLink {
+          color: g.$secondary-mid-blue;
+          text-decoration: underline;
+          align-self: center;
+        }
       }
     }
   }
