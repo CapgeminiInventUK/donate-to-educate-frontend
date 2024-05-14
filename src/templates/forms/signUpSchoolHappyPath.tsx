@@ -130,7 +130,7 @@ const signUpSchoolHappyPath = (
       ],
     },
     {
-      header: 'Check your Answers',
+      header: 'Check your answers',
       formComponents: [
         {
           componentType: ComponentType.CYA,
