@@ -27,6 +27,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   setPageNumber,
   onChange,
   isSchoolRegistered,
+  hasActiveJoinRequest,
   refetch,
 }) => {
   const navigate = useNavigate();
@@ -193,7 +194,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
             onChange={onChange}
             isUnhappyPath={isUnhappyPath}
           />
-          {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered />}
+          {pageNumber === 1 && isSchoolRegistered && <SchoolAlreadyRegistered type="registered" />}
+          {pageNumber === 1 && hasActiveJoinRequest && (
+            <SchoolAlreadyRegistered type="joinRequest" />
+          )}
           <FormButtons
             isLastPage={isLastPage}
             isUnhappyPath={isUnhappyPath}
