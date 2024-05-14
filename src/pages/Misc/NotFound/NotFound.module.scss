@@ -3,4 +3,16 @@
 .container {
   @include g.page-container;
   padding: 40px 120px;
+
+  @include g.md-breakpoint {
+    padding: 30px 90px;
+  }
+
+  @include g.sm-breakpoint {
+    padding: 20px;
+  }
+
+  @include g.xs-breakpoint {
+    padding: 10px;
+  }
 }

@@ -7,6 +7,14 @@
   max-width: 350px;
   flex: 0 0 100%;
 
+  @include g.sm-breakpoint {
+    padding: 15px;
+  }
+
+  @include g.xs-breakpoint {
+    padding: 10px;
+  }
+
   h2,
   p {
     margin-bottom: 40px;

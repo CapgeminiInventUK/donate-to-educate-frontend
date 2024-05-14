@@ -5,6 +5,7 @@ import { CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
 import { JoinRequest } from '@/types/api';
 import Button from '@/components/Button/Button';
 import styles from './JoinRequests.module.scss';
+import './antDesignOverrides.scss';
 import dayjs from 'dayjs';
 import { StageState } from '@/types/data';
 import { JoinRequestsProps } from '@/types/props';
