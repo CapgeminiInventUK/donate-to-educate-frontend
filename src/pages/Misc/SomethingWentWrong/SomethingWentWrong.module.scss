@@ -3,6 +3,10 @@
 .container {
   @include g.page-container;
   padding: 40px 120px;
+
+  @include g.sm-breakpoint {
+    padding: 20px;
+  }
 }
 
 .fullContainer {
@@ -12,4 +16,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @include g.sm-breakpoint {
+    padding: 0 20px;
+  }
 }

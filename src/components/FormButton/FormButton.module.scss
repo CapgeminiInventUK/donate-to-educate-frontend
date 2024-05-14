@@ -12,10 +12,22 @@
   display: flex;
   align-items: center;
   z-index: 100;
+
+  @include g.lg-breakpoint {
+    line-height: 16px;
+  }
+
+  @include g.sm-breakpoint {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .text {
   padding: 8px 0 8px 0;
+  @include g.sm-breakpoint {
+    padding: 0;
+  }
 }
 
 .formButtonDarkBlue {
@@ -83,12 +95,6 @@
   box-shadow: 2px 2px 0 2px g.$form-button-grey-border;
   background: g.$form-button-grey-background;
   color: g.$form-button-grey-text;
-}
-
-@media only screen and (max-width: g.$screen-large) {
-  %button {
-    line-height: 16px;
-  }
 }
 
 .fullWidth {

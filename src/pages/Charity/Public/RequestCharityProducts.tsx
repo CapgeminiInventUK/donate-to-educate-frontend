@@ -82,12 +82,23 @@ const getTextContent = (
 };
 
 const RequestCharityProducts: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; id: string; name: string }>(
-    Paths.HOME
-  );
-  const { type, id, name } = state;
+  const { state } = useLocationStateOrRedirect<{
+    type: ItemsIconType;
+    id: string;
+    name: string;
+    postcode?: string;
+  }>(Paths.HOME);
+  const { type, id, name, postcode } = state;
 
-  return <RequestItems {...getTextContent(type)} organisationType="charity" id={id} name={name} />;
+  return (
+    <RequestItems
+      {...getTextContent(type)}
+      organisationType="charity"
+      id={id}
+      name={name}
+      postcode={postcode}
+    />
+  );
 };
 
 export default RequestCharityProducts;

@@ -131,7 +131,13 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'tick', profile: request, name: organisationName, id },
+                      state: {
+                        type: 'tick',
+                        profile: request,
+                        name: organisationName,
+                        id,
+                        postcode,
+                      },
                     })
                   }
                 />
@@ -148,7 +154,13 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'heart', profile: donate, name: organisationName, id },
+                      state: {
+                        type: 'heart',
+                        profile: donate,
+                        name: organisationName,
+                        id,
+                        postcode,
+                      },
                     })
                   }
                 />
@@ -168,7 +180,13 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   }
                   onClick={() =>
                     navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: { type: 'plus', profile: excess, name: organisationName, id },
+                      state: {
+                        type: 'plus',
+                        profile: excess,
+                        name: organisationName,
+                        id,
+                        postcode,
+                      },
                     })
                   }
                 />

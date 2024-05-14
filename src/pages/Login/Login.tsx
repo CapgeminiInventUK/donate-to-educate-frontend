@@ -28,7 +28,7 @@ const Login: FC = () => {
             <FormButton
               theme="formButtonDarkBlue"
               useArrow={false}
-              text={'Sign In'}
+              text={'Sign in'}
               onClick={() => {
                 navigate(Paths.SIGN_IN);
               }}

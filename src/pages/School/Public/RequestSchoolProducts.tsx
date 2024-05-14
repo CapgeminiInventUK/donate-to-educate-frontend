@@ -83,11 +83,22 @@ const getTextContent = (
 };
 
 const RequestSchoolProducts: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; id: string; name: string }>(
-    Paths.HOME
+  const { state } = useLocationStateOrRedirect<{
+    type: ItemsIconType;
+    id: string;
+    name: string;
+    postcode?: string;
+  }>(Paths.HOME);
+  const { type, id, name, postcode } = state;
+  return (
+    <RequestItems
+      {...getTextContent(type)}
+      organisationType="school"
+      id={id}
+      name={name}
+      postcode={postcode}
+    />
   );
-  const { type, id, name } = state;
-  return <RequestItems {...getTextContent(type)} organisationType="school" id={id} name={name} />;
 };
 
 export default RequestSchoolProducts;

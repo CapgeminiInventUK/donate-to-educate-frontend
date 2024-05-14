@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './FindSchool.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { Link } from 'react-router-dom';
@@ -24,9 +24,9 @@ const FindSchool: FC = () => {
     Paths.FIND_YOUR_COMMUNITY
   );
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [`getSchoolsNearby-${state.postcode}-${maxDistance}-request`],
-    enabled: hasState,
+    enabled: true,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyWithProfileQuery>>({
         query: getSchoolsNearbyWithProfile,
@@ -40,6 +40,10 @@ const FindSchool: FC = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    void refetch();
+  }, [refetch]);
 
   if (isLoading || !hasState) {
     return <Spinner />;
@@ -64,7 +68,6 @@ const FindSchool: FC = () => {
           type="school"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
-          hideNotJoined={true}
         />
         <span
           className={styles.expander}

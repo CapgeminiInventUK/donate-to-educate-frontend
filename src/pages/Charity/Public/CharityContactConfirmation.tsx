@@ -16,7 +16,7 @@ const CharityContactConfirmation: FC = () => {
         <h2>{state.name} have got your message</h2>
         <p>They&apos;ll contact you to arrange the next steps.</p>
         <LogoWhite className={styles.logo} />
-        <Link to={Paths.HOME}>Return to homepage</Link>
+        <Link to={Paths.CHARITY_DASHBOARD}>Return to profile</Link>
       </div>
     </div>
   );

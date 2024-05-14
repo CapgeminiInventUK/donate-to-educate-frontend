@@ -433,6 +433,7 @@ export interface ItemSelectionProps {
   id: string;
   name: string;
   previewMode?: boolean;
+  postcode?: string;
 }
 
 export interface AdminDashboardCardProps {
@@ -457,6 +458,7 @@ export interface RequestItemsProps {
   organisationType: 'school' | 'charity';
   id: string;
   name: string;
+  postcode?: string;
 }
 
 export interface DonateAndExcessProps {
@@ -526,6 +528,7 @@ export interface ProductsTableProps {
     | 'Product types needed';
   postcode?: string;
   hideNotJoined?: boolean;
+  hideNoProducts?: boolean;
 }
 
 export interface FindCharityTableProps {
