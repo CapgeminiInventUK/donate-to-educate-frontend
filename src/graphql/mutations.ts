@@ -80,6 +80,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $charityAddress: String
   $aboutCharity: String
   $urn: String
+  $postcode: String
 ) {
   insertJoinRequest(
     name: $name
@@ -93,6 +94,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     charityAddress: $charityAddress
     aboutCharity: $aboutCharity
     urn: $urn
+    postcode: $postcode
   )
 }
 ` as GeneratedMutation<

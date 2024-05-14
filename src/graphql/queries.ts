@@ -220,6 +220,7 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     charityAddress
     aboutCharity
     urn
+    postcode
     __typename
   }
 }
@@ -401,6 +402,7 @@ export const getSchoolJoinRequestsByLa =
     charityAddress
     aboutCharity
     urn
+    postcode
     __typename
   }
 }
@@ -425,6 +427,7 @@ export const getCharityJoinRequestsByLa =
     charityAddress
     aboutCharity
     urn
+    postcode
     __typename
   }
 }

@@ -118,6 +118,7 @@ type JoinRequest {
   charityAddress: String
   aboutCharity: String
   urn: String
+  postcode: String
 }
 
 type ItemQuery {
@@ -268,6 +269,7 @@ type Mutation {
     charityAddress: String
     aboutCharity: String
     urn: String
+    postcode: String
   ): Boolean!
 
   insertLocalAuthorityRegisterRequest(

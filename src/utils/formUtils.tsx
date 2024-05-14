@@ -162,11 +162,19 @@ export const getValueFromOptionsByLabel = (
   return options.find(({ label = '' }) => label === valueLabel);
 };
 
-export const getFormDataForSubmission = (
-  formData: Record<FormSections, FormDataItem[]>,
-  type: FormNames,
-  urn?: string
-): SubmittedFormData => {
+interface getFormDataForSubmissionProps {
+  formData: Record<FormSections, FormDataItem[]>;
+  type: FormNames;
+  urn?: string;
+  postcode?: string;
+}
+
+export const getFormDataForSubmission = ({
+  formData,
+  type,
+  urn,
+  postcode,
+}: getFormDataForSubmissionProps): SubmittedFormData => {
   const joinRequestVariables: SubmittedFormData = {
     name: '',
     email: '',
@@ -176,6 +184,7 @@ export const getFormDataForSubmission = (
     charityName: undefined,
     charityAddress: undefined,
     aboutCharity: undefined,
+    postcode,
     urn,
   };
 

@@ -150,6 +150,7 @@ export interface SubmittedFormData {
   aboutCharity?: string | null;
   message?: string;
   urn?: string;
+  postcode?: string;
 }
 
 export interface RequestFormState {
