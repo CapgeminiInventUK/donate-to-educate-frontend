@@ -17,8 +17,10 @@ const CookieBanner: FC = () => {
         <p>
           <span>We use cookies in the delivery of our services.</span> To learn about the cookies we
           use and information about your preferences and opt-out choices, please{' '}
-          <Link to={Paths.COOKIE_POLICY}>click here</Link>. By using our platform you agree to use
-          of cookies
+          <Link className={styles.linkText} to={Paths.COOKIE_POLICY}>
+            click here
+          </Link>
+          . By using our platform you agree to use of cookies
         </p>
         <div className={styles.buttons}>
           <Button
