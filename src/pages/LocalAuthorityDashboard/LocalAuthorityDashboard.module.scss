@@ -113,4 +113,16 @@
 .subContainer {
   @include g.page-container;
   padding: 4px 100px 50px;
+
+  @include g.md-breakpoint {
+    padding: 40px;
+  }
+
+  @include g.sm-breakpoint {
+    padding: 15px;
+  }
+
+  @include g.xs-breakpoint {
+    padding: 5px;
+  }
 }
