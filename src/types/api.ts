@@ -361,6 +361,15 @@ export type AcceptPrivacyPolicyMutation = {
   acceptPrivacyPolicy: boolean;
 };
 
+export type DeleteSignUpDataMutationVariables = {
+  id: string;
+  email: string;
+};
+
+export type DeleteSignUpDataMutation = {
+  deleteSignUpData?: boolean | null;
+};
+
 export type GetSchoolQueryVariables = {
   name: string;
   urn: string;
