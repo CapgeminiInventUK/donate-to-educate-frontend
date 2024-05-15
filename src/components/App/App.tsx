@@ -12,7 +12,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { ConfigProvider } from 'antd';
-import CookieBanner from '../CookieBanner/CookieBanner';
 import ErrorBoundaryWithLocation from '../ErrorBoundary/ErrorBoundaryWithLocation';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import { useStore } from '@/stores/useStore';
@@ -66,7 +65,7 @@ const App = (): JSX.Element => {
                     />
                   ))}
                 </Routes>
-                <CookieBanner />
+                {/* <CookieBanner /> */}
               </Router>
             </ErrorBoundary>
           </Suspense>

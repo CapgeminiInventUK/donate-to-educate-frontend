@@ -6,7 +6,7 @@ import Paths from '@/config/paths';
 
 const PrivacyPolicy: FC = () => {
   return (
-    <FooterPage title="Privacy policy">
+    <FooterPage title="Privacy policy" homepageLink={false}>
       <h2>Overview</h2>
       <p>
         If you contact us or use our services, we may need to record information about you. General

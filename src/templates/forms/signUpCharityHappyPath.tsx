@@ -232,7 +232,7 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
     ],
   },
   {
-    header: 'Check your Answers',
+    header: 'Check your answers',
     formComponents: [
       {
         componentType: ComponentType.CYA,

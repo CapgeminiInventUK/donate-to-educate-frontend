@@ -25,6 +25,7 @@ export type JoinRequest = {
   charityAddress?: string | null;
   aboutCharity?: string | null;
   urn?: string | null;
+  postcode?: string | null;
 };
 
 export type School = {
@@ -277,6 +278,7 @@ export type InsertJoinRequestMutationVariables = {
   charityAddress?: string | null;
   aboutCharity?: string | null;
   urn?: string | null;
+  postcode?: string | null;
 };
 
 export type InsertJoinRequestMutation = {
@@ -358,6 +360,15 @@ export type AcceptPrivacyPolicyMutationVariables = {
 
 export type AcceptPrivacyPolicyMutation = {
   acceptPrivacyPolicy: boolean;
+};
+
+export type DeleteSignUpDataMutationVariables = {
+  id: string;
+  email: string;
+};
+
+export type DeleteSignUpDataMutation = {
+  deleteSignUpData?: boolean | null;
 };
 
 export type GetSchoolQueryVariables = {
@@ -598,6 +609,7 @@ export type GetJoinRequestsQuery = {
     charityAddress?: string | null;
     aboutCharity?: string | null;
     urn?: string | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -804,6 +816,7 @@ export type GetSchoolJoinRequestsByLaQuery = {
     charityAddress?: string | null;
     aboutCharity?: string | null;
     urn?: string | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -828,6 +841,7 @@ export type GetCharityJoinRequestsByLaQuery = {
     charityAddress?: string | null;
     aboutCharity?: string | null;
     urn?: string | null;
+    postcode?: string | null;
   }>;
 };
 

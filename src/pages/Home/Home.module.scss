@@ -119,6 +119,10 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  @include g.sm-breakpoint {
+    padding: 30px 15px;
+  }
 }
 
 .howItWorks {

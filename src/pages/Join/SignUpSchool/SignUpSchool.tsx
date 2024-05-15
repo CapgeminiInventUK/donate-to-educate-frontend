@@ -195,18 +195,20 @@ const SignUpSchool: FC = () => {
       const refinedData = getSchoolCyaData(formData);
       refinedData &&
         setFormDataForSubmission(
-          getFormDataForSubmission(
-            refinedData,
-            FormNames.SCHOOL,
-            String(formData[0].fullValue.value)
-          )
+          getFormDataForSubmission({
+            formData: refinedData,
+            type: FormNames.SCHOOL,
+            urn: String(formData[0].fullValue.value),
+          })
         );
     }
 
     if (isUnhappyPath && pageNumber === 2) {
       const refinedData = getRegisterLocalAuthorityFormData(formData);
       refinedData &&
-        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.AUTHORITY));
+        setFormDataForSubmission(
+          getFormDataForSubmission({ formData: refinedData, type: FormNames.AUTHORITY })
+        );
     }
     setIsSchoolRegistered(!!registered);
     setHasActiveJoinRequest(!!hasJoinRequest);

@@ -32,6 +32,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 40px;
     }
   }
 
@@ -53,6 +54,10 @@
     padding: 1px;
     padding-left: 20px;
     margin-top: 40px;
+
+    p {
+      margin: 5px 0;
+    }
   }
 
   .contactInfo {
@@ -60,6 +65,10 @@
     align-items: center;
     gap: 10px;
     height: 26px;
+
+    .item {
+      word-break: break-word;
+    }
   }
 
   .infoToolTip {

@@ -35,6 +35,10 @@
 
 .input {
   @include g.input;
+
+  @include g.md-breakpoint {
+    width: 60vw;
+  }
 }
 
 .inputLarge {

@@ -10,25 +10,14 @@ import Spinner from '@/components/Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from '@aws-amplify/api-graphql';
-import { GetSignUpDataQuery } from '@/types/api';
+import { DeleteSignUpDataMutation, GetSignUpDataQuery } from '@/types/api';
 import { getSignUpData } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
 import { useStore } from '@/stores/useStore';
 import Card from '@/components/Card/Card';
-
-interface SignUpParameters {
-  password: string;
-  email: string;
-  type: string;
-  name: string;
-  id: string;
-}
-
-interface ConfirmSignUpParameters {
-  email: string;
-  code: string;
-}
+import { deleteSignUpData } from '@/graphql/mutations';
+import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({
@@ -88,6 +77,21 @@ const NewUser: FC = () => {
     },
   });
 
+  const { refetch } = useQuery({
+    queryKey: [`remove-sign-up-data-${id}`],
+    queryFn: async () => {
+      await client.graphql<GraphQLQuery<DeleteSignUpDataMutation>>({
+        query: deleteSignUpData,
+        variables: {
+          id,
+          email,
+        },
+      });
+
+      return data;
+    },
+  });
+
   useEffect(() => {
     if (submitted && !isLoading) {
       const { email, type, name, nameId } = data?.getSignUpData ?? {};
@@ -104,7 +108,7 @@ const NewUser: FC = () => {
 
   useEffect(() => {
     if (submitCode && !isLoading) {
-      const email = String(data?.getSignUpData?.email);
+      const email = String(data?.getSignUpData?.email).toLowerCase();
       if (email) {
         handleConfirmSignUp({ email, code: verificationCode })
           .then((step) => setStep(step))
@@ -117,9 +121,8 @@ const NewUser: FC = () => {
   }, [submitCode, data?.getSignUpData?.email, verificationCode, isLoading]);
 
   if (step === 'DONE') {
-    // TODO when done need to delete the entry from the sign up table.
     // TODO auto sign in?
-
+    void refetch();
     void useStore
       .getState()
       .logout()
@@ -135,7 +138,7 @@ const NewUser: FC = () => {
     return <ErrorBanner />;
   }
 
-  const email = data?.getSignUpData?.email;
+  const email = data?.getSignUpData?.email?.toLowerCase();
 
   if (email === undefined) {
     return <Navigate to={Paths.HOME} />;

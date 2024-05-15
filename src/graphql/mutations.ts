@@ -80,6 +80,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   $charityAddress: String
   $aboutCharity: String
   $urn: String
+  $postcode: String
 ) {
   insertJoinRequest(
     name: $name
@@ -93,6 +94,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
     charityAddress: $charityAddress
     aboutCharity: $aboutCharity
     urn: $urn
+    postcode: $postcode
   )
 }
 ` as GeneratedMutation<
@@ -199,3 +201,11 @@ export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   APITypes.AcceptPrivacyPolicyMutationVariables,
   APITypes.AcceptPrivacyPolicyMutation
 >;
+export const deleteSignUpData =
+  /* GraphQL */ `mutation DeleteSignUpData($id: String!, $email: String!) {
+  deleteSignUpData(id: $id, email: $email)
+}
+` as GeneratedMutation<
+    APITypes.DeleteSignUpDataMutationVariables,
+    APITypes.DeleteSignUpDataMutation
+  >;

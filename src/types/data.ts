@@ -150,6 +150,7 @@ export interface SubmittedFormData {
   aboutCharity?: string | null;
   message?: string;
   urn?: string;
+  postcode?: string;
 }
 
 export interface RequestFormState {
@@ -217,3 +218,16 @@ export interface Banner {
 }
 
 export type ResultType = 'declined' | 'approved';
+
+export interface SignUpParameters {
+  password: string;
+  email: string;
+  type: string;
+  name: string;
+  id: string;
+}
+
+export interface ConfirmSignUpParameters {
+  email: string;
+  code: string;
+}

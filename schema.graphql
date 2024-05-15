@@ -119,6 +119,7 @@ type JoinRequest {
   charityAddress: String
   aboutCharity: String
   urn: String
+  postcode: String
 }
 
 type ItemQuery {
@@ -269,6 +270,7 @@ type Mutation {
     charityAddress: String
     aboutCharity: String
     urn: String
+    postcode: String
   ): Boolean!
 
   insertLocalAuthorityRegisterRequest(
@@ -304,6 +306,8 @@ type Mutation {
   deleteSchoolProfile(name: String!, id: String!): Boolean
   deleteCharityProfile(name: String!, id: String!): Boolean
   acceptPrivacyPolicy(name: String!, nameId: String!, email: String!): Boolean!
+
+  deleteSignUpData(id: String!, email: String!): Boolean
 }
 
 schema {

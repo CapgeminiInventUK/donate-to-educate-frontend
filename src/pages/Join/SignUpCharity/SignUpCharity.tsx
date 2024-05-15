@@ -20,6 +20,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { getLocalAuthorities } from '@/graphql/queries';
 import {
   checkYourAnswersDataMap,
+  findValueFromFormData,
   getFormDataForSubmission,
   getRegisterLocalAuthorityFormData,
 } from '@/utils/formUtils';
@@ -81,6 +82,7 @@ const SignUpCharity: FC = () => {
           charityName: formDataForSubmission?.charityName,
           charityAddress: formDataForSubmission?.charityAddress,
           aboutCharity: formDataForSubmission?.aboutCharity,
+          postcode: formDataForSubmission?.postcode,
         },
       });
       return result;
@@ -150,7 +152,9 @@ const SignUpCharity: FC = () => {
     if (isUnhappyPath && pageNumber === 3) {
       const refinedData = getRegisterLocalAuthorityFormData(formData);
       refinedData &&
-        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.AUTHORITY));
+        setFormDataForSubmission(
+          getFormDataForSubmission({ formData: refinedData, type: FormNames.AUTHORITY })
+        );
     }
   }, [pageNumber, formData, authorityNotRegistered, setHappyPathTemplate, isUnhappyPath]);
 
@@ -166,8 +170,11 @@ const SignUpCharity: FC = () => {
   useEffect(() => {
     if (pageNumber === 6) {
       const refinedData = checkYourAnswersDataMap(FormNames.CHARITY, formData);
+      const postcode = findValueFromFormData(formData, 'Postcode');
       refinedData &&
-        setFormDataForSubmission(getFormDataForSubmission(refinedData, FormNames.CHARITY));
+        setFormDataForSubmission(
+          getFormDataForSubmission({ formData: refinedData, type: FormNames.CHARITY, postcode })
+        );
     }
     formData[1]?.value && setSelectedLocalAuthority(String(formData[1].value));
   }, [pageNumber, formData]);

@@ -14,8 +14,13 @@
     color: g.$primary-dark-blue;
   }
 
-  .bold {
-    font-weight: 700;
+  .link {
+    text-decoration: underline;
+    color: g.$link-blue;
     font-size: 18px;
+  }
+
+  .homeIcon {
+    color: g.$link-blue;
   }
 }
