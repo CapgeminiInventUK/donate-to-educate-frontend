@@ -104,7 +104,7 @@ const NewUser: FC = () => {
 
   useEffect(() => {
     if (submitCode && !isLoading) {
-      const email = String(data?.getSignUpData?.email);
+      const email = String(data?.getSignUpData?.email).toLowerCase();
       if (email) {
         handleConfirmSignUp({ email, code: verificationCode })
           .then((step) => setStep(step))
@@ -135,7 +135,7 @@ const NewUser: FC = () => {
     return <ErrorBanner />;
   }
 
-  const email = data?.getSignUpData?.email;
+  const email = data?.getSignUpData?.email?.toLowerCase();
 
   if (email === undefined) {
     return <Navigate to={Paths.HOME} />;
