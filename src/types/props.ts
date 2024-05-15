@@ -209,6 +209,7 @@ export interface CarouselProps {
 
 export interface FooterPageProps {
   title: string;
+  homepageLink?: boolean;
   children: JSX.Element[] | JSX.Element;
 }
 

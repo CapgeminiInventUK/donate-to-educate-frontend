@@ -376,13 +376,6 @@ exports[`renders correctly 1`] = `
       <p>
         We may update this notice from time to time. We advise you to review this notice periodically. The latest version will always be available on our website with a clear “last updated” date displayed.
       </p>
-      <a
-        className="home"
-        href="/"
-        onClick={[Function]}
-      >
-        Return to homepage
-      </a>
     </div>
   </div>
 </div>
