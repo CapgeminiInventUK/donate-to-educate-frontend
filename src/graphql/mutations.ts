@@ -201,3 +201,11 @@ export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   APITypes.AcceptPrivacyPolicyMutationVariables,
   APITypes.AcceptPrivacyPolicyMutation
 >;
+export const deleteSignUpData =
+  /* GraphQL */ `mutation DeleteSignUpData($id: String!, $email: String!) {
+  deleteSignUpData(id: $id, email: $email)
+}
+` as GeneratedMutation<
+    APITypes.DeleteSignUpDataMutationVariables,
+    APITypes.DeleteSignUpDataMutation
+  >;
