@@ -22,6 +22,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
   postcode,
   hideNotJoined,
   hideNoProducts,
+  hideStatus = false,
 }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
     },
   ];
 
-  if (type === 'school') {
+  if (type === 'school' && !hideStatus) {
     columns.splice(1, 0, {
       title: 'Status',
       dataIndex: 'registered',

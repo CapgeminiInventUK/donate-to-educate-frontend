@@ -108,6 +108,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
           productsColumnHeader={productsColumnHeader}
           hideNotJoined={true}
           hideNoProducts={true}
+          hideStatus={true}
         />
 
         <h3>Charities</h3>
