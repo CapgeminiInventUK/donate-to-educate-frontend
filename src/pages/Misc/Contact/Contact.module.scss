@@ -7,10 +7,9 @@
     width: 80%;
     margin: auto;
     margin-bottom: 66px;
-    padding-top: 66px;
 
     h1 {
-      padding: 0 0 40px 0;
+      padding: 0 0 26px 0;
       margin: 0;
     }
 
@@ -45,12 +44,8 @@
 }
 
 @media only screen and (max-width: calc(g.$screen-medium)) {
-  .title {
-    display: none;
-  }
-
   .container {
-    padding: 17px 19px;
+    padding: 0px 19px;
 
     .contentContainer {
       width: 100%;
