@@ -159,13 +159,6 @@ exports[`renders correctly 1`] = `
         <br />
         Vat reg. No. 802501090
       </p>
-      <a
-        className="home"
-        href="/"
-        onClick={[Function]}
-      >
-        Return to homepage
-      </a>
     </div>
   </div>
 </div>
