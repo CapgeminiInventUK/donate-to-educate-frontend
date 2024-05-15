@@ -100,6 +100,13 @@ exports[`renders correctly 1`] = `
       <p>
         This statement was prepared on 31 August 2023. It was last reviewed on 31 August 2023. Information on accessibility testing will be published on this page after testing has been carried out.
       </p>
+      <a
+        className="home"
+        href="/"
+        onClick={[Function]}
+      >
+        Return to homepage
+      </a>
     </div>
   </div>
 </div>
