@@ -5,7 +5,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '@/components/Spinner/Spinner';
 import { SummaryPageColour, FormErrors, ComponentType } from '@/types/data';
-import { validateFormInputField } from '@/utils/formUtils';
+import { formatPhoneNumber, validateFormInputField } from '@/utils/formUtils';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Card from '../Card/Card';
 import { useQueryClient } from '@tanstack/react-query';
@@ -121,6 +121,15 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     setFormErrors({});
+
+    const phoneNumberIndex = formData.findIndex(({ field }) => field.toLowerCase() === 'phone');
+    const phoneNumber = formData[phoneNumberIndex];
+    if (phoneNumber) {
+      const formattedPhoneNumber = formatPhoneNumber(phoneNumber.value as string);
+      if (formattedPhoneNumber) {
+        formData[phoneNumberIndex].value = formattedPhoneNumber;
+      }
+    }
 
     if (onLocalAuthorityRegisterRequest) {
       return onLocalAuthorityRegisterRequest();

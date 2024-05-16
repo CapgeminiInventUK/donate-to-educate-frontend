@@ -9,7 +9,7 @@ import {
 import { SingleValue } from 'react-select';
 import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
-import isMobilePhone from 'validator/lib/isMobilePhone';
+import { phone } from 'phone';
 
 const excludedValues = [
   'First name',
@@ -54,7 +54,10 @@ export const validateFormInputField = (
         }
         break;
       case 'phone':
-        if (!isMobilePhone(value, 'en-GB')) {
+        if (
+          !/^[+]?[0-9\s]+$/.test(value) || // Regex to check inputted phone number contains only digits, spaces or a "+" at the beginning
+          !phone(value, { country: 'GBR', validateMobilePrefix: false }).isValid
+        ) {
           return FormErrors.PHONE_ERROR_MESSAGE;
         }
         break;
@@ -67,6 +70,13 @@ export const validateFormInputField = (
     }
   }
   return null;
+};
+
+export const formatPhoneNumber = (phoneNumber: string): string | null => {
+  return phone(phoneNumber, {
+    country: 'GBR',
+    validateMobilePrefix: false,
+  }).phoneNumber;
 };
 
 const addressBuilder = (formData: FormDataItem[]): string => {
