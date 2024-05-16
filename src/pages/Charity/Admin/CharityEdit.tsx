@@ -156,6 +156,9 @@ const CharityEdit: FC = () => {
     setSaveDisabled(false);
   }, [items]);
 
+  {
+    /* // TODO refactor this and the schoolEdit in a later iteration (this use exists to setSaveDisabled at the end of the process queue, once items have all been set) */
+  }
   useEffect(() => {
     setTimeout(() => {
       setSaveDisabled(true);
