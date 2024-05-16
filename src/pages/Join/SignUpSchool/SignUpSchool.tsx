@@ -52,8 +52,7 @@ const SignUpSchool: FC = () => {
             localAuthority
             postcode
             registered
-            isLocalAuthorityRegistered
-            hasJoinRequest
+            registrationState
           }
         }`,
       });
@@ -116,23 +115,14 @@ const SignUpSchool: FC = () => {
 
   useEffect(() => {
     const options = data?.getSchools.map(
-      ({
-        urn,
-        name,
-        localAuthority,
-        isLocalAuthorityRegistered,
-        postcode,
-        registered,
-        hasJoinRequest,
-      }) => ({
+      ({ urn, name, localAuthority, registrationState, postcode, registered }) => ({
         value: urn,
         label: `${name} - ${postcode}`,
         name,
         localAuthority: localAuthority && localAuthority,
-        isLocalAuthorityRegistered,
+        registrationState,
         postcode: String(postcode),
         registered,
-        hasJoinRequest,
       })
     );
     setSchoolOptions(options ?? []);
@@ -181,9 +171,9 @@ const SignUpSchool: FC = () => {
       return;
     }
     const {
-      fullValue: { isLocalAuthorityRegistered, registered, localAuthority, hasJoinRequest },
+      fullValue: { registrationState, registered, localAuthority },
     } = formData[0];
-    if (!isLocalAuthorityRegistered && !cannotFindSchoolState) {
+    if (registrationState === 'laNotRegistered' && !cannotFindSchoolState) {
       authorityNotRegistered();
     } else if (!cannotFindSchoolState) {
       setHappyPathTemplate();
@@ -211,7 +201,7 @@ const SignUpSchool: FC = () => {
         );
     }
     setIsSchoolRegistered(!!registered);
-    setHasActiveJoinRequest(!!hasJoinRequest);
+    setHasActiveJoinRequest(registrationState === 'hasJoinRequest');
   }, [
     pageNumber,
     formData,

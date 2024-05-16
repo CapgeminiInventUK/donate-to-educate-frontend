@@ -33,6 +33,7 @@ export const getSchool = /* GraphQL */ `query GetSchool($name: String!, $urn: St
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
@@ -62,6 +63,7 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
@@ -91,6 +93,7 @@ export const getSchools = /* GraphQL */ `query GetSchools {
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
@@ -160,6 +163,7 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
@@ -193,6 +197,7 @@ export const getRegisteredSchoolsByLa =
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
@@ -366,6 +371,7 @@ export const getSchoolsNearby =
       __typename
     }
     hasJoinRequest
+    registrationState
     __typename
   }
 }
