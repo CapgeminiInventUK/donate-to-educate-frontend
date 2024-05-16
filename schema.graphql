@@ -22,6 +22,8 @@ type School {
   website: String
   distance: Float
   profile: [SchoolProfile]
+  hasJoinRequest: Boolean
+  registrationState: String
 }
 
 type Charity {

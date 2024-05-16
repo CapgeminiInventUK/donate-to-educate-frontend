@@ -3,11 +3,17 @@ import { HomeOutlined } from '@ant-design/icons';
 import styles from './SchoolAlreadyRegistered.module.scss';
 import Paths from '@/config/paths';
 import { FC } from 'react';
+import { SchoolAlreadyRegisteredProps } from '@/types/props';
 
-const SchoolAlreadyRegistered: FC = () => {
+const SchoolAlreadyRegistered: FC<SchoolAlreadyRegisteredProps> = ({ type }) => {
+  const header =
+    type === 'registered'
+      ? 'Your school has already joined Donate to Educate'
+      : 'Someone at your school has already applied to join Donate to Educate';
+
   return (
     <div className={styles.container}>
-      <h2>Your school has already joined Donate to Educate</h2>
+      <h2>{header}</h2>
       <p>
         For now, one person in each school can join Donate to Educate. In the future, more
         colleagues will be able to join.

@@ -255,6 +255,7 @@ export interface MultiStepFormProps {
     fullValue?: Record<string, string | boolean>
   ) => void;
   isSchoolRegistered?: boolean;
+  hasActiveJoinRequest?: boolean;
   refetch: (
     options?: RefetchOptions | undefined
   ) => Promise<
@@ -580,4 +581,8 @@ export interface ErrorPageProps {
   icon: JSX.Element;
   title: string;
   message: JSX.Element;
+}
+
+export interface SchoolAlreadyRegisteredProps {
+  type: 'registered' | 'joinRequest';
 }

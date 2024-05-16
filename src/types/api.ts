@@ -45,6 +45,8 @@ export type School = {
   website?: string | null;
   distance?: number | null;
   profile?: Array<SchoolProfile | null> | null;
+  hasJoinRequest?: boolean | null;
+  registrationState?: string | null;
 };
 
 export type SchoolProfile = {
@@ -400,6 +402,8 @@ export type GetSchoolQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   };
 };
 
@@ -432,6 +436,8 @@ export type GetSchoolsByLaQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   }>;
 };
 
@@ -462,6 +468,8 @@ export type GetSchoolsQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   }>;
 };
 
@@ -538,6 +546,8 @@ export type GetRegisteredSchoolsQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   }>;
 };
 
@@ -570,6 +580,8 @@ export type GetRegisteredSchoolsByLaQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   }>;
 };
 
@@ -760,6 +772,8 @@ export type GetSchoolsNearbyQuery = {
       postcode: string;
       about?: string | null;
     } | null> | null;
+    hasJoinRequest?: boolean | null;
+    registrationState?: string | null;
   }>;
 };
 

@@ -35,6 +35,7 @@ const SignUpSchool: FC = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [schoolOptions, setSchoolOptions] = useState<DropdownOption[]>([]);
   const [isSchoolRegistered, setIsSchoolRegistered] = useState(false);
+  const [hasActiveJoinRequest, setHasActiveJoinRequest] = useState(false);
   const [selectedLocalAuthority, setSelectedLocalAuthority] = useState('');
   const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
   const [isUnhappyPath, setIsUnhappyPath] = useState(false);
@@ -51,7 +52,7 @@ const SignUpSchool: FC = () => {
             localAuthority
             postcode
             registered
-            isLocalAuthorityRegistered
+            registrationState
           }
         }`,
       });
@@ -114,12 +115,12 @@ const SignUpSchool: FC = () => {
 
   useEffect(() => {
     const options = data?.getSchools.map(
-      ({ urn, name, localAuthority, isLocalAuthorityRegistered, postcode, registered }) => ({
+      ({ urn, name, localAuthority, registrationState, postcode, registered }) => ({
         value: urn,
         label: `${name} - ${postcode}`,
         name,
         localAuthority: localAuthority && localAuthority,
-        isLocalAuthorityRegistered,
+        registrationState,
         postcode: String(postcode),
         registered,
       })
@@ -170,9 +171,9 @@ const SignUpSchool: FC = () => {
       return;
     }
     const {
-      fullValue: { isLocalAuthorityRegistered, registered, localAuthority },
+      fullValue: { registrationState, registered, localAuthority },
     } = formData[0];
-    if (!isLocalAuthorityRegistered && !cannotFindSchoolState) {
+    if (registrationState === 'laNotRegistered' && !cannotFindSchoolState) {
       authorityNotRegistered();
     } else if (!cannotFindSchoolState) {
       setHappyPathTemplate();
@@ -200,6 +201,7 @@ const SignUpSchool: FC = () => {
         );
     }
     setIsSchoolRegistered(!!registered);
+    setHasActiveJoinRequest(registrationState === 'hasJoinRequest');
   }, [
     pageNumber,
     formData,
@@ -241,6 +243,7 @@ const SignUpSchool: FC = () => {
           isLoading={isLoading}
           onChange={onChange}
           isSchoolRegistered={isSchoolRegistered}
+          hasActiveJoinRequest={hasActiveJoinRequest}
           refetch={refetch}
           setHappyPathTemplate={setHappyPathTemplate}
         />
