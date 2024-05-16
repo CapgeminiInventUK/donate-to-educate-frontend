@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { ItemsIconType, getItemsIcon, getSectionsIcon } from './getIcons';
+import { getItemsIcon, getSectionsIcon } from './getIcons';
 import { convertNumberToCategory } from './getFullItemList';
-
-interface ItemListProps {
-  type: ItemsIconType;
-  items?: Record<number, string[]>;
-}
+import { ItemListProps } from '@/types/props';
 
 const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
   return (

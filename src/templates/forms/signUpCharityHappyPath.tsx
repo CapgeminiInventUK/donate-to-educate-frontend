@@ -19,7 +19,7 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
             'agree that we can share your information with your local authority or local council to confirm your identity',
           ],
           secondaryHeading: 'What to expect',
-          secondaryInfoText: `One you give us your details, we will:`,
+          secondaryInfoText: `Once you give us your details, we will:`,
           secondaryListItems: [
             `send you details to your local authority or local council`,
             `your local authority or local council will confirm your identity`,

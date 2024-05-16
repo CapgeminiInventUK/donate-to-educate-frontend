@@ -14,6 +14,10 @@ input[type='checkbox'] {
   border: 2px g.$primary-dark-blue solid;
   border-radius: 1px;
   margin-right: 4px;
+
+  svg {
+    margin-top: 2.5px;
+  }
 }
 
 .checkbox:active {
