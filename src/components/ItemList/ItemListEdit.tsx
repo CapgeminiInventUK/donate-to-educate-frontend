@@ -10,19 +10,20 @@ interface ItemListEditProps {
 }
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
-  const [allSelectedNames, setAllSelectedNames] = useState<string[]>([]);
+  const [allSelectedNames, setAllSelectedNames] = useState<SectionsIconType[]>([]);
 
   useEffect(() => {
-    const selectedSections: string[] = [];
-
-    getFullItemList().forEach(({ name, items: itemsList }) => {
-      const categoryNumber = convertCategoryToNumber(name);
-      const selectedItems = items[categoryNumber] || [];
-
-      if (selectedItems.length === itemsList.length) {
-        selectedSections.push(name);
-      }
-    });
+    const selectedSections = getFullItemList().reduce(
+      (acc: SectionsIconType[], { name, items: itemsList }) => {
+        const categoryNumber = convertCategoryToNumber(name);
+        const selectedItems = items[categoryNumber] || [];
+        if (selectedItems.length === itemsList.length) {
+          acc = [...acc, name];
+        }
+        return acc;
+      },
+      []
+    );
 
     setAllSelectedNames(selectedSections);
   }, [items]);
