@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './ItemList.module.scss';
 import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
 import Checkbox from '../Checkbox/Checkbox';
@@ -10,7 +10,23 @@ interface ItemListEditProps {
 }
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
-  const [allSelectedNames, setAllSelectedNames] = useState<string[]>([]);
+  const [allSelectedNames, setAllSelectedNames] = useState<SectionsIconType[]>([]);
+
+  useEffect(() => {
+    const selectedSections = getFullItemList().reduce(
+      (acc: SectionsIconType[], { name, items: itemsList }) => {
+        const categoryNumber = convertCategoryToNumber(name);
+        const selectedItems = items[categoryNumber] || [];
+        if (selectedItems.length === itemsList.length) {
+          acc = [...acc, name];
+        }
+        return acc;
+      },
+      []
+    );
+
+    setAllSelectedNames(selectedSections);
+  }, [items]);
 
   const removeEmptyItems = (items: Record<number, string[]>): Record<number, string[]> => {
     for (const categoryNumber in items) {
@@ -52,6 +68,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
   return (
     <div className={styles.container}>
       {getFullItemList().map(({ name, items: itemsList }) => {
+        const isAllSelected = allSelectedNames.includes(name);
         return (
           <div key={`${name}-edit`}>
             <div className={styles.sectionHeader}>
@@ -66,6 +83,7 @@ const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {
                 <Checkbox
                   onChange={(checked) => selectAll(checked, name, itemsList)}
                   ariaLabel={`${name}-select-all-edit`}
+                  value={isAllSelected}
                 />
                 <span>Select all</span>
               </li>

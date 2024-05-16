@@ -136,7 +136,7 @@ const CharityEdit: FC = () => {
   const { type, profile } = state;
 
   const [preview, setPreview] = useState(false);
-  const [saveDisabled, setSaveDisabled] = useState(false);
+  const [saveDisabled, setSaveDisabled] = useState(true);
   const [items, setItems] = useState<Record<number, string[]>>(
     JSON.parse(profile?.items ?? '{}') as Record<number, string[]>
   );
@@ -155,6 +155,15 @@ const CharityEdit: FC = () => {
   useEffect(() => {
     setSaveDisabled(false);
   }, [items]);
+
+  {
+    /* // TODO refactor this and the schoolEdit in a later iteration (this use exists to setSaveDisabled at the end of the process queue, once items have all been set) */
+  }
+  useEffect(() => {
+    setTimeout(() => {
+      setSaveDisabled(true);
+    }, 1);
+  }, []);
 
   const openNotification = (): void => {
     setSaveDisabled(true);
@@ -196,9 +205,7 @@ const CharityEdit: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
-      </div>
+      <BackButton theme="blue" />
       <div className={`${styles.banner} ${styles[type]}`}>
         <h1>{banner}</h1>
       </div>
