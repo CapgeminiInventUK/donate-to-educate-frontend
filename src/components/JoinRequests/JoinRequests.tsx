@@ -66,7 +66,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
         );
       },
       render: (text: number): JSX.Element => {
-        return <>{dayjs(text).format('HH:MM DD MMMM YYYY')}</>;
+        return <>{dayjs(text).format('HH:mm DD MMMM YYYY')}</>;
       },
     },
     {
