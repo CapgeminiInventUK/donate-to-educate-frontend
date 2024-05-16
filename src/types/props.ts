@@ -247,6 +247,7 @@ export interface MultiStepFormProps {
   formData: FormDataItem[];
   pageNumber: number;
   setPageNumber: Dispatch<SetStateAction<number>>;
+  setFormSubmitted?: Dispatch<SetStateAction<boolean>>;
   setHappyPathTemplate?: () => void;
   isLoading?: boolean;
   onChange: (

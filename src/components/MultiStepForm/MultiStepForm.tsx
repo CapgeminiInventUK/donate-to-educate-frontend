@@ -29,6 +29,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   isSchoolRegistered,
   hasActiveJoinRequest,
   refetch,
+  setFormSubmitted,
 }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -128,7 +129,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
     }
 
     if (isDeclarationPage) {
-      void refetch();
+      void refetch().then(() => {
+        setFormSubmitted && setFormSubmitted(true);
+      });
     }
 
     setNavigationFromCya(false);

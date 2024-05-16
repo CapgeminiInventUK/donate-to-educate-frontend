@@ -40,8 +40,14 @@ const SignUpSchool: FC = () => {
   const [formDataForSubmission, setFormDataForSubmission] = useState<SubmittedFormData>();
   const [isUnhappyPath, setIsUnhappyPath] = useState(false);
   const [cannotFindSchoolState, setCannotFindSchoolState] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const { data, isLoading, error } = useQuery({
+  const {
+    data,
+    isLoading,
+    error,
+    refetch: schoolsRefetch,
+  } = useQuery({
     queryKey: ['schools'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
@@ -112,6 +118,12 @@ const SignUpSchool: FC = () => {
       return result;
     },
   });
+
+  useEffect(() => {
+    if (formSubmitted) {
+      void schoolsRefetch();
+    }
+  }, [formSubmitted, schoolsRefetch]);
 
   useEffect(() => {
     const options = data?.getSchools.map(
@@ -246,6 +258,7 @@ const SignUpSchool: FC = () => {
           hasActiveJoinRequest={hasActiveJoinRequest}
           refetch={refetch}
           setHappyPathTemplate={setHappyPathTemplate}
+          setFormSubmitted={setFormSubmitted}
         />
       )}
     </div>
