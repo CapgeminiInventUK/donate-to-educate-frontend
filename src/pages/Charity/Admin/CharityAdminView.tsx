@@ -31,7 +31,12 @@ const CharityView: FC = () => {
   const { name, id } = user ?? {};
   const [edit, setEdit] = useState(false);
 
-  const { isLoading, data, isError } = useQuery({
+  const {
+    isLoading,
+    data,
+    isError,
+    refetch: charityProfileRefetch,
+  } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
     enabled: user !== undefined,
     queryFn: async () => {
@@ -156,7 +161,7 @@ const CharityView: FC = () => {
                       setEdit(false);
                       setPostcodeError(undefined);
                       if (postcode !== previousPostcode) {
-                        void refetch();
+                        void refetch().then(() => void charityProfileRefetch());
                       }
                     } else {
                       setPostcodeError('Invalid postcode');

@@ -587,3 +587,8 @@ export interface ErrorPageProps {
 export interface SchoolAlreadyRegisteredProps {
   type: 'registered' | 'joinRequest';
 }
+
+export interface ItemListProps {
+  type: ItemsIconType;
+  items?: Record<number, string[]>;
+}

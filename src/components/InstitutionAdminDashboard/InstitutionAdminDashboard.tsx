@@ -34,7 +34,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     name: organisationName,
     id,
   } = profile;
-  const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\nRequest the things you need ${type === 'school' ? 'or donate products' : ''} to help the next child. ${type === 'school' ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
+  const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\n\nRequest the things you need ${type === 'school' ? 'or donate products' : ''} to help the next child. ${type === 'school' ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
 
   const [banner, setBanner] = useState<Banner>({
     phone: header?.phone ?? undefined,
