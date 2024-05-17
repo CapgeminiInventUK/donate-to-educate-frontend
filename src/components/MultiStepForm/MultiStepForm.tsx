@@ -1,22 +1,22 @@
-import { CommonInputProps, MultiStepFormProps } from '@/types/props';
+import { MultiStepFormProps } from '@/types/props';
 import { FC, FormEvent, useEffect, useState } from 'react';
 import styles from './MultiStepForm.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '@/components/Spinner/Spinner';
-import { SummaryPageColour, FormErrors, ComponentType } from '@/types/data';
-import { formatPhoneNumber, validateFormInputField } from '@/utils/formUtils';
+import { SummaryPageColour, ComponentType } from '@/types/data';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
 import Card from '../Card/Card';
 import { useQueryClient } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsNearbyQuery } from '@/types/api';
-import { getSchoolsNearby } from '@/graphql/queries';
 import FormHeader from './FormHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
 import { scrollToTheTop } from '@/utils/globals';
+import {
+  getFormErrors,
+  parsePhoneNumber,
+  validatePostcodeAndAddToFormErrors,
+} from '@/utils/formValidationUtils';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -84,39 +84,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     scrollToTheTop();
 
-    const errors = formComponents.reduce((acc: Record<string, string>, { componentData }) => {
-      const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
-      const error = validateFormInputField(formData, field);
-      if (error) {
-        acc[field] = error;
-      }
-      return acc;
-    }, {});
+    const errors = getFormErrors(formComponents, formData);
+    await validatePostcodeAndAddToFormErrors(queryClient, errors, formData);
 
-    const postcode = formData.find(({ field }) => field.toLowerCase() === 'postcode')?.value;
-    if (postcode) {
-      try {
-        await queryClient.fetchQuery({
-          queryKey: [`getSchoolsNearby-${postcode}-request`],
-          queryFn: async () => {
-            const { data } = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
-              query: getSchoolsNearby,
-              variables: {
-                postcode,
-                distance: 5000,
-                type: 'request',
-              },
-            });
-
-            return data;
-          },
-        });
-      } catch (error) {
-        if (error) {
-          errors.Postcode = FormErrors.POSTCODE_NOT_FOUND;
-        }
-      }
-    }
     if (Object.keys(errors).length > 0) {
       setFormErrors({ ...formErrors, ...errors });
       return;
@@ -124,21 +94,13 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     setFormErrors({});
 
-    const phoneNumberIndex = formData.findIndex(({ field }) => field?.toLowerCase() === 'phone');
-    const phoneNumber = formData[phoneNumberIndex];
-    if (phoneNumber) {
-      const formattedPhoneNumber = formatPhoneNumber(String(phoneNumber.value));
-      if (formattedPhoneNumber) {
-        formData[phoneNumberIndex].value = formattedPhoneNumber;
-      }
-    }
+    parsePhoneNumber(formData);
 
     if (onLocalAuthorityRegisterRequest) {
       return onLocalAuthorityRegisterRequest();
     }
-
     if (isDeclarationPage) {
-      void refetch().then(() => {
+      await refetch().then(() => {
         setFormSubmitted && setFormSubmitted(true);
       });
     }
@@ -161,11 +123,9 @@ const FormContainer: FC<MultiStepFormProps> = ({
     if (navigationFromCya && header === 'Check your answers') {
       setNavigationFromCya(false);
     }
-
     if (navigationFromCya && cyaPageNumber && header !== 'Check your answers') {
       return setPageNumber(cyaPageNumber);
     }
-
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
     } else {
