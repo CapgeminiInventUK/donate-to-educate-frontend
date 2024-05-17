@@ -305,6 +305,8 @@ export interface SummaryProps {
   header: string;
   body: string[];
   logo?: JSX.Element;
+  subHeading?: string;
+  infoText?: string;
 }
 
 export interface InstitutionBannerProps {

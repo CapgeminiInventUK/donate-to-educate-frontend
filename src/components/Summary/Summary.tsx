@@ -2,16 +2,20 @@ import { FC } from 'react';
 import { SummaryProps } from '@/types/props';
 import styles from './Summary.module.scss';
 
-const Summary: FC<SummaryProps> = ({ icon, header, body, logo }) => {
+const Summary: FC<SummaryProps> = ({ icon, header, subHeading, infoText, body, logo }) => {
   return (
     <div className={styles.container}>
       <div className={styles.icon}>{icon}</div>
-      <h2 className={styles.header}>{header}</h2>
-      {body.map((text, index) => (
-        <p key={index} className={styles.paragraph}>
-          {text}
-        </p>
-      ))}
+      <h1 className={styles.header}>{header}</h1>
+      {infoText && <p className={styles.paragraph}>{infoText}</p>}
+      {subHeading && <h3>{subHeading}</h3>}
+      <ol className={styles.list}>
+        {body.map((text, index) => (
+          <li key={index} className={styles.paragraph}>
+            {text}
+          </li>
+        ))}
+      </ol>
       <div className={styles.logo}>{logo}</div>
     </div>
   );
