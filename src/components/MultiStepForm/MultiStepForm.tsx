@@ -122,10 +122,10 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     setFormErrors({});
 
-    const phoneNumberIndex = formData.findIndex(({ field }) => field.toLowerCase() === 'phone');
+    const phoneNumberIndex = formData.findIndex(({ field }) => field?.toLowerCase() === 'phone');
     const phoneNumber = formData[phoneNumberIndex];
     if (phoneNumber) {
-      const formattedPhoneNumber = formatPhoneNumber(phoneNumber.value as string);
+      const formattedPhoneNumber = formatPhoneNumber(String(phoneNumber.value));
       if (formattedPhoneNumber) {
         formData[phoneNumberIndex].value = formattedPhoneNumber;
       }
