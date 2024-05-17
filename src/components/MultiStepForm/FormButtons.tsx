@@ -58,7 +58,7 @@ const FormButtons: FC<FormButtonsProps> = ({
         )
       )}
       {isUnhappyPath && onLocalAuthorityRegisterRequest && (
-        <FormButton text={'Send'} theme={'formButtonGrey'} useArrow={true} ariaLabel="send" />
+        <FormButton text={'Send'} theme={'formButtonDarkBlue'} useArrow={true} ariaLabel="send" />
       )}
       {formComponentInternalLink && (
         <div className={styles.link}>
