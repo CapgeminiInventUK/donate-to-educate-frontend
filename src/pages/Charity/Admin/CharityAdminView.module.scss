@@ -8,6 +8,24 @@
   .subContainer {
     border-radius: 0 0 10px 10px;
 
+    .postcodeEditContainer {
+      display: flex;
+
+      @include g.md-breakpoint {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .postcodeButtons {
+      margin-left: 20px;
+      display: flex;
+
+      @include g.md-breakpoint {
+        margin-left: -10px;
+      }
+    }
+
     .formButton {
       margin-bottom: 37px;
       margin-left: 10px;

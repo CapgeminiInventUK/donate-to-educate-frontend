@@ -25,11 +25,14 @@ import heartIcon from '@/assets/icons/heartIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
 import stockIcon from '@/assets/icons/stockIcon.svg';
 import Card from '@/components/Card/Card';
+import { useMediaQuery } from 'react-responsive';
+import { breakpoints } from '@/utils/globals';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
   const [edit, setEdit] = useState(false);
+  const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenLarge})` });
 
   const {
     isLoading,
@@ -145,43 +148,46 @@ const CharityView: FC = () => {
                 />
               </>
             ) : (
-              <>
+              <div className={styles.postcodeEditContainer}>
                 <TextInput
                   ariaLabel="postcode"
                   value={postcode}
                   onChange={(postcode) => setPostcode(postcode)}
                   errorMessage={postcodeError}
+                  isSmall={isMobile}
                 />
-                <FormButton
-                  className={styles.formButton}
-                  text="Save"
-                  theme={postcode ? 'formButtonGreen' : 'formButtonGreenDisabled'}
-                  onClick={() => {
-                    if (isPostalCode(postcode, 'GB')) {
-                      setEdit(false);
-                      setPostcodeError(undefined);
-                      if (postcode !== previousPostcode) {
-                        void refetch().then(() => void charityProfileRefetch());
+                <div className={styles.postcodeButtons}>
+                  <FormButton
+                    className={styles.formButton}
+                    text="Save"
+                    theme={postcode ? 'formButtonGreen' : 'formButtonGreenDisabled'}
+                    onClick={() => {
+                      if (isPostalCode(postcode, 'GB')) {
+                        setEdit(false);
+                        setPostcodeError(undefined);
+                        if (postcode !== previousPostcode) {
+                          void refetch().then(() => void charityProfileRefetch());
+                        }
+                      } else {
+                        setPostcodeError('Invalid postcode');
                       }
-                    } else {
-                      setPostcodeError('Invalid postcode');
-                    }
-                  }}
-                  disabled={!postcode}
-                  ariaLabel="save"
-                />
-                <FormButton
-                  className={styles.formButton}
-                  text="Cancel"
-                  theme="formButtonGrey"
-                  onClick={() => {
-                    setPostcode(previousPostcode);
-                    setPostcodeError(undefined);
-                    setEdit(false);
-                  }}
-                  ariaLabel="cancel"
-                />
-              </>
+                    }}
+                    disabled={!postcode}
+                    ariaLabel="save"
+                  />
+                  <FormButton
+                    className={styles.formButton}
+                    text="Cancel"
+                    theme="formButtonGrey"
+                    onClick={() => {
+                      setPostcode(previousPostcode);
+                      setPostcodeError(undefined);
+                      setEdit(false);
+                    }}
+                    ariaLabel="cancel"
+                  />
+                </div>
+              </div>
             )}
           </div>
         </div>
