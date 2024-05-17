@@ -31,6 +31,7 @@
     "aws-amplify": "6.1.4",
     "framer-motion": "11.1.7",
     "is-ci": "3.0.1",
+    "phone": "^3.1.43",
     "react": "18.3.0",
     "react-dom": "18.3.0",
     "react-highlight-words": "0.20.0",

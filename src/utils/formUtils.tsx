@@ -9,7 +9,8 @@ import {
 import { SingleValue } from 'react-select';
 import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
-import isMobilePhone from 'validator/lib/isMobilePhone';
+import { phone } from 'phone';
+import { phoneNumberRegex } from './globals';
 
 const excludedValues = [
   'First name',
@@ -54,7 +55,10 @@ export const validateFormInputField = (
         }
         break;
       case 'phone':
-        if (!isMobilePhone(value, 'en-GB')) {
+        if (
+          !phoneNumberRegex.test(value) ||
+          !phone(value, { country: 'GBR', validateMobilePrefix: false }).isValid
+        ) {
           return FormErrors.PHONE_ERROR_MESSAGE;
         }
         break;
@@ -67,6 +71,13 @@ export const validateFormInputField = (
     }
   }
   return null;
+};
+
+export const formatPhoneNumber = (phoneNumber: string): string | null => {
+  return phone(phoneNumber, {
+    country: 'GBR',
+    validateMobilePrefix: false,
+  }).phoneNumber;
 };
 
 const addressBuilder = (formData: FormDataItem[]): string => {

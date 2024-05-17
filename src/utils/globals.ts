@@ -13,3 +13,6 @@ export const scrollToTheTop = (): void => {
     behavior: 'smooth',
   });
 };
+
+// Regex to check inputted phone number contains only digits, spaces or a "+" at the beginning
+export const phoneNumberRegex = /^[+]?[0-9\s]+$/;
