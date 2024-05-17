@@ -18,6 +18,7 @@ import { useStore } from '@/stores/useStore';
 import Card from '@/components/Card/Card';
 import { deleteSignUpData } from '@/graphql/mutations';
 import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
+import TickIcon from '@/assets/sign-up/tick';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({
@@ -151,7 +152,7 @@ const NewUser: FC = () => {
           <>
             <LogoIconBlue className={styles.logo} />
             <h2>Create your account</h2>
-            <TextInput header="Email" value={email} disabled ariaLabel="email" />
+            <TextInput header="Email" value={email} disabled ariaLabel="email" isLarge={true} />
             <TextInput
               header="Password"
               password
@@ -161,6 +162,24 @@ const NewUser: FC = () => {
               errorMessage={error}
               ariaLabel="password"
             />
+            <div className={styles.hintTextContainer}>
+              <div className={styles.passwordHint}>
+                <TickIcon />
+                <span>At least 8 characters</span>
+              </div>
+              <div className={styles.passwordHint}>
+                <TickIcon />
+                <span>At least 1 uppercase</span>
+              </div>
+              <div className={styles.passwordHint}>
+                <TickIcon />
+                <span>At least 1 number</span>
+              </div>
+              <div className={styles.passwordHint}>
+                <TickIcon />
+                <span>At least 1 number</span>
+              </div>
+            </div>
             <FormButton
               theme={'formButtonDarkBlue'}
               onClick={(): void => setSubmitted(true)}
