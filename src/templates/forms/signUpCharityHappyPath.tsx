@@ -253,10 +253,12 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
         componentType: ComponentType.SUMMARY,
         componentData: {
           icon: <SchoolQuestion />,
-          header: 'Thanks for supporting Donate to Educate',
+          header: 'Your application has been sent',
+          subHeading: 'What happens next?',
+          infoText: 'You will not receive a confirmation email',
           body: [
-            'Your local authority or local council will review your details to check whether you can join us.',
-            "We'll email you with the results as soon as we have them.",
+            'Your local authority or council will review your application.',
+            'We will email you with the result of your application.',
           ],
           logo: <LogoWhite />,
         },
