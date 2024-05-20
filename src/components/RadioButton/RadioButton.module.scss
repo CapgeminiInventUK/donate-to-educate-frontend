@@ -17,6 +17,10 @@
       margin-top: 0.5rem;
       display: flex;
       margin-left: 3rem;
+
+      @include g.sm-breakpoint {
+        font-size: 14px;
+      }
     }
 
     /* Styles these pseudo elements to look like radio inputs. */

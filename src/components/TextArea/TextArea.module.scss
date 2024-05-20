@@ -7,6 +7,10 @@
   font-weight: 400;
   line-height: 145%;
   font-size: 18px;
+
+  @include g.sm-breakpoint {
+    font-size: 14px;
+  }
 }
 
 .container {
