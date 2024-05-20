@@ -87,8 +87,8 @@ const getPageContent = (
         helpBannerBody: (
           <>
             <p>
-              Select the products your school needs so that the general public, other schools,
-              charities and volunteer groups know what to donate.
+              Select the products your charity needs so that the general public, other charities,
+              schools and volunteer groups know what to donate.
             </p>
             <p>
               Donate to Educate will forward an email to you from visitors who want to donate
@@ -108,8 +108,8 @@ const getPageContent = (
         helpBannerBody: (
           <>
             <p>
-              Select the products you have too much of so that the general public, other schools,
-              charities and volunteer groups can help share it with people that need it.
+              Select the products you have too much of so that the general public, other charities,
+              schools and volunteer groups can help share it with people that need it.
             </p>
             <p>
               Donate to Educate will forward an email to you from visitors who want to help take
