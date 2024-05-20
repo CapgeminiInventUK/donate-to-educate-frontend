@@ -286,7 +286,7 @@ export type InternalLinkProps = ExternalLinkProps;
 export interface FormIntroPageProps {
   header: string;
   infoText: string;
-  listItems: string[];
+  listItems?: string[];
   secondaryHeading?: string;
   secondaryInfoText?: string;
   secondaryListItems?: string[];
