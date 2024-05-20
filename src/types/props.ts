@@ -594,3 +594,13 @@ export interface ItemListProps {
   type: ItemsIconType;
   items?: Record<number, string[]>;
 }
+
+export interface TileProps {
+  title: string;
+  onClick: () => void;
+  body: string[];
+  icon: JSX.Element;
+  size: string;
+  children?: React.ReactNode;
+  noShadow?: boolean;
+}

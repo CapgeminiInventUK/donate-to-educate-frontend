@@ -12,7 +12,7 @@ const FormIntroPage: FC<FormIntroPageProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.header}>{header} </h2>
+      <h1 className={styles.header}>{header} </h1>
       <p className={styles.text}> {infoText}</p>
       {listItems && (
         <ol className={styles.list}>
@@ -21,7 +21,7 @@ const FormIntroPage: FC<FormIntroPageProps> = ({
           ))}
         </ol>
       )}
-      {secondaryHeading && <h3 className={styles.secondaryHeader}>{secondaryHeading}</h3>}
+      {secondaryHeading && <h2 className={styles.secondaryHeader}>{secondaryHeading}</h2>}
       {secondaryInfoText && <p className={styles.text}>{secondaryInfoText}</p>}
       {secondaryListItems && (
         <ol className={styles.list}>

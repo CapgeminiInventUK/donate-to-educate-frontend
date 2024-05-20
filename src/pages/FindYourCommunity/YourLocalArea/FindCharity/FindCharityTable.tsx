@@ -51,7 +51,7 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
   return (
     <>
       {title ? (
-        <h2>{title}</h2>
+        <h1>{title}</h1>
       ) : type === 'school' ? (
         <h2>Nearby charities who can also help</h2>
       ) : (

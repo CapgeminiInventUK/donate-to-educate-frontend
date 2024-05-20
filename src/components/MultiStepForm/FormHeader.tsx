@@ -25,7 +25,7 @@ const FormHeader: FC<FormHeaderProps> = ({
       )}
       {logo && <div className={styles.logoContainer}>{logo}</div>}
       <div className={styles.headerContainer}>
-        {header && <h2 className={styles.header}>{header}</h2>}
+        {header && <h1 className={styles.header}>{header}</h1>}
         {subHeader && <h4 className={styles.subHeader}>{subHeader}</h4>}
         {infoText && <p className={styles.infoText}>{infoText}</p>}
         {secondaryHeader && <h4 className={styles.secondaryHeader}>{secondaryHeader}</h4>}

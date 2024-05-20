@@ -106,7 +106,7 @@ const ManageCharities: FC = () => {
           {!isLoading && (
             <div className={styles.cardContainer}>
               <Card className={styles.manageCard}>
-                <h1>Registered charities and volunteer groups</h1>
+                <h2>Registered charities and volunteer groups</h2>
                 <div className={styles.border}>{(data?.getCharities ?? []).length} joined</div>
                 <br />
 

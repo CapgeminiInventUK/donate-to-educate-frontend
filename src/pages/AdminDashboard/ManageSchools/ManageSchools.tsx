@@ -106,7 +106,7 @@ const ManageSchools: FC = () => {
           {!isLoading && (
             <div className={styles.cardContainer}>
               <Card className={styles.schoolsCard}>
-                <h1>Registered Schools</h1>
+                <h2>Registered Schools</h2>
                 <div className={styles.schoolBorder}>
                   {(data?.getRegisteredSchools ?? []).length} joined
                 </div>

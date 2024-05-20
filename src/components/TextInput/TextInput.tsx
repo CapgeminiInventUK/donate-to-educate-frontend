@@ -38,7 +38,7 @@ const TextInput: FC<TextInputProps> = ({
     <div
       className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''} ${className ? className : ''}`}
     >
-      {header && <h3 className={styles.header}>{header}</h3>}
+      {header && <h2 className={styles.header}>{header}</h2>}
       {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {errorMessage && (
         <h4 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h4>

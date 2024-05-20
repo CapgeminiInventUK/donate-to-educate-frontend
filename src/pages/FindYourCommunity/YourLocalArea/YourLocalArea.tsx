@@ -52,7 +52,7 @@ const YourLocalArea: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card className={styles.subContainer}>
-        <h2>Your local area in {state.postcode.toUpperCase()}</h2>
+        <h1>Your local area in {state.postcode.toUpperCase()}</h1>
         <div className={styles.tileRow}>
           <Tile
             title="Find a nearby school"
