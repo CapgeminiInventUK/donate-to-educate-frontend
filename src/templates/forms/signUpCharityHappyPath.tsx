@@ -8,21 +8,16 @@ const signUpCharityHappyPath = (localAuthorityOptions: DropdownOption[]): FormTe
       {
         componentType: ComponentType.INTRO,
         componentData: {
-          header: 'Join Donate to Educate',
-          infoText: 'To support us and help families and schools, you need to:',
-          listItems: [
-            'work at a charity or be a volunteer',
-            'have a work address or premises to store school products',
-            'provide us with your contact details',
-            'review and agree to our GDPR statements and policies',
-            'agree that we can share your information with your local authority or local council to confirm your identity',
-          ],
-          secondaryHeading: 'What to expect',
-          secondaryInfoText: `Once you give us your details, we will:`,
+          header: 'Join Donate to Educate as a charity or volunteer organisation',
+          infoText:
+            'If your organisation has a premises where you can store school products, join our network.',
+          secondaryHeading: 'How it works',
           secondaryListItems: [
-            `send you details to your local authority or local council`,
-            `your local authority or local council will confirm your identity`,
-            `you will get an email to confirm whether you can join`,
+            `Provide us with your details`,
+            `Read and agree to our privacy policy`,
+            `We will send this information to your local authority`,
+            `You will receive an email to confirm whether you can join`,
+            `If you can join, we will email you a link to create your public profile`,
           ],
         },
       },
