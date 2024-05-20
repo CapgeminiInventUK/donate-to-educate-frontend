@@ -62,7 +62,7 @@ const FindSchool: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card className={styles.subContainer}>
-        <h2>Find your school near {state.postcode.toUpperCase()}</h2>
+        <h1>Find your school near {state.postcode.toUpperCase()}</h1>
         <ProductsTable
           tableData={schoolData}
           type="school"
@@ -74,11 +74,11 @@ const FindSchool: FC = () => {
           onClick={() => toggleDescription((previous) => !previous)}
         >
           <Chevron direction={showDescription ? 'down' : 'up'} />
-          My child&apos;s school has not joined.
+          My school has not joined.
         </span>
         {showDescription && (
           <div className={styles.missingSchoolDescription}>
-            If your child&apos;s school has not joined Donate to Educate,{' '}
+            If your school has not joined Donate to Educate,{' '}
             <Link to={Paths.LOCAL_CHARITIES} state={{ postcode: state.postcode }}>
               find nearby charities who may have the products you need.
             </Link>

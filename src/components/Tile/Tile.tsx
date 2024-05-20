@@ -1,16 +1,7 @@
 import { FC } from 'react';
 import styles from './Tile.module.scss';
 import { motion } from 'framer-motion';
-
-interface TileProps {
-  title: string;
-  onClick: () => void;
-  body: string[];
-  icon: JSX.Element;
-  size: string;
-  children?: React.ReactNode;
-  noShadow?: boolean;
-}
+import { TileProps } from '@/types/props';
 
 const Tile: FC<TileProps> = ({ onClick, title, body, icon, size, noShadow, children }) => {
   return (
@@ -20,7 +11,7 @@ const Tile: FC<TileProps> = ({ onClick, title, body, icon, size, noShadow, child
       onClick={onClick}
     >
       {icon}
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       {body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}

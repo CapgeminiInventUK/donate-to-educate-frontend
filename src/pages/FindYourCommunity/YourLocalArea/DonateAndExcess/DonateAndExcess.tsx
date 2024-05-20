@@ -97,11 +97,11 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card>
-        <h2>
+        <h1>
           {heading} {postcode.toUpperCase()}
-        </h2>
+        </h1>
 
-        <h3>Schools</h3>
+        <h2>Schools</h2>
         <ProductsTable
           tableData={schoolRows}
           type="school"
@@ -111,7 +111,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
           hideStatus={true}
         />
 
-        <h3>Charities</h3>
+        <h2>Charities</h2>
         <ProductsTable
           tableData={charityRows}
           type="charity"

@@ -29,7 +29,7 @@ const FindYourCommunity: FC = () => {
         onClick={() => (state?.error ? navigate(Paths.HOME) : navigate(-1))}
       />
       <Card className={styles.subContainer}>
-        <h2>Find your community</h2>
+        <h1>Find your community</h1>
 
         <TextInputSearch
           ariaLabel="postcode"
