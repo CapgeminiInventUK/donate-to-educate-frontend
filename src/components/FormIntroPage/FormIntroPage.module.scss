@@ -23,6 +23,10 @@
   font-weight: 400;
   line-height: 145%;
 
+  @include g.sm-breakpoint {
+    font-size: 14px;
+  }
+
   li {
     padding: 2px 0;
   }
