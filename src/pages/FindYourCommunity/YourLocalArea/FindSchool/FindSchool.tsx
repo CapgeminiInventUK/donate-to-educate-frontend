@@ -66,6 +66,7 @@ const FindSchool: FC = () => {
         <ProductsTable
           tableData={schoolData}
           type="school"
+          iconColour="#97C8EB"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
         />
