@@ -18,6 +18,10 @@
     text-decoration: underline;
     color: g.$link-blue;
     font-size: 18px;
+
+    @include g.sm-breakpoint {
+      font-size: 14px;
+    }
   }
 
   .homeIcon {
