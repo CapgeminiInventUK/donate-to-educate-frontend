@@ -105,6 +105,11 @@
     background: g.$form-button-green-background;
     border: g.$form-button-green-border 1px solid;
     font-size: 1.5rem;
+
+    @include g.sm-breakpoint {
+      font-size: 22px;
+      padding: 1rem;
+    }
   }
 
   .footerButtons {
@@ -131,6 +136,10 @@
     font-weight: 700;
     line-height: 70%;
     letter-spacing: -0.24px;
+
+    @include g.sm-breakpoint {
+      font-size: 18px;
+    }
   }
 
   .noPaddingBottom {
