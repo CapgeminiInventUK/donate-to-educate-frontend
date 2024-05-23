@@ -240,6 +240,7 @@ const SchoolEdit: FC = () => {
                     void refetch().then(() => {
                       navigate(-1);
                     });
+                    openNotification();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
@@ -273,6 +274,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
+                    openNotification();
                     void refetch();
                   }}
                   handleCancel={() => {
