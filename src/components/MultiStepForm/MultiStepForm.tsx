@@ -17,6 +17,7 @@ import {
   parsePhoneNumber,
   validatePostcodeAndAddToFormErrors,
 } from '@/utils/formValidationUtils';
+import Paths from '@/config/paths';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -180,8 +181,13 @@ const FormContainer: FC<MultiStepFormProps> = ({
             declarationSigned={declarationSigned}
             onLocalAuthorityRegisterRequest={onLocalAuthorityRegisterRequest}
             formComponentInternalLink={formComponentInternalLink}
-          />
+          />{' '}
           {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
+          {pageNumber === 0 && (
+            <div className={styles.signInLink}>
+              <a href={Paths.SIGN_IN}>Sign in if you already have an account</a>
+            </div>
+          )}
         </Card>
       )}
     </form>
