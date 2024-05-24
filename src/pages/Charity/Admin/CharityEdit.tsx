@@ -252,6 +252,7 @@ const CharityEdit: FC = () => {
             <ItemListEdit setItems={setItems} items={items} />
 
             <div className={styles.helpContact}>
+              <h2>Next steps</h2>
               {!editStateActionText ? (
                 <>
                   <p>{content.actionText}</p>

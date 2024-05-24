@@ -237,9 +237,7 @@ const SchoolEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    void refetch().then(() => {
-                      navigate(-1);
-                    });
+                    void refetch();
                   }}
                   handleCancel={() => {
                     setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
