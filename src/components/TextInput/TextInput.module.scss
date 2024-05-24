@@ -40,6 +40,10 @@
   @include g.md-breakpoint {
     width: 60vw;
   }
+
+  @include g.sm-breakpoint {
+    width: 200px;
+  }
 }
 
 .inputLarge {
