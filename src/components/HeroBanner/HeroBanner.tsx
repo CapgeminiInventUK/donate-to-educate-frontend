@@ -17,7 +17,7 @@ export const HeroBanner: FC<HeroBannerProps> = ({ onGetInvolvedClick }) => {
         <Header text="Let's stop education poverty" />
         <p>
           We&apos;re on a mission to tackle education poverty and empower children to thrive at
-          school. <span onClick={onGetInvolvedClick}>See how you can get involved.</span>
+          school. <span onClick={onGetInvolvedClick}>See how you can get involved</span>.
         </p>
       </div>
       <Image
