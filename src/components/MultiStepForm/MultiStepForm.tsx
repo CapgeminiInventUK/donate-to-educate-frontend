@@ -181,7 +181,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
             declarationSigned={declarationSigned}
             onLocalAuthorityRegisterRequest={onLocalAuthorityRegisterRequest}
             formComponentInternalLink={formComponentInternalLink}
-          />{' '}
+          />
           {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
           {pageNumber === 0 && (
             <div className={styles.signInLink}>
