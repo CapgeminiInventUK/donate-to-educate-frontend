@@ -18,6 +18,10 @@
   .logoContainer {
     width: 300px;
     margin-bottom: 60px;
+
+    @include g.sm-breakpoint {
+      max-width: 200px;
+    }
   }
 
   .headerContainer {
