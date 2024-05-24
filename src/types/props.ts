@@ -528,6 +528,7 @@ export interface FormButtonsProps {
 export interface ProductsTableProps {
   tableData: InstituteSearchResult[];
   type: 'school' | 'charity';
+  iconColour: string;
   productsColumnHeader:
     | 'Product types available'
     | 'Excess stock product types'

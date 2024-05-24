@@ -60,6 +60,7 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
       <ProductsTable
         tableData={charitiesRows}
         type="charity"
+        iconColour="#97C8EB"
         productsColumnHeader="Product types available"
         postcode={postcode}
       />

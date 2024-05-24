@@ -18,6 +18,7 @@ import { ProductsTableProps } from '@/types/props';
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,
   type,
+  iconColour,
   productsColumnHeader,
   postcode,
   hideNotJoined,
@@ -63,7 +64,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
           return [<Fragment key={id}>N/A</Fragment>];
         }
         return text.map((productType) => (
-          <ProductTypeIcon key={productType} productType={productType} />
+          <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
         ));
       },
       filters: Array.from(Array(6)).map((_, index) => ({
