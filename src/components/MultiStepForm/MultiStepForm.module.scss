@@ -4,6 +4,10 @@
   width: 65vw;
   margin-bottom: 50px;
 
+  @include g.sm-breakpoint {
+    width: 80vw;
+  }
+
   .pagination {
     display: flex;
     flex-direction: row-reverse;
