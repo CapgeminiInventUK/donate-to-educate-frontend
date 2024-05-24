@@ -28,6 +28,10 @@
 .input {
   @include g.input;
 
+  @include g.sm-breakpoint {
+    max-width: 200px;
+  }
+
   border-radius: 5px 0 0 5px;
 }
 
