@@ -23,6 +23,11 @@
   color: g.$primary-dark-blue;
   margin-top: 2.5rem;
   white-space: pre-wrap;
+  font-size: 18px;
+
+  @include g.sm-breakpoint {
+    font-size: 14px;
+  }
 }
 
 .addSectionButton {
