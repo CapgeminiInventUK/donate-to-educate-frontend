@@ -27,7 +27,7 @@
   "dependencies": {
     "@tanstack/react-query": "5.32.0",
     "@tanstack/react-query-devtools": "5.32.0",
-    "antd": "5.16.4",
+    "antd": "5.17.4",
     "aws-amplify": "6.1.4",
     "framer-motion": "11.1.7",
     "is-ci": "3.0.1",
