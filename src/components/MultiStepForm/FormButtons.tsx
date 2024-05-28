@@ -39,11 +39,11 @@ const FormButtons: FC<FormButtonsProps> = ({
       ) : !isUnhappyPath &&
         (!cyaPageNumber || (cyaPageNumber && pageNumber < cyaPageNumber + 1)) ? (
         <FormButton
-          text={pageNumber === 0 ? 'Start' : 'Next'}
+          text={pageNumber === 0 ? 'Join' : 'Next'}
           theme={
             pageNumber === 1 && isSchoolRegistered ? 'formButtonDisabled' : 'formButtonDarkBlue'
           }
-          ariaLabel={pageNumber === 0 ? 'Start' : 'Next'}
+          ariaLabel={pageNumber === 0 ? 'Join' : 'Next'}
           useArrow={pageNumber === 0}
           disabled={pageNumber === 1 && isSchoolRegistered}
         />

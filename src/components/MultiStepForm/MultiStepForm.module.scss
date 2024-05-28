@@ -4,6 +4,10 @@
   width: 65vw;
   margin-bottom: 50px;
 
+  @include g.sm-breakpoint {
+    width: 80vw;
+  }
+
   .pagination {
     display: flex;
     flex-direction: row-reverse;
@@ -18,6 +22,16 @@
   .logoContainer {
     width: 300px;
     margin-bottom: 60px;
+
+    @include g.sm-breakpoint {
+      max-width: 200px;
+    }
+  }
+
+  .signInLink {
+    padding: 30px 0 0 0;
+    color: g.$link-blue;
+    text-decoration: underline;
   }
 
   .headerContainer {
@@ -49,7 +63,7 @@
       font-weight: 700;
       line-height: 125%;
       letter-spacing: -0.32px;
-      margin: 0;
+      margin: 30px 0 0 0;
     }
 
     a {

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .header {
@@ -27,6 +27,10 @@
 
 .input {
   @include g.input;
+
+  @include g.sm-breakpoint {
+    max-width: 200px;
+  }
 
   border-radius: 5px 0 0 5px;
 }

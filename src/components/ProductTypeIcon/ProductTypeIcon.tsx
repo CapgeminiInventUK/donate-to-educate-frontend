@@ -6,14 +6,15 @@ import ProductTypes from '@/assets/icons/ProductTypes';
 
 interface ProductTypeIcon {
   productType: number;
+  colour: string;
 }
 
-const ProductTypeIcon: FC<ProductTypeIcon> = ({ productType }) => {
+const ProductTypeIcon: FC<ProductTypeIcon> = ({ productType, colour }) => {
   return (
     <span key={productType} className={styles.productType}>
       <Popover content={convertNumberToCategory(productType)} trigger="hover">
         <span className={styles.innerSpan}>
-          <ProductTypes type={productType} />
+          <ProductTypes type={productType} colour={colour} />
         </span>
       </Popover>
     </span>

@@ -47,6 +47,11 @@
     width: 100%;
     height: 200px;
     resize: none;
+    font-size: 18px;
+
+    @include g.sm-breakpoint {
+      font-size: 14px;
+    }
   }
 
   .characterCount {

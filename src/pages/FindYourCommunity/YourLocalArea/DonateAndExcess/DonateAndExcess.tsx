@@ -105,6 +105,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         <ProductsTable
           tableData={schoolRows}
           type="school"
+          iconColour={type === 'excess' ? '#00B6A8' : '#0075A2'}
           productsColumnHeader={productsColumnHeader}
           hideNotJoined={true}
           hideNoProducts={true}
@@ -115,6 +116,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         <ProductsTable
           tableData={charityRows}
           type="charity"
+          iconColour={type === 'excess' ? '#00B6A8' : '#0075A2'}
           productsColumnHeader={productsColumnHeader}
           hideNoProducts={true}
         />
