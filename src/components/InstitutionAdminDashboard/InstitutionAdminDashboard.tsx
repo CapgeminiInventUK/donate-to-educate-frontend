@@ -20,11 +20,8 @@ import PublicDashboard from '../PublicDashboard/PublicDashboard';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
-import { notification } from 'antd';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import LogoPurple from '@/assets/logo/LogoPurple';
-import { CloseOutlined } from '@ant-design/icons';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const {
@@ -75,17 +72,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     },
   });
 
-  const openNotification = (): void => {
-    notification.info({
-      message: <span className={styles.notificationMessage}>Save made</span>,
-      placement: 'bottomRight',
-      icon: <LogoPurple />,
-      className: styles.notification,
-      duration: 2,
-      closeIcon: <CloseOutlined style={{ color: 'white' }} />,
-    });
-  };
-
   const toggleIsEditingAboutUs = (): void => {
     !isEditingAboutUs && savePreviousAbout();
     setIsEditingAboutUs((isEditingAboutUs) => !isEditingAboutUs);
@@ -95,7 +81,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     if (!about) {
       setAbout(placeholderAboutText);
     }
-    openNotification();
     void refetch();
     toggleIsEditingAboutUs();
   };

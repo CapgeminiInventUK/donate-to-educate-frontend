@@ -240,7 +240,6 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditState(false);
-                    openNotification();
                     void refetch();
                   }}
                   handleCancel={() => {
@@ -274,7 +273,6 @@ const CharityEdit: FC = () => {
                   }}
                   handleSave={() => {
                     setEditStateActionText(false);
-                    openNotification();
                     void refetch();
                   }}
                   handleCancel={() => {
