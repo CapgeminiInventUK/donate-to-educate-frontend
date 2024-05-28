@@ -8,6 +8,16 @@
     margin-top: 0;
   }
 
+  .aboutContainer {
+    background: g.$about-grey;
+    padding: 40px;
+    border-radius: 10px;
+
+    @include g.sm-breakpoint {
+      padding: 20px;
+    }
+  }
+
   .titleContainer {
     display: flex;
   }

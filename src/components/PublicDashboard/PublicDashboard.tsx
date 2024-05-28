@@ -49,7 +49,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           <p>We are still populating our profile, please check back later</p>
         )}
         {about && (
-          <>
+          <div className={styles.aboutContainer}>
             <div className={styles.titleContainer}>
               <h2>About us</h2>
               <div className={styles.svgContainer}>
@@ -57,7 +57,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
               </div>
             </div>
             <p className={styles.paragraph}>{about}</p>
-          </>
+          </div>
         )}
         <div className={styles.tilesWrapper}>
           <div className={styles.productsTilesContainer}>
