@@ -22,6 +22,7 @@ import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
+import { openNotification } from '@/utils/components';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const {
@@ -81,6 +82,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     if (!about) {
       setAbout(placeholderAboutText);
     }
+    openNotification();
     void refetch();
     toggleIsEditingAboutUs();
   };

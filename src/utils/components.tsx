@@ -21,6 +21,10 @@ import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
 import { findValueFromFormData } from './formUtils';
 import Summary from '@/components/Summary/Summary';
 import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
+import { notification } from 'antd';
+import LogoPurple from '@/assets/logo/LogoPurple';
+import { CloseOutlined } from '@ant-design/icons';
+import notificationStyles from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard.module.scss';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -82,4 +86,23 @@ export const createFormComponent = (
     default:
       return <></>;
   }
+};
+
+export const openNotification = (
+  message: React.ReactNode = (
+    <span className={notificationStyles.notificationMessage}>Save made</span>
+  ),
+  placement: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' = 'bottomRight',
+  icon: React.ReactNode = <LogoPurple />,
+  duration = 2,
+  closeIcon: React.ReactNode = <CloseOutlined style={{ color: 'white' }} />
+): void => {
+  notification.info({
+    message,
+    placement,
+    icon,
+    className: notificationStyles.notification,
+    duration,
+    closeIcon,
+  });
 };
