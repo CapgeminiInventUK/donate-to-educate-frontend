@@ -279,6 +279,7 @@ export interface ExternalLinkProps {
   linkUrl: string;
   className?: string;
   ariaLabel: string;
+  colour?: 'white' | 'blue';
 }
 
 export type InternalLinkProps = ExternalLinkProps;
