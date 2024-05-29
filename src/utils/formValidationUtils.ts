@@ -32,7 +32,7 @@ export const validatePostcodeAndAddToFormErrors = async (
       await queryClient.fetchQuery({
         queryKey: [`getSchoolsNearby-${postcode}-request`],
         queryFn: async () => {
-          await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
+          const data = await client.graphql<GraphQLQuery<GetSchoolsNearbyQuery>>({
             query: getSchoolsNearby,
             variables: {
               postcode,
@@ -40,6 +40,7 @@ export const validatePostcodeAndAddToFormErrors = async (
               type: 'request',
             },
           });
+          return data;
         },
       });
     } catch (error) {

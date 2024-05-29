@@ -19,6 +19,7 @@ import Card from '@/components/Card/Card';
 import { deleteSignUpData } from '@/graphql/mutations';
 import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 import TickIcon from '@/assets/sign-up/tick';
+import InternalLink from '@/components/InternalLink/InternalLink';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({
@@ -216,6 +217,12 @@ const NewUser: FC = () => {
                 }
               }}
               ariaLabel="next"
+            />
+            <InternalLink
+              linkText={'Contact us if you need help'}
+              linkUrl={Paths.CONTACT}
+              ariaLabel={'contact us'}
+              colour={'blue'}
             />
           </div>
         )}
