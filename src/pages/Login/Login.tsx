@@ -44,7 +44,7 @@ const Login: FC = () => {
             <h3>Sign in or join</h3>
             <p>
               If you work for a local authority and want to join,{' '}
-              <Link className={styles.link} to={Paths.CONTACT}>
+              <Link target={'_blank'} className={styles.link} to={Paths.CONTACT}>
                 {' '}
                 contact us.{' '}
               </Link>
