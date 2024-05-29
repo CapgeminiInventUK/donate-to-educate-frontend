@@ -69,4 +69,13 @@
       }
     }
   }
+
+  .link {
+    background: none;
+    color: g.$link-blue;
+    border: none;
+    text-decoration: underline;
+    font-weight: normal;
+    text-underline-offset: 2px;
+  }
 }
