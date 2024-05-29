@@ -3,7 +3,7 @@ import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
 import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Paths from '@/config/paths';
 import styles from './AddUser.module.scss';
 import Spinner from '@/components/Spinner/Spinner';
@@ -19,7 +19,6 @@ import Card from '@/components/Card/Card';
 import { deleteSignUpData } from '@/graphql/mutations';
 import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 import TickIcon from '@/assets/sign-up/tick';
-import InternalLink from '@/components/InternalLink/InternalLink';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({
@@ -218,12 +217,9 @@ const NewUser: FC = () => {
               }}
               ariaLabel="next"
             />
-            <InternalLink
-              linkText={'Contact us if you need help'}
-              linkUrl={Paths.CONTACT}
-              ariaLabel={'contact us'}
-              colour={'blue'}
-            />
+            <Link to={Paths.CONTACT} target={'_blank'} className={styles.link}>
+              Contact us if you need help
+            </Link>
           </div>
         )}
       </Card>
