@@ -1,10 +1,25 @@
 @use '@assets/global.scss' as g;
 
 .container {
+  position: relative;
   display: flex;
   padding: 2.5rem;
   flex-direction: column;
   border-radius: 0.625rem;
   background: g.$help-grey;
   white-space: pre-wrap;
+}
+
+.buttonContainer {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.closeButton {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }

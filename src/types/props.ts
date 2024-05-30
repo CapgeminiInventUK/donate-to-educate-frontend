@@ -321,6 +321,7 @@ export interface InstitutionBannerProps {
 export interface InformationTileProps {
   heading: string;
   subtext: string;
+  dismiss?: () => void;
 }
 
 export interface EditableInformationTileProps extends InformationTileProps {
