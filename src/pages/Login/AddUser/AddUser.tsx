@@ -3,7 +3,7 @@ import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import FormButton from '@/components/FormButton/FormButton';
 import TextInput from '@/components/TextInput/TextInput';
 import VerificationInput from 'react-verification-input';
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Paths from '@/config/paths';
 import styles from './AddUser.module.scss';
 import Spinner from '@/components/Spinner/Spinner';
@@ -217,6 +217,9 @@ const NewUser: FC = () => {
               }}
               ariaLabel="next"
             />
+            <Link to={Paths.CONTACT} target={'_blank'} className={styles.link}>
+              Contact us if you need help
+            </Link>
           </div>
         )}
       </Card>
