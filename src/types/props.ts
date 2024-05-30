@@ -155,7 +155,7 @@ export interface Route {
 
 export interface NavLinkProps {
   path: Paths;
-  name: string;
+  name?: string;
   theme: Themes;
   childRoutes?: Route[];
   onLinkClicked?: () => void;

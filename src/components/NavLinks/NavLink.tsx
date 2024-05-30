@@ -40,15 +40,15 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
 
   return (
     <div
-      className={`${styles.linkContainer} ${path === Paths.LOGIN ? styles.loginLink : ''}`}
+      className={`${styles.linkContainer} ${path === Paths.SIGN_IN || path === Paths.LOGIN ? styles.navButton : ''}`}
       key={name}
     >
       <Link
-        className={`${styles.link} ${path === Paths.LOGIN ? styles.accentLink : ''}`}
+        className={`${styles.link} ${path === Paths.SIGN_IN || path === Paths.LOGIN ? styles.accentLink : ''} ${path === Paths.SIGN_IN ? styles.loginLink : ''}`}
         onClick={(e) => handleClick(e, path)}
         to={path}
       >
-        <span className={path !== Paths.LOGIN ? styles.linkText : ''}>
+        <span className={path !== Paths.LOGIN && path !== Paths.SIGN_IN ? styles.linkText : ''}>
           {user !== undefined && path === Paths.LOGIN ? 'Your profile' : name}
         </span>
         {childRoutes && childRoutes?.length > 0 && (

@@ -17,7 +17,7 @@ const Login: FC = () => {
         <div className={styles.innerContainer}>
           <div className={styles.subContainerLine}>
             <LogoIconBlue className={styles.logoIcon} />
-            <h2>Sign in or join</h2>
+            <h1 className={styles.header}>Join Donate to Educate</h1>
           </div>
           <div>You can easily sign in or join if you work for:</div>
           <ul>
@@ -28,20 +28,21 @@ const Login: FC = () => {
             <FormButton
               theme="formButtonDarkBlue"
               useArrow={false}
-              text={'Sign in'}
+              text={'Join us'}
               onClick={() => {
-                navigate(Paths.SIGN_IN);
+                navigate(Paths.JOIN);
               }}
-              ariaLabel="sign in"
+              ariaLabel="join"
+              className={styles.joinButton}
             />
-            <Link className={styles.link} to={Paths.JOIN}>
-              Join Donate to Educate
+            <Link className={styles.link} to={Paths.SIGN_IN}>
+              Sign in if you already have an account
             </Link>
           </div>
         </div>
         <div className={styles.infoContainer}>
           <div>
-            <h3>Sign in or join</h3>
+            <h3>If you work for a local authority</h3>
             <p>
               If you work for a local authority and want to join,{' '}
               <Link className={styles.link} to={Paths.CONTACT}>
@@ -53,8 +54,8 @@ const Login: FC = () => {
           <div>
             <h3>If you are a parent or guardian</h3>
             <p>
-              If you are a parent or guardian and need products for your child, you don’t need to
-              sign in or join.
+              If you are a parent or guardian and need products for your child, you don&apos;t need
+              to sign in or join.
             </p>
             <p>
               Search your local area to{' '}
