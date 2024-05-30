@@ -25,31 +25,28 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
     }
   };
 
-  const pathIsLogin = path === Paths.LOGIN;
+  const pathIsLogin = path === Paths.LOGIN || path === Paths.SIGN_IN;
   const handleLinkClick = (path: Paths): void => {
     if (onLinkClicked) {
       onLinkClicked();
     }
 
     if (pathIsLogin) {
-      navigate(user !== undefined ? Paths.SIGN_IN : path);
+      navigate(user ? Paths.SIGN_IN : path);
     } else if (path !== Paths.ABOUT) {
       navigate(path);
     }
   };
 
   return (
-    <div
-      className={`${styles.linkContainer} ${path === Paths.LOGIN ? styles.loginLink : ''}`}
-      key={name}
-    >
+    <div className={`${styles.linkContainer} ${pathIsLogin ? styles.navButton : ''}`} key={name}>
       <Link
-        className={`${styles.link} ${path === Paths.LOGIN ? styles.accentLink : ''}`}
+        className={`${styles.link} ${pathIsLogin ? styles.accentLink : ''} ${path === Paths.SIGN_IN ? styles.loginLink : ''}`}
         onClick={(e) => handleClick(e, path)}
         to={path}
       >
-        <span className={path !== Paths.LOGIN ? styles.linkText : ''}>
-          {user !== undefined && path === Paths.LOGIN ? 'Your profile' : name}
+        <span className={!pathIsLogin ? styles.linkText : ''}>
+          {user && pathIsLogin ? 'Your profile' : name}
         </span>
         {childRoutes && childRoutes?.length > 0 && (
           <div className={styles.chevronContainer}>

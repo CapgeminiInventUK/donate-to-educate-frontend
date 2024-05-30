@@ -79,6 +79,7 @@ const SignIn: FC = () => {
           className={styles.formButton}
           ariaLabel="sign in"
         />
+        <Link to={Paths.JOIN}>Join Donate to Educate if you don&apos;t have an account</Link>
       </Card>{' '}
     </div>
   );

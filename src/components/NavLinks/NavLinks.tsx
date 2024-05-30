@@ -13,25 +13,15 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
   const user = useStore((state) => state.user);
 
   const getRouteFromNavRoute = (navRoute: NavRoute): Route => {
-    const selectedRoutes = routes.filter((route) => {
-      if (navRoute.path === route.path) {
-        return route;
-      }
-    });
-
-    return selectedRoutes[0];
+    return routes.find((route) => navRoute.path === route.path)!;
   };
 
   const getRoutes = (): Route[] => {
-    const matchedRoute = navRoutes
-      .map((navRoute) => {
-        const selectedRoute = getRouteFromNavRoute(navRoute);
-
-        return selectedRoute;
-      })
-      .filter((route) => route !== undefined);
-
-    return matchedRoute;
+    return navRoutes.reduce((acc: Route[], navRoute) => {
+      return getRouteFromNavRoute(navRoute)?.name === 'Sign in' && user
+        ? acc
+        : [...acc, getRouteFromNavRoute(navRoute)];
+    }, []);
   };
 
   const getChildRoutes = (path: Paths): Route[] => {
@@ -40,22 +30,21 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
     });
 
     if (filteredRoute?.childNavRoutes) {
-      const childRoutes = filteredRoute.childNavRoutes.map((childNavRoute: NavRoute) => {
+      return filteredRoute.childNavRoutes.map((childNavRoute: NavRoute) => {
         return getRouteFromNavRoute(childNavRoute);
       });
-
-      return childRoutes;
     }
 
     return [];
   };
+
   return (
     <div className={styles.linksContainer}>
       <div className={`${className} ${styles.links}`}>
         {getRoutes().map(({ path, name }) => (
           <NavLink
             key={path}
-            name={name!}
+            name={name}
             path={path}
             theme={theme}
             childRoutes={getChildRoutes(path)}

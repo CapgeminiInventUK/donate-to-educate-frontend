@@ -6,7 +6,19 @@
   padding: 48px 120px;
 
   .formButton {
-    margin: 20px 0px 0px 0px;
+    margin: 20px 0 20px;
+  }
+
+  a {
+    color: g.$link-blue;
+  }
+}
+
+.header {
+  font-size: 32px;
+
+  @include g.sm-breakpoint {
+    font-size: 28px;
   }
 }
 
@@ -47,9 +59,13 @@
 
 .subContainerLineButtons {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   gap: 20px;
   height: 50px;
+  padding-left: 20px;
+  margin-top: 10px;
 
   @include g.sm-breakpoint {
     flex-direction: column;

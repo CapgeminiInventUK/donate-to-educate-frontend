@@ -63,6 +63,10 @@
         margin: 20px 0 0 50px;
       }
     }
+
+    &.loginLink {
+      background: g.$dark-blue;
+    }
   }
 
   &:hover {
@@ -79,6 +83,10 @@
         .chevron {
           display: none;
         }
+      }
+
+      &.loginLink {
+        background: g.$dark-blue;
       }
     }
   }
@@ -118,7 +126,7 @@
   .linkContainer {
     margin-left: 0;
 
-    &.loginLink {
+    &.navButton {
       order: -1;
 
       a {
@@ -150,6 +158,11 @@
       &.accentLink {
         background: g.$primary-light-blue;
         color: g.$dark-blue;
+      }
+
+      &.loginLink {
+        background: g.$primary-dark-blue;
+        color: g.$primary-white;
       }
     }
 

@@ -25,4 +25,7 @@ export const navRoutes: NavRoute[] = [
   {
     path: Paths.LOGIN,
   },
+  {
+    path: Paths.SIGN_IN,
+  },
 ];

@@ -151,12 +151,12 @@ const routes: Route[] = [
   {
     path: Paths.LOGIN,
     element: <Login />,
-    name: 'Sign in or join',
+    name: 'Join us',
   },
   {
     path: Paths.SIGN_IN,
     element: <SignIn />,
-    name: 'Sign in or join',
+    name: 'Sign in',
   },
   {
     path: Paths.RESET_PASSWORD,
