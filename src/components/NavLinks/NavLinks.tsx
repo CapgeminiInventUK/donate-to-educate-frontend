@@ -18,7 +18,9 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
 
   const getRoutes = (): Route[] => {
     return navRoutes.reduce((acc: Route[], navRoute) => {
-      return [...acc, getRouteFromNavRoute(navRoute)];
+      return getRouteFromNavRoute(navRoute)?.name === 'Sign in' && user
+        ? acc
+        : [...acc, getRouteFromNavRoute(navRoute)];
     }, []);
   };
 
