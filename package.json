@@ -36,7 +36,7 @@
     "react-dom": "18.3.0",
     "react-highlight-words": "0.20.0",
     "react-responsive": "10.0.0",
-    "react-router-dom": "6.23.0",
+    "react-router-dom": "6.23.1",
     "react-select": "5.8.0",
     "react-verification-input": "4.1.2",
     "validator": "13.11.0",
