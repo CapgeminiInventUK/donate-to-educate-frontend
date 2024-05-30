@@ -24,7 +24,6 @@ import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
 import { notification } from 'antd';
 import LogoPurple from '@/assets/logo/LogoPurple';
 import { CloseOutlined } from '@ant-design/icons';
-import notificationStyles from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard.module.scss';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -89,9 +88,7 @@ export const createFormComponent = (
 };
 
 export const openNotification = (
-  message: React.ReactNode = (
-    <span className={notificationStyles.notificationMessage}>Save made</span>
-  ),
+  message: React.ReactNode = <span className="notificationMessage">Save made</span>,
   placement: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' = 'bottomRight',
   icon: React.ReactNode = <LogoPurple />,
   duration = 2,
@@ -101,7 +98,7 @@ export const openNotification = (
     message,
     placement,
     icon,
-    className: notificationStyles.notification,
+    className: 'notification',
     duration,
     closeIcon,
   });
