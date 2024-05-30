@@ -40,7 +40,7 @@
     "react-select": "5.8.0",
     "react-verification-input": "4.1.2",
     "validator": "13.11.0",
-    "vite-plugin-node-polyfills": "0.21.0",
+    "vite-plugin-node-polyfills": "0.22.0",
     "zod": "3.23.8",
     "zustand": "4.5.2"
   },
