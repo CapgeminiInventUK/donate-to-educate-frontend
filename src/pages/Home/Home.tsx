@@ -42,7 +42,7 @@ const Home: FC = () => {
           title="A place for families"
           onClick={() => navigate(Paths.FIND_YOUR_COMMUNITY)}
           body={[
-            "Find new and pre-loved school essentials at your child' school or in nearby charities.",
+            "Find new and pre-loved school essentials at your child's school or in nearby charities.",
             "Donate the things you don't need to help the next pupil and the planet.",
           ]}
           icon={<People />}

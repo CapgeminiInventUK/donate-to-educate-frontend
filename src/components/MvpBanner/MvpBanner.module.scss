@@ -1,0 +1,25 @@
+@use '@/assets/global' as g;
+
+.banner {
+  padding: 20px 0;
+  background-color: g.$dark-blue;
+  color: g.$primary-white;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  text-align: center;
+
+  @include g.sm-breakpoint {
+    font-size: 12px;
+  }
+
+  @include g.xs-breakpoint {
+    font-size: 12px;
+  }
+
+  a {
+    color: g.$primary-white;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
