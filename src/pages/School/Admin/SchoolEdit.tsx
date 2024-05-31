@@ -18,9 +18,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import { notification } from 'antd';
-import LogoPurple from '@/assets/logo/LogoPurple';
-import { CloseOutlined } from '@ant-design/icons';
+import { openNotification } from '@/utils/components';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -162,18 +160,6 @@ const SchoolEdit: FC = () => {
     }, 1);
   }, []);
 
-  const openNotification = (): void => {
-    setSaveDisabled(true);
-    notification.info({
-      message: <span className={styles.notificationMessage}>Save made</span>,
-      placement: 'bottomRight',
-      icon: <LogoPurple />,
-      className: styles.notification,
-      duration: 2,
-      closeIcon: <CloseOutlined style={{ color: 'white' }} />,
-    });
-  };
-
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfileSchool-${type}`],
     enabled: false,
@@ -236,6 +222,7 @@ const SchoolEdit: FC = () => {
                     setContent({ ...content, whatToExpect: val });
                   }}
                   handleSave={() => {
+                    openNotification();
                     setEditState(false);
                     void refetch();
                   }}
@@ -270,6 +257,7 @@ const SchoolEdit: FC = () => {
                     setContent({ ...content, actionText: val });
                   }}
                   handleSave={() => {
+                    openNotification();
                     setEditStateActionText(false);
                     void refetch();
                   }}
@@ -284,7 +272,10 @@ const SchoolEdit: FC = () => {
               <FormButton
                 theme={saveDisabled ? 'formButtonDisabled' : 'formButtonGreen'}
                 onClick={(): void => {
-                  void refetch().then(openNotification);
+                  void refetch().then(() => {
+                    setSaveDisabled(true);
+                    openNotification();
+                  });
                 }}
                 text={'Save'}
                 ariaLabel="save"
