@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import styles from './Home.module.scss';
 import Image from '@components/Image/Image';
 import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
@@ -19,25 +19,22 @@ import { motion } from 'framer-motion';
 
 const Home: FC = () => {
   const navigate = useNavigate();
+  const targetRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollDown = (): void => {
+    if (targetRef.current) {
+      window.scrollTo({
+        top: targetRef.current.getBoundingClientRect().top + window.scrollY - 60,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <div className={styles.container}>
-      <HeroBanner />
+      <HeroBanner onGetInvolvedClick={handleScrollDown} />
 
-      <div className={styles.councilBanner}>
-        <Header
-          className={styles.title}
-          text="First launching in partnership with West Sussex County Council"
-          size="small"
-        />
-        <Image
-          image={westSussexCouncilLogo}
-          alt="west sussex county council logo"
-          width={250}
-          className={styles.westSussexLogo}
-        />
-      </div>
-      <div className={styles.tileContainer}>
+      <div className={styles.tileContainer} ref={targetRef}>
         <Tile
           title="A place for families"
           onClick={() => navigate(Paths.FIND_YOUR_COMMUNITY)}
@@ -69,6 +66,20 @@ const Home: FC = () => {
           ]}
           icon={<Heart />}
           buttonText="Join"
+        />
+      </div>
+
+      <div className={styles.councilBanner}>
+        <Header
+          className={styles.title}
+          text="First launching in partnership with West Sussex County Council"
+          size="small"
+        />
+        <Image
+          image={westSussexCouncilLogo}
+          alt="west sussex county council logo"
+          width={250}
+          className={styles.westSussexLogo}
         />
       </div>
 
