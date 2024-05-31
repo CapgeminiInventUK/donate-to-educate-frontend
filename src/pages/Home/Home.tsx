@@ -24,7 +24,7 @@ const Home: FC = () => {
   const handleScrollDown = (): void => {
     if (targetRef.current) {
       window.scrollTo({
-        top: targetRef.current.getBoundingClientRect().top + window.scrollY - 80,
+        top: targetRef.current.getBoundingClientRect().top + window.scrollY - 60,
         behavior: 'smooth',
       });
     }
