@@ -16,8 +16,10 @@ const Layout: FC<LayoutProps> = ({ header, footer, page }) => {
     <div className={styles.layout}>
       <motion.div className={styles.progressBar} style={{ scaleX }} tabIndex={-1} />
       <div className={styles.header}>{header}</div>
-      <MvpBanner />
-      <main className={styles.content}>{page}</main>
+      <main className={styles.content}>
+        <MvpBanner />
+        {page}
+      </main>
       <div className={styles.footer}>{footer}</div>
     </div>
   );
