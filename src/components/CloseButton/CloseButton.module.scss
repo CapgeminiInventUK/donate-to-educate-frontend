@@ -1,0 +1,12 @@
+@use '@assets/global.scss' as g;
+
+.closeButton {
+  background: none;
+  border: none;
+}
+
+.closeIcon {
+  height: 2rem;
+  width: 2rem;
+  transition: fill 0.2s ease-in-out;
+}
