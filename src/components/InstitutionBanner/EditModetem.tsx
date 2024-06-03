@@ -21,7 +21,7 @@ const EditModeItem: FC<EditModeItemProps> = ({ icon, itemName, item, setBanner, 
         }}
         ariaLabel={itemName}
         value={item}
-        className={styles.noPaddingBottom}
+        className={styles.noMarginBottom}
         isLarge={!isMobile}
       />
     </li>
