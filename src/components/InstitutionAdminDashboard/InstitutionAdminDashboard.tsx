@@ -52,6 +52,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
   const { token: authToken } = useAuthToken();
+  const [showBuildProfileBanner, setShowBuildProfileBanner] = useState(true);
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about ? about : placeholderAboutText}-${type}-${name}`],
@@ -130,14 +131,19 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               setBanner={setBanner}
             />
             <Card className={styles.institutionCard}>
-              <InformationTile
-                heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
-                subtext={
-                  type === 'school'
-                    ? 'Add, edit and save details about how your school can help children and the community.'
-                    : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
-                }
-              />
+              {showBuildProfileBanner && (
+                <InformationTile
+                  heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
+                  subtext={
+                    type === 'school'
+                      ? 'Add, edit and save details about how your school can help children and the community.'
+                      : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
+                  }
+                  dismiss={() =>
+                    setShowBuildProfileBanner((showBuildProfileBanner) => !showBuildProfileBanner)
+                  }
+                />
+              )}
 
               <EditableInformationTile
                 editContent={toggleIsEditingAboutUs}

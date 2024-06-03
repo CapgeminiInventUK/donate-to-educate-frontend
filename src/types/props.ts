@@ -68,6 +68,10 @@ export interface ButtonProps {
   ariaLabel: string;
 }
 
+export interface CloseButtonProps {
+  onClick: () => void;
+}
+
 export interface FormButtonProps {
   theme: FormButtonThemes;
   onClick?: (event: FormEvent<Element>) => void;
@@ -102,6 +106,7 @@ export interface SvgProps {
   colour?: string;
   height?: string;
   width?: string;
+  hover?: boolean;
 }
 export interface EditDescriptionProps {
   value: string;
@@ -325,6 +330,7 @@ export interface InstitutionBannerProps {
 export interface InformationTileProps {
   heading: string;
   subtext: string;
+  dismiss?: () => void;
 }
 
 export interface EditableInformationTileProps extends InformationTileProps {
