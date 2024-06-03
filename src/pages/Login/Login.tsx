@@ -19,7 +19,7 @@ const Login: FC = () => {
             <LogoIconBlue className={styles.logoIcon} />
             <h1 className={styles.header}>Join Donate to Educate</h1>
           </div>
-          <div>You can easily sign in or join if you work for:</div>
+          <h4 className={styles.subHeader}>You can easily sign in or join if you work for:</h4>
           <ul>
             <li>A school</li>
             <li>A charity or volunteer group</li>
@@ -45,7 +45,7 @@ const Login: FC = () => {
             <h3>If you work for a local authority</h3>
             <p>
               If you work for a local authority and want to join,{' '}
-              <Link target={'_blank'} className={styles.link} to={Paths.CONTACT}>
+              <Link className={styles.link} to={Paths.CONTACT}>
                 {' '}
                 contact us.{' '}
               </Link>

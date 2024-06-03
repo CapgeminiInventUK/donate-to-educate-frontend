@@ -127,6 +127,10 @@ export interface HeaderProps {
   size?: 'normal' | 'small';
 }
 
+export interface HeroBannerProps {
+  onGetInvolvedClick: () => void;
+}
+
 export interface PillProps {
   color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red';
   text?: string;

@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import { HeroBannerProps } from '@/types/props';
 import styles from './HeroBanner.module.scss';
 import Image from '../../components/Image/Image';
 import HeroBannerPicture from '../../assets/hero-pictures/HeroBanner.webp';
 import Header from '../Header/Header';
 import LogoPurple from '@/assets/logo/LogoPurple';
 
-export const HeroBanner: FC = () => {
+export const HeroBanner: FC<HeroBannerProps> = ({ onGetInvolvedClick }) => {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.textContainer}>
@@ -13,7 +14,7 @@ export const HeroBanner: FC = () => {
         <Header text="Let's stop education poverty" />
         <p>
           We&apos;re on a mission to tackle education poverty and empower children to thrive at
-          school.
+          school. <span onClick={onGetInvolvedClick}>See how you can get involved</span>.
         </p>
       </div>
       <Image
