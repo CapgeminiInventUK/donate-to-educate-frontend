@@ -137,7 +137,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             <FindCharityTable postcode={postcode} type={type} />
           </div>
         )}
-        {postcode && setPreview && (
+        {setPreview && (
           <div className={styles.actionButtons}>
             <FormButton
               theme="formButtonGrey"
