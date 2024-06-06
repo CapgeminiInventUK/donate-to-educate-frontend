@@ -10,6 +10,10 @@ import styles from './AdminDashboard.module.scss';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import crown from '@/assets/icons/crown.svg';
+import requests from '@/assets/icons/requests.svg';
+import schoolIcon from '@/assets/icons/schoolIcon.svg';
+import donateIcon from '@/assets/icons/donateIcon.svg';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -43,56 +47,49 @@ const AdminDashboard: FC = () => {
           <h1>Admin Dashboard</h1>
         </div>
         <div className={styles.body}>
+          <h2>Manage profiles and requests</h2>
           <div className={styles.cardContainer}>
             <AdminDashboardCard
               isLoading={isLoading}
-              title="Manage local authorities"
+              icon={<img src={crown} alt="Crown" />}
+              title="Local authorities"
               body="View, add and edit your local authorities."
+              amount={la?.joined}
+              totalAmount={la?.notJoined}
+              subBody="local authorities have joined Donate to Educate."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_LA_MANAGE)}
-              stats={
-                <>
-                  <div>{la?.joined} joined</div>
-                  <div>{la?.notJoined} to join</div>
-                </>
-              }
               className="la"
-              buttonTheme="formButtonMidBlue"
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              title="Manage schools, charities and volunteers"
-              body="View who's asked to join Donate to Educate."
+              icon={<img src={requests} alt="Requests" />}
+              title="Requests"
+              body="Approve or decline requests from schools and charities who want to join Donate to Educate."
+              amount={joinRequests?.school}
+              totalAmount={la?.joined}
+              subBody="Hello"
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS)}
-              stats={
-                <>
-                  <div>
-                    {joinRequests?.school ?? 0}
-                    {joinRequests?.school === 1 ? ' school request' : ' school requests'}
-                  </div>
-                  <div>
-                    {joinRequests?.charity ?? 0}
-                    {joinRequests?.charity === 1
-                      ? ' charity and volunteer group request'
-                      : ' charity and volunteer group requests'}
-                  </div>
-                </>
-              }
+              stats={[joinRequests?.school, joinRequests?.charity]}
               className="requests"
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              title="Manage registered schools"
-              body="View, add and edit registered schools."
+              icon={<img src={schoolIcon} alt="schoolIcon" />}
+              title="Schools"
+              body="View, edit and remove registered schools and users."
+              amount={registeredSchools}
+              subBody="schools have joined Donate to Educate."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_SCHOOLS)}
-              stats={<>{registeredSchools} joined</>}
               className="schools"
             />
             <AdminDashboardCard
+              icon={<img src={donateIcon} alt="donateIcon" />}
               isLoading={isLoading}
-              title="Manage registered charities and volunteers"
-              body="View, add and edit registered charities and volunteers."
+              title="Charities and volunteer groups"
+              body="View, edit and remove registered charities and users."
+              amount={registeredCharities}
+              subBody="charities and volunteer groups have joined Donate to Educate."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES)}
-              stats={<>{registeredCharities} joined</>}
               className="charities"
             />
           </div>
