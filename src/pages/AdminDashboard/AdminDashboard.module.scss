@@ -51,6 +51,21 @@
         flex-direction: column;
       }
     }
+
+    .inventBanner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: g.$primary-dark-blue;
+      color: g.$primary-white;
+      padding: 10px 0 40px;
+      border-radius: 10px;
+
+      p {
+        margin-top: 0;
+      }
+    }
   }
 }
 
