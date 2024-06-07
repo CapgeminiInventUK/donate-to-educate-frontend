@@ -11,8 +11,8 @@ import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
-import crown from '@/assets/icons/crown.svg';
-import requests from '@/assets/icons/requests.svg';
+import Crown from '@/assets/icons/crown';
+import Requests from '@/assets/icons/requests';
 import schoolIcon from '@/assets/icons/schoolIcon.svg';
 import donateIcon from '@/assets/icons/donateIcon.svg';
 
@@ -52,7 +52,7 @@ const AdminDashboard: FC = () => {
           <div className={styles.cardContainer}>
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={crown} alt="Crown" />}
+              icon={<Crown />}
               title="Local authorities"
               body="View, add and edit your local authorities."
               amount={la?.joined}
@@ -63,7 +63,7 @@ const AdminDashboard: FC = () => {
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={requests} alt="Requests" />}
+              icon={<Requests />}
               title="Requests"
               body="Approve or decline requests from schools and charities who want to join Donate to Educate."
               amount={joinRequests?.school}
