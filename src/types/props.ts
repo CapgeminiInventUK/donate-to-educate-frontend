@@ -17,6 +17,7 @@ import {
   FormComponent,
   SummaryPageColour,
   ResultType,
+  myStageType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -25,6 +26,7 @@ import {
   CharityProfile,
   CharityProfileHeader,
   GetJoinRequestsQuery,
+  GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   InstituteSearchResult,
   ProfileItems,
@@ -615,4 +617,20 @@ export interface TileProps {
   size: string;
   children?: React.ReactNode;
   noShadow?: boolean;
+}
+
+export interface UserRequestDetailsProps {
+  type: 'school' | 'charity';
+  user: RequestUser;
+  setMyStage: Dispatch<SetStateAction<myStageType>>;
+  charity?: {
+    charityAddress: string;
+    aboutCharity: string;
+  };
+  charityName?: string;
+  la?: string;
+}
+
+export interface SchoolDetailsProps {
+  data: GraphQLQuery<GetSchoolQuery>;
 }

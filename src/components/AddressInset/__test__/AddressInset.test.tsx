@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import AddressInset from './AddressInset';
 import { FormSections } from '@/types/data';
+import AddressInset from '../AddressInset';
 
 describe('Address Inset', () => {
   test('should not render if no name, localAuthority and postcode', () => {

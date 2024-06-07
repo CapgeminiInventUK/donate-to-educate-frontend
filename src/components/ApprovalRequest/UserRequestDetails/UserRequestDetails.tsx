@@ -1,40 +1,26 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { FC, useState } from 'react';
 import styles from '../ApprovalRequest.module.scss';
 import ToolTip from '@/assets/admin/ToolTip';
-import { RequestUser, myStageType } from '@/types/data';
 import FormButton from '@/components/FormButton/FormButton';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
-
-interface UserRequestDetailsProps {
-  type: 'school' | 'charity';
-  user: RequestUser;
-  showModal: boolean;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
-  setMyStage: Dispatch<SetStateAction<myStageType>>;
-  charity?: {
-    charityAddress: string;
-    aboutCharity: string;
-  };
-  charityName?: string;
-  la?: string;
-}
+import { UserRequestDetailsProps } from '@/types/props';
 
 const UserRequestDetails: FC<UserRequestDetailsProps> = ({
   type,
   user,
-  showModal,
-  setShowModal,
   setMyStage,
   charity,
   charityName,
   la,
 }) => {
+  const [showModal, setShowModal] = useState(false);
   const { name, title, phone, email } = user;
   const { charityAddress, aboutCharity } = charity ?? {};
   const text =
     type === 'school'
       ? 'senior staff or a senior contact at the school.'
       : 'working at the charity or volunteer group and have somewhere to store products.';
+
   return (
     <>
       <p>To confirm this connection, check that they&apos;re {text}</p>

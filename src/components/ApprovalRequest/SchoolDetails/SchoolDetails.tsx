@@ -1,14 +1,10 @@
 import Phone from '@/assets/contact/Phone';
 import Globe from '@/assets/tiles/Globe';
-import { GetSchoolQuery } from '@/types/api';
-import { GraphQLQuery } from 'aws-amplify/api';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../ApprovalRequest.module.scss';
+import { SchoolDetailsProps } from '@/types/props';
 
-interface SchoolDetailsProps {
-  data: GraphQLQuery<GetSchoolQuery>;
-}
 const SchoolDetails: FC<SchoolDetailsProps> = ({ data }) => {
   const {
     getSchool: { street, locality, address3, town, county, postcode, website, name, phone },

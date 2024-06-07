@@ -34,7 +34,6 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
   urn,
 }) => {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
   const [myStage, setMyStage] = useState<myStageType>('deciding');
 
   const { refetch, isError } = useQuery({
@@ -123,8 +122,6 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
             <UserRequestDetails
               type={type}
               user={user}
-              showModal={showModal}
-              setShowModal={setShowModal}
               setMyStage={setMyStage}
               charity={charity}
               charityName={name}
