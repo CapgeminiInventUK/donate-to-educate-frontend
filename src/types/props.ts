@@ -354,15 +354,6 @@ export interface ActionTileProps {
   onClick: () => void;
 }
 
-export interface AdminActionTileProps {
-  subheading?: string;
-  heading: string;
-  icon: JSX.Element;
-  onClick: () => void;
-  isPresent: boolean;
-  type: string;
-}
-
 export interface AddressInsetProps {
   formData: FormDataItem[];
   componentData: ComponentDataPropsType;
