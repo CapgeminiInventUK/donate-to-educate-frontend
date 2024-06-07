@@ -44,8 +44,8 @@
 .grey {
   @extend .tile;
 
-  border-top: g.$primary-light-blue;
-  background: g.$primary-white;
+  border-top: g.$primary-light-blue 8px solid;
+  background: g.$about-grey;
   color: g.$dark-blue;
 
   .greyIcon {
