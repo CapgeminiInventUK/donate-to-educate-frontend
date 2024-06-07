@@ -26,7 +26,7 @@ const ActionTile: FC<ActionTileProps> = ({
               !isAdmin
                 ? 'formButtonGreen'
                 : theme === 'grey'
-                  ? 'formButtonLightBlue'
+                  ? 'formButtonMidBlue'
                   : 'formButtonGrey'
             }
             text={buttonText}
