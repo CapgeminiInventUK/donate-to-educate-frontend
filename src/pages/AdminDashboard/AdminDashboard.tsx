@@ -10,10 +10,10 @@ import styles from './AdminDashboard.module.scss';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import crown from '@/assets/icons/crown.svg';
-import requests from '@/assets/icons/requests.svg';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
+import Crown from '@/assets/icons/Crown';
+import Requests from '@/assets/icons/requests';
+import School from '@/assets/icons/School';
+import Donate from '@/assets/icons/Donate';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const AdminDashboard: FC = () => {
           <div className={styles.cardContainer}>
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={crown} alt="Crown" />}
+              icon={<Crown />}
               title="Local authorities"
               body="View, add and edit your local authorities."
               amount={la?.joined}
@@ -62,7 +62,7 @@ const AdminDashboard: FC = () => {
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={requests} alt="Requests" />}
+              icon={<Requests />}
               title="Requests"
               body="Approve or decline requests from schools and charities who want to join Donate to Educate."
               amount={joinRequests?.school}
@@ -74,7 +74,7 @@ const AdminDashboard: FC = () => {
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={schoolIcon} alt="schoolIcon" />}
+              icon={<School />}
               title="Schools"
               body="View, edit and remove registered schools and users."
               amount={registeredSchools}
@@ -83,7 +83,7 @@ const AdminDashboard: FC = () => {
               className="schools"
             />
             <AdminDashboardCard
-              icon={<img src={donateIcon} alt="donateIcon" />}
+              icon={<Donate />}
               isLoading={isLoading}
               title="Charities and volunteer groups"
               body="View, edit and remove registered charities and users."
