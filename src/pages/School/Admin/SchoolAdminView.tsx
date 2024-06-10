@@ -16,9 +16,10 @@ import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import Tile from '../../../components/Tile/Tile';
 import Card from '@/components/Card/Card';
-import Heart from '@/assets/school/Heart';
+import Heart from '@/assets/icons/Heart';
 import Donate from '@/assets/icons/Donate';
 import Stock from '@/assets/icons/Stock';
+import SchoolIcon from '@/assets/icons/School';
 
 const School: FC = () => {
   const user = useStore((state) => state.user);
@@ -78,7 +79,7 @@ const School: FC = () => {
                 })
               }
               body={['See products schools can provide to you or what donations they need']}
-              icon={<School />}
+              icon={<SchoolIcon />}
               size="medium"
             />
             <Tile

@@ -14,7 +14,7 @@ import { client } from '@/graphqlClient';
 import { getSchoolsNearby } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Donate from '@/assets/icons/Donate';
-import Heart from '@/assets/school/Heart';
+import Heart from '@/assets/icons/Heart';
 import School from '@/assets/icons/School';
 
 const YourLocalArea: FC = () => {

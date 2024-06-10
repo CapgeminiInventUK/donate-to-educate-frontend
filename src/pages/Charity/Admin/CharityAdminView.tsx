@@ -24,7 +24,7 @@ import Card from '@/components/Card/Card';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '@/utils/globals';
 import School from '@/assets/icons/School';
-import Heart from '@/assets/tiles/Heart';
+import Heart from '@/assets/icons/Heart';
 import Donate from '@/assets/icons/Donate';
 import Stock from '@/assets/icons/Stock';
 
