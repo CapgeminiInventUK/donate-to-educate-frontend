@@ -11,9 +11,10 @@ import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Crown from '@/assets/icons/Crown';
-import Requests from '@/assets/icons/requests';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
+import Requests from '@/assets/icons/Requests';
+import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -91,6 +92,15 @@ const AdminDashboard: FC = () => {
               subBody="charities and volunteer groups have joined Donate to Educate."
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES)}
               className="charities"
+            />
+          </div>
+          <div className={styles.inventBanner}>
+            <p>Powered by</p>
+            <LogoCapgeminiInvent
+              className={styles.inventLogo}
+              onClick={(): Window | null =>
+                window.open(Paths.INVENT, '_blank', 'rel=noopener noreferrer')
+              }
             />
           </div>
         </div>

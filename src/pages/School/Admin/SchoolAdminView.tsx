@@ -15,11 +15,10 @@ import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import Tile from '../../../components/Tile/Tile';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import heartIcon from '@/assets/icons/heartIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
-import stockIcon from '@/assets/icons/stockIcon.svg';
 import Card from '@/components/Card/Card';
+import Heart from '@/assets/school/Heart';
+import Donate from '@/assets/icons/Donate';
+import Stock from '@/assets/icons/Stock';
 
 const School: FC = () => {
   const user = useStore((state) => state.user);
@@ -79,7 +78,7 @@ const School: FC = () => {
                 })
               }
               body={['See products schools can provide to you or what donations they need']}
-              icon={<img src={schoolIcon} alt="School" />}
+              icon={<School />}
               size="medium"
             />
             <Tile
@@ -90,7 +89,7 @@ const School: FC = () => {
                 })
               }
               body={['Find out what they stock, or donate products']}
-              icon={<img src={heartIcon} alt="Charity" />}
+              icon={<Heart />}
               size="medium"
             />
           </div>
@@ -103,7 +102,7 @@ const School: FC = () => {
                 })
               }
               body={['Support schools and charities in your area']}
-              icon={<img src={donateIcon} alt="Donate" />}
+              icon={<Donate />}
               size="medium"
             />
             <Tile
@@ -116,7 +115,7 @@ const School: FC = () => {
               body={[
                 'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
               ]}
-              icon={<img src={stockIcon} alt="Stock" />}
+              icon={<Stock />}
               size="medium"
             />
           </div>

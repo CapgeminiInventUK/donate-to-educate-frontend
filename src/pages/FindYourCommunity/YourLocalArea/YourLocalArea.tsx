@@ -5,9 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Tile from '../../../components/Tile/Tile';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import heartIcon from '@/assets/icons/heartIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
 import kidsRunning from '@/assets/icons/kidsRunning.webp';
 import Card from '@/components/Card/Card';
 import { GetSchoolsNearbyQuery } from '@/types/api';
@@ -16,6 +13,9 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import { getSchoolsNearby } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
+import Donate from '@/assets/icons/Donate';
+import Heart from '@/assets/school/Heart';
+import School from '@/assets/icons/School';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();
@@ -58,21 +58,21 @@ const YourLocalArea: FC = () => {
             title="Find a nearby school"
             onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode: state.postcode } })}
             body={['See products schools can provide to you or what donations they need']}
-            icon={<img src={schoolIcon} alt="School" />}
+            icon={<School />}
             size="small"
           />
           <Tile
             title="Find nearby charities"
             onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode: state.postcode } })}
             body={['Find out what they stock, or donate products']}
-            icon={<img src={heartIcon} alt="Charity" />}
+            icon={<Heart />}
             size="small"
           />
           <Tile
             title="Donate products"
             onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode: state.postcode } })}
             body={['Support schools and charities in your area']}
-            icon={<img src={donateIcon} alt="Donate" />}
+            icon={<Donate />}
             size="small"
           />
         </div>
