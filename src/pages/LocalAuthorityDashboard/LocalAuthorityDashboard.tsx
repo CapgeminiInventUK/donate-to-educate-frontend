@@ -13,13 +13,13 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { AcceptPrivacyPolicyMutation, GetLaStatsQuery } from '@/types/api';
 import { acceptPrivacyPolicy } from '@/graphql/mutations';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
 import { getLaStats } from '@/graphql/queries';
 import { Pill } from '@/components/Pill/Pill';
 import { useStore } from '@/stores/useStore';
 import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
+import Donate from '@/assets/icons/Donate';
+import School from '@/assets/icons/School';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -134,7 +134,7 @@ const LocalAuthorityDashboard: FC = () => {
                 })
               }
               body={['View, edit and remove schools from Donate to Educate in your area.']}
-              icon={<img src={schoolIcon} alt="School" />}
+              icon={<School />}
               size="medium"
               noShadow
             >
@@ -150,7 +150,7 @@ const LocalAuthorityDashboard: FC = () => {
               body={[
                 'View, edit, and remove charities and volunteer groups from Donate to Educate in your area.',
               ]}
-              icon={<img src={donateIcon} alt="School" />}
+              icon={<Donate />}
               size="medium"
               noShadow
             >

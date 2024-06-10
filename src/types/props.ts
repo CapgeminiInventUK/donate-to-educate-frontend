@@ -458,11 +458,14 @@ export interface ItemSelectionProps {
 export interface AdminDashboardCardProps {
   isLoading: boolean;
   title: string;
+  icon?: JSX.Element;
   body: string;
+  amount?: number;
+  totalAmount?: number;
+  subBody: string;
   onClick: () => void;
-  stats: JSX.Element;
+  stats?: (number | undefined)[];
   className: string;
-  buttonTheme?: FormButtonThemes;
 }
 
 export interface RequestItemsProps {
