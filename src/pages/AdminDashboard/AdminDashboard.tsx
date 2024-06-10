@@ -10,11 +10,11 @@ import styles from './AdminDashboard.module.scss';
 import { getAdminTileStats } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Crown from '@/assets/icons/Crown';
+import School from '@/assets/icons/School';
+import Donate from '@/assets/icons/Donate';
+import Requests from '@/assets/icons/Requests';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
-import Crown from '@/assets/icons/crown';
-import Requests from '@/assets/icons/requests';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const AdminDashboard: FC = () => {
             />
             <AdminDashboardCard
               isLoading={isLoading}
-              icon={<img src={schoolIcon} alt="schoolIcon" />}
+              icon={<School />}
               title="Schools"
               body="View, edit and remove registered schools and users."
               amount={registeredSchools}
@@ -84,7 +84,7 @@ const AdminDashboard: FC = () => {
               className="schools"
             />
             <AdminDashboardCard
-              icon={<img src={donateIcon} alt="donateIcon" />}
+              icon={<Donate />}
               isLoading={isLoading}
               title="Charities and volunteer groups"
               body="View, edit and remove registered charities and users."
