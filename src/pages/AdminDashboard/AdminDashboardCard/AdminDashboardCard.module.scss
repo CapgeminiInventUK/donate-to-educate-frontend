@@ -1,13 +1,37 @@
 @use '@assets/global.scss' as g;
 
 .dashboardCard {
-  border-top: 18px solid transparent;
-  padding: 0 50px 30px;
+  padding: 40px 40px 50px;
   margin: 20px;
-  width: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 398px;
+  background: white;
+  color: g.$primary-dark-blue;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .pillContainer {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .numberJoinedArea {
+    margin-top: 30px;
+    padding: 25px 30px 30px;
+    background: g.$about-grey;
+    border-radius: 10px;
+
+    .amount {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .subBody {
+      margin-top: 5px;
+    }
+  }
 }
 
 .la {

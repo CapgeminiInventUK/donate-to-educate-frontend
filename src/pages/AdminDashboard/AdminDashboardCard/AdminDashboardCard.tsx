@@ -1,39 +1,57 @@
 import { FC } from 'react';
-import FormButton from '@/components/FormButton/FormButton';
 import Spinner from '@/components/Spinner/Spinner';
 import styles from './AdminDashboardCard.module.scss';
 import { AdminDashboardCardProps } from '@/types/props';
-import Card from '@/components/Card/Card';
+import { motion } from 'framer-motion';
+import { Pill } from '@/components/Pill/Pill';
 
 const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   isLoading,
   title,
+  icon,
   body,
-  onClick,
   stats,
+  amount,
+  totalAmount,
+  subBody,
+  onClick,
   className,
-  buttonTheme = 'formButtonGrey',
 }): JSX.Element => {
   return (
-    <Card className={`${styles.dashboardCard} ${styles[`${className}`]}`}>
+    <motion.div
+      className={`${styles.dashboardCard} ${styles[`${className}`]}`}
+      whileHover={{ scale: 1.05 }}
+      onClick={onClick}
+    >
       {isLoading && <Spinner />}
       {!isLoading && (
         <>
+          <div className={styles.icon}>{icon}</div>
           <h3>{title}</h3>
-          <div className={styles.border}>{stats}</div>
-          <br />
           <div>{body}</div>
-          <br />
-          <FormButton
-            text={'Start'}
-            theme={buttonTheme}
-            onClick={onClick}
-            fullWidth
-            ariaLabel="start"
-          />
+          {stats ? (
+            <div className={styles.pillContainer}>
+              <Pill
+                color="green"
+                text={`${stats[0] ?? 0} ${stats[0] === 1 ? ' school request' : ' school requests'}`}
+              />
+              <Pill
+                color="green"
+                text={`${stats[1] ?? 0} ${stats[1] === 1 ? ' charity request' : ' charity requests'}`}
+              />
+            </div>
+          ) : (
+            <div className={styles.numberJoinedArea}>
+              <div>
+                <span className={styles.amount}>{amount}</span>{' '}
+                {totalAmount && `out of ${totalAmount}`}
+              </div>
+              <div className={styles.subBody}>{subBody}</div>
+            </div>
+          )}
         </>
       )}
-    </Card>
+    </motion.div>
   );
 };
 
