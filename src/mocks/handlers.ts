@@ -1,15 +1,12 @@
-import { graphql, HttpResponse } from 'msw';
+import { HttpResponse, graphql } from 'msw';
+import getSchoolQueryResponse from './data/getSchoolQuery.json';
 
 export const handlers = [
-  graphql.query('GetUser', ({ query, variables }) => {
-    const { userId } = variables;
-
+  graphql.query('getSchool', ({ variables }) => {
+    // eslint-disable-next-line no-console
+    console.log(variables);
     return HttpResponse.json({
-      data: {
-        user: {
-          name: 'John',
-        },
-      },
+      data: getSchoolQueryResponse,
     });
   }),
 ];

@@ -1,11 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_96aaea"
 >
   <div
-    className="errorPage"
+    className="_errorPage_8c5621"
   >
     <svg
       fill="none"
@@ -35,7 +35,7 @@ exports[`renders correctly 1`] = `
       </a>
     </p>
     <svg
-      className="logo"
+      className="_logo_8c5621"
       fill="none"
       viewBox="0 0 304 103"
       xmlns="http://www.w3.org/2000/svg"

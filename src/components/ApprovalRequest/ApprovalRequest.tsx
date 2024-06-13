@@ -115,7 +115,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
             color={type == 'school' ? 'blue' : 'lightBlue'}
             text={type == 'school' ? 'SCHOOL' : 'CHARITY OR VOLUNTEER GROUP'}
           />
-          {type === 'school' && data && <SchoolDetails data={data} />}
+          {type === 'school' && data !== undefined && <SchoolDetails data={data} />}
           {type === 'charity' && <h1>{name}</h1>}
           <hr />
           {myStage === 'deciding' && (
