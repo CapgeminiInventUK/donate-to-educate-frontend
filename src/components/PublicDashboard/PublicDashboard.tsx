@@ -1,18 +1,18 @@
 import styles from './PublicDashboard.module.scss';
 import { FC, useEffect } from 'react';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import Hanger from '@/assets/school/Hanger';
-import Heart from '@/assets/school/Heart';
-import ExtraStock from '@/assets/school/ExtraStock';
 import HorizontalLine from '@/assets/school/HorizontalLine';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '../FormButton/FormButton';
-import { motion } from 'framer-motion';
 import Card from '@/components/Card/Card';
 import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
 import { scrollToTheTop } from '@/utils/globals';
 import { PublicDashboardProps } from '@/types/props';
+import ActionTile from '../ActionTile/ActionTile';
+import Hanger from '@/assets/school/Hanger';
+import Heart from '@/assets/school/Heart';
+import ExtraStock from '@/assets/school/ExtraStock';
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
   type,
@@ -62,8 +62,12 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
         <div className={styles.tilesWrapper}>
           <div className={styles.productsTilesContainer}>
             {request && (
-              <motion.div
-                className={styles.requestProductsTile}
+              <ActionTile
+                heading="Request products"
+                subheading="Easily request school supplies for your children."
+                icon={<Hanger colour="white" />}
+                theme={'lightBlue'}
+                buttonText="Request"
                 onClick={() =>
                   navigate(getNavigateLinkFromType(type), {
                     state: {
@@ -76,14 +80,16 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     },
                   })
                 }
-                whileHover={{ scale: 1.05 }}
-              >
-                <Hanger /> <h3>Request products</h3>
-              </motion.div>
+              ></ActionTile>
             )}
+
             {donate && (
-              <motion.div
-                className={styles.donateProductsTile}
+              <ActionTile
+                heading="Donate products"
+                subheading="Help us by donating school supplies."
+                icon={<Heart colour="white" />}
+                theme={'midBlue'}
+                buttonText="Donate"
                 onClick={() =>
                   navigate(getNavigateLinkFromType(type), {
                     state: {
@@ -96,40 +102,31 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
                     },
                   })
                 }
-                whileHover={{ scale: 1.05 }}
-              >
-                <Heart /> <h3>Donate products</h3>
-              </motion.div>
+              ></ActionTile>
+            )}
+
+            {excess && (
+              <ActionTile
+                heading="Check extra stock"
+                subheading="Share our extra products with the community."
+                icon={<ExtraStock colour="#050E33" />}
+                theme={'darkBlue'}
+                buttonText="Check extra stock"
+                onClick={() =>
+                  navigate(getNavigateLinkFromType(type), {
+                    state: {
+                      type: 'plus',
+                      profile: excess,
+                      name: organisationName,
+                      id: organisationId,
+                      previewMode,
+                      postcode,
+                    },
+                  })
+                }
+              ></ActionTile>
             )}
           </div>
-          {excess && (
-            <motion.div
-              className={styles.extraStockTileContainer}
-              onClick={() =>
-                navigate(getNavigateLinkFromType(type), {
-                  state: {
-                    type: 'plus',
-                    profile: excess,
-                    name: organisationName,
-                    id: organisationId,
-                    previewMode,
-                    postcode,
-                  },
-                })
-              }
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className={styles.extraStockTile}>
-                <ExtraStock />
-                <div className={styles.extraStockText}>
-                  <h3>Check extra stock to share with the community</h3>
-                  <h4>
-                    Charities can take our extra products to share them with people who need it.
-                  </h4>
-                </div>
-              </div>
-            </motion.div>
-          )}
         </div>
         {postcode && (
           <div className={styles.nearbyCharitiesTable}>

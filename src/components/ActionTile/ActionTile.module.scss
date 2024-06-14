@@ -1,0 +1,93 @@
+@use '@assets/global.scss' as g;
+
+@mixin responsiveness {
+  @include g.md-breakpoint {
+    height: 160px;
+    padding: 10px 20px;
+    gap: 10px;
+  }
+
+  @include g.lg-breakpoint {
+    height: 160px;
+    padding: 10px 20px;
+    gap: 10px;
+  }
+}
+
+@mixin icons($background-color) {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+
+  @include g.md-breakpoint {
+    margin-top: 15px;
+  }
+}
+
+@mixin tile($border-top, $background, $color) {
+  display: flex;
+  flex: 1;
+  height: 120px;
+  padding: 30px 40px;
+  gap: 20px;
+  border-radius: 10px;
+  border-top: $border-top 8px solid;
+  background: $background;
+  color: $color;
+
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tileText {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  @include responsiveness;
+}
+
+.grey {
+  @include tile(g.$primary-light-blue, g.$about-grey, g.$dark-blue);
+
+  .greyIcon {
+    @include icons(g.$primary-light-blue);
+  }
+}
+
+.lightBlue {
+  @include tile(g.$primary-mid-blue, g.$primary-light-blue, g.$dark-blue);
+
+  .lightBlueIcon {
+    @include icons(g.$primary-mid-blue);
+  }
+}
+
+.midBlue {
+  @include tile(g.$dark-blue, g.$primary-mid-blue, g.$primary-white);
+
+  .midBlueIcon {
+    @include icons(g.$primary-dark-blue);
+  }
+}
+
+.darkBlue {
+  @include tile(g.$primary-light-blue, g.$primary-dark-blue, g.$primary-white);
+
+  .darkBlueIcon {
+    @include icons(g.$primary-light-blue);
+  }
+}
+
+.button {
+  @include g.sm-breakpoint {
+    position: absolute;
+    bottom: 10px;
+  }
+}

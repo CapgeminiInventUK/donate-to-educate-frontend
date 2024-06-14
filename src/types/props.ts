@@ -41,6 +41,8 @@ export interface LayoutProps {
   page: ReactNode;
 }
 
+export type TileThemes = 'lightBlue' | 'midBlue' | 'darkBlue' | 'grey';
+
 export type Themes =
   | 'darkBlue'
   | 'midBlue'
@@ -342,13 +344,14 @@ export interface EditableInformationTileProps extends InformationTileProps {
   setText: (text: string) => void;
 }
 
-export interface AdminActionTileProps {
-  subheading?: string;
-  heading: string;
+export interface ActionTileProps {
   icon: JSX.Element;
+  heading: string;
+  subheading?: string;
+  buttonText: string;
+  theme: TileThemes;
+  isAdmin?: boolean;
   onClick: () => void;
-  isPresent: boolean;
-  type: string;
 }
 
 export interface AddressInsetProps {
