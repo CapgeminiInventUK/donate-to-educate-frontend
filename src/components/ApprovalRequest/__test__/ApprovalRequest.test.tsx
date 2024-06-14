@@ -1,7 +1,6 @@
-import { createWrapper, mockApiResponse } from '@/mocks/mockGraphqlClient';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
 import ApprovalRequest from '../ApprovalRequest';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
-import getSchoolQuery from '@/mocks/data/getSchoolQuery.json';
 import { vi } from 'vitest';
 
 describe('Approval Request component', () => {
@@ -11,25 +10,45 @@ describe('Approval Request component', () => {
     email: 'Jakereadman@gmail.com',
     phone: '+447595870150',
   };
-  const Component = createWrapper(
-    <ApprovalRequest
-      setStage={vi.fn()}
-      name={'Lyminster Primary School - BN17 7JZ'}
-      type={'school'}
-      la={'West Sussex'}
-      user={user}
-      id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
-      urn={'125927'}
-    />
-  );
 
   it('should render ApprovalRequest component', async () => {
-    mockApiResponse('getSchool', getSchoolQuery, true);
+    const Component = createWrapper(
+      <ApprovalRequest
+        setStage={vi.fn()}
+        name={'Lyminster Primary School - BN17 7JZ'}
+        type={'school'}
+        la={'West Sussex'}
+        user={user}
+        id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
+        urn={'125927'}
+      />
+    );
     const { findByText, findByRole } = render(<Component />);
     const spinner = await findByRole('img');
     expect(spinner).toBeInTheDocument();
     await waitForElementToBeRemoved(spinner).then(async () => {
       const element = await findByText('Lyminster Primary School');
+      expect(element).toBeInTheDocument();
+    });
+  });
+
+  it('should return error banner if school query returns an error', async () => {
+    const Component = createWrapper(
+      <ApprovalRequest
+        setStage={vi.fn()}
+        name={'Error name'}
+        type={'school'}
+        la={'West Sussex'}
+        user={user}
+        id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
+        urn={'125927'}
+      />
+    );
+    const { findByText, findByRole } = render(<Component />);
+    const spinner = await findByRole('img');
+    expect(spinner).toBeInTheDocument();
+    await waitForElementToBeRemoved(spinner).then(async () => {
+      const element = await findByText('Something went wrong');
       expect(element).toBeInTheDocument();
     });
   });

@@ -32,6 +32,8 @@ export const mockApiResponse = (
 ): void => {
   server.use(
     graphql.query(queryName, () => {
+      // eslint-disable-next-line no-console
+      console.log('here');
       if (throwError) {
         return HttpResponse.json({ data: { isError: true } });
       }

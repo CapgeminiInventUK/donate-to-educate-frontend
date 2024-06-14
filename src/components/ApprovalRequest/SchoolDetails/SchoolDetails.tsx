@@ -41,7 +41,7 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({ data }) => {
         <p>{county}</p>
         <p>{postcode}</p>
         <p>England</p>
-      </div>{' '}
+      </div>
     </>
   );
 };
