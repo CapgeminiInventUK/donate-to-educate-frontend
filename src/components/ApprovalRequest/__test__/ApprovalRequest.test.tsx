@@ -1,6 +1,6 @@
 import { createWrapper, mockApiResponse } from '@/mocks/mockGraphqlClient';
 import ApprovalRequest from '../ApprovalRequest';
-import { render } from '@testing-library/react';
+import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import getSchoolQuery from '@/mocks/data/getSchoolQuery.json';
 import { vi } from 'vitest';
 
@@ -25,8 +25,12 @@ describe('Approval Request component', () => {
 
   it('should render ApprovalRequest component', async () => {
     mockApiResponse('getSchool', getSchoolQuery, true);
-    const { findByText } = render(<Component />);
-    const element = await findByText('Lyminster Primary School');
-    expect(element).toBeInTheDocument();
+    const { findByText, findByRole } = render(<Component />);
+    const spinner = await findByRole('img');
+    expect(spinner).toBeInTheDocument();
+    await waitForElementToBeRemoved(spinner).then(async () => {
+      const element = await findByText('Lyminster Primary School');
+      expect(element).toBeInTheDocument();
+    });
   });
 });
