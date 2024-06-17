@@ -1,14 +1,14 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_d9e64a"
 >
   <div
-    className="contentContainer"
+    className="_contentContainer_d9e64a"
   >
     <button
-      className="back  blue"
+      className="_back_c9dc66  _blue_c9dc66"
       onClick={[Function]}
       type="button"
     >
@@ -31,13 +31,11 @@ exports[`renders correctly 1`] = `
         Back
       </h4>
     </button>
-    <h1
-      className="title"
-    >
+    <h1>
       Contact us
     </h1>
     <div
-      className="card contactCard"
+      className="_card_d75732 _contactCard_d9e64a"
     >
       <svg
         fill="none"
@@ -62,7 +60,7 @@ exports[`renders correctly 1`] = `
         />
       </svg>
       <a
-        className="email"
+        className="_email_d9e64a"
         href="mailto: team@donatetoeducate.org.uk"
       >
         team@donatetoeducate.org.uk
@@ -90,13 +88,13 @@ exports[`renders correctly 1`] = `
         />
       </svg>
       <a
-        className="email"
+        className="_email_d9e64a"
         href="tel: 0134 271 8679"
       >
         0134 271 8679
       </a>
       <a
-        className="home"
+        className="_home_d9e64a"
         href="/"
         onClick={[Function]}
       >

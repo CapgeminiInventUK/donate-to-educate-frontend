@@ -1,0 +1,22 @@
+{
+  "getSchool": {
+    "urn": "125927",
+    "name": "Lyminster Primary School",
+    "localAuthority": "West Sussex",
+    "postcode": "BN17 7JZ",
+    "registered": false,
+    "isLocalAuthorityRegistered": null,
+    "address3": "",
+    "county": "West Sussex",
+    "locality": "",
+    "street": "Wick Street",
+    "phone": "01903713642",
+    "town": "Littlehampton",
+    "website": "http://www.lyminster.w-sussex.sch.uk",
+    "distance": null,
+    "profile": null,
+    "hasJoinRequest": null,
+    "registrationState": null,
+    "__typename": "School"
+  }
+}

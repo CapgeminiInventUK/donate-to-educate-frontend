@@ -1,19 +1,17 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_bc42d4"
 >
   <div
-    className="contentContainer"
+    className="_contentContainer_bc42d4"
   >
-    <h1
-      className="title"
-    >
+    <h1>
       Accessibility statement
     </h1>
     <div
-      className="card footerCard"
+      className="_card_d75732 _footerCard_bc42d4"
     >
       <p>
         We want as many people as possible to be able to use this website. We have taken steps to make this website as accessible as possible, for instance:
@@ -51,7 +49,7 @@ exports[`renders correctly 1`] = `
       </p>
       <ul>
         <li
-          className="email"
+          className="_email_6213f5"
         >
           email: 
           <a
@@ -101,7 +99,7 @@ exports[`renders correctly 1`] = `
         This statement was prepared on 31 August 2023. It was last reviewed on 31 August 2023. Information on accessibility testing will be published on this page after testing has been carried out.
       </p>
       <a
-        className="home"
+        className="_home_bc42d4"
         href="/"
         onClick={[Function]}
       >

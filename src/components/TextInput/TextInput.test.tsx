@@ -1,9 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import TextInput from './TextInput';
+import { vi } from 'vitest';
 
 describe('TextInput', (): void => {
   test('renders without errors', (): void => {
-    render(<TextInput header="Test Header" ariaLabel="" />);
+    const { queryByText } = render(<TextInput header="Test Header" ariaLabel="" />);
+    expect(queryByText('Test Header')).toBeInTheDocument();
   });
 
   test('displays the correct header', (): void => {
@@ -13,7 +15,7 @@ describe('TextInput', (): void => {
   });
 
   test('calls the onChange function on input change', (): void => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<TextInput header="Test Header" onChange={handleChange} ariaLabel="" />);
 
     const input = screen.getByRole('textbox', { name: '' });
@@ -39,7 +41,9 @@ describe('TextInput', (): void => {
     expect(getByText(subHeadingText)).toBeInTheDocument();
   });
 
-  test('does not render a <p> element with a class of "subHeading" when the subheading is not provided', (): void => {
+  test('does not render a <p> element with a class of "subHeading" when the subheading is not provided', ({
+    expect,
+  }): void => {
     const { queryByText } = render(<TextInput header="Test Header" ariaLabel="" />);
     const subHeading = queryByText(/Test Subheading/);
     expect(subHeading).toBeNull();
