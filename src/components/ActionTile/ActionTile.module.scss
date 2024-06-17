@@ -11,7 +11,7 @@
   background-color: $background-color;
 
   @include g.sm-breakpoint {
-    margin-left: 20px;
+    margin: 0 0 5px 20px;
     min-width: 50px;
   }
 }
