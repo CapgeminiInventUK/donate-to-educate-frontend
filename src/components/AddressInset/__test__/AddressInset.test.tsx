@@ -8,8 +8,10 @@ describe('Address Inset', () => {
       header: 'Join Donate to Educate',
       infoText: 'To add your school, you need to:',
     };
-    const { queryByTestId } = render(<AddressInset formData={[]} componentData={componentData} />);
-    expect(queryByTestId('address-inset')).toBeNull();
+    const { queryByLabelText } = render(
+      <AddressInset formData={[]} componentData={componentData} />
+    );
+    expect(queryByLabelText('address-inset')).toBeNull();
   });
 
   test('should render if name, local authority and postcode exist in form data', () => {
@@ -34,9 +36,9 @@ describe('Address Inset', () => {
       options: [],
       ariaLabel: 'label',
     };
-    const { queryByTestId } = render(
+    const { queryByLabelText } = render(
       <AddressInset formData={formData} componentData={componentData} />
     );
-    expect(queryByTestId('address-inset')).not.toBeNull();
+    expect(queryByLabelText('address-inset')).not.toBeNull();
   });
 });
