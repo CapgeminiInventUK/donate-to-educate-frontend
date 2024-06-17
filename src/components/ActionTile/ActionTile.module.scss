@@ -1,28 +1,31 @@
 @use '@assets/global.scss' as g;
 
-.icons {
+@mixin icons($background-color) {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: $background-color;
 
   @include g.sm-breakpoint {
     margin-left: 20px;
-    min-height: 50px;
+    min-width: 50px;
   }
 }
 
-.tile {
+@mixin tile($border-top, $background, $color) {
   display: flex;
   flex: 1;
   block-size: fit-content;
   padding: 30px 40px;
   gap: 20px;
   border-radius: 10px;
+  border-top: $border-top 8px solid;
+  background: $background;
+  color: $color;
 
   h3 {
     padding: 0;
@@ -59,57 +62,33 @@
 }
 
 .grey {
-  @extend .tile;
-
-  border-top: g.$primary-light-blue 8px solid;
-  background: g.$about-grey;
-  color: g.$dark-blue;
+  @include tile(g.$primary-light-blue, g.$about-grey, g.$dark-blue);
 
   .greyIcon {
-    @extend .icons;
-
-    background-color: g.$primary-light-blue;
+    @include icons(g.$primary-light-blue);
   }
 }
 
 .lightBlue {
-  @extend .tile;
-
-  border-top: g.$primary-mid-blue 8px solid;
-  background: g.$primary-light-blue;
-  color: g.$dark-blue;
+  @include tile(g.$primary-mid-blue, g.$primary-light-blue, g.$dark-blue);
 
   .lightBlueIcon {
-    @extend .icons;
-
-    background-color: g.$primary-mid-blue;
+    @include icons(g.$primary-mid-blue);
   }
 }
 
 .midBlue {
-  @extend .tile;
-
-  border-top: g.$dark-blue 8px solid;
-  background: g.$primary-mid-blue;
-  color: g.$primary-white;
+  @include tile(g.$dark-blue, g.$primary-mid-blue, g.$primary-white);
 
   .midBlueIcon {
-    @extend .icons;
-
-    background-color: g.$primary-dark-blue;
+    @include icons(g.$primary-dark-blue);
   }
 }
 
 .darkBlue {
-  @extend .tile;
-
-  border-top: g.$primary-light-blue 8px solid;
-  background: g.$primary-dark-blue;
-  color: g.$primary-white;
+  @include tile(g.$primary-light-blue, g.$primary-dark-blue, g.$primary-white);
 
   .darkBlueIcon {
-    @extend .icons;
-
-    background-color: g.$primary-light-blue;
+    @include icons(g.$primary-light-blue);
   }
 }
