@@ -10,15 +10,16 @@
   justify-content: center;
   align-items: center;
 
-  @include g.md-breakpoint {
-    margin-top: 15px;
+  @include g.sm-breakpoint {
+    margin-left: 20px;
+    min-height: 50px;
   }
 }
 
 .tile {
   display: flex;
   flex: 1;
-  height: 120px;
+  block-size: fit-content;
   padding: 30px 40px;
   gap: 20px;
   border-radius: 10px;
@@ -31,13 +32,29 @@
   .tileText {
     position: relative;
     padding-left: 20px;
+
+    p {
+      @include g.md-breakpoint {
+        font-size: 16px;
+      }
+    }
+
+    .button {
+      position: relative;
+      white-space: nowrap;
+    }
   }
 
   @include g.md-breakpoint {
-    height: 160px;
-
-    padding: 10px 20px;
     gap: 10px;
+  }
+
+  @include g.sm-breakpoint {
+    flex-direction: column;
+    padding-bottom: 40px;
+    .button {
+      height: 35px;
+    }
   }
 }
 
@@ -94,12 +111,5 @@
     @extend .icons;
 
     background-color: g.$primary-light-blue;
-  }
-}
-
-.button {
-  @include g.sm-breakpoint {
-    position: absolute;
-    bottom: 10px;
   }
 }

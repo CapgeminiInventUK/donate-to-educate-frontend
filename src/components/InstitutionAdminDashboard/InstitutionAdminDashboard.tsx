@@ -220,7 +220,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               <div className={styles.actionButtons}>
                 <FormButton
                   theme="formButtonGreen"
-                  text="Return to home"
+                  text="Continue"
                   ariaLabel="Continue"
                   fullWidth={true}
                   onClick={() =>
