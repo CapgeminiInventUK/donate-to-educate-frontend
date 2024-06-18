@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_d122df"
 >
   <img
     alt="loading..."
-    src="mockFile"
+    src="/src/components/Spinner/spinner.gif"
   />
 </div>
 `;

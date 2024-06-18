@@ -13,7 +13,7 @@ const AddressInset: FC<AddressInsetProps> = ({ componentData, formData }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div aria-label={'address-inset'} className={styles.container}>
       {!!name && <p>{String(name)}</p>}
       {!!localAuthority && <p>{String(localAuthority)}</p>}
       {!!postcode && <p>{String(postcode)}</p>}

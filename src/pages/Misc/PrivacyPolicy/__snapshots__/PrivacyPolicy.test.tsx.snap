@@ -1,19 +1,17 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_bc42d4"
 >
   <div
-    className="contentContainer"
+    className="_contentContainer_bc42d4"
   >
-    <h1
-      className="title"
-    >
+    <h1>
       Privacy policy
     </h1>
     <div
-      className="card footerCard"
+      className="_card_d75732 _footerCard_bc42d4"
     >
       <h2>
         Overview
@@ -344,7 +342,7 @@ exports[`renders correctly 1`] = `
         Email:
          
         <a
-          className="email"
+          className="_email_5c4cbe"
           href="mailto: info@communityinspired.co.uk"
         >
           info@communityinspired.co.uk

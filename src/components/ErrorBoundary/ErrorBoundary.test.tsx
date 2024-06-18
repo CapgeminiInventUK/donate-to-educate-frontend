@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { useEffect } from 'react';
 import ErrorBoundary from './ErrorBoundary';
+import { vi } from 'vitest';
 
 const ErrorTestComponent = (): JSX.Element => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const ValidTestComponent = (): JSX.Element => {
 
 describe('Error Boundary', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {
       //** This is to remove annoying error warning (which is correctly thrown)
     });
   });
