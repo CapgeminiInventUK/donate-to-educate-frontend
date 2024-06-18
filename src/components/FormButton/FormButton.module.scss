@@ -13,10 +13,6 @@
   align-items: center;
   z-index: 100;
 
-  @include g.lg-breakpoint {
-    line-height: 16px;
-  }
-
   @include g.sm-breakpoint {
     font-size: 16px;
     line-height: 20px;

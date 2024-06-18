@@ -58,7 +58,7 @@ const getPageContent = (
   switch (type) {
     case 'tick':
       return {
-        banner: 'Let visitors request products from you',
+        banner: 'Product requests',
         helpBannerTitle: 'Build your request products page',
         helpBannerBody: (
           <>
@@ -80,7 +80,7 @@ const getPageContent = (
       };
     case 'heart':
       return {
-        banner: 'Let visitors donate products to you',
+        banner: 'Accept donations',
         helpBannerTitle: 'Build your donate products page',
         helpBannerBody: (
           <>
@@ -97,11 +97,11 @@ const getPageContent = (
         actionText:
           "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
         howItWorks:
-          "View the products we need. When you select 'donate', you can tell us how you can help.",
+          "View the products we need. When you select 'donate products', you can tell us how you can help.",
       };
     case 'plus':
       return {
-        banner: 'Build your extra stock page',
+        banner: 'Share extra stock',
         helpBannerTitle: 'Build your request products page',
         helpBannerBody: (
           <>

@@ -1,21 +1,7 @@
 @use '@assets/global.scss' as g;
 
-@mixin responsiveness {
-  @include g.md-breakpoint {
-    height: 160px;
-    padding: 10px 20px;
-    gap: 10px;
-  }
-
-  @include g.lg-breakpoint {
-    height: 160px;
-    padding: 10px 20px;
-    gap: 10px;
-  }
-}
-
 @mixin icons($background-color) {
-  min-width: 50px;
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   display: flex;
@@ -24,16 +10,17 @@
   align-items: center;
   background-color: $background-color;
 
-  @include g.md-breakpoint {
-    margin-top: 15px;
+  @include g.sm-breakpoint {
+    margin: 0 0 5px 20px;
+    min-width: 50px;
   }
 }
 
 @mixin tile($border-top, $background, $color) {
   display: flex;
   flex: 1;
-  height: 120px;
-  padding: 30px 40px;
+  block-size: fit-content;
+  padding: 30px 5%;
   gap: 20px;
   border-radius: 10px;
   border-top: $border-top 8px solid;
@@ -48,9 +35,30 @@
   .tileText {
     position: relative;
     padding-left: 20px;
+
+    p {
+      @include g.md-breakpoint {
+        font-size: 16px;
+      }
+    }
+
+    .button {
+      position: relative;
+      white-space: nowrap;
+    }
   }
 
-  @include responsiveness;
+  @include g.md-breakpoint {
+    gap: 10px;
+  }
+
+  @include g.sm-breakpoint {
+    flex-direction: column;
+    padding-bottom: 40px;
+    .button {
+      height: 35px;
+    }
+  }
 }
 
 .grey {
@@ -82,12 +90,5 @@
 
   .darkBlueIcon {
     @include icons(g.$primary-light-blue);
-  }
-}
-
-.button {
-  @include g.sm-breakpoint {
-    position: absolute;
-    bottom: 10px;
   }
 }

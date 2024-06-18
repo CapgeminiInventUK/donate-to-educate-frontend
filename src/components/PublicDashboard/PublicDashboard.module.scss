@@ -86,9 +86,3 @@
     display: none;
   }
 }
-
-@media only screen and (max-width: calc(g.$screen-small)) {
-  .dashboardCard {
-    width: 100%;
-  }
-}
