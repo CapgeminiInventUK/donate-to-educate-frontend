@@ -18,7 +18,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import { openNotification } from '@/utils/components';
+import { openNotification } from '@/utils/formComponents';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {

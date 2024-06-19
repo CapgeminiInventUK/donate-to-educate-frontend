@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { convertMilesToMeters } from '@/utils/distance';
+import { convertMilesToMetres } from '@/utils/distance';
 import { GetCharitiesNearbyWithProfileQuery } from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
@@ -10,7 +10,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { FindCharityTableProps } from '@/types/props';
 
-const maxDistance = convertMilesToMeters(10);
+const maxDistance = convertMilesToMetres(10);
 
 const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
   const { data, isLoading, isError, refetch } = useQuery({

@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import styles from './DonateAndExcess.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { convertMilesToMeters } from '@/utils/distance';
+import { convertMilesToMetres } from '@/utils/distance';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetCharitiesNearbyWithProfileQuery, GetSchoolsNearbyWithProfileQuery } from '@/types/api';
@@ -13,7 +13,7 @@ import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { DonateAndExcessProps } from '@/types/props';
 
-const maxDistance = convertMilesToMeters(10);
+const maxDistance = convertMilesToMetres(10);
 
 const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState }) => {
   const heading =

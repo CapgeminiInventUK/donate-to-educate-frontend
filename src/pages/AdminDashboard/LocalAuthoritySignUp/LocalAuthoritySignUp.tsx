@@ -12,7 +12,7 @@ import Paths from '@/config/paths';
 import { RegisterLocalAuthorityMutation } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
-import { validateFormInputField } from '@/utils/formUtils';
+import { validateFormInputField } from '@/utils/formValidationUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';

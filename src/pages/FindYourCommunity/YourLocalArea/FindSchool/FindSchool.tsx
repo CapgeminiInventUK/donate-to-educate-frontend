@@ -8,7 +8,7 @@ import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsNearbyWithProfileQuery } from '@/types/api';
-import { convertMilesToMeters } from '@/utils/distance';
+import { convertMilesToMetres } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -16,7 +16,7 @@ import Chevron from '@/assets/yourLocalArea/Chevron';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 
-const maxDistance = convertMilesToMeters(10);
+const maxDistance = convertMilesToMetres(10);
 
 const FindSchool: FC = () => {
   const [showDescription, toggleDescription] = useState(false);
