@@ -17,7 +17,7 @@ const testExclusions = [
   '.eslintrc.cjs',
   'src/vitest',
   'src/types',
-  'main.tsx',
+  'src/main.tsx',
 ];
 
 // https://vitejs.dev/config/

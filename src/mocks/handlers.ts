@@ -19,6 +19,20 @@ export const handlers = [
     }
     return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
   }),
+  graphql.mutation('UpdateJoinRequest', () => {
+    return HttpResponse.json({
+      data: {
+        acknowledged: true,
+      },
+    });
+  }),
+  graphql.mutation('DeleteDeniedJoinRequest', () => {
+    return HttpResponse.json({
+      data: {
+        acknowledged: true,
+      },
+    });
+  }),
   graphql.query('GetSchoolsNearby', ({ variables }) => {
     const { postcode } = variables;
     if (postcode === validPostcode) {

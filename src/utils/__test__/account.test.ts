@@ -9,6 +9,7 @@ describe('getRedirectUrl', () => {
     { type: 'school', path: Paths.SCHOOL_VIEW },
     { type: 'charity', path: Paths.CHARITIES_VIEW },
   ];
+
   it.each(inputVsExpectedWithProfile)(
     'should return the correct path based on the input type when user has profile',
     ({ type, path }) => {

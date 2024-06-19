@@ -12,6 +12,7 @@ describe('validateFormInputField', () => {
   const tooLongMessage = Array.from(Array(500))
     .map((_, index) => `${index}`)
     .join('');
+
   const inputVsExpected = [
     {
       formData: [
@@ -122,6 +123,7 @@ describe('validateFormInputField', () => {
       error: null,
     },
   ];
+
   it.each(inputVsExpected)(
     'should return correct error message if error present',
     ({ formData, fieldName, error }) => {
@@ -148,6 +150,7 @@ describe('getFormErrors', () => {
       },
     },
   ];
+
   it('should return a validation error object when triggered', () => {
     const formData = [
       {
@@ -177,6 +180,7 @@ describe('getFormErrors', () => {
 
 describe('validatePostcodeAndAddToFormErrors', () => {
   const queryClient = createTestQueryClient();
+
   it('should not apply any errors if valid postcode', async () => {
     const formData = [
       {

@@ -55,6 +55,7 @@ describe('form utils', () => {
         page: 4,
       },
     ];
+
     it('should create an address string with given form data with no address line two', () => {
       expect(addressBuilder(formData)).toEqual(`Line one\nTown\nCounty\nBN3 3JP`);
     });
