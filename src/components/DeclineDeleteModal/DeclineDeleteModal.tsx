@@ -33,7 +33,7 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
               setShowModal(false);
               onConfirm();
             }}
-            ariaLabel={confirmText}
+            ariaLabel={'confirm'}
             text={confirmText}
           />
         </div>

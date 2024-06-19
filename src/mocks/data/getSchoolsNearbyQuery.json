@@ -1,0 +1,44 @@
+{
+  "getSchoolsNearby": [
+    {
+      "urn": "400070",
+      "name": "Ysgol Gynradd Penysarn",
+      "localAuthority": "Isle of Anglesey",
+      "postcode": "LL69 9AZ",
+      "registered": false,
+      "isLocalAuthorityRegistered": null,
+      "address3": "",
+      "county": "",
+      "locality": "",
+      "street": "Penysarn",
+      "phone": "01407830678",
+      "town": "Anglesey",
+      "website": "",
+      "distance": 2896.958712300114,
+      "profile": null,
+      "hasJoinRequest": null,
+      "registrationState": null,
+      "__typename": "School"
+    },
+    {
+      "urn": "400054",
+      "name": "Ysgol Gymuned Moelfre",
+      "localAuthority": "Isle of Anglesey",
+      "postcode": "LL72 8HA",
+      "registered": false,
+      "isLocalAuthorityRegistered": null,
+      "address3": "",
+      "county": "",
+      "locality": "",
+      "street": "Moelfre",
+      "phone": "01248410546",
+      "town": "Ynys Mon",
+      "website": "",
+      "distance": 4310.953686579557,
+      "profile": null,
+      "hasJoinRequest": null,
+      "registrationState": null,
+      "__typename": "School"
+    }
+  ]
+}

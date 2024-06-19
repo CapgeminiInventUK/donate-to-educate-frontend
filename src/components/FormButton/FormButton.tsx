@@ -14,6 +14,7 @@ const FormButton: FC<FormButtonProps> = ({
   className,
   disabled = false,
   children,
+  ariaLabel,
 }) => {
   const getArrowColour = (): string => {
     switch (theme) {
@@ -34,6 +35,7 @@ const FormButton: FC<FormButtonProps> = ({
 
   return (
     <button
+      aria-label={ariaLabel}
       disabled={disabled}
       onClick={
         theme === 'formButtonDisabled'

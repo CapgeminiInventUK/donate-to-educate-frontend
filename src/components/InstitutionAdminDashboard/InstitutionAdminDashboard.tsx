@@ -21,7 +21,7 @@ import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import { openNotification } from '@/utils/components';
+import { openNotification } from '@/utils/formComponents';
 import ActionTile from '../ActionTile/ActionTile';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {

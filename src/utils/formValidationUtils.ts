@@ -1,11 +1,51 @@
 import { FormComponent, FormDataItem, FormErrors } from '@/types/data';
-import { formatPhoneNumber, validateFormInputField } from './formUtils';
+import { formatPhoneNumber } from './formUtils';
 import { CommonInputProps } from '@/types/props';
 import { QueryClient } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsNearbyQuery } from '@/types/api';
 import { getSchoolsNearby } from '@/graphql/queries';
+import { isLength, isPostalCode } from 'validator';
+import isEmail from 'validator/lib/isEmail';
+import { phoneNumberRegex } from './globals';
+import { phone } from 'phone';
+
+export const validateFormInputField = (
+  formData: FormDataItem[],
+  fieldName: string
+): string | null => {
+  const value = String(
+    formData.find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())?.value ?? ''
+  );
+  switch (fieldName.toLowerCase()) {
+    case 'email':
+      if (!isEmail(value)) {
+        return FormErrors.EMAIL_ERROR_MESSAGE;
+      }
+      break;
+    case 'postcode':
+      if (!isPostalCode(value, 'GB')) {
+        return FormErrors.POSTCODE_ERROR_MESSAGE;
+      }
+      break;
+    case 'phone':
+      if (
+        !phoneNumberRegex.test(value) ||
+        !phone(value, { country: 'GBR', validateMobilePrefix: false }).isValid
+      ) {
+        return FormErrors.PHONE_ERROR_MESSAGE;
+      }
+      break;
+    case 'message':
+    case 'notes':
+      if (isLength(value, { min: 1000 })) {
+        return FormErrors.TEXTAREA_MAX_LENGTH;
+      }
+      break;
+  }
+  return null;
+};
 
 export const getFormErrors = (
   formComponents: FormComponent[],
@@ -53,11 +93,8 @@ export const validatePostcodeAndAddToFormErrors = async (
 
 export const parsePhoneNumber = (formData: FormDataItem[]): void => {
   const phoneNumberIndex = formData.findIndex(({ field }) => field?.toLowerCase() === 'phone');
-  const phoneNumber = formData[phoneNumberIndex];
-  if (phoneNumber) {
-    const formattedPhoneNumber = formatPhoneNumber(String(phoneNumber.value));
-    if (formattedPhoneNumber) {
-      formData[phoneNumberIndex].value = formattedPhoneNumber;
-    }
+  const formattedPhoneNumber = formatPhoneNumber(String(formData[phoneNumberIndex]?.value));
+  if (formattedPhoneNumber) {
+    formData[phoneNumberIndex].value = formattedPhoneNumber;
   }
 };

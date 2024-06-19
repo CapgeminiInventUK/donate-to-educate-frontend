@@ -4,7 +4,7 @@ import { ComponentType, FC, ReactNode } from 'react';
 import { server } from './server';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const createTestQueryClient = (): QueryClient =>
+export const createTestQueryClient = (): QueryClient =>
   new QueryClient({
     defaultOptions: {
       queries: {

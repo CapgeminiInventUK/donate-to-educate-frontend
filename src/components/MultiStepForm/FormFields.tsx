@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { CommonInputProps, FormFieldsProps } from '@/types/props';
-import { createFormComponent } from '@/utils/components';
+import { createFormComponent } from '@/utils/formComponents';
 import styles from './MultiStepForm.module.scss';
 import ExternalLink from '../ExternalLink/ExternalLink';
 import AddressInset from '../AddressInset/AddressInset';
