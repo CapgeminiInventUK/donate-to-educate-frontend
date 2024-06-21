@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import 'leaflet/dist/leaflet.css';
 import styles from './Map.module.scss';
 import { MapView } from '@aws-amplify/ui-react-geo';
 import '@aws-amplify/ui-react-geo/styles.css';
