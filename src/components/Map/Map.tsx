@@ -9,12 +9,14 @@ interface MapProps {
   markers: { coordinates: number[]; name: string; colour: string }[];
 }
 
+interface PopupInfo {
+  latitude: number;
+  longitude: number;
+  name: string;
+}
+
 const Map: FC<MapProps> = ({ markers }) => {
-  const [popupInfo, setPopupInfo] = useState<{
-    latitude: number;
-    longitude: number;
-    name: string;
-  } | null>(null);
+  const [popupInfo, setPopupInfo] = useState<PopupInfo | null>(null);
 
   return (
     <div className={styles.container}>
