@@ -5,7 +5,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { FilterConfirmProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
 import Paths from '@/config/paths';
-import { InstituteSearchResult } from '@/types/api';
+import { SearchResult } from '@/types/api';
 import { getColumnSearchProps } from '@/types/props';
 
 const getColumnSearch = <T,>({
@@ -105,7 +105,7 @@ const getColumnSearch = <T,>({
           text
         );
       }
-      const { name, id, registered } = record as InstituteSearchResult;
+      const { name, id, registered } = record as SearchResult;
       if (registered || dashboardLink === Paths.CHARITY_DASHBOARD) {
         return searchedColumn === dataIndex ? (
           <Button

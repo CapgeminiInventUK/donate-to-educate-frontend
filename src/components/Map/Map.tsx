@@ -6,6 +6,8 @@ import { NavigationControl, FullscreenControl, ScaleControl, Marker, Popup } fro
 
 interface MapProps {
   markers: { coordinates: number[]; name: string; colour: string }[];
+  initialZoom?: number;
+  initialCoordinates: number[];
 }
 
 interface PopupInfo {
@@ -14,13 +16,17 @@ interface PopupInfo {
   name: string;
 }
 
-const Map: FC<MapProps> = ({ markers }) => {
+const Map: FC<MapProps> = ({ markers, initialCoordinates, initialZoom = 10 }) => {
   const [popupInfo, setPopupInfo] = useState<PopupInfo | null>(null);
 
   return (
     <div className={styles.container}>
       <MapView
-        initialViewState={{ latitude: 53.708427, longitude: -1.361425, zoom: 10 }}
+        initialViewState={{
+          latitude: initialCoordinates[1],
+          longitude: initialCoordinates[0],
+          zoom: initialZoom,
+        }}
         mapStyle={'VectorHereExplore'}
         style={{ borderRadius: '20px', width: 'inherit', height: 'inherit' }}
         onRender={(event) => event.target.resize()}

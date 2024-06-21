@@ -84,17 +84,21 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
     return <ErrorBanner />;
   }
 
-  const schoolRows = (schoolData?.getSchoolsNearbyWithProfile ?? []).map((school, index) => ({
-    ...school,
-    type: 'school',
-    key: index,
-  }));
+  const schoolRows = (schoolData?.getSchoolsNearbyWithProfile?.results ?? []).map(
+    (school, index) => ({
+      ...school,
+      type: 'school',
+      key: index,
+    })
+  );
 
-  const charityRows = (charityData?.getCharitiesNearbyWithProfile ?? []).map((charity, index) => ({
-    ...charity,
-    type: 'charity',
-    key: index,
-  }));
+  const charityRows = (charityData?.getCharitiesNearbyWithProfile?.results ?? []).map(
+    (charity, index) => ({
+      ...charity,
+      type: 'charity',
+      key: index,
+    })
+  );
 
   return (
     <div className={styles.container}>
@@ -126,6 +130,9 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
 
         <h3>Location map</h3>
         <Map
+          initialCoordinates={
+            schoolData?.getSchoolsNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+          }
           markers={[...schoolRows, ...charityRows].map(
             ({ location: { coordinates }, name, type }) => ({
               coordinates,

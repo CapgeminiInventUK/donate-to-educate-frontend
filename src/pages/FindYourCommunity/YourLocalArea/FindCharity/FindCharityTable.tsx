@@ -44,10 +44,12 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
     return <ErrorBanner />;
   }
 
-  const charitiesRows = (data?.getCharitiesNearbyWithProfile ?? []).map((charity, key) => ({
-    ...charity,
-    key,
-  }));
+  const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? []).map(
+    (charity, key) => ({
+      ...charity,
+      key,
+    })
+  );
 
   return (
     <>
@@ -68,6 +70,9 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
 
       <h3>Charity map</h3>
       <Map
+        initialCoordinates={
+          data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+        }
         markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
           coordinates,
           name,

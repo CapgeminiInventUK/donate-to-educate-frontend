@@ -1,5 +1,5 @@
 import { FC, Fragment, useRef, useState } from 'react';
-import { InstituteSearchResult } from '@/types/api';
+import { SearchResult } from '@/types/api';
 import { Table, Popover, InputRef } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
@@ -32,7 +32,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
   const searchInput = useRef<InputRef>(null);
 
   const columnSearchProps = {
-    dataIndex: 'name' as keyof InstituteSearchResult,
+    dataIndex: 'name' as keyof SearchResult,
     searchText,
     setSearchText,
     searchedColumn,
@@ -45,11 +45,11 @@ const ProductsTable: FC<ProductsTableProps> = ({
     postcode,
   };
 
-  const columns: ColumnsType<InstituteSearchResult> = [
+  const columns: ColumnsType<SearchResult> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      ...getColumnSearch<InstituteSearchResult>(columnSearchProps),
+      ...getColumnSearch<SearchResult>(columnSearchProps),
     },
     {
       title: 'Distance',
@@ -59,7 +59,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
     {
       title: productsColumnHeader,
       dataIndex: 'productTypes',
-      render: (text: number[], { registered, id }: InstituteSearchResult): JSX.Element[] => {
+      render: (text: number[], { registered, id }: SearchResult): JSX.Element[] => {
         if (!registered && type === 'school') {
           return [<Fragment key={id}>N/A</Fragment>];
         }
@@ -110,7 +110,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
           </Popover>
         </div>
       ),
-      onFilter: (value: boolean | React.Key, record: InstituteSearchResult): boolean =>
+      onFilter: (value: boolean | React.Key, record: SearchResult): boolean =>
         record.registered === value,
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       defaultFilteredValue: hideNotJoined ? ['true'] : [],

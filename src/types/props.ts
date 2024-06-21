@@ -28,10 +28,10 @@ import {
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
-  InstituteSearchResult,
   ProfileItems,
   SchoolProfile,
   SchoolProfileHeader,
+  SearchResult,
 } from './api';
 import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { InputRef } from 'antd';
@@ -545,7 +545,7 @@ export interface FormButtonsProps {
 }
 
 export interface ProductsTableProps {
-  tableData: InstituteSearchResult[];
+  tableData: SearchResult[];
   type: 'school' | 'charity';
   iconColour: string;
   productsColumnHeader:

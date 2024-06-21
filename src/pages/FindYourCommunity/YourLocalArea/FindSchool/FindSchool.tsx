@@ -54,7 +54,7 @@ const FindSchool: FC = () => {
     return <ErrorBanner />;
   }
 
-  const schoolData = (data?.getSchoolsNearbyWithProfile ?? []).map((school, index) => ({
+  const schoolData = (data?.getSchoolsNearbyWithProfile?.results ?? []).map((school, index) => ({
     ...school,
     key: index,
   }));
@@ -74,6 +74,9 @@ const FindSchool: FC = () => {
 
         <h3>School map</h3>
         <Map
+          initialCoordinates={
+            data?.getSchoolsNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+          }
           markers={schoolData.map(({ location: { coordinates }, name }) => ({
             coordinates,
             name,
