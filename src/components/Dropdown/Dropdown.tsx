@@ -18,7 +18,7 @@ const Dropdown: FC<DropdownProps> = ({
 }) => {
   const [dropDownValue, setDropdownValue] = useState(getValueFromOptionsByLabel(options, value));
   const [displayedOptions, setDisplayedOptions] = useState<DropdownOption[]>([]);
-  const noOptionsMessage = subHeading?.includes('council')
+  const placeholderText = subHeading?.includes('council')
     ? 'Search for your local council'
     : 'Search for your school';
 
@@ -40,9 +40,6 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   const filterOptions = ({ label }: FilterDropdownOption, input: string): boolean => {
-    if (!input) {
-      return true;
-    }
     return !!label?.toLowerCase().includes(input.toLowerCase());
   };
 
@@ -56,7 +53,7 @@ const Dropdown: FC<DropdownProps> = ({
         options={displayedOptions}
         onChange={handleSelect}
         value={dropDownValue}
-        placeholder={noOptionsMessage}
+        placeholder={placeholderText}
         onInputChange={onSearch}
         filterOption={filterOptions}
         isClearable

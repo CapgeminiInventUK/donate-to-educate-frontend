@@ -150,7 +150,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                 onCancel={cancelAboutUs}
                 saveOnClick={saveAboutUs}
                 heading="About us"
-                subtext={''}
                 isEditing={isEditingAboutUs}
                 text={about}
                 setText={setAboutText}

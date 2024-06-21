@@ -336,7 +336,8 @@ export interface InformationTileProps {
   dismiss?: () => void;
 }
 
-export interface EditableInformationTileProps extends InformationTileProps {
+export interface EditableInformationTileProps {
+  heading: string;
   editContent: () => void;
   onCancel: () => void;
   saveOnClick: () => void;

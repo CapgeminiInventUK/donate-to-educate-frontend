@@ -10,6 +10,7 @@ const CancelButton: FC<
       className={`${styles.cancel} ${className ?? ''} ${styles[theme]}`}
       onClick={onClick}
       type="button"
+      aria-label="cancel"
     >
       Cancel
     </button>

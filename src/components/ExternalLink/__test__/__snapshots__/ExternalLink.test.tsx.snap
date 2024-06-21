@@ -1,27 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Cancel button > should render component 1`] = `
+exports[`Internal link > should render component 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <button
-        aria-label="cancel"
-        class="_cancel_122ffc  _white_122ffc"
-        type="button"
+      <a
+        aria-label="aria-label"
+        class="_link_fa3312 undefined"
+        href="linkUrl"
+        rel="noreferrer"
+        target="_blank"
       >
-        Cancel
-      </button>
+        linkText
+      </a>
     </div>
   </body>,
   "container": <div>
-    <button
-      aria-label="cancel"
-      class="_cancel_122ffc  _white_122ffc"
-      type="button"
+    <a
+      aria-label="aria-label"
+      class="_link_fa3312 undefined"
+      href="linkUrl"
+      rel="noreferrer"
+      target="_blank"
     >
-      Cancel
-    </button>
+      linkText
+    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
