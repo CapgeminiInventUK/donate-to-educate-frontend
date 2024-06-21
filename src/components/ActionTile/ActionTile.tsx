@@ -13,8 +13,10 @@ const ActionTile: FC<ActionTileProps> = ({
   onClick,
 }) => {
   return (
-    <div className={styles[theme] ?? styles.lightBlue}>
-      <div className={`${styles[theme + 'Icon'] ?? styles.lightBlue}`}>{icon}</div>
+    <div aria-label="action-tile" className={styles[theme]}>
+      <div aria-label="action-tile-icon" className={`${styles[theme + 'Icon']}`}>
+        {icon}
+      </div>
       <div className={styles.tileText}>
         <h3>{heading}</h3>
         <p>{subheading}</p>

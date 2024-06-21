@@ -24,10 +24,14 @@ const CheckYourAnswers: FC<CheckYourAnswersProps> = ({
       {cyaData?.[section].map(({ field, value, page }, index) => (
         <div key={index} className={styles.row}>
           <div className={styles.field}>{field}</div>
-          <div className={`${styles.value} ${field === 'Address' ? styles.addressCell : ''}`}>
+          <div
+            aria-label="value-cell"
+            className={`${styles.value} ${field === 'Address' ? styles.addressCell : ''}`}
+          >
             {value}
           </div>
           <div
+            aria-label="change-link-cell"
             className={`${styles.changeLink} ${
               field === 'Address' ? styles.changeAddressLink : ''
             }`}

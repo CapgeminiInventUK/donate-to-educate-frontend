@@ -6,7 +6,7 @@ const Button: FC<ButtonProps> = ({ onClick, text, theme, className, disabled = f
   return (
     <button
       onClick={onClick}
-      className={`${styles[theme]} ${className ?? ''} ${disabled ? styles.disabled : styles.buttonHover}`}
+      className={`${styles[theme]} ${className ?? ''} ${disabled ? styles.disabled : ''}`}
       disabled={disabled}
     >
       {text}

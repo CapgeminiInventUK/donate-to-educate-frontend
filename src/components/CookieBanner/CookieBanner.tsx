@@ -12,7 +12,10 @@ const CookieBanner: FC = () => {
 
   return (
     <>
-      <div className={`${styles.cookieBanner} ${bannerHidden ? styles.hidden : ''}`}>
+      <div
+        aria-label="cookie-banner"
+        className={`${styles.cookieBanner} ${bannerHidden ? styles.hidden : ''}`}
+      >
         <Cookie className={styles.cookie} />
         <p>
           <span>We use cookies in the delivery of our services.</span> To learn about the cookies we

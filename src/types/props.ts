@@ -311,7 +311,6 @@ export interface CheckYourAnswersProps {
   formName: FormNames;
   formData?: FormDataItem[];
   setPageNumber?: Dispatch<SetStateAction<number>>;
-  formMeta: FormMeta;
 }
 
 export interface SummaryProps {

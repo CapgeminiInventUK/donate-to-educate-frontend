@@ -10,7 +10,12 @@ const Checkmark = ({ className, isChecked }: CheckmarkProps): JSX.Element => (
     aria-hidden="true"
     className={className}
   >
-    <path d="M1 4.5L5 9L14 1" strokeWidth="3" stroke={isChecked ? '#394150' : 'none'} />
+    <path
+      aria-label="checkmark"
+      d="M1 4.5L5 9L14 1"
+      strokeWidth="3"
+      stroke={isChecked ? '#394150' : 'none'}
+    />
   </svg>
 );
 

@@ -1,7 +1,6 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
 import ApprovalRequest from '../ApprovalRequest';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
-import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import pillStyles from '../../Pill/Pill.module.scss';
 

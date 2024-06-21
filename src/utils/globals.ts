@@ -16,3 +16,6 @@ export const scrollToTheTop = (): void => {
 
 // Regex to check inputted phone number contains only digits, spaces or a "+" at the beginning
 export const phoneNumberRegex = /^[+]?[0-9\s]+$/;
+
+export const capitalizeFirstLetter = (string: string): string =>
+  string.charAt(0).toUpperCase() + string.slice(1);
