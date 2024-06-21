@@ -29,7 +29,35 @@ export const getSchool = /* GraphQL */ `query GetSchool($name: String!, $urn: St
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -59,7 +87,35 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -89,7 +145,35 @@ export const getSchools = /* GraphQL */ `query GetSchools {
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -111,9 +195,38 @@ export const getCharities = /* GraphQL */ `query GetCharities {
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        address
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -131,9 +244,38 @@ export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: Str
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        address
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -159,7 +301,35 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -193,7 +363,35 @@ export const getRegisteredSchoolsByLa =
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -367,7 +565,35 @@ export const getSchoolsNearby =
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        uniformPolicy
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
     hasJoinRequest
@@ -390,9 +616,38 @@ export const getCharitiesNearby =
       id
       localAuthority
       postcode
+      header {
+        phone
+        email
+        website
+        address
+        __typename
+      }
       about
+      request {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      donate {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
+      excess {
+        items
+        whatToExpect
+        actionText
+        productTypes
+        __typename
+      }
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -485,11 +740,24 @@ export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearby
     distance: $distance
     type: $type
   ) {
-    id
-    name
-    distance
-    productTypes
-    registered
+    searchLocation {
+      type
+      coordinates
+      __typename
+    }
+    results {
+      id
+      name
+      distance
+      productTypes
+      registered
+      location {
+        type
+        coordinates
+        __typename
+      }
+      __typename
+    }
     __typename
   }
 }
@@ -507,11 +775,24 @@ export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNe
     distance: $distance
     type: $type
   ) {
-    id
-    name
-    distance
-    productTypes
-    registered
+    searchLocation {
+      type
+      coordinates
+      __typename
+    }
+    results {
+      id
+      name
+      distance
+      productTypes
+      registered
+      location {
+        type
+        coordinates
+        __typename
+      }
+      __typename
+    }
     __typename
   }
 }

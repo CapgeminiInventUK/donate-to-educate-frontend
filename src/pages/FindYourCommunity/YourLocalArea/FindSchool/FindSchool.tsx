@@ -15,6 +15,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
+import Map from '@components/Map/Map';
 
 const maxDistance = convertMilesToMetres(10);
 
@@ -53,7 +54,7 @@ const FindSchool: FC = () => {
     return <ErrorBanner />;
   }
 
-  const schoolData = (data?.getSchoolsNearbyWithProfile ?? []).map((school, index) => ({
+  const schoolData = (data?.getSchoolsNearbyWithProfile?.results ?? []).map((school, index) => ({
     ...school,
     key: index,
   }));
@@ -69,6 +70,18 @@ const FindSchool: FC = () => {
           iconColour="#97C8EB"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
+        />
+
+        <h3>School map</h3>
+        <Map
+          initialCoordinates={
+            data?.getSchoolsNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+          }
+          markers={schoolData.map(({ location: { coordinates }, name }) => ({
+            coordinates,
+            name,
+            colour: '#97C8EB',
+          }))}
         />
         <span
           className={styles.expander}
