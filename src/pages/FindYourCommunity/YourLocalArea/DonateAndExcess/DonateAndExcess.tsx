@@ -12,6 +12,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { DonateAndExcessProps } from '@/types/props';
+import Map from '@components/Map/Map';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -85,11 +86,13 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
 
   const schoolRows = (schoolData?.getSchoolsNearbyWithProfile ?? []).map((school, index) => ({
     ...school,
+    type: 'school',
     key: index,
   }));
 
   const charityRows = (charityData?.getCharitiesNearbyWithProfile ?? []).map((charity, index) => ({
     ...charity,
+    type: 'charity',
     key: index,
   }));
 
@@ -119,6 +122,17 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
           iconColour={type === 'excess' ? '#00B6A8' : '#0075A2'}
           productsColumnHeader={productsColumnHeader}
           hideNoProducts={true}
+        />
+
+        <h3>Location map</h3>
+        <Map
+          markers={[...schoolRows, ...charityRows].map(
+            ({ location: { coordinates }, name, type }) => ({
+              coordinates,
+              name,
+              colour: type === 'school' ? '#97C8EB' : '#11356F',
+            })
+          )}
         />
       </Card>
     </div>

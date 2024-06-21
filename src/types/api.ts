@@ -87,6 +87,7 @@ export type Charity = {
   about: string;
   distance?: number | null;
   profile?: Array<CharityProfile | null> | null;
+  postcode?: string | null;
 };
 
 export type CharityProfile = {
@@ -173,6 +174,13 @@ export type InstituteSearchResult = {
   distance: number;
   productTypes: Array<number>;
   registered: boolean;
+  location: Point;
+};
+
+export type Point = {
+  __typename: 'Point';
+  type: string;
+  coordinates: Array<number>;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -492,6 +500,7 @@ export type GetCharitiesQuery = {
       postcode?: string | null;
       about?: string | null;
     } | null> | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -516,6 +525,7 @@ export type GetCharitiesByLaQuery = {
       postcode?: string | null;
       about?: string | null;
     } | null> | null;
+    postcode?: string | null;
   } | null>;
 };
 
@@ -799,6 +809,7 @@ export type GetCharitiesNearbyQuery = {
       postcode?: string | null;
       about?: string | null;
     } | null> | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -901,6 +912,11 @@ export type GetSchoolsNearbyWithProfileQuery = {
     distance: number;
     productTypes: Array<number>;
     registered: boolean;
+    location: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    };
   }>;
 };
 
@@ -918,6 +934,11 @@ export type GetCharitiesNearbyWithProfileQuery = {
     distance: number;
     productTypes: Array<number>;
     registered: boolean;
+    location: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    };
   }>;
 };
 

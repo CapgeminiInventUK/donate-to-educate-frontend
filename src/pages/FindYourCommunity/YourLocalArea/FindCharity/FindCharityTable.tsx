@@ -9,6 +9,7 @@ import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { FindCharityTableProps } from '@/types/props';
+import Map from '@components/Map/Map';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -63,6 +64,15 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
         iconColour="#97C8EB"
         productsColumnHeader="Product types available"
         postcode={postcode}
+      />
+
+      <h3>Charity map</h3>
+      <Map
+        markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
+          coordinates,
+          name,
+          colour: '#11356F',
+        }))}
       />
     </>
   );

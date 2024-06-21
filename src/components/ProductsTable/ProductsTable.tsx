@@ -1,6 +1,6 @@
 import { FC, Fragment, useRef, useState } from 'react';
 import { InstituteSearchResult } from '@/types/api';
-import { Table, Popover, InputRef } from 'antd';
+import { Table, InputRef, Popover } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import { convertMetersToMiles } from '@/utils/distance';
@@ -18,12 +18,12 @@ import { ProductsTableProps } from '@/types/props';
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,
   type,
-  iconColour,
-  productsColumnHeader,
   postcode,
-  hideNotJoined,
+  productsColumnHeader,
   hideNoProducts,
-  hideStatus = false,
+  iconColour,
+  hideStatus,
+  hideNotJoined,
 }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();

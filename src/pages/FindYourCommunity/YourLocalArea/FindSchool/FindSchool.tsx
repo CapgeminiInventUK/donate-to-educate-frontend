@@ -15,6 +15,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
+import Map from '@components/Map/Map';
 
 const maxDistance = convertMilesToMeters(10);
 
@@ -69,6 +70,15 @@ const FindSchool: FC = () => {
           iconColour="#97C8EB"
           productsColumnHeader="Product types available"
           postcode={state.postcode}
+        />
+
+        <h3>School map</h3>
+        <Map
+          markers={schoolData.map(({ location: { coordinates }, name }) => ({
+            coordinates,
+            name,
+            colour: '#97C8EB',
+          }))}
         />
         <span
           className={styles.expander}

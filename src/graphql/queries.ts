@@ -114,6 +114,7 @@ export const getCharities = /* GraphQL */ `query GetCharities {
       about
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -134,6 +135,7 @@ export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: Str
       about
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -393,6 +395,7 @@ export const getCharitiesNearby =
       about
       __typename
     }
+    postcode
     __typename
   }
 }
@@ -490,6 +493,11 @@ export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearby
     distance
     productTypes
     registered
+    location {
+      type
+      coordinates
+      __typename
+    }
     __typename
   }
 }
@@ -512,6 +520,11 @@ export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNe
     distance
     productTypes
     registered
+    location {
+      type
+      coordinates
+      __typename
+    }
     __typename
   }
 }
