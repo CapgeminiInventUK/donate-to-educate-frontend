@@ -1,0 +1,11 @@
+@use '@assets/global.scss' as g;
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

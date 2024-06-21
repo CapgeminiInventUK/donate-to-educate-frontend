@@ -17,7 +17,7 @@ const getTitleFromType = (type: string): string => {
     case 'heart':
       return 'Donate products';
     case 'plus':
-      return 'Extra stock to share with the community';
+      return 'Check extra stock';
     default:
       throw new Error(`Unknown type ${type}`);
   }

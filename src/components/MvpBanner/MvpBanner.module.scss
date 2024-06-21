@@ -1,0 +1,37 @@
+@use '@/assets/global' as g;
+
+.banner {
+  padding: 14px 0 10px;
+  background-color: g.$dark-blue;
+  color: g.$primary-white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    flex-grow: 1;
+  }
+
+  @include g.sm-breakpoint {
+    font-size: 12px;
+  }
+
+  @include g.xs-breakpoint {
+    font-size: 10x;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content {
+    text-align: center;
+
+    a {
+      color: g.$primary-white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

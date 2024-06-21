@@ -3,7 +3,7 @@ import { InstituteSearchResult } from '@/types/api';
 import { Table, Popover, InputRef } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
-import { convertMetersToMiles } from '@/utils/distance';
+import { convertMetresToMiles } from '@/utils/distance';
 import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
 import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
@@ -54,7 +54,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
     {
       title: 'Distance',
       dataIndex: 'distance',
-      render: (text: string) => `${convertMetersToMiles(text)} miles`,
+      render: (text: string) => `${convertMetresToMiles(text)} miles`,
     },
     {
       title: productsColumnHeader,

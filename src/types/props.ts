@@ -17,6 +17,7 @@ import {
   FormComponent,
   SummaryPageColour,
   ResultType,
+  myStageType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -25,6 +26,7 @@ import {
   CharityProfile,
   CharityProfileHeader,
   GetJoinRequestsQuery,
+  GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   InstituteSearchResult,
   ProfileItems,
@@ -40,6 +42,8 @@ export interface LayoutProps {
   footer?: ReactNode;
   page: ReactNode;
 }
+
+export type TileThemes = 'lightBlue' | 'midBlue' | 'darkBlue' | 'grey';
 
 export type Themes =
   | 'darkBlue'
@@ -66,6 +70,10 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   ariaLabel: string;
+}
+
+export interface CloseButtonProps {
+  onClick: () => void;
 }
 
 export interface FormButtonProps {
@@ -102,6 +110,7 @@ export interface SvgProps {
   colour?: string;
   height?: string;
   width?: string;
+  hover?: boolean;
 }
 export interface EditDescriptionProps {
   value: string;
@@ -120,6 +129,10 @@ export interface HeaderProps {
   text: string;
   className?: string;
   size?: 'normal' | 'small';
+}
+
+export interface HeroBannerProps {
+  onGetInvolvedClick: () => void;
 }
 
 export interface PillProps {
@@ -321,6 +334,7 @@ export interface InstitutionBannerProps {
 export interface InformationTileProps {
   heading: string;
   subtext: string;
+  dismiss?: () => void;
 }
 
 export interface EditableInformationTileProps extends InformationTileProps {
@@ -332,13 +346,14 @@ export interface EditableInformationTileProps extends InformationTileProps {
   setText: (text: string) => void;
 }
 
-export interface AdminActionTileProps {
-  subheading?: string;
-  heading: string;
+export interface ActionTileProps {
   icon: JSX.Element;
+  heading: string;
+  subheading?: string;
+  buttonText: string;
+  theme: TileThemes;
+  isAdmin?: boolean;
   onClick: () => void;
-  isPresent: boolean;
-  type: string;
 }
 
 export interface AddressInsetProps {
@@ -446,11 +461,14 @@ export interface ItemSelectionProps {
 export interface AdminDashboardCardProps {
   isLoading: boolean;
   title: string;
+  icon?: JSX.Element;
   body: string;
+  amount?: number;
+  totalAmount?: number;
+  subBody: string;
   onClick: () => void;
-  stats: JSX.Element;
+  stats?: (number | undefined)[];
   className: string;
-  buttonTheme?: FormButtonThemes;
 }
 
 export interface RequestItemsProps {
@@ -605,4 +623,20 @@ export interface TileProps {
   size: string;
   children?: React.ReactNode;
   noShadow?: boolean;
+}
+
+export interface UserRequestDetailsProps {
+  type: 'school' | 'charity';
+  user: RequestUser;
+  setMyStage: Dispatch<SetStateAction<myStageType>>;
+  charity?: {
+    charityAddress: string;
+    aboutCharity: string;
+  };
+  charityName?: string;
+  la?: string;
+}
+
+export interface SchoolDetailsProps {
+  data: GraphQLQuery<GetSchoolQuery>;
 }

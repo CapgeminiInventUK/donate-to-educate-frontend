@@ -8,7 +8,7 @@ import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolsNearbyWithProfileQuery } from '@/types/api';
-import { convertMilesToMeters } from '@/utils/distance';
+import { convertMilesToMetres } from '@/utils/distance';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -17,7 +17,7 @@ import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import Map from '@components/Map/Map';
 
-const maxDistance = convertMilesToMeters(10);
+const maxDistance = convertMilesToMetres(10);
 
 const FindSchool: FC = () => {
   const [showDescription, toggleDescription] = useState(false);
@@ -63,7 +63,7 @@ const FindSchool: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card className={styles.subContainer}>
-        <h1>Find your school near {state.postcode.toUpperCase()}</h1>
+        <h1>Find a school near {state.postcode.toUpperCase()}</h1>
         <ProductsTable
           tableData={schoolData}
           type="school"
@@ -85,13 +85,13 @@ const FindSchool: FC = () => {
           onClick={() => toggleDescription((previous) => !previous)}
         >
           <Chevron direction={showDescription ? 'down' : 'up'} />
-          My school has not joined.
+          The school I am looking for has not joined
         </span>
         {showDescription && (
           <div className={styles.missingSchoolDescription}>
-            If your school has not joined Donate to Educate,{' '}
+            If the school you are looking for has not joined Donate to Educate,{' '}
             <Link to={Paths.LOCAL_CHARITIES} state={{ postcode: state.postcode }}>
-              find nearby charities who may have the products you need.
+              find nearby charities who may be able to help.
             </Link>
           </div>
         )}

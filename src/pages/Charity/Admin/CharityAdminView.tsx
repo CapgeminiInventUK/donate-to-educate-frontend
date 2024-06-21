@@ -20,13 +20,13 @@ import SchoolProfile from '@/assets/admin/SchoolProfile';
 import Postcode from '@/assets/icons/Postcode';
 import useAuthToken from '@/hooks/useAuthToken';
 import Tile from '@/components/Tile/Tile';
-import schoolIcon from '@/assets/icons/schoolIcon.svg';
-import heartIcon from '@/assets/icons/heartIcon.svg';
-import donateIcon from '@/assets/icons/donateIcon.svg';
-import stockIcon from '@/assets/icons/stockIcon.svg';
 import Card from '@/components/Card/Card';
 import { useMediaQuery } from 'react-responsive';
 import { breakpoints } from '@/utils/globals';
+import School from '@/assets/icons/School';
+import Heart from '@/assets/icons/Heart';
+import Donate from '@/assets/icons/Donate';
+import Stock from '@/assets/icons/Stock';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
@@ -199,14 +199,14 @@ const CharityView: FC = () => {
                 title="Find a nearby school"
                 onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode } })}
                 body={['See products schools can provide to you or what donations they need']}
-                icon={<img src={schoolIcon} alt="School" />}
+                icon={<School />}
                 size="medium"
               />
               <Tile
                 title="Find nearby charities"
                 onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode } })}
                 body={['Find out what they stock, or donate products']}
-                icon={<img src={heartIcon} alt="Charity" />}
+                icon={<Heart />}
                 size="medium"
               />
             </div>
@@ -215,7 +215,7 @@ const CharityView: FC = () => {
                 title="Donate products"
                 onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode } })}
                 body={['Support schools and charities in your area']}
-                icon={<img src={donateIcon} alt="Donate" />}
+                icon={<Donate />}
                 size="medium"
               />
               <Tile
@@ -224,7 +224,7 @@ const CharityView: FC = () => {
                 body={[
                   'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
                 ]}
-                icon={<img src={stockIcon} alt="Stock" />}
+                icon={<Stock />}
                 size="medium"
               />
             </div>

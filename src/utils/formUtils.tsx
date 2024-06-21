@@ -1,16 +1,12 @@
 import {
   DropdownOption,
   FormDataItem,
-  FormErrors,
   FormNames,
   FormSections,
   SubmittedFormData,
 } from '@/types/data';
 import { SingleValue } from 'react-select';
-import { isLength, isPostalCode } from 'validator';
-import isEmail from 'validator/lib/isEmail';
 import { phone } from 'phone';
-import { phoneNumberRegex } from './globals';
 
 const excludedValues = [
   'First name',
@@ -37,42 +33,6 @@ export const findFullValueFromFormData = (
   return formData.find(({ field }) => field === fieldName)?.fullValue;
 };
 
-export const validateFormInputField = (
-  formData: FormDataItem[],
-  fieldName: string
-): string | null => {
-  const value = formData.find(({ field }) => field === fieldName)?.value ?? '';
-  if (typeof value === 'string') {
-    switch (fieldName.toLowerCase()) {
-      case 'email':
-        if (!isEmail(value)) {
-          return FormErrors.EMAIL_ERROR_MESSAGE;
-        }
-        break;
-      case 'postcode':
-        if (!isPostalCode(value, 'GB')) {
-          return FormErrors.POSTCODE_ERROR_MESSAGE;
-        }
-        break;
-      case 'phone':
-        if (
-          !phoneNumberRegex.test(value) ||
-          !phone(value, { country: 'GBR', validateMobilePrefix: false }).isValid
-        ) {
-          return FormErrors.PHONE_ERROR_MESSAGE;
-        }
-        break;
-      case 'message':
-      case 'notes':
-        if (isLength(value, { min: 1000 })) {
-          return FormErrors.TEXTAREA_MAX_LENGTH;
-        }
-        break;
-    }
-  }
-  return null;
-};
-
 export const formatPhoneNumber = (phoneNumber: string): string | null => {
   return phone(phoneNumber, {
     country: 'GBR',
@@ -80,7 +40,7 @@ export const formatPhoneNumber = (phoneNumber: string): string | null => {
   }).phoneNumber;
 };
 
-const addressBuilder = (formData: FormDataItem[]): string => {
+export const addressBuilder = (formData: FormDataItem[]): string => {
   const addressLineOne = findValueFromFormData(formData, 'Address line 1');
   const addressLineTwo = findValueFromFormData(formData, 'Address line 2');
   const town = findValueFromFormData(formData, 'Town');
@@ -89,7 +49,7 @@ const addressBuilder = (formData: FormDataItem[]): string => {
 
   return addressLineTwo
     ? `${addressLineOne}\n${addressLineTwo}\n${town}\n${county}\n${postcode}`
-    : `${addressLineOne}\n${town}\n${county}\n${postcode}\n`;
+    : `${addressLineOne}\n${town}\n${county}\n${postcode}`;
 };
 
 const nameBuilder = (formData: FormDataItem[]): string => {

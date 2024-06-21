@@ -7,7 +7,6 @@ import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
 import InformationTile from '@/components/InformationTile/InformationTile';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
-import AdminActionTile from '@/components/AdminActionTile/AdminActionTile';
 import FormButton from '@/components/FormButton/FormButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -22,6 +21,8 @@ import { Banner } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
+import { openNotification } from '@/utils/formComponents';
+import ActionTile from '../ActionTile/ActionTile';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const {
@@ -51,6 +52,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
   const [preview, setPreview] = useState(false);
   const { token: authToken } = useAuthToken();
+  const [showBuildProfileBanner, setShowBuildProfileBanner] = useState(true);
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfile-${about ? about : placeholderAboutText}-${type}-${name}`],
@@ -81,6 +83,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     if (!about) {
       setAbout(placeholderAboutText);
     }
+    openNotification();
     void refetch();
     toggleIsEditingAboutUs();
   };
@@ -128,14 +131,19 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               setBanner={setBanner}
             />
             <Card className={styles.institutionCard}>
-              <InformationTile
-                heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
-                subtext={
-                  type === 'school'
-                    ? 'Add, edit and save details about how your school can help children and the community.'
-                    : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
-                }
-              />
+              {showBuildProfileBanner && (
+                <InformationTile
+                  heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
+                  subtext={
+                    type === 'school'
+                      ? 'Add, edit and save details about how your school can help children and the community.'
+                      : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
+                  }
+                  dismiss={() =>
+                    setShowBuildProfileBanner((showBuildProfileBanner) => !showBuildProfileBanner)
+                  }
+                />
+              )}
 
               <EditableInformationTile
                 editContent={toggleIsEditingAboutUs}
@@ -148,78 +156,71 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                 setText={setAboutText}
               />
 
-              <div className={styles.productsTilesContainer}>
-                <AdminActionTile
-                  type="tick"
-                  isPresent={!!request}
-                  heading="Let visitors request products from you"
-                  icon={<Hanger height="2.875rem" width="2.875rem" colour={'#11356f'} />}
-                  onClick={() =>
-                    navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: {
-                        type: 'tick',
-                        profile: request,
-                        name: organisationName,
-                        id,
-                        postcode,
-                      },
-                    })
-                  }
-                />
-                <AdminActionTile
-                  type="heart"
-                  isPresent={!!donate}
-                  heading="Let visitors donate products to you"
-                  icon={
-                    <Heart
-                      height="2.875rem"
-                      width="2.875rem"
-                      colour={donate ? '#FEFCFD' : '#11356f'}
-                    />
-                  }
-                  onClick={() =>
-                    navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: {
-                        type: 'heart',
-                        profile: donate,
-                        name: organisationName,
-                        id,
-                        postcode,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className={styles.extraStockTileContainer}>
-                <AdminActionTile
-                  type="plus"
-                  isPresent={!!excess}
-                  heading="Let charities take your extra stock to share with the community"
-                  subheading="Charities can take our extra products to share them with people who need it."
-                  icon={
-                    <ExtraStock
-                      height="2.875rem"
-                      width="2.875rem"
-                      colour={excess ? '#FEFCFD' : '#11356f'}
-                    />
-                  }
-                  onClick={() =>
-                    navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
-                      state: {
-                        type: 'plus',
-                        profile: excess,
-                        name: organisationName,
-                        id,
-                        postcode,
-                      },
-                    })
-                  }
-                />
+              <div className={styles.tilesWrapper}>
+                <div className={styles.productsTilesContainer}>
+                  <ActionTile
+                    heading="Product requests"
+                    subheading="Allow visitors to request products from you."
+                    icon={<Hanger colour="white" />}
+                    theme={request ? 'lightBlue' : 'grey'}
+                    isAdmin={true}
+                    buttonText={request ? 'Edit products' : 'Enable requests'}
+                    onClick={() =>
+                      navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                        state: {
+                          type: 'tick',
+                          profile: request,
+                          name: organisationName,
+                          id,
+                          postcode,
+                        },
+                      })
+                    }
+                  ></ActionTile>
+                  <ActionTile
+                    heading="Accept donations"
+                    subheading="Allow visitors to donate products to you."
+                    icon={<Heart />}
+                    theme={donate ? 'midBlue' : 'grey'}
+                    isAdmin={true}
+                    buttonText={donate ? 'Edit donations' : 'Enable donations'}
+                    onClick={() =>
+                      navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                        state: {
+                          type: 'heart',
+                          profile: donate,
+                          name: organisationName,
+                          id,
+                          postcode,
+                        },
+                      })
+                    }
+                  ></ActionTile>
+                  <ActionTile
+                    heading="Share extra stock"
+                    subheading="Allow schools and charities to take extra stock off your hands."
+                    icon={<ExtraStock colour="#050E33" />}
+                    theme={excess ? 'darkBlue' : 'grey'}
+                    isAdmin={true}
+                    buttonText={request ? 'Edit extra stock' : 'Enable sharing'}
+                    onClick={() =>
+                      navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+                        state: {
+                          type: 'plus',
+                          profile: excess,
+                          name: organisationName,
+                          id,
+                          postcode,
+                        },
+                      })
+                    }
+                  ></ActionTile>
+                </div>
               </div>
               <div className={styles.actionButtons}>
                 <FormButton
                   theme="formButtonGreen"
-                  text="Return to home"
+                  text="Continue"
                   ariaLabel="Continue"
                   fullWidth={true}
                   onClick={() =>

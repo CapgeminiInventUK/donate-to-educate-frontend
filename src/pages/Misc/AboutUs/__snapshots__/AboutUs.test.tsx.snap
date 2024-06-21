@@ -1,14 +1,14 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <div
-  className="container"
+  className="_container_1a4d78"
 >
   <div
-    className="contentContainer"
+    className="_contentContainer_1a4d78"
   >
     <button
-      className="back  blue"
+      className="_back_c9dc66  _blue_c9dc66"
       onClick={[Function]}
       type="button"
     >
@@ -31,19 +31,17 @@ exports[`renders correctly 1`] = `
         Back
       </h4>
     </button>
-    <h1
-      className="title"
-    >
+    <h1>
       About us
     </h1>
     <div
-      className="card aboutCard"
+      className="_card_d75732 _aboutCard_1a4d78"
     >
       <div
-        className="imageContainer"
+        className="_imageContainer_1a4d78"
       >
         <svg
-          className="communityInspiredLogo"
+          className="_communityInspiredLogo_1a4d78"
           fill="none"
           height="106"
           viewBox="0 0 300 106"
@@ -98,18 +96,18 @@ exports[`renders correctly 1`] = `
       </div>
       <img
         alt="Magazines"
-        className="image"
-        src="mockFile"
+        className="_image_1a4d78"
+        src="/src/assets/about/magazines.webp"
       />
     </div>
     <div
-      className="card aboutCard col"
+      className="_card_d75732 _aboutCard_1a4d78 _col_1a4d78"
     >
       <div
-        className="content"
+        className="_content_1a4d78"
       >
         <div
-          className="imageContainer"
+          className="_imageContainer_1a4d78"
         >
           <h2>
             Social media and online
@@ -150,24 +148,24 @@ exports[`renders correctly 1`] = `
         </div>
         <img
           alt="Facebook"
-          className="image"
-          src="mockFile"
+          className="_image_1a4d78"
+          src="/src/assets/about/facebook.webp"
         />
       </div>
       <img
         alt="Green up your school"
-        className="newsletter"
-        src="mockFile"
+        className="_newsletter_1a4d78"
+        src="/src/assets/about/green-up-your-school.webp"
       />
     </div>
     <div
-      className="inventBanner"
+      className="_inventBanner_1a4d78"
     >
       <p>
         Powered by
       </p>
       <svg
-        className="inventLogo"
+        className="_inventLogo_1a4d78"
         fill="none"
         height="77"
         onClick={[Function]}
@@ -226,7 +224,7 @@ exports[`renders correctly 1`] = `
       </svg>
     </div>
     <a
-      className="home"
+      className="_home_1a4d78"
       href="/"
       onClick={[Function]}
     >

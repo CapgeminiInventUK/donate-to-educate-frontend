@@ -18,9 +18,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
-import { notification } from 'antd';
-import LogoPurple from '@/assets/logo/LogoPurple';
-import { CloseOutlined } from '@ant-design/icons';
+import { openNotification } from '@/utils/formComponents';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -60,7 +58,7 @@ const getPageContent = (
   switch (type) {
     case 'tick':
       return {
-        banner: 'Let visitors request products from you',
+        banner: 'Product requests',
         helpBannerTitle: 'Build your request products page',
         helpBannerBody: (
           <>
@@ -82,7 +80,7 @@ const getPageContent = (
       };
     case 'heart':
       return {
-        banner: 'Let visitors donate products to you',
+        banner: 'Accept donations',
         helpBannerTitle: 'Build your donate products page',
         helpBannerBody: (
           <>
@@ -99,11 +97,11 @@ const getPageContent = (
         actionText:
           "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
         howItWorks:
-          "View the products we need. When you select 'donate', you can tell us how you can help.",
+          "View the products we need. When you select 'donate products', you can tell us how you can help.",
       };
     case 'plus':
       return {
-        banner: 'Build your extra stock page',
+        banner: 'Share extra stock',
         helpBannerTitle: 'Build your request products page',
         helpBannerBody: (
           <>
@@ -164,18 +162,6 @@ const CharityEdit: FC = () => {
       setSaveDisabled(true);
     }, 1);
   }, []);
-
-  const openNotification = (): void => {
-    setSaveDisabled(true);
-    notification.info({
-      message: <span className={styles.notificationMessage}>Save made</span>,
-      placement: 'bottomRight',
-      icon: <LogoPurple />,
-      className: styles.notification,
-      duration: 2,
-      closeIcon: <CloseOutlined style={{ color: 'white' }} />,
-    });
-  };
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfileCharity-${type}`],
@@ -239,6 +225,7 @@ const CharityEdit: FC = () => {
                     setContent({ ...content, whatToExpect: val });
                   }}
                   handleSave={() => {
+                    openNotification();
                     setEditState(false);
                     void refetch();
                   }}
@@ -273,6 +260,7 @@ const CharityEdit: FC = () => {
                     setContent({ ...content, actionText: val });
                   }}
                   handleSave={() => {
+                    openNotification();
                     setEditStateActionText(false);
                     void refetch();
                   }}
@@ -287,7 +275,10 @@ const CharityEdit: FC = () => {
               <FormButton
                 theme={saveDisabled ? 'formButtonDisabled' : 'formButtonGreen'}
                 onClick={(): void => {
-                  void refetch().then(openNotification);
+                  void refetch().then(() => {
+                    setSaveDisabled(true);
+                    openNotification();
+                  });
                 }}
                 text={'Save'}
                 ariaLabel="save"
