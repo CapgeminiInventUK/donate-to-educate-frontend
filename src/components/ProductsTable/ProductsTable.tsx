@@ -21,9 +21,9 @@ const ProductsTable: FC<ProductsTableProps> = ({
   iconColour,
   productsColumnHeader,
   postcode,
-  hideNoProducts,
-  hideStatus,
   hideNotJoined,
+  hideNoProducts,
+  hideStatus = false,
 }) => {
   const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
