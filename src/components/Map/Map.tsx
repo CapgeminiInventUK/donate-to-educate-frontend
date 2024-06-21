@@ -3,18 +3,7 @@ import styles from './Map.module.scss';
 import { MapView } from '@aws-amplify/ui-react-geo';
 import '@aws-amplify/ui-react-geo/styles.css';
 import { NavigationControl, FullscreenControl, ScaleControl, Marker, Popup } from 'react-map-gl';
-
-interface MapProps {
-  markers: { coordinates: number[]; name: string; colour: string }[];
-  initialZoom?: number;
-  initialCoordinates: number[];
-}
-
-interface PopupInfo {
-  latitude: number;
-  longitude: number;
-  name: string;
-}
+import { MapProps, PopupInfo } from '@/types/props';
 
 const Map: FC<MapProps> = ({ markers, initialCoordinates, initialZoom = 10 }) => {
   const [popupInfo, setPopupInfo] = useState<PopupInfo | null>(null);

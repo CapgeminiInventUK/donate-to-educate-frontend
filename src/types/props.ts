@@ -640,3 +640,15 @@ export interface UserRequestDetailsProps {
 export interface SchoolDetailsProps {
   data: GraphQLQuery<GetSchoolQuery>;
 }
+
+export interface MapProps {
+  markers: { coordinates: number[]; name: string; colour: string }[];
+  initialZoom?: number;
+  initialCoordinates: number[];
+}
+
+export interface PopupInfo {
+  latitude: number;
+  longitude: number;
+  name: string;
+}
