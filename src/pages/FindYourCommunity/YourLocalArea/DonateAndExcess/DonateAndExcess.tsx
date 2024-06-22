@@ -13,8 +13,9 @@ import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { DonateAndExcessProps } from '@/types/props';
 import Map from '@components/Map/Map';
+import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
 
-const maxDistance = convertMilesToMetres(10);
+const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
 const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState }) => {
   const heading =
