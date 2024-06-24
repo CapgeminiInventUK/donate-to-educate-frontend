@@ -101,6 +101,7 @@ describe('Check your answers', () => {
     expect(setPageNumber).not.toHaveBeenCalled();
   });
 });
+
 describe('CYA Charity Form', () => {
   it('should set address field properties when address field added', () => {
     const sections = [FormSections.CHARITY_SECTION];

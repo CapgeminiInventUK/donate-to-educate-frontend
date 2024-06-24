@@ -19,6 +19,7 @@ afterEach(() => {
   props.theme = 'lightBlue';
   props.isAdmin = false;
 });
+
 describe('Action tile', () => {
   it('should render component', () => {
     const screen = render(<ActionTile {...props} />);

@@ -14,6 +14,7 @@ const localStorageMock = {
 };
 
 global.localStorage = localStorageMock;
+
 describe('Cookie Banner', () => {
   const Component = createWrapper(<CookieBanner />);
   it('should set local storage and hide banner on accept button click', async () => {
