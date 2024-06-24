@@ -9,8 +9,10 @@ import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { FindCharityTableProps } from '@/types/props';
+import Map from '@components/Map/Map';
+import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
 
-const maxDistance = convertMilesToMetres(10);
+const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
 const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
   const { data, isLoading, isError, refetch } = useQuery({
@@ -43,10 +45,12 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
     return <ErrorBanner />;
   }
 
-  const charitiesRows = (data?.getCharitiesNearbyWithProfile ?? []).map((charity, key) => ({
-    ...charity,
-    key,
-  }));
+  const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? []).map(
+    (charity, key) => ({
+      ...charity,
+      key,
+    })
+  );
 
   return (
     <>
@@ -63,6 +67,18 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
         iconColour="#97C8EB"
         productsColumnHeader="Product types available"
         postcode={postcode}
+      />
+
+      <h3>Charity map</h3>
+      <Map
+        initialCoordinates={
+          data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+        }
+        markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
+          coordinates,
+          name,
+          colour: '#11356F',
+        }))}
       />
     </>
   );

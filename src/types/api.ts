@@ -87,6 +87,7 @@ export type Charity = {
   about: string;
   distance?: number | null;
   profile?: Array<CharityProfile | null> | null;
+  postcode?: string | null;
 };
 
 export type CharityProfile = {
@@ -168,11 +169,24 @@ export enum Type {
 
 export type InstituteSearchResult = {
   __typename: 'InstituteSearchResult';
+  searchLocation: Point;
+  results: Array<SearchResult>;
+};
+
+export type Point = {
+  __typename: 'Point';
+  type: string;
+  coordinates: Array<number>;
+};
+
+export type SearchResult = {
+  __typename: 'SearchResult';
   id: string;
   name: string;
   distance: number;
   productTypes: Array<number>;
   registered: boolean;
+  location: Point;
 };
 
 export type getAdminPageRequestsQueryVariables = {};
@@ -400,7 +414,35 @@ export type GetSchoolQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -434,7 +476,35 @@ export type GetSchoolsByLaQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -466,7 +536,35 @@ export type GetSchoolsQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -490,8 +588,37 @@ export type GetCharitiesQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      header?: {
+        __typename: 'CharityProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        address?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -514,8 +641,37 @@ export type GetCharitiesByLaQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      header?: {
+        __typename: 'CharityProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        address?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
+    postcode?: string | null;
   } | null>;
 };
 
@@ -544,7 +700,35 @@ export type GetRegisteredSchoolsQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -578,7 +762,35 @@ export type GetRegisteredSchoolsByLaQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -770,7 +982,35 @@ export type GetSchoolsNearbyQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      header?: {
+        __typename: 'SchoolProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        uniformPolicy?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
@@ -797,8 +1037,37 @@ export type GetCharitiesNearbyQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      header?: {
+        __typename: 'CharityProfileHeader';
+        phone?: string | null;
+        email?: string | null;
+        website?: string | null;
+        address?: string | null;
+      } | null;
       about?: string | null;
+      request?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      donate?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
+      excess?: {
+        __typename: 'ProfileItems';
+        items?: string | null;
+        whatToExpect?: string | null;
+        actionText?: string | null;
+        productTypes?: Array<number | null> | null;
+      } | null;
     } | null> | null;
+    postcode?: string | null;
   }>;
 };
 
@@ -894,14 +1163,27 @@ export type GetSchoolsNearbyWithProfileQueryVariables = {
 };
 
 export type GetSchoolsNearbyWithProfileQuery = {
-  getSchoolsNearbyWithProfile: Array<{
+  getSchoolsNearbyWithProfile: {
     __typename: 'InstituteSearchResult';
-    id: string;
-    name: string;
-    distance: number;
-    productTypes: Array<number>;
-    registered: boolean;
-  }>;
+    searchLocation: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    };
+    results: Array<{
+      __typename: 'SearchResult';
+      id: string;
+      name: string;
+      distance: number;
+      productTypes: Array<number>;
+      registered: boolean;
+      location: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      };
+    }>;
+  };
 };
 
 export type GetCharitiesNearbyWithProfileQueryVariables = {
@@ -911,14 +1193,27 @@ export type GetCharitiesNearbyWithProfileQueryVariables = {
 };
 
 export type GetCharitiesNearbyWithProfileQuery = {
-  getCharitiesNearbyWithProfile: Array<{
+  getCharitiesNearbyWithProfile: {
     __typename: 'InstituteSearchResult';
-    id: string;
-    name: string;
-    distance: number;
-    productTypes: Array<number>;
-    registered: boolean;
-  }>;
+    searchLocation: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    };
+    results: Array<{
+      __typename: 'SearchResult';
+      id: string;
+      name: string;
+      distance: number;
+      productTypes: Array<number>;
+      registered: boolean;
+      location: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      };
+    }>;
+  };
 };
 
 export type HasSchoolProfileQueryVariables = {

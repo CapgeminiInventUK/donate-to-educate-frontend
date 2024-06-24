@@ -1,3 +1,4 @@
+import { ResourcesConfig } from 'aws-amplify';
 import { z } from 'zod';
 
 const envSchema = z.object({
@@ -12,24 +13,54 @@ const envSchema = z.object({
 
 const env = envSchema.parse(import.meta.env);
 
-export const amplifyConfig = {
-  // Generic
-  aws_project_region: env.VITE_AWS_REGION,
+export const amplifyConfig: ResourcesConfig = {
+  API: {
+    GraphQL: {
+      region: env.VITE_AWS_REGION,
+      endpoint: env.VITE_APPSYNC_ENDPOINT,
+      apiKey: env.VITE_APPSYNC_API_KEY,
+      defaultAuthMode: 'apiKey',
+    },
+  },
 
-  // AppSync
-  aws_appsync_region: env.VITE_AWS_REGION,
-  aws_appsync_graphqlEndpoint: env.VITE_APPSYNC_ENDPOINT,
-  aws_appsync_authenticationType: 'API_KEY',
-  aws_appsync_apiKey: env.VITE_APPSYNC_API_KEY,
+  Auth: {
+    Cognito: {
+      userPoolId: env.VITE_COGNITO_USER_POOLS_ID,
+      userPoolClientId: env.VITE_USER_POOL_WEB_CLIENT_ID,
+      identityPoolId: env.VITE_COGNITO_IDENTITY_POOLS_ID,
+      allowGuestAccess: true,
+    },
+  },
 
-  // Cognito
-  aws_cognito_region: env.VITE_AWS_REGION,
-  aws_user_pools_id: env.VITE_COGNITO_USER_POOLS_ID,
-  aws_user_pools_web_client_id: env.VITE_USER_POOL_WEB_CLIENT_ID,
-  aws_cognito_identity_pool_id: env.VITE_COGNITO_IDENTITY_POOLS_ID,
-  aws_mandatory_sign_in: false,
+  Analytics: {
+    Pinpoint: {
+      region: env.VITE_AWS_REGION,
+      appId: env.VITE_ANALYTICS_APP_ID,
+    },
+  },
 
-  // Pinpoint
-  aws_mobile_analytics_app_region: env.VITE_AWS_REGION,
-  aws_mobile_analytics_app_id: env.VITE_ANALYTICS_APP_ID,
+  Geo: {
+    LocationService: {
+      region: env.VITE_AWS_REGION,
+      maps: {
+        items: [
+          'VectorEsriNavigation',
+          'VectorEsriTopographic',
+          'VectorEsriLightGrayCanvas',
+          'VectorEsriDarkGrayCanvas',
+          'VectorHereExplore',
+          'VectorOpenDataStandardLight',
+          'VectorOpenDataStandardDark',
+          'VectorOpenDataVisualizationLight',
+          'VectorOpenDataVisualizationDark',
+        ].reduce(
+          (acc, map) => {
+            return { ...acc, [map]: { style: map } };
+          },
+          {} as Record<string, { style: string }>
+        ),
+        default: 'VectorHereExplore',
+      },
+    },
+  },
 };
