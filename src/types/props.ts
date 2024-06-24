@@ -311,7 +311,6 @@ export interface CheckYourAnswersProps {
   formName: FormNames;
   formData?: FormDataItem[];
   setPageNumber?: Dispatch<SetStateAction<number>>;
-  formMeta: FormMeta;
 }
 
 export interface SummaryProps {
@@ -337,7 +336,8 @@ export interface InformationTileProps {
   dismiss?: () => void;
 }
 
-export interface EditableInformationTileProps extends InformationTileProps {
+export interface EditableInformationTileProps {
+  heading: string;
   editContent: () => void;
   onCancel: () => void;
   saveOnClick: () => void;

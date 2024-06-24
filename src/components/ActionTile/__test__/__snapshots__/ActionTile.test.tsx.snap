@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Action tile > should render component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        aria-label="action-tile"
+        class="_lightBlue_932d70"
+      >
+        <div
+          aria-label="action-tile-icon"
+          class="_lightBlueIcon_932d70"
+        />
+        <div
+          class="_tileText_932d70"
+        >
+          <h3>
+            Heading
+          </h3>
+          <p>
+            Subheading
+          </p>
+          <button
+            aria-label="Request button"
+            class="_formButtonGreen_a4d411  _button_932d70"
+          >
+            <span
+              class="_text_a4d411"
+            >
+              Button text
+            </span>
+            <div>
+              <img
+                alt="Right arrow"
+                height="30"
+                src="/src/assets/icons/form-button-right-arrow-white.svg"
+                width="30"
+              />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      aria-label="action-tile"
+      class="_lightBlue_932d70"
+    >
+      <div
+        aria-label="action-tile-icon"
+        class="_lightBlueIcon_932d70"
+      />
+      <div
+        class="_tileText_932d70"
+      >
+        <h3>
+          Heading
+        </h3>
+        <p>
+          Subheading
+        </p>
+        <button
+          aria-label="Request button"
+          class="_formButtonGreen_a4d411  _button_932d70"
+        >
+          <span
+            class="_text_a4d411"
+          >
+            Button text
+          </span>
+          <div>
+            <img
+              alt="Right arrow"
+              height="30"
+              src="/src/assets/icons/form-button-right-arrow-white.svg"
+              width="30"
+            />
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

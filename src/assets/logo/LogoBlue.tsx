@@ -7,6 +7,7 @@ const LogoBlue = ({ className, onClick }: SvgProps): JSX.Element => (
     fill="none"
     className={className}
     onClick={onClick}
+    aria-label="logo-blue"
   >
     <path
       fill="#11356F"

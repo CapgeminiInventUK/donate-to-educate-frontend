@@ -1,7 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ShowHide from './ShowHide';
-import { vi } from 'vitest';
 import styles from './ShowHide.module.scss';
 
 describe('ShowHide', (): void => {

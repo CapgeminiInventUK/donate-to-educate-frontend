@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import TextInput from './TextInput';
-import { vi } from 'vitest';
 
 describe('TextInput', (): void => {
   test('renders without errors', (): void => {

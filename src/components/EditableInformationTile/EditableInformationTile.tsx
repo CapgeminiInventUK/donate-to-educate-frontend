@@ -3,14 +3,12 @@ import styles from './EditableInformationTile.module.scss';
 import Button from '../Button/Button';
 import { EditableInformationTileProps } from '@/types/props';
 import HorizontalLine from '@/assets/school/HorizontalLine';
-import PlusIcon from '@/assets/school/PlusIcon';
 import TextArea from '../TextArea/TextArea';
 import CancelButton from '../CancelButton/CancelButton';
 import FormButton from '../FormButton/FormButton';
 
 const EditableInformationTile: FC<EditableInformationTileProps> = ({
   heading,
-  subtext,
   onCancel,
   editContent,
   saveOnClick,
@@ -25,7 +23,6 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
           <h2>{heading}</h2>
           <HorizontalLine className={styles.horizontalLine} />
         </div>
-        {subtext && !isEditing && <p className={styles.subtext}>{isEditing ? text : subtext}</p>}
         {isEditing ? (
           <>
             <TextArea characterLimit={1000} onChange={setText} value={text} ariaLabel="edit" />
@@ -43,27 +40,12 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
         ) : (
           <>
             {text}
-            {!text ? (
-              <Button
-                theme="darkBlue"
-                className={styles.addSectionButton}
-                onClick={editContent}
-                text={
-                  <div className={styles.addSectionDiv}>
-                    <span className={styles.addSectionButtonText}>Add section</span>
-                    <PlusIcon />
-                  </div>
-                }
-                ariaLabel="add section"
-              />
-            ) : (
-              <FormButton
-                onClick={editContent}
-                theme={'formButtonGrey'}
-                text="Edit"
-                ariaLabel={'edit'}
-              />
-            )}
+            <FormButton
+              onClick={editContent}
+              theme={'formButtonGrey'}
+              text="Edit"
+              ariaLabel={'edit'}
+            />
           </>
         )}
       </div>

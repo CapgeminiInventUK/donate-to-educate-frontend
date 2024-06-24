@@ -37,6 +37,7 @@ exports[`renders correctly 1`] = `
       </a>
     </p>
     <svg
+      aria-label="logo-white"
       className="_logo_8c5621"
       fill="none"
       viewBox="0 0 304 103"

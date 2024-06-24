@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { useEffect } from 'react';
-import ErrorBoundary from './ErrorBoundary';
-import { vi } from 'vitest';
+import ErrorBoundary from '../ErrorBoundary';
 
 const ErrorTestComponent = (): JSX.Element => {
   useEffect(() => {

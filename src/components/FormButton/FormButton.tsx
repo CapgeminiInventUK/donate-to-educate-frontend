@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import styles from './FormButton.module.scss';
 import { FormButtonProps } from '@/types/props';
-import RightArrowWhite from '../../assets/icons/form-button-right-arrow-white.svg';
-import RightArrowGrey from '../../assets/icons/form-button-right-arrow-grey.svg';
-import RightArrowBlue from '../../assets/icons/form-button-right-arrow-blue.svg';
+import { getArrowColour } from '@/utils/button';
 
 const FormButton: FC<FormButtonProps> = ({
   onClick,
@@ -16,23 +14,6 @@ const FormButton: FC<FormButtonProps> = ({
   children,
   ariaLabel,
 }) => {
-  const getArrowColour = (): string => {
-    switch (theme) {
-      case 'formButtonDarkBlue':
-      case 'formButtonMidBlue':
-        return RightArrowWhite;
-      case 'formButtonGrey':
-      case 'formButtonDisabled':
-        return RightArrowGrey;
-      case 'formButtonRed':
-      case 'formButtonLightBlue':
-        return RightArrowBlue;
-      case 'formButtonGreen':
-      case 'formButtonGreenDisabled':
-        return RightArrowWhite;
-    }
-  };
-
   return (
     <button
       aria-label={ariaLabel}
@@ -44,7 +25,7 @@ const FormButton: FC<FormButtonProps> = ({
             }
           : onClick
       }
-      className={`${styles[theme] ?? ''} ${fullWidth ? styles.fullWidth : ''} ${className ? className : ''}`}
+      className={`${styles[theme]} ${fullWidth ? styles.fullWidth : ''} ${className ? className : ''}`}
     >
       <span className={styles.text}>
         {children}
@@ -52,7 +33,7 @@ const FormButton: FC<FormButtonProps> = ({
       </span>
       {useArrow && (
         <div>
-          <img src={getArrowColour()} alt="Right arrow" height={'30'} width={'30'} />
+          <img src={getArrowColour(theme)} alt="Right arrow" height={'30'} width={'30'} />
         </div>
       )}
     </button>

@@ -150,7 +150,6 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                 onCancel={cancelAboutUs}
                 saveOnClick={saveAboutUs}
                 heading="About us"
-                subtext={''}
                 isEditing={isEditingAboutUs}
                 text={about}
                 setText={setAboutText}
@@ -199,7 +198,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
                   <ActionTile
                     heading="Share extra stock"
                     subheading="Allow schools and charities to take extra stock off your hands."
-                    icon={<ExtraStock colour="#050E33" />}
+                    icon={<ExtraStock colour={excess ? '#050E33' : '#FEFCFD'} />}
                     theme={excess ? 'darkBlue' : 'grey'}
                     isAdmin={true}
                     buttonText={request ? 'Edit extra stock' : 'Enable sharing'}

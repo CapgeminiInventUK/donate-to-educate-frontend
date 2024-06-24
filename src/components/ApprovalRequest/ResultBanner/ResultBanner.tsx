@@ -3,6 +3,7 @@ import styles from './ResultBanner.module.scss';
 import Email from '@/assets/admin/Email';
 import { ResultBannerProps } from '@/types/props';
 import { ResultType } from '@/types/data';
+import { capitalizeFirstLetter } from '@/utils/globals';
 
 const ResultBanner: FC<ResultBannerProps> = ({ type, name }) => {
   return (
@@ -34,9 +35,5 @@ const getSubtext = (type: ResultType): string => {
       throw new Error(`Unexpected result type ${String(type)}`);
   }
 };
-
-function capitalizeFirstLetter(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 export default ResultBanner;
