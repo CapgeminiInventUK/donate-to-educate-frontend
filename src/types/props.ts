@@ -28,6 +28,7 @@ import {
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
+  Point,
   ProfileItems,
   SchoolProfile,
   SchoolProfileHeader,
@@ -579,6 +580,7 @@ export interface PublicDashboardProps {
   about?: string | null;
   header?: SchoolProfileHeader | CharityProfileHeader | null;
   postcode?: string | null;
+  location?: Point | null;
   setPreview?: (value: boolean) => void;
   organisationName: string;
   organisationId: string;

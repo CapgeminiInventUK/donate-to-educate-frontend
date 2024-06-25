@@ -55,11 +55,18 @@ export type SchoolProfile = {
   id: string;
   localAuthority: string;
   postcode: string;
+  location?: Point | null;
   header?: SchoolProfileHeader | null;
   about?: string | null;
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
+};
+
+export type Point = {
+  __typename: 'Point';
+  type: string;
+  coordinates: Array<number>;
 };
 
 export type SchoolProfileHeader = {
@@ -96,6 +103,7 @@ export type CharityProfile = {
   id: string;
   localAuthority: string;
   postcode?: string | null;
+  location?: Point | null;
   header?: CharityProfileHeader | null;
   about?: string | null;
   request?: ProfileItems | null;
@@ -171,12 +179,6 @@ export type InstituteSearchResult = {
   __typename: 'InstituteSearchResult';
   searchLocation: Point;
   results: Array<SearchResult>;
-};
-
-export type Point = {
-  __typename: 'Point';
-  type: string;
-  coordinates: Array<number>;
 };
 
 export type SearchResult = {
@@ -414,6 +416,11 @@ export type GetSchoolQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -476,6 +483,11 @@ export type GetSchoolsByLaQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -536,6 +548,11 @@ export type GetSchoolsQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -588,6 +605,11 @@ export type GetCharitiesQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'CharityProfileHeader';
         phone?: string | null;
@@ -641,6 +663,11 @@ export type GetCharitiesByLaQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'CharityProfileHeader';
         phone?: string | null;
@@ -700,6 +727,11 @@ export type GetRegisteredSchoolsQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -762,6 +794,11 @@ export type GetRegisteredSchoolsByLaQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -843,6 +880,11 @@ export type GetSchoolProfileQuery = {
     id: string;
     localAuthority: string;
     postcode: string;
+    location?: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    } | null;
     header?: {
       __typename: 'SchoolProfileHeader';
       phone?: string | null;
@@ -887,6 +929,11 @@ export type GetCharityProfileQuery = {
     id: string;
     localAuthority: string;
     postcode?: string | null;
+    location?: {
+      __typename: 'Point';
+      type: string;
+      coordinates: Array<number>;
+    } | null;
     header?: {
       __typename: 'CharityProfileHeader';
       phone?: string | null;
@@ -982,6 +1029,11 @@ export type GetSchoolsNearbyQuery = {
       id: string;
       localAuthority: string;
       postcode: string;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'SchoolProfileHeader';
         phone?: string | null;
@@ -1037,6 +1089,11 @@ export type GetCharitiesNearbyQuery = {
       id: string;
       localAuthority: string;
       postcode?: string | null;
+      location?: {
+        __typename: 'Point';
+        type: string;
+        coordinates: Array<number>;
+      } | null;
       header?: {
         __typename: 'CharityProfileHeader';
         phone?: string | null;
