@@ -44,6 +44,24 @@ export const handlers = [
       return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
     }
   }),
+  graphql.mutation('UpdateSchoolProfile', () => {
+    return HttpResponse.json({
+      data: {
+        acknowledged: true,
+      },
+    });
+  }),
+  graphql.mutation('UpdateCharityProfile', ({ variables }) => {
+    const { value } = variables;
+    if (value === 'error') {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
+    return HttpResponse.json({
+      data: {
+        acknowledged: true,
+      },
+    });
+  }),
   http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
     return passthrough();
   }),

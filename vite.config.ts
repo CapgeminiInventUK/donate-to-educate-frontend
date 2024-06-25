@@ -32,7 +32,7 @@ export default defineConfig((env) => ({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/vitest/setupTests.ts',
+    setupFiles: ['./src/vitest/setupTests.ts', 'jsdom-worker'],
     css: true,
     reporters: ['verbose'],
     exclude: testExclusions,

@@ -63,6 +63,7 @@ export type FormButtonThemes =
   | 'formButtonDisabled'
   | 'formButtonLightBlue'
   | 'formButtonGreenDisabled';
+
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
@@ -651,4 +652,21 @@ export interface PopupInfo {
   latitude: number;
   longitude: number;
   name: string;
+}
+
+export interface EditableDashboardProps {
+  banner: Banner;
+  setBanner: Dispatch<SetStateAction<Banner>>;
+  type: 'school' | 'charity';
+  name: string;
+  about: string;
+  setAbout: Dispatch<SetStateAction<string>>;
+  setPreview: Dispatch<SetStateAction<boolean>>;
+  profile: SchoolProfile | CharityProfile;
+  placeholderAboutText: string;
+}
+
+export interface ActionTilesProps {
+  profile: SchoolProfile | CharityProfile;
+  type: 'school' | 'charity';
 }

@@ -7,7 +7,7 @@ import Paths from '@/config/paths';
 import FormButton from '../FormButton/FormButton';
 import Card from '@/components/Card/Card';
 import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
-import { scrollToTheTop } from '@/utils/globals';
+import { returnObjectValueOrUndefined, scrollToTheTop } from '@/utils/globals';
 import { PublicDashboardProps } from '@/types/props';
 import ActionTile from '../ActionTile/ActionTile';
 import Hanger from '@/assets/school/Hanger';
@@ -30,12 +30,11 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
 }) => {
   const navigate = useNavigate();
   const banner = {
-    phone: header?.phone ?? undefined,
-    email: header?.email ?? undefined,
-    website: header?.website ?? undefined,
-    uniformPolicy:
-      header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined,
-    address: header && 'address' in header ? header?.address ?? undefined : undefined,
+    phone: returnObjectValueOrUndefined('phone', header),
+    email: returnObjectValueOrUndefined('email', header),
+    website: returnObjectValueOrUndefined('website', header),
+    uniformPolicy: returnObjectValueOrUndefined('uniformPolicy', header),
+    address: returnObjectValueOrUndefined('address', header),
   };
 
   useEffect(() => {

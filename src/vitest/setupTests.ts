@@ -8,6 +8,10 @@ import { afterAll, afterEach, beforeAll } from 'vitest';
 beforeAll(() => {
   Amplify.configure(amplifyConfig);
   server.listen();
+  window.URL.createObjectURL = (): string => '';
+  window.scrollTo = (): void => {
+    undefined;
+  };
 });
 
 // Reset any request handlers that we may add during the tests,
