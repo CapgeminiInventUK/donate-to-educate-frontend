@@ -13,6 +13,7 @@ import ActionTile from '../ActionTile/ActionTile';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
+import Map from '../Map/Map';
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
   type,
@@ -23,6 +24,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   about,
   header,
   postcode,
+  location,
   setPreview,
   organisationId,
   organisationName,
@@ -41,12 +43,19 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   useEffect(() => {
     scrollToTheTop();
   }, [name]);
+
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
       <Card className={styles.dashboardCard}>
         {!(about ?? excess ?? donate ?? request) && (
           <p>We are still populating our profile, please check back later</p>
+        )}
+        {location?.coordinates && location.coordinates.length === 2 && (
+          <Map
+            initialCoordinates={[location.coordinates[0], location.coordinates[1]]}
+            markers={[{ coordinates: location.coordinates, name, colour: 'purple' }]}
+          />
         )}
         {about && (
           <div className={styles.aboutContainer}>

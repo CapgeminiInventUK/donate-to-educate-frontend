@@ -42,7 +42,8 @@ const SchoolsDashboard: FC = () => {
     return <ErrorBanner />;
   }
 
-  const { excess, donate, request, about, header, postcode } = data?.getSchoolProfile ?? {};
+  const { excess, donate, request, about, header, postcode, location } =
+    data?.getSchoolProfile ?? {};
 
   return (
     <div className={styles.container}>
@@ -59,6 +60,7 @@ const SchoolsDashboard: FC = () => {
           organisationName={name}
           organisationId={urn}
           postcode={postcode}
+          location={location}
         />
       </div>
     </div>

@@ -34,6 +34,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
     header,
     name: organisationName,
     id,
+    location,
   } = profile;
   const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\n\nRequest the things you need ${type === 'school' ? 'or donate products' : ''} to help the next child. ${type === 'school' ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
 
@@ -245,6 +246,7 @@ const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, p
               header={header && { ...banner, __typename: header?.__typename }}
               setPreview={setPreview}
               postcode={postcode}
+              location={location}
               organisationId={id}
               organisationName={organisationName}
               previewMode={preview}

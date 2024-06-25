@@ -11,10 +11,13 @@ import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { FindCharityTableProps } from '@/types/props';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
+import { useLocation } from 'react-router-dom';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
 const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
+  const location = useLocation();
+
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [`getCharitiesNearby-${postcode}-${maxDistance}-request`],
     enabled: true,
@@ -68,18 +71,21 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
         productsColumnHeader="Product types available"
         postcode={postcode}
       />
-
-      <h3>Charity map</h3>
-      <Map
-        initialCoordinates={
-          data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
-        }
-        markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
-          coordinates,
-          name,
-          colour: '#11356F',
-        }))}
-      />
+      {location.pathname.includes('your-local-area') && (
+        <>
+          <h3>Charity map</h3>
+          <Map
+            initialCoordinates={
+              data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+            }
+            markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
+              coordinates,
+              name,
+              colour: '#11356F',
+            }))}
+          />
+        </>
+      )}
     </>
   );
 };
