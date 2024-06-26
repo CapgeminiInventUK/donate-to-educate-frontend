@@ -5,8 +5,13 @@ import '@aws-amplify/ui-react-geo/styles.css';
 import { NavigationControl, ScaleControl, Marker, Popup } from 'react-map-gl';
 import { MapProps, PopupInfo } from '@/types/props';
 import { ViewStateChangeEvent } from 'react-map-gl';
+import { SEARCH_DEFAULT_ZOOM_LEVEL } from '@/utils/globals';
 
-const Map: FC<MapProps> = ({ markers, initialCoordinates, initialZoom = 10 }) => {
+const Map: FC<MapProps> = ({
+  markers,
+  initialCoordinates,
+  initialZoom = SEARCH_DEFAULT_ZOOM_LEVEL,
+}) => {
   const [popupInfo, setPopupInfo] = useState<PopupInfo | null>(null);
   const [viewState, setViewState] = useState({
     longitude: initialCoordinates[0],
