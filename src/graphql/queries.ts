@@ -788,11 +788,13 @@ export const getLaStats =
 export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearbyWithProfile(
   $postcode: String!
   $distance: Float!
+  $limit: Int!
   $type: Type!
 ) {
   getSchoolsNearbyWithProfile(
     postcode: $postcode
     distance: $distance
+    limit: $limit
     type: $type
   ) {
     searchLocation {
@@ -823,11 +825,13 @@ export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearby
 export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNearbyWithProfile(
   $postcode: String!
   $distance: Float!
+  $limit: Int!
   $type: Type!
 ) {
   getCharitiesNearbyWithProfile(
     postcode: $postcode
     distance: $distance
+    limit: $limit
     type: $type
   ) {
     searchLocation {

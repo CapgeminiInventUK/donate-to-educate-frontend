@@ -10,7 +10,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { FindCharityTableProps } from '@/types/props';
 import Map from '@components/Map/Map';
-import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
+import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 import { useLocation } from 'react-router-dom';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
@@ -28,6 +28,7 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
         variables: {
           postcode: postcode,
           distance: maxDistance,
+          limit: SEARCH_RESULT_LIMIT,
           type: 'request',
         },
       });

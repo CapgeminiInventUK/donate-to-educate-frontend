@@ -2,7 +2,7 @@ import { FC, useCallback, useState, useMemo } from 'react';
 import styles from './Map.module.scss';
 import { MapView } from '@aws-amplify/ui-react-geo';
 import '@aws-amplify/ui-react-geo/styles.css';
-import { NavigationControl, FullscreenControl, ScaleControl, Marker, Popup } from 'react-map-gl';
+import { NavigationControl, ScaleControl, Marker, Popup } from 'react-map-gl';
 import { MapProps, PopupInfo } from '@/types/props';
 import { ViewStateChangeEvent } from 'react-map-gl';
 
@@ -46,7 +46,8 @@ const Map: FC<MapProps> = ({ markers, initialCoordinates, initialZoom = 10 }) =>
         style={{ borderRadius: '20px', width: 'inherit', height: 'inherit' }}
         onMove={onMove}
       >
-        <FullscreenControl position="top-left" />
+        {/* fullscreen can be uncommented when the bug is fixed: https://github.com/visgl/react-map-gl/issues/2320 */}
+        {/* <FullscreenControl position="top-left" /> */}
         <NavigationControl position="top-left" showCompass={false} />
         <ScaleControl unit="imperial" />
         {/* <GeolocateControl /> */}

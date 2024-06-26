@@ -13,7 +13,7 @@ import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { DonateAndExcessProps } from '@/types/props';
 import Map from '@components/Map/Map';
-import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
+import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -41,6 +41,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         variables: {
           postcode,
           distance: maxDistance,
+          limit: SEARCH_RESULT_LIMIT,
           type,
         },
       });
@@ -64,6 +65,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         variables: {
           postcode,
           distance: maxDistance,
+          limit: SEARCH_RESULT_LIMIT,
           type,
         },
       });

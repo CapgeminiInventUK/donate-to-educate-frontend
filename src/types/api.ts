@@ -1216,6 +1216,7 @@ export type GetLaStatsQuery = {
 export type GetSchoolsNearbyWithProfileQueryVariables = {
   postcode: string;
   distance: number;
+  limit: number;
   type: Type;
 };
 
@@ -1246,6 +1247,7 @@ export type GetSchoolsNearbyWithProfileQuery = {
 export type GetCharitiesNearbyWithProfileQueryVariables = {
   postcode: string;
   distance: number;
+  limit: number;
   type: Type;
 };
 
