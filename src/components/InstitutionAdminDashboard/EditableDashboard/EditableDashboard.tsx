@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Card from '@/components/Card/Card';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
 import InformationTile from '@/components/InformationTile/InformationTile';
@@ -80,7 +79,6 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
   };
 
   const cancelAboutUs = (): void => {
-    console.log(previousAbout);
     previousAbout ? setAbout(previousAbout) : setAbout(placeholderAboutText);
     toggleIsEditingAboutUs();
   };
