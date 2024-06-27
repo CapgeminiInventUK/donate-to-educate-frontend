@@ -19,6 +19,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
 import { openNotification } from '@/utils/formComponents';
+import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -168,7 +169,7 @@ const CharityEdit: FC = () => {
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
-        authMode: 'userPool',
+        authMode: checkIfInTestEnvForAuthMode(),
         authToken,
         query: updateCharityProfile,
         variables: {

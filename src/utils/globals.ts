@@ -29,3 +29,6 @@ export const returnObjectValueOrUndefined = (
   key: string,
   obj?: Record<string, unknown> | null
 ): string | undefined => (obj && key in obj && !!obj[key] ? String(obj[key]) : undefined);
+
+export const checkIfInTestEnvForAuthMode = (): 'userPool' | undefined =>
+  import.meta.env.MODE === 'test' ? undefined : 'userPool';

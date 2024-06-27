@@ -22,7 +22,7 @@ import useAuthToken from '@/hooks/useAuthToken';
 import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
 import { useMediaQuery } from 'react-responsive';
-import { breakpoints } from '@/utils/globals';
+import { breakpoints, checkIfInTestEnvForAuthMode } from '@/utils/globals';
 import School from '@/assets/icons/School';
 import Heart from '@/assets/icons/Heart';
 import Donate from '@/assets/icons/Donate';
@@ -72,7 +72,7 @@ const CharityView: FC = () => {
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateCharityProfileMutation>>({
-        authMode: 'userPool',
+        authMode: checkIfInTestEnvForAuthMode(),
         authToken,
         query: updateCharityProfile,
         variables: {

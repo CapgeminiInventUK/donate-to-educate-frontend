@@ -672,3 +672,8 @@ export interface ActionTilesProps {
   profile: SchoolProfile | CharityProfile;
   type: 'school' | 'charity';
 }
+
+export interface PublicViewProps {
+  banner: Banner;
+  type: 'school' | 'charity';
+}

@@ -1,105 +1,57 @@
 import { FC } from 'react';
-import { AdminViewProps } from '@/types/props';
+import { AdminViewProps, BannerItemProps } from '@/types/props';
 import styles from './InstitutionBanner.module.scss';
-import SchoolHat from '@/assets/school/SchoolHat';
-import Telephone from '@/assets/school/Telephone';
-import Email from '@/assets/school/EmailWhite';
-import Globe from '@/assets/school/Globe';
-import House from '@/assets/school/House';
 import BannerItem from './BannerItem';
-import EditModeItem from './EditModetem';
+import EditModeItem from './EditModeItem';
+import { Banner } from '@/types/data';
+import { getIcon, getItemTypeString } from './utils';
 
 const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) => {
-  const { phone, email, website, uniformPolicy, address } = banner;
+  const bannerItems = Object.keys(banner).reduce((acc: BannerItemProps[], itemType) => {
+    if (
+      (type === 'school' && itemType === 'address') ||
+      (type === 'charity' && itemType === 'uniformPolicy')
+    ) {
+      return acc;
+    }
+    const item = {
+      icon: getIcon(itemType),
+      item: banner[itemType as keyof Banner],
+      itemType,
+      defaultText: `You haven't added your ${getItemTypeString(itemType)}`,
+    };
+    return [...acc, item];
+  }, []);
+
   return (
     <div className={styles.textContainer}>
       {!editMode ? (
         <>
           <ul>
-            <BannerItem
-              icon={<Telephone />}
-              item={phone}
-              itemType="tel"
-              defaultText={"You haven't added your phone number"}
-            />
-            <BannerItem
-              icon={<Email />}
-              item={email}
-              itemType="mail"
-              defaultText="You haven't added your email"
-            />
-            <BannerItem
-              icon={<Globe />}
-              item={website}
-              itemType="url"
-              defaultText="You haven't added your website"
-            />
-            {type === 'school' && (
+            {bannerItems.map(({ icon, item, itemType, defaultText }, key) => (
               <BannerItem
-                icon={<SchoolHat />}
-                item={uniformPolicy}
-                itemType="url"
-                defaultText="You haven't added your school's uniform policy"
+                key={key}
+                icon={icon}
+                item={item}
+                itemType={itemType}
+                defaultText={defaultText}
               />
-            )}
-            {type === 'charity' && (
-              <BannerItem
-                icon={<House />}
-                item={address}
-                itemType="adr"
-                defaultText="Add your charities address"
-              />
-            )}
+            ))}
           </ul>
         </>
       ) : (
         <>
           <ul>
-            <EditModeItem
-              placeholder="Add your phone number"
-              icon={<Telephone />}
-              itemName={'phone'}
-              item={phone}
-              setBanner={setBanner}
-            />
-            <EditModeItem
-              placeholder="Add your email"
-              icon={<Email />}
-              itemName={'email'}
-              item={email}
-              setBanner={setBanner}
-            />
-            <EditModeItem
-              placeholder={
-                type === 'charity' ? 'Add your charities website' : "Add your school's website"
-              }
-              icon={<Globe />}
-              itemName={'website'}
-              item={website}
-              setBanner={setBanner}
-            />
-          </ul>
-
-          <ul>
-            {type === 'school' && (
+            {bannerItems.map(({ icon, item, itemType }, key) => (
               <EditModeItem
-                icon={<SchoolHat />}
-                itemName={'uniformPolicy'}
-                item={uniformPolicy}
-                setBanner={setBanner}
-                placeholder="Add a website link to your school's uniform policy"
-              />
-            )}
-
-            {type === 'charity' && (
-              <EditModeItem
-                placeholder="Add your charities address"
-                icon={<House />}
-                itemName={'address'}
-                item={address}
+                key={key}
+                placeholder={`Add your ${itemType === 'website' ? `${type}'s ` : ''}${getItemTypeString(itemType)}`}
+                icon={icon}
+                itemName={itemType}
+                item={item}
                 setBanner={setBanner}
               />
-            )}
+            ))}
           </ul>
         </>
       )}
