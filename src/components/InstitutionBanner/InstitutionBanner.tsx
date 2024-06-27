@@ -25,6 +25,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const { token: authToken } = useAuthToken();
+
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
@@ -40,7 +41,6 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           value: JSON.stringify(banner),
         },
       });
-
       return result;
     },
   });

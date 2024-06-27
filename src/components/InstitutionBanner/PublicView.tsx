@@ -12,9 +12,6 @@ const PublicView: FC<PublicViewProps> = ({ banner, type }) => {
   const bannerKeys = getBannerKeys(banner, type).filter((key) => banner[key as keyof Banner]);
   const sectionTwoBanners = ['address', 'uniformPolicy'];
 
-  // eslint-disable-next-line no-console
-  console.log(banner);
-
   return (
     <>
       {bannerKeys.length && (
@@ -57,7 +54,7 @@ const PublicView: FC<PublicViewProps> = ({ banner, type }) => {
                 <span>
                   <House />
                 </span>
-                <p className={styles.item}>{banner.address ?? ''}</p>
+                <p className={styles.item}>{banner[key]}</p>
               </li>
             )}
           </ul>

@@ -39,7 +39,7 @@ export const getLinkFromType = (type: string, item?: string): string => {
   switch (type) {
     case 'phone':
       return `tel: ${item}`;
-    case 'mail':
+    case 'email':
       return `mailto: ${item}`;
     default:
       return item?.includes('https://') === true || item?.includes('http://') == true
@@ -56,7 +56,7 @@ export const hasContactInfo = (banner: Banner, isAdminView?: boolean): boolean =
     website !== undefined ||
     uniformPolicy !== undefined ||
     address !== undefined ||
-    isAdminView === true
+    !!isAdminView
   );
 };
 
