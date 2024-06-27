@@ -23,3 +23,11 @@ export const SEARCH_DEFAULT_ZOOM_LEVEL = 13;
 
 export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
+
+export const checkIfValidObjectWithData = (obj: unknown): boolean =>
+  !!obj && !!Object.keys(obj)?.length;
+
+export const returnObjectValueOrUndefined = (
+  key: string,
+  obj?: Record<string, unknown> | null
+): string | undefined => (obj && key in obj && !!obj[key] ? String(obj[key]) : undefined);
