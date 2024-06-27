@@ -4,16 +4,10 @@ import styles from './InstitutionBanner.module.scss';
 import BannerItem from './BannerItem';
 import EditModeItem from './EditModeItem';
 import { Banner } from '@/types/data';
-import { getIcon, getItemTypeString } from './utils';
+import { getBannerKeys, getIcon, getItemTypeString } from './utils';
 
 const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) => {
-  const bannerItems = Object.keys(banner).reduce((acc: BannerItemProps[], itemType) => {
-    if (
-      (type === 'school' && itemType === 'address') ||
-      (type === 'charity' && itemType === 'uniformPolicy')
-    ) {
-      return acc;
-    }
+  const bannerItems = getBannerKeys(banner, type).reduce((acc: BannerItemProps[], itemType) => {
     const item = {
       icon: getIcon(itemType),
       item: banner[itemType as keyof Banner],

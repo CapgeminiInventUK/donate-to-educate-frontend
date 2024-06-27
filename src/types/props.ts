@@ -432,7 +432,7 @@ export interface EditModeItemProps {
 
 export interface AdminViewProps {
   banner: Banner;
-  type: string;
+  type: 'school' | 'charity';
   editMode: boolean;
   setBanner?: Dispatch<SetStateAction<Banner>>;
 }
