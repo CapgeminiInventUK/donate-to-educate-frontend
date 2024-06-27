@@ -24,6 +24,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   name,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
+  const [previousBanner, setPreviousBanner] = useState(banner);
   const { token: authToken } = useAuthToken();
 
   const { refetch, isError } = useQuery({
@@ -49,6 +50,16 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     return <ErrorBanner />;
   }
 
+  const onCancel = (): void => {
+    setBanner && setBanner(previousBanner);
+    toggleEditMode(false);
+  };
+
+  const onSave = async (): Promise<void> => {
+    toggleEditMode(false);
+    await refetch().then(() => setPreviousBanner(banner));
+  };
+
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
@@ -71,13 +82,12 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       theme="darkBlue"
                       className={styles.saveButton}
                       onClick={() => {
-                        toggleEditMode(false);
-                        void refetch();
+                        void onSave();
                       }}
                       text="Save"
                       ariaLabel="save"
                     />
-                    <CancelButton onClick={() => toggleEditMode(false)} theme={'white'} />
+                    <CancelButton onClick={onCancel} theme={'white'} />
                   </div>
                 </>
               )}

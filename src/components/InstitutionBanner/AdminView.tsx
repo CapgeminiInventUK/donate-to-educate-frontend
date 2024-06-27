@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AdminViewProps, BannerItemProps } from '@/types/props';
+import { AdminViewProps } from '@/types/props';
 import styles from './InstitutionBanner.module.scss';
 import BannerItem from './BannerItem';
 import EditModeItem from './EditModeItem';
@@ -7,15 +7,14 @@ import { Banner } from '@/types/data';
 import { getBannerKeys, getIcon, getItemTypeString } from './utils';
 
 const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) => {
-  const bannerItems = getBannerKeys(banner, type).reduce((acc: BannerItemProps[], itemType) => {
-    const item = {
+  const bannerItems = getBannerKeys(banner, type).map((itemType) => {
+    return {
       icon: getIcon(itemType),
       item: banner[itemType as keyof Banner],
       itemType,
       defaultText: `You haven't added your ${getItemTypeString(itemType)}`,
     };
-    return [...acc, item];
-  }, []);
+  });
 
   return (
     <div className={styles.textContainer}>

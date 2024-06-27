@@ -14,7 +14,7 @@ const PublicView: FC<PublicViewProps> = ({ banner, type }) => {
 
   return (
     <>
-      {bannerKeys.length && (
+      {!!bannerKeys.length && (
         <ul>
           {bannerKeys
             .filter((key) => !sectionTwoBanners.includes(key))
