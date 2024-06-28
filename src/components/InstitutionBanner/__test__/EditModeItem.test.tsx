@@ -4,7 +4,7 @@ import { schoolBanner } from './mockData';
 import userEvent from '@testing-library/user-event';
 
 describe('Edit mode item', () => {
-  it('should', async () => {
+  it('should update state', async () => {
     const prevState = schoolBanner;
     let nextState;
     const mockSetter = vi

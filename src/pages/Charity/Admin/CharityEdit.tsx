@@ -3,7 +3,6 @@ import styles from './CharityEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { ProfileItems, UpdateCharityProfileMutation } from '@/types/api';
@@ -20,6 +19,7 @@ import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
 import { openNotification } from '@/utils/formComponents';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { ItemsIconType } from '@/types/data';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {

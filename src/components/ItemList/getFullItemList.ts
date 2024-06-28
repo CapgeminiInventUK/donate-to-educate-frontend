@@ -1,9 +1,4 @@
-import { SectionsIconType } from './getIcons';
-
-export interface ItemList {
-  name: SectionsIconType;
-  items: string[];
-}
+import { ItemList, SectionsIconType } from '@/types/data';
 
 export const getFullItemList = (): ItemList[] => {
   return [
@@ -142,8 +137,6 @@ export const convertCategoryToNumber = (category: SectionsIconType): number => {
       return 4;
     case 'Computing and technology':
       return 5;
-    default:
-      throw new Error(`Invalid category ${String(category)}`);
   }
 };
 
