@@ -9,7 +9,7 @@ describe('Edit mode item', () => {
     let nextState;
     const mockSetter = vi
       .fn()
-      .mockImplementation((callback: (state: Record<string, string>) => void) => {
+      .mockImplementation((callback: (state: Record<string, string | undefined>) => void) => {
         nextState = callback(prevState);
       });
     const { getByRole } = render(
