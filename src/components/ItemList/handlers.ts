@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { SectionsIconType } from '@/types/data';
 import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
 import { Dispatch, SetStateAction } from 'react';
@@ -61,7 +60,6 @@ export const selectAll = (
 };
 
 export const getSelectedNames = (items: Record<number, string[]>): SectionsIconType[] => {
-  console.log(items);
   return getFullItemList().reduce((acc: SectionsIconType[], { name, items: itemsList }) => {
     const categoryNumber = convertCategoryToNumber(name);
     const selectedItems = items[categoryNumber] || [];
