@@ -44,7 +44,11 @@ export const handlers = [
       return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
     }
   }),
-  graphql.mutation('UpdateSchoolProfile', () => {
+  graphql.mutation('UpdateSchoolProfile', ({ variables }) => {
+    const { value } = variables;
+    if (String(value)?.includes('error')) {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
     return HttpResponse.json({
       data: {
         acknowledged: true,

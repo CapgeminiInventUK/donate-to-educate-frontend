@@ -17,6 +17,7 @@ import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
 import FormButton from '@/components/FormButton/FormButton';
 import ActionTiles from './ActionTiles';
+import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 
 const EditableDashboard: FC<EditableDashboardProps> = ({
   banner,
@@ -43,7 +44,7 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
       const result = await client.graphql<
         GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>
       >({
-        authMode: import.meta.env.MODE === 'test' ? undefined : 'userPool',
+        authMode: checkIfInTestEnvForAuthMode(),
         authToken,
         query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
         variables: {

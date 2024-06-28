@@ -432,7 +432,7 @@ export interface EditModeItemProps {
 
 export interface AdminViewProps {
   banner: Banner;
-  type: string;
+  type: 'school' | 'charity';
   editMode: boolean;
   setBanner?: Dispatch<SetStateAction<Banner>>;
 }
@@ -670,5 +670,10 @@ export interface EditableDashboardProps {
 
 export interface ActionTilesProps {
   profile: SchoolProfile | CharityProfile;
+  type: 'school' | 'charity';
+}
+
+export interface PublicViewProps {
+  banner: Banner;
   type: 'school' | 'charity';
 }
