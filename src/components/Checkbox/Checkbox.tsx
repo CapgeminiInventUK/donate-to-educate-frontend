@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import styles from './Checkbox.module.scss';
 import { CheckboxProps } from '@/types/props';
 import Checkmark from '@/assets/tiles/Checkmark';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const Checkbox: FC<CheckboxProps> = ({
   label,
@@ -30,7 +31,10 @@ const Checkbox: FC<CheckboxProps> = ({
   return (
     <label onKeyDown={(event): void => (event.key === 'Enter' ? handleChange() : undefined)}>
       <input type="checkbox" tabIndex={-1} onChange={handleChange} aria-label={ariaLabel} />
-      <div tabIndex={0} className={`${styles.checkbox} ${className ?? ''}`}>
+      <div
+        tabIndex={0}
+        className={`${styles.checkbox} ${checkForStringAndReturnEmptyIfFalsy(className)}`}
+      >
         <Checkmark isChecked={isChecked}></Checkmark>
       </div>
       {label}

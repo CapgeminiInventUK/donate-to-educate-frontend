@@ -34,3 +34,11 @@ export const returnObjectValueOrUndefined = (
 
 export const checkIfInTestEnvForAuthMode = (): 'userPool' | undefined =>
   import.meta.env.MODE === 'test' ? undefined : 'userPool';
+
+export const checkForStringAndReturnEmptyIfFalsy = (
+  text?: string | number | string[] | boolean | null
+): string => (text ? String(text) : '');
+
+export const sortByNumber = (a: number, b: number): number => a - b;
+
+export const sortAlphabetically = (a: string, b: string): number => a.localeCompare(b);

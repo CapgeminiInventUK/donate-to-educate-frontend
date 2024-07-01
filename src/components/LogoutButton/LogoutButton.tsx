@@ -4,6 +4,7 @@ import Paths from '@/config/paths';
 import styles from './LogoutButton.module.scss';
 import { useStore } from '@/stores/useStore';
 import ExitIcon from '@/assets/icons/exitIcon.svg';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 interface LogoutButtonProps {
   className?: string;
@@ -15,7 +16,7 @@ const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
 
   return (
     <button
-      className={`${styles.back} ${className ?? ''}`}
+      className={`${styles.back} ${checkForStringAndReturnEmptyIfFalsy(className)}`}
       onClick={(): void => {
         void state.logout();
         navigate(Paths.HOME);

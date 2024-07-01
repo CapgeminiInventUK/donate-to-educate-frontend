@@ -8,15 +8,15 @@ import { GetSchoolsNearbyQuery } from '@/types/api';
 import { getSchoolsNearby } from '@/graphql/queries';
 import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
-import { phoneNumberRegex } from './globals';
+import { checkForStringAndReturnEmptyIfFalsy, phoneNumberRegex } from './globals';
 import { phone } from 'phone';
 
 export const validateFormInputField = (
   formData: FormDataItem[],
   fieldName: string
 ): string | null => {
-  const value = String(
-    formData.find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())?.value ?? ''
+  const value = checkForStringAndReturnEmptyIfFalsy(
+    formData.find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())?.value
   );
   switch (fieldName.toLowerCase()) {
     case 'email':

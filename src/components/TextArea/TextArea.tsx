@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { TextAreaProps } from '@/types/props';
 import styles from './TextArea.module.scss';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const maxCharacters = 1000;
 
@@ -36,7 +37,7 @@ const TextArea: FC<TextAreaProps> = ({
         value={value}
         onChange={handleChange}
         className={styles.textArea}
-        placeholder={placeholder ?? ''}
+        placeholder={checkForStringAndReturnEmptyIfFalsy(placeholder)}
         maxLength={maxCharacters}
         aria-label={ariaLabel}
       />

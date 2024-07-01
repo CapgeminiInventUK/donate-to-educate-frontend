@@ -8,6 +8,7 @@ import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const SchoolAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -60,7 +61,7 @@ const SchoolAdminDashboard: FC = () => {
           postcode: '',
         }
       }
-      name={name ?? ''}
+      name={checkForStringAndReturnEmptyIfFalsy(name)}
     />
   );
 };

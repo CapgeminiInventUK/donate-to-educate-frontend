@@ -7,6 +7,7 @@ import {
 } from '@/types/data';
 import { SingleValue } from 'react-select';
 import { phone } from 'phone';
+import { checkForStringAndReturnEmptyIfFalsy } from './globals';
 
 const excludedValues = [
   'First name',
@@ -19,10 +20,8 @@ const excludedValues = [
 ];
 
 export const findValueFromFormData = (formData: FormDataItem[], fieldName: string): string => {
-  return (
-    formData
-      .find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())
-      ?.value?.toString() ?? ''
+  return checkForStringAndReturnEmptyIfFalsy(
+    formData.find(({ field }) => field.toLowerCase() === fieldName.toLowerCase())?.value?.toString()
   );
 };
 

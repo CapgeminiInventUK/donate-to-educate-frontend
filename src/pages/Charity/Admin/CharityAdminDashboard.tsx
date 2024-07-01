@@ -8,6 +8,7 @@ import { GetCharityProfileQuery } from '@/types/api';
 import { getCharityProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const CharityAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -57,7 +58,7 @@ const CharityAdminDashboard: FC = () => {
           postcode: '',
         }
       }
-      name={name ?? ''}
+      name={checkForStringAndReturnEmptyIfFalsy(name)}
     />
   );
 };
