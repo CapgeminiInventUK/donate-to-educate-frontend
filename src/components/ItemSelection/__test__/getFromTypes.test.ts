@@ -7,6 +7,7 @@ describe('getFromTypes', () => {
       { type: 'school', path: Paths.REQUEST_SCHOOL_PRODUCTS },
       { type: 'charity', path: Paths.REQUEST_CHARITY_PRODUCTS },
     ];
+
     it.each(inputVsExpected)('should return the correct path from given type', ({ type, path }) => {
       expect(getPathFromType(type)).toBe(path);
     });
@@ -18,6 +19,7 @@ describe('getFromTypes', () => {
       { type: 'heart', buttonText: 'Donate products' },
       { type: 'plus', buttonText: 'Check extra stock' },
     ];
+
     it.each(inputVsExpected)('should return correct button text', ({ type, buttonText }) => {
       expect(getTitleFromType(type)).toBe(buttonText);
     });
@@ -33,6 +35,7 @@ describe('getFromTypes', () => {
       { type: 'heart', buttonText: 'Donate products' },
       { type: 'plus', buttonText: 'Take extra stock' },
     ];
+
     it.each(inputVsExpected)('should return correct button text', ({ type, buttonText }) => {
       expect(getButtonTextFromType(type)).toBe(buttonText);
     });

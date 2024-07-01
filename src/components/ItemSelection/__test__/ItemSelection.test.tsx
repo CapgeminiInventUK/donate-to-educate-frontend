@@ -35,11 +35,8 @@ describe('Item selection', () => {
       <ItemSelection {...props} schoolOrCharity="school" previewMode={false} />,
       state
     );
-
     const { getByRole } = render(<Component />);
-
     const button = getByRole('button', { name: 'contact' });
-
     await userEvent.click(button);
 
     expect(navigate).toHaveBeenCalled();
@@ -50,9 +47,7 @@ describe('Item selection', () => {
       <ItemSelection {...props} schoolOrCharity="school" previewMode={true} />,
       state
     );
-
     const { getByRole } = render(<Component />);
-
     const button = getByRole('button', { name: 'contact' });
 
     expect(button).toHaveClass(styles.formButtonGreenDisabled);
