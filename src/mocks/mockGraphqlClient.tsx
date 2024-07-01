@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HttpResponse, graphql } from 'msw';
 import { ComponentType, FC, ReactNode } from 'react';
 import { server } from './server';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
 
 export const createTestQueryClient = (): QueryClient =>
   new QueryClient({
@@ -20,6 +20,21 @@ export const createWrapper = (node: ReactNode): ComponentType => {
       <Router>
         <QueryClientProvider client={testQueryClient}>{node}</QueryClientProvider>
       </Router>
+    );
+  };
+  return MockComponent;
+};
+
+export const createWrapperWithState = (
+  node: ReactNode,
+  state: Record<string, unknown>
+): ComponentType => {
+  const testQueryClient = createTestQueryClient();
+  const MockComponent: FC = () => {
+    return (
+      <MemoryRouter initialEntries={[{ state }]}>
+        <QueryClientProvider client={testQueryClient}>{node}</QueryClientProvider>
+      </MemoryRouter>
     );
   };
   return MockComponent;
