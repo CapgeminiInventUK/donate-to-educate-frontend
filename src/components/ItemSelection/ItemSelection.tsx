@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import styles from './ItemSelection.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -9,6 +8,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Card from '@/components/Card/Card';
 import { ItemSelectionProps } from '@/types/props';
+import { ItemsIconType } from '@/types/data';
 
 const getTitleFromType = (type: string): string => {
   switch (type) {

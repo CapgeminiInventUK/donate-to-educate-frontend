@@ -18,6 +18,7 @@ import {
   SummaryPageColour,
   ResultType,
   myStageType,
+  ItemsIconType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -34,7 +35,6 @@ import {
   SchoolProfileHeader,
   SearchResult,
 } from './api';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
 
@@ -676,4 +676,9 @@ export interface ActionTilesProps {
 export interface PublicViewProps {
   banner: Banner;
   type: 'school' | 'charity';
+}
+
+export interface ItemListEditProps {
+  setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
+  items: Record<number, string[]>;
 }
