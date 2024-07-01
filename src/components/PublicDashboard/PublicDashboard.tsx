@@ -7,12 +7,13 @@ import Paths from '@/config/paths';
 import FormButton from '../FormButton/FormButton';
 import Card from '@/components/Card/Card';
 import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
-import { scrollToTheTop } from '@/utils/globals';
+import { returnObjectValueOrUndefined, scrollToTheTop } from '@/utils/globals';
 import { PublicDashboardProps } from '@/types/props';
 import ActionTile from '../ActionTile/ActionTile';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
 import ExtraStock from '@/assets/school/ExtraStock';
+import Map from '../Map/Map';
 
 const PublicDashboard: FC<PublicDashboardProps> = ({
   type,
@@ -23,6 +24,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
   about,
   header,
   postcode,
+  location,
   setPreview,
   organisationId,
   organisationName,
@@ -30,23 +32,29 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
 }) => {
   const navigate = useNavigate();
   const banner = {
-    phone: header?.phone ?? undefined,
-    email: header?.email ?? undefined,
-    website: header?.website ?? undefined,
-    uniformPolicy:
-      header && 'uniformPolicy' in header ? header?.uniformPolicy ?? undefined : undefined,
-    address: header && 'address' in header ? header?.address ?? undefined : undefined,
+    phone: returnObjectValueOrUndefined('phone', header),
+    email: returnObjectValueOrUndefined('email', header),
+    website: returnObjectValueOrUndefined('website', header),
+    uniformPolicy: returnObjectValueOrUndefined('uniformPolicy', header),
+    address: returnObjectValueOrUndefined('address', header),
   };
 
   useEffect(() => {
     scrollToTheTop();
   }, [name]);
+
   return (
     <>
       <InstitutionBanner type={type} name={name} banner={banner} />
       <Card className={styles.dashboardCard}>
         {!(about ?? excess ?? donate ?? request) && (
           <p>We are still populating our profile, please check back later</p>
+        )}
+        {location?.coordinates && location.coordinates.length === 2 && (
+          <Map
+            initialCoordinates={[location.coordinates[0], location.coordinates[1]]}
+            markers={[{ coordinates: location.coordinates, name, colour: 'purple' }]}
+          />
         )}
         {about && (
           <div className={styles.aboutContainer}>

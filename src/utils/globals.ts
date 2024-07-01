@@ -18,6 +18,19 @@ export const scrollToTheTop = (): void => {
 export const phoneNumberRegex = /^[+]?[0-9\s]+$/;
 
 export const SEARCH_RADIUS_IN_MILES = 7.5;
+export const SEARCH_RESULT_LIMIT = 100;
+export const SEARCH_DEFAULT_ZOOM_LEVEL = 13;
 
 export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
+
+export const checkIfValidObjectWithData = (obj: unknown): boolean =>
+  !!obj && !!Object.keys(obj)?.length;
+
+export const returnObjectValueOrUndefined = (
+  key: string,
+  obj?: Record<string, unknown> | null
+): string | undefined => (obj && key in obj && !!obj[key] ? String(obj[key]) : undefined);
+
+export const checkIfInTestEnvForAuthMode = (): 'userPool' | undefined =>
+  import.meta.env.MODE === 'test' ? undefined : 'userPool';

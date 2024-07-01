@@ -1,11 +1,6 @@
 import { FC, useState } from 'react';
 import styles from './InstitutionBanner.module.scss';
-import Telephone from '@/assets/school/Telephone';
-import Email from '@/assets/school/EmailWhite';
-import Globe from '@/assets/school/Globe';
-import House from '@/assets/school/House';
 import Button from '../Button/Button';
-import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import { InstitutionBannerProps } from '@/types/props';
 import FormButton from '../FormButton/FormButton';
 import { useQuery } from '@tanstack/react-query';
@@ -15,10 +10,11 @@ import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/typ
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import CancelButton from '../CancelButton/CancelButton';
-import { Link } from 'react-router-dom';
 import useAuthToken from '@/hooks/useAuthToken';
 import AdminView from './AdminView';
-import BannerItem from './BannerItem';
+import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { hasContactInfo } from './utils';
+import PublicView from './PublicView';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -28,7 +24,9 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   name,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
+  const [previousBanner, setPreviousBanner] = useState(banner);
   const { token: authToken } = useAuthToken();
+
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
@@ -36,7 +34,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
       const result = await client.graphql<
         GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>
       >({
-        authMode: 'userPool',
+        authMode: checkIfInTestEnvForAuthMode(),
         authToken,
         query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
         variables: {
@@ -44,7 +42,6 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           value: JSON.stringify(banner),
         },
       });
-
       return result;
     },
   });
@@ -53,17 +50,20 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
     return <ErrorBanner />;
   }
 
+  const onCancel = (): void => {
+    setBanner && setBanner(previousBanner);
+    toggleEditMode(false);
+  };
+
+  const onSave = async (): Promise<void> => {
+    toggleEditMode(false);
+    await refetch().then(() => setPreviousBanner(banner));
+  };
+
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
-      {hasContactInfo(
-        banner?.phone,
-        banner?.email,
-        banner?.website,
-        banner?.uniformPolicy,
-        banner?.address,
-        isAdminView
-      ) && (
+      {hasContactInfo(banner, isAdminView) && (
         <div className={styles.textContainer}>
           {isAdminView && (
             <div className={styles.editSection}>
@@ -82,98 +82,20 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
                       theme="darkBlue"
                       className={styles.saveButton}
                       onClick={() => {
-                        toggleEditMode(false);
-                        void refetch();
+                        void onSave();
                       }}
                       text="Save"
                       ariaLabel="save"
                     />
-                    <CancelButton onClick={() => toggleEditMode(false)} theme={'white'} />
+                    <CancelButton onClick={onCancel} theme={'white'} />
                   </div>
                 </>
               )}
             </div>
           )}
-          {!isAdminView && (
-            <>
-              {(banner?.phone ?? banner?.email ?? banner?.website) && (
-                <ul>
-                  {banner.phone && (
-                    <BannerItem
-                      icon={<Telephone />}
-                      item={banner.phone}
-                      itemType="tel"
-                      defaultText=""
-                    />
-                  )}
-                  {banner.email && (
-                    <BannerItem
-                      icon={<Email />}
-                      item={banner.email}
-                      itemType="mail"
-                      defaultText=""
-                    />
-                  )}
-                  {banner.website && (
-                    <BannerItem
-                      icon={<Globe />}
-                      item={banner.website}
-                      itemType="url"
-                      defaultText=""
-                    />
-                  )}
-                </ul>
-              )}
-
-              {(banner?.uniformPolicy ?? banner?.address) && (
-                <ul>
-                  {type === 'school' && banner.uniformPolicy && (
-                    <>
-                      <Link
-                        className={styles.uniformPolicyButton}
-                        to={banner.uniformPolicy}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <div>
-                          <span className={styles.buttonLabel}>View uniform policy</span>
-                          <InterfaceArrowTopRight className={styles.interfaceArrow} />
-                        </div>
-                      </Link>
-                    </>
-                  )}
-                  {type === 'charity' && banner.address && (
-                    <li>
-                      <span>
-                        <House />
-                      </span>
-                      <p className={styles.item}>{banner.address ?? ''}</p>
-                    </li>
-                  )}
-                </ul>
-              )}
-            </>
-          )}
+          {!isAdminView && <PublicView banner={banner} type={type} />}
         </div>
       )}
     </div>
-  );
-};
-
-const hasContactInfo = (
-  phone?: string,
-  email?: string,
-  website?: string,
-  uniformPolicy?: string,
-  address?: string,
-  isAdminView?: boolean
-): boolean => {
-  return (
-    phone !== undefined ||
-    email !== undefined ||
-    website !== undefined ||
-    uniformPolicy !== undefined ||
-    address !== undefined ||
-    isAdminView === true
   );
 };

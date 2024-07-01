@@ -29,6 +29,11 @@ export const getSchool = /* GraphQL */ `query GetSchool($name: String!, $urn: St
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -87,6 +92,11 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -145,6 +155,11 @@ export const getSchools = /* GraphQL */ `query GetSchools {
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -195,6 +210,11 @@ export const getCharities = /* GraphQL */ `query GetCharities {
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -244,6 +264,11 @@ export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: Str
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -301,6 +326,11 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -363,6 +393,11 @@ export const getRegisteredSchoolsByLa =
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -440,6 +475,11 @@ export const getSchoolProfile =
     id
     localAuthority
     postcode
+    location {
+      type
+      coordinates
+      __typename
+    }
     header {
       phone
       email
@@ -480,6 +520,11 @@ export const getCharityProfile =
     id
     localAuthority
     postcode
+    location {
+      type
+      coordinates
+      __typename
+    }
     header {
       phone
       email
@@ -565,6 +610,11 @@ export const getSchoolsNearby =
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -616,6 +666,11 @@ export const getCharitiesNearby =
       id
       localAuthority
       postcode
+      location {
+        type
+        coordinates
+        __typename
+      }
       header {
         phone
         email
@@ -733,11 +788,13 @@ export const getLaStats =
 export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearbyWithProfile(
   $postcode: String!
   $distance: Float!
+  $limit: Int!
   $type: Type!
 ) {
   getSchoolsNearbyWithProfile(
     postcode: $postcode
     distance: $distance
+    limit: $limit
     type: $type
   ) {
     searchLocation {
@@ -768,11 +825,13 @@ export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearby
 export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNearbyWithProfile(
   $postcode: String!
   $distance: Float!
+  $limit: Int!
   $type: Type!
 ) {
   getCharitiesNearbyWithProfile(
     postcode: $postcode
     distance: $distance
+    limit: $limit
     type: $type
   ) {
     searchLocation {

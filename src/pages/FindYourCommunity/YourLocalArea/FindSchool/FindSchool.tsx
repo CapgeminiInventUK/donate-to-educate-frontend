@@ -16,7 +16,7 @@ import Chevron from '@/assets/yourLocalArea/Chevron';
 import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import Map from '@components/Map/Map';
-import { SEARCH_RADIUS_IN_MILES } from '@/utils/globals';
+import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -35,6 +35,7 @@ const FindSchool: FC = () => {
         variables: {
           postcode: state.postcode,
           distance: maxDistance,
+          limit: SEARCH_RESULT_LIMIT,
           type: 'request',
         },
       });

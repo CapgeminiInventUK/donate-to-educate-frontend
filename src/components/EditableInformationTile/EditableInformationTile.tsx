@@ -39,7 +39,7 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
           </>
         ) : (
           <>
-            {text}
+            <span aria-label="about-text">{text}</span>
             <FormButton
               onClick={editContent}
               theme={'formButtonGrey'}
