@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { TextInputProps } from '@/types/props';
 import ShowHide from '../ShowHide/ShowHide';
 import styles from './TextInput.module.scss';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const TextInput: FC<TextInputProps> = ({
   header,
@@ -52,7 +53,7 @@ const TextInput: FC<TextInputProps> = ({
           className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
             isSmall ? styles.inputSmall : ''
           } ${errorMessage ? styles.errorInput : ''}`}
-          placeholder={placeholder ?? ''}
+          placeholder={checkForStringAndReturnEmptyIfFalsy(placeholder)}
           disabled={disabled}
           required={!header?.includes('optional')}
           aria-label={ariaLabel}

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { TextInputSearchProps } from '@/types/props';
 import styles from './TextInputSearch.module.scss';
 import SearchIcon from '@/assets/tiles/Search';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const TextInputSearch: FC<TextInputSearchProps> = ({
   header,
@@ -37,7 +38,7 @@ const TextInputSearch: FC<TextInputSearchProps> = ({
           className={`${styles.input} ${isLarge ? styles.inputLarge : ''} ${
             isSmall ? styles.inputSmall : ''
           } ${errorMessage ? styles.errorInput : ''}`}
-          placeholder={placeholder ?? ''}
+          placeholder={checkForStringAndReturnEmptyIfFalsy(placeholder)}
           disabled={disabled}
           required={!header?.includes('optional')}
           aria-label={ariaLabel}

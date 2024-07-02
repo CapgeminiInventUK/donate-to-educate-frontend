@@ -19,6 +19,7 @@ import Card from '@/components/Card/Card';
 import { deleteSignUpData } from '@/graphql/mutations';
 import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 import TickIcon from '@/assets/sign-up/tick';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({
@@ -97,7 +98,13 @@ const NewUser: FC = () => {
     if (submitted && !isLoading) {
       const { email, type, name, nameId } = data?.getSignUpData ?? {};
       if (email && type) {
-        handleSignUp({ email, password, type, name: name ?? '', id: nameId ?? '' })
+        handleSignUp({
+          email,
+          password,
+          type,
+          name: checkForStringAndReturnEmptyIfFalsy(name),
+          id: checkForStringAndReturnEmptyIfFalsy(nameId),
+        })
           .then((step) => setStep(step))
           .catch((error: Error) => {
             setError(error.message.replace('Password did not conform with policy: ', ''));

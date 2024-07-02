@@ -29,6 +29,7 @@ import {
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
+  JoinRequest,
   Point,
   ProfileItems,
   SchoolProfile,
@@ -406,6 +407,15 @@ export interface JoinRequestsProps {
   setStage: Dispatch<SetStateAction<StageState>>;
   setSchoolOrCharityProperties: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
   data?: GetJoinRequestsQuery;
+}
+
+export interface JoinRequestsTableProps {
+  setStage: Dispatch<SetStateAction<StageState>>;
+  setSchoolOrCharityProperties: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+  title: string;
+  dataIndex: string;
+  data?: JoinRequest[];
+  h2: string;
 }
 
 export interface DeclineDeleteModalProps {

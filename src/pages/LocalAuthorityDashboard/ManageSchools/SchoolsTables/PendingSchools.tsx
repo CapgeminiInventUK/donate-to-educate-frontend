@@ -8,6 +8,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import SchoolsTable from './SchoolsTable';
 import { SchoolsTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const PendingSchools: FC<SchoolsTablesProps> = ({
   localAuthority,
@@ -42,7 +43,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
   const pendingSchoolsData = data?.getSchoolJoinRequestsByLa.map(
     ({ school, email, jobTitle, name, phone, id, urn }) => {
       return {
-        name: school ?? '',
+        name: checkForStringAndReturnEmptyIfFalsy(school),
         status: 'Pending',
         key: school,
         joinRequestName: name,
@@ -50,7 +51,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
         email,
         phone,
         id,
-        urn: urn ?? '',
+        urn: checkForStringAndReturnEmptyIfFalsy(urn),
       };
     }
   );

@@ -5,6 +5,7 @@ import Select, { SingleValue } from 'react-select';
 import { DropdownOption, FilterDropdownOption } from '@/types/data';
 import './ReactSelectOverrides.scss';
 import { getValueFromOptionsByLabel } from '@/utils/formUtils';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const Dropdown: FC<DropdownProps> = ({
   header,
@@ -24,7 +25,8 @@ const Dropdown: FC<DropdownProps> = ({
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
-    onChange && onChange(option?.label ?? '', formMeta, { ...option });
+    onChange &&
+      onChange(checkForStringAndReturnEmptyIfFalsy(option?.label), formMeta, { ...option });
   };
 
   const onSearch = (newValue: string): void => {
