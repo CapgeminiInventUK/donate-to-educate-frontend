@@ -51,10 +51,13 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
           <p>We are still populating our profile, please check back later</p>
         )}
         {location?.coordinates && location.coordinates.length === 2 && (
-          <Map
-            initialCoordinates={[location.coordinates[0], location.coordinates[1]]}
-            markers={[{ coordinates: location.coordinates, name, colour: 'purple' }]}
-          />
+          <>
+            <h2>Location map</h2>
+            <Map
+              initialCoordinates={[location.coordinates[0], location.coordinates[1]]}
+              markers={[{ coordinates: location.coordinates, name, colour: 'purple' }]}
+            />
+          </>
         )}
         {about && (
           <div className={styles.aboutContainer}>
