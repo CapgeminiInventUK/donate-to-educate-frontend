@@ -692,3 +692,7 @@ export interface ItemListEditProps {
   setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
   items: Record<number, string[]>;
 }
+
+export interface LogoutButtonProps {
+  className?: string;
+}
