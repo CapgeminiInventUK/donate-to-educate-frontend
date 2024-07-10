@@ -15,10 +15,10 @@ beforeEach(() => {
 });
 
 describe('Multi step form', () => {
+  const template = signUpSchoolHappyPath([], () => {
+    true;
+  });
   it('should render spinner if loading', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
     const Component = createWrapper(
       <FormContainer
         formTemplate={template}
@@ -38,9 +38,6 @@ describe('Multi step form', () => {
   });
 
   it('should display return to homepage button if on last page', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
     const Component = createWrapper(
       <FormContainer
         formTemplate={template}
@@ -60,10 +57,6 @@ describe('Multi step form', () => {
   });
 
   it('should render declaration page and handle checkbox check', async () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     const setFormSubmitted = vi.fn();
     const refetch = vi.fn().mockImplementation(async () => await new Promise(setImmediate));
     const Component = createWrapper(
@@ -99,10 +92,6 @@ describe('Multi step form', () => {
   });
 
   it('should handle check your answers change button click and then navigate back to cya after confirm', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     let pageNumber = 3;
 
     const setPageNumber = vi.fn().mockImplementation((newNumber: number): void => {
@@ -165,10 +154,6 @@ describe('Multi step form', () => {
   });
 
   it('should handle back button click', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     let pageNumber = 3;
 
     const setPageNumber = vi.fn().mockImplementation((newNumber: number): void => {
@@ -195,10 +180,6 @@ describe('Multi step form', () => {
   });
 
   it('should handle back button click from declaration page', async () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     let pageNumber = 4;
 
     const setPageNumber = vi.fn().mockImplementation((newNumber: number): void => {
@@ -260,10 +241,6 @@ describe('Multi step form', () => {
   });
 
   it('should call useNavigate when back button click on page 0', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     const Component = createWrapper(
       <FormContainer
         formTemplate={template}
@@ -284,10 +261,6 @@ describe('Multi step form', () => {
   });
 
   it('should show SchoolAlreadyRegistered component if on page one and school already has active join request', () => {
-    const template = signUpSchoolHappyPath([], () => {
-      undefined;
-    });
-
     const Component = createWrapper(
       <FormContainer
         formTemplate={template}
