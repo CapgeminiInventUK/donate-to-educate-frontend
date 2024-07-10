@@ -11,16 +11,16 @@ exports[`Join requests > should render schools and charities join requests table
         View who has asked their local authorities to join Donate to Educate. You may give the local authority two working days to review a request before you do.
       </p>
       <div
-        class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-m4timi"
+        class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-f7vrd6"
       >
         <div
-          class="ant-spin-nested-loading css-dev-only-do-not-override-m4timi"
+          class="ant-spin-nested-loading css-dev-only-do-not-override-f7vrd6"
         >
           <div
             class="ant-spin-container"
           >
             <div
-              class="ant-table css-dev-only-do-not-override-m4timi ant-table-scroll-horizontal"
+              class="ant-table css-dev-only-do-not-override-f7vrd6 ant-table-scroll-horizontal"
             >
               <div
                 class="ant-table-title"
@@ -305,7 +305,7 @@ exports[`Join requests > should render schools and charities join requests table
               </div>
             </div>
             <ul
-              class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-m4timi"
+              class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-f7vrd6"
             >
               <li
                 aria-disabled="true"
@@ -388,16 +388,16 @@ exports[`Join requests > should render schools and charities join requests table
       </div>
       <br />
       <div
-        class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-m4timi"
+        class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-f7vrd6"
       >
         <div
-          class="ant-spin-nested-loading css-dev-only-do-not-override-m4timi"
+          class="ant-spin-nested-loading css-dev-only-do-not-override-f7vrd6"
         >
           <div
             class="ant-spin-container"
           >
             <div
-              class="ant-table css-dev-only-do-not-override-m4timi ant-table-scroll-horizontal"
+              class="ant-table css-dev-only-do-not-override-f7vrd6 ant-table-scroll-horizontal"
             >
               <div
                 class="ant-table-title"
@@ -682,7 +682,7 @@ exports[`Join requests > should render schools and charities join requests table
               </div>
             </div>
             <ul
-              class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-m4timi"
+              class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-f7vrd6"
             >
               <li
                 aria-disabled="true"
@@ -772,16 +772,16 @@ exports[`Join requests > should render schools and charities join requests table
       View who has asked their local authorities to join Donate to Educate. You may give the local authority two working days to review a request before you do.
     </p>
     <div
-      class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-m4timi"
+      class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-f7vrd6"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-m4timi"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-f7vrd6"
       >
         <div
           class="ant-spin-container"
         >
           <div
-            class="ant-table css-dev-only-do-not-override-m4timi ant-table-scroll-horizontal"
+            class="ant-table css-dev-only-do-not-override-f7vrd6 ant-table-scroll-horizontal"
           >
             <div
               class="ant-table-title"
@@ -1066,7 +1066,7 @@ exports[`Join requests > should render schools and charities join requests table
             </div>
           </div>
           <ul
-            class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-m4timi"
+            class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-f7vrd6"
           >
             <li
               aria-disabled="true"
@@ -1149,16 +1149,16 @@ exports[`Join requests > should render schools and charities join requests table
     </div>
     <br />
     <div
-      class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-m4timi"
+      class="ant-table-wrapper _schoolsTable_175945 css-dev-only-do-not-override-f7vrd6"
     >
       <div
-        class="ant-spin-nested-loading css-dev-only-do-not-override-m4timi"
+        class="ant-spin-nested-loading css-dev-only-do-not-override-f7vrd6"
       >
         <div
           class="ant-spin-container"
         >
           <div
-            class="ant-table css-dev-only-do-not-override-m4timi ant-table-scroll-horizontal"
+            class="ant-table css-dev-only-do-not-override-f7vrd6 ant-table-scroll-horizontal"
           >
             <div
               class="ant-table-title"
@@ -1443,7 +1443,7 @@ exports[`Join requests > should render schools and charities join requests table
             </div>
           </div>
           <ul
-            class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-m4timi"
+            class="ant-pagination ant-table-pagination ant-table-pagination-right css-dev-only-do-not-override-f7vrd6"
           >
             <li
               aria-disabled="true"

@@ -20,6 +20,8 @@ export const phoneNumberRegex = /^[+]?[0-9\s]+$/;
 export const SEARCH_RADIUS_IN_MILES = 7.5;
 export const SEARCH_RESULT_LIMIT = 100;
 export const SEARCH_DEFAULT_ZOOM_LEVEL = 13;
+export const MAX_ZOOM_LEVEL = 17;
+export const MIN_ZOOM_LEVEL = 7;
 
 export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
