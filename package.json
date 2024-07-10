@@ -32,7 +32,7 @@
     "@tanstack/react-query-devtools": "5.49.2",
     "antd": "5.19.0",
     "aws-amplify": "6.3.8",
-    "framer-motion": "11.2.12",
+    "framer-motion": "11.3.0",
     "is-ci": "3.0.1",
     "phone": "^3.1.43",
     "react": "18.3.1",
