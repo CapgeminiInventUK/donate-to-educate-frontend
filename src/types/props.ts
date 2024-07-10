@@ -148,7 +148,6 @@ export interface CookiesSelection {
 }
 
 export interface NavLinksProps {
-  theme: Themes;
   className?: string;
   linkClassName?: string;
   buttonClassName?: string;
@@ -172,7 +171,6 @@ export interface Route {
 export interface NavLinkProps {
   path: Paths;
   name?: string;
-  theme: Themes;
   childRoutes?: Route[];
   onLinkClicked?: () => void;
 }

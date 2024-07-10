@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { NavLinkProps } from '@/types/props';
 import styles from './NavLink.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,12 +11,15 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
+  // eslint-disable-next-line no-console
+  console.log({ name, path, childRoutes, onLinkClicked });
+
   if (!name) {
     return;
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, path: Paths): void => {
-    e.preventDefault();
+  const handleClick = (event: MouseEvent<HTMLElement>, path: Paths): void => {
+    event.preventDefault();
 
     if (childRoutes && childRoutes?.length > 0) {
       setShowSubMenu(!showSubMenu);
@@ -42,7 +45,7 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
     <div className={`${styles.linkContainer} ${pathIsLogin ? styles.navButton : ''}`} key={name}>
       <Link
         className={`${styles.link} ${pathIsLogin ? styles.accentLink : ''} ${path === Paths.SIGN_IN ? styles.loginLink : ''}`}
-        onClick={(e) => handleClick(e, path)}
+        onClick={(event) => handleClick(event, path)}
         to={path}
       >
         <span className={!pathIsLogin ? styles.linkText : ''}>
