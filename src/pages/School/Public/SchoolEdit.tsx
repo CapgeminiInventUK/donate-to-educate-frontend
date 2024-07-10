@@ -3,6 +3,7 @@ import ItemSelection from '@/components/ItemSelection/ItemSelection';
 import { ProfileItems } from '@/types/api';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const SchoolEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -21,10 +22,10 @@ const SchoolEdit: FC = () => {
     <ItemSelection
       schoolOrCharity="school"
       items={parsedItems}
-      actionText={actionText ?? ''}
-      whatToExpect={whatToExpect ?? ''}
-      id={id ?? ''}
-      name={name ?? ''}
+      actionText={checkForStringAndReturnEmptyIfFalsy(actionText)}
+      whatToExpect={checkForStringAndReturnEmptyIfFalsy(whatToExpect)}
+      id={checkForStringAndReturnEmptyIfFalsy(id)}
+      name={checkForStringAndReturnEmptyIfFalsy(name)}
       previewMode={previewMode}
       postcode={postcode}
     />

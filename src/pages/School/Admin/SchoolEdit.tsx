@@ -3,7 +3,6 @@ import styles from './SchoolEdit.module.scss';
 import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { ProfileItems, UpdateSchoolProfileMutation } from '@/types/api';
@@ -19,6 +18,8 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import Card from '@/components/Card/Card';
 import { openNotification } from '@/utils/formComponents';
+import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { ItemsIconType } from '@/types/data';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -165,7 +166,7 @@ const SchoolEdit: FC = () => {
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<UpdateSchoolProfileMutation>>({
-        authMode: 'userPool',
+        authMode: checkIfInTestEnvForAuthMode(),
         authToken,
         query: updateSchoolProfile,
         variables: {

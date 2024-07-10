@@ -18,6 +18,7 @@ import {
   SummaryPageColour,
   ResultType,
   myStageType,
+  ItemsIconType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -28,13 +29,13 @@ import {
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
+  JoinRequest,
   Point,
   ProfileItems,
   SchoolProfile,
   SchoolProfileHeader,
   SearchResult,
 } from './api';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
 
@@ -64,6 +65,7 @@ export type FormButtonThemes =
   | 'formButtonDisabled'
   | 'formButtonLightBlue'
   | 'formButtonGreenDisabled';
+
 export interface ButtonProps {
   theme: Themes;
   onClick: () => void;
@@ -407,6 +409,15 @@ export interface JoinRequestsProps {
   data?: GetJoinRequestsQuery;
 }
 
+export interface JoinRequestsTableProps {
+  setStage: Dispatch<SetStateAction<StageState>>;
+  setSchoolOrCharityProperties: Dispatch<SetStateAction<SchoolOrCharityProperties>>;
+  title: string;
+  dataIndex: string;
+  data?: JoinRequest[];
+  h2: string;
+}
+
 export interface DeclineDeleteModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
@@ -431,7 +442,7 @@ export interface EditModeItemProps {
 
 export interface AdminViewProps {
   banner: Banner;
-  type: string;
+  type: 'school' | 'charity';
   editMode: boolean;
   setBanner?: Dispatch<SetStateAction<Banner>>;
 }
@@ -653,4 +664,31 @@ export interface PopupInfo {
   latitude: number;
   longitude: number;
   name: string;
+}
+
+export interface EditableDashboardProps {
+  banner: Banner;
+  setBanner: Dispatch<SetStateAction<Banner>>;
+  type: 'school' | 'charity';
+  name: string;
+  about: string;
+  setAbout: Dispatch<SetStateAction<string>>;
+  setPreview: Dispatch<SetStateAction<boolean>>;
+  profile: SchoolProfile | CharityProfile;
+  placeholderAboutText: string;
+}
+
+export interface ActionTilesProps {
+  profile: SchoolProfile | CharityProfile;
+  type: 'school' | 'charity';
+}
+
+export interface PublicViewProps {
+  banner: Banner;
+  type: 'school' | 'charity';
+}
+
+export interface ItemListEditProps {
+  setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
+  items: Record<number, string[]>;
 }

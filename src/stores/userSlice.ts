@@ -2,6 +2,7 @@ import { hasCharityProfile, hasSchoolProfile } from '@/graphql/queries';
 import { client } from '@/graphqlClient';
 import { HasCharityProfileQuery, HasSchoolProfileQuery } from '@/types/api';
 import { CustomAttributes } from '@/types/data';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { GraphQLQuery } from 'aws-amplify/api';
 import {
   FetchUserAttributesOutput,
@@ -39,7 +40,7 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
   hasProfile: false,
   getToken: async (): Promise<string> => {
     const session = await fetchAuthSession();
-    return session.tokens?.idToken?.toString() ?? '';
+    return checkForStringAndReturnEmptyIfFalsy(session.tokens?.idToken?.toString());
   },
   getCurrentUser: async (): Promise<void> => {
     try {
@@ -119,7 +120,7 @@ const getUser = async (): Promise<User> => {
   return {
     userId,
     username,
-    email: email ?? '',
+    email: checkForStringAndReturnEmptyIfFalsy(email),
     type,
     name,
     id,

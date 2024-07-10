@@ -8,6 +8,22 @@ import { afterAll, afterEach, beforeAll } from 'vitest';
 beforeAll(() => {
   Amplify.configure(amplifyConfig);
   server.listen();
+  window.scrollTo = (): void => {
+    undefined;
+  };
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
 });
 
 // Reset any request handlers that we may add during the tests,

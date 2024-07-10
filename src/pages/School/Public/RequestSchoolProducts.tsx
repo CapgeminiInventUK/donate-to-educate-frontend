@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import Paths from '@/config/paths';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import RequestItems from '@/components/RequestItems/RequestItems';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { RequestItemsProps } from '@/types/props';
+import { ItemsIconType } from '@/types/data';
 
 const getTextContent = (
   type: string

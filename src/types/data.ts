@@ -231,3 +231,18 @@ export interface ConfirmSignUpParameters {
   email: string;
   code: string;
 }
+
+export type ItemsIconType = 'tick' | 'heart' | 'plus';
+
+export type SectionsIconType =
+  | 'Clothing and uniform'
+  | 'Sports'
+  | 'Art and music'
+  | 'Study'
+  | 'Toiletries'
+  | 'Computing and technology';
+
+export interface ItemList {
+  name: SectionsIconType;
+  items: string[];
+}

@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import ItemList from '@/components/ItemList/ItemList';
-import { ItemsIconType } from '@/components/ItemList/getIcons';
 import styles from './ItemSelection.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -9,32 +8,8 @@ import FormButton from '@/components/FormButton/FormButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Card from '@/components/Card/Card';
 import { ItemSelectionProps } from '@/types/props';
-
-const getTitleFromType = (type: string): string => {
-  switch (type) {
-    case 'tick':
-      return 'Request products';
-    case 'heart':
-      return 'Donate products';
-    case 'plus':
-      return 'Check extra stock';
-    default:
-      throw new Error(`Unknown type ${type}`);
-  }
-};
-
-const getButtonTextFromType = (type: string): string => {
-  switch (type) {
-    case 'tick':
-      return 'Request products';
-    case 'heart':
-      return 'Donate products';
-    case 'plus':
-      return 'Take extra stock';
-    default:
-      throw new Error(`Unknown type ${type}`);
-  }
-};
+import { ItemsIconType } from '@/types/data';
+import { getButtonTextFromType, getPathFromType, getTitleFromType } from './getFromTypes';
 
 const ItemSelection: FC<ItemSelectionProps> = ({
   schoolOrCharity,
@@ -59,12 +34,12 @@ const ItemSelection: FC<ItemSelectionProps> = ({
       <Card className={styles.itemsCard}>
         <div className={styles.helpBanner}>
           <h2>What to expect</h2>
-          <p>{whatToExpect ?? ''}</p>
+          <p>{whatToExpect}</p>
         </div>
         <ItemList type={type} items={items} />
         <div className={styles.actionButtons}>
           <h2>Next steps</h2>
-          <p>{actionText ?? ''}</p>
+          <p>{actionText}</p>
           <FormButton
             theme={previewMode ? 'formButtonGreenDisabled' : 'formButtonGreen'}
             text={getButtonTextFromType(type)}
@@ -80,8 +55,5 @@ const ItemSelection: FC<ItemSelectionProps> = ({
     </div>
   );
 };
-
-const getPathFromType = (type: string): string =>
-  type === 'school' ? Paths.REQUEST_SCHOOL_PRODUCTS : Paths.REQUEST_CHARITY_PRODUCTS;
 
 export default ItemSelection;

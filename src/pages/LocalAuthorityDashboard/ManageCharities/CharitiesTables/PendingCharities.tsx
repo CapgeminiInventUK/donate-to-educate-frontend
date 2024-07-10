@@ -8,6 +8,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import CharitiesTable from './CharitiesTable';
 import { CharitiesTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const PendingCharities: FC<CharitiesTablesProps> = ({
   localAuthority,
@@ -42,7 +43,7 @@ const PendingCharities: FC<CharitiesTablesProps> = ({
   const pendingCharitiesData = data?.getCharityJoinRequestsByLa.map(
     ({ charityName, email, jobTitle, name, phone, id, aboutCharity, charityAddress }) => {
       return {
-        name: charityName ?? '',
+        name: checkForStringAndReturnEmptyIfFalsy(charityName),
         status: 'Pending',
         key: charityName,
         joinRequestName: name,

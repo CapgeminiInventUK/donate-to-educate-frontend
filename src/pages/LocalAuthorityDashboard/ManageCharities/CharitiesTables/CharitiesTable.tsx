@@ -8,6 +8,7 @@ import Paths from '@/config/paths';
 import { SchoolOrCharityTableData, StageState } from '@/types/data';
 import tickIcon from '@/assets/icons/tickIcon.svg';
 import pendingIcon from '@/assets/icons/pendingIcon.svg';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -80,14 +81,14 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
                     name,
                     id: String(id),
                     user: {
-                      name: joinRequestName ?? '',
-                      title: jobTitle ?? '',
-                      email: email ?? '',
-                      phone: phone ?? '',
+                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                      email: checkForStringAndReturnEmptyIfFalsy(email),
+                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
                     },
                     charity: {
-                      charityAddress: charityAddress ?? '',
-                      aboutCharity: aboutCharity ?? '',
+                      charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
+                      aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
                     },
                   }));
                 setStage && setStage(StageState.REMOVE);
@@ -108,14 +109,14 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
                     name,
                     id: String(id),
                     user: {
-                      name: joinRequestName ?? '',
-                      title: jobTitle ?? '',
-                      email: email ?? '',
-                      phone: phone ?? '',
+                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                      email: checkForStringAndReturnEmptyIfFalsy(email),
+                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
                     },
                     charity: {
-                      charityAddress: charityAddress ?? '',
-                      aboutCharity: aboutCharity ?? '',
+                      charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
+                      aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
                     },
                   }));
                 setStage && setStage(StageState.APPROVE_CHARITY);

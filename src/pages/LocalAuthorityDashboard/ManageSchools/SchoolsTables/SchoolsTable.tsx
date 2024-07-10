@@ -8,6 +8,7 @@ import { StageState, SchoolOrCharityTableData } from '@/types/data';
 import { SchoolsOrCharityTableProps } from '@/types/props';
 import tickIcon from '@/assets/icons/tickIcon.svg';
 import pendingIcon from '@/assets/icons/pendingIcon.svg';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -72,10 +73,10 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
                     id: String(urn),
                     urn,
                     user: {
-                      name: joinRequestName ?? '',
-                      title: jobTitle ?? '',
-                      email: email ?? '',
-                      phone: phone ?? '',
+                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                      email: checkForStringAndReturnEmptyIfFalsy(email),
+                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
                     },
                   }));
                 setStage && setStage(StageState.REMOVE);
@@ -97,10 +98,10 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
                     id: String(id),
                     urn,
                     user: {
-                      name: joinRequestName ?? '',
-                      title: jobTitle ?? '',
-                      email: email ?? '',
-                      phone: phone ?? '',
+                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                      email: checkForStringAndReturnEmptyIfFalsy(email),
+                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
                     },
                   }));
                 setStage && setStage(StageState.APPROVE_SCHOOL);

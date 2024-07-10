@@ -3,6 +3,13 @@ import ApprovalRequest from '../ApprovalRequest';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import pillStyles from '../../Pill/Pill.module.scss';
+import * as router from 'react-router';
+
+const navigate = vi.fn();
+
+beforeEach(() => {
+  vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+});
 
 describe('Approval Request component', () => {
   const user = {

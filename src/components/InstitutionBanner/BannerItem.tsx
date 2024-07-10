@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { BannerItemProps } from '@/types/props';
 import styles from './InstitutionBanner.module.scss';
 import { Link } from 'react-router-dom';
+import { getLinkFromType } from './utils';
 
 const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }): JSX.Element => {
   return (
@@ -23,16 +24,3 @@ const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }):
   );
 };
 export default BannerItem;
-
-const getLinkFromType = (type: string, item?: string): string => {
-  switch (type) {
-    case 'tel':
-      return `tel: ${item}`;
-    case 'mail':
-      return `mailto: ${item}`;
-    default:
-      return item?.includes('https://') === true || item?.includes('http://') == true
-        ? `${item}`
-        : `https://${item}`;
-  }
-};
