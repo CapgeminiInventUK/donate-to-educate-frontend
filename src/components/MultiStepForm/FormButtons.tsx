@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { FC } from 'react';
 import { SummaryPageColour } from '@/types/data';
 import styles from './MultiStepForm.module.scss';
@@ -24,22 +23,11 @@ const FormButtons: FC<FormButtonsProps> = ({
     navigate(Paths.HOME);
   };
 
-  console.log({
-    isLastPage,
-    isUnhappyPath,
-    summaryPageBg,
-    cyaPageNumber,
-    pageNumber,
-    isSchoolRegistered,
-    declarationSigned,
-    onLocalAuthorityRegisterRequest,
-    formComponentInternalLink,
-  });
-
   return (
     <>
       {isLastPage ? (
         <div
+          aria-label="home-link-container"
           className={`${isUnhappyPath && summaryPageBg !== SummaryPageColour.BLUE ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
         >
           <Button
