@@ -11,9 +11,6 @@ const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) =
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
-  // eslint-disable-next-line no-console
-  console.log({ name, path, childRoutes, onLinkClicked });
-
   if (!name) {
     return;
   }
