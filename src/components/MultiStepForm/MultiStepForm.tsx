@@ -2,7 +2,7 @@ import { MultiStepFormProps } from '@/types/props';
 import { FC, FormEvent, useEffect, useState } from 'react';
 import styles from './MultiStepForm.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Spinner from '@/components/Spinner/Spinner';
 import { SummaryPageColour, ComponentType } from '@/types/data';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
@@ -12,11 +12,7 @@ import FormHeader from './FormHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
 import { scrollToTheTop } from '@/utils/globals';
-import {
-  getFormErrors,
-  parsePhoneNumber,
-  validatePostcodeAndAddToFormErrors,
-} from '@/utils/formValidationUtils';
+import { validateForm } from '@/utils/formValidationUtils';
 import Paths from '@/config/paths';
 
 const FormContainer: FC<MultiStepFormProps> = ({
@@ -82,37 +78,24 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
   const onButtonClick = async (event: FormEvent<Element>): Promise<void> => {
     event.preventDefault();
-
     scrollToTheTop();
 
-    const errors = getFormErrors(formComponents, formData);
-    await validatePostcodeAndAddToFormErrors(queryClient, errors, formData);
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors({ ...formErrors, ...errors });
-      return;
-    }
-
-    setFormErrors({});
-
-    parsePhoneNumber(formData);
+    await validateForm(formComponents, formData, queryClient, setFormErrors);
 
     if (onLocalAuthorityRegisterRequest) {
       return onLocalAuthorityRegisterRequest();
     }
+
     if (isDeclarationPage) {
-      await refetch().then(() => {
-        setFormSubmitted && setFormSubmitted(true);
-      });
+      await refetch();
+      setFormSubmitted && setFormSubmitted(true);
     }
 
     setNavigationFromCya(false);
     if (navigationFromCya && cyaPageNumber && header !== 'Check your answers') {
       return setPageNumber(cyaPageNumber);
     }
-    if (pageNumber < formTemplate.length - 1) {
-      setPageNumber(pageNumber + 1);
-    }
+    setPageNumber(pageNumber + 1);
   };
 
   const onBackButtonClick = (): void => {
@@ -135,7 +118,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
   };
 
   return (
-    <form onSubmit={(e) => void onButtonClick(e)}>
+    <form aria-label="form" onSubmit={(e) => void onButtonClick(e)}>
       {(!isLastPage || formComponents[0]?.componentType === ComponentType.SCHOOL_NOT_FOUND) && (
         <BackButton onClick={onBackButtonClick} theme="blue" />
       )}
@@ -185,7 +168,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
           {footerLogo && <div className={styles.logoContainer}>{footerLogo}</div>}
           {pageNumber === 0 && (
             <div className={styles.signInLink}>
-              <a href={Paths.SIGN_IN}>Sign in if you already have an account</a>
+              <Link to={Paths.SIGN_IN}>Sign in if you already have an account</Link>
             </div>
           )}
         </Card>

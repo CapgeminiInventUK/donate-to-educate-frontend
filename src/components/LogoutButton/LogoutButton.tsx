@@ -5,10 +5,7 @@ import styles from './LogoutButton.module.scss';
 import { useStore } from '@/stores/useStore';
 import ExitIcon from '@/assets/icons/exitIcon.svg';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
-
-interface LogoutButtonProps {
-  className?: string;
-}
+import { LogoutButtonProps } from '@/types/props';
 
 const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
   const state = useStore((state) => state);
