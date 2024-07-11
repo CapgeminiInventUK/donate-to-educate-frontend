@@ -246,3 +246,12 @@ export interface ItemList {
   name: SectionsIconType;
   items: string[];
 }
+
+export enum PillColours {
+  GREEN = 'green',
+  BLUE = 'blue',
+  YELLOW = 'yellow',
+  GREY = 'grey',
+  RED = 'red',
+  LIGHTBLUE = 'lightBlue',
+}
