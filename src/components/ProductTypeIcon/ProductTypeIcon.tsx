@@ -3,13 +3,9 @@ import styles from './ProductTypeIcon.module.scss';
 import { convertNumberToCategory } from '../ItemList/getFullItemList';
 import { Popover } from 'antd';
 import ProductTypes from '@/assets/icons/ProductTypes';
+import { ProductTypeIconProps } from '@/types/props';
 
-interface ProductTypeIcon {
-  productType: number;
-  colour: string;
-}
-
-const ProductTypeIcon: FC<ProductTypeIcon> = ({ productType, colour }) => {
+const ProductTypeIcon: FC<ProductTypeIconProps> = ({ productType, colour }) => {
   return (
     <span key={productType} className={styles.productType}>
       <Popover content={convertNumberToCategory(productType)} trigger="hover">

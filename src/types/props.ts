@@ -705,3 +705,8 @@ export interface PrivateRouteProps {
   children: ReactNode;
   authType?: AccountType;
 }
+
+export interface ProductTypeIconProps {
+  productType: number;
+  colour: string;
+}
