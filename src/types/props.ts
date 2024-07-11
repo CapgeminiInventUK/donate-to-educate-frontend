@@ -699,3 +699,9 @@ export interface LogoutButtonProps {
 export interface NoLocalOrganisationsProps {
   organisationName?: string;
 }
+
+export interface PrivateRouteProps {
+  route?: string;
+  children: ReactNode;
+  authType?: AccountType;
+}
