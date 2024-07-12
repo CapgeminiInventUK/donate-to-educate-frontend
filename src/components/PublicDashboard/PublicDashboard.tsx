@@ -2,35 +2,16 @@ import styles from './PublicDashboard.module.scss';
 import { FC, useEffect } from 'react';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import HorizontalLine from '@/assets/school/HorizontalLine';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
 import FormButton from '../FormButton/FormButton';
 import Card from '@/components/Card/Card';
 import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharityTable';
 import { returnObjectValueOrUndefined, scrollToTheTop } from '@/utils/globals';
 import { PublicDashboardProps } from '@/types/props';
-import ActionTile from '../ActionTile/ActionTile';
-import Hanger from '@/assets/school/Hanger';
-import Heart from '@/assets/school/Heart';
-import ExtraStock from '@/assets/school/ExtraStock';
 import Map from '../Map/Map';
+import ActionTiles from './ActionTiles';
 
-const PublicDashboard: FC<PublicDashboardProps> = ({
-  type,
-  name,
-  request,
-  donate,
-  excess,
-  about,
-  header,
-  postcode,
-  location,
-  setPreview,
-  organisationId,
-  organisationName,
-  previewMode,
-}) => {
-  const navigate = useNavigate();
+const PublicDashboard: FC<PublicDashboardProps> = ({ type, profile, setPreview, previewMode }) => {
+  const { header, name, about, excess, donate, request, location, id, postcode } = profile ?? {};
   const banner = {
     phone: returnObjectValueOrUndefined('phone', header),
     email: returnObjectValueOrUndefined('email', header),
@@ -55,7 +36,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             <h2>Location map</h2>
             <Map
               initialCoordinates={[location.coordinates[0], location.coordinates[1]]}
-              markers={[{ coordinates: location.coordinates, name, colour: 'purple' }]}
+              markers={[{ coordinates: location.coordinates, name: name ?? '', colour: 'purple' }]}
             />
           </>
         )}
@@ -70,75 +51,16 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
             <p className={styles.paragraph}>{about}</p>
           </div>
         )}
-        <div className={styles.tilesWrapper}>
-          <div className={styles.productsTilesContainer}>
-            {request && (
-              <ActionTile
-                heading="Request products"
-                subheading="Easily request school supplies for your children."
-                icon={<Hanger colour="white" />}
-                theme={'lightBlue'}
-                buttonText="Request"
-                onClick={() =>
-                  navigate(getNavigateLinkFromType(type), {
-                    state: {
-                      type: 'tick',
-                      profile: request,
-                      name: organisationName,
-                      id: organisationId,
-                      previewMode,
-                      postcode,
-                    },
-                  })
-                }
-              ></ActionTile>
-            )}
-
-            {donate && (
-              <ActionTile
-                heading="Donate products"
-                subheading="Help us by donating school supplies."
-                icon={<Heart colour="white" />}
-                theme={'midBlue'}
-                buttonText="Donate"
-                onClick={() =>
-                  navigate(getNavigateLinkFromType(type), {
-                    state: {
-                      type: 'heart',
-                      profile: donate,
-                      name: organisationName,
-                      id: organisationId,
-                      previewMode,
-                      postcode,
-                    },
-                  })
-                }
-              ></ActionTile>
-            )}
-
-            {excess && (
-              <ActionTile
-                heading="Check extra stock"
-                subheading="Share our extra products with the community."
-                icon={<ExtraStock colour="#050E33" />}
-                theme={'darkBlue'}
-                buttonText="Check extra stock"
-                onClick={() =>
-                  navigate(getNavigateLinkFromType(type), {
-                    state: {
-                      type: 'plus',
-                      profile: excess,
-                      name: organisationName,
-                      id: organisationId,
-                      previewMode,
-                      postcode,
-                    },
-                  })
-                }
-              ></ActionTile>
-            )}
-          </div>
-        </div>
+        <ActionTiles
+          request={request}
+          donate={donate}
+          excess={excess}
+          type={type}
+          organisationName={name ?? ''}
+          organisationId={id ?? ''}
+          previewMode={previewMode}
+          postcode={postcode}
+        />
         {postcode && (
           <div className={styles.nearbyCharitiesTable}>
             <hr />
@@ -160,8 +82,5 @@ const PublicDashboard: FC<PublicDashboardProps> = ({
     </>
   );
 };
-
-const getNavigateLinkFromType = (type: string): string =>
-  type === 'school' ? Paths.SCHOOLS_DASHBOARD_ITEMS : Paths.CHARITY_DASHBOARD_ITEMS;
 
 export default PublicDashboard;
