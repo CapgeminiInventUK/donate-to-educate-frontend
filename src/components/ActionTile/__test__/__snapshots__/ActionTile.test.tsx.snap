@@ -23,7 +23,7 @@ exports[`Action tile > should render component 1`] = `
             Subheading
           </p>
           <button
-            aria-label="Request button"
+            aria-label="Button text button"
             class="_formButtonGreen_a4d411  _button_932d70"
           >
             <span
@@ -63,7 +63,7 @@ exports[`Action tile > should render component 1`] = `
           Subheading
         </p>
         <button
-          aria-label="Request button"
+          aria-label="Button text button"
           class="_formButtonGreen_a4d411  _button_932d70"
         >
           <span

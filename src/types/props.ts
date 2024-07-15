@@ -705,8 +705,8 @@ export interface PublicDashboardActionTilesProps {
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
   type: 'school' | 'charity';
-  organisationName: string;
-  organisationId: string;
+  name: string;
+  id: string;
   previewMode?: boolean;
   postcode?: string | null;
 }

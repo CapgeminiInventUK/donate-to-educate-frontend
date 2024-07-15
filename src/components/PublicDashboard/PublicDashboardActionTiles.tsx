@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import styles from './PublicDashboard.module.scss';
 import ActionTile from '../ActionTile/ActionTile';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +16,8 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
   donate,
   excess,
   type,
-  organisationName,
-  organisationId,
+  name,
+  id,
   previewMode,
   postcode,
 }) => {
@@ -26,13 +26,16 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
     type === 'school' ? Paths.SCHOOLS_DASHBOARD_ITEMS : Paths.CHARITY_DASHBOARD_ITEMS;
   const profiles = { request, donate, excess };
 
-  const handleOnClick = (profile?: ProfileItems | null): void => {
+  const handleOnClick = (
+    profile?: ProfileItems | null,
+    iconType?: 'tick' | 'heart' | 'plus'
+  ): void => {
     navigate(getNavigateLinkFromType(type), {
       state: {
-        type: 'tick',
+        type: iconType,
         profile,
-        name: organisationName,
-        id: organisationId,
+        name,
+        id,
         previewMode,
         postcode,
       },
@@ -46,7 +49,7 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
       icon: <Hanger colour="white" />,
       theme: 'lightBlue',
       buttonText: 'Request',
-      onClick: () => handleOnClick(request),
+      onClick: () => handleOnClick(request, 'tick'),
     },
     donate: {
       heading: 'Donate products',
@@ -54,7 +57,7 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
       icon: <Heart colour="white" />,
       theme: 'midBlue',
       buttonText: 'Donate',
-      onClick: () => handleOnClick(donate),
+      onClick: () => handleOnClick(donate, 'heart'),
     },
     excess: {
       heading: 'Check extra stock',
@@ -62,7 +65,7 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
       icon: <ExtraStock colour="#050E33" />,
       theme: 'darkBlue',
       buttonText: 'Check extra stock',
-      onClick: () => handleOnClick(excess),
+      onClick: () => handleOnClick(excess, 'plus'),
     },
   };
 
@@ -82,7 +85,7 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
               onClick={onClick}
             />
           ) : (
-            <></>
+            <Fragment key={heading}></Fragment>
           );
         })}
       </div>

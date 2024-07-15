@@ -8,7 +8,7 @@ import FindCharityTable from '@/pages/FindYourCommunity/YourLocalArea/FindCharit
 import { returnObjectValueOrUndefined, scrollToTheTop } from '@/utils/globals';
 import { PublicDashboardProps } from '@/types/props';
 import Map from '../Map/Map';
-import ActionTiles from './ActionTiles';
+import ActionTiles from './PublicDashboardActionTiles';
 
 const PublicDashboard: FC<PublicDashboardProps> = ({ type, profile, setPreview, previewMode }) => {
   const { header, name, about, excess, donate, request, location, id, postcode } = profile ?? {};
@@ -56,8 +56,8 @@ const PublicDashboard: FC<PublicDashboardProps> = ({ type, profile, setPreview, 
           donate={donate}
           excess={excess}
           type={type}
-          organisationName={name ?? ''}
-          organisationId={id ?? ''}
+          name={name ?? ''}
+          id={id ?? ''}
           previewMode={previewMode}
           postcode={postcode}
         />
