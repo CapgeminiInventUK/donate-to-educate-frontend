@@ -7,7 +7,6 @@ const Navbar: FC = () => (
   <nav className={styles.container}>
     <ClickableLogo colour="blue" className={styles.logoBlue} />
     <NavLinks
-      theme="darkBlue"
       className={styles.links}
       linkClassName={styles.link}
       activeClassName="active"
