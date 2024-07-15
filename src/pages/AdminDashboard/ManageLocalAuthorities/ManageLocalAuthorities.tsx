@@ -17,6 +17,7 @@ import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';
+import { PillColours } from '@/types/data';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -88,7 +89,11 @@ const ManageLocalAuthorities: FC = () => {
         record.registered === value,
       filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean): JSX.Element =>
-        registered ? <Pill color="blue" text="Joined" /> : <Pill color="red" text="Not Joined" />,
+        registered ? (
+          <Pill colour={PillColours.BLUE} text="Joined" />
+        ) : (
+          <Pill colour={PillColours.RED} text="Not Joined" />
+        ),
     },
     {
       title: 'Action',

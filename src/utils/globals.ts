@@ -23,7 +23,7 @@ export const SEARCH_DEFAULT_ZOOM_LEVEL = 13;
 export const MAX_ZOOM_LEVEL = 17;
 export const MIN_ZOOM_LEVEL = 7;
 
-export const capitalizeFirstLetter = (string: string): string =>
+export const capitaliseFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
 export const checkIfValidObjectWithData = (obj: unknown): boolean =>

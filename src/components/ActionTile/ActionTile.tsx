@@ -28,7 +28,7 @@ const ActionTile: FC<ActionTileProps> = ({
           text={buttonText}
           onClick={onClick}
           useArrow={!buttonText.includes('Edit')}
-          ariaLabel="Request button"
+          ariaLabel={`${buttonText} button`}
         />
       </div>
     </div>

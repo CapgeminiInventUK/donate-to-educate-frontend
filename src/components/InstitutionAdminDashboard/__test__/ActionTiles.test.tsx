@@ -15,10 +15,10 @@ beforeEach(() => {
 describe('Action tiles', () => {
   it('should handle requests tile click with school profile', async () => {
     const Component = createWrapper(<ActionTiles profile={schoolProfile} type={'school'} />);
-    const { getAllByRole } = render(<Component />);
-    const requestButton = getAllByRole('button', { name: 'Request button' });
+    const { getByRole } = render(<Component />);
+    const requestButton = getByRole('button', { name: 'Edit products button' });
 
-    await userEvent.click(requestButton[0]);
+    await userEvent.click(requestButton);
 
     const state = {
       state: {
@@ -42,10 +42,10 @@ describe('Action tiles', () => {
 
   it('should handle donations tile click with charity profile', async () => {
     const Component = createWrapper(<ActionTiles profile={charityProfile} type={'charity'} />);
-    const { getAllByRole } = render(<Component />);
-    const requestButton = getAllByRole('button', { name: 'Request button' });
+    const { getByRole } = render(<Component />);
+    const donationsButton = getByRole('button', { name: 'Enable donations button' });
 
-    await userEvent.click(requestButton[1]);
+    await userEvent.click(donationsButton);
 
     const state = {
       state: {
@@ -62,10 +62,10 @@ describe('Action tiles', () => {
 
   it('should handle excess tile click with charity profile', async () => {
     const Component = createWrapper(<ActionTiles profile={charityProfile} type={'charity'} />);
-    const { getAllByRole } = render(<Component />);
-    const requestButton = getAllByRole('button', { name: 'Request button' });
+    const { getByRole } = render(<Component />);
+    const requestButton = getByRole('button', { name: 'Enable sharing button' });
 
-    await userEvent.click(requestButton[2]);
+    await userEvent.click(requestButton);
 
     const state = {
       state: {

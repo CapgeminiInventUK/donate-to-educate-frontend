@@ -4,6 +4,7 @@ import styles from './AdminDashboardCard.module.scss';
 import { AdminDashboardCardProps } from '@/types/props';
 import { motion } from 'framer-motion';
 import { Pill } from '@/components/Pill/Pill';
+import { PillColours } from '@/types/data';
 
 const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   isLoading,
@@ -32,11 +33,11 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
           {stats ? (
             <div className={styles.pillContainer}>
               <Pill
-                color="green"
+                colour={PillColours.GREEN}
                 text={`${stats[0] ?? 0} ${stats[0] === 1 ? ' school request' : ' school requests'}`}
               />
               <Pill
-                color="green"
+                colour={PillColours.GREEN}
                 text={`${stats[1] ?? 0} ${stats[1] === 1 ? ' charity request' : ' charity requests'}`}
               />
             </div>
