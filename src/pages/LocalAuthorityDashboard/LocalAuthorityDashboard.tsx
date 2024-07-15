@@ -20,6 +20,7 @@ import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
 import Donate from '@/assets/icons/Donate';
 import School from '@/assets/icons/School';
+import Settings from '@/assets/icons/Settings';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -122,7 +123,11 @@ const LocalAuthorityDashboard: FC = () => {
       <div className={styles.adminCard}>
         <div className={styles.header}>
           <h1>{name}</h1>
+          <Link className={styles.settingsButton} to={Paths.SETTINGS}>
+            Settings <Settings />
+          </Link>
         </div>
+
         <div className={styles.body}>
           <h2>Manage your community</h2>
           <div className={styles.tileRow}>

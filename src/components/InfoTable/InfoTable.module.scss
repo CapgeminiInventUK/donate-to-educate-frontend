@@ -1,0 +1,84 @@
+@use '@assets/global.scss' as g;
+
+.infoTable {
+  display: flex;
+  flex-direction: column;
+  background: g.$dark-blue;
+  padding: 0 3%;
+  border-radius: 10px;
+
+  h3 {
+    margin: 40px 0 20px 5px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid g.$primary-dark-blue;
+
+    &:first-child {
+      padding-top: 50px;
+    }
+
+    &:last-child {
+      margin-bottom: 40px;
+    }
+
+    .key {
+      font-weight: bold;
+    }
+
+    .value {
+      text-align: left;
+
+      .pill {
+        display: inline-block;
+        padding: 4px 20px;
+        background-color: g.$pill-green-background;
+        color: #fff;
+        border-radius: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+
+    .edit {
+      text-align: center;
+      color: white;
+      text-decoration: underline;
+    }
+
+    .delete {
+      display: inline-block;
+      padding: 8px 0;
+      font-weight: bold;
+      text-align: center;
+      justify-self: end;
+      color: g.$delete-red;
+      background: g.$delete-grey;
+      box-shadow: 2px 2px 0px 2px g.$greyscale;
+      text-decoration: none;
+      min-width: 100px;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

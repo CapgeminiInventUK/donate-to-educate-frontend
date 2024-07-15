@@ -42,3 +42,13 @@ export const checkForStringAndReturnEmptyIfFalsy = (
 export const sortByNumber = (a: number, b: number): number => a - b;
 
 export const sortAlphabetically = (a: string, b: string): number => a.localeCompare(b);
+
+export const countEmptyObjectValues = (obj: Record<string, string>): number => {
+  let emptyCount = 0;
+  for (const key in obj) {
+    if (obj[key] === '') {
+      emptyCount++;
+    }
+  }
+  return emptyCount;
+};

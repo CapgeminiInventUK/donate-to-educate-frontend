@@ -50,6 +50,7 @@ import {
   Excess,
 } from './lazy';
 import { Route } from '@/types/props';
+import Settings from '@/pages/Settings/Settings';
 
 const routes: Route[] = [
   // Admin dashboard
@@ -237,6 +238,12 @@ const routes: Route[] = [
     path: Paths.COOKIE_POLICY,
     element: <CookiePolicy />,
     name: 'How we use cookies',
+  },
+  {
+    path: Paths.SETTINGS,
+    element: <Settings />,
+    name: 'Settings',
+    authType: 'localAuthority',
   },
   {
     path: Paths.CONTACT,

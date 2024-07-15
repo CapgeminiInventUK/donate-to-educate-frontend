@@ -67,6 +67,7 @@ enum Paths {
   HOME = '/',
   LOCAL_AUTHORITY_JOIN_INFO = '/local-authority-joining-information',
   COOKIE_POLICY = '/cookie-policy',
+  SETTINGS = '/settings',
 
   // Links, telephone numbers and email addresses
   WE_HAVE_THE_POWER = 'https://wehavethepower.org/',
