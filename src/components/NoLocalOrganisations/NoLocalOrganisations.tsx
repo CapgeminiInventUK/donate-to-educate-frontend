@@ -3,10 +3,7 @@ import styles from './NoLocalOrganisations.module.scss';
 import HandHeart from '@/assets/logo/HandHeart';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
-
-interface NoLocalOrganisationsProps {
-  organisationName?: string;
-}
+import { NoLocalOrganisationsProps } from '@/types/props';
 
 const NoLocalOrganisations: FC<NoLocalOrganisationsProps> = ({
   organisationName = 'charities',

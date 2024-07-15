@@ -42,26 +42,11 @@ const SchoolsDashboard: FC = () => {
     return <ErrorBanner />;
   }
 
-  const { excess, donate, request, about, header, postcode, location } =
-    data?.getSchoolProfile ?? {};
-
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <PublicDashboard
-          type="school"
-          name={name}
-          excess={excess}
-          donate={donate}
-          request={request}
-          about={about}
-          header={header}
-          organisationName={name}
-          organisationId={urn}
-          postcode={postcode}
-          location={location}
-        />
+        <PublicDashboard type="school" profile={data?.getSchoolProfile ?? undefined} />
       </div>
     </div>
   );

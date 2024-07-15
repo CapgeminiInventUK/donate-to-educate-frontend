@@ -41,26 +41,11 @@ const CharityDashboard: FC = () => {
     return <ErrorBanner />;
   }
 
-  const { excess, donate, request, about, header, postcode, location } =
-    data?.getCharityProfile ?? {};
-
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <PublicDashboard
-          type="charity"
-          name={state.name}
-          about={about}
-          header={header}
-          excess={excess}
-          donate={donate}
-          request={request}
-          organisationName={state.name}
-          organisationId={state.id}
-          postcode={postcode}
-          location={location}
-        />
+        <PublicDashboard type="charity" profile={data?.getCharityProfile ?? undefined} />
       </div>
     </div>
   );

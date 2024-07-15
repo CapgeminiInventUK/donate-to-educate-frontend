@@ -5,7 +5,7 @@ import '@aws-amplify/ui-react-geo/styles.css';
 import { NavigationControl, ScaleControl, Marker, Popup } from 'react-map-gl';
 import { MapProps, PopupInfo } from '@/types/props';
 import { ViewStateChangeEvent } from 'react-map-gl';
-import { SEARCH_DEFAULT_ZOOM_LEVEL } from '@/utils/globals';
+import { MAX_ZOOM_LEVEL, MIN_ZOOM_LEVEL, SEARCH_DEFAULT_ZOOM_LEVEL } from '@/utils/globals';
 
 const Map: FC<MapProps> = ({
   markers,
@@ -50,6 +50,8 @@ const Map: FC<MapProps> = ({
         mapStyle={'VectorHereExplore'}
         style={{ borderRadius: '20px', width: 'inherit', height: 'inherit' }}
         onMove={onMove}
+        maxZoom={MAX_ZOOM_LEVEL}
+        minZoom={MIN_ZOOM_LEVEL}
       >
         {/* fullscreen can be uncommented when the bug is fixed: https://github.com/visgl/react-map-gl/issues/2320 */}
         {/* <FullscreenControl position="top-left" /> */}

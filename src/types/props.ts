@@ -19,21 +19,20 @@ import {
   ResultType,
   myStageType,
   ItemsIconType,
+  PillColours,
+  InstitutionProfile,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
-  CharityProfileHeader,
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
-  Point,
   ProfileItems,
   SchoolProfile,
-  SchoolProfileHeader,
   SearchResult,
 } from './api';
 import { InputRef } from 'antd';
@@ -139,7 +138,7 @@ export interface HeroBannerProps {
 }
 
 export interface PillProps {
-  color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red';
+  colour: PillColours;
   text?: string;
 }
 
@@ -148,7 +147,6 @@ export interface CookiesSelection {
 }
 
 export interface NavLinksProps {
-  theme: Themes;
   className?: string;
   linkClassName?: string;
   buttonClassName?: string;
@@ -172,7 +170,6 @@ export interface Route {
 export interface NavLinkProps {
   path: Paths;
   name?: string;
-  theme: Themes;
   childRoutes?: Route[];
   onLinkClicked?: () => void;
 }
@@ -583,17 +580,8 @@ export interface LocationStateOrRedirectProps<T> {
 
 export interface PublicDashboardProps {
   type: 'school' | 'charity';
-  name: string;
-  excess?: ProfileItems | null;
-  donate?: ProfileItems | null;
-  request?: ProfileItems | null;
-  about?: string | null;
-  header?: SchoolProfileHeader | CharityProfileHeader | null;
-  postcode?: string | null;
-  location?: Point | null;
+  profile?: InstitutionProfile;
   setPreview?: (value: boolean) => void;
-  organisationName: string;
-  organisationId: string;
   previewMode?: boolean;
 }
 
@@ -691,4 +679,34 @@ export interface PublicViewProps {
 export interface ItemListEditProps {
   setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
   items: Record<number, string[]>;
+}
+
+export interface LogoutButtonProps {
+  className?: string;
+}
+
+export interface NoLocalOrganisationsProps {
+  organisationName?: string;
+}
+
+export interface PrivateRouteProps {
+  route?: string;
+  children: ReactNode;
+  authType?: AccountType;
+}
+
+export interface ProductTypeIconProps {
+  productType: number;
+  colour: string;
+}
+
+export interface PublicDashboardActionTilesProps {
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+  type: 'school' | 'charity';
+  name: string;
+  id: string;
+  previewMode?: boolean;
+  postcode?: string | null;
 }

@@ -3,7 +3,7 @@ import styles from './ResultBanner.module.scss';
 import Email from '@/assets/admin/Email';
 import { ResultBannerProps } from '@/types/props';
 import { ResultType } from '@/types/data';
-import { capitalizeFirstLetter } from '@/utils/globals';
+import { capitaliseFirstLetter } from '@/utils/globals';
 
 const ResultBanner: FC<ResultBannerProps> = ({ type, name }) => {
   return (
@@ -20,7 +20,7 @@ const getHeaderText = (type: ResultType, name?: string): string => {
     case 'declined':
       return 'You have declined this request to join';
     case 'approved':
-      return `${capitalizeFirstLetter(String(name))} has joined Donate to Educate`;
+      return `${capitaliseFirstLetter(String(name))} has joined Donate to Educate`;
     default:
       throw new Error(`Unexpected result type ${String(type)}`);
   }
