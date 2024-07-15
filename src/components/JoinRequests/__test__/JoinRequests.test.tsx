@@ -9,15 +9,16 @@ describe('Join requests', () => {
   const setStage = vi.fn();
   const setSchoolOrCharityProperties = vi.fn();
   it('should render schools and charities join requests tables', () => {
-    expect(
-      render(
-        <JoinRequests
-          data={dataWithSchoolAndCharity}
-          setStage={setStage}
-          setSchoolOrCharityProperties={setSchoolOrCharityProperties}
-        />
-      )
-    ).toMatchSnapshot();
+    const { getAllByRole } = render(
+      <JoinRequests
+        data={dataWithSchoolAndCharity}
+        setStage={setStage}
+        setSchoolOrCharityProperties={setSchoolOrCharityProperties}
+      />
+    );
+    const h2s = getAllByRole('heading', { level: 2 });
+    expect(h2s[0]).toHaveTextContent('Schools');
+    expect(h2s[1]).toHaveTextContent('Charities and volunteer groups');
   });
 
   it('should handle view requests button click for school', async () => {

@@ -34,7 +34,6 @@ const Sidebar: FC = () => {
           <div className={styles.navContainer}>
             <ClickableLogo colour="white" className={styles.logoWhite} />
             <NavLinks
-              theme="midBlue"
               className={styles.links}
               linkClassName={styles.link}
               activeClassName={styles.active}
