@@ -1,24 +1,29 @@
 import { PillProps } from '@/types/props';
 import { FC } from 'react';
 import styles from './Pill.module.scss';
+import { PillColours } from '@/types/data';
 
-export const Pill: FC<PillProps> = ({ color, text }) => {
-  const getText = (color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red'): string => {
-    switch (color) {
-      case 'green':
+export const Pill: FC<PillProps> = ({ colour, text }) => {
+  const getText = (colour: PillColours): string => {
+    switch (colour) {
+      case PillColours.GREEN:
         return 'STOCK AVAILABLE';
-      case 'blue':
+      case PillColours.BLUE:
         return 'EXCESS STOCK';
-      case 'yellow':
+      case PillColours.YELLOW:
         return 'LOW STOCK';
-      case 'grey':
+      case PillColours.GREY:
         return 'SCHOOL NOT REGISTERED';
-      case 'red':
+      case PillColours.RED:
         return 'OUT OF STOCK';
-      default:
-        throw new Error('Unexpected pill color');
+      case PillColours.LIGHTBLUE:
+        return '';
     }
   };
 
-  return <span className={`${styles[color]} ${styles.container}`}>{text ?? getText(color)}</span>;
+  return (
+    <span aria-label="pill" className={`${styles[colour]} ${styles.container}`}>
+      {text ?? getText(colour)}
+    </span>
+  );
 };

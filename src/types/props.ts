@@ -19,6 +19,7 @@ import {
   ResultType,
   myStageType,
   ItemsIconType,
+  PillColours,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -139,7 +140,7 @@ export interface HeroBannerProps {
 }
 
 export interface PillProps {
-  color: 'green' | 'blue' | 'lightBlue' | 'yellow' | 'grey' | 'red';
+  colour: PillColours;
   text?: string;
 }
 
@@ -693,4 +694,19 @@ export interface ItemListEditProps {
 
 export interface LogoutButtonProps {
   className?: string;
+}
+
+export interface NoLocalOrganisationsProps {
+  organisationName?: string;
+}
+
+export interface PrivateRouteProps {
+  route?: string;
+  children: ReactNode;
+  authType?: AccountType;
+}
+
+export interface ProductTypeIconProps {
+  productType: number;
+  colour: string;
 }
