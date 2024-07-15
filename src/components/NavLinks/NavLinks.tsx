@@ -9,7 +9,7 @@ import { navRoutes } from '@/config/navRoutes';
 import { useStore } from '@/stores/useStore';
 import LogoutButton from '../LogoutButton/LogoutButton';
 
-const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
+const NavLinks: FC<NavLinksProps> = ({ className, onLinkClicked }) => {
   const user = useStore((state) => state.user);
 
   const getRouteFromNavRoute = (navRoute: NavRoute): Route => {
@@ -46,7 +46,6 @@ const NavLinks: FC<NavLinksProps> = ({ className, theme, onLinkClicked }) => {
             key={path}
             name={name}
             path={path}
-            theme={theme}
             childRoutes={getChildRoutes(path)}
             onLinkClicked={onLinkClicked}
           />

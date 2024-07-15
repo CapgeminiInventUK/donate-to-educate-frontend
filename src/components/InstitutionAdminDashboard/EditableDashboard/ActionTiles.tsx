@@ -52,7 +52,7 @@ const ActionTiles: FC<ActionTilesProps> = ({ profile, type }) => {
           icon={<ExtraStock colour={excess ? '#050E33' : '#FEFCFD'} />}
           theme={excess ? 'darkBlue' : 'grey'}
           isAdmin={true}
-          buttonText={request ? 'Edit extra stock' : 'Enable sharing'}
+          buttonText={excess ? 'Edit extra stock' : 'Enable sharing'}
           onClick={() => onTileClick('plus', excess)}
         />
       </div>
