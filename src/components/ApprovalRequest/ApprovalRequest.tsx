@@ -17,7 +17,7 @@ import Paths from '@/config/paths';
 import { getSchool } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { ApprovalRequestProps } from '@/types/props';
-import { StageState, myStageType } from '@/types/data';
+import { PillColours, StageState, myStageType } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import SchoolDetails from './SchoolDetails/SchoolDetails';
@@ -112,7 +112,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       <Card className={styles.approvalRequestCard}>
         <>
           <Pill
-            color={type == 'school' ? 'blue' : 'lightBlue'}
+            colour={type == 'school' ? PillColours.BLUE : PillColours.LIGHTBLUE}
             text={type == 'school' ? 'SCHOOL' : 'CHARITY OR VOLUNTEER GROUP'}
           />
           {type === 'school' && data !== undefined && <SchoolDetails data={data} />}

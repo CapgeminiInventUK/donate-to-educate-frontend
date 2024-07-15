@@ -10,6 +10,7 @@ import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
 import { checkForStringAndReturnEmptyIfFalsy, phoneNumberRegex } from './globals';
 import { phone } from 'phone';
+import { Dispatch, SetStateAction } from 'react';
 
 export const validateFormInputField = (
   formData: FormDataItem[],
@@ -97,4 +98,23 @@ export const parsePhoneNumber = (formData: FormDataItem[]): void => {
   if (formattedPhoneNumber) {
     formData[phoneNumberIndex].value = formattedPhoneNumber;
   }
+};
+
+export const validateForm = async (
+  formComponents: FormComponent[],
+  formData: FormDataItem[],
+  queryClient: QueryClient,
+  setFormErrors: Dispatch<SetStateAction<Record<string, string>>>
+): Promise<void> => {
+  const errors = getFormErrors(formComponents, formData);
+  await validatePostcodeAndAddToFormErrors(queryClient, errors, formData);
+
+  if (Object.keys(errors).length > 0) {
+    setFormErrors((formErrors) => ({ ...formErrors, ...errors }));
+    return;
+  }
+
+  setFormErrors({});
+
+  parsePhoneNumber(formData);
 };
