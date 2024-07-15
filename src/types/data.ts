@@ -12,6 +12,7 @@ import {
   TextInputProps,
 } from './props';
 import Paths from '@/config/paths';
+import { CharityProfileHeader, Point, ProfileItems, SchoolProfileHeader } from './api';
 
 export interface ErrorBoundaryState {
   hasError: boolean;
@@ -254,4 +255,23 @@ export enum PillColours {
   GREY = 'grey',
   RED = 'red',
   LIGHTBLUE = 'lightBlue',
+}
+
+export enum ActionTypes {
+  REQUEST = 'request',
+  DONATE = 'donate',
+  EXCESS = 'excess',
+}
+
+export interface InstitutionProfile {
+  name: string;
+  id: string;
+  localAuthority: string;
+  postcode?: string | null;
+  location?: Point | null;
+  header?: CharityProfileHeader | SchoolProfileHeader | null;
+  about?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
 }

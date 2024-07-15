@@ -20,21 +20,19 @@ import {
   myStageType,
   ItemsIconType,
   PillColours,
+  InstitutionProfile,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
-  CharityProfileHeader,
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
-  Point,
   ProfileItems,
   SchoolProfile,
-  SchoolProfileHeader,
   SearchResult,
 } from './api';
 import { InputRef } from 'antd';
@@ -582,17 +580,8 @@ export interface LocationStateOrRedirectProps<T> {
 
 export interface PublicDashboardProps {
   type: 'school' | 'charity';
-  name: string;
-  excess?: ProfileItems | null;
-  donate?: ProfileItems | null;
-  request?: ProfileItems | null;
-  about?: string | null;
-  header?: SchoolProfileHeader | CharityProfileHeader | null;
-  postcode?: string | null;
-  location?: Point | null;
+  profile?: InstitutionProfile;
   setPreview?: (value: boolean) => void;
-  organisationName: string;
-  organisationId: string;
   previewMode?: boolean;
 }
 
@@ -709,4 +698,15 @@ export interface PrivateRouteProps {
 export interface ProductTypeIconProps {
   productType: number;
   colour: string;
+}
+
+export interface PublicDashboardActionTilesProps {
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
+  type: 'school' | 'charity';
+  name: string;
+  id: string;
+  previewMode?: boolean;
+  postcode?: string | null;
 }
