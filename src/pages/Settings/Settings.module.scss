@@ -2,12 +2,17 @@
 
 .container {
   @include g.page-container;
-  padding: 48px 120px;
+
+  & {
+    padding: 48px 120px;
+  }
 }
 
 .settingsCard {
   @include g.admin-card;
-  border: none;
+  & {
+    border: none;
+  }
 
   .header {
     @include g.dashboard-header;

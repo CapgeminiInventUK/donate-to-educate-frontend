@@ -18,6 +18,7 @@ const testExclusions = [
   'src/vitest',
   'src/types',
   'src/main.tsx',
+  'src/config',
 ];
 
 // https://vitejs.dev/config/

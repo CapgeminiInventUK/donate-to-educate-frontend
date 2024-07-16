@@ -20,8 +20,10 @@ export const phoneNumberRegex = /^[+]?[0-9\s]+$/;
 export const SEARCH_RADIUS_IN_MILES = 7.5;
 export const SEARCH_RESULT_LIMIT = 100;
 export const SEARCH_DEFAULT_ZOOM_LEVEL = 13;
+export const MAX_ZOOM_LEVEL = 17;
+export const MIN_ZOOM_LEVEL = 7;
 
-export const capitalizeFirstLetter = (string: string): string =>
+export const capitaliseFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
 export const checkIfValidObjectWithData = (obj: unknown): boolean =>
@@ -44,11 +46,7 @@ export const sortByNumber = (a: number, b: number): number => a - b;
 export const sortAlphabetically = (a: string, b: string): number => a.localeCompare(b);
 
 export const countEmptyObjectValues = (obj: Record<string, string>): number => {
-  let emptyCount = 0;
-  for (const key in obj) {
-    if (obj[key] === '') {
-      emptyCount++;
-    }
-  }
-  return emptyCount;
+  return Object.values(obj).reduce((acc, value) => {
+    return value ? acc : acc + 1;
+  }, 0);
 };

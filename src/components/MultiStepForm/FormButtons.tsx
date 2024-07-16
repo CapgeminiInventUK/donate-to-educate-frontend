@@ -27,6 +27,7 @@ const FormButtons: FC<FormButtonsProps> = ({
     <>
       {isLastPage ? (
         <div
+          aria-label="home-link-container"
           className={`${isUnhappyPath && summaryPageBg !== SummaryPageColour.BLUE ? styles.returnHomeLinkUnhappy : styles.returnHomeLink}`}
         >
           <Button

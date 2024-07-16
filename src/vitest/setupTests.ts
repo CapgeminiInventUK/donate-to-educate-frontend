@@ -11,6 +11,8 @@ beforeAll(() => {
   window.scrollTo = (): void => {
     undefined;
   };
+  const { getComputedStyle } = window;
+  window.getComputedStyle = (elt): CSSStyleDeclaration => getComputedStyle(elt);
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: vi.fn().mockImplementation((query: string) => ({

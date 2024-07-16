@@ -21,6 +21,7 @@ import Card from '@/components/Card/Card';
 import Donate from '@/assets/icons/Donate';
 import School from '@/assets/icons/School';
 import Settings from '@/assets/icons/Settings';
+import { PillColours } from '@/types/data';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -143,7 +144,7 @@ const LocalAuthorityDashboard: FC = () => {
               size="medium"
               noShadow
             >
-              <Pill color="green" text={`${schoolRequests} requests`} />
+              <Pill colour={PillColours.GREEN} text={`${schoolRequests} requests`} />
             </Tile>
             <Tile
               title="Manage your charity and volunteer groups"
@@ -159,7 +160,7 @@ const LocalAuthorityDashboard: FC = () => {
               size="medium"
               noShadow
             >
-              <Pill color="green" text={`${charityRequests} requests`} />
+              <Pill colour={PillColours.GREEN} text={`${charityRequests} requests`} />
             </Tile>
           </div>
         </div>

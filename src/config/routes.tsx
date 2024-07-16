@@ -243,7 +243,7 @@ const routes: Route[] = [
     path: Paths.SETTINGS,
     element: <Settings />,
     name: 'Settings',
-    authType: 'localAuthority',
+    //authType: 'localAuthority',
   },
   {
     path: Paths.CONTACT,

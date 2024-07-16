@@ -1,16 +1,6 @@
 import React from 'react';
 import styles from './InfoTable.module.scss';
-
-interface InfoTableProps {
-  tableValues: Record<string, string>;
-  editableKeys?: string[];
-  isAccounts?: boolean;
-  isDelete?: boolean;
-  title?: string;
-  icon?: JSX.Element;
-  className?: string;
-  rowClassName?: string;
-}
+import { InfoTableProps } from '@/types/props';
 
 const InfoTable: React.FC<InfoTableProps> = ({
   tableValues,

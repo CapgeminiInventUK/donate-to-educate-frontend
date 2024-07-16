@@ -50,7 +50,7 @@
         display: inline-block;
         padding: 4px 20px;
         background-color: g.$pill-green-background;
-        color: #fff;
+        color: g.$pill-text-white;
         border-radius: 20px;
         font-weight: bold;
         text-align: center;
@@ -71,7 +71,7 @@
       justify-self: end;
       color: g.$delete-red;
       background: g.$delete-grey;
-      box-shadow: 2px 2px 0px 2px g.$greyscale;
+      box-shadow: 2px 2px 0 2px g.$greyscale;
       text-decoration: none;
       min-width: 100px;
       cursor: pointer;
