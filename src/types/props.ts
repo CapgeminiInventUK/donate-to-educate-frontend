@@ -710,3 +710,14 @@ export interface PublicDashboardActionTilesProps {
   previewMode?: boolean;
   postcode?: string | null;
 }
+
+export interface InfoTableProps {
+  tableValues: Record<string, string>;
+  editableKeys?: string[];
+  isAccounts?: boolean;
+  isDelete?: boolean;
+  title?: string;
+  icon?: JSX.Element;
+  className?: string;
+  rowClassName?: string;
+}

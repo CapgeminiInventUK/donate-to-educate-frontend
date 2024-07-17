@@ -45,5 +45,11 @@ export const sortByNumber = (a: number, b: number): number => a - b;
 
 export const sortAlphabetically = (a: string, b: string): number => a.localeCompare(b);
 
+export const countEmptyObjectValues = (obj: Record<string, string>): number => {
+  return Object.values(obj).reduce((acc, value) => {
+    return value ? acc : acc + 1;
+  }, 0);
+};
+
 export const checkAllObjectValuesTruthy = (object: object): boolean =>
   checkIfValidObjectWithData(object) && !Object.values(object).every((value) => !!value);
