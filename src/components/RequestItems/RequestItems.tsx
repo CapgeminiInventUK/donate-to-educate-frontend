@@ -1,8 +1,5 @@
 import { FC, useState } from 'react';
 import styles from './RequestItems.module.scss';
-import RadioGroup from '@/components/RadioGroup/RadioGroup';
-import TextInput from '@/components/TextInput/TextInput';
-import TextArea from '@/components/TextArea/TextArea';
 import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
@@ -16,20 +13,15 @@ import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import { RequestItemsProps } from '@/types/props';
+import { checkAllObjectValuesTruthy } from '@/utils/globals';
+import getTextContent from './getTextContent';
+import RequestItemsFormInputs from './RequestItemsFormInputs';
 
 const RequestItems: FC<RequestItemsProps> = ({
-  radioButtonLabels,
-  radioButtonValues,
-  buttonText,
-  heading,
-  subHeading,
-  notesHeading,
-  notesSubHeading,
   type,
   organisationType,
   id,
-  name: schoolOrCharityName,
-  postcode,
+  name: organisationName,
 }) => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState<RequestFormState>({
@@ -37,11 +29,10 @@ const RequestItems: FC<RequestItemsProps> = ({
     name: '',
     email: '',
     phone: '',
-    notes: '',
+    message: '',
   });
 
-  const organisationName =
-    organisationType === 'school' ? `${schoolOrCharityName} - ${postcode}` : schoolOrCharityName;
+  const { buttonText, heading, subHeading } = getTextContent(type, organisationType);
 
   const { refetch, isError } = useQuery({
     queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
@@ -50,23 +41,38 @@ const RequestItems: FC<RequestItemsProps> = ({
       const result = await client.graphql<GraphQLQuery<InsertItemQueryMutation>>({
         query: insertItemQuery,
         variables: {
-          name: formState.name,
-          email: formState.email,
-          phone: formState.phone,
-          message: formState.notes,
+          ...formState,
           type,
-          who: formState.who,
           organisationType,
           organisationName,
           organisationId: id,
-          ...(formState.who === 'somethingElse' && { connection: formState.connection }),
         },
       });
       return result;
     },
   });
 
-  const { name, email, phone, notes, connection } = formState;
+  const onFormChange = (key: string, value: string): void => {
+    setFormState((prevState) => {
+      if (key === 'who' && value !== 'somethingElse') {
+        delete prevState.connection;
+      }
+      return { ...prevState, [key]: value };
+    });
+  };
+
+  const onFormSubmit = (): void => {
+    void refetch().then(() => {
+      navigate(
+        organisationType === 'school'
+          ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
+          : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
+        {
+          state: { name: organisationName, id },
+        }
+      );
+    });
+  };
 
   if (isError) {
     return <ErrorBanner />;
@@ -77,103 +83,22 @@ const RequestItems: FC<RequestItemsProps> = ({
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <Card className={`${styles.requestItemsCard} ${styles[type]}`}>
-          <p className={styles.mainHeading}>{heading}</p>
+          <h2 className={styles.mainHeading}>{heading}</h2>
           <p>{subHeading}</p>
-
-          <h3 className={styles.subHeading}>What best describes you?</h3>
-          <RadioGroup
-            labels={radioButtonLabels}
-            name="schoolProductRadios"
-            values={radioButtonValues}
-            handleChange={(value: string): void =>
-              setFormState((prevState) => ({
-                ...prevState,
-                who: value,
-              }))
-            }
-          />
-          {formState.who === 'somethingElse' && (
-            <div className={styles.connection}>
-              <TextInput
-                subHeading="Describe your role or connection to Donate to Educate"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    connection: value,
-                  }));
-                }}
-                ariaLabel="connection"
-                value={connection}
-                isLarge
-              />
-            </div>
-          )}
-          <br />
-          <TextInput
-            header="Name"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                name: value,
-              }));
-            }}
-            ariaLabel="name"
-            value={name}
-            isLarge={true}
-          />
-          <TextInput
-            header="Email"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                email: value,
-              }));
-            }}
-            ariaLabel="email"
-            value={email}
-            isLarge={true}
-          />
-          <TextInput
-            header="Phone"
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                phone: value,
-              }));
-            }}
-            ariaLabel="phone"
-            value={phone}
-          />
-          <TextArea
-            characterLimit={1000}
-            header={notesHeading}
-            subHeading={notesSubHeading}
-            onChange={(value) => {
-              setFormState((prevState) => ({
-                ...prevState,
-                notes: value,
-              }));
-            }}
-            ariaLabel="notes"
-            value={notes}
+          <RequestItemsFormInputs
+            type={type}
+            organisationType={organisationType}
+            formState={formState}
+            onFormChange={onFormChange}
           />
           <FormButton
             text={buttonText}
-            theme={checkIfValidInput(formState) ? 'formButtonGreenDisabled' : 'formButtonGreen'}
+            theme={
+              checkAllObjectValuesTruthy(formState) ? 'formButtonGreenDisabled' : 'formButtonGreen'
+            }
             fullWidth={true}
-            disabled={checkIfValidInput(formState)}
-            onClick={() => {
-              void refetch().then(() => {
-                navigate(
-                  organisationType === 'school'
-                    ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
-                    : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
-                  {
-                    state: { name: organisationName, id },
-                  }
-                );
-              });
-            }}
+            disabled={checkAllObjectValuesTruthy(formState)}
+            onClick={onFormSubmit}
             ariaLabel="submit"
           />
         </Card>
@@ -181,13 +106,5 @@ const RequestItems: FC<RequestItemsProps> = ({
     </div>
   );
 };
-
-const checkIfValidInput = (formState: RequestFormState): boolean =>
-  !formState.name ||
-  !formState.email ||
-  !formState.notes ||
-  !formState.phone ||
-  !formState.who ||
-  (formState.who === 'somethingElse' && !formState.connection);
 
 export default RequestItems;

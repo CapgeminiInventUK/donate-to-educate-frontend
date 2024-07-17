@@ -158,7 +158,7 @@ export interface RequestFormState {
   name: string;
   email: string;
   phone: string;
-  notes: string;
+  message: string;
   who: string;
   connection?: string;
 }
@@ -274,4 +274,14 @@ export interface InstitutionProfile {
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
+}
+
+export interface RequestItemsTextContent {
+  radioButtonLabels: string[];
+  radioButtonValues: string[];
+  buttonText: string;
+  heading: string;
+  subHeading: string;
+  notesHeading: string;
+  notesSubHeading: string;
 }
