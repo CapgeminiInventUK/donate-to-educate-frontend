@@ -50,3 +50,6 @@ export const countEmptyObjectValues = (obj: Record<string, string>): number => {
     return value ? acc : acc + 1;
   }, 0);
 };
+
+export const checkAllObjectValuesTruthy = (object: object): boolean =>
+  checkIfValidObjectWithData(object) && !Object.values(object).every((value) => !!value);

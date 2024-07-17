@@ -1,14 +1,14 @@
 @use '@assets/global.scss' as g;
 
 .heading {
+  display: flex;
+  align-items: center;
+
   h2 {
     text-wrap: nowrap;
     padding: 0 20px 0 0;
     margin: 0;
   }
-
-  display: flex;
-  align-items: center;
 }
 
 .container {

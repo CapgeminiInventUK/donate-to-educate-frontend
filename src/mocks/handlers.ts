@@ -66,6 +66,17 @@ export const handlers = [
       },
     });
   }),
+  graphql.mutation('InsertItemQuery', ({ variables }) => {
+    const { organisationId } = variables;
+    if (organisationId === 'error') {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
+    return HttpResponse.json({
+      data: {
+        acknowledged: true,
+      },
+    });
+  }),
   http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
     return passthrough();
   }),
