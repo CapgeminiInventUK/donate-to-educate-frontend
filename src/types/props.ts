@@ -21,6 +21,7 @@ import {
   ItemsIconType,
   PillColours,
   InstitutionProfile,
+  RequestFormState,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -207,7 +208,7 @@ export interface RadioButtonProps {
 export interface RadioGroupProps {
   name: string;
   values: string[];
-  labels?: string[];
+  labels: string[];
   className?: string;
   formMeta?: FormMeta;
   handleChange?: (input: string) => void;
@@ -481,18 +482,17 @@ export interface AdminDashboardCardProps {
 }
 
 export interface RequestItemsProps {
-  radioButtonLabels: string[];
-  radioButtonValues: string[];
-  buttonText: string;
-  heading: string;
-  subHeading: string;
-  notesHeading: string;
-  notesSubHeading: string;
   type: ItemsIconType;
   organisationType: 'school' | 'charity';
   id: string;
   name: string;
-  postcode?: string;
+}
+
+export interface RequestItemsFormInputsProps {
+  type: ItemsIconType;
+  organisationType: 'school' | 'charity';
+  formState: RequestFormState;
+  onFormChange: (key: string, value: string) => void;
 }
 
 export interface DonateAndExcessProps {

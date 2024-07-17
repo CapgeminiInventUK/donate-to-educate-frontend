@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 import eslint from 'vite-plugin-eslint';
 import { resolve } from 'path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const basePath = resolve(__dirname, 'src');
 
@@ -29,6 +30,7 @@ export default defineConfig((env) => ({
     nodePolyfills({
       include: ['buffer'],
     }),
+    tsconfigPaths(),
   ],
   test: {
     globals: true,
