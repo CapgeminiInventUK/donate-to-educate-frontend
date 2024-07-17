@@ -493,6 +493,7 @@ export interface RequestItemsFormInputsProps {
   organisationType: 'school' | 'charity';
   formState: RequestFormState;
   onFormChange: (key: string, value: string) => void;
+  onFormSubmit: (event: FormEvent<Element>) => void;
 }
 
 export interface DonateAndExcessProps {

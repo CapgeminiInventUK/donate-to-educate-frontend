@@ -3,7 +3,7 @@ import * as router from 'react-router';
 import RequestItems from '../RequestItems';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import getTextContent from '../getTextContent';
+import { getTextContent } from '../utils';
 
 const navigate = vi.fn();
 

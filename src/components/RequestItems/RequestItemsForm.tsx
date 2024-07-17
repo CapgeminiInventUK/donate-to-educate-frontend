@@ -2,21 +2,21 @@ import { FC } from 'react';
 import RadioGroup from '../RadioGroup/RadioGroup';
 import TextInput from '../TextInput/TextInput';
 import TextArea from '../TextArea/TextArea';
-import getTextContent from './getTextContent';
+import { getTextContent } from './utils';
 import { RequestItemsFormInputsProps } from '@/types/props';
 import styles from './RequestItems.module.scss';
-import { capitaliseFirstLetter } from '@/utils/globals';
+import { capitaliseFirstLetter, checkAllObjectValuesTruthy } from '@/utils/globals';
+import FormButton from '../FormButton/FormButton';
 
 const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
   type,
   organisationType,
   formState,
   onFormChange,
+  onFormSubmit,
 }) => {
-  const { radioButtonLabels, radioButtonValues, notesHeading, notesSubHeading } = getTextContent(
-    type,
-    organisationType
-  );
+  const { radioButtonLabels, radioButtonValues, notesHeading, notesSubHeading, buttonText } =
+    getTextContent(type, organisationType);
 
   const { message, connection } = formState;
   const formInputs = Object.entries(formState).filter(
@@ -24,7 +24,7 @@ const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
   );
 
   return (
-    <>
+    <form onSubmit={onFormSubmit}>
       <h3 className={styles.subHeading}>What best describes you?</h3>
       <RadioGroup
         labels={radioButtonLabels}
@@ -62,7 +62,16 @@ const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
         ariaLabel="message"
         value={message}
       />
-    </>
+      <FormButton
+        text={buttonText}
+        theme={
+          checkAllObjectValuesTruthy(formState) ? 'formButtonGreenDisabled' : 'formButtonGreen'
+        }
+        fullWidth={true}
+        disabled={checkAllObjectValuesTruthy(formState)}
+        ariaLabel="submit"
+      />
+    </form>
   );
 };
 export default RequestItemsFormInputs;
