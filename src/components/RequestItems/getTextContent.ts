@@ -24,8 +24,10 @@ const getTextContent = (
     'Something else',
   ];
 
-  const radioButtonValues = donateRadioButtonValues.filter((value) => !value.includes('public'));
-  const radioButtonLabels = donateRadioButtonLabels.filter((value) => !value.includes('public'));
+  const checkForPublicValue = (value: string): boolean => !value.includes('public');
+
+  const radioButtonValues = donateRadioButtonValues.filter(checkForPublicValue);
+  const radioButtonLabels = donateRadioButtonLabels.filter(checkForPublicValue);
 
   switch (type) {
     case 'tick':
