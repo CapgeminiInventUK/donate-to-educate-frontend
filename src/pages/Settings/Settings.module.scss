@@ -1,0 +1,58 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+
+  & {
+    padding: 48px 120px;
+  }
+}
+
+.settingsCard {
+  @include g.admin-card;
+  & {
+    border: none;
+  }
+
+  .header {
+    @include g.dashboard-header;
+
+    h1 {
+      color: white;
+      margin-left: 11.9%;
+    }
+  }
+
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 10px 12% 80px;
+    border-radius: 0 0 10px 10px;
+
+    h2 {
+      margin: 50px 0 20px 0;
+    }
+
+    .manageDetailsSection {
+      .detailsTable {
+        margin: 50px 0;
+      }
+    }
+
+    .manageSchoolSection {
+      .addUserButton {
+        margin: 40px 0 60px;
+      }
+    }
+
+    .deleteSection {
+      .deleteTable {
+        background: g.$greyscale-extra-dark;
+      }
+
+      .deleteTableRow {
+        border-bottom: 1px solid g.$greyscale;
+      }
+    }
+  }
+}

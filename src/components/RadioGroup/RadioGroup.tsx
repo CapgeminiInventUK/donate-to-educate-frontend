@@ -21,7 +21,7 @@ const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className, hand
             key={value}
             name={name}
             value={values[index]}
-            label={labels != null ? labels[index] : ''}
+            label={labels[index]}
             onChange={myHandleChange}
             className={className}
             checked={selectedInput === values[index]}

@@ -28,11 +28,13 @@
 .input {
   @include g.input;
 
+  & {
+    border-radius: 5px 0 0 5px;
+  }
+
   @include g.sm-breakpoint {
     max-width: 200px;
   }
-
-  border-radius: 5px 0 0 5px;
 }
 
 .inputLarge {

@@ -15,10 +15,31 @@
 
   .header {
     @include g.dashboard-header;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: flex-start;
+    padding-left: 11.9%;
 
     h1 {
       color: white;
-      margin-left: 11.9%;
+      margin: 40px 0 0;
+    }
+
+    .settingsButton {
+      display: flex;
+      padding: 0 22px;
+      min-height: 44px;
+      margin: 20px 0 50px;
+      align-items: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: g.$primary-white;
+      background-color: g.$secondary-mid-blue;
+      border-radius: 5px;
+      text-decoration: none;
+      justify-content: center;
+      gap: 10px;
     }
 
     .actionButtons {
