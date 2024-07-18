@@ -488,7 +488,7 @@ export interface RequestItemsProps {
   name: string;
 }
 
-export interface RequestItemsFormInputsProps {
+export interface RequestItemsFormProps {
   type: ItemsIconType;
   organisationType: 'school' | 'charity';
   formState: RequestFormState;

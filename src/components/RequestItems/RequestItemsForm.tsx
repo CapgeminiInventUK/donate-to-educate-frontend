@@ -3,12 +3,12 @@ import RadioGroup from '../RadioGroup/RadioGroup';
 import TextInput from '../TextInput/TextInput';
 import TextArea from '../TextArea/TextArea';
 import { getTextContent } from './utils';
-import { RequestItemsFormInputsProps } from '@/types/props';
+import { RequestItemsFormProps } from '@/types/props';
 import styles from './RequestItems.module.scss';
 import { capitaliseFirstLetter, checkAllObjectValuesTruthy } from '@/utils/globals';
 import FormButton from '../FormButton/FormButton';
 
-const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
+const RequestItemsForm: FC<RequestItemsFormProps> = ({
   type,
   organisationType,
   formState,
@@ -74,4 +74,4 @@ const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
     </form>
   );
 };
-export default RequestItemsFormInputs;
+export default RequestItemsForm;
