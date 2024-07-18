@@ -1,9 +1,9 @@
-import * as router from 'react-router';
-import userEvent from '@testing-library/user-event';
-import { render } from '@testing-library/react';
-import { createWrapper } from '@/mocks/mockGraphqlClient';
-import LogoutButton from '../LogoutButton';
 import Paths from '@/config/paths';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
+import LogoutButton from '../LogoutButton';
 
 const navigate = vi.fn();
 

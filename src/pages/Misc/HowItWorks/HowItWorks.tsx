@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import styles from './HowItWorks.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import { Link } from 'react-router-dom';
-import Paths from '@/config/paths';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
+import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './HowItWorks.module.scss';
 
 const HowItWorks: FC = () => {
   return (

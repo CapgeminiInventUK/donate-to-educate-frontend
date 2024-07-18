@@ -1,7 +1,7 @@
-import { PillProps } from '@/types/props';
-import { FC } from 'react';
-import styles from './Pill.module.scss';
 import { PillColours } from '@/types/data';
+import type { PillProps } from '@/types/props';
+import type { FC } from 'react';
+import styles from './Pill.module.scss';
 
 export const Pill: FC<PillProps> = ({ colour, text }) => {
   const getText = (colour: PillColours): string => {

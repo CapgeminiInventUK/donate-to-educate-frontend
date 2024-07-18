@@ -1,7 +1,7 @@
+import { createWrapper } from '@/mocks/mockGraphqlClient';
+import * as store from '@/stores/useStore';
 import { render } from '@testing-library/react';
 import NavLinks from '../NavLinks';
-import * as store from '@/stores/useStore';
-import { createWrapper } from '@/mocks/mockGraphqlClient';
 
 describe('navlinks component', () => {
   it('should correctly render the links', () => {

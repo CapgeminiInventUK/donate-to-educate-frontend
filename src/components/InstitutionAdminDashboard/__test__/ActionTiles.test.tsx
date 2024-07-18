@@ -1,10 +1,10 @@
+import Paths from '@/config/paths';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
 import ActionTiles from '../EditableDashboard/ActionTiles';
 import { charityProfile, schoolProfile } from './mockData';
-import { render } from '@testing-library/react';
-import * as router from 'react-router';
-import userEvent from '@testing-library/user-event';
-import Paths from '@/config/paths';
 
 const navigate = vi.fn();
 

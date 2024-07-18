@@ -1,21 +1,21 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './ManageCharities.module.scss';
-import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Paths from '@/config/paths';
-import { useNavigate } from 'react-router-dom';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
-import { useQuery } from '@tanstack/react-query';
-import { deleteCharityProfile } from '@/graphql/mutations';
-import { DeleteCharityProfileMutation } from '@/types/api';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import RegisteredCharities from './CharitiesTables/RegisteredCharities';
-import PendingCharities from './CharitiesTables/PendingCharities';
 import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
-import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Paths from '@/config/paths';
+import { deleteCharityProfile } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { DeleteCharityProfileMutation } from '@/types/api';
+import { type SchoolOrCharityProperties, StageState } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
+import PendingCharities from './CharitiesTables/PendingCharities';
+import RegisteredCharities from './CharitiesTables/RegisteredCharities';
+import styles from './ManageCharities.module.scss';
 
 const ManageCharities: FC = () => {
   const {
@@ -56,7 +56,7 @@ const ManageCharities: FC = () => {
 
   useEffect(() => {
     stage === StageState.REMOVED && void removeCharity().then(() => navigate(0));
-  }, [stage, removeCharity, navigate, charityProperties]);
+  }, [stage, removeCharity, navigate]);
 
   return (
     <div className={dashboardStyles.subContainer}>

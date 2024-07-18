@@ -1,4 +1,4 @@
-import { SvgProps } from '@/types/props';
+import type { SvgProps } from '@/types/props';
 
 const EditIcon = ({ className = '' }: SvgProps): JSX.Element => {
   return (

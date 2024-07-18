@@ -1,13 +1,13 @@
-import { GetCharitiesByLaQuery } from '@/types/api';
-import { FC } from 'react';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import { getCharitiesByLa } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
-import CharitiesTable from './CharitiesTable';
-import { CharitiesTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import { getCharitiesByLa } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { GetCharitiesByLaQuery } from '@/types/api';
+import type { CharitiesTablesProps } from '@/types/props';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import type { FC } from 'react';
+import CharitiesTable from './CharitiesTable';
 
 const RegisteredCharities: FC<CharitiesTablesProps> = ({
   localAuthority,

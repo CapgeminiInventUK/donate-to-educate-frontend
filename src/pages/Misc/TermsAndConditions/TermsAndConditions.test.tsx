@@ -1,7 +1,7 @@
 import { create } from 'react-test-renderer';
 
-import TermsAndConditions from './TermsAndConditions';
 import { BrowserRouter as Router } from 'react-router-dom';
+import TermsAndConditions from './TermsAndConditions';
 
 it('renders correctly', () => {
   const tree = create(

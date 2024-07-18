@@ -1,6 +1,6 @@
+import { PillColours } from '@/types/data';
 import { render } from '@testing-library/react';
 import { Pill } from '../Pill';
-import { PillColours } from '@/types/data';
 
 describe('Pill', () => {
   const inputVsExpected = [

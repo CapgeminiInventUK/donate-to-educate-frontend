@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { Table, Popover } from 'antd';
-import Button from '@/components/Button/Button';
-import styles from '../ManageCharities.module.scss';
-import { SchoolsOrCharityTableProps } from '@/types/props';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import { SchoolOrCharityTableData, StageState } from '@/types/data';
-import tickIcon from '@/assets/icons/tickIcon.svg';
 import pendingIcon from '@/assets/icons/pendingIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
+import Button from '@/components/Button/Button';
+import Paths from '@/config/paths';
+import { type SchoolOrCharityTableData, StageState } from '@/types/data';
+import type { SchoolsOrCharityTableProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { Popover, Table } from 'antd';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from '../ManageCharities.module.scss';
 
 const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -75,23 +75,22 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
               className={styles.actionButtons}
               text="Remove"
               onClick={(): void => {
-                setProperties &&
-                  setProperties((charityProperties) => ({
-                    ...charityProperties,
-                    name,
-                    id: String(id),
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                    charity: {
-                      charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
-                      aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
-                    },
-                  }));
-                setStage && setStage(StageState.REMOVE);
+                setProperties?.((charityProperties) => ({
+                  ...charityProperties,
+                  name,
+                  id: String(id),
+                  user: {
+                    name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                    title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                    email: checkForStringAndReturnEmptyIfFalsy(email),
+                    phone: checkForStringAndReturnEmptyIfFalsy(phone),
+                  },
+                  charity: {
+                    charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
+                    aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
+                  },
+                }));
+                setStage?.(StageState.REMOVE);
               }}
               ariaLabel="remove"
             />
@@ -103,23 +102,22 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
               className={styles.actionButtons}
               text="View request"
               onClick={(): void => {
-                setProperties &&
-                  setProperties((properties) => ({
-                    ...properties,
-                    name,
-                    id: String(id),
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                    charity: {
-                      charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
-                      aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
-                    },
-                  }));
-                setStage && setStage(StageState.APPROVE_CHARITY);
+                setProperties?.((properties) => ({
+                  ...properties,
+                  name,
+                  id: String(id),
+                  user: {
+                    name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                    title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                    email: checkForStringAndReturnEmptyIfFalsy(email),
+                    phone: checkForStringAndReturnEmptyIfFalsy(phone),
+                  },
+                  charity: {
+                    charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
+                    aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
+                  },
+                }));
+                setStage?.(StageState.APPROVE_CHARITY);
               }}
               ariaLabel="view"
             />

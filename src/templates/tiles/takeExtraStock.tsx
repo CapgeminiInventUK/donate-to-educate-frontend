@@ -1,6 +1,6 @@
-import Image from '@/components/Image/Image';
-import excess from '@/assets/yourLocalArea/excess.webp';
 import PackagePlusIcon from '@/assets/admin/PackagePlusIcon';
+import excess from '@/assets/yourLocalArea/excess.webp';
+import Image from '@/components/Image/Image';
 import Paths from '@/config/paths';
 
 export default {

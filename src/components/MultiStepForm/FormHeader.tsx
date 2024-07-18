@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import type { FormHeaderProps } from '@/types/props';
+import type { FC } from 'react';
 import FormErrors from '../FormErrors/FormErrors';
 import styles from './MultiStepForm.module.scss';
-import { FormHeaderProps } from '@/types/props';
 
 const FormHeader: FC<FormHeaderProps> = ({
   formErrors,

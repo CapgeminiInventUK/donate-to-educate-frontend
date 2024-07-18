@@ -1,6 +1,6 @@
-import { FC } from 'react';
 import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { FC } from 'react';
 import DonateAndExcess from '../DonateAndExcess';
 
 const Excess: FC = () => {

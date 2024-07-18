@@ -1,10 +1,12 @@
-import { FC } from 'react';
-import { AddressInsetProps, CommonInputProps } from '@/types/props';
+import type { AddressInsetProps, CommonInputProps } from '@/types/props';
 import { findFullValueFromFormData } from '@/utils/formUtils';
+import type { FC } from 'react';
 import styles from './AddressInset.module.scss';
 
 const AddressInset: FC<AddressInsetProps> = ({ componentData, formData }) => {
-  const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+  const {
+    formMeta: { field = '' } = {},
+  } = componentData as CommonInputProps;
   const data = findFullValueFromFormData(formData, field);
   const { name, localAuthority, postcode } = data ?? {};
 

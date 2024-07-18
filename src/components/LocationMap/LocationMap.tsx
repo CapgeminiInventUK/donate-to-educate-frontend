@@ -1,13 +1,13 @@
-import { FC, useCallback, useState, useMemo } from 'react';
-import styles from './Map.module.scss';
 import { MapView } from '@aws-amplify/ui-react-geo';
+import { type FC, useCallback, useMemo, useState } from 'react';
+import styles from './LocationMap.module.scss';
 import '@aws-amplify/ui-react-geo/styles.css';
-import { NavigationControl, ScaleControl, Marker, Popup } from 'react-map-gl';
-import { MapProps, PopupInfo } from '@/types/props';
-import { ViewStateChangeEvent } from 'react-map-gl';
+import type { LocationMapProps, PopupInfo } from '@/types/props';
 import { MAX_ZOOM_LEVEL, MIN_ZOOM_LEVEL, SEARCH_DEFAULT_ZOOM_LEVEL } from '@/utils/globals';
+import { Marker, NavigationControl, Popup, ScaleControl } from 'react-map-gl';
+import type { ViewStateChangeEvent } from 'react-map-gl';
 
-const Map: FC<MapProps> = ({
+const LocationMap: FC<LocationMapProps> = ({
   markers,
   initialCoordinates,
   initialZoom = SEARCH_DEFAULT_ZOOM_LEVEL,
@@ -74,4 +74,4 @@ const Map: FC<MapProps> = ({
   );
 };
 
-export default Map;
+export default LocationMap;

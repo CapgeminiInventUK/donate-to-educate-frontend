@@ -1,8 +1,8 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import ClickableLogo from '../ClickableLogo';
-import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
+import ClickableLogo from '../ClickableLogo';
 
 const navigate = vi.fn();
 

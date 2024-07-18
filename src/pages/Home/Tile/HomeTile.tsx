@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './HomeTile.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import { motion } from 'framer-motion';
+import type { FC } from 'react';
+import styles from './HomeTile.module.scss';
 
 interface TileProps {
   title: string;

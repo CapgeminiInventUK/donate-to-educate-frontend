@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { SummaryPageColour } from '@/types/data';
-import styles from './MultiStepForm.module.scss';
-import Button from '../Button/Button';
-import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import { SummaryPageColour } from '@/types/data';
+import type { FormButtonsProps } from '@/types/props';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../Button/Button';
 import FormButton from '../FormButton/FormButton';
-import { FormButtonsProps } from '@/types/props';
+import styles from './MultiStepForm.module.scss';
 
 const FormButtons: FC<FormButtonsProps> = ({
   isLastPage,

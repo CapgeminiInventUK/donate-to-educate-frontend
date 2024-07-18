@@ -1,4 +1,4 @@
-import { SearchResult } from '@/types/api';
+import type { SearchResult } from '@/types/api';
 
 export const productsTablePropsCharity = {
   tableData: [

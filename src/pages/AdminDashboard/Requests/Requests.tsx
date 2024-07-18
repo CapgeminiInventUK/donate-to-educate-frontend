@@ -1,16 +1,16 @@
-import { FC, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
+import BackButton from '@/components/BackButton/BackButton';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
 import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
-import Spinner from '@/components/Spinner/Spinner';
-import BackButton from '@/components/BackButton/BackButton';
-import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
-import JoinRequests from '../../../components/JoinRequests/JoinRequests';
+import type { GetJoinRequestsQuery, GetLocalAuthoritiesQuery } from '@/types/api';
+import { type SchoolOrCharityProperties, StageState } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useState } from 'react';
 import ApprovalRequest from '../../../components/ApprovalRequest/ApprovalRequest';
+import JoinRequests from '../../../components/JoinRequests/JoinRequests';
 import dashboardStyles from '../AdminDashboard.module.scss';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState<StageState>(StageState.VIEW);

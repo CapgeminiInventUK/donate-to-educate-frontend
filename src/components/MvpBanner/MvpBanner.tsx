@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
-import styles from './MvpBanner.module.scss';
-import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
+import { type FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CloseButton from '../CloseButton/CloseButton';
+import styles from './MvpBanner.module.scss';
 
 const MvpBanner: FC = () => {
   const [hideBanner, setHideBanner] = useState(false);

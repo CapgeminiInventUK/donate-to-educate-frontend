@@ -1,9 +1,9 @@
-import { createWrapper } from '@/mocks/mockGraphqlClient';
-import PrivateRoute from '../PrivateRoute';
-import { render } from '@testing-library/react';
 import Paths from '@/config/paths';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
 import * as store from '@/stores/useStore';
+import { render } from '@testing-library/react';
 import * as router from 'react-router';
+import PrivateRoute from '../PrivateRoute';
 
 const navigate = vi.fn();
 

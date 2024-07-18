@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import styles from './AccessibilityStatement.module.scss';
-import { Link } from 'react-router-dom';
-import Paths from '@/config/paths';
 import FooterPage from '@/components/FooterPage/FooterPage';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './AccessibilityStatement.module.scss';
 
 const AccessibilityStatement: FC = () => {
   return (

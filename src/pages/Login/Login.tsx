@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import styles from './Login.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
-import FormButton from '@/components/FormButton/FormButton';
-import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import FormButton from '@/components/FormButton/FormButton';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './Login.module.scss';
 
 const Login: FC = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
-import { SectionsIconType } from '@/types/data';
+import type { SectionsIconType } from '@/types/data';
+import type { Dispatch, SetStateAction } from 'react';
 import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
-import { Dispatch, SetStateAction } from 'react';
 
 export const removeEmptyItems = (items: Record<number, string[]>): Record<number, string[]> => {
   return Object.keys(items).reduce((acc: Record<number, string[]>, key) => {

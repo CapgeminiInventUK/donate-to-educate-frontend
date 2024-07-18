@@ -1,7 +1,7 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import CookieBanner from '../CookieBanner';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import CookieBanner from '../CookieBanner';
 import styles from '../CookieBanner.module.scss';
 
 const localStorageMock = {

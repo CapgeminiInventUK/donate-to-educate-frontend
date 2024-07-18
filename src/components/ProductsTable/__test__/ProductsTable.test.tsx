@@ -1,4 +1,6 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
 import ProductsTable from '../ProductsTable';
 import {
@@ -7,8 +9,6 @@ import {
   productsTablePropsSchool,
   productsTablePropsSchoolNoSchools,
 } from './mockData';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 const navigate = vi.fn();
 

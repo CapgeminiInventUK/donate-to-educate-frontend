@@ -1,6 +1,6 @@
+import { ComponentType, FormSections } from '@/types/data';
 import { render } from '@testing-library/react';
 import FormFields from '../FormFields';
-import { ComponentType, FormSections } from '@/types/data';
 
 describe('Form fields', () => {
   it('should render an external link if form component link exists', () => {

@@ -1,4 +1,4 @@
-import { CheckmarkProps } from '@/types/props';
+import type { CheckmarkProps } from '@/types/props';
 
 const Checkmark = ({ className, isChecked }: CheckmarkProps): JSX.Element => (
   <svg

@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import LogoWhite from '@/assets/logo/LogoWhite';
-import Paths from '@/config/paths';
 import Email from '@/assets/admin/Email';
-import styles from './DeleteConfirmation.module.scss';
+import LogoWhite from '@/assets/logo/LogoWhite';
 import BackButton from '@/components/BackButton/BackButton';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './DeleteConfirmation.module.scss';
 
 const DeleteConfirmation: FC = () => {
   return (

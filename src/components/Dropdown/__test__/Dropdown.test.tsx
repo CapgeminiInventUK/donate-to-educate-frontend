@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import Dropdown from '../Dropdown';
 import userEvent from '@testing-library/user-event';
+import Dropdown from '../Dropdown';
 
 const options = [
   { value: 'one', label: 'one' },

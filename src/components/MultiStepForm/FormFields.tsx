@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { CommonInputProps, FormFieldsProps } from '@/types/props';
+import type { CommonInputProps, FormFieldsProps } from '@/types/props';
 import { createFormComponent } from '@/utils/formComponents';
-import styles from './MultiStepForm.module.scss';
-import ExternalLink from '../ExternalLink/ExternalLink';
-import AddressInset from '../AddressInset/AddressInset';
 import { returnObjectValueOrUndefined } from '@/utils/globals';
+import type { FC } from 'react';
+import AddressInset from '../AddressInset/AddressInset';
+import ExternalLink from '../ExternalLink/ExternalLink';
+import styles from './MultiStepForm.module.scss';
 
 const FormFields: FC<FormFieldsProps> = ({
   formComponents,
@@ -16,7 +16,9 @@ const FormFields: FC<FormFieldsProps> = ({
 }) => {
   return formComponents.map(
     ({ componentType, componentData, formComponentLink, classNameSuffix }, index) => {
-      const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+      const {
+        formMeta: { field = '' } = {},
+      } = componentData as CommonInputProps;
       const errorMessage = returnObjectValueOrUndefined(field, formErrors);
 
       return (

@@ -1,8 +1,8 @@
-import FormButton from '@/components/FormButton/FormButton';
-import { FC } from 'react';
-import styles from './DeclineDeleteModal.module.scss';
-import { DeclineDeleteModalProps } from '@/types/props';
 import Card from '@/components/Card/Card';
+import FormButton from '@/components/FormButton/FormButton';
+import type { DeclineDeleteModalProps } from '@/types/props';
+import type { FC } from 'react';
+import styles from './DeclineDeleteModal.module.scss';
 
 const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
   showModal,

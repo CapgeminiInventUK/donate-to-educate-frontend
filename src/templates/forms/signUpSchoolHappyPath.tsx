@@ -1,4 +1,10 @@
-import { FormTemplate, ComponentType, FormNames, FormSections, DropdownOption } from '@/types/data';
+import {
+  ComponentType,
+  type DropdownOption,
+  FormNames,
+  FormSections,
+  type FormTemplate,
+} from '@/types/data';
 import getDeclarationPageTemplate from './declarationPageTemplate';
 import getSummaryPageTemplate from './summaryPage';
 

@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
-import styles from './CookieBanner.module.scss';
 import Cookie from '@/assets/cookie/Cookie';
-import Button from '../Button/Button';
-import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
+import { type FC, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../Button/Button';
+import styles from './CookieBanner.module.scss';
 
 const cookiePreferencesSpecified = localStorage.getItem('cookieConsent') !== null;
 

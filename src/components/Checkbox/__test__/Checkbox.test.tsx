@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import Checkbox from '../Checkbox';
 import userEvent from '@testing-library/user-event';
+import Checkbox from '../Checkbox';
 
 describe('Checkbox', () => {
   it('should render component', () => {

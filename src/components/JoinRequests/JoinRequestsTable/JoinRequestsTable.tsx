@@ -1,20 +1,20 @@
-import { FC, useRef, useState } from 'react';
-import { InputRef, Table } from 'antd';
-import { ColumnsType } from 'antd/es/table';
-import { JoinRequest } from '@/types/api';
 import Button from '@/components/Button/Button';
+import type { JoinRequest } from '@/types/api';
+import { type InputRef, Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import { type FC, useRef, useState } from 'react';
 import styles from '../JoinRequests.module.scss';
 import './antDesignOverrides.scss';
-import dayjs from 'dayjs';
 import { StageState } from '@/types/data';
-import { JoinRequestsTableProps } from '@/types/props';
-import getColumnSearch from '@/utils/tableUtils';
-import { getRequestsFromData, getSortIcon } from './utils';
+import type { JoinRequestsTableProps } from '@/types/props';
 import {
   checkForStringAndReturnEmptyIfFalsy,
   sortAlphabetically,
   sortByNumber,
 } from '@/utils/globals';
+import getColumnSearch from '@/utils/tableUtils';
+import dayjs from 'dayjs';
+import { getRequestsFromData, getSortIcon } from './utils';
 
 const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
   setStage,

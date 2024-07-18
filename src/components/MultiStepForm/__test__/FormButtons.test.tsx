@@ -1,13 +1,13 @@
-import { createWrapper } from '@/mocks/mockGraphqlClient';
-import FormButtons from '../FormButtons';
-import { SummaryPageColour } from '@/types/data';
-import { render } from '@testing-library/react';
-import * as router from 'react-router';
-import userEvent from '@testing-library/user-event';
 import Paths from '@/config/paths';
-import { ButtonProps } from '@/types/props';
-import styles from '../MultiStepForm.module.scss';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { SummaryPageColour } from '@/types/data';
+import type { ButtonProps } from '@/types/props';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
 import buttonStyles from '../../FormButton/FormButton.module.scss';
+import FormButtons from '../FormButtons';
+import styles from '../MultiStepForm.module.scss';
 
 const navigate = vi.fn();
 

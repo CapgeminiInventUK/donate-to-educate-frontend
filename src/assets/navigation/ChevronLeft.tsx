@@ -1,4 +1,4 @@
-import { SvgProps } from '@/types/props';
+import type { SvgProps } from '@/types/props';
 
 const ChevronLeft = ({ className, colour }: SvgProps): JSX.Element => {
   if (colour === 'blue') {

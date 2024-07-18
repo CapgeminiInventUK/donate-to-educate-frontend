@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
-import BackButton from '../BackButton';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
+import BackButton from '../BackButton';
 
 const navigate = vi.fn();
 

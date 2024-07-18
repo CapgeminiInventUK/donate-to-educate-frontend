@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { AdminViewProps } from '@/types/props';
-import styles from './InstitutionBanner.module.scss';
+import type { Banner } from '@/types/data';
+import type { AdminViewProps } from '@/types/props';
+import type { FC } from 'react';
 import BannerItem from './BannerItem';
 import EditModeItem from './EditModeItem';
-import { Banner } from '@/types/data';
+import styles from './InstitutionBanner.module.scss';
 import { getBannerKeys, getIcon, getItemTypeString } from './utils';
 
 const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) => {

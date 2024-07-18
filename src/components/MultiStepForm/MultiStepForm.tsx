@@ -1,19 +1,19 @@
-import { MultiStepFormProps } from '@/types/props';
-import { FC, FormEvent, useEffect, useState } from 'react';
-import styles from './MultiStepForm.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { Link, useNavigate } from 'react-router-dom';
-import Spinner from '@/components/Spinner/Spinner';
-import { SummaryPageColour, ComponentType } from '@/types/data';
 import SchoolAlreadyRegistered from '@/components/SchoolAlreadyRegistered/SchoolAlreadyRegistered';
-import Card from '../Card/Card';
-import { useQueryClient } from '@tanstack/react-query';
-import FormHeader from './FormHeader';
-import FormFields from './FormFields';
-import FormButtons from './FormButtons';
-import { scrollToTheTop } from '@/utils/globals';
-import { validateForm } from '@/utils/formValidationUtils';
+import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
+import { ComponentType, SummaryPageColour } from '@/types/data';
+import type { MultiStepFormProps } from '@/types/props';
+import { validateForm } from '@/utils/formValidationUtils';
+import { scrollToTheTop } from '@/utils/globals';
+import { useQueryClient } from '@tanstack/react-query';
+import { type FC, type FormEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Card from '../Card/Card';
+import FormButtons from './FormButtons';
+import FormFields from './FormFields';
+import FormHeader from './FormHeader';
+import styles from './MultiStepForm.module.scss';
 
 const FormContainer: FC<MultiStepFormProps> = ({
   formTemplate,
@@ -88,7 +88,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
 
     if (isDeclarationPage) {
       await refetch();
-      setFormSubmitted && setFormSubmitted(true);
+      setFormSubmitted?.(true);
     }
 
     setNavigationFromCya(false);

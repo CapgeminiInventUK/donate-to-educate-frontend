@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { SummaryProps } from '@/types/props';
+import type { SummaryProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './Summary.module.scss';
 
 const Summary: FC<SummaryProps> = ({ icon, header, subHeading, infoText, body, logo }) => {

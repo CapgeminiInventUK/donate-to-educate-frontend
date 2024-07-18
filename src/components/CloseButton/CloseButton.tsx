@@ -1,6 +1,6 @@
 import Close from '@/assets/tiles/Close';
-import { CloseButtonProps } from '@/types/props';
-import { FC } from 'react';
+import type { CloseButtonProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './CloseButton.module.scss';
 
 const CloseButton: FC<CloseButtonProps> = ({ onClick }) => {

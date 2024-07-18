@@ -1,8 +1,0 @@
-node_modules
-dist
-
-vite.config.ts
-.eslintrc.cjs
-
-graphql
-src/types/api.ts

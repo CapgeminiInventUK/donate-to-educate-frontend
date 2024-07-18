@@ -1,8 +1,8 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import PublicDashboard from '../PublicDashboard';
-import { mockCharityProfileNoDetails, mockSchoolProfile } from './mockData';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import PublicDashboard from '../PublicDashboard';
+import { mockCharityProfileNoDetails, mockSchoolProfile } from './mockData';
 
 describe('Public dashboard', () => {
   it('should not show profile details if none yet set', () => {

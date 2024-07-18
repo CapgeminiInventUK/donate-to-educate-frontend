@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { HomeOutlined } from '@ant-design/icons';
-import styles from './SchoolAlreadyRegistered.module.scss';
 import Paths from '@/config/paths';
-import { FC } from 'react';
-import { SchoolAlreadyRegisteredProps } from '@/types/props';
+import type { SchoolAlreadyRegisteredProps } from '@/types/props';
+import { HomeOutlined } from '@ant-design/icons';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './SchoolAlreadyRegistered.module.scss';
 
 const SchoolAlreadyRegistered: FC<SchoolAlreadyRegisteredProps> = ({ type }) => {
   const header =

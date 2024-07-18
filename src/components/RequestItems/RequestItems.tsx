@@ -1,21 +1,21 @@
-import { FC, FormEvent, useState } from 'react';
-import styles from './RequestItems.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { RequestFormState } from '@/types/data';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { insertItemQuery } from '@/graphql/mutations';
-import { InsertItemQueryMutation } from '@/types/api';
-import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
-import { RequestItemsProps } from '@/types/props';
-import { getTextContent, validateForm } from './utils';
-import RequestItemsFormInputs from './RequestItemsForm';
-import FormErrors from '../FormErrors/FormErrors';
+import Paths from '@/config/paths';
+import { insertItemQuery } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import type { InsertItemQueryMutation } from '@/types/api';
+import type { RequestFormState } from '@/types/data';
+import type { RequestItemsProps } from '@/types/props';
 import { checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, type FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import FormErrors from '../FormErrors/FormErrors';
+import styles from './RequestItems.module.scss';
+import RequestItemsFormInputs from './RequestItemsForm';
+import { getTextContent, validateForm } from './utils';
 
 const RequestItems: FC<RequestItemsProps> = ({
   type,

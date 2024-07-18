@@ -1,9 +1,9 @@
-import { FC } from 'react';
 import ItemSelection from '@/components/ItemSelection/ItemSelection';
-import { ProfileItems } from '@/types/api';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { ProfileItems } from '@/types/api';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type { FC } from 'react';
 
 const SchoolEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{

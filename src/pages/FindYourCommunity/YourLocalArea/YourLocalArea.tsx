@@ -1,21 +1,21 @@
-import { FC } from 'react';
-import styles from './YourLocalArea.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Tile from '../../../components/Tile/Tile';
-import kidsRunning from '@/assets/icons/kidsRunning.webp';
-import Card from '@/components/Card/Card';
-import { GetSchoolsNearbyQuery } from '@/types/api';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { getSchoolsNearby } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
 import Donate from '@/assets/icons/Donate';
 import Heart from '@/assets/icons/Heart';
 import School from '@/assets/icons/School';
+import kidsRunning from '@/assets/icons/kidsRunning.webp';
+import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { getSchoolsNearby } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { GetSchoolsNearbyQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Tile from '../../../components/Tile/Tile';
+import styles from './YourLocalArea.module.scss';
 
 const YourLocalArea: FC = () => {
   const navigate = useNavigate();

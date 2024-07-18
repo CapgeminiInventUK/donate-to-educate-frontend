@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import CancelButton from '../CancelButton';
 import userEvent from '@testing-library/user-event';
+import CancelButton from '../CancelButton';
 
 describe('Cancel button', () => {
   const onClick = vi.fn();

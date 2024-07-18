@@ -1,19 +1,19 @@
-import { FC, Fragment, useRef, useState } from 'react';
-import { SearchResult } from '@/types/api';
-import { Table, Popover, InputRef } from 'antd';
-import { FilterFilled } from '@ant-design/icons';
-import { ColumnsType } from 'antd/es/table';
-import { convertMetresToMiles } from '@/utils/distance';
 import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
-import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import { convertNumberToCategory } from '@/components/ItemList/getFullItemList';
-import { useNavigate } from 'react-router-dom';
 import NoLocalOrganisations from '@/components/NoLocalOrganisations/NoLocalOrganisations';
+import ProductTypeIcon from '@/components/ProductTypeIcon/ProductTypeIcon';
 import Paths from '@/config/paths';
-import styles from './ProductsTable.module.scss';
+import type { SearchResult } from '@/types/api';
+import type { ProductsTableProps } from '@/types/props';
+import { convertMetresToMiles } from '@/utils/distance';
 import getColumnSearch from '@/utils/tableUtils';
-import { ProductsTableProps } from '@/types/props';
+import { FilterFilled } from '@ant-design/icons';
+import { type InputRef, Popover, Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import { type FC, Fragment, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './ProductsTable.module.scss';
 
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,

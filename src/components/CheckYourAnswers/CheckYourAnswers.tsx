@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { CheckYourAnswersProps } from '@/types/props';
-import styles from './CheckYourAnswers.module.scss';
+import type { CheckYourAnswersProps } from '@/types/props';
 import { checkYourAnswersDataMap } from '@/utils/formUtils';
+import type { FC } from 'react';
 import Button from '../Button/Button';
+import styles from './CheckYourAnswers.module.scss';
 
 const CheckYourAnswers: FC<CheckYourAnswersProps> = ({
   sections,

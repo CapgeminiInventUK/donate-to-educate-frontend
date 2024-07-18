@@ -1,14 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
 import Spinner from '@/components/Spinner/Spinner';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetCharityProfileQuery } from '@/types/api';
 import { getCharityProfile } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { client } from '@/graphqlClient';
 import { useStore } from '@/stores/useStore';
+import type { GetCharityProfileQuery } from '@/types/api';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
 
 const CharityAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -36,7 +36,7 @@ const CharityAdminDashboard: FC = () => {
       void refetch();
       setDataFetched(true);
     }
-  }, [refetch, setDataFetched, dataFetched]);
+  }, [refetch, dataFetched]);
 
   if (isLoading) {
     return <Spinner />;

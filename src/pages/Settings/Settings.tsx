@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import styles from './Settings.module.scss';
-import InfoTable from '@/components/InfoTable/InfoTable';
-import FormButton from '@/components/FormButton/FormButton';
 import Caution from '@/assets/icons/Caution';
 import BackButton from '@/components/BackButton/BackButton';
-import { capitaliseFirstLetter, countEmptyObjectValues } from '@/utils/globals';
+import FormButton from '@/components/FormButton/FormButton';
+import InfoTable from '@/components/InfoTable/InfoTable';
 import { useStore } from '@/stores/useStore';
+import { capitaliseFirstLetter, countEmptyObjectValues } from '@/utils/globals';
+import type { FC } from 'react';
+import styles from './Settings.module.scss';
 // import { useQuery } from '@tanstack/react-query';
 // import { client } from '@/graphqlClient';
 // import { GetLocalAuthorityUserQuery } from '@/types/api';

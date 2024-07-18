@@ -1,6 +1,6 @@
-import React from 'react';
+import type { InfoTableProps } from '@/types/props';
+import type React from 'react';
 import styles from './InfoTable.module.scss';
-import { InfoTableProps } from '@/types/props';
 
 const InfoTable: React.FC<InfoTableProps> = ({
   tableValues,

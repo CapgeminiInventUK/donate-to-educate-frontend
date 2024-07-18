@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './FormErrors.module.scss';
-import { FormErrorsProps } from '@/types/props';
+import type { FormErrorsProps } from '@/types/props';
 import { checkIfValidObjectWithData } from '@/utils/globals';
+import type { FC } from 'react';
+import styles from './FormErrors.module.scss';
 
 const FormErrors: FC<FormErrorsProps> = ({ formErrors }) => {
   return (

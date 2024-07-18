@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './ResultBanner.module.scss';
 import Email from '@/assets/admin/Email';
-import { ResultBannerProps } from '@/types/props';
-import { ResultType } from '@/types/data';
+import type { ResultType } from '@/types/data';
+import type { ResultBannerProps } from '@/types/props';
 import { capitaliseFirstLetter } from '@/utils/globals';
+import type { FC } from 'react';
+import styles from './ResultBanner.module.scss';
 
 const ResultBanner: FC<ResultBannerProps> = ({ type, name }) => {
   return (
