@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
-import Footer from '../Footer';
-import { createWrapper } from '@/mocks/mockGraphqlClient';
-import * as router from 'react-router';
-import userEvent from '@testing-library/user-event';
 import Paths from '@/config/paths';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
+import Footer from '../Footer';
 
 const navigate = vi.fn();
 

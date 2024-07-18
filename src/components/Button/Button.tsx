@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './Button.module.scss';
-import { ButtonProps } from '@/types/props';
+import type { ButtonProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type { FC } from 'react';
+import styles from './Button.module.scss';
 
 const Button: FC<ButtonProps> = ({ onClick, text, theme, className, disabled = false }) => {
   return (

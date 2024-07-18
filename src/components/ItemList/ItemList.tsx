@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import type { ItemListProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './ItemList.module.scss';
-import { getItemsIcon, getSectionsIcon } from './getIcons';
 import { convertNumberToCategory } from './getFullItemList';
-import { ItemListProps } from '@/types/props';
+import { getItemsIcon, getSectionsIcon } from './getIcons';
 
 const ItemList: FC<ItemListProps> = ({ type, items = {} }) => {
   return (

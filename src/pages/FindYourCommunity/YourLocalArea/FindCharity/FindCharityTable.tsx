@@ -1,16 +1,16 @@
-import { FC, useEffect } from 'react';
-import { convertMilesToMetres } from '@/utils/distance';
-import { GetCharitiesNearbyWithProfileQuery } from '@/types/api';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import Spinner from '@/components/Spinner/Spinner';
-import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
-import { FindCharityTableProps } from '@/types/props';
-import Map from '@components/Map/Map';
+import Spinner from '@/components/Spinner/Spinner';
+import { getCharitiesNearbyWithProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { GetCharitiesNearbyWithProfileQuery } from '@/types/api';
+import type { FindCharityTableProps } from '@/types/props';
+import { convertMilesToMetres } from '@/utils/distance';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
+import LocationMap from '@components/LocationMap/LocationMap';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
@@ -75,7 +75,7 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
       {location.pathname.includes('your-local-area') && (
         <>
           <h3>Charity map</h3>
-          <Map
+          <LocationMap
             initialCoordinates={
               data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
             }

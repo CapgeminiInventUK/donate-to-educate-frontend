@@ -1,13 +1,13 @@
-import { FC } from 'react';
-import ActionTile from '@/components/ActionTile/ActionTile';
+import ExtraStock from '@/assets/school/ExtraStock';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
-import ExtraStock from '@/assets/school/ExtraStock';
-import styles from '../InstitutionAdminDashboard.module.scss';
-import { ActionTilesProps } from '@/types/props';
+import ActionTile from '@/components/ActionTile/ActionTile';
 import Paths from '@/config/paths';
+import type { ProfileItems } from '@/types/api';
+import type { ActionTilesProps } from '@/types/props';
+import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProfileItems } from '@/types/api';
+import styles from '../InstitutionAdminDashboard.module.scss';
 
 const ActionTiles: FC<ActionTilesProps> = ({ profile, type }) => {
   const { donate, excess, request, postcode, name: organisationName, id } = profile;

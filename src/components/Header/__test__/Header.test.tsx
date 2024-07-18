@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import Header from '../Header';
 import * as mediaQuery from 'react-responsive';
+import Header from '../Header';
 
 describe('Header', () => {
   it('should render header as h1 if size prop is normal and screen size is not small', () => {

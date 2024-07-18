@@ -1,9 +1,9 @@
-import TextArea from '@/components/TextArea/TextArea';
-import FormButton from '@/components/FormButton/FormButton';
-import styles from './EditDescription.module.scss';
 import Button from '@/components/Button/Button';
-import { FC } from 'react';
-import { EditDescriptionProps } from '@/types/props';
+import FormButton from '@/components/FormButton/FormButton';
+import TextArea from '@/components/TextArea/TextArea';
+import type { EditDescriptionProps } from '@/types/props';
+import type { FC } from 'react';
+import styles from './EditDescription.module.scss';
 
 export const EditDescription: FC<EditDescriptionProps> = ({
   value,

@@ -1,12 +1,12 @@
-import styles from './InstitutionAdminDashboard.module.scss';
-import { FC, useState } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
+import type { Banner } from '@/types/data';
+import type { InstitutionAdminDashboardProps } from '@/types/props';
+import { returnObjectValueOrUndefined } from '@/utils/globals';
+import { type FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
-import { Banner } from '@/types/data';
-import { InstitutionAdminDashboardProps } from '@/types/props';
-import { returnObjectValueOrUndefined } from '@/utils/globals';
 import EditableDashboard from './EditableDashboard/EditableDashboard';
+import styles from './InstitutionAdminDashboard.module.scss';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { about: currentAbout, header } = profile;

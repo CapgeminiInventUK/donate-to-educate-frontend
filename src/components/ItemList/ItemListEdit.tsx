@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import type { SectionsIconType } from '@/types/data';
+import type { ItemListEditProps } from '@/types/props';
+import { type FC, useEffect, useState } from 'react';
+import Checkbox from '../Checkbox/Checkbox';
 import styles from './ItemList.module.scss';
 import { convertCategoryToNumber, getFullItemList } from './getFullItemList';
-import Checkbox from '../Checkbox/Checkbox';
 import { getSectionsIcon } from './getIcons';
-import { SectionsIconType } from '@/types/data';
-import { ItemListEditProps } from '@/types/props';
 import { getSelectedNames, handleToggle, selectAll } from './handlers';
 
 const ItemListEdit: FC<ItemListEditProps> = ({ setItems, items }) => {

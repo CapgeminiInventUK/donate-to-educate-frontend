@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './ProductTypeIcon.module.scss';
-import { convertNumberToCategory } from '../ItemList/getFullItemList';
-import { Popover } from 'antd';
 import ProductTypes from '@/assets/icons/ProductTypes';
-import { ProductTypeIconProps } from '@/types/props';
+import type { ProductTypeIconProps } from '@/types/props';
+import { Popover } from 'antd';
+import type { FC } from 'react';
+import { convertNumberToCategory } from '../ItemList/getFullItemList';
+import styles from './ProductTypeIcon.module.scss';
 
 const ProductTypeIcon: FC<ProductTypeIconProps> = ({ productType, colour }) => {
   return (

@@ -1,5 +1,7 @@
-import { ErrorInfo, ReactNode } from 'react';
-import {
+import type Paths from '@/config/paths';
+import type { ErrorInfo, ReactNode } from 'react';
+import type { CharityProfileHeader, Point, ProfileItems, SchoolProfileHeader } from './api';
+import type {
   ButtonProps,
   CheckYourAnswersProps,
   CheckboxProps,
@@ -11,8 +13,6 @@ import {
   TextAreaProps,
   TextInputProps,
 } from './props';
-import Paths from '@/config/paths';
-import { CharityProfileHeader, Point, ProfileItems, SchoolProfileHeader } from './api';
 
 export interface ErrorBoundaryState {
   hasError: boolean;

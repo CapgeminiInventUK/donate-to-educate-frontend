@@ -1,4 +1,4 @@
-import { NavRoute } from '@/types/data';
+import type { NavRoute } from '@/types/data';
 import Paths from './paths';
 
 export const navRoutes: NavRoute[] = [

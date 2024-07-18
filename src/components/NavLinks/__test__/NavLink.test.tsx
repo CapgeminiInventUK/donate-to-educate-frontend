@@ -1,10 +1,10 @@
-import { createWrapper } from '@/mocks/mockGraphqlClient';
-import NavLink from '../NavLink';
 import Paths from '@/config/paths';
+import { createWrapper } from '@/mocks/mockGraphqlClient';
+import * as store from '@/stores/useStore';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
-import * as store from '@/stores/useStore';
+import NavLink from '../NavLink';
 
 const navigate = vi.fn();
 

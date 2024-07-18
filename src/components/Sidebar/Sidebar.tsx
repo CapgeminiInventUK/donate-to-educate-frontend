@@ -1,10 +1,10 @@
-import { FC, useState, useRef, useCallback } from 'react';
-import styles from './Sidebar.module.scss';
-import MenuIcon from '@assets/navigation/MenuIcon';
 import CloseIcon from '@assets/navigation/CloseIcon';
+import MenuIcon from '@assets/navigation/MenuIcon';
 import useOnClickAwayListener from '@hooks/useOnClickAwayListener';
-import NavLinks from '../NavLinks/NavLinks';
+import { type FC, useCallback, useRef, useState } from 'react';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
+import NavLinks from '../NavLinks/NavLinks';
+import styles from './Sidebar.module.scss';
 
 const Sidebar: FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -12,7 +12,7 @@ const Sidebar: FC = () => {
 
   useOnClickAwayListener(
     containerRef,
-    useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen])
+    useCallback(() => setIsDrawerOpen(false), [])
   );
 
   const onLinkClicked = (): void => {

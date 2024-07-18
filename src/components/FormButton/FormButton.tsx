@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './FormButton.module.scss';
-import { FormButtonProps } from '@/types/props';
+import type { FormButtonProps } from '@/types/props';
 import { getArrowColour } from '@/utils/button';
+import type { FC } from 'react';
+import styles from './FormButton.module.scss';
 
 const FormButton: FC<FormButtonProps> = ({
   onClick,

@@ -1,21 +1,21 @@
-import { FC, useState } from 'react';
-import styles from './RequestItems.module.scss';
-import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
-import { RequestFormState } from '@/types/data';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { insertItemQuery } from '@/graphql/mutations';
-import { InsertItemQueryMutation } from '@/types/api';
-import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
-import { RequestItemsProps } from '@/types/props';
+import FormButton from '@/components/FormButton/FormButton';
+import Paths from '@/config/paths';
+import { insertItemQuery } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import type { InsertItemQueryMutation } from '@/types/api';
+import type { RequestFormState } from '@/types/data';
+import type { RequestItemsProps } from '@/types/props';
 import { checkAllObjectValuesTruthy } from '@/utils/globals';
-import getTextContent from './getTextContent';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import styles from './RequestItems.module.scss';
 import RequestItemsFormInputs from './RequestItemsFormInputs';
+import getTextContent from './getTextContent';
 
 const RequestItems: FC<RequestItemsProps> = ({
   type,

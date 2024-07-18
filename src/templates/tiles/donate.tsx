@@ -1,6 +1,6 @@
 import Donate from '@/assets/yourLocalArea/Donate';
-import Image from '@/components/Image/Image';
 import donateImg from '@/assets/yourLocalArea/donate.webp';
+import Image from '@/components/Image/Image';
 import Paths from '@/config/paths';
 
 export default {

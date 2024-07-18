@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { ClickableLogoProps } from '@/types/props';
-import LogoWhite from '@assets/logo/LogoWhite';
-import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import type { ClickableLogoProps } from '@/types/props';
 import LogoBlue from '@assets/logo/LogoBlue';
+import LogoWhite from '@assets/logo/LogoWhite';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ClickableLogo: FC<ClickableLogoProps> = ({ colour, className }) => {
   const navigate = useNavigate();

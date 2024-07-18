@@ -1,4 +1,4 @@
-import { GetJoinRequestsQuery } from '@/types/api';
+import type { GetJoinRequestsQuery } from '@/types/api';
 
 export const dataWithSchoolAndCharity: GetJoinRequestsQuery = {
   getJoinRequests: [

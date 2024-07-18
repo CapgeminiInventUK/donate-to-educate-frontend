@@ -1,25 +1,25 @@
-import { FC, useEffect, useState } from 'react';
-import { signUp, confirmSignUp } from 'aws-amplify/auth';
-import FormButton from '@/components/FormButton/FormButton';
-import TextInput from '@/components/TextInput/TextInput';
-import VerificationInput from 'react-verification-input';
-import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import Paths from '@/config/paths';
-import styles from './AddUser.module.scss';
-import Spinner from '@/components/Spinner/Spinner';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from '@aws-amplify/api-graphql';
-import { DeleteSignUpDataMutation, GetSignUpDataQuery } from '@/types/api';
-import { getSignUpData } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
-import { useStore } from '@/stores/useStore';
-import Card from '@/components/Card/Card';
-import { deleteSignUpData } from '@/graphql/mutations';
-import { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 import TickIcon from '@/assets/sign-up/tick';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import FormButton from '@/components/FormButton/FormButton';
+import Spinner from '@/components/Spinner/Spinner';
+import TextInput from '@/components/TextInput/TextInput';
+import Paths from '@/config/paths';
+import { deleteSignUpData } from '@/graphql/mutations';
+import { getSignUpData } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import { useStore } from '@/stores/useStore';
+import type { DeleteSignUpDataMutation, GetSignUpDataQuery } from '@/types/api';
+import type { ConfirmSignUpParameters, SignUpParameters } from '@/types/data';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type { GraphQLQuery } from '@aws-amplify/api-graphql';
+import { useQuery } from '@tanstack/react-query';
+import { confirmSignUp, signUp } from 'aws-amplify/auth';
+import { type FC, useEffect, useState } from 'react';
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import VerificationInput from 'react-verification-input';
+import styles from './AddUser.module.scss';
 
 async function handleConfirmSignUp({ email, code }: ConfirmSignUpParameters): Promise<string> {
   const { nextStep } = await confirmSignUp({

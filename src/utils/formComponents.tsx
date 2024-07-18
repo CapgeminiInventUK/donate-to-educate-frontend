@@ -1,6 +1,20 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { ComponentDataPropsType, ComponentType, FormDataItem, FormMeta } from '@/types/data';
+import LogoPurple from '@/assets/logo/LogoPurple';
+import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
+import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
+import Checkbox from '@/components/Checkbox/Checkbox';
+import Dropdown from '@/components/Dropdown/Dropdown';
+import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
+import RadioGroup from '@/components/RadioGroup/RadioGroup';
+import Summary from '@/components/Summary/Summary';
+import TextArea from '@/components/TextArea/TextArea';
+import TextInput from '@/components/TextInput/TextInput';
 import {
+  type ComponentDataPropsType,
+  ComponentType,
+  type FormDataItem,
+  type FormMeta,
+} from '@/types/data';
+import type {
   CheckYourAnswersProps,
   CheckboxProps,
   CommonInputProps,
@@ -11,19 +25,10 @@ import {
   TextAreaProps,
   TextInputProps,
 } from '@/types/props';
-import TextInput from '@/components/TextInput/TextInput';
-import RadioGroup from '@/components/RadioGroup/RadioGroup';
-import Checkbox from '@/components/Checkbox/Checkbox';
-import TextArea from '@/components/TextArea/TextArea';
-import Dropdown from '@/components/Dropdown/Dropdown';
-import FormIntroPage from '@/components/FormIntroPage/FormIntroPage';
-import CheckYourAnswers from '@/components/CheckYourAnswers/CheckYourAnswers';
-import { findValueFromFormData } from './formUtils';
-import Summary from '@/components/Summary/Summary';
-import CannotFindSchool from '@/components/CannotFindSchool/CannotFindSchool';
-import { notification } from 'antd';
-import LogoPurple from '@/assets/logo/LogoPurple';
 import { CloseOutlined } from '@ant-design/icons';
+import { notification } from 'antd';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+import { findValueFromFormData } from './formUtils';
 
 export const createFormComponent = (
   componentType: ComponentType,
@@ -38,7 +43,9 @@ export const createFormComponent = (
   errorMessage?: string,
   optional?: boolean
 ): ReactNode => {
-  const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+  const {
+    formMeta: { field = '' } = {},
+  } = componentData as CommonInputProps;
 
   const value = findValueFromFormData(formData, field);
   switch (componentType) {

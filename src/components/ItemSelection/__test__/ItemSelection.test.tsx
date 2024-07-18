@@ -1,9 +1,9 @@
 import { createWrapperWithState } from '@/mocks/mockGraphqlClient';
-import ItemSelection from '../ItemSelection';
 import { render } from '@testing-library/react';
-import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
 import styles from '../../FormButton/FormButton.module.scss';
+import ItemSelection from '../ItemSelection';
 
 const navigate = vi.fn();
 

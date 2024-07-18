@@ -1,18 +1,18 @@
-import { FC, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
+import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import LoginBanner from '@/components/LoginBanner/LoginBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { useStore } from '@/stores/useStore';
+import type { AccountType } from '@/types/data';
+import { getRedirectUrl } from '@/utils/account';
 import FormButton from '@components/FormButton/FormButton';
 import TextInput from '@components/TextInput/TextInput';
-import LoginBanner from '@/components/LoginBanner/LoginBanner';
-import Paths from '@/config/paths';
 import { breakpoints } from '@utils/globals';
+import { type FC, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Link, Navigate } from 'react-router-dom';
 import styles from '../Login.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import Spinner from '@/components/Spinner/Spinner';
-import { getRedirectUrl } from '@/utils/account';
-import { useStore } from '@/stores/useStore';
-import { AccountType } from '@/types/data';
-import Card from '@/components/Card/Card';
 
 const SignIn: FC = () => {
   const [email, setEmail] = useState<string>('');

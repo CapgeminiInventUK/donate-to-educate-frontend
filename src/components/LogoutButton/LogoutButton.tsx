@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { useNavigate } from 'react-router';
-import Paths from '@/config/paths';
-import styles from './LogoutButton.module.scss';
-import { useStore } from '@/stores/useStore';
 import ExitIcon from '@/assets/icons/exitIcon.svg';
+import Paths from '@/config/paths';
+import { useStore } from '@/stores/useStore';
+import type { LogoutButtonProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
-import { LogoutButtonProps } from '@/types/props';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router';
+import styles from './LogoutButton.module.scss';
 
 const LogoutButton: FC<LogoutButtonProps> = ({ className }) => {
   const state = useStore((state) => state);

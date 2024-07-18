@@ -1,16 +1,16 @@
-import { FormComponent, FormDataItem, FormErrors } from '@/types/data';
-import { formatPhoneNumber } from './formUtils';
-import { CommonInputProps } from '@/types/props';
-import { QueryClient } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsNearbyQuery } from '@/types/api';
 import { getSchoolsNearby } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { GetSchoolsNearbyQuery } from '@/types/api';
+import { type FormComponent, type FormDataItem, FormErrors } from '@/types/data';
+import type { CommonInputProps } from '@/types/props';
+import type { QueryClient } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { phone } from 'phone';
+import type { Dispatch, SetStateAction } from 'react';
 import { isLength, isPostalCode } from 'validator';
 import isEmail from 'validator/lib/isEmail';
+import { formatPhoneNumber } from './formUtils';
 import { checkForStringAndReturnEmptyIfFalsy, phoneNumberRegex } from './globals';
-import { phone } from 'phone';
-import { Dispatch, SetStateAction } from 'react';
 
 export const validateFormInputField = (
   formData: FormDataItem[],
@@ -53,7 +53,9 @@ export const getFormErrors = (
   formData: FormDataItem[]
 ): Record<string, string> => {
   return formComponents.reduce((acc: Record<string, string>, { componentData }) => {
-    const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
+    const {
+      formMeta: { field = '' } = {},
+    } = componentData as CommonInputProps;
     const error = validateFormInputField(formData, field);
     if (error) {
       acc[field] = error;

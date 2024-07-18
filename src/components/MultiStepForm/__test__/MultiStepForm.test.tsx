@@ -1,12 +1,12 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
+import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
 import signUpSchoolHappyPath from '@/templates/forms/signUpSchoolHappyPath';
-import * as router from 'react-router';
-import FormContainer from '../MultiStepForm';
+import type { FormDataItem } from '@/types/data';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
+import FormContainer from '../MultiStepForm';
 import { completedSchoolSignUpData } from './mockData';
-import { FormDataItem } from '@/types/data';
-import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
 
 const navigate = vi.fn();
 

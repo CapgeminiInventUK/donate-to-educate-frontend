@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import Email from '@/assets/admin/Email';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import Paths from '@/config/paths';
-import Email from '@/assets/admin/Email';
-import styles from './SchoolContactConfirmation.module.scss';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './SchoolContactConfirmation.module.scss';
 
 const SchoolContactConfirmation: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; id: string }>(

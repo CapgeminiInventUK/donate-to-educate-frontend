@@ -1,14 +1,14 @@
-import { GetSchoolJoinRequestsByLaQuery } from '@/types/api';
-import { FC } from 'react';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import { getSchoolJoinRequestsByLa } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
-import SchoolsTable from './SchoolsTable';
-import { SchoolsTablesProps } from '@/types/props';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import { getSchoolJoinRequestsByLa } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { GetSchoolJoinRequestsByLaQuery } from '@/types/api';
+import type { SchoolsTablesProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import type { FC } from 'react';
+import SchoolsTable from './SchoolsTable';
 
 const PendingSchools: FC<SchoolsTablesProps> = ({
   localAuthority,

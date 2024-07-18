@@ -1,7 +1,7 @@
-import { FC, useState } from 'react';
-import styles from './ShowHide.module.scss';
-import ShowEye from '@/assets/tiles/ShowEye';
 import HideEye from '@/assets/tiles/HideEye';
+import ShowEye from '@/assets/tiles/ShowEye';
+import { type FC, useState } from 'react';
+import styles from './ShowHide.module.scss';
 
 interface ShowHideProps {
   onChangePasswordVisibility: (show: boolean) => void;

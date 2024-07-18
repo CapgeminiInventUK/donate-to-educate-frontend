@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import { RadioGroupProps } from '@/types/props';
+import type { RadioGroupProps } from '@/types/props';
+import { type FC, useState } from 'react';
 import RadioButton from '../RadioButton/RadioButton';
 
 const RadioGroup: FC<RadioGroupProps> = ({ name, values, labels, className, handleChange }) => {

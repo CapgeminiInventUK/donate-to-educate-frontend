@@ -1,9 +1,9 @@
+import styles from '@/components/Button/Button.module.scss';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import * as router from 'react-router';
-import InternalLink from '../InternalLink';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import styles from '@/components/Button/Button.module.scss';
+import * as router from 'react-router';
+import InternalLink from '../InternalLink';
 
 const navigate = vi.fn();
 

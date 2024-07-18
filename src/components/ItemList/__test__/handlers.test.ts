@@ -1,4 +1,4 @@
-import { SectionsIconType } from '@/types/data';
+import type { SectionsIconType } from '@/types/data';
 import { getItems, getSelectedNames, removeEmptyItems, selectAll } from '../handlers';
 
 describe('handlers', () => {

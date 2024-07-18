@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './CancelButton.module.scss';
-import { ButtonProps } from '@/types/props';
+import type { ButtonProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type { FC } from 'react';
+import styles from './CancelButton.module.scss';
 
 const CancelButton: FC<
   Pick<ButtonProps, 'onClick' | 'className'> & { theme: 'white' | 'blue' }

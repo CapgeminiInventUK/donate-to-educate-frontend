@@ -1,23 +1,23 @@
-import { FC, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { registerLocalAuthority } from '@/graphql/mutations';
-import { useQuery } from '@tanstack/react-query';
-import TextInput from '@/components/TextInput/TextInput';
-import FormButton from '@/components/FormButton/FormButton';
-import TextArea from '@/components/TextArea/TextArea';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import FormButton from '@/components/FormButton/FormButton';
+import FormErrors from '@/components/FormErrors/FormErrors';
+import TextArea from '@/components/TextArea/TextArea';
+import TextInput from '@/components/TextInput/TextInput';
 import Paths from '@/config/paths';
-import { RegisterLocalAuthorityMutation } from '@/types/api';
+import { registerLocalAuthority } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { RegisterLocalAuthorityMutation } from '@/types/api';
+import type { FormState } from '@/types/data';
+import { validateFormInputField } from '@/utils/formValidationUtils';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, type FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
-import { validateFormInputField } from '@/utils/formValidationUtils';
-import FormErrors from '@/components/FormErrors/FormErrors';
-import { FormState } from '@/types/data';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
 
 const LocalAuthoritySignUp: FC = () => {
   const [formState, setFormState] = useState<FormState>({

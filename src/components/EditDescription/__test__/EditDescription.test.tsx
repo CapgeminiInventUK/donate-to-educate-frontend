@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import { EditDescription } from '../EditDescription';
 import userEvent from '@testing-library/user-event';
+import { EditDescription } from '../EditDescription';
 
 describe('Edit description', () => {
   const setValue = vi.fn();

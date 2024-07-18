@@ -1,7 +1,7 @@
 import { FormNames, FormSections } from '@/types/data';
 import { render } from '@testing-library/react';
-import CheckYourAnswers from '../CheckYourAnswers';
 import userEvent from '@testing-library/user-event';
+import CheckYourAnswers from '../CheckYourAnswers';
 import styles from '../CheckYourAnswers.module.scss';
 
 describe('Check your answers', () => {

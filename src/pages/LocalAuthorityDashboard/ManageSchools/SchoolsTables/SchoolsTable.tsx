@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { Table, Popover } from 'antd';
-import Button from '@/components/Button/Button';
-import styles from '../ManageSchools.module.scss';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import { StageState, SchoolOrCharityTableData } from '@/types/data';
-import { SchoolsOrCharityTableProps } from '@/types/props';
-import tickIcon from '@/assets/icons/tickIcon.svg';
 import pendingIcon from '@/assets/icons/pendingIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
+import Button from '@/components/Button/Button';
+import Paths from '@/config/paths';
+import { type SchoolOrCharityTableData, StageState } from '@/types/data';
+import type { SchoolsOrCharityTableProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { Popover, Table } from 'antd';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from '../ManageSchools.module.scss';
 
 const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setProperties }) => {
   const navigate = useNavigate();
@@ -66,20 +66,19 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
               className={styles.actionButtons}
               text="Remove"
               onClick={(): void => {
-                setProperties &&
-                  setProperties((schoolProperties) => ({
-                    ...schoolProperties,
-                    name,
-                    id: String(urn),
-                    urn,
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                  }));
-                setStage && setStage(StageState.REMOVE);
+                setProperties?.((schoolProperties) => ({
+                  ...schoolProperties,
+                  name,
+                  id: String(urn),
+                  urn,
+                  user: {
+                    name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                    title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                    email: checkForStringAndReturnEmptyIfFalsy(email),
+                    phone: checkForStringAndReturnEmptyIfFalsy(phone),
+                  },
+                }));
+                setStage?.(StageState.REMOVE);
               }}
               ariaLabel="remove"
             />
@@ -91,20 +90,19 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
               className={styles.actionButtons}
               text="View request"
               onClick={(): void => {
-                setProperties &&
-                  setProperties((schoolProperties) => ({
-                    ...schoolProperties,
-                    name,
-                    id: String(id),
-                    urn,
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                  }));
-                setStage && setStage(StageState.APPROVE_SCHOOL);
+                setProperties?.((schoolProperties) => ({
+                  ...schoolProperties,
+                  name,
+                  id: String(id),
+                  urn,
+                  user: {
+                    name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
+                    title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
+                    email: checkForStringAndReturnEmptyIfFalsy(email),
+                    phone: checkForStringAndReturnEmptyIfFalsy(phone),
+                  },
+                }));
+                setStage?.(StageState.APPROVE_SCHOOL);
               }}
               ariaLabel="view"
             />

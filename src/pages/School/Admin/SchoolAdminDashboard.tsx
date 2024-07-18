@@ -1,14 +1,14 @@
-import { FC, useEffect, useState } from 'react';
-import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GetSchoolProfileQuery } from '@/types/api';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { getSchoolProfile } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
+import Spinner from '@/components/Spinner/Spinner';
+import { getSchoolProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
 import { useStore } from '@/stores/useStore';
+import type { GetSchoolProfileQuery } from '@/types/api';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
 
 const SchoolAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -39,7 +39,7 @@ const SchoolAdminDashboard: FC = () => {
     if (data) {
       window.history.replaceState({ postcode: data?.getSchoolProfile?.postcode }, '');
     }
-  }, [refetch, setDataFetched, dataFetched, data]);
+  }, [refetch, dataFetched, data]);
 
   if (isLoading) {
     return <Spinner />;

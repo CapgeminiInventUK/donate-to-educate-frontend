@@ -1,6 +1,6 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered';
 import { render } from '@testing-library/react';
+import SchoolAlreadyRegistered from '../SchoolAlreadyRegistered';
 
 describe('School already registered', () => {
   it('should render component', () => {

@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HttpResponse, graphql } from 'msw';
-import { ComponentType, FC, ReactNode } from 'react';
+import type { ComponentType, FC, ReactNode } from 'react';
+import { MemoryRouter, BrowserRouter as Router } from 'react-router-dom';
 import { server } from './server';
-import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
 
 export const createTestQueryClient = (): QueryClient =>
   new QueryClient({

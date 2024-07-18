@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
+import type { DropdownOption, FilterDropdownOption } from '@/types/data';
+import type { DropdownProps } from '@/types/props';
+import { type FC, useState } from 'react';
+import Select, { type SingleValue } from 'react-select';
 import styles from './Dropdown.module.scss';
-import { DropdownProps } from '@/types/props';
-import Select, { SingleValue } from 'react-select';
-import { DropdownOption, FilterDropdownOption } from '@/types/data';
 import './ReactSelectOverrides.scss';
 import { getValueFromOptionsByLabel } from '@/utils/formUtils';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
@@ -25,8 +25,9 @@ const Dropdown: FC<DropdownProps> = ({
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
-    onChange &&
-      onChange(checkForStringAndReturnEmptyIfFalsy(option?.label), formMeta, { ...option });
+    onChange?.(checkForStringAndReturnEmptyIfFalsy(option?.label), formMeta, {
+      ...option,
+    });
   };
 
   const onSearch = (newValue: string): void => {

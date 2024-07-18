@@ -1,4 +1,4 @@
-import { ResourcesConfig } from 'aws-amplify';
+import type { ResourcesConfig } from 'aws-amplify';
 import { z } from 'zod';
 
 const envSchema = z.object({

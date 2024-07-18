@@ -1,4 +1,4 @@
-import { SvgProps } from '@/types/props';
+import type { SvgProps } from '@/types/props';
 
 const ExtraStock = ({ className, colour, width, height }: SvgProps): JSX.Element => {
   return (

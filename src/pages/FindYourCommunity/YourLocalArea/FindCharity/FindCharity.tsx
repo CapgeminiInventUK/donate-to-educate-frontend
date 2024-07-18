@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './FindCharity.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
 import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Card from '@/components/Card/Card';
+import type { FC } from 'react';
+import styles from './FindCharity.module.scss';
 import FindCharityTable from './FindCharityTable';
 
 const FindCharity: FC = () => {

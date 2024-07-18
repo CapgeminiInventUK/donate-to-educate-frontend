@@ -1,12 +1,12 @@
-import { Button as SearchButton, Input, Space } from 'antd';
 import Button from '@/components/Button/Button';
-import { ColumnType } from 'antd/es/table';
-import { SearchOutlined } from '@ant-design/icons';
-import { FilterConfirmProps } from 'antd/es/table/interface';
-import Highlighter from 'react-highlight-words';
 import Paths from '@/config/paths';
-import { SearchResult } from '@/types/api';
-import { getColumnSearchProps } from '@/types/props';
+import type { SearchResult } from '@/types/api';
+import type { getColumnSearchProps } from '@/types/props';
+import { SearchOutlined } from '@ant-design/icons';
+import { Input, Button as SearchButton, Space } from 'antd';
+import type { ColumnType } from 'antd/es/table';
+import type { FilterConfirmProps } from 'antd/es/table/interface';
+import Highlighter from 'react-highlight-words';
 
 const getColumnSearch = <T,>({
   dataIndex,
@@ -122,7 +122,9 @@ const getColumnSearch = <T,>({
             }
             ariaLabel={`name-${text}`}
             onClick={() =>
-              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+              navigate?.(dashboardLink, {
+                state: { urn: id, name, id, postcode },
+              })
             }
           />
         ) : (
@@ -133,7 +135,9 @@ const getColumnSearch = <T,>({
             text={text}
             ariaLabel={`name-${text}`}
             onClick={() =>
-              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+              navigate?.(dashboardLink, {
+                state: { urn: id, name, id, postcode },
+              })
             }
           />
         );

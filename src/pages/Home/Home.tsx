@@ -1,21 +1,21 @@
-import { FC, useRef } from 'react';
-import styles from './Home.module.scss';
-import Image from '@components/Image/Image';
-import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
-import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
-import Header from '@/components/Header/Header';
-import Tile from './Tile/HomeTile';
-import People from '@/assets/home/tiles/People';
+import Archive from '@/assets/home/helpPupils/Archive';
+import Star from '@/assets/home/helpPupils/Star';
 import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';
+import People from '@/assets/home/tiles/People';
 import FormButton from '@/components/FormButton/FormButton';
-import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
-import { Link, useNavigate } from 'react-router-dom';
-import Star from '@/assets/home/helpPupils/Star';
-import Archive from '@/assets/home/helpPupils/Archive';
-import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
+import Header from '@/components/Header/Header';
+import { HeroBanner } from '@/components/HeroBanner/HeroBanner';
 import Paths from '@/config/paths';
+import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
+import westSussexCouncilLogo from '@assets/logo/WestSussexCouncilLogo.webp';
+import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
+import Image from '@components/Image/Image';
 import { motion } from 'framer-motion';
+import { type FC, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './Home.module.scss';
+import Tile from './Tile/HomeTile';
 
 const Home: FC = () => {
   const navigate = useNavigate();

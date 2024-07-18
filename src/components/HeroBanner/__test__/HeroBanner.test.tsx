@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import { HeroBanner } from '../HeroBanner';
 import userEvent from '@testing-library/user-event';
+import { HeroBanner } from '../HeroBanner';
 
 describe('Hero banner', () => {
   it('should handle get involved text click', async () => {

@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import RadioGroup from '../RadioGroup/RadioGroup';
-import TextInput from '../TextInput/TextInput';
-import TextArea from '../TextArea/TextArea';
-import getTextContent from './getTextContent';
-import { RequestItemsFormInputsProps } from '@/types/props';
-import styles from './RequestItems.module.scss';
+import type { RequestItemsFormInputsProps } from '@/types/props';
 import { capitaliseFirstLetter } from '@/utils/globals';
+import type { FC } from 'react';
+import RadioGroup from '../RadioGroup/RadioGroup';
+import TextArea from '../TextArea/TextArea';
+import TextInput from '../TextInput/TextInput';
+import styles from './RequestItems.module.scss';
+import getTextContent from './getTextContent';
 
 const RequestItemsFormInputs: FC<RequestItemsFormInputsProps> = ({
   type,

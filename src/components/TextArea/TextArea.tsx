@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
-import { TextAreaProps } from '@/types/props';
-import styles from './TextArea.module.scss';
+import type { TextAreaProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type React from 'react';
+import { type FC, useState } from 'react';
+import styles from './TextArea.module.scss';
 
 const maxCharacters = 1000;
 

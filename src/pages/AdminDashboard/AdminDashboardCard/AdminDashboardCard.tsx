@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import Spinner from '@/components/Spinner/Spinner';
-import styles from './AdminDashboardCard.module.scss';
-import { AdminDashboardCardProps } from '@/types/props';
-import { motion } from 'framer-motion';
 import { Pill } from '@/components/Pill/Pill';
+import Spinner from '@/components/Spinner/Spinner';
 import { PillColours } from '@/types/data';
+import type { AdminDashboardCardProps } from '@/types/props';
+import { motion } from 'framer-motion';
+import type { FC } from 'react';
+import styles from './AdminDashboardCard.module.scss';
 
 const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   isLoading,

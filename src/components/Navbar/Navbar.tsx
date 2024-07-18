@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './Navbar.module.scss';
-import NavLinks from '../NavLinks/NavLinks';
+import type { FC } from 'react';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
+import NavLinks from '../NavLinks/NavLinks';
+import styles from './Navbar.module.scss';
 
 const Navbar: FC = () => (
   <nav className={styles.container}>

@@ -1,23 +1,23 @@
-import { useState, useRef, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { InputRef, Table } from 'antd';
-import { FilterFilled } from '@ant-design/icons';
-import { GraphQLQuery } from 'aws-amplify/api';
+import BackButton from '@/components/BackButton/BackButton';
+import Button from '@/components/Button/Button';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { Pill } from '@/components/Pill/Pill';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
 import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
+import type { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import { PillColours } from '@/types/data';
+import getColumnSearch from '@/utils/tableUtils';
+import { FilterFilled } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
-import { Pill } from '@/components/Pill/Pill';
-import Button from '@/components/Button/Button';
-import BackButton from '@/components/BackButton/BackButton';
-import Spinner from '@/components/Spinner/Spinner';
-import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
-import Paths from '@/config/paths';
+import { type InputRef, Table } from 'antd';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
-import getColumnSearch from '@/utils/tableUtils';
-import { PillColours } from '@/types/data';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');

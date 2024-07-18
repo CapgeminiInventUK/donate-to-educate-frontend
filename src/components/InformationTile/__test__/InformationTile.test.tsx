@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import InformationTile from '../InformationTile';
 import userEvent from '@testing-library/user-event';
+import InformationTile from '../InformationTile';
 
 describe('Information tile', () => {
   it('should not render button if no on click handler passed as a prop', () => {

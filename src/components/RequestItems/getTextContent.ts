@@ -1,4 +1,4 @@
-import { ItemsIconType, RequestItemsTextContent } from '@/types/data';
+import type { ItemsIconType, RequestItemsTextContent } from '@/types/data';
 
 const getTextContent = (
   type: ItemsIconType,

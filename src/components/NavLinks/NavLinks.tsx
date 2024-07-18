@@ -1,13 +1,13 @@
-import { FC } from 'react';
-import { Route, NavLinksProps } from '@/types/props';
-import NavLink from './NavLink';
-import Paths from '@/config/paths';
-import routes from '@/config/routes';
-import styles from './NavLinks.module.scss';
-import { NavRoute } from '@/types/data';
 import { navRoutes } from '@/config/navRoutes';
+import type Paths from '@/config/paths';
+import routes from '@/config/routes';
 import { useStore } from '@/stores/useStore';
+import type { NavRoute } from '@/types/data';
+import type { NavLinksProps, Route } from '@/types/props';
+import type { FC } from 'react';
 import LogoutButton from '../LogoutButton/LogoutButton';
+import NavLink from './NavLink';
+import styles from './NavLinks.module.scss';
 
 const NavLinks: FC<NavLinksProps> = ({ className, onLinkClicked }) => {
   const user = useStore((state) => state.user);

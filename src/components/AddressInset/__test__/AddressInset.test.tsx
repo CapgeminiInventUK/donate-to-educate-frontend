@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
 import { FormSections } from '@/types/data';
+import { render } from '@testing-library/react';
 import AddressInset from '../AddressInset';
 
 describe('Address Inset', () => {

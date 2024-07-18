@@ -1,25 +1,25 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './CharityEdit.module.scss';
-import ItemListEdit from '@/components/ItemList/ItemListEdit';
+import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { ProfileItems, UpdateCharityProfileMutation } from '@/types/api';
-import { updateCharityProfile } from '@/graphql/mutations';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { EditDescription } from '../../../components/EditDescription/EditDescription';
-import { ContentType } from '@/types/props';
+import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import Paths from '@/config/paths';
-import { useNavigate } from 'react-router-dom';
-import BackButton from '@/components/BackButton/BackButton';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { updateCharityProfile } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
 import useAuthToken from '@/hooks/useAuthToken';
-import Card from '@/components/Card/Card';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { ProfileItems, UpdateCharityProfileMutation } from '@/types/api';
+import type { ItemsIconType } from '@/types/data';
+import type { ContentType } from '@/types/props';
 import { openNotification } from '@/utils/formComponents';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
-import { ItemsIconType } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EditDescription } from '../../../components/EditDescription/EditDescription';
+import styles from './CharityEdit.module.scss';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -153,11 +153,9 @@ const CharityEdit: FC = () => {
 
   useEffect(() => {
     setSaveDisabled(false);
-  }, [items]);
+  }, []);
 
-  {
-    /* // TODO refactor this and the schoolEdit in a later iteration (this use exists to setSaveDisabled at the end of the process queue, once items have all been set) */
-  }
+  // TODO refactor this and the schoolEdit in a later iteration (this use exists to setSaveDisabled at the end of the process queue, once items have all been set)
   useEffect(() => {
     setTimeout(() => {
       setSaveDisabled(true);
@@ -231,7 +229,10 @@ const CharityEdit: FC = () => {
                     void refetch();
                   }}
                   handleCancel={() => {
-                    setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
+                    setContent({
+                      ...content,
+                      whatToExpect: whatToExpectTestBeforeEdit,
+                    });
                     setEditState(false);
                   }}
                 />
@@ -266,7 +267,10 @@ const CharityEdit: FC = () => {
                     void refetch();
                   }}
                   handleCancel={() => {
-                    setContent({ ...content, actionText: actionTextBeforeEdit });
+                    setContent({
+                      ...content,
+                      actionText: actionTextBeforeEdit,
+                    });
                     setEditStateActionText(false);
                   }}
                 />

@@ -1,15 +1,19 @@
-import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
-import VerificationInput from 'react-verification-input';
-import { ConfirmResetPasswordInput, confirmResetPassword, resetPassword } from 'aws-amplify/auth';
-import Paths from '@/config/paths';
-import TextInput from '@/components/TextInput/TextInput';
+import BackButton from '@/components/BackButton/BackButton';
 import FormButton from '@/components/FormButton/FormButton';
 import LoginBanner from '@/components/LoginBanner/LoginBanner';
+import TextInput from '@/components/TextInput/TextInput';
+import Paths from '@/config/paths';
 import { breakpoints } from '@/utils/globals';
+import {
+  type ConfirmResetPasswordInput,
+  confirmResetPassword,
+  resetPassword,
+} from 'aws-amplify/auth';
+import { type FC, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
+import VerificationInput from 'react-verification-input';
 import styles from './ResetPassword.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
 
 const ResetPassword: FC = () => {
   const [email, setEmail] = useState('');

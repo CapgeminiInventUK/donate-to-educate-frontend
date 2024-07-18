@@ -1,3 +1,5 @@
+import { createTestQueryClient } from '@/mocks/mockGraphqlClient';
+import { nonExistentPostcode, validPostcode } from '@/mocks/mockParams';
 import { ComponentType, FormErrors, FormSections } from '@/types/data';
 import {
   getFormErrors,
@@ -5,8 +7,6 @@ import {
   validateFormInputField,
   validatePostcodeAndAddToFormErrors,
 } from '../formValidationUtils';
-import { createTestQueryClient } from '@/mocks/mockGraphqlClient';
-import { nonExistentPostcode, validPostcode } from '@/mocks/mockParams';
 
 describe('validateFormInputField', () => {
   const tooLongMessage = Array.from(Array(500))

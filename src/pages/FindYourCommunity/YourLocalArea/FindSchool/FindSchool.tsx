@@ -1,22 +1,22 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './FindSchool.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import { Link } from 'react-router-dom';
-import Paths from '@/config/paths';
-import Spinner from '@/components/Spinner/Spinner';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolsNearbyWithProfileQuery } from '@/types/api';
-import { convertMilesToMetres } from '@/utils/distance';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Chevron from '@/assets/yourLocalArea/Chevron';
+import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
-import Map from '@components/Map/Map';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { getSchoolsNearbyWithProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { GetSchoolsNearbyWithProfileQuery } from '@/types/api';
+import { convertMilesToMetres } from '@/utils/distance';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
+import LocationMap from '@components/LocationMap/LocationMap';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './FindSchool.module.scss';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -75,7 +75,7 @@ const FindSchool: FC = () => {
         />
 
         <h3>School map</h3>
-        <Map
+        <LocationMap
           initialCoordinates={
             data?.getSchoolsNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
           }

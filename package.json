@@ -11,18 +11,19 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage --watch=false",
-    "format:check": "prettier --check src",
-    "format:fix": "prettier --write src",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
+    "format": "biome format --write . && biome check --write .",
+    "lint": "biome lint --error-on-warnings --fix .",
     "prepare": "is-ci || husky",
     "codegen": "amplify codegen"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,yml,yaml}": [
-      "npm run format:fix"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "npm run lint"
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --files-ignore-unknown=true",
+      "biome check --write --no-errors-on-unmatched",
+      "biome check --write --organize-imports-enabled=false --no-errors-on-unmatched",
+      "biome check --write --unsafe --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched",
+      "biome lint --write --no-errors-on-unmatched"
     ]
   },
   "dependencies": {
@@ -43,11 +44,13 @@
     "react-select": "5.8.0",
     "react-verification-input": "4.1.2",
     "validator": "13.12.0",
+    "vite-plugin-biome": "^1.0.12",
     "vite-plugin-node-polyfills": "0.22.0",
     "zod": "3.23.8",
     "zustand": "4.5.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@testing-library/react": "16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "18.3.3",
@@ -77,7 +80,6 @@
     "typescript": "5.5.3",
     "undici": "^6.18.2",
     "vite": "5.3.4",
-    "vite-plugin-eslint": "1.8.1",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^2.0.0",
     "vitest-dom": "^0.1.1"

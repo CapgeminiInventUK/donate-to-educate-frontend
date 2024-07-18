@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import styles from './Layout.module.scss';
-import { LayoutProps } from '@/types/props';
+import type { LayoutProps } from '@/types/props';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import type { FC } from 'react';
 import MvpBanner from '../MvpBanner/MvpBanner';
+import styles from './Layout.module.scss';
 
 const Layout: FC<LayoutProps> = ({ header, footer, page }) => {
   const { scrollYProgress } = useScroll();

@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import Paths from '@/config/paths';
 import FooterPage from '@/components/FooterPage/FooterPage';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
 
 const CookiePolicy: FC = () => {
   return (

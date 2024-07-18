@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
-import styles from '../ApprovalRequest.module.scss';
 import ToolTip from '@/assets/admin/ToolTip';
-import FormButton from '@/components/FormButton/FormButton';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
-import { UserRequestDetailsProps } from '@/types/props';
+import FormButton from '@/components/FormButton/FormButton';
+import type { UserRequestDetailsProps } from '@/types/props';
+import { type FC, useState } from 'react';
+import styles from '../ApprovalRequest.module.scss';
 
 const UserRequestDetails: FC<UserRequestDetailsProps> = ({
   type,

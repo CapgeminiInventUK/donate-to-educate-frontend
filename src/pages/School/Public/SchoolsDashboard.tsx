@@ -1,16 +1,16 @@
-import { FC } from 'react';
+import BackButton from '@/components/BackButton/BackButton';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import PublicDashboard from '@/components/PublicDashboard/PublicDashboard';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolProfileQuery } from '@/types/api';
-import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
-import BackButton from '@/components/BackButton/BackButton';
-import styles from './SchoolDashboard.module.scss';
+import { getSchoolProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import type { GetSchoolProfileQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import type { FC } from 'react';
+import styles from './SchoolDashboard.module.scss';
 
 const SchoolsDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; urn: string }>(

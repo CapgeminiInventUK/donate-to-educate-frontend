@@ -1,12 +1,12 @@
-import { PublicViewProps } from '@/types/props';
-import { FC } from 'react';
-import { getBannerKeys, getIcon } from './utils';
-import BannerItem from './BannerItem';
-import { Banner } from '@/types/data';
-import styles from './InstitutionBanner.module.scss';
-import { Link } from 'react-router-dom';
-import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
 import House from '@/assets/school/House';
+import InterfaceArrowTopRight from '@/assets/school/InterfaceArrowTopRight';
+import type { Banner } from '@/types/data';
+import type { PublicViewProps } from '@/types/props';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import BannerItem from './BannerItem';
+import styles from './InstitutionBanner.module.scss';
+import { getBannerKeys, getIcon } from './utils';
 
 const PublicView: FC<PublicViewProps> = ({ banner, type }) => {
   const bannerKeys = getBannerKeys(banner, type).filter((key) => banner[key as keyof Banner]);

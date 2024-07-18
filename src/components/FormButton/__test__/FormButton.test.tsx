@@ -1,7 +1,7 @@
+import type { FormButtonThemes } from '@/types/props';
 import { render } from '@testing-library/react';
-import FormButton from '../FormButton';
-import { FormButtonThemes } from '@/types/props';
 import userEvent from '@testing-library/user-event';
+import FormButton from '../FormButton';
 import styles from '../FormButton.module.scss';
 
 const props = {

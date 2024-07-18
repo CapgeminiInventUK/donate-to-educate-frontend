@@ -1,8 +1,8 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import * as router from 'react-router';
-import RequestItems from '../RequestItems';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
+import RequestItems from '../RequestItems';
 import getTextContent from '../getTextContent';
 
 const navigate = vi.fn();

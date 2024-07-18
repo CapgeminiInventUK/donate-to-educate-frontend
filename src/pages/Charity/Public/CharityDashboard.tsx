@@ -1,16 +1,16 @@
-import { FC } from 'react';
-import PublicDashboard from '@/components/PublicDashboard/PublicDashboard';
 import BackButton from '@/components/BackButton/BackButton';
-import styles from './CharityDashboard.module.scss';
-import { getCharityProfile } from '@/graphql/queries';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetCharityProfileQuery } from '@/types/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import Paths from '@/config/paths';
-import Spinner from '@/components/Spinner/Spinner';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import PublicDashboard from '@/components/PublicDashboard/PublicDashboard';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { getCharityProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { GetCharityProfileQuery } from '@/types/api';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import type { FC } from 'react';
+import styles from './CharityDashboard.module.scss';
 
 const CharityDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; id: string }>(

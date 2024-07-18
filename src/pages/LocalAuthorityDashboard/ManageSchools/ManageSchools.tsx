@@ -1,21 +1,21 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './ManageSchools.module.scss';
-import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router-dom';
-import RegisteredSchools from './SchoolsTables/RegisteredSchools';
-import PendingSchools from './SchoolsTables/PendingSchools';
 import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
-import { useQuery } from '@tanstack/react-query';
-import { DeleteSchoolProfileMutation } from '@/types/api';
+import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Paths from '@/config/paths';
 import { deleteSchoolProfile } from '@/graphql/mutations';
-import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Paths from '@/config/paths';
-import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
-import Card from '@/components/Card/Card';
+import type { DeleteSchoolProfileMutation } from '@/types/api';
+import { type SchoolOrCharityProperties, StageState } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import dashboardStyles from '../LocalAuthorityDashboard.module.scss';
+import styles from './ManageSchools.module.scss';
+import PendingSchools from './SchoolsTables/PendingSchools';
+import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 
 const ManageSchools: FC = () => {
   const {

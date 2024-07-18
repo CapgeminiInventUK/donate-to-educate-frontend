@@ -1,11 +1,11 @@
-import styles from './Contact.module.scss';
-import { FC } from 'react';
-import Paths from '@/config/paths';
-import { Link } from 'react-router-dom';
 import Email from '@/assets/contact/Email';
 import Phone from '@/assets/contact/Phone';
 import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './Contact.module.scss';
 
 const Contact: FC = () => {
   return (

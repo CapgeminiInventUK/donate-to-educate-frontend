@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './Checkbox.module.scss';
-import { CheckboxProps } from '@/types/props';
 import Checkmark from '@/assets/tiles/Checkmark';
+import type { CheckboxProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { type FC, useEffect, useState } from 'react';
+import styles from './Checkbox.module.scss';
 
 const Checkbox: FC<CheckboxProps> = ({
   label,

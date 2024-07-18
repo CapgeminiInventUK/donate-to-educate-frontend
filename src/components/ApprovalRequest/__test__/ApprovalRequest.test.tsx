@@ -1,9 +1,9 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import ApprovalRequest from '../ApprovalRequest';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import pillStyles from '../../Pill/Pill.module.scss';
 import * as router from 'react-router';
+import pillStyles from '../../Pill/Pill.module.scss';
+import ApprovalRequest from '../ApprovalRequest';
 
 const navigate = vi.fn();
 

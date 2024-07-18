@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import DeclineDeleteModal from '../DeclineDeleteModal';
 import userEvent from '@testing-library/user-event';
+import DeclineDeleteModal from '../DeclineDeleteModal';
 
 describe('Decline', () => {
   it('should close the modal on back button click', async () => {

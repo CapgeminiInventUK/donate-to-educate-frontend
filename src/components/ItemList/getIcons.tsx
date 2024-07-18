@@ -7,7 +7,7 @@ import Study from '@/assets/ItemList/Sections/Study';
 import Toiletries from '@/assets/ItemList/Sections/Toiletries';
 import Uniform from '@/assets/ItemList/Sections/Uniform';
 import Tick from '@/assets/ItemList/Tick';
-import { ItemsIconType, SectionsIconType } from '@/types/data';
+import type { ItemsIconType, SectionsIconType } from '@/types/data';
 
 export const getItemsIcon = (type: ItemsIconType): JSX.Element => {
   switch (type) {

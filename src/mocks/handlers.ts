@@ -1,9 +1,9 @@
 import {
-  AsyncResponseResolverReturnType,
-  GraphQLQuery,
+  http,
+  type AsyncResponseResolverReturnType,
+  type GraphQLQuery,
   HttpResponse,
   graphql,
-  http,
   passthrough,
 } from 'msw';
 import getSchoolQueryResponse from './data/getSchoolQuery.json';

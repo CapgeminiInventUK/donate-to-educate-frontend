@@ -1,8 +1,8 @@
 import Heart from '@/assets/ItemList/Heart';
 import Plus from '@/assets/ItemList/Plus';
 import Tick from '@/assets/ItemList/Tick';
+import type { ItemsIconType } from '@/types/data';
 import { getItemsIcon } from '../getIcons';
-import { ItemsIconType } from '@/types/data';
 
 describe('getItemsIcon', () => {
   const inputVsExpected = [
