@@ -32,6 +32,7 @@ export interface FormComponent {
   componentData?: ComponentDataPropsType;
   formComponentLink?: ExternalLinkProps;
   classNameSuffix?: string;
+  field?: string;
 }
 
 export type ComponentDataPropsType =

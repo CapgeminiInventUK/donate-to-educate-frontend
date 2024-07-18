@@ -488,11 +488,12 @@ export interface RequestItemsProps {
   name: string;
 }
 
-export interface RequestItemsFormInputsProps {
+export interface RequestItemsFormProps {
   type: ItemsIconType;
   organisationType: 'school' | 'charity';
   formState: RequestFormState;
   onFormChange: (key: string, value: string) => void;
+  onFormSubmit: (event: FormEvent<Element>) => void;
 }
 
 export interface DonateAndExcessProps {
