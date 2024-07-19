@@ -1,20 +1,20 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from '@/config/routes';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Layout from '../Layout/Layout';
-import { Suspense, useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import Navbar from '../Navbar/Navbar';
-import Sidebar from '../Sidebar/Sidebar';
-import Footer from '../Footer/Footer';
-import { breakpoints } from '@utils/globals';
+import { useStore } from '@/stores/useStore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import { breakpoints } from '@utils/globals';
 import { ConfigProvider } from 'antd';
+import { Suspense, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import ErrorBoundaryWithLocation from '../ErrorBoundary/ErrorBoundaryWithLocation';
+import Footer from '../Footer/Footer';
+import Layout from '../Layout/Layout';
+import Navbar from '../Navbar/Navbar';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import { useStore } from '@/stores/useStore';
+import Sidebar from '../Sidebar/Sidebar';
 
 const queryClient = new QueryClient({
   defaultOptions: {

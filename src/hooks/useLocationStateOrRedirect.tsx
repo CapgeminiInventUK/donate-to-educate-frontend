@@ -1,4 +1,4 @@
-import { LocationStateOrRedirectProps } from '@/types/props';
+import type { LocationStateOrRedirectProps } from '@/types/props';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 

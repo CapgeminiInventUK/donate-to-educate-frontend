@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './Tile.module.scss';
+import type { TileProps } from '@/types/props';
 import { motion } from 'framer-motion';
-import { TileProps } from '@/types/props';
+import type { FC } from 'react';
+import styles from './Tile.module.scss';
 
 const Tile: FC<TileProps> = ({ onClick, title, body, icon, size, noShadow, children }) => {
   return (

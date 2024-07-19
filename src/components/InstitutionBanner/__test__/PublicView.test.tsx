@@ -1,7 +1,7 @@
+import { createWrapper } from '@/mocks/mockGraphqlClient';
 import { render } from '@testing-library/react';
 import PublicView from '../PublicView';
 import { schoolBanner } from './mockData';
-import { createWrapper } from '@/mocks/mockGraphqlClient';
 
 describe('Public View', () => {
   it('should show uniform policy link if type is school and exists in banner', () => {

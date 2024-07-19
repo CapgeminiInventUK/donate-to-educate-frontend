@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
-import { TextInputSearchProps } from '@/types/props';
-import styles from './TextInputSearch.module.scss';
 import SearchIcon from '@/assets/tiles/Search';
+import type { TextInputSearchProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type React from 'react';
+import type { FC } from 'react';
+import styles from './TextInputSearch.module.scss';
 
 const TextInputSearch: FC<TextInputSearchProps> = ({
   header,

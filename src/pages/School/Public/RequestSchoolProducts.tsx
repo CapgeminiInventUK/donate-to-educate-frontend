@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import Paths from '@/config/paths';
 import RequestItems from '@/components/RequestItems/RequestItems';
+import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { ItemsIconType } from '@/types/data';
+import type { ItemsIconType } from '@/types/data';
+import type { FC } from 'react';
 
 const RequestSchoolProducts: FC = () => {
   const { state } = useLocationStateOrRedirect<{

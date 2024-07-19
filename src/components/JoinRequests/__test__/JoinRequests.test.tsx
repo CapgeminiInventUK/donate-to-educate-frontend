@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
-import JoinRequests from '../JoinRequests';
-import userEvent from '@testing-library/user-event';
 import { StageState } from '@/types/data';
-import { dataWithMultipleSchools, dataWithSchoolAndCharity } from './mockData';
 import * as globals from '@/utils/globals';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import JoinRequests from '../JoinRequests';
+import { dataWithMultipleSchools, dataWithSchoolAndCharity } from './mockData';
 
 describe('Join requests', () => {
   const setStage = vi.fn();

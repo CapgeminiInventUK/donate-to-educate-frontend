@@ -1,8 +1,8 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import InstitutionAdminDashboard from '../InstitutionAdminDashboard';
 import { render } from '@testing-library/react';
-import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
+import * as router from 'react-router';
+import InstitutionAdminDashboard from '../InstitutionAdminDashboard';
 import { charityProfile, schoolProfile } from './mockData';
 
 const navigate = vi.fn();

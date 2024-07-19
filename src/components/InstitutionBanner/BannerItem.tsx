@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { BannerItemProps } from '@/types/props';
-import styles from './InstitutionBanner.module.scss';
+import type { BannerItemProps } from '@/types/props';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './InstitutionBanner.module.scss';
 import { getLinkFromType } from './utils';
 
 const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }): JSX.Element => {

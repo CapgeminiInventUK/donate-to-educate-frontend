@@ -1,32 +1,10 @@
-import { Dispatch, FormEvent, ReactNode, RefObject, SetStateAction } from 'react';
-import {
-  CarouselItem,
-  ComponentDataPropsType,
-  DropdownOption,
-  FormDataItem,
-  FormMeta,
-  FormNames,
-  FormSections,
-  FormTemplate,
-  StageState,
-  SchoolOrCharityTableData,
-  SchoolOrCharityProperties,
-  RequestUser,
-  AccountType,
-  Banner,
-  FormComponent,
-  SummaryPageColour,
-  ResultType,
-  myStageType,
-  ItemsIconType,
-  PillColours,
-  InstitutionProfile,
-  RequestFormState,
-} from './data';
-import Paths from '@/config/paths';
-import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
-import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
-import {
+import type Paths from '@/config/paths';
+import type { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import type { InputRef } from 'antd';
+import type { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
+import type { Dispatch, FormEvent, ReactNode, RefObject, SetStateAction } from 'react';
+import type { NavigateFunction } from 'react-router-dom';
+import type {
   CharityProfile,
   GetJoinRequestsQuery,
   GetSchoolQuery,
@@ -36,8 +14,30 @@ import {
   SchoolProfile,
   SearchResult,
 } from './api';
-import { InputRef } from 'antd';
-import { NavigateFunction } from 'react-router-dom';
+import type {
+  AccountType,
+  Banner,
+  CarouselItem,
+  ComponentDataPropsType,
+  DropdownOption,
+  FormComponent,
+  FormDataItem,
+  FormMeta,
+  FormNames,
+  FormSections,
+  FormTemplate,
+  InstitutionProfile,
+  ItemsIconType,
+  PillColours,
+  RequestFormState,
+  RequestUser,
+  ResultType,
+  SchoolOrCharityProperties,
+  SchoolOrCharityTableData,
+  StageState,
+  SummaryPageColour,
+  myStageType,
+} from './data';
 
 export interface LayoutProps {
   header?: ReactNode;
@@ -643,7 +643,7 @@ export interface SchoolDetailsProps {
   data: GraphQLQuery<GetSchoolQuery>;
 }
 
-export interface MapProps {
+export interface LocationMapProps {
   markers: { coordinates: number[]; name: string; colour: string }[];
   initialZoom?: number;
   initialCoordinates: number[];

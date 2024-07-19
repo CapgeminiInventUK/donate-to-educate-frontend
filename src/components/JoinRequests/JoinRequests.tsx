@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import type { JoinRequestsProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './JoinRequests.module.scss';
-import { JoinRequestsProps } from '@/types/props';
 import JoinRequestsTable from './JoinRequestsTable/JoinRequestsTable';
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {

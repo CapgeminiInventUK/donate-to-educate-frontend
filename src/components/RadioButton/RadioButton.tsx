@@ -1,6 +1,6 @@
-import { FC, ChangeEvent } from 'react';
+import type { RadioButtonProps } from '@/types/props';
+import type { ChangeEvent, FC } from 'react';
 import styles from './RadioButton.module.scss';
-import { RadioButtonProps } from '@/types/props';
 
 const RadioButton: FC<RadioButtonProps> = ({
   name,

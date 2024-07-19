@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './FindYourCommunity.module.scss';
-import Paths from '@/config/paths';
-import { useNavigate } from 'react-router';
 import BackButton from '@/components/BackButton/BackButton';
-import isPostalCode from 'validator/lib/isPostalCode';
-import { FormErrors } from '@/types/data';
-import TextInputSearch from '@/components/TextInputSearch/TextInputSearch';
 import Card from '@/components/Card/Card';
+import TextInputSearch from '@/components/TextInputSearch/TextInputSearch';
+import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import { FormErrors } from '@/types/data';
+import { type FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import isPostalCode from 'validator/lib/isPostalCode';
+import styles from './FindYourCommunity.module.scss';
 
 const FindYourCommunity: FC = () => {
   const navigate = useNavigate();

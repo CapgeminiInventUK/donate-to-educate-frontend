@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import styles from './AboutUs.module.scss';
-import { Link } from 'react-router-dom';
-import Paths from '@/config/paths';
-import LogoCommunityInspired from '@/assets/logo/LogoCommunityInspired';
-import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
-import Image from '@/components/Image/Image';
-import magazines from '@/assets/about/magazines.webp';
 import facebook from '@/assets/about/facebook.webp';
 import green from '@/assets/about/green-up-your-school.webp';
+import magazines from '@/assets/about/magazines.webp';
+import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
+import LogoCommunityInspired from '@/assets/logo/LogoCommunityInspired';
 import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import Image from '@/components/Image/Image';
+import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './AboutUs.module.scss';
 
 const AboutUs: FC = () => {
   return (

@@ -1,20 +1,20 @@
-import { FC } from 'react';
-import { useNavigate } from 'react-router';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from '@aws-amplify/api';
-import { client } from '@/graphqlClient';
-import Paths from '@/config/paths';
-import { GetAdminTileStatsQuery } from '@/types/api';
-import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
-import styles from './AdminDashboard.module.scss';
-import { getAdminTileStats } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Crown from '@/assets/icons/Crown';
-import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import Requests from '@/assets/icons/Requests';
+import School from '@/assets/icons/School';
 import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { getAdminTileStats } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { GetAdminTileStatsQuery } from '@/types/api';
+import type { GraphQLQuery } from '@aws-amplify/api';
+import { useQuery } from '@tanstack/react-query';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router';
+import styles from './AdminDashboard.module.scss';
+import AdminDashboardCard from './AdminDashboardCard/AdminDashboardCard';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();

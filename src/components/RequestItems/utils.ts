@@ -1,8 +1,8 @@
 import {
   ComponentType,
-  ItemsIconType,
-  RequestFormState,
-  RequestItemsTextContent,
+  type ItemsIconType,
+  type RequestFormState,
+  type RequestItemsTextContent,
 } from '@/types/data';
 import { getFormErrors } from '@/utils/formValidationUtils';
 

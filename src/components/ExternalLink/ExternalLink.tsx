@@ -1,5 +1,5 @@
-import { ExternalLinkProps } from '@/types/props';
-import { FC } from 'react';
+import type { ExternalLinkProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './ExternalLink.module.scss';
 
 const ExternalLink: FC<ExternalLinkProps> = ({ linkText, linkUrl, ariaLabel, className }) => {

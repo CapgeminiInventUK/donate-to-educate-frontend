@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import styles from './ActionTile.module.scss';
-import { ActionTileProps } from '@/types/props';
+import type { ActionTileProps } from '@/types/props';
+import type { FC } from 'react';
 import FormButton from '../FormButton/FormButton';
+import styles from './ActionTile.module.scss';
 
 const ActionTile: FC<ActionTileProps> = ({
   icon,

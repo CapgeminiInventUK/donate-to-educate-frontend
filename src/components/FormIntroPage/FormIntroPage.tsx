@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import type { FormIntroPageProps } from '@/types/props';
+import type { FC } from 'react';
 import styles from './FormIntroPage.module.scss';
-import { FormIntroPageProps } from '@/types/props';
 
 const FormIntroPage: FC<FormIntroPageProps> = ({
   header,
@@ -25,7 +25,9 @@ const FormIntroPage: FC<FormIntroPageProps> = ({
       {secondaryInfoText && <p className={styles.text}>{secondaryInfoText}</p>}
       {secondaryListItems && (
         <ol className={styles.list}>
-          {secondaryListItems?.map((item, id) => <li key={id}>{item}</li>)}
+          {secondaryListItems?.map((item, id) => (
+            <li key={id}>{item}</li>
+          ))}
         </ol>
       )}
     </div>

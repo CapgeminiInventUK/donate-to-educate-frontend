@@ -1,5 +1,5 @@
-import { SvgProps } from '@/types/props';
-import { FC } from 'react';
+import type { SvgProps } from '@/types/props';
+import type { FC } from 'react';
 
 const LightBlueLine: FC<SvgProps> = ({ className }) => (
   <svg

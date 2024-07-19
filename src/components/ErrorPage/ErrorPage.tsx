@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import styles from './ErrorPage.module.scss';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import Paths from '@/config/paths';
-import { ErrorPageProps } from '@/types/props';
+import type { ErrorPageProps } from '@/types/props';
+import type { FC } from 'react';
+import styles from './ErrorPage.module.scss';
 
 const ErrorPage: FC<ErrorPageProps> = ({ icon, title, message }) => {
   return (

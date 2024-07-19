@@ -1,9 +1,9 @@
-import SchoolHat from '@/assets/school/SchoolHat';
-import Telephone from '@/assets/school/Telephone';
 import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
 import House from '@/assets/school/House';
-import { Banner } from '@/types/data';
+import SchoolHat from '@/assets/school/SchoolHat';
+import Telephone from '@/assets/school/Telephone';
+import type { Banner } from '@/types/data';
 
 export const getIcon = (item: string): JSX.Element => {
   switch (item) {

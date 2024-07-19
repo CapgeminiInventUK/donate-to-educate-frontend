@@ -1,25 +1,25 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './SchoolEdit.module.scss';
-import ItemListEdit from '@/components/ItemList/ItemListEdit';
+import BackButton from '@/components/BackButton/BackButton';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import ItemList from '@/components/ItemList/ItemList';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { ProfileItems, UpdateSchoolProfileMutation } from '@/types/api';
-import { updateSchoolProfile } from '@/graphql/mutations';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { EditDescription } from '../../../components/EditDescription/EditDescription';
-import { ContentType } from '@/types/props';
+import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import Paths from '@/config/paths';
-import { useNavigate } from 'react-router-dom';
-import BackButton from '@/components/BackButton/BackButton';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { updateSchoolProfile } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
 import useAuthToken from '@/hooks/useAuthToken';
-import Card from '@/components/Card/Card';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { ProfileItems, UpdateSchoolProfileMutation } from '@/types/api';
+import type { ItemsIconType } from '@/types/data';
+import type { ContentType } from '@/types/props';
 import { openNotification } from '@/utils/formComponents';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
-import { ItemsIconType } from '@/types/data';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EditDescription } from '../../../components/EditDescription/EditDescription';
+import styles from './SchoolEdit.module.scss';
 
 const getButtonTextFromType = (type: string): string => {
   switch (type) {
@@ -127,9 +127,10 @@ const getPageContent = (
 };
 
 const SchoolEdit: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; profile: ProfileItems }>(
-    Paths.SCHOOLS_CREATE_EDIT_PROFILE
-  );
+  const { state } = useLocationStateOrRedirect<{
+    type: ItemsIconType;
+    profile: ProfileItems;
+  }>(Paths.SCHOOLS_CREATE_EDIT_PROFILE);
   const navigate = useNavigate();
   const { type, profile } = state;
 
@@ -153,7 +154,7 @@ const SchoolEdit: FC = () => {
 
   useEffect(() => {
     setSaveDisabled(false);
-  }, [items]);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -228,7 +229,10 @@ const SchoolEdit: FC = () => {
                     void refetch();
                   }}
                   handleCancel={() => {
-                    setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
+                    setContent({
+                      ...content,
+                      whatToExpect: whatToExpectTestBeforeEdit,
+                    });
                     setEditState(false);
                   }}
                 />
@@ -263,7 +267,10 @@ const SchoolEdit: FC = () => {
                     void refetch();
                   }}
                   handleCancel={() => {
-                    setContent({ ...content, actionText: actionTextBeforeEdit });
+                    setContent({
+                      ...content,
+                      actionText: actionTextBeforeEdit,
+                    });
                     setEditStateActionText(false);
                   }}
                 />

@@ -1,5 +1,5 @@
 import Paths from '@/config/paths';
-import { AccountType } from '@/types/data';
+import type { AccountType } from '@/types/data';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {

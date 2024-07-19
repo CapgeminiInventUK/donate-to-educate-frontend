@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import EditModeItem from '../EditModeItem';
 import { schoolBanner } from './mockData';
-import userEvent from '@testing-library/user-event';
 
 describe('Edit mode item', () => {
   it('should update state', async () => {

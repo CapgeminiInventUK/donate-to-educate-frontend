@@ -1,8 +1,9 @@
-import React, { FC, useState } from 'react';
-import { TextInputProps } from '@/types/props';
+import type { TextInputProps } from '@/types/props';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type React from 'react';
+import { type FC, useState } from 'react';
 import ShowHide from '../ShowHide/ShowHide';
 import styles from './TextInput.module.scss';
-import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const TextInput: FC<TextInputProps> = ({
   header,

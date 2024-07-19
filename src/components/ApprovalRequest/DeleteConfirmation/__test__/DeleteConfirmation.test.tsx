@@ -1,6 +1,6 @@
+import { createWrapper } from '@/mocks/mockGraphqlClient';
 import { render } from '@testing-library/react';
 import DeleteConfirmation from '../DeleteConfirmation';
-import { createWrapper } from '@/mocks/mockGraphqlClient';
 
 describe('Delete confirmation', () => {
   it('should render component', () => {

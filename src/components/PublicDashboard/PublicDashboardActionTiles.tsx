@@ -1,15 +1,15 @@
-import { FC, Fragment } from 'react';
-import styles from './PublicDashboard.module.scss';
-import ActionTile from '../ActionTile/ActionTile';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
+import ExtraStock from '@/assets/school/ExtraStock';
 import Hanger from '@/assets/school/Hanger';
 import Heart from '@/assets/school/Heart';
-import ExtraStock from '@/assets/school/ExtraStock';
-import { ActionTileProps, PublicDashboardActionTilesProps } from '@/types/props';
-import { ProfileItems } from '@/types/api';
-import { returnObjectValueOrUndefined } from '@/utils/globals';
+import Paths from '@/config/paths';
+import type { ProfileItems } from '@/types/api';
 import { ActionTypes } from '@/types/data';
+import type { ActionTileProps, PublicDashboardActionTilesProps } from '@/types/props';
+import { returnObjectValueOrUndefined } from '@/utils/globals';
+import { type FC, Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ActionTile from '../ActionTile/ActionTile';
+import styles from './PublicDashboard.module.scss';
 
 const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
   request,

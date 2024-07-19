@@ -1,6 +1,6 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import CannotFindSchool from '../CannotFindSchool';
 import { render } from '@testing-library/react';
+import CannotFindSchool from '../CannotFindSchool';
 
 describe('Cannot find school', () => {
   it('should render component', () => {

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import ItemListEdit from '../ItemListEdit';
 import userEvent from '@testing-library/user-event';
+import ItemListEdit from '../ItemListEdit';
 
 describe('Item list edit', () => {
   it('should update item list when checkbox selected', async () => {

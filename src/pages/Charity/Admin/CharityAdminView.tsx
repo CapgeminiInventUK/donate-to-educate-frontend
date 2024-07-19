@@ -1,38 +1,40 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './CharityAdminView.module.scss';
+import SchoolProfile from '@/assets/admin/SchoolProfile';
+import Donate from '@/assets/icons/Donate';
+import Heart from '@/assets/icons/Heart';
+import Postcode from '@/assets/icons/Postcode';
+import School from '@/assets/icons/School';
+import Stock from '@/assets/icons/Stock';
 import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import FormButton from '@/components/FormButton/FormButton';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import TextInput from '@/components/TextInput/TextInput';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { updateCharityProfile } from '@/graphql/mutations';
-import { GetCharityProfileQuery, UpdateCharityProfileMutation } from '@/types/api';
-import { GraphQLQuery } from 'aws-amplify/api';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { useStore } from '@/stores/useStore';
-import { getCharityProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
-import { isPostalCode } from 'validator';
-import SchoolProfile from '@/assets/admin/SchoolProfile';
-import Postcode from '@/assets/icons/Postcode';
-import useAuthToken from '@/hooks/useAuthToken';
+import TextInput from '@/components/TextInput/TextInput';
 import Tile from '@/components/Tile/Tile';
-import Card from '@/components/Card/Card';
-import { useMediaQuery } from 'react-responsive';
+import Paths from '@/config/paths';
+import { updateCharityProfile } from '@/graphql/mutations';
+import { getCharityProfile } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import useAuthToken from '@/hooks/useAuthToken';
+import { useStore } from '@/stores/useStore';
+import type { GetCharityProfileQuery, UpdateCharityProfileMutation } from '@/types/api';
 import { breakpoints, checkIfInTestEnvForAuthMode } from '@/utils/globals';
-import School from '@/assets/icons/School';
-import Heart from '@/assets/icons/Heart';
-import Donate from '@/assets/icons/Donate';
-import Stock from '@/assets/icons/Stock';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
+import { isPostalCode } from 'validator';
+import styles from './CharityAdminView.module.scss';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
   const [edit, setEdit] = useState(false);
-  const isMobile = useMediaQuery({ query: `(max-width: ${breakpoints.screenLarge})` });
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${breakpoints.screenLarge})`,
+  });
 
   const {
     isLoading,
@@ -65,7 +67,7 @@ const CharityView: FC = () => {
     if (data?.getCharityProfile?.postcode) {
       setPostcode(data?.getCharityProfile.postcode);
     }
-  }, [setPostcode, data?.getCharityProfile?.postcode]);
+  }, [data?.getCharityProfile?.postcode]);
 
   const { refetch, isError: isRefetchError } = useQuery({
     queryKey: [`updateProfilePostcode-${postcode}-${name}`],
@@ -92,7 +94,7 @@ const CharityView: FC = () => {
     } else {
       setPostcodeError(undefined);
     }
-  }, [setPostcodeError, isRefetchError]);
+  }, [isRefetchError]);
 
   if (isLoading) {
     return <Spinner />;

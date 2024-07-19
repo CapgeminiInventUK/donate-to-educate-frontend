@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import styles from './EditableInformationTile.module.scss';
-import Button from '../Button/Button';
-import { EditableInformationTileProps } from '@/types/props';
 import HorizontalLine from '@/assets/school/HorizontalLine';
-import TextArea from '../TextArea/TextArea';
+import type { EditableInformationTileProps } from '@/types/props';
+import type { FC } from 'react';
+import Button from '../Button/Button';
 import CancelButton from '../CancelButton/CancelButton';
 import FormButton from '../FormButton/FormButton';
+import TextArea from '../TextArea/TextArea';
+import styles from './EditableInformationTile.module.scss';
 
 const EditableInformationTile: FC<EditableInformationTileProps> = ({
   heading,

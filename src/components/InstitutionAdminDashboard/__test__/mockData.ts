@@ -1,5 +1,5 @@
-import { CharityProfile, SchoolProfile } from '@/types/api';
-import { Banner } from '@/types/data';
+import type { CharityProfile, SchoolProfile } from '@/types/api';
+import type { Banner } from '@/types/data';
 
 export const schoolProfile: SchoolProfile = {
   name: 'Test School',

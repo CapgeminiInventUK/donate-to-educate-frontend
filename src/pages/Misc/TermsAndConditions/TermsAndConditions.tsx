@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import FooterPage from '@/components/FooterPage/FooterPage';
-import styles from './TermsAndConditions.module.scss';
-import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './TermsAndConditions.module.scss';
 
 const TermsAndConditions: FC = () => {
   return (

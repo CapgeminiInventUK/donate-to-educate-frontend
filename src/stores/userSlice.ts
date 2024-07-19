@@ -1,18 +1,18 @@
 import { hasCharityProfile, hasSchoolProfile } from '@/graphql/queries';
 import { client } from '@/graphqlClient';
-import { HasCharityProfileQuery, HasSchoolProfileQuery } from '@/types/api';
-import { CustomAttributes } from '@/types/data';
+import type { HasCharityProfileQuery, HasSchoolProfileQuery } from '@/types/api';
+import type { CustomAttributes } from '@/types/data';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
-import { GraphQLQuery } from 'aws-amplify/api';
+import type { GraphQLQuery } from 'aws-amplify/api';
 import {
-  FetchUserAttributesOutput,
+  type FetchUserAttributesOutput,
   fetchAuthSession,
   fetchUserAttributes,
   getCurrentUser,
   signIn,
   signOut,
 } from 'aws-amplify/auth';
-import { StateCreator } from 'zustand';
+import type { StateCreator } from 'zustand';
 
 interface User {
   userId: string;
@@ -54,7 +54,7 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
         hasProfile:
           type === 'school' || type === 'charity' ? await hasProfile(type, name, id) : false,
       });
-    } catch (error) {
+    } catch (_error) {
       set({ user: undefined, isLoading: false, hasProfile: false });
     }
   },

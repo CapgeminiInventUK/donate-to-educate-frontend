@@ -1,10 +1,10 @@
-import { FC, MouseEvent, useState } from 'react';
-import { NavLinkProps } from '@/types/props';
-import styles from './NavLink.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
 import ChevronDown from '@/assets/navigation/ChevronDown';
 import Paths from '@/config/paths';
 import { useStore } from '@/stores/useStore';
+import type { NavLinkProps } from '@/types/props';
+import { type FC, type MouseEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './NavLink.module.scss';
 
 const NavLink: FC<NavLinkProps> = ({ name, path, childRoutes, onLinkClicked }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);

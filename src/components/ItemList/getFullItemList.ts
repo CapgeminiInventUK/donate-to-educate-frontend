@@ -1,4 +1,4 @@
-import { ItemList, SectionsIconType } from '@/types/data';
+import type { ItemList, SectionsIconType } from '@/types/data';
 
 export const getFullItemList = (): ItemList[] => {
   return [

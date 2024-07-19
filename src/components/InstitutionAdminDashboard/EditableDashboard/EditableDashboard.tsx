@@ -1,23 +1,23 @@
 import Card from '@/components/Card/Card';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import FormButton from '@/components/FormButton/FormButton';
 import InformationTile from '@/components/InformationTile/InformationTile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import { EditableDashboardProps } from '@/types/props';
-import { FC, useState } from 'react';
-import styles from '../InstitutionAdminDashboard.module.scss';
-import useAuthToken from '@/hooks/useAuthToken';
-import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { openNotification } from '@/utils/formComponents';
 import Paths from '@/config/paths';
-import { useNavigate } from 'react-router-dom';
-import FormButton from '@/components/FormButton/FormButton';
-import ActionTiles from './ActionTiles';
+import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import useAuthToken from '@/hooks/useAuthToken';
+import type { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
+import type { EditableDashboardProps } from '@/types/props';
+import { openNotification } from '@/utils/formComponents';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from '../InstitutionAdminDashboard.module.scss';
+import ActionTiles from './ActionTiles';
 
 const EditableDashboard: FC<EditableDashboardProps> = ({
   banner,

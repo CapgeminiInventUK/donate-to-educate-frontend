@@ -1,33 +1,33 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import styles from './SignUpCharity.module.scss';
-import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
-import {
-  DropdownOption,
-  FormDataItem,
-  FormMeta,
-  FormNames,
-  FormTemplate,
-  SubmittedFormData,
-} from '@/types/data';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
+import { getLocalAuthorities } from '@/graphql/queries';
 import { client } from '@/graphqlClient';
-import {
+import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
+import signUpCharityHappyPath from '@/templates/forms/signUpCharityHappyPath';
+import type {
   GetLocalAuthoritiesQuery,
   InsertJoinRequestMutationVariables,
   InsertLocalAuthorityRegisterRequestMutationVariables,
 } from '@/types/api';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { getLocalAuthorities } from '@/graphql/queries';
+import {
+  type DropdownOption,
+  type FormDataItem,
+  type FormMeta,
+  FormNames,
+  type FormTemplate,
+  type SubmittedFormData,
+} from '@/types/data';
 import {
   checkYourAnswersDataMap,
   findValueFromFormData,
   getFormDataForSubmission,
   getRegisterLocalAuthorityFormData,
 } from '@/utils/formUtils';
-import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
-import getAuthorityNotRegisteredPath from '@/templates/forms/authorityNotRegistered';
-import signUpCharityHappyPath from '@/templates/forms/signUpCharityHappyPath';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useCallback, useEffect, useState } from 'react';
+import styles from './SignUpCharity.module.scss';
 
 const SignUpCharity: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);

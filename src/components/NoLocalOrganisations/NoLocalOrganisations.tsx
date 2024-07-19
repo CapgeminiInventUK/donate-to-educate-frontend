@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './NoLocalOrganisations.module.scss';
 import HandHeart from '@/assets/logo/HandHeart';
-import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
-import { NoLocalOrganisationsProps } from '@/types/props';
+import type { NoLocalOrganisationsProps } from '@/types/props';
+import type { FC } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './NoLocalOrganisations.module.scss';
 
 const NoLocalOrganisations: FC<NoLocalOrganisationsProps> = ({
   organisationName = 'charities',

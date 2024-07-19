@@ -1,5 +1,5 @@
-import { InstitutionProfile } from '@/types/data';
-import { PublicDashboardActionTilesProps } from '@/types/props';
+import type { InstitutionProfile } from '@/types/data';
+import type { PublicDashboardActionTilesProps } from '@/types/props';
 
 export const mockSchoolProfile: InstitutionProfile = {
   name: 'Test School',

@@ -1,25 +1,25 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './ApprovalRequest.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import ResultBanner from './ResultBanner/ResultBanner';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { Pill } from '@/components/Pill/Pill';
-import { useQuery } from '@tanstack/react-query';
+import Spinner from '@/components/Spinner/Spinner';
+import Paths from '@/config/paths';
+import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
+import { getSchool } from '@/graphql/queries';
 import { client } from '@/graphqlClient';
-import { GraphQLQuery } from '@aws-amplify/api-graphql';
-import {
+import type {
   DeleteDeniedJoinRequestMutation,
   GetSchoolQuery,
   UpdateJoinRequestMutation,
 } from '@/types/api';
-import { deleteDeniedJoinRequest, updateJoinRequest } from '@/graphql/mutations';
+import { PillColours, StageState, type myStageType } from '@/types/data';
+import type { ApprovalRequestProps } from '@/types/props';
+import type { GraphQLQuery } from '@aws-amplify/api-graphql';
+import { useQuery } from '@tanstack/react-query';
+import { type FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
-import { getSchool } from '@/graphql/queries';
-import Spinner from '@/components/Spinner/Spinner';
-import { ApprovalRequestProps } from '@/types/props';
-import { PillColours, StageState, myStageType } from '@/types/data';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
+import styles from './ApprovalRequest.module.scss';
+import ResultBanner from './ResultBanner/ResultBanner';
 import SchoolDetails from './SchoolDetails/SchoolDetails';
 import UserRequestDetails from './UserRequestDetails/UserRequestDetails';
 

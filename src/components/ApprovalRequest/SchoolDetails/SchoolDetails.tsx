@@ -1,9 +1,9 @@
 import Phone from '@/assets/contact/Phone';
 import Globe from '@/assets/tiles/Globe';
-import { FC } from 'react';
+import type { SchoolDetailsProps } from '@/types/props';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../ApprovalRequest.module.scss';
-import { SchoolDetailsProps } from '@/types/props';
 
 const SchoolDetails: FC<SchoolDetailsProps> = ({ data }) => {
   const {

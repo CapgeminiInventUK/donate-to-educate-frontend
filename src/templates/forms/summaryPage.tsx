@@ -1,6 +1,6 @@
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
-import { ComponentType, FormTemplate } from '@/types/data';
+import { ComponentType, type FormTemplate } from '@/types/data';
 
 const getSummaryPageTemplate = (): FormTemplate => ({
   formComponents: [

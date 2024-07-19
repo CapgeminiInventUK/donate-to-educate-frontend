@@ -1,8 +1,8 @@
 import LinkBroken from '@/assets/error/LinkBroken';
-import { FC } from 'react';
-import styles from './NotFound.module.scss';
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
 import Paths from '@/config/paths';
+import type { FC } from 'react';
+import styles from './NotFound.module.scss';
 
 const NotFound: FC = () => {
   return (

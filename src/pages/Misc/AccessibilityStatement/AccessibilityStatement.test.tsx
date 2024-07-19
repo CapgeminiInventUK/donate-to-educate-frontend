@@ -1,7 +1,7 @@
 import { create } from 'react-test-renderer';
 
-import AccessibilityStatement from './AccessibilityStatement';
 import { BrowserRouter as Router } from 'react-router-dom';
+import AccessibilityStatement from './AccessibilityStatement';
 
 it('renders correctly', () => {
   const tree = create(

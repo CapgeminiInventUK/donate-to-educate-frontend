@@ -1,6 +1,6 @@
-import AboutUs from './AboutUs';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AboutUs from './AboutUs';
 
 it('renders correctly', () => {
   const tree = render(

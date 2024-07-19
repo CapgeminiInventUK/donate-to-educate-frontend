@@ -1,4 +1,4 @@
-import * as APITypes from '../types/api';
+import type * as APITypes from '../types/api';
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;

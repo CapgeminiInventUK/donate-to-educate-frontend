@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
-import styles from './Join.module.scss';
 import LogoIconBlue from '@/assets/logo/LogoIconBlue';
-import RadioGroup from '@/components/RadioGroup/RadioGroup';
-import FormButton from '@/components/FormButton/FormButton';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
 import Card from '@/components/Card/Card';
+import FormButton from '@/components/FormButton/FormButton';
+import RadioGroup from '@/components/RadioGroup/RadioGroup';
+import Paths from '@/config/paths';
+import { type FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './Join.module.scss';
 
 const labelsObj = {
   SCHOOL_ROLE: 'I work at a school',

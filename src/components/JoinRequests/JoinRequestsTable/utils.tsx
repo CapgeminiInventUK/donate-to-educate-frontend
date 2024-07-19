@@ -1,4 +1,4 @@
-import { CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
+import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';
 import styles from '../JoinRequests.module.scss';
 
 export const getSortIcon = ({

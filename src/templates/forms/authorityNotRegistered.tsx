@@ -1,8 +1,8 @@
-import { ComponentType, DropdownOption, FormSections, FormTemplate } from '@/types/data';
-import signUpSchoolHappyPath from './signUpSchoolHappyPath';
 import SchoolQuestion from '@/assets/Form/SchoolQuestion';
 import LogoWhite from '@/assets/logo/LogoWhite';
+import { ComponentType, type DropdownOption, FormSections, type FormTemplate } from '@/types/data';
 import signUpCharityHappyPath from './signUpCharityHappyPath';
+import signUpSchoolHappyPath from './signUpSchoolHappyPath';
 
 const getAuthorityNotRegisteredPath = (
   isSchool: boolean,

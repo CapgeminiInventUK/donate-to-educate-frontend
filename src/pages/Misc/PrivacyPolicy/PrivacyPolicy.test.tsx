@@ -1,7 +1,7 @@
 import { create } from 'react-test-renderer';
 
-import PrivacyPolicy from './PrivacyPolicy';
 import { BrowserRouter as Router } from 'react-router-dom';
+import PrivacyPolicy from './PrivacyPolicy';
 
 it('renders correctly', () => {
   const tree = create(

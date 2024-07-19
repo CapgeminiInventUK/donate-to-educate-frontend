@@ -1,20 +1,20 @@
-import { FC, useState } from 'react';
-import styles from './InstitutionBanner.module.scss';
-import Button from '../Button/Button';
-import { InstitutionBannerProps } from '@/types/props';
-import FormButton from '../FormButton/FormButton';
-import { useQuery } from '@tanstack/react-query';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
 import { updateCharityProfile, updateSchoolProfile } from '@/graphql/mutations';
-import ErrorBanner from '../ErrorBanner/ErrorBanner';
-import CancelButton from '../CancelButton/CancelButton';
+import { client } from '@/graphqlClient';
 import useAuthToken from '@/hooks/useAuthToken';
-import AdminView from './AdminView';
+import type { UpdateCharityProfileMutation, UpdateSchoolProfileMutation } from '@/types/api';
+import type { InstitutionBannerProps } from '@/types/props';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
-import { hasContactInfo } from './utils';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useState } from 'react';
+import Button from '../Button/Button';
+import CancelButton from '../CancelButton/CancelButton';
+import ErrorBanner from '../ErrorBanner/ErrorBanner';
+import FormButton from '../FormButton/FormButton';
+import AdminView from './AdminView';
+import styles from './InstitutionBanner.module.scss';
 import PublicView from './PublicView';
+import { hasContactInfo } from './utils';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -51,7 +51,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   }
 
   const onCancel = (): void => {
-    setBanner && setBanner(previousBanner);
+    setBanner?.(previousBanner);
     toggleEditMode(false);
   };
 

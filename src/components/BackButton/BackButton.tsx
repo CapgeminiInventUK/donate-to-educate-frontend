@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './BackButton.module.scss';
 import ChevronLeft from '@/assets/navigation/ChevronLeft';
-import { useNavigate } from 'react-router';
-import { BackButtonProps } from '@/types/props';
+import type { BackButtonProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router';
+import styles from './BackButton.module.scss';
 
 const BackButton: FC<BackButtonProps> = ({ onClick, className, theme }) => {
   const navigate = useNavigate();

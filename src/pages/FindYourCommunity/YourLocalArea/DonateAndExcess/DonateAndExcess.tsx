@@ -1,19 +1,22 @@
-import { FC, useEffect } from 'react';
-import styles from './DonateAndExcess.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { convertMilesToMetres } from '@/utils/distance';
-import { client } from '@/graphqlClient';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { GetCharitiesNearbyWithProfileQuery, GetSchoolsNearbyWithProfileQuery } from '@/types/api';
-import { useQuery } from '@tanstack/react-query';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import Spinner from '@/components/Spinner/Spinner';
 import { getCharitiesNearbyWithProfile, getSchoolsNearbyWithProfile } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
-import ProductsTable from '@/components/ProductsTable/ProductsTable';
-import { DonateAndExcessProps } from '@/types/props';
-import Map from '@components/Map/Map';
+import { client } from '@/graphqlClient';
+import type {
+  GetCharitiesNearbyWithProfileQuery,
+  GetSchoolsNearbyWithProfileQuery,
+} from '@/types/api';
+import type { DonateAndExcessProps } from '@/types/props';
+import { convertMilesToMetres } from '@/utils/distance';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
+import LocationMap from '@components/LocationMap/LocationMap';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useEffect } from 'react';
+import styles from './DonateAndExcess.module.scss';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -132,7 +135,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         />
 
         <h3>Location map</h3>
-        <Map
+        <LocationMap
           initialCoordinates={
             schoolData?.getSchoolsNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
           }

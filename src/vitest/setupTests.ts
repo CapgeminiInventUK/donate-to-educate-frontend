@@ -1,8 +1,8 @@
 import 'vitest-dom/extend-expect';
-import { server } from '../mocks/server';
-import { amplifyConfig } from '../amplify.config';
 import { Amplify } from 'aws-amplify';
 import { afterAll, afterEach, beforeAll } from 'vitest';
+import { amplifyConfig } from '../amplify.config';
+import { server } from '../mocks/server';
 
 // Establish API mocking before all tests.
 beforeAll(() => {

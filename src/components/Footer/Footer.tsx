@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import styles from './Footer.module.scss';
-import LogoWhite from '@assets/logo/LogoWhite';
-import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
+import LogoWhite from '@assets/logo/LogoWhite';
+import type { FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import WeHaveThePowerLogo from '../../assets/logo/WeHaveThePowerLogo.webp';
 import Image from '../../components/Image/Image';
 import Button from '../Button/Button';
-import WeHaveThePowerLogo from '../../assets/logo/WeHaveThePowerLogo.webp';
+import styles from './Footer.module.scss';
 
 const Footer: FC = () => {
   const navigate = useNavigate();

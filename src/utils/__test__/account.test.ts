@@ -1,6 +1,6 @@
 import Paths from '@/config/paths';
+import type { AccountType } from '@/types/data';
 import { getRedirectUrl } from '../account';
-import { AccountType } from '@/types/data';
 
 describe('getRedirectUrl', () => {
   const inputVsExpectedWithProfile = [

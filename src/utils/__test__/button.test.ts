@@ -1,8 +1,8 @@
-import RightArrowWhite from '@/assets/icons/form-button-right-arrow-white.svg';
-import RightArrowGrey from '@/assets/icons/form-button-right-arrow-grey.svg';
 import RightArrowBlue from '@/assets/icons/form-button-right-arrow-blue.svg';
+import RightArrowGrey from '@/assets/icons/form-button-right-arrow-grey.svg';
+import RightArrowWhite from '@/assets/icons/form-button-right-arrow-white.svg';
+import type { FormButtonThemes } from '@/types/props';
 import { getArrowColour } from '../button';
-import { FormButtonThemes } from '@/types/props';
 
 describe('button utils', () => {
   describe('getArrowColour', () => {

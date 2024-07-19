@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { HeaderProps } from '@/types/props';
-import { useMediaQuery } from 'react-responsive';
+import type { HeaderProps } from '@/types/props';
 import { breakpoints } from '@utils/globals';
+import type { FC } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const Header: FC<HeaderProps> = ({ text, className, size = 'normal' }) => {
   const isSmallerScreen = useMediaQuery({ query: `(max-width: ${breakpoints.screenLarge})` });

@@ -1,20 +1,20 @@
-import { useState, useRef, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { InputRef, Table } from 'antd';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
+import Button from '@/components/Button/Button';
+import Card from '@/components/Card/Card';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
-import { Charity, GetCharitiesQuery } from '@/types/api';
 import Paths from '@/config/paths';
+import { getCharities } from '@/graphql/queries';
+import { client } from '@/graphqlClient';
+import type { Charity, GetCharitiesQuery } from '@/types/api';
+import getColumnSearch from '@/utils/tableUtils';
+import { useQuery } from '@tanstack/react-query';
+import { type InputRef, Table } from 'antd';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageCharities.module.scss';
-import { getCharities } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
-import getColumnSearch from '@/utils/tableUtils';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');

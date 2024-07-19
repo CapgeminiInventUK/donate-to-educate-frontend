@@ -1,12 +1,12 @@
 import {
-  DropdownOption,
-  FormDataItem,
+  type DropdownOption,
+  type FormDataItem,
   FormNames,
   FormSections,
-  SubmittedFormData,
+  type SubmittedFormData,
 } from '@/types/data';
-import { SingleValue } from 'react-select';
 import { phone } from 'phone';
+import type { SingleValue } from 'react-select';
 import { checkForStringAndReturnEmptyIfFalsy } from './globals';
 
 const excludedValues = [

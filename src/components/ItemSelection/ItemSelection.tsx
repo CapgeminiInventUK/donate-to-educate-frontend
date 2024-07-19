@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import ItemList from '@/components/ItemList/ItemList';
-import styles from './ItemSelection.module.scss';
-import { useNavigate } from 'react-router-dom';
-import Paths from '@/config/paths';
 import BackButton from '@/components/BackButton/BackButton';
-import FormButton from '@/components/FormButton/FormButton';
-import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Card from '@/components/Card/Card';
-import { ItemSelectionProps } from '@/types/props';
-import { ItemsIconType } from '@/types/data';
+import FormButton from '@/components/FormButton/FormButton';
+import ItemList from '@/components/ItemList/ItemList';
+import Paths from '@/config/paths';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import type { ItemsIconType } from '@/types/data';
+import type { ItemSelectionProps } from '@/types/props';
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './ItemSelection.module.scss';
 import { getButtonTextFromType, getPathFromType, getTitleFromType } from './getFromTypes';
 
 const ItemSelection: FC<ItemSelectionProps> = ({

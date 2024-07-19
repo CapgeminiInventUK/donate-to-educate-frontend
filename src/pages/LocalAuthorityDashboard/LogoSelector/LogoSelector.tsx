@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import logoComponents from './logoComponents';
 
 const LogoSelector: FC<{ name: string }> = ({ name }) => {

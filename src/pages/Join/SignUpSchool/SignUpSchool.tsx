@@ -1,33 +1,33 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import styles from './SignUpSchool.module.scss';
-import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
-import {
-  DropdownOption,
-  FormDataItem,
-  FormMeta,
-  FormNames,
-  FormTemplate,
-  SubmittedFormData,
-} from '@/types/data';
-import signUpSchoolHappyPath from '../../../templates/forms/signUpSchoolHappyPath';
-import getCannotFindSchoolPath from '../../../templates/forms/cannotFindSchoolPath';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
-import {
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
+import { client } from '@/graphqlClient';
+import type {
   GetSchoolsQuery,
   InsertJoinRequestMutationVariables,
   InsertLocalAuthorityRegisterRequestMutationVariables,
 } from '@/types/api';
-import { client } from '@/graphqlClient';
-import getAuthorityNotRegisteredPath from '../../../templates/forms/authorityNotRegistered';
-import { insertJoinRequest, insertLocalAuthorityRegisterRequest } from '@/graphql/mutations';
+import {
+  type DropdownOption,
+  type FormDataItem,
+  type FormMeta,
+  FormNames,
+  type FormTemplate,
+  type SubmittedFormData,
+} from '@/types/data';
 import {
   getFormDataForSubmission,
   getRegisterLocalAuthorityFormData,
   getSchoolCyaData,
 } from '@/utils/formUtils';
-import Spinner from '@/components/Spinner/Spinner';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import MultiStepForm from '@components/MultiStepForm/MultiStepForm';
+import { useQuery } from '@tanstack/react-query';
+import type { GraphQLQuery } from 'aws-amplify/api';
+import { type FC, useCallback, useEffect, useState } from 'react';
+import getAuthorityNotRegisteredPath from '../../../templates/forms/authorityNotRegistered';
+import getCannotFindSchoolPath from '../../../templates/forms/cannotFindSchoolPath';
+import signUpSchoolHappyPath from '../../../templates/forms/signUpSchoolHappyPath';
+import styles from './SignUpSchool.module.scss';
 
 const SignUpSchool: FC = () => {
   const [formData, setFormData] = useState<FormDataItem[]>([]);

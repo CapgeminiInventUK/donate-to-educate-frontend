@@ -1,6 +1,6 @@
 import LogoBlue from '@/assets/logo/LogoBlue';
 import Paths from '@/config/paths';
-import { ComponentType, FormTemplate } from '@/types/data';
+import { ComponentType, type FormTemplate } from '@/types/data';
 import { Link } from 'react-router-dom';
 
 const getDeclarationPageTemplate = (): FormTemplate => {

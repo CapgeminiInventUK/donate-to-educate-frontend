@@ -1,8 +1,8 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import { InstitutionBanner } from '../InstitutionBanner';
-import { charityBanner, schoolBanner } from './mockData';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { InstitutionBanner } from '../InstitutionBanner';
+import { charityBanner, schoolBanner } from './mockData';
 
 describe('Institution banner', () => {
   const setBanner = vi.fn();

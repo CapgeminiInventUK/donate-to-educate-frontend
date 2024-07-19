@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styles from './SomethingWentWrong.module.scss';
-import ErrorPage from '@/components/ErrorPage/ErrorPage';
 import AlertCircle from '@/assets/error/AlertCircle';
+import ErrorPage from '@/components/ErrorPage/ErrorPage';
 import Paths from '@/config/paths';
-import { ErrorBoundaryType } from '@/types/props';
+import type { ErrorBoundaryType } from '@/types/props';
+import type { FC } from 'react';
+import styles from './SomethingWentWrong.module.scss';
 
 interface SomethingWentWrongProps {
   errorBoundary: ErrorBoundaryType;

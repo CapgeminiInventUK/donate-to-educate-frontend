@@ -1,8 +1,8 @@
+import type { TileThemes } from '@/types/props';
 import { render } from '@testing-library/react';
-import ActionTile from '../ActionTile';
-import { TileThemes } from '@/types/props';
-import styles from '../ActionTile.module.scss';
 import buttonStyles from '../../FormButton/FormButton.module.scss';
+import ActionTile from '../ActionTile';
+import styles from '../ActionTile.module.scss';
 
 const props = {
   icon: <></>,
