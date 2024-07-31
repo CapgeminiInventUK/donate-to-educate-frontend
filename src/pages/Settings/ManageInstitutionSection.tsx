@@ -3,10 +3,8 @@ import InfoTable from '@/components/InfoTable/InfoTable';
 import FormButton from '@/components/FormButton/FormButton';
 import { countEmptyObjectValues } from '@/utils/globals';
 import { FC } from 'react';
+import { ManageInstitutionSectionProps } from '@/types/props';
 
-interface ManageInstitutionSectionProps {
-  type?: string;
-}
 const ManageInstitutionSection: FC<ManageInstitutionSectionProps> = ({ type }) => {
   // TODO - When multiple users, get these user details from BE
   const accountDetails = {

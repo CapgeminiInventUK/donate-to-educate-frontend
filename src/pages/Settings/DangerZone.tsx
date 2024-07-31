@@ -2,15 +2,10 @@ import { FC } from 'react';
 import styles from './Settings.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
-import { UserDetails } from '@/types/data';
 import { capitaliseFirstLetter, checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { ManageDetailsSectionProps } from '@/types/props';
 
-interface DangerZoneProps {
-  userData: UserDetails;
-  type?: string;
-}
-
-const DangerZone: FC<DangerZoneProps> = ({ userData, type }) => {
+const DangerZone: FC<ManageDetailsSectionProps> = ({ userData, type }) => {
   const { name, institutionName, email } = userData;
 
   const typename =

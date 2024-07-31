@@ -22,6 +22,7 @@ import {
   PillColours,
   InstitutionProfile,
   RequestFormState,
+  UserDetails,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -722,4 +723,13 @@ export interface InfoTableProps {
   icon?: JSX.Element;
   className?: string;
   rowClassName?: string;
+}
+
+export interface ManageDetailsSectionProps {
+  userData: UserDetails;
+  type?: string;
+}
+
+export interface ManageInstitutionSectionProps {
+  type?: string;
 }

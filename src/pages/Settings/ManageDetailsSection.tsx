@@ -1,14 +1,11 @@
 import { FC } from 'react';
 import styles from './Settings.module.scss';
 import InfoTable from '@/components/InfoTable/InfoTable';
-import { ManageUserDetails, UserDetails } from '@/types/data';
+import { ManageUserDetails } from '@/types/data';
 import { getNameFromUserObject } from '@/utils/account';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { ManageDetailsSectionProps } from '@/types/props';
 
-interface ManageDetailsSectionProps {
-  userData: UserDetails;
-  type?: string;
-}
 const ManageDetailsSection: FC<ManageDetailsSectionProps> = ({ userData, type }) => {
   const { jobTitle, department, phone, email } = userData;
 
