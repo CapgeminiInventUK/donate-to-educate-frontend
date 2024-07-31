@@ -1,80 +1,67 @@
 import { FC } from 'react';
 import styles from './Settings.module.scss';
 import InfoTable from '@/components/InfoTable/InfoTable';
-import FormButton from '@/components/FormButton/FormButton';
-import Caution from '@/assets/icons/Caution';
 import BackButton from '@/components/BackButton/BackButton';
-import { capitaliseFirstLetter, countEmptyObjectValues } from '@/utils/globals';
 import { useStore } from '@/stores/useStore';
-// import { useQuery } from '@tanstack/react-query';
-// import { client } from '@/graphqlClient';
-// import { GetLocalAuthorityUserQuery } from '@/types/api';
-// import { GraphQLQuery } from 'aws-amplify/api';
-// import { getLocalAuthorityUser } from '@/graphql/queries';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GetCharityUserQuery, GetLocalAuthorityUserQuery, GetSchoolUserQuery } from '@/types/api';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { getCharityUser, getLocalAuthorityUser, getSchoolUser } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
+import { UserDetails } from '@/types/data';
+import { getUserDetailsObjectFromQuery } from '@/utils/account';
+import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import ManageInstitutionSection from './ManageInstitutionSection';
+import ManageDetailsSection from './ManageDetailsSection';
+import DangerZone from './DangerZone';
 
 const Settings: FC = () => {
   const { email, type } = useStore((state) => state.user) ?? {};
+  const { state } = useLocationStateOrRedirect<{ postcode: string }>();
 
-  // // TODO - Detect which user type for which query to use
-  // /* eslint-disable no-console */
-  // console.log(type, 'TYPE');
-  // const { isLoading, data, isError, error } = useQuery({
-  //   queryKey: [`get-la-user-${email}`],
-  //   queryFn: async () => {
-  //     const { data } = await client.graphql<GraphQLQuery<GetLocalAuthorityUserQuery>>({
-  //       query: getLocalAuthorityUser,
-  //       variables: {
-  //         email,
-  //       },
-  //     });
+  const query =
+    type === 'localAuthority'
+      ? getLocalAuthorityUser
+      : type === 'school'
+        ? getSchoolUser
+        : getCharityUser;
 
-  //     return data;
-  //   },
-  // });
+  const { isLoading, data, isError } = useQuery({
+    queryKey: [`get-${type}-user-${email}`],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthorityUserQuery | GetCharityUserQuery | GetSchoolUserQuery>
+      >({
+        query: query,
+        variables: {
+          email,
+        },
+      });
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+      return data;
+    },
+  });
 
-  // if (isError) {
-  //   /* eslint-disable no-console */
-  //   console.error('Error loading data:', error);
-  //   return <div>Error loading data</div>;
-  // }
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  // const localAuthorityUser = data?.getLocalAuthorityUser;
-  // if (!localAuthorityUser) {
-  //   /* eslint-disable no-console */
-  //   console.error('No user local authority user returned from the query');
-  //   return <div>No user local authority user available</div>;
-  // }
+  if (isError) {
+    <ErrorBanner />;
+  }
 
-  // const userEmail = localAuthorityUser.email ?? 'No email given';
+  const userData =
+    data &&
+    getUserDetailsObjectFromQuery(
+      Object.values(data).map((value) => value as UserDetails)[0],
+      type
+    );
 
-  const userEmail = email ?? 'test@test.com';
-  const manageDetails = {
-    Name: 'Alexander Isak',
-    Email: userEmail,
-    'Job title or role': 'Head of Education',
-    Department: 'Education',
-    Phone: '07123456789',
-  };
-
-  const manageDetailsEditables = ['Job title or role', 'Department', 'Phone'];
-
-  const accountDetails = {
-    'Account 1': 'Alexander Isak',
-    'Account 2': 'Fabian Schar',
-    'Account 3': '',
-  };
-
-  const typename =
-    String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
-
-  const deleteTableData = {
-    [typename]: `[${typename} name 1]`,
-    'Your account': 'Isak-chemistry@gmail.com',
-  };
+  if (!userData) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.container}>
@@ -89,46 +76,12 @@ const Settings: FC = () => {
           {type === 'charity' && (
             <div className={styles.postcodeSection}>
               <h2>Postcode</h2>
-              <InfoTable tableValues={{ Postcode: 'n7 5ke' }} editableKeys={['Postcode']} />
+              <InfoTable tableValues={{ Postcode: state.postcode }} editableKeys={['Postcode']} />
             </div>
           )}
-          <div className={styles.manageDetailsSection}>
-            <h2>Manage your details</h2>
-            <InfoTable tableValues={manageDetails} editableKeys={manageDetailsEditables} />
-          </div>
-          {(type === 'charity' || type === 'school') && (
-            <div className={styles.manageSchoolSection}>
-              <h2>Manage your {type}</h2>
-              <p>
-                Three accounts can manage this {type}, add a colleague and see how they can help.
-              </p>
-              <InfoTable tableValues={accountDetails} isAccounts={true} />
-              <FormButton
-                theme={
-                  countEmptyObjectValues(accountDetails) > 0
-                    ? 'formButtonGreen'
-                    : 'formButtonDisabled'
-                }
-                text="Add user &nbsp;+"
-                fullWidth={true}
-                onClick={() => window.alert('This function is in development')}
-                ariaLabel="add user"
-                className={styles.addUserButton}
-              />
-            </div>
-          )}
-          <div className={styles.deleteSection}>
-            <h2>Delete</h2>
-            <InfoTable
-              tableValues={deleteTableData}
-              editableKeys={manageDetailsEditables}
-              isDelete={true}
-              title="Danger zone"
-              icon={<Caution />}
-              className={styles.deleteTable}
-              rowClassName={styles.deleteTableRow}
-            />
-          </div>
+          <ManageDetailsSection userData={userData} type={type} />
+          <ManageInstitutionSection type={type} />
+          <DangerZone userData={userData} type={type} />
         </div>
       </div>
     </div>

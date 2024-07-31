@@ -329,6 +329,7 @@ export interface InstitutionBannerProps {
   setBanner?: Dispatch<SetStateAction<Banner>>;
   type: 'school' | 'charity';
   name?: string;
+  postcode?: string;
 }
 
 export interface InformationTileProps {

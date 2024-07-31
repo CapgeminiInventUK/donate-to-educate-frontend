@@ -286,3 +286,23 @@ export interface RequestItemsTextContent {
   notesHeading: string;
   notesSubHeading: string;
 }
+
+export interface UserDetails {
+  name: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  institutionName?: string;
+  institutionId?: string;
+  department?: string;
+  firstName?: string;
+  lastName?: string;
+}
+
+export interface ManageUserDetails {
+  Name: string;
+  Email: string;
+  Phone: string;
+  'Job title or role': string;
+  Department?: string;
+}

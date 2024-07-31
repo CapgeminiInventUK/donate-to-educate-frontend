@@ -5,7 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "lib": ["ES2023.Array", "DOM", "DOM.Iterable"]
+    "lib": ["DOM", "DOM.Iterable"]
   },
   "include": ["vite.config.ts"]
 }

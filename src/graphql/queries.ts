@@ -577,6 +577,30 @@ export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser(
   APITypes.GetLocalAuthorityUserQueryVariables,
   APITypes.GetLocalAuthorityUserQuery
 >;
+export const getSchoolUser = /* GraphQL */ `query GetSchoolUser($email: String!) {
+  getSchoolUser(email: $email) {
+    name
+    schoolName
+    schoolId
+    jobTitle
+    email
+    phone
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolUserQueryVariables, APITypes.GetSchoolUserQuery>;
+export const getCharityUser = /* GraphQL */ `query GetCharityUser($email: String!) {
+  getCharityUser(email: $email) {
+    name
+    charityName
+    charityId
+    jobTitle
+    email
+    phone
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetCharityUserQueryVariables, APITypes.GetCharityUserQuery>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id
