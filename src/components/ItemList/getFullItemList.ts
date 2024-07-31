@@ -141,7 +141,7 @@ export const convertCategoryToNumber = (category: SectionsIconType): number => {
 };
 
 export const convertNumberToCategory = (number: number): SectionsIconType => {
-  switch (number) {
+  switch (Number(number)) {
     case 0:
       return 'Clothing and uniform';
     case 1:
