@@ -216,7 +216,7 @@ describe('Institution admin dashboard - school', () => {
         profile={editedAboutProfile}
       />
     );
-    const { getByRole, getAllByRole } = render(<Component />);
+    const { getByRole, getAllByRole, findByRole } = render(<Component />);
     const editButton = getAllByRole('button', { name: 'edit' });
 
     await userEvent.click(editButton[1]);
@@ -229,8 +229,8 @@ describe('Institution admin dashboard - school', () => {
 
     const saveButton = getByRole('button', { name: 'Save' });
 
-    await userEvent.click(saveButton).then(() => {
-      const newAboutText = getByRole('heading', { level: 3 });
+    await userEvent.click(saveButton).then(async () => {
+      const newAboutText = await findByRole('heading', { level: 3 });
 
       expect(newAboutText.textContent).toBe('Something went wrong');
     });
