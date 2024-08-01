@@ -1,6 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import styles from './RequestItems.module.scss';
-import FormButton from '@/components/FormButton/FormButton';
 import BackButton from '@/components/BackButton/BackButton';
 import { RequestFormState } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +12,10 @@ import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import { RequestItemsProps } from '@/types/props';
-import { checkAllObjectValuesTruthy } from '@/utils/globals';
-import getTextContent from './getTextContent';
-import RequestItemsFormInputs from './RequestItemsFormInputs';
+import { getTextContent, validateForm } from './utils';
+import RequestItemsFormInputs from './RequestItemsForm';
+import FormErrors from '../FormErrors/FormErrors';
+import { checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
 
 const RequestItems: FC<RequestItemsProps> = ({
   type,
@@ -31,8 +31,9 @@ const RequestItems: FC<RequestItemsProps> = ({
     phone: '',
     message: '',
   });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  const { buttonText, heading, subHeading } = getTextContent(type, organisationType);
+  const { heading, subHeading } = getTextContent(type, organisationType);
 
   const { refetch, isError } = useQuery({
     queryKey: [`itemQuery-${JSON.stringify(formState)}-${type}`],
@@ -61,17 +62,25 @@ const RequestItems: FC<RequestItemsProps> = ({
     });
   };
 
-  const onFormSubmit = (): void => {
-    void refetch().then(() => {
-      navigate(
-        organisationType === 'school'
-          ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
-          : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
-        {
-          state: { name: organisationName, id },
-        }
-      );
-    });
+  const onFormSubmit = (event: FormEvent<Element>): void => {
+    event.preventDefault();
+    const errors = validateForm(formState);
+
+    if (!checkIfValidObjectWithData(errors)) {
+      void refetch().then(() => {
+        navigate(
+          organisationType === 'school'
+            ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
+            : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
+          {
+            state: { name: organisationName, id },
+          }
+        );
+      });
+    } else {
+      setFormErrors(errors);
+      scrollToTheTop();
+    }
   };
 
   if (isError) {
@@ -83,6 +92,7 @@ const RequestItems: FC<RequestItemsProps> = ({
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
         <Card className={`${styles.requestItemsCard} ${styles[type]}`}>
+          <FormErrors formErrors={formErrors} />
           <h2 className={styles.mainHeading}>{heading}</h2>
           <p>{subHeading}</p>
           <RequestItemsFormInputs
@@ -90,16 +100,7 @@ const RequestItems: FC<RequestItemsProps> = ({
             organisationType={organisationType}
             formState={formState}
             onFormChange={onFormChange}
-          />
-          <FormButton
-            text={buttonText}
-            theme={
-              checkAllObjectValuesTruthy(formState) ? 'formButtonGreenDisabled' : 'formButtonGreen'
-            }
-            fullWidth={true}
-            disabled={checkAllObjectValuesTruthy(formState)}
-            onClick={onFormSubmit}
-            ariaLabel="submit"
+            onFormSubmit={onFormSubmit}
           />
         </Card>
       </div>

@@ -17,7 +17,7 @@ describe('Institution banner', () => {
     );
     const { getAllByRole } = render(<Component />);
     const links = getAllByRole('link');
-    expect(links).toHaveLength(3);
+    expect(links).toHaveLength(4);
   });
 
   it('should be editable if admin view set to true', async () => {

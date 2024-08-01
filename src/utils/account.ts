@@ -1,5 +1,5 @@
 import Paths from '@/config/paths';
-import { AccountType } from '@/types/data';
+import { AccountType, UserDetails } from '@/types/data';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {
@@ -14,4 +14,33 @@ export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string =
     default:
       throw new Error(`Unknown account type ${type as string}`);
   }
+};
+
+export const getNameFromUserObject = ({ firstName, lastName, name }: UserDetails): string => {
+  return firstName && lastName ? `${firstName} ${lastName}` : name;
+};
+
+export const getUserDetailsObjectFromQuery = (data: UserDetails, type?: string): UserDetails => {
+  const name = getNameFromUserObject(data);
+  return Object.entries(data).reduce(
+    (acc, [key, value]) => {
+      if (
+        key === 'schoolName' ||
+        key === 'charityName' ||
+        (type === 'localAuthority' && key === 'name')
+      ) {
+        acc.institutionName = String(value);
+        return acc;
+      }
+      if (key.toLowerCase().includes('name')) {
+        return acc;
+      }
+      if (key.includes('Id')) {
+        acc.institutionId = String(value);
+      }
+
+      return { ...acc, [key]: String(value) };
+    },
+    { name, jobTitle: '', email: '', phone: '', institutionName: '', institutionId: '' }
+  );
 };

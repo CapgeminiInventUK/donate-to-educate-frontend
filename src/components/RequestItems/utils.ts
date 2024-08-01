@@ -1,6 +1,12 @@
-import { ItemsIconType, RequestItemsTextContent } from '@/types/data';
+import {
+  ComponentType,
+  ItemsIconType,
+  RequestFormState,
+  RequestItemsTextContent,
+} from '@/types/data';
+import { getFormErrors } from '@/utils/formValidationUtils';
 
-const getTextContent = (
+export const getTextContent = (
   type: ItemsIconType,
   schoolOrCharity: 'school' | 'charity'
 ): RequestItemsTextContent => {
@@ -71,4 +77,19 @@ const getTextContent = (
   }
 };
 
-export default getTextContent;
+export const validateForm = (formState: RequestFormState): Record<string, string> => {
+  const formData = Object.entries(formState).map(([field, value]) => ({
+    field,
+    value: String(value),
+  }));
+  const formComponents = Object.keys(formState).map((field) => {
+    const componentType =
+      field === 'who'
+        ? ComponentType.RADIO
+        : field === 'message'
+          ? ComponentType.TEXTAREA
+          : ComponentType.TEXT;
+    return { field, componentType };
+  });
+  return getFormErrors(formComponents, formData);
+};

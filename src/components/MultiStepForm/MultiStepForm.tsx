@@ -80,7 +80,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     event.preventDefault();
     scrollToTheTop();
 
-    await validateForm(formComponents, formData, queryClient, setFormErrors);
+    await validateForm(formComponents, formData, setFormErrors, queryClient);
 
     if (onLocalAuthorityRegisterRequest) {
       return onLocalAuthorityRegisterRequest();

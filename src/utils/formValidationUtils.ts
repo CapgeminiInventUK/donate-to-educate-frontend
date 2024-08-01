@@ -52,14 +52,17 @@ export const getFormErrors = (
   formComponents: FormComponent[],
   formData: FormDataItem[]
 ): Record<string, string> => {
-  return formComponents.reduce((acc: Record<string, string>, { componentData }) => {
-    const { formMeta: { field = '' } = {} } = componentData as CommonInputProps;
-    const error = validateFormInputField(formData, field);
-    if (error) {
-      acc[field] = error;
-    }
-    return acc;
-  }, {});
+  return formComponents.reduce(
+    (acc: Record<string, string>, { componentData, field: componentField }) => {
+      const field = componentField ?? (componentData as CommonInputProps)?.formMeta?.field ?? '';
+      const error = validateFormInputField(formData, field);
+      if (error) {
+        acc[field] = error;
+      }
+      return acc;
+    },
+    {}
+  );
 };
 
 export const validatePostcodeAndAddToFormErrors = async (
@@ -103,11 +106,11 @@ export const parsePhoneNumber = (formData: FormDataItem[]): void => {
 export const validateForm = async (
   formComponents: FormComponent[],
   formData: FormDataItem[],
-  queryClient: QueryClient,
-  setFormErrors: Dispatch<SetStateAction<Record<string, string>>>
+  setFormErrors: Dispatch<SetStateAction<Record<string, string>>>,
+  queryClient?: QueryClient
 ): Promise<void> => {
   const errors = getFormErrors(formComponents, formData);
-  await validatePostcodeAndAddToFormErrors(queryClient, errors, formData);
+  queryClient && (await validatePostcodeAndAddToFormErrors(queryClient, errors, formData));
 
   if (Object.keys(errors).length > 0) {
     setFormErrors((formErrors) => ({ ...formErrors, ...errors }));

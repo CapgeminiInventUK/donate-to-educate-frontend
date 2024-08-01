@@ -3,7 +3,7 @@ import * as router from 'react-router';
 import RequestItems from '../RequestItems';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import getTextContent from '../getTextContent';
+import { getTextContent } from '../utils';
 
 const navigate = vi.fn();
 
@@ -85,7 +85,7 @@ describe('Request items', () => {
     });
   });
 
-  it('should handle an error', async () => {
+  it('should handle a submission error', async () => {
     const Component = createWrapper(
       <RequestItems
         type={'heart'}
@@ -120,6 +120,40 @@ describe('Request items', () => {
     });
 
     const errorMessage = await findByText('Something went wrong');
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it('should display a form validation error', async () => {
+    const Component = createWrapper(
+      <RequestItems
+        type={'heart'}
+        organisationType={'charity'}
+        id={'123456'}
+        name={'Test Charity'}
+      />
+    );
+
+    const { getAllByRole, getByRole, findByText } = render(<Component />);
+
+    const radio = getAllByRole('radio')[0];
+    const inputs = getAllByRole('textbox');
+    const submitButton = getByRole('button', { name: 'submit' });
+
+    await userEvent.click(radio);
+    await userEvent.click(inputs[0]);
+    await userEvent.keyboard('Name');
+    await userEvent.click(inputs[1]);
+    await userEvent.keyboard('email incorrect');
+    await userEvent.click(inputs[2]);
+    await userEvent.keyboard('07777777777');
+    await userEvent.click(inputs[3]);
+    await userEvent.keyboard('message');
+
+    await waitFor(() => {
+      fireEvent.click(submitButton);
+    });
+
+    const errorMessage = await findByText('There is a problem');
     expect(errorMessage).toBeInTheDocument();
   });
 });
