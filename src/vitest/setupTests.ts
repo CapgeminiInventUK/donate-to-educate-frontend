@@ -11,7 +11,7 @@ beforeAll(() => {
   window.scrollTo = (): void => {
     undefined;
   };
-  const { getComputedStyle } = window;
+  const getComputedStyle = window.getComputedStyle;
   window.getComputedStyle = (elt): CSSStyleDeclaration => getComputedStyle(elt);
   Object.defineProperty(window, 'matchMedia', {
     writable: true,

@@ -21,6 +21,8 @@ import {
   ItemsIconType,
   PillColours,
   InstitutionProfile,
+  RequestFormState,
+  UserDetails,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -207,7 +209,7 @@ export interface RadioButtonProps {
 export interface RadioGroupProps {
   name: string;
   values: string[];
-  labels?: string[];
+  labels: string[];
   className?: string;
   formMeta?: FormMeta;
   handleChange?: (input: string) => void;
@@ -328,6 +330,7 @@ export interface InstitutionBannerProps {
   setBanner?: Dispatch<SetStateAction<Banner>>;
   type: 'school' | 'charity';
   name?: string;
+  postcode?: string;
 }
 
 export interface InformationTileProps {
@@ -481,18 +484,18 @@ export interface AdminDashboardCardProps {
 }
 
 export interface RequestItemsProps {
-  radioButtonLabels: string[];
-  radioButtonValues: string[];
-  buttonText: string;
-  heading: string;
-  subHeading: string;
-  notesHeading: string;
-  notesSubHeading: string;
   type: ItemsIconType;
   organisationType: 'school' | 'charity';
   id: string;
   name: string;
-  postcode?: string;
+}
+
+export interface RequestItemsFormProps {
+  type: ItemsIconType;
+  organisationType: 'school' | 'charity';
+  formState: RequestFormState;
+  onFormChange: (key: string, value: string) => void;
+  onFormSubmit: (event: FormEvent<Element>) => void;
 }
 
 export interface DonateAndExcessProps {
@@ -709,4 +712,24 @@ export interface PublicDashboardActionTilesProps {
   id: string;
   previewMode?: boolean;
   postcode?: string | null;
+}
+
+export interface InfoTableProps {
+  tableValues: Record<string, string>;
+  editableKeys?: string[];
+  isAccounts?: boolean;
+  isDelete?: boolean;
+  title?: string;
+  icon?: JSX.Element;
+  className?: string;
+  rowClassName?: string;
+}
+
+export interface ManageDetailsSectionProps {
+  userData: UserDetails;
+  type?: string;
+}
+
+export interface ManageInstitutionSectionProps {
+  type?: string;
 }

@@ -15,6 +15,9 @@ import AdminView from './AdminView';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 import { hasContactInfo } from './utils';
 import PublicView from './PublicView';
+import Settings from '@/assets/icons/Settings';
+import Paths from '@/config/paths';
+import { Link } from 'react-router-dom';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -22,6 +25,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   setBanner,
   type,
   name,
+  postcode,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const [previousBanner, setPreviousBanner] = useState(banner);
@@ -63,6 +67,9 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
+      <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
+        Settings <Settings />
+      </Link>
       {hasContactInfo(banner, isAdminView) && (
         <div className={styles.textContainer}>
           {isAdminView && (

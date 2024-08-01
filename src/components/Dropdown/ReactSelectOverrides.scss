@@ -4,8 +4,11 @@
 .selectLarge {
   &__control {
     @include g.input;
-    height: 50px;
-    padding: 0;
+
+    & {
+      height: 50px;
+      padding: 0;
+    }
   }
 
   &__indicators {

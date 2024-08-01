@@ -9,6 +9,22 @@
   border-top: g.$secondary-blue 18px solid;
   border-radius: 10px 10px 0 0;
 
+  .settingsButton {
+    display: flex;
+    padding: 0 22px;
+    min-height: 44px;
+    margin: 20px 0 25px;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: g.$primary-white;
+    background-color: g.$secondary-mid-blue;
+    border-radius: 5px;
+    text-decoration: none;
+    justify-content: center;
+    gap: 10px;
+  }
+
   .editSection {
     margin-bottom: 25px;
   }
