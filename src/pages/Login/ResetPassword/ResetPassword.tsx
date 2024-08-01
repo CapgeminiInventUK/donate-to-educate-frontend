@@ -88,7 +88,7 @@ const ResetPassword: FC = () => {
             <VerificationInput
               value={verificationCode}
               onChange={(input: string) => {
-                if (input.match(/^[0-9]*$/)) {
+                if (RegExp(/^[0-9]*$/).exec(input)) {
                   setVerificationCode(input);
                 }
               }}
