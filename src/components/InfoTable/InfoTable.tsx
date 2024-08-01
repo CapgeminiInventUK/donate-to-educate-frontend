@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './InfoTable.module.scss';
 import { InfoTableProps } from '@/types/props';
+import Button from '../Button/Button';
 
 const InfoTable: React.FC<InfoTableProps> = ({
   tableValues,
@@ -27,9 +28,13 @@ const InfoTable: React.FC<InfoTableProps> = ({
             {value ? value : isAccounts && <span className={styles.pill}>FREE</span>}
           </div>
           {editableKeys.includes(key) && (
-            <a href="#" className={styles.edit}>
-              Edit
-            </a>
+            <Button
+              text="Edit"
+              onClick={() => alert('Doing summat soon')}
+              className={styles.edit}
+              theme="link"
+              ariaLabel="edit-button"
+            />
           )}
           {isDelete && (
             <span

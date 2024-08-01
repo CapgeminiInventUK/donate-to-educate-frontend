@@ -133,6 +133,26 @@ export type LocalAuthorityUser = {
   privacyPolicyAccepted?: boolean | null;
 };
 
+export type SchoolUser = {
+  __typename: 'SchoolUser';
+  name: string;
+  schoolName: string;
+  schoolId: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+};
+
+export type CharityUser = {
+  __typename: 'CharityUser';
+  name: string;
+  charityName: string;
+  charityId: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+};
+
 export type SignUpData = {
   __typename: 'SignUpData';
   id: string;
@@ -983,6 +1003,38 @@ export type GetLocalAuthorityUserQuery = {
     notes?: string | null;
     nameId: string;
     privacyPolicyAccepted?: boolean | null;
+  };
+};
+
+export type GetSchoolUserQueryVariables = {
+  email: string;
+};
+
+export type GetSchoolUserQuery = {
+  getSchoolUser: {
+    __typename: 'SchoolUser';
+    name: string;
+    schoolName: string;
+    schoolId: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
+  };
+};
+
+export type GetCharityUserQueryVariables = {
+  email: string;
+};
+
+export type GetCharityUserQuery = {
+  getCharityUser: {
+    __typename: 'CharityUser';
+    name: string;
+    charityName: string;
+    charityId: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
   };
 };
 
