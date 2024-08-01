@@ -17,6 +17,10 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
+afterAll(() => {
+  useStore.setState(initialStoreState, true);
+});
+
 describe('Private route', () => {
   it('should render spinner when in loading state', () => {
     useStore.setState({ ...initialStoreState, isLoading: true });

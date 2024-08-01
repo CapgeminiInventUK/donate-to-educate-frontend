@@ -9,6 +9,10 @@ beforeEach(() => {
   useStore.setState(initialStoreState, true);
 });
 
+afterAll(() => {
+  useStore.setState(initialStoreState, true);
+});
+
 describe('navlinks component', () => {
   it('should correctly render the links', () => {
     const Component = createWrapper(<NavLinks />);

@@ -18,6 +18,10 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
+afterAll(() => {
+  useStore.setState(initialStoreState, true);
+});
+
 describe('Nav link', () => {
   it('should return undefined if no name', () => {
     const Component = createWrapper(<NavLink path={Paths.ADD_USER} />);
