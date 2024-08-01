@@ -25,8 +25,9 @@ const Dropdown: FC<DropdownProps> = ({
 
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
-    onChange &&
+    if (onChange) {
       onChange(checkForStringAndReturnEmptyIfFalsy(option?.label), formMeta, { ...option });
+    }
   };
 
   const onSearch = (newValue: string): void => {

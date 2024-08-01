@@ -55,7 +55,12 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
           type === 'school' || type === 'charity' ? await hasProfile(type, name, id) : false,
       });
     } catch (error) {
-      set({ user: undefined, isLoading: false, hasProfile: false });
+      set({
+        user: undefined,
+        isLoading: false,
+        hasProfile: false,
+        error: Error(String(error)),
+      });
     }
   },
   logout: async (): Promise<void> => {
