@@ -4,12 +4,14 @@ import Paths from '@/config/paths';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
-import * as store from '@/stores/useStore';
+import { useStore } from '@/stores/useStore';
 
 const navigate = vi.fn();
+const initialStoreState = useStore.getState();
 
 beforeEach(() => {
   vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+  useStore.setState(initialStoreState, true);
 });
 
 afterEach(() => {
@@ -90,14 +92,16 @@ describe('Nav link', () => {
   });
 
   it('should navigate user to sign in screen if path is login and user already signed in', async () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
-      userId: 'someId',
-      username: 'test7@test.com',
-      email: 'test7@test.com',
-      type: 'charity',
-      name: 'Test charity',
-      id: '12fb794a-8be7-4588-8180-29c47b38721a',
-    }));
+    useStore.setState({
+      user: {
+        userId: 'someId',
+        username: 'test7@test.com',
+        email: 'test7@test.com',
+        type: 'charity',
+        name: 'Test charity',
+        id: '12fb794a-8be7-4588-8180-29c47b38721a',
+      },
+    });
     const props = {
       name: 'Join us',
       path: Paths.LOGIN,

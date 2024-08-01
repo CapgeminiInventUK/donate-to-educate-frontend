@@ -2,13 +2,15 @@ import { createWrapper } from '@/mocks/mockGraphqlClient';
 import PrivateRoute from '../PrivateRoute';
 import { render } from '@testing-library/react';
 import Paths from '@/config/paths';
-import * as store from '@/stores/useStore';
+import { useStore } from '@/stores/useStore';
 import * as router from 'react-router';
 
 const navigate = vi.fn();
+const initialStoreState = useStore.getState();
 
 beforeEach(() => {
   vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
+  useStore.setState(initialStoreState, true);
 });
 
 afterEach(() => {
@@ -17,9 +19,7 @@ afterEach(() => {
 
 describe('Private route', () => {
   it('should render spinner when in loading state', () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
-      isLoading: true,
-    }));
+    useStore.setState({ ...initialStoreState, isLoading: true });
 
     const Component = createWrapper(
       <PrivateRoute>
@@ -32,9 +32,7 @@ describe('Private route', () => {
   });
 
   it('should return children if no route passed', () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
-      isLoading: false,
-    }));
+    useStore.setState({ ...initialStoreState, isLoading: false });
     const Component = createWrapper(
       <PrivateRoute route={''}>
         <span>Test content</span>
@@ -46,15 +44,17 @@ describe('Private route', () => {
   });
 
   it('should navigate to the given route if no user type', () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
+    useStore.setState({
       isLoading: false,
       user: {
         userId: 'someId',
         username: 'test7@test.com',
         email: 'test7@test.com',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
+        type: '',
+        name: 'test name',
       },
-    }));
+    });
     const Component = createWrapper(
       <PrivateRoute route={Paths.ACCESSIBILITY_STATEMENT}>
         <span>Test content</span>
@@ -67,7 +67,7 @@ describe('Private route', () => {
   });
 
   it('should navigate to redirect url if auth type does not match ', () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
+    useStore.setState({
       isLoading: false,
       user: {
         userId: 'someId',
@@ -75,8 +75,9 @@ describe('Private route', () => {
         username: 'test7@test.com',
         email: 'test7@test.com',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
+        name: 'test name',
       },
-    }));
+    });
     const Component = createWrapper(
       <PrivateRoute route={Paths.ACCESSIBILITY_STATEMENT} authType="school">
         <span>Test content</span>
@@ -88,7 +89,7 @@ describe('Private route', () => {
   });
 
   it('should return children if auth type does match ', () => {
-    vi.spyOn(store, 'useStore').mockImplementation(() => ({
+    useStore.setState({
       isLoading: false,
       user: {
         userId: 'someId',
@@ -96,8 +97,9 @@ describe('Private route', () => {
         username: 'test7@test.com',
         email: 'test7@test.com',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
+        name: 'test name',
       },
-    }));
+    });
     const Component = createWrapper(
       <PrivateRoute route={Paths.ACCESSIBILITY_STATEMENT} authType="charity">
         <span>Test content</span>
