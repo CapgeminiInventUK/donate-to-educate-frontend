@@ -49,7 +49,7 @@ export const selectAll = (
   setAllSelectedNames: Dispatch<SetStateAction<SectionsIconType[]>>,
   setItems: Dispatch<SetStateAction<Record<number, string[]>>>
 ): void => {
-  if (allSelectedNames.indexOf(name) !== -1) {
+  if (allSelectedNames.includes(name)) {
     setAllSelectedNames(allSelectedNames.filter((selectedName) => selectedName !== name));
   } else {
     setAllSelectedNames([...allSelectedNames, name]);

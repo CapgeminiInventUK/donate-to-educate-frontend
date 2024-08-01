@@ -32,7 +32,7 @@
     "@tanstack/react-query-devtools": "5.51.16",
     "antd": "5.19.4",
     "aws-amplify": "6.4.3",
-    "framer-motion": "11.3.19",
+    "framer-motion": "11.3.20",
     "is-ci": "3.0.1",
     "phone": "^3.1.43",
     "react": "18.3.1",
@@ -48,6 +48,7 @@
     "zustand": "4.5.4"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^2.6.1",
     "@testing-library/react": "16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "18.3.3",
@@ -83,6 +84,6 @@
     "vitest-dom": "^0.1.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.19.1"
+    "@rollup/rollup-linux-x64-gnu": "4.19.2"
   }
 }
