@@ -9,8 +9,8 @@ import {
 import getSchoolQueryResponse from './data/getSchoolQuery.json';
 import getSchoolsNearbyQueryResponse from './data/getSchoolsNearbyQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
-import { amplifyConfig } from '@/amplify.config';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { amplifyConfig } from '@/amplify.config';
 
 export const handlers = [
   graphql.query('GetSchool', ({ variables }) => {
@@ -79,10 +79,10 @@ export const handlers = [
       },
     });
   }),
-  http.post(checkForStringAndReturnEmptyIfFalsy(amplifyConfig.API?.GraphQL?.endpoint), () => {
+  http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
     return passthrough();
   }),
-  http.post('https://appsync-api.eu-west-2.amazonaws.com/graphql', () => {
+  http.post(checkForStringAndReturnEmptyIfFalsy(amplifyConfig.API?.GraphQL?.endpoint), () => {
     return passthrough();
   }),
   http.get('/*.webp', () => {
