@@ -61,4 +61,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['node_modules', 'dist', 'vite.config.ts', 'graphql', 'src/types/api.ts'],
 };
