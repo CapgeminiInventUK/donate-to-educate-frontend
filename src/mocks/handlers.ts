@@ -80,7 +80,7 @@ export const handlers = [
   http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
     return passthrough();
   }),
-  http.post('https://test/graphql', () => {
+  http.post('https://appsync-api.eu-west-2.amazonaws.com/graphql', () => {
     return passthrough();
   }),
   http.get('/*.webp', () => {

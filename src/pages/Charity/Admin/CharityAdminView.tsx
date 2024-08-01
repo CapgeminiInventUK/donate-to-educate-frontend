@@ -107,7 +107,7 @@ const CharityView: FC = () => {
       <div className={styles.actionButtons}>
         <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
       </div>
-      <InstitutionBanner type={'charity'} name={name} banner={{}} />
+      <InstitutionBanner type={'charity'} name={name} banner={{}} postcode={postcode} />
       <Card className={styles.subContainer}>
         <div className={styles.profileBanner}>
           <SchoolProfile />
