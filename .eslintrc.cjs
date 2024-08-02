@@ -61,5 +61,12 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['node_modules', 'dist', 'vite.config.ts', 'graphql', 'src/types/api.ts'],
+  ignorePatterns: [
+    'node_modules',
+    'dist',
+    'vite.config.ts',
+    'graphql',
+    'src/types/api.ts',
+    '.eslintrc.cjs',
+  ],
 };

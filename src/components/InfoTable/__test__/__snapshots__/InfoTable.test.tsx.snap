@@ -1,0 +1,682 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Info table > should redner component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="_infoTable_f1f6df "
+      >
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Name
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Name
+          </div>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Email
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            test@test.com
+          </div>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Job title or role
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Job
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Phone
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            07777777777
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Department
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Department
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="_infoTable_f1f6df "
+    >
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Name
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Name
+        </div>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Email
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          test@test.com
+        </div>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Job title or role
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Job
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Phone
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          07777777777
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Department
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Department
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Info table > should render component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="_infoTable_f1f6df "
+      >
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Name
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Name
+          </div>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Email
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            test@test.com
+          </div>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Job title or role
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Job
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Phone
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            07777777777
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+        <div
+          class="_row_f1f6df "
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Department
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            Department
+          </div>
+          <button
+            class="_link_f8f296 _edit_f1f6df "
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="_infoTable_f1f6df "
+    >
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Name
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Name
+        </div>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Email
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          test@test.com
+        </div>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Job title or role
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Job
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Phone
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          07777777777
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+      <div
+        class="_row_f1f6df "
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Department
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          Department
+        </div>
+        <button
+          class="_link_f8f296 _edit_f1f6df "
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Info table > should render component with title and icon when present  1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="_infoTable_f1f6df deleteTable"
+      >
+        <h3>
+          <span
+            class="_icon_f1f6df"
+          >
+            <svg
+              fill="none"
+              height="23"
+              viewBox="0 0 23 23"
+              width="23"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 11.5V6.5M11.5 15.2061V15.25M21.5 11.5C21.5 17.0228 17.0228 21.5 11.5 21.5C5.97715 21.5 1.5 17.0228 1.5 11.5C1.5 5.97715 5.97715 1.5 11.5 1.5C17.0228 1.5 21.5 5.97715 21.5 11.5Z"
+                stroke="#FEFCFD"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+          <span
+            class="_title_f1f6df"
+          >
+            Danger zone
+          </span>
+        </h3>
+        <div
+          class="_row_f1f6df deleteTableRow"
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Local authority
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            LA
+          </div>
+          <span
+            class="_delete_f1f6df"
+          >
+            Delete
+          </span>
+        </div>
+        <div
+          class="_row_f1f6df deleteTableRow"
+        >
+          <div
+            class="_key_f1f6df"
+          >
+            Your account
+          </div>
+          <div
+            class="_value_f1f6df"
+          >
+            test@test.com
+          </div>
+          <span
+            class="_delete_f1f6df"
+          >
+            Delete
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="_infoTable_f1f6df deleteTable"
+    >
+      <h3>
+        <span
+          class="_icon_f1f6df"
+        >
+          <svg
+            fill="none"
+            height="23"
+            viewBox="0 0 23 23"
+            width="23"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.5 11.5V6.5M11.5 15.2061V15.25M21.5 11.5C21.5 17.0228 17.0228 21.5 11.5 21.5C5.97715 21.5 1.5 17.0228 1.5 11.5C1.5 5.97715 5.97715 1.5 11.5 1.5C17.0228 1.5 21.5 5.97715 21.5 11.5Z"
+              stroke="#FEFCFD"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </span>
+        <span
+          class="_title_f1f6df"
+        >
+          Danger zone
+        </span>
+      </h3>
+      <div
+        class="_row_f1f6df deleteTableRow"
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Local authority
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          LA
+        </div>
+        <span
+          class="_delete_f1f6df"
+        >
+          Delete
+        </span>
+      </div>
+      <div
+        class="_row_f1f6df deleteTableRow"
+      >
+        <div
+          class="_key_f1f6df"
+        >
+          Your account
+        </div>
+        <div
+          class="_value_f1f6df"
+        >
+          test@test.com
+        </div>
+        <span
+          class="_delete_f1f6df"
+        >
+          Delete
+        </span>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

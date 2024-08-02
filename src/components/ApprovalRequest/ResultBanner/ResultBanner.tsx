@@ -21,8 +21,6 @@ const getHeaderText = (type: ResultType, name?: string): string => {
       return 'You have declined this request to join';
     case 'approved':
       return `${capitaliseFirstLetter(String(name))} has joined Donate to Educate`;
-    default:
-      throw new Error(`Unexpected result type ${String(type)}`);
   }
 };
 
@@ -31,8 +29,6 @@ const getSubtext = (type: ResultType): string => {
     case 'declined':
     case 'approved':
       return "We've emailed them the results.";
-    default:
-      throw new Error(`Unexpected result type ${String(type)}`);
   }
 };
 
