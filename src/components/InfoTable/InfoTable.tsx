@@ -1,9 +1,10 @@
-import React from 'react';
+import { FC } from 'react';
 import styles from './InfoTable.module.scss';
 import { InfoTableProps } from '@/types/props';
 import Button from '../Button/Button';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
-const InfoTable: React.FC<InfoTableProps> = ({
+const InfoTable: FC<InfoTableProps> = ({
   tableValues,
   editableKeys = [],
   isAccounts = false,
@@ -13,8 +14,18 @@ const InfoTable: React.FC<InfoTableProps> = ({
   className,
   rowClassName,
 }) => {
+  // eslint-disable-next-line no-console
+  console.log({
+    tableValues,
+    editableKeys,
+    isAccounts,
+    isDelete,
+    title,
+    className,
+    rowClassName,
+  });
   return (
-    <div className={`${styles.infoTable} ${className ? className : ''}`}>
+    <div className={`${styles.infoTable} ${checkForStringAndReturnEmptyIfFalsy(className)}`}>
       {(title ?? icon) && (
         <h3>
           <span className={styles.icon}>{icon}</span>
@@ -22,7 +33,10 @@ const InfoTable: React.FC<InfoTableProps> = ({
         </h3>
       )}
       {Object.entries(tableValues).map(([key, value]) => (
-        <div className={`${styles.row} ${rowClassName ? rowClassName : ''}`} key={key}>
+        <div
+          className={`${styles.row} ${checkForStringAndReturnEmptyIfFalsy(rowClassName)}`}
+          key={key}
+        >
           <div className={styles.key}>{key}</div>
           <div className={styles.value}>
             {value ? value : isAccounts && <span className={styles.pill}>FREE</span>}

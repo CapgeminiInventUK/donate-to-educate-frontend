@@ -13,7 +13,7 @@
     "coverage": "vitest run --coverage --watch=false",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts,tsx --report-unused-disable-directives",
     "prepare": "is-ci || husky",
     "codegen": "amplify codegen"
   },
