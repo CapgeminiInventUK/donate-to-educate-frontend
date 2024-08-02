@@ -41,10 +41,23 @@
 
     .key {
       font-weight: bold;
+      margin-right: 10px;
+
+      @include g.sm-breakpoint {
+        font-size: 12px;
+      }
+
+      @include g.xs-breakpoint {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
 
     .value {
       text-align: left;
+      word-break: break-word;
 
       .pill {
         display: inline-block;
@@ -54,6 +67,10 @@
         border-radius: 20px;
         font-weight: bold;
         text-align: center;
+      }
+
+      @include g.sm-breakpoint {
+        font-size: 12px;
       }
     }
 
