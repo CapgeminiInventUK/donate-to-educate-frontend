@@ -13,7 +13,7 @@
     "coverage": "vitest run --coverage --watch=false",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts,tsx --report-unused-disable-directives",
+    "lint": "eslint src --report-unused-disable-directives",
     "prepare": "is-ci || husky",
     "codegen": "amplify codegen"
   },
@@ -64,7 +64,6 @@
     "eslint": "9.8.0",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-react": "7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "0.4.9",
     "husky": "9.1.4",
     "identity-obj-proxy": "3.0.0",
