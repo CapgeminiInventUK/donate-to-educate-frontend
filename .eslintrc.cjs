@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
+  plugins: ['react-refresh', '@typescript-eslint', 'prettier', '@stylistic'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'prettier/prettier': [
@@ -38,7 +38,7 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'error',
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/quotes': [
+    '@stylistic/quotes': [
       'error',
       'single',
       {
@@ -47,9 +47,11 @@ module.exports = {
       },
     ],
     'jsx-quotes': [2, 'prefer-double'],
-    '@typescript-eslint/func-call-spacing': 'error',
+    '@stylistic/func-call-spacing': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-expressions': 'off',
     '@typescript-eslint/await-thenable': 'off',
+    'react/prop-types': 'off',
   },
   overrides: [
     {
@@ -59,4 +61,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['node_modules', 'dist', 'vite.config.ts', 'graphql', 'src/types/api.ts'],
 };
