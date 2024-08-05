@@ -102,7 +102,7 @@ describe('Institution admin dashboard - school', () => {
     await userEvent.clear(textArea);
     await userEvent.keyboard('New about text');
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton).then(() => {
       const newAboutText = getByLabelText('about-text');
@@ -130,7 +130,7 @@ describe('Institution admin dashboard - school', () => {
     await userEvent.click(textArea);
     await userEvent.clear(textArea);
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton).then(() => {
       const newAboutText = getByLabelText('about-text');
@@ -227,7 +227,7 @@ describe('Institution admin dashboard - school', () => {
     await userEvent.clear(textArea);
     await userEvent.keyboard('error');
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton).then(async () => {
       const newAboutText = await findByRole('heading', { level: 3 });

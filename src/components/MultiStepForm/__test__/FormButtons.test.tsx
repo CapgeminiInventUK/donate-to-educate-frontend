@@ -53,7 +53,7 @@ describe('Form buttons', () => {
     const Component = createWrapper(<FormButtons {...props} />);
     const { getByRole } = render(<Component />);
 
-    const homeButton = getByRole('button', { name: 'I cannot find my school' });
+    const homeButton = getByRole('button', { name: 'internal link' });
     await userEvent.click(homeButton);
     expect(internalLinkClick).toHaveBeenCalled();
   });

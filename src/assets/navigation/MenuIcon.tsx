@@ -2,7 +2,7 @@ const MenuIcon = ({
   onClick,
   className,
 }: {
-  onClick: () => void;
+  onClick?: () => void;
   className: string;
 }): JSX.Element => (
   <svg

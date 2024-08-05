@@ -3,12 +3,20 @@ import styles from './Button.module.scss';
 import { ButtonProps } from '@/types/props';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
-const Button: FC<ButtonProps> = ({ onClick, text, theme, className, disabled = false }) => {
+const Button: FC<ButtonProps> = ({
+  onClick,
+  text,
+  theme,
+  className,
+  ariaLabel,
+  disabled = false,
+}) => {
   return (
     <button
       onClick={onClick}
       className={`${styles[theme]} ${checkForStringAndReturnEmptyIfFalsy(className)} ${disabled ? styles.disabled : ''}`}
       disabled={disabled}
+      aria-label={ariaLabel}
     >
       {text}
     </button>

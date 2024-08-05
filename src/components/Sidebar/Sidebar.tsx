@@ -5,6 +5,7 @@ import CloseIcon from '@assets/navigation/CloseIcon';
 import useOnClickAwayListener from '@hooks/useOnClickAwayListener';
 import NavLinks from '../NavLinks/NavLinks';
 import ClickableLogo from '../ClickableLogo/ClickableLogo';
+import Button from '../Button/Button';
 
 const Sidebar: FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -22,15 +23,25 @@ const Sidebar: FC = () => {
   return (
     <nav className={styles.container} ref={containerRef}>
       <div className={styles.nav}>
-        <MenuIcon
-          className={`${styles.menuIcon}`}
+        <Button
+          ariaLabel="hamburger-menu"
           onClick={(): void => setIsDrawerOpen(!isDrawerOpen)}
+          theme="link"
+          text={<MenuIcon className={`${styles.menuIcon}`} />}
+          className={styles.noPadding}
         />
         <ClickableLogo colour="blue" className={styles.logoBlue} />
       </div>
       {isDrawerOpen && (
         <div className={styles.drawer}>
-          <CloseIcon className={styles.closeIcon} onClick={(): void => setIsDrawerOpen(false)} />
+          <Button
+            ariaLabel="close-menu"
+            onClick={(): void => setIsDrawerOpen(false)}
+            theme="link"
+            text={<CloseIcon />}
+            className={styles.closeIcon}
+          />
+
           <div className={styles.navContainer}>
             <ClickableLogo colour="white" className={styles.logoWhite} />
             <NavLinks

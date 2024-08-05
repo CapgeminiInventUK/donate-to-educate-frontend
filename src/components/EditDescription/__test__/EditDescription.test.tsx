@@ -34,7 +34,7 @@ describe('Edit description', () => {
         handleCancel={handleCancel}
       />
     );
-    const cancelButton = getByRole('button', { name: 'Cancel' });
+    const cancelButton = getByRole('button', { name: 'cancel' });
     await userEvent.click(cancelButton);
 
     expect(handleCancel).toHaveBeenCalled();

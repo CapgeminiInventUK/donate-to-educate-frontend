@@ -21,7 +21,7 @@ describe('Footer', () => {
   it('should handle button click', async () => {
     const Component = createWrapper(<Footer />);
     const { getByRole } = render(<Component />);
-    const button = getByRole('button', { name: 'Contact us' });
+    const button = getByRole('button', { name: 'contact us' });
     await userEvent.click(button);
 
     expect(navigate).toHaveBeenCalledWith(Paths.CONTACT);
