@@ -49,7 +49,7 @@ export default defineConfig((env) => ({
         statements: 20,
         lines: 20,
       },
-      exclude: testExclusions,
+      exclude: [...testExclusions, '**/__test__/*'],
     },
   },
   resolve: {
