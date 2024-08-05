@@ -20,6 +20,7 @@ const testExclusions = [
   'src/main.tsx',
   'src/config',
   'vite.config.ts',
+  'eslint.config.mjs',
 ];
 
 // https://vitejs.dev/config/

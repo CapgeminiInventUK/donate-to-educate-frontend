@@ -63,17 +63,18 @@
     }
 
     .delete {
-      display: inline-block;
+      border-radius: 2px;
+      border: 1px solid g.$border-black;
       padding: 8px 0;
-      font-weight: bold;
-      text-align: center;
+      font-weight: 700;
       justify-self: end;
       color: g.$delete-red;
       background: g.$delete-grey;
       box-shadow: 2px 2px 0 2px g.$greyscale;
-      text-decoration: none;
-      min-width: 100px;
+      min-width: 116px;
+      height: 45px;
       cursor: pointer;
+      font-size: 18px;
 
       &:hover {
         filter: brightness(0.9);
