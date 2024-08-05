@@ -13,17 +13,9 @@ const InfoTable: FC<InfoTableProps> = ({
   icon,
   className,
   rowClassName,
+  onEdit,
+  onDelete,
 }) => {
-  // eslint-disable-next-line no-console
-  console.log({
-    tableValues,
-    editableKeys,
-    isAccounts,
-    isDelete,
-    title,
-    className,
-    rowClassName,
-  });
   return (
     <div className={`${styles.infoTable} ${checkForStringAndReturnEmptyIfFalsy(className)}`}>
       {(title ?? icon) && (
@@ -44,19 +36,20 @@ const InfoTable: FC<InfoTableProps> = ({
           {editableKeys.includes(key) && (
             <Button
               text="Edit"
-              onClick={() => alert('Doing summat soon')}
+              onClick={() => onEdit && onEdit()}
               className={styles.edit}
               theme="link"
               ariaLabel="edit-button"
             />
           )}
           {isDelete && (
-            <span
+            <Button
+              text="Delete"
+              theme="light"
+              ariaLabel="delete-button"
               className={styles.delete}
-              onClick={() => window.alert('This function is in development')}
-            >
-              Delete
-            </span>
+              onClick={() => onDelete && onDelete()}
+            />
           )}
         </div>
       ))}

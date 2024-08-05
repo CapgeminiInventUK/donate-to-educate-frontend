@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import eslint from 'vite-plugin-eslint';
 import { resolve } from 'path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -20,12 +21,14 @@ const testExclusions = [
   'src/main.tsx',
   'src/config',
   'vite.config.ts',
+  'eslint.config.mjs',
 ];
 
 // https://vitejs.dev/config/
 export default defineConfig((env) => ({
   plugins: [
     react(),
+    env.mode !== 'test' && eslint(),
     nodePolyfills({
       include: ['buffer'],
     }),
@@ -46,7 +49,7 @@ export default defineConfig((env) => ({
         statements: 20,
         lines: 20,
       },
-      exclude: testExclusions,
+      exclude: [...testExclusions, '**/__test__/*'],
     },
   },
   resolve: {
