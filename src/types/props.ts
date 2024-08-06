@@ -733,6 +733,8 @@ export interface InfoTableProps {
   icon?: JSX.Element;
   className?: string;
   rowClassName?: string;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 export interface ManageDetailsSectionProps {
