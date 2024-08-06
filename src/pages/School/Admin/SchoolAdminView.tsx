@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styles from './SchoolAdminView.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
@@ -16,15 +16,11 @@ import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import Tile from '../../../components/Tile/Tile';
 import Card from '@/components/Card/Card';
-import Heart from '@/assets/icons/Heart';
-import Donate from '@/assets/icons/Donate';
-import Stock from '@/assets/icons/Stock';
-import SchoolIcon from '@/assets/icons/School';
+import Crown from '@/assets/icons/Crown';
 
 const School: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
-  const navigate = useNavigate();
 
   const { isLoading, data, isError } = useQuery({
     queryKey: [`getProfile-${name}-${id}`],
@@ -42,6 +38,15 @@ const School: FC = () => {
     },
   });
 
+  const [postcode, setPostcode] = useState<string>('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data?.getSchoolProfile?.postcode) {
+      setPostcode(data?.getSchoolProfile.postcode);
+    }
+  }, [setPostcode, data?.getSchoolProfile?.postcode]);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -53,74 +58,62 @@ const School: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.actionButtons}>
-        <BackButton theme="blue" />
+        <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
       </div>
       <InstitutionBanner type={'school'} name={name} banner={{}} />
       <Card className={styles.subContainer}>
-        <div className={styles.schoolProfileBanner}>
-          <SchoolProfile />
-          <h2>Your school&apos;s profile is active</h2>
-          <p>View, edit and update your public facing profile.</p>
+        <Tile
+          title="Your school profile is active"
+          body={['View, edit and update your public facing profile.']}
+          icon={<SchoolProfile />}
+          size="medium"
+          noShadow={true}
+          hoverScale={1}
+          titleLarge={true}
+        >
           <FormButton
+            className={styles.button}
             theme="formButtonGreen"
-            text={'View and edit profile'}
-            ariaLabel="view and edit profile"
+            text="View and edit profile"
             onClick={() => navigate(Paths.SCHOOLS_CREATE_EDIT_PROFILE)}
+            ariaLabel={`view and edit profile`}
           />
-        </div>
-        <div className={styles.localAreaContainer}>
-          <h2>Your local area</h2>
-          <div className={styles.tileRow}>
-            <Tile
-              title="Find a nearby school"
-              onClick={() =>
-                navigate(Paths.LOCAL_SCHOOLS, {
-                  state: { postcode: data?.getSchoolProfile?.postcode },
-                })
-              }
-              body={['See products schools can provide to you or what donations they need']}
-              icon={<SchoolIcon />}
-              size="medium"
-            />
-            <Tile
-              title="Find nearby charities"
-              onClick={() =>
-                navigate(Paths.LOCAL_CHARITIES, {
-                  state: { postcode: data?.getSchoolProfile?.postcode },
-                })
-              }
-              body={['Find out what they stock, or donate products']}
-              icon={<Heart />}
-              size="medium"
-            />
-          </div>
-          <div className={styles.tileRow}>
-            <Tile
-              title="Donate products"
-              onClick={() =>
-                navigate(Paths.LOCAL_DONATE, {
-                  state: { postcode: data?.getSchoolProfile?.postcode },
-                })
-              }
-              body={['Support schools and charities in your area']}
-              icon={<Donate />}
-              size="medium"
-            />
-            <Tile
-              title="Help take extra stock"
-              onClick={() =>
-                navigate(Paths.LOCAL_EXCESS, {
-                  state: { postcode: data?.getSchoolProfile?.postcode },
-                })
-              }
-              body={[
-                'Sometimes schools and charities might have too much stock that urgently needs to find a new home. Help take it off their hands.',
-              ]}
-              icon={<Stock />}
-              size="medium"
-            />
-          </div>
-        </div>
+          <Link className={styles.deactivateLink} to={Paths.HOME}>
+            Deactivate your public profile
+          </Link>
+        </Tile>
+        <Tile
+          title="Your local area"
+          body={['Find nearby schools and charities in your local area. ']}
+          icon={<Crown />}
+          size="medium"
+          noShadow={true}
+          hoverScale={1}
+          titleLarge={true}
+        >
+          <ul>
+            <li>
+              <Link className={styles.linkListItem} to={Paths.LOCAL_SCHOOLS} state={{ postcode }}>
+                Find a nearby school
+              </Link>
+            </li>
+            <li>
+              <Link className={styles.linkListItem} to={Paths.LOCAL_CHARITIES} state={{ postcode }}>
+                Find nearby charities
+              </Link>
+            </li>
+            <li>
+              <Link className={styles.linkListItem} to={Paths.LOCAL_DONATE} state={{ postcode }}>
+                Donate products
+              </Link>
+            </li>
+            <li>
+              <Link className={styles.linkListItem} to={Paths.LOCAL_EXCESS} state={{ postcode }}>
+                Help take extra stock
+              </Link>
+            </li>
+          </ul>
+        </Tile>
       </Card>
     </div>
   );
