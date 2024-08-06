@@ -2,16 +2,9 @@ import { FC } from 'react';
 import styles from './HomeTile.module.scss';
 import FormButton from '@/components/FormButton/FormButton';
 import { motion } from 'framer-motion';
+import { HomeTileProps } from '@/types/props';
 
-interface TileProps {
-  title: string;
-  onClick: () => void;
-  body: string[];
-  icon: JSX.Element;
-  buttonText: string;
-}
-
-const HomeTile: FC<TileProps> = ({ onClick, title, body, icon, buttonText }) => {
+const HomeTile: FC<HomeTileProps> = ({ onClick, title, body, icon, buttonText }) => {
   return (
     <motion.div className={styles.tile} whileHover={{ scale: 1.05 }}>
       {icon}

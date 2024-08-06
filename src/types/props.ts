@@ -621,12 +621,22 @@ export interface ItemListProps {
 
 export interface TileProps {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   body: string[];
   icon: JSX.Element;
   size: string;
   children?: React.ReactNode;
   noShadow?: boolean;
+  hoverScale?: number;
+  titleLarge?: boolean;
+}
+
+export interface HomeTileProps {
+  title: string;
+  onClick: () => void;
+  body: string[];
+  icon: JSX.Element;
+  buttonText: string;
 }
 
 export interface UserRequestDetailsProps {

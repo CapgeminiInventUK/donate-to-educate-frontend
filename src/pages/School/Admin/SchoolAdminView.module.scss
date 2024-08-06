@@ -6,73 +6,35 @@
   padding: 48px 120px;
 
   .subContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
     border-radius: 0 0 10px 10px;
+    background: g.$primary-dark-blue;
 
-    .schoolProfileBanner {
-      display: flex;
-      padding: 40px;
-      flex-direction: column;
-      align-items: flex-start;
-      border-radius: 10px;
-      background: g.$help-grey;
-      margin-bottom: 60px;
+    .deactivateLink {
+      color: g.$link-blue;
+      font-weight: 300;
+      text-decoration-line: underline;
+      display: inline-block;
+      margin-top: 30px;
+    }
 
-      h2,
-      p,
-      button {
-        margin: 0;
-      }
-      h2 {
-        margin-top: 40px;
-        margin-bottom: 30px;
-      }
-      p {
-        margin-bottom: 40px;
+    ul {
+      margin-top: 0;
+
+      .linkListItem {
+        color: g.$link-blue;
+        font-weight: 300;
+        text-decoration-line: underline;
+        display: inline-block;
+        margin-top: 5px;
       }
     }
 
-    .tile {
-      display: flex;
-      align-items: center;
-      border-radius: 10px;
-      justify-content: space-between;
-      margin: auto;
-      margin-top: 20px;
-      cursor: pointer;
-
-      @include g.md-breakpoint {
-        justify-content: flex-start;
-      }
-
-      svg {
-        padding: 0 20px;
-        min-width: 50px;
-
-        @include g.lg-breakpoint {
-          width: 40px;
-          min-width: 40px;
-        }
-
-        @include g.xs-breakpoint {
-          display: none;
-        }
-      }
-
-      img {
-        border-radius: 10px;
-        width: 60%;
-        margin-left: -50px;
-        max-width: 550px;
-      }
-
-      .content {
-        padding: 30px 0;
-
-        .header {
-          margin: 0;
-          padding-bottom: 10px;
-        }
-      }
+    .button {
+      line-height: 20px;
     }
   }
 }
@@ -104,14 +66,6 @@
 
     .subContainer {
       padding: 40px 20px;
-
-      img {
-        display: none;
-      }
-
-      .content {
-        margin-right: 20px;
-      }
     }
   }
 }
@@ -119,18 +73,4 @@
 .actionButtons {
   display: flex;
   justify-content: space-between;
-}
-
-.localAreaContainer {
-  .tileRow {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 23px;
-    gap: 2.5%;
-
-    @include g.sm-breakpoint {
-      flex-direction: column;
-      gap: 23px;
-    }
-  }
 }

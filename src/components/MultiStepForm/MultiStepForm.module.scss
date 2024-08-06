@@ -30,8 +30,10 @@
 
   .signInLink {
     padding: 30px 0 0 0;
-    color: g.$link-blue;
-    text-decoration: underline;
+
+    a {
+      color: g.$link-blue;
+    }
   }
 
   .headerContainer {
