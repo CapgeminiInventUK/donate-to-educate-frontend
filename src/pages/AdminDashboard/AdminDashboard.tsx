@@ -14,7 +14,7 @@ import Crown from '@/assets/icons/Crown';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import Requests from '@/assets/icons/Requests';
-import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
+import InventBanner from '@/components/InventBanner/InventBanner';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -94,15 +94,7 @@ const AdminDashboard: FC = () => {
               className="charities"
             />
           </div>
-          <div className={styles.inventBanner}>
-            <p>Powered by</p>
-            <LogoCapgeminiInvent
-              className={styles.inventLogo}
-              onClick={(): Window | null =>
-                window.open(Paths.INVENT, '_blank', 'rel=noopener noreferrer')
-              }
-            />
-          </div>
+          <InventBanner />
         </div>
       </div>
     </div>

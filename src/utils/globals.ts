@@ -53,3 +53,5 @@ export const countEmptyObjectValues = (obj: Record<string, string>): number => {
 
 export const checkAllObjectValuesTruthy = (object: object): boolean =>
   checkIfValidObjectWithData(object) && !Object.values(object).every((value) => !!value);
+
+export const returnValidObject = (object?: object): object => object ?? {};

@@ -17,12 +17,13 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
   subBody,
   onClick,
   className,
-}): JSX.Element => {
+}) => {
   return (
     <motion.div
       className={`${styles.dashboardCard} ${styles[`${className}`]}`}
       whileHover={{ scale: 1.05 }}
       onClick={onClick}
+      aria-label={className}
     >
       {isLoading && <Spinner />}
       {!isLoading && (
@@ -43,10 +44,10 @@ const AdminDashboardCard: FC<AdminDashboardCardProps> = ({
             </div>
           ) : (
             <div className={styles.numberJoinedArea}>
-              <div>
+              <h4>
                 <span className={styles.amount}>{amount}</span>{' '}
                 {totalAmount && `out of ${totalAmount}`}
-              </div>
+              </h4>
               <div className={styles.subBody}>{subBody}</div>
             </div>
           )}

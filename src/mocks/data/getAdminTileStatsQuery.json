@@ -1,0 +1,17 @@
+{
+  "getAdminTileStats": {
+    "la": {
+      "joined": 19,
+      "notJoined": 163,
+      "__typename": "LocalAuthorityStats"
+    },
+    "joinRequests": {
+      "school": 29,
+      "charity": 9,
+      "__typename": "JoinRequestStats"
+    },
+    "registeredSchools": 26,
+    "registeredCharities": 12,
+    "__typename": "AdminStats"
+  }
+}

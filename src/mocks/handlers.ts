@@ -8,6 +8,7 @@ import {
 } from 'msw';
 import getSchoolQueryResponse from './data/getSchoolQuery.json';
 import getSchoolsNearbyQueryResponse from './data/getSchoolsNearbyQuery.json';
+import getAdminTileStatsQueryResponse from './data/getAdminTileStatsQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { amplifyConfig } from '@/amplify.config';
@@ -77,6 +78,11 @@ export const handlers = [
       data: {
         acknowledged: true,
       },
+    });
+  }),
+  graphql.query('GetAdminTileStats', () => {
+    return HttpResponse.json({
+      data: getAdminTileStatsQueryResponse,
     });
   }),
   http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
