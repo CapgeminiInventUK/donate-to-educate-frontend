@@ -24,19 +24,6 @@ const TextInputSearch: FC<TextInputSearchProps> = ({
     }
   };
 
-  // eslint-disable-next-line no-console
-  console.log({
-    header,
-    placeholder,
-    subHeading,
-    isLarge,
-    isSmall,
-    value,
-    disabled,
-    errorMessage,
-    ariaLabel,
-  });
-
   return (
     <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
       {header && <h2 className={styles.header}>{header}</h2>}
