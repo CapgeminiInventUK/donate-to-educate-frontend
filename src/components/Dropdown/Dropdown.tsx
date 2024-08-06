@@ -23,6 +23,10 @@ const Dropdown: FC<DropdownProps> = ({
     ? 'Search for your local council'
     : 'Search for your school';
 
+  const noOptionsMessageText = subHeading?.includes('council')
+    ? 'No councils found'
+    : 'No schools found';
+
   const handleSelect = (option: SingleValue<DropdownOption>): void => {
     setDropdownValue(option);
     if (onChange) {
@@ -57,6 +61,7 @@ const Dropdown: FC<DropdownProps> = ({
         onChange={handleSelect}
         value={dropDownValue}
         placeholder={placeholderText}
+        noOptionsMessage={() => noOptionsMessageText}
         onInputChange={onSearch}
         filterOption={filterOptions}
         isClearable

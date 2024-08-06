@@ -57,7 +57,7 @@ describe('Dropdown', () => {
     await userEvent.click(dropdown);
     await userEvent.keyboard('label');
 
-    const noOptionsMessage = await findByText('No options');
+    const noOptionsMessage = await findByText('No schools found');
 
     expect(noOptionsMessage).toBeInTheDocument();
   });
