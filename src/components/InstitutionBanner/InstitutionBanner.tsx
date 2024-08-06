@@ -67,10 +67,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   return (
     <div className={`${styles.bannerContainer} ${styles[type]}`}>
       <h1>{name}</h1>
-      <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
-        Settings <Settings />
-      </Link>
-      {hasContactInfo(banner, isAdminView) && (
+      {hasContactInfo(banner, isAdminView) ? (
         <div className={styles.textContainer}>
           {isAdminView && (
             <div className={styles.editSection}>
@@ -102,6 +99,10 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           )}
           {!isAdminView && <PublicView banner={banner} type={type} />}
         </div>
+      ) : (
+        <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
+          Settings <Settings />
+        </Link>
       )}
     </div>
   );

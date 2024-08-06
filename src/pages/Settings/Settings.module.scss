@@ -6,6 +6,14 @@
   & {
     padding: 48px 8%;
   }
+
+  @include g.md-breakpoint {
+    padding: 24px 60px;
+  }
+
+  @include g.sm-breakpoint {
+    padding: 24px;
+  }
 }
 
 .settingsCard {
@@ -52,7 +60,18 @@
 
       .deleteTableRow {
         border-bottom: 1px solid g.$greyscale;
+
+        @include g.sm-breakpoint {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 150px;
+        }
       }
+    }
+
+    @include g.sm-breakpoint {
+      padding: 15px;
     }
   }
 }
