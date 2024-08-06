@@ -3,6 +3,7 @@ import { TextInputSearchProps } from '@/types/props';
 import styles from './TextInputSearch.module.scss';
 import SearchIcon from '@/assets/tiles/Search';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import Button from '../Button/Button';
 
 const TextInputSearch: FC<TextInputSearchProps> = ({
   header,
@@ -22,6 +23,19 @@ const TextInputSearch: FC<TextInputSearchProps> = ({
       onChange(event.target.value);
     }
   };
+
+  // eslint-disable-next-line no-console
+  console.log({
+    header,
+    placeholder,
+    subHeading,
+    isLarge,
+    isSmall,
+    value,
+    disabled,
+    errorMessage,
+    ariaLabel,
+  });
 
   return (
     <div className={`${styles.wrapper}  ${errorMessage ? styles.wrapperError : ''}`}>
@@ -44,9 +58,13 @@ const TextInputSearch: FC<TextInputSearchProps> = ({
           aria-label={ariaLabel}
           onKeyDown={(event) => (event.key === 'Enter' ? onClick() : undefined)}
         />
-        <div className={styles.searchIconContainer} onClick={onClick}>
-          <SearchIcon />
-        </div>
+        <Button
+          theme="link"
+          ariaLabel="search"
+          text={<SearchIcon />}
+          className={styles.searchIconContainer}
+          onClick={onClick}
+        />
       </div>
     </div>
   );

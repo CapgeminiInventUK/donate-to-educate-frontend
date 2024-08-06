@@ -19,6 +19,7 @@ const Tile: FC<TileProps> = ({
       className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium} ${noShadow === true ? styles.noShadow : ''} ${onClick ? styles.clickable : ''}`}
       whileHover={{ scale: hoverScale }}
       onClick={onClick ?? undefined}
+      aria-label="tile"
     >
       {icon}
       {titleLarge ? <h2>{title}</h2> : <h3>{title}</h3>}

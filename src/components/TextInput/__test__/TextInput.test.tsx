@@ -59,22 +59,17 @@ describe('TextInput', (): void => {
     const { getByLabelText } = render(
       <TextInput password={true} ariaLabel="textbox" value={'Test value'} isSmall={true} />
     );
-    const input = getByLabelText('textbox');
 
+    const input = getByLabelText('textbox');
     expect(input).toHaveProperty('type', 'password');
 
     const showPasswordIcon = getByLabelText('hide-show-password');
-
     await userEvent.click(showPasswordIcon);
-
     const textInput = getByLabelText('textbox');
-
     expect(textInput).not.toHaveProperty('type', 'password');
 
     await userEvent.click(showPasswordIcon);
-
     const passwordInput = getByLabelText('textbox');
-
     expect(passwordInput).toHaveProperty('type', 'password');
   });
 });
