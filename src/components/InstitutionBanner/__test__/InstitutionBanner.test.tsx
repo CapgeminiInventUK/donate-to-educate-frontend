@@ -44,7 +44,7 @@ describe('Institution banner', () => {
 
     await userEvent.keyboard('new address');
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton);
 
@@ -73,7 +73,7 @@ describe('Institution banner', () => {
 
     await userEvent.keyboard('New policy');
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton);
 
@@ -132,7 +132,7 @@ describe('Institution banner', () => {
 
     await userEvent.keyboard('New policy');
 
-    const saveButton = getByRole('button', { name: 'Save' });
+    const saveButton = getByRole('button', { name: 'save' });
 
     await userEvent.click(saveButton);
 

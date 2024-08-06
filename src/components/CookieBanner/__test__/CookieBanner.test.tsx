@@ -20,7 +20,7 @@ describe('Cookie Banner', () => {
   it('should set local storage and hide banner on accept button click', async () => {
     const { getByRole, getByLabelText } = render(<Component />);
 
-    const approveButton = getByRole('button', { name: 'Allow' });
+    const approveButton = getByRole('button', { name: 'allow' });
 
     await userEvent.click(approveButton);
 
@@ -31,7 +31,7 @@ describe('Cookie Banner', () => {
   it('should set local storage and hide banner on decline button click', async () => {
     const { getByRole, getByLabelText } = render(<Component />);
 
-    const approveButton = getByRole('button', { name: 'Decline' });
+    const approveButton = getByRole('button', { name: 'decline' });
 
     await userEvent.click(approveButton);
 

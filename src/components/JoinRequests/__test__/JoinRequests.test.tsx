@@ -29,7 +29,7 @@ describe('Join requests', () => {
         setSchoolOrCharityProperties={setSchoolOrCharityProperties}
       />
     );
-    const buttons = getAllByRole('button', { name: 'View request' });
+    const buttons = getAllByRole('button', { name: 'view request' });
     await userEvent.click(buttons[0]);
 
     expect(setStage).toHaveBeenCalledWith(StageState.APPROVE_SCHOOL);
@@ -55,7 +55,7 @@ describe('Join requests', () => {
         setSchoolOrCharityProperties={setSchoolOrCharityProperties}
       />
     );
-    const buttons = getAllByRole('button', { name: 'View request' });
+    const buttons = getAllByRole('button', { name: 'view request' });
     await userEvent.click(buttons[1]);
 
     expect(setStage).toHaveBeenCalledWith(StageState.APPROVE_CHARITY);

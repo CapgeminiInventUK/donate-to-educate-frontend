@@ -2,10 +2,7 @@ import { FC, useState } from 'react';
 import styles from './ShowHide.module.scss';
 import ShowEye from '@/assets/tiles/ShowEye';
 import HideEye from '@/assets/tiles/HideEye';
-
-interface ShowHideProps {
-  onChangePasswordVisibility: (show: boolean) => void;
-}
+import { ShowHideProps } from '@/types/props';
 
 const ShowHide: FC<ShowHideProps> = ({ onChangePasswordVisibility }) => {
   const [show, setShow] = useState(false);
@@ -17,6 +14,7 @@ const ShowHide: FC<ShowHideProps> = ({ onChangePasswordVisibility }) => {
         onChangePasswordVisibility(!show);
         setShow(!show);
       }}
+      aria-label="hide-show-password"
     >
       {show ? <HideEye /> : <ShowEye />}
     </div>

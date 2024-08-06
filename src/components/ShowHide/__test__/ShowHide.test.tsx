@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ShowHide from './ShowHide';
-import styles from './ShowHide.module.scss';
+import ShowHide from '../ShowHide';
+import styles from '../ShowHide.module.scss';
 
 describe('ShowHide', (): void => {
   test('renders without errors', (): void => {

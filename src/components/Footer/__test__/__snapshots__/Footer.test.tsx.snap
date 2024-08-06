@@ -342,6 +342,7 @@ exports[`Footer > should render component 1`] = `
               </defs>
             </svg>
             <button
+              aria-label="contact us"
               class="_midBlue_f8f296 _fitContent769_33bf66 "
             >
               Contact us
@@ -748,6 +749,7 @@ exports[`Footer > should render component 1`] = `
             </defs>
           </svg>
           <button
+            aria-label="contact us"
             class="_midBlue_f8f296 _fitContent769_33bf66 "
           >
             Contact us

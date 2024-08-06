@@ -68,7 +68,7 @@ describe('Info table', () => {
     };
     const { getAllByRole } = render(<InfoTable {...props} />);
 
-    const editButton = getAllByRole('button', { name: 'Edit' })[0];
+    const editButton = getAllByRole('button', { name: 'edit-button' })[0];
 
     await userEvent.click(editButton);
     expect(onEdit).toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('Info table', () => {
     };
     const { getAllByRole } = render(<InfoTable {...props} />);
 
-    const editButton = getAllByRole('button', { name: 'Delete' })[0];
+    const editButton = getAllByRole('button', { name: 'delete-button' })[0];
 
     await userEvent.click(editButton);
     expect(onDelete).toHaveBeenCalled();

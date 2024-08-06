@@ -51,7 +51,7 @@ describe('Multi step form', () => {
     );
     const { queryByRole } = render(<Component />);
 
-    const homeButton = queryByRole('button', { name: 'Return to homepage' });
+    const homeButton = queryByRole('button', { name: 'home' });
 
     expect(homeButton).toBeInTheDocument();
   });
@@ -112,7 +112,7 @@ describe('Multi step form', () => {
 
     const { getAllByRole } = render(<Component />);
 
-    const changeButton = getAllByRole('button', { name: 'Change' })[0];
+    const changeButton = getAllByRole('button', { name: 'change' })[0];
     fireEvent.click(changeButton);
     expect(pageNumber).toBe(2);
   });

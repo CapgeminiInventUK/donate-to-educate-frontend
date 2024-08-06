@@ -30,6 +30,7 @@ exports[`Check your answers > should render each section with a section header 1
             class="_changeLink_f0f2f5 "
           >
             <button
+              aria-label="change"
               class="_link_f8f296  "
             >
               Change
@@ -55,6 +56,7 @@ exports[`Check your answers > should render each section with a section header 1
             class="_changeLink_f0f2f5 "
           >
             <button
+              aria-label="change"
               class="_link_f8f296  "
             >
               Change
@@ -80,6 +82,7 @@ exports[`Check your answers > should render each section with a section header 1
             class="_changeLink_f0f2f5 "
           >
             <button
+              aria-label="change"
               class="_link_f8f296  "
             >
               Change
@@ -105,6 +108,7 @@ exports[`Check your answers > should render each section with a section header 1
             class="_changeLink_f0f2f5 "
           >
             <button
+              aria-label="change"
               class="_link_f8f296  "
             >
               Change
@@ -130,6 +134,7 @@ exports[`Check your answers > should render each section with a section header 1
             class="_changeLink_f0f2f5 "
           >
             <button
+              aria-label="change"
               class="_link_f8f296  "
             >
               Change
@@ -165,6 +170,7 @@ exports[`Check your answers > should render each section with a section header 1
           class="_changeLink_f0f2f5 "
         >
           <button
+            aria-label="change"
             class="_link_f8f296  "
           >
             Change
@@ -190,6 +196,7 @@ exports[`Check your answers > should render each section with a section header 1
           class="_changeLink_f0f2f5 "
         >
           <button
+            aria-label="change"
             class="_link_f8f296  "
           >
             Change
@@ -215,6 +222,7 @@ exports[`Check your answers > should render each section with a section header 1
           class="_changeLink_f0f2f5 "
         >
           <button
+            aria-label="change"
             class="_link_f8f296  "
           >
             Change
@@ -240,6 +248,7 @@ exports[`Check your answers > should render each section with a section header 1
           class="_changeLink_f0f2f5 "
         >
           <button
+            aria-label="change"
             class="_link_f8f296  "
           >
             Change
@@ -265,6 +274,7 @@ exports[`Check your answers > should render each section with a section header 1
           class="_changeLink_f0f2f5 "
         >
           <button
+            aria-label="change"
             class="_link_f8f296  "
           >
             Change

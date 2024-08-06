@@ -50,6 +50,7 @@ exports[`Info table > should render component 1`] = `
             Job
           </div>
           <button
+            aria-label="edit-button"
             class="_link_f8f296 _edit_f1f6df "
           >
             Edit
@@ -69,6 +70,7 @@ exports[`Info table > should render component 1`] = `
             07777777777
           </div>
           <button
+            aria-label="edit-button"
             class="_link_f8f296 _edit_f1f6df "
           >
             Edit
@@ -88,6 +90,7 @@ exports[`Info table > should render component 1`] = `
             Department
           </div>
           <button
+            aria-label="edit-button"
             class="_link_f8f296 _edit_f1f6df "
           >
             Edit
@@ -142,6 +145,7 @@ exports[`Info table > should render component 1`] = `
           Job
         </div>
         <button
+          aria-label="edit-button"
           class="_link_f8f296 _edit_f1f6df "
         >
           Edit
@@ -161,6 +165,7 @@ exports[`Info table > should render component 1`] = `
           07777777777
         </div>
         <button
+          aria-label="edit-button"
           class="_link_f8f296 _edit_f1f6df "
         >
           Edit
@@ -180,6 +185,7 @@ exports[`Info table > should render component 1`] = `
           Department
         </div>
         <button
+          aria-label="edit-button"
           class="_link_f8f296 _edit_f1f6df "
         >
           Edit
@@ -289,6 +295,7 @@ exports[`Info table > should render component with title and icon when present 1
             LA
           </div>
           <button
+            aria-label="delete-button"
             class="_light_f8f296 _delete_f1f6df "
           >
             Delete
@@ -308,6 +315,7 @@ exports[`Info table > should render component with title and icon when present 1
             test@test.com
           </div>
           <button
+            aria-label="delete-button"
             class="_light_f8f296 _delete_f1f6df "
           >
             Delete
@@ -360,6 +368,7 @@ exports[`Info table > should render component with title and icon when present 1
           LA
         </div>
         <button
+          aria-label="delete-button"
           class="_light_f8f296 _delete_f1f6df "
         >
           Delete
@@ -379,6 +388,7 @@ exports[`Info table > should render component with title and icon when present 1
           test@test.com
         </div>
         <button
+          aria-label="delete-button"
           class="_light_f8f296 _delete_f1f6df "
         >
           Delete
