@@ -205,3 +205,17 @@ export const getFormDataForSubmission = ({
 
   return { ...joinRequestVariables };
 };
+
+export const getTextAreaCharacterCountStyling = (
+  characterCount: number,
+  characterLimit: number
+): string => {
+  switch (true) {
+    case characterCount === characterLimit:
+      return 'red';
+    case characterCount >= 750 && characterCount < characterLimit:
+      return 'orange';
+    default:
+      return '';
+  }
+};

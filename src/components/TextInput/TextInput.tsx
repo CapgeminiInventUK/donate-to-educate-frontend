@@ -28,7 +28,7 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   const handleChangePasswordVisibility = (show: boolean): void => {
-    if (!show) {
+    if (show) {
       setInputType('text');
     } else {
       setInputType('password');
@@ -42,7 +42,9 @@ const TextInput: FC<TextInputProps> = ({
       {header && <h2 className={styles.header}>{header}</h2>}
       {subHeading && <h4 className={styles.subHeading}>{subHeading}</h4>}
       {errorMessage && (
-        <h4 className={`${styles.subHeading} ${styles.errorMessage}`}>{errorMessage}</h4>
+        <h4 aria-label="error-message" className={`${styles.subHeading} ${styles.errorMessage}`}>
+          {errorMessage}
+        </h4>
       )}
       <div className={styles.inputContainer}>
         {password && <ShowHide onChangePasswordVisibility={handleChangePasswordVisibility} />}

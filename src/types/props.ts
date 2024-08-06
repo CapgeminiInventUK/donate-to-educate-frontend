@@ -745,3 +745,7 @@ export interface ManageDetailsSectionProps {
 export interface ManageInstitutionSectionProps {
   type?: string;
 }
+
+export interface ShowHideProps {
+  onChangePasswordVisibility: (show: boolean) => void;
+}
