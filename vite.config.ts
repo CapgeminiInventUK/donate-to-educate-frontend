@@ -22,6 +22,8 @@ const testExclusions = [
   'src/config',
   'vite.config.ts',
   'eslint.config.mjs',
+  'src/graphql',
+  'src/mocks',
 ];
 
 // https://vitejs.dev/config/

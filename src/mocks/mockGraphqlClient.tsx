@@ -1,8 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { HttpResponse, graphql } from 'msw';
+import {
+  AsyncResponseResolverReturnType,
+  GraphQLQuery,
+  HttpHandler,
+  HttpResponse,
+  http,
+} from 'msw';
 import { ComponentType, FC, ReactNode } from 'react';
-import { server } from './server';
 import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
+import { amplifyConfig } from '@/amplify.config';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 export const createTestQueryClient = (): QueryClient =>
   new QueryClient({
@@ -40,17 +47,9 @@ export const createWrapperWithState = (
   return MockComponent;
 };
 
-export const mockApiResponse = (
-  queryName: string,
-  response: Record<string, unknown> | null,
-  throwError = false
-): void => {
-  server.use(
-    graphql.query(queryName, () => {
-      if (throwError) {
-        return HttpResponse.json({ data: { isError: true } });
-      }
-      return HttpResponse.json(response);
-    })
+export const setupFailedNetworkRequest = (): HttpHandler => {
+  return http.post(
+    checkForStringAndReturnEmptyIfFalsy(amplifyConfig.API?.GraphQL?.endpoint),
+    () => HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>
   );
 };
