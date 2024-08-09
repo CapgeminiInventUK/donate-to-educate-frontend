@@ -15,6 +15,7 @@ import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import Requests from '@/assets/icons/Requests';
 import InventBanner from '@/components/InventBanner/InventBanner';
+import { useZeroIfUndefined } from '@/utils/globals';
 
 const AdminDashboard: FC = () => {
   const navigate = useNavigate();
@@ -51,7 +52,6 @@ const AdminDashboard: FC = () => {
           <h2>Manage profiles and requests</h2>
           <div className={styles.cardContainer}>
             <AdminDashboardCard
-              isLoading={isLoading}
               icon={<Crown />}
               title="Local authorities"
               body="View, add and edit your local authorities."
@@ -62,7 +62,6 @@ const AdminDashboard: FC = () => {
               className="la"
             />
             <AdminDashboardCard
-              isLoading={isLoading}
               icon={<Requests />}
               title="Requests"
               body="Approve or decline requests from schools and charities who want to join Donate to Educate."
@@ -70,11 +69,13 @@ const AdminDashboard: FC = () => {
               totalAmount={la?.joined}
               subBody="Hello"
               onClick={(): void => navigate(Paths.ADMIN_DASHBOARD_REQUESTS)}
-              stats={[joinRequests?.school, joinRequests?.charity]}
+              stats={[
+                useZeroIfUndefined(joinRequests?.school),
+                useZeroIfUndefined(joinRequests?.charity),
+              ]}
               className="requests"
             />
             <AdminDashboardCard
-              isLoading={isLoading}
               icon={<School />}
               title="Schools"
               body="View, edit and remove registered schools and users."
@@ -85,7 +86,6 @@ const AdminDashboard: FC = () => {
             />
             <AdminDashboardCard
               icon={<Donate />}
-              isLoading={isLoading}
               title="Charities and volunteer groups"
               body="View, edit and remove registered charities and users."
               amount={registeredCharities}

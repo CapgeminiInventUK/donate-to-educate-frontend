@@ -12,7 +12,7 @@ import FormHeader from './FormHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
 import { scrollToTheTop } from '@/utils/globals';
-import { validateForm } from '@/utils/formValidationUtils';
+import { validateMultiStepForm } from '@/utils/formValidationUtils';
 import Paths from '@/config/paths';
 
 const FormContainer: FC<MultiStepFormProps> = ({
@@ -80,7 +80,7 @@ const FormContainer: FC<MultiStepFormProps> = ({
     event.preventDefault();
     scrollToTheTop();
 
-    await validateForm(formComponents, formData, setFormErrors, queryClient);
+    await validateMultiStepForm(formComponents, formData, setFormErrors, queryClient);
 
     if (onLocalAuthorityRegisterRequest) {
       return onLocalAuthorityRegisterRequest();

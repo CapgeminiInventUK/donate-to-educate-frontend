@@ -54,4 +54,7 @@ export const countEmptyObjectValues = (obj: Record<string, string>): number => {
 export const checkAllObjectValuesTruthy = (object: object): boolean =>
   checkIfValidObjectWithData(object) && !Object.values(object).every((value) => !!value);
 
-export const returnValidObject = (object?: object): object => object ?? {};
+export const pluraliseString = (string: string, quantity: number): string =>
+  `${string}${quantity !== 1 ? 's' : ''}`;
+
+export const useZeroIfUndefined = (number?: number): number => number ?? 0;

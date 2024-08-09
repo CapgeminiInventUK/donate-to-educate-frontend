@@ -471,7 +471,6 @@ export interface ItemSelectionProps {
 }
 
 export interface AdminDashboardCardProps {
-  isLoading: boolean;
   title: string;
   icon?: JSX.Element;
   body: string;
@@ -479,7 +478,7 @@ export interface AdminDashboardCardProps {
   totalAmount?: number;
   subBody: string;
   onClick: () => void;
-  stats?: (number | undefined)[];
+  stats?: number[];
   className: string;
 }
 
