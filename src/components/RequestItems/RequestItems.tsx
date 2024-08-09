@@ -12,10 +12,11 @@ import { InsertItemQueryMutation } from '@/types/api';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import { RequestItemsProps } from '@/types/props';
-import { getTextContent, validateForm } from './utils';
+import { getTextContent } from './utils';
 import RequestItemsFormInputs from './RequestItemsForm';
 import FormErrors from '../FormErrors/FormErrors';
 import { checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
+import { validateForm } from '@/utils/formValidationUtils';
 
 const RequestItems: FC<RequestItemsProps> = ({
   type,

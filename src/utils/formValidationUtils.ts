@@ -1,4 +1,11 @@
-import { FormComponent, FormDataItem, FormErrors } from '@/types/data';
+import {
+  ComponentType,
+  FormComponent,
+  FormDataItem,
+  FormErrors,
+  FormState,
+  RequestFormState,
+} from '@/types/data';
 import { formatPhoneNumber } from './formUtils';
 import { CommonInputProps } from '@/types/props';
 import { QueryClient } from '@tanstack/react-query';
@@ -103,7 +110,7 @@ export const parsePhoneNumber = (formData: FormDataItem[]): void => {
   }
 };
 
-export const validateForm = async (
+export const validateMultiStepForm = async (
   formComponents: FormComponent[],
   formData: FormDataItem[],
   setFormErrors: Dispatch<SetStateAction<Record<string, string>>>,
@@ -120,4 +127,21 @@ export const validateForm = async (
   setFormErrors({});
 
   parsePhoneNumber(formData);
+};
+
+export const validateForm = (formState: RequestFormState | FormState): Record<string, string> => {
+  const formData = Object.entries(formState).map(([field, value]) => ({
+    field,
+    value: String(value),
+  }));
+  const formComponents = Object.keys(formState).map((field) => {
+    const componentType =
+      field === 'who'
+        ? ComponentType.RADIO
+        : field === 'message' || field === 'notes'
+          ? ComponentType.TEXTAREA
+          : ComponentType.TEXT;
+    return { field, componentType };
+  });
+  return getFormErrors(formComponents, formData);
 };

@@ -110,6 +110,15 @@ export interface FormState {
   notes: string;
 }
 
+export interface RequestFormState {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  who: string;
+  connection?: string;
+}
+
 export enum ComponentType {
   TEXT = 'textInput',
   CHECKBOX = 'checkbox',
@@ -153,15 +162,6 @@ export interface SubmittedFormData {
   message?: string;
   urn?: string;
   postcode?: string;
-}
-
-export interface RequestFormState {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  who: string;
-  connection?: string;
 }
 
 export interface SchoolOrCharityTableData {

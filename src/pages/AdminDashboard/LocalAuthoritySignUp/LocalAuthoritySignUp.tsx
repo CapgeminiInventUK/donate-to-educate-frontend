@@ -10,16 +10,17 @@ import TextArea from '@/components/TextArea/TextArea';
 import BackButton from '@/components/BackButton/BackButton';
 import Paths from '@/config/paths';
 import { RegisterLocalAuthorityMutation } from '@/types/api';
-import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './LocalAuthoritySignUp.module.scss';
-import { validateFormInputField } from '@/utils/formValidationUtils';
+import { validateForm } from '@/utils/formValidationUtils';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import { FormState } from '@/types/data';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Card from '@/components/Card/Card';
+import { breakpoints, checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
+import { useMediaQuery } from 'react-responsive';
 
 const LocalAuthoritySignUp: FC = () => {
+  const isSmallScreen = useMediaQuery({ query: `(max-width: ${breakpoints.screenSmall})` });
   const [formState, setFormState] = useState<FormState>({
     firstName: '',
     lastName: '',
@@ -37,39 +38,25 @@ const LocalAuthoritySignUp: FC = () => {
   const { refetch, isError } = useQuery({
     queryKey: [`register-${state.la}-${state.id}-${JSON.stringify(formState)}`],
     enabled: false,
-    queryFn: async () => {
-      const result = await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
+    queryFn: async () =>
+      await client.graphql<GraphQLQuery<RegisterLocalAuthorityMutation>>({
         query: registerLocalAuthority,
         variables: {
           name: state.la,
-          firstName: formState.firstName,
-          lastName: formState.lastName,
-          jobTitle: formState.jobTitle,
-          department: formState.department,
-          email: formState.email,
-          phone: formState.phone,
-          notes: formState.notes,
           nameId: state.id,
+          ...formState,
         },
-      });
-      return result;
-    },
+      }),
   });
 
   const onSubmit = (event: FormEvent<Element>): void => {
     event.preventDefault();
 
-    const errors = Object.keys(formState).reduce((acc: Record<string, string>, field) => {
-      const formData = [{ field, value: formState[field as keyof FormState] }];
-      const error = validateFormInputField(formData, field);
-      if (error) {
-        acc[field] = error;
-      }
-      return acc;
-    }, {});
+    const errors = validateForm(formState);
 
-    if (Object.keys(errors).length > 0) {
+    if (checkIfValidObjectWithData(errors)) {
       setFormErrors(errors);
+      scrollToTheTop();
       return;
     }
 
@@ -84,80 +71,42 @@ const LocalAuthoritySignUp: FC = () => {
     return <ErrorBanner />;
   }
 
+  const formFields = [
+    { header: 'First name', key: 'firstName' },
+    { header: 'Last name', key: 'lastName' },
+    { header: 'Job title or role', key: 'jobTitle' },
+    { header: 'Department', key: 'department' },
+    { header: 'Email', key: 'email' },
+    { header: 'Phone', key: 'phone' },
+  ];
+
   return (
-    <div className={dashboardStyles.container}>
+    <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={dashboardStyles.adminCard}>
-        <div className={dashboardStyles.header}>
+      <div className={styles.adminCard}>
+        <div className={styles.header}>
           <h1>Local Authority Profile</h1>
         </div>
-        <div className={dashboardStyles.body}>
-          <BackButton theme="white" />
+        <div className={styles.body}>
           <form onSubmit={onSubmit}>
-            <Card className={styles.formCard}>
+            <div className={styles.formCard}>
               {formErrors && <FormErrors formErrors={formErrors} />}
-              <h1>{state.la}</h1>
+              <h2>{state.la}</h2>
               <hr />
-              <TextInput
-                header="First name"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    firstName: value,
-                  }));
-                }}
-                ariaLabel="first name"
-              />
-              <TextInput
-                header="Last name"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    lastName: value,
-                  }));
-                }}
-                ariaLabel="last name"
-              />
-              <TextInput
-                header="Job title or role"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    jobTitle: value,
-                  }));
-                }}
-                ariaLabel="title"
-              />
-              <TextInput
-                header="Department"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    department: value,
-                  }));
-                }}
-                ariaLabel="department"
-              />
-              <TextInput
-                header="Email"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    email: value,
-                  }));
-                }}
-                ariaLabel="email"
-              />
-              <TextInput
-                header="Phone"
-                onChange={(value) => {
-                  setFormState((prevState) => ({
-                    ...prevState,
-                    phone: value,
-                  }));
-                }}
-                ariaLabel="phone"
-              />
+              {formFields.map(({ header, key }) => (
+                <TextInput
+                  key={key}
+                  header={header}
+                  onChange={(value) => {
+                    setFormState((prevState) => ({
+                      ...prevState,
+                      [key]: value,
+                    }));
+                  }}
+                  ariaLabel={key}
+                  isLarge={!isSmallScreen}
+                />
+              ))}
               <TextArea
                 onChange={(value) => {
                   setFormState((prevState) => ({
@@ -175,7 +124,7 @@ const LocalAuthoritySignUp: FC = () => {
                 theme={'formButtonMidBlue'}
                 ariaLabel="create account"
               />
-            </Card>
+            </div>
           </form>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';
+import { useZeroIfUndefined } from '@/utils/globals';
 
 const ManageCharities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -73,21 +74,6 @@ const ManageCharities: FC = () => {
       dataIndex: 'localAuthority',
       ...getColumnSearch<Charity>(laColumnSearchProps),
     },
-    // {
-    //   title: 'Action',
-    //   align: 'center' as const,
-    //   render: () => (
-    //     <div className={styles.actionsContainer}>
-    //       <Button
-    //         theme="link-blue"
-    //         className={styles.actionButtons}
-    //         text="Remove"
-    //         onClick={(): void => undefined}
-    //         ariaLabel="remove"
-    //       />
-    //     </div>
-    //   ),
-    // },
   ];
 
   if (isError) {
@@ -102,14 +88,16 @@ const ManageCharities: FC = () => {
           <h1>Manage Charities</h1>
         </div>
         <div className={dashboardStyles.subBody}>
-          {isLoading && <Spinner />}
-          {!isLoading && (
+          {isLoading ? (
+            <Spinner />
+          ) : (
             <div className={styles.cardContainer}>
               <Card className={styles.manageCard}>
                 <h2>Registered charities and volunteer groups</h2>
-                <div className={styles.border}>{(data?.getCharities ?? []).length} joined</div>
+                <div aria-label="total-joined" className={styles.border}>
+                  {useZeroIfUndefined(data?.getCharities?.length)} joined
+                </div>
                 <br />
-
                 <Table
                   dataSource={data?.getCharities ?? []}
                   columns={columns}

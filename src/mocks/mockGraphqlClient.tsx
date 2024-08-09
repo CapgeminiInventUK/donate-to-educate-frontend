@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   AsyncResponseResolverReturnType,
+  GraphQLHandler,
   GraphQLQuery,
   HttpHandler,
   HttpResponse,
+  graphql,
   http,
 } from 'msw';
 import { ComponentType, FC, ReactNode } from 'react';
@@ -52,4 +54,12 @@ export const setupFailedNetworkRequest = (): HttpHandler => {
     checkForStringAndReturnEmptyIfFalsy(amplifyConfig.API?.GraphQL?.endpoint),
     () => HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>
   );
+};
+
+export const useDifferentResponseDataToDefault = (query: string, data?: object): GraphQLHandler => {
+  return graphql.query(query, () => {
+    return HttpResponse.json({
+      data,
+    });
+  });
 };

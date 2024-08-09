@@ -1,10 +1,4 @@
-import {
-  ComponentType,
-  ItemsIconType,
-  RequestFormState,
-  RequestItemsTextContent,
-} from '@/types/data';
-import { getFormErrors } from '@/utils/formValidationUtils';
+import { ItemsIconType, RequestItemsTextContent } from '@/types/data';
 
 export const getTextContent = (
   type: ItemsIconType,
@@ -75,21 +69,4 @@ export const getTextContent = (
         notesSubHeading: 'Include the school products you can take from us.',
       };
   }
-};
-
-export const validateForm = (formState: RequestFormState): Record<string, string> => {
-  const formData = Object.entries(formState).map(([field, value]) => ({
-    field,
-    value: String(value),
-  }));
-  const formComponents = Object.keys(formState).map((field) => {
-    const componentType =
-      field === 'who'
-        ? ComponentType.RADIO
-        : field === 'message'
-          ? ComponentType.TEXTAREA
-          : ComponentType.TEXT;
-    return { field, componentType };
-  });
-  return getFormErrors(formComponents, formData);
 };

@@ -1,0 +1,26 @@
+{
+  "getCharities": [
+    {
+      "id": "123456",
+      "localAuthority": "West Sussex",
+      "name": "Test",
+      "address": "Test Address\nTE5 7ST\n",
+      "about": "sadfasdfasd",
+      "distance": null,
+      "profile": null,
+      "postcode": "TE5 7ST",
+      "__typename": "Charity"
+    },
+    {
+      "id": "654321",
+      "localAuthority": "West Sussex",
+      "name": "Test two",
+      "address": "Test Address Two\nTE5 7ST\n",
+      "about": "asdfasdfa",
+      "distance": null,
+      "profile": null,
+      "postcode": "TE5 7ST",
+      "__typename": "Charity"
+    }
+  ]
+}

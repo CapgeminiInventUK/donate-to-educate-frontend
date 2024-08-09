@@ -1,13 +1,33 @@
 @use '@assets/global.scss' as g;
 
-.formCard {
-  padding: 60px 82px;
+.container {
+  @include g.page-container;
+  padding: 66px 100px;
+
+  @include g.md-breakpoint {
+    padding: 33px 50px;
+  }
 
   @include g.sm-breakpoint {
+    padding: 25px;
+  }
+}
+
+.formCard {
+  padding: 60px 82px;
+  background: g.$primary-white;
+  border-radius: 10px;
+  color: g.$primary-dark-blue;
+
+  @include g.lg-breakpoint {
+    padding: 40px;
+  }
+
+  @include g.md-breakpoint {
     padding: 30px;
   }
 
-  @include g.xs-breakpoint {
+  @include g.sm-breakpoint {
     padding: 15px;
   }
 
@@ -16,5 +36,30 @@
     height: 4px;
     border: none;
     margin-bottom: 40px;
+  }
+}
+
+.adminCard {
+  @include g.admin-card;
+  border: none;
+
+  .header {
+    @include g.dashboard-header;
+
+    h1 {
+      color: white;
+      margin-left: 11.9%;
+    }
+  }
+
+  .body {
+    background: g.$primary-dark-blue;
+    color: g.$primary-white;
+    padding: 10px 60px 30px;
+    border-radius: 0 0 10px 10px;
+
+    @include g.sm-breakpoint {
+      padding: 10px 20px;
+    }
   }
 }
