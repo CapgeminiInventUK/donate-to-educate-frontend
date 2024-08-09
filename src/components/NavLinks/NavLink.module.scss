@@ -15,6 +15,10 @@
 
   &:last-child {
     margin-left: 20px;
+
+    @include g.sm-breakpoint {
+      margin-left: 0;
+    }
   }
 
   .link {
@@ -64,7 +68,7 @@
       }
 
       @include g.sm-breakpoint {
-        margin: 20px 0 0 50px;
+        margin: 0 0 0 50px;
       }
     }
 

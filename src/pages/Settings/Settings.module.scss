@@ -60,13 +60,6 @@
 
       .deleteTableRow {
         border-bottom: 1px solid g.$greyscale;
-
-        @include g.sm-breakpoint {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          height: 150px;
-        }
       }
     }
 
