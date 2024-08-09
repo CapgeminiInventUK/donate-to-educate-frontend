@@ -9,6 +9,7 @@ import {
 import getSchoolQueryResponse from './data/getSchoolQuery.json';
 import getSchoolsNearbyQueryResponse from './data/getSchoolsNearbyQuery.json';
 import getAdminTileStatsQueryResponse from './data/getAdminTileStatsQuery.json';
+import getCharitiesQueryResponse from './data/getCharitiesQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { amplifyConfig } from '@/amplify.config';
@@ -21,6 +22,27 @@ export const handlers = [
       });
     }
     return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+  }),
+  graphql.query('GetSchoolsNearby', ({ variables }) => {
+    const { postcode } = variables;
+    if (postcode === validPostcode) {
+      return HttpResponse.json({
+        data: getSchoolsNearbyQueryResponse,
+      });
+    }
+    if (postcode === nonExistentPostcode) {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
+  }),
+  graphql.query('GetAdminTileStats', () => {
+    return HttpResponse.json({
+      data: getAdminTileStatsQueryResponse,
+    });
+  }),
+  graphql.query('GetCharities', () => {
+    return HttpResponse.json({
+      data: getCharitiesQueryResponse,
+    });
   }),
   graphql.mutation('UpdateJoinRequest', () => {
     return HttpResponse.json({
@@ -35,17 +57,6 @@ export const handlers = [
         acknowledged: true,
       },
     });
-  }),
-  graphql.query('GetSchoolsNearby', ({ variables }) => {
-    const { postcode } = variables;
-    if (postcode === validPostcode) {
-      return HttpResponse.json({
-        data: getSchoolsNearbyQueryResponse,
-      });
-    }
-    if (postcode === nonExistentPostcode) {
-      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
-    }
   }),
   graphql.mutation('UpdateSchoolProfile', ({ variables }) => {
     const { value } = variables;
@@ -78,11 +89,6 @@ export const handlers = [
       data: {
         acknowledged: true,
       },
-    });
-  }),
-  graphql.query('GetAdminTileStats', () => {
-    return HttpResponse.json({
-      data: getAdminTileStatsQueryResponse,
     });
   }),
   http.post('https://cognito-identity.eu-west-2.amazonaws.com/', () => {
