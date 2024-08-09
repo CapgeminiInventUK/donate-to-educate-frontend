@@ -1,16 +1,15 @@
-import { useState, useRef, FC } from 'react';
+import { useState, useRef, FC, Key } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputRef, Table } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
 import { Pill } from '@/components/Pill/Pill';
 import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
-import { GetJoinRequestsQuery, GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import { GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
 import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
@@ -18,6 +17,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';
 import { PillColours } from '@/types/data';
+import { getLocalAuthorities } from '@/graphql/queries';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -37,26 +37,19 @@ const ManageLocalAuthorities: FC = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['getLas'],
+    queryKey: ['las'],
     queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
-      >({
-        query: getAdminPageRequests,
+      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
+        query: getLocalAuthorities,
       });
-
       return data;
     },
   });
 
   const { registered, notRegistered } =
-    data?.getLocalAuthorities.reduce(
-      (acc, la) => {
-        if (la.registered) {
-          acc.registered++;
-        } else {
-          acc.notRegistered++;
-        }
+    data?.getLocalAuthorities?.reduce(
+      (acc, { registered }) => {
+        registered ? acc.registered++ : acc.notRegistered++;
         return acc;
       },
       {
@@ -85,8 +78,8 @@ const ManageLocalAuthorities: FC = () => {
           value: false,
         },
       ],
-      onFilter: (value: boolean | React.Key, record: LocalAuthority): boolean =>
-        record.registered === value,
+      onFilter: (value: boolean | Key, { registered }: LocalAuthority): boolean =>
+        registered === value,
       filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean): JSX.Element =>
         registered ? (
@@ -134,7 +127,6 @@ const ManageLocalAuthorities: FC = () => {
                 <div className={styles.laBorder}>{registered} joined</div>
                 <div className={styles.laBorder}>{notRegistered} to join</div>
                 <br />
-
                 <Table
                   className={styles.lasTable}
                   dataSource={data?.getLocalAuthorities}

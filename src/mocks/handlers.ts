@@ -10,6 +10,7 @@ import getSchoolQueryResponse from './data/getSchoolQuery.json';
 import getSchoolsNearbyQueryResponse from './data/getSchoolsNearbyQuery.json';
 import getAdminTileStatsQueryResponse from './data/getAdminTileStatsQuery.json';
 import getCharitiesQueryResponse from './data/getCharitiesQuery.json';
+import getLocalAuthoritiesQueryResponse from './data/getLocalAuthoritiesQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { amplifyConfig } from '@/amplify.config';
@@ -42,6 +43,11 @@ export const handlers = [
   graphql.query('GetCharities', () => {
     return HttpResponse.json({
       data: getCharitiesQueryResponse,
+    });
+  }),
+  graphql.query('GetLocalAuthorities', () => {
+    return HttpResponse.json({
+      data: getLocalAuthoritiesQueryResponse,
     });
   }),
   graphql.mutation('UpdateJoinRequest', () => {

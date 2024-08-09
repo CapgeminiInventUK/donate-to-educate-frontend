@@ -76,11 +76,7 @@ const ManageCharities: FC = () => {
     },
   ];
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError || !data) {
+  if (isError) {
     return <ErrorBanner />;
   }
 
@@ -92,16 +88,18 @@ const ManageCharities: FC = () => {
           <h1>Manage Charities</h1>
         </div>
         <div className={dashboardStyles.subBody}>
-          {!isLoading && (
+          {isLoading ? (
+            <Spinner />
+          ) : (
             <div className={styles.cardContainer}>
               <Card className={styles.manageCard}>
                 <h2>Registered charities and volunteer groups</h2>
                 <div aria-label="total-joined" className={styles.border}>
-                  {useZeroIfUndefined(data.getCharities?.length)} joined
+                  {useZeroIfUndefined(data?.getCharities?.length)} joined
                 </div>
                 <br />
                 <Table
-                  dataSource={data.getCharities ?? []}
+                  dataSource={data?.getCharities ?? []}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
                   rowKey="id"

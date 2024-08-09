@@ -1,0 +1,1096 @@
+{
+  "getLocalAuthorities": [
+    {
+      "code": "201",
+      "name": "City of London",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "205",
+      "name": "Hammersmith and Fulham",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "204",
+      "name": "Hackney",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "202",
+      "name": "Camden",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "203",
+      "name": "Greenwich",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "206",
+      "name": "Islington",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "207",
+      "name": "Kensington and Chelsea",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "209",
+      "name": "Lewisham",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "308",
+      "name": "Enfield",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "310",
+      "name": "Harrow",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "312",
+      "name": "Hillingdon",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "336",
+      "name": "Wolverhampton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "340",
+      "name": "Knowsley",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "343",
+      "name": "Sefton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "894",
+      "name": "Telford and Wrekin",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "352",
+      "name": "Manchester",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "354",
+      "name": "Rochdale",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "355",
+      "name": "Salford",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "370",
+      "name": "Barnsley",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "371",
+      "name": "Doncaster",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "384",
+      "name": "Wakefield",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "210",
+      "name": "Southwark",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "212",
+      "name": "Wandsworth",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "213",
+      "name": "Westminster",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "302",
+      "name": "Barnet",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "872",
+      "name": "Wokingham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "305",
+      "name": "Bromley",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "307",
+      "name": "Ealing",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "313",
+      "name": "Hounslow",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "331",
+      "name": "Coventry",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "341",
+      "name": "Liverpool",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "342",
+      "name": "St. Helens",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "356",
+      "name": "Stockport",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "372",
+      "name": "Rotherham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "381",
+      "name": "Calderdale",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "392",
+      "name": "North Tyneside",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "393",
+      "name": "South Tyneside",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "394",
+      "name": "Sunderland",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "801",
+      "name": "Bristol, City of",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "803",
+      "name": "South Gloucestershire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "802",
+      "name": "North Somerset",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "822",
+      "name": "Bedford",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "823",
+      "name": "Central Bedfordshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "208",
+      "name": "Lambeth",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "211",
+      "name": "Tower Hamlets",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "304",
+      "name": "Brent",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "380",
+      "name": "Bradford",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "314",
+      "name": "Kingston upon Thames",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "318",
+      "name": "Richmond upon Thames",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "320",
+      "name": "Waltham Forest",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "330",
+      "name": "Birmingham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "332",
+      "name": "Dudley",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "350",
+      "name": "Bolton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "353",
+      "name": "Oldham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "373",
+      "name": "Sheffield",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "383",
+      "name": "Leeds",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "800",
+      "name": "Bath and North East Somerset",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "301",
+      "name": "Barking and Dagenham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "303",
+      "name": "Bexley",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "306",
+      "name": "Croydon",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "309",
+      "name": "Haringey",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "311",
+      "name": "Havering",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "315",
+      "name": "Merton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "316",
+      "name": "Newham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "317",
+      "name": "Redbridge",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "319",
+      "name": "Sutton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "344",
+      "name": "Wirral",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "333",
+      "name": "Sandwell",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "334",
+      "name": "Solihull",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "335",
+      "name": "Walsall",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "351",
+      "name": "Bury",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "358",
+      "name": "Trafford",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "357",
+      "name": "Tameside",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "359",
+      "name": "Wigan",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "382",
+      "name": "Kirklees",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "390",
+      "name": "Gateshead",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "391",
+      "name": "Newcastle upon Tyne",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "821",
+      "name": "Luton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "868",
+      "name": "Windsor and Maidenhead",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "869",
+      "name": "West Berkshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "873",
+      "name": "Cambridgeshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "870",
+      "name": "Reading",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "825",
+      "name": "Buckinghamshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "826",
+      "name": "Milton Keynes",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "874",
+      "name": "Peterborough",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "871",
+      "name": "Slough",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "867",
+      "name": "Bracknell Forest",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "877",
+      "name": "Warrington",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "807",
+      "name": "Redcar and Cleveland",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "805",
+      "name": "Hartlepool",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "830",
+      "name": "Derbyshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "880",
+      "name": "Torbay",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "838",
+      "name": "Dorset",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "876",
+      "name": "Halton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "942",
+      "name": "Cumberland",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "943",
+      "name": "Westmorland and Furness",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "839",
+      "name": "Bournemouth, Christchurch and Poole",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "896",
+      "name": "Cheshire West and Chester",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "806",
+      "name": "Middlesbrough",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "831",
+      "name": "Derby",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "895",
+      "name": "Cheshire East",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "808",
+      "name": "Stockton-on-Tees",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "908",
+      "name": "Cornwall",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "878",
+      "name": "Devon",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "879",
+      "name": "Plymouth",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "840",
+      "name": "County Durham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "846",
+      "name": "Brighton and Hove",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "881",
+      "name": "Essex",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "883",
+      "name": "Thurrock",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "845",
+      "name": "East Sussex",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "916",
+      "name": "Gloucestershire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "850",
+      "name": "Hampshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "851",
+      "name": "Portsmouth",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "882",
+      "name": "Southend-on-Sea",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "852",
+      "name": "Southampton",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "884",
+      "name": "Herefordshire, County of",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "841",
+      "name": "Darlington",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "885",
+      "name": "Worcestershire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "919",
+      "name": "Hertfordshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "811",
+      "name": "East Riding of Yorkshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "813",
+      "name": "North Lincolnshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "886",
+      "name": "Kent",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "921",
+      "name": "Isle of Wight",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "810",
+      "name": "Kingston upon Hull, City of",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "887",
+      "name": "Medway",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "812",
+      "name": "North East Lincolnshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "856",
+      "name": "Leicester",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "890",
+      "name": "Blackpool",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "855",
+      "name": "Leicestershire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "857",
+      "name": "Rutland",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "925",
+      "name": "Lincolnshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "888",
+      "name": "Lancashire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "889",
+      "name": "Blackburn with Darwen",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "926",
+      "name": "Norfolk",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "941",
+      "name": "West Northamptonshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "816",
+      "name": "York",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "929",
+      "name": "Northumberland",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "891",
+      "name": "Nottinghamshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "931",
+      "name": "Oxfordshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "815",
+      "name": "North Yorkshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "940",
+      "name": "North Northamptonshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "892",
+      "name": "Nottingham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "893",
+      "name": "Shropshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "860",
+      "name": "Staffordshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "933",
+      "name": "Somerset",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "935",
+      "name": "Suffolk",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "861",
+      "name": "Stoke-on-Trent",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "936",
+      "name": "Surrey",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "937",
+      "name": "Warwickshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "865",
+      "name": "Wiltshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "938",
+      "name": "West Sussex",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "866",
+      "name": "Swindon",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "707",
+      "name": "Jersey Offshore Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "708",
+      "name": "Gibraltar Overseas Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "705",
+      "name": "Isle of Man Offshore Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "702",
+      "name": "BFPO Overseas Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "706",
+      "name": "Guernsey Offshore Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "704",
+      "name": "Fieldwork Overseas Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "673",
+      "name": "Vale of Glamorgan",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "420",
+      "name": "Isles Of Scilly",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "665",
+      "name": "Wrexham",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "701",
+      "name": "Scotland Offshore Establishments",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "681",
+      "name": "Cardiff",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "669",
+      "name": "Carmarthenshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "661",
+      "name": "Gwynedd",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "660",
+      "name": "Isle of Anglesey",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "662",
+      "name": "Conwy",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "667",
+      "name": "Ceredigion",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "668",
+      "name": "Pembrokeshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "664",
+      "name": "Flintshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "666",
+      "name": "Powys",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "663",
+      "name": "Denbighshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "671",
+      "name": "Neath Port Talbot",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "670",
+      "name": "Swansea",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "672",
+      "name": "Bridgend",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "675",
+      "name": "Merthyr Tydfil",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "674",
+      "name": "Rhondda Cynon Taf",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "677",
+      "name": "Blaenau Gwent",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "676",
+      "name": "Caerphilly",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "678",
+      "name": "Torfaen",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "679",
+      "name": "Monmouthshire",
+      "registered": false,
+      "__typename": "LocalAuthority"
+    },
+    {
+      "code": "680",
+      "name": "Newport",
+      "registered": true,
+      "__typename": "LocalAuthority"
+    }
+  ]
+}
