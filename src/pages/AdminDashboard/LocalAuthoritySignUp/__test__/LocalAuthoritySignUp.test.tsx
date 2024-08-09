@@ -17,11 +17,11 @@ afterEach(() => {
 });
 
 describe('Local authority sign up', () => {
+  const state = {
+    la: 'test la',
+    id: '12345',
+  };
   it('should handle form submit', async () => {
-    const state = {
-      la: 'test la',
-      id: '12345',
-    };
     const Component = createWrapperWithState(<LocalAuthoritySignUp />, state);
     const { getByRole } = render(<Component />);
 
@@ -58,10 +58,6 @@ describe('Local authority sign up', () => {
   });
 
   it('should handle form errors and not submit', async () => {
-    const state = {
-      la: 'test la',
-      id: '12345',
-    };
     const Component = createWrapperWithState(<LocalAuthoritySignUp />, state);
     const { getByRole, queryByText } = render(<Component />);
 
@@ -101,10 +97,6 @@ describe('Local authority sign up', () => {
   });
 
   it('should handle error on API call', async () => {
-    const state = {
-      la: 'test la',
-      id: '12345',
-    };
     server.use(setupFailedNetworkRequest());
     const Component = createWrapperWithState(<LocalAuthoritySignUp />, state);
     const { getByRole, findByRole } = render(<Component />);
