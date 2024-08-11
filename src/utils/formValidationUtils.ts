@@ -115,18 +115,20 @@ export const validateMultiStepForm = async (
   formData: FormDataItem[],
   setFormErrors: Dispatch<SetStateAction<Record<string, string>>>,
   queryClient?: QueryClient
-): Promise<void> => {
+): Promise<boolean> => {
   const errors = getFormErrors(formComponents, formData);
   queryClient && (await validatePostcodeAndAddToFormErrors(queryClient, errors, formData));
 
   if (Object.keys(errors).length > 0) {
     setFormErrors((formErrors) => ({ ...formErrors, ...errors }));
-    return;
+    return false;
   }
 
   setFormErrors({});
 
   parsePhoneNumber(formData);
+
+  return true;
 };
 
 export const validateForm = (formState: RequestFormState | FormState): Record<string, string> => {
