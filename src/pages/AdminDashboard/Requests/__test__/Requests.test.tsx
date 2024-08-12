@@ -19,7 +19,7 @@ describe('Requests', () => {
 
   it('should render school join request on school click', async () => {
     const Component = createWrapper(<Requests />);
-    const { findByRole, findAllByRole, getByLabelText } = render(<Component />);
+    const { findByRole, findAllByRole, findByLabelText } = render(<Component />);
 
     const spinner = await findByRole('img');
     expect(spinner).toBeInTheDocument();
@@ -28,13 +28,13 @@ describe('Requests', () => {
     const requestButtons = await findAllByRole('button', { name: 'view request' });
     await userEvent.click(requestButtons[0]);
 
-    const pill = getByLabelText('pill');
+    const pill = await findByLabelText('pill');
     expect(pill).toHaveTextContent('SCHOOL');
   });
 
   it('should render charity join request on school click', async () => {
     const Component = createWrapper(<Requests />);
-    const { findByRole, findAllByRole, getByLabelText } = render(<Component />);
+    const { findByRole, findAllByRole, findByLabelText } = render(<Component />);
 
     const spinner = await findByRole('img');
     expect(spinner).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('Requests', () => {
     const requestButtons = await findAllByRole('button', { name: 'view request' });
     await userEvent.click(requestButtons[1]);
 
-    const pill = getByLabelText('pill');
+    const pill = await findByLabelText('pill');
     expect(pill).toHaveTextContent('CHARITY');
   });
 
