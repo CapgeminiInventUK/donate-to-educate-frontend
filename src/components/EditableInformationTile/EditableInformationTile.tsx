@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './EditableInformationTile.module.scss';
-import Button from '../Button/Button';
 import { EditableInformationTileProps } from '@/types/props';
 import HorizontalLine from '@/assets/school/HorizontalLine';
 import TextArea from '../TextArea/TextArea';
@@ -27,8 +26,8 @@ const EditableInformationTile: FC<EditableInformationTileProps> = ({
           <>
             <TextArea characterLimit={1000} onChange={setText} value={text} ariaLabel="edit" />
             <div className={styles.footerButtons}>
-              <Button
-                theme="darkBlue"
+              <FormButton
+                theme="formButtonGreen"
                 className={styles.saveButton}
                 onClick={saveOnClick}
                 text="Save"
