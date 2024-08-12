@@ -748,3 +748,9 @@ export interface ManageInstitutionSectionProps {
 export interface ShowHideProps {
   onChangePasswordVisibility: (show: boolean) => void;
 }
+
+export interface ManageInstitutionsTableProps {
+  data: InstitutionProfile[];
+  type: 'school' | 'charity';
+  isLoading?: boolean;
+}
