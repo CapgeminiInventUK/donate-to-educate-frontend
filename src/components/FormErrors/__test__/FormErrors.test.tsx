@@ -18,8 +18,8 @@ describe('Form Errors', () => {
   });
 
   it('should focus text field when error is clicked', () => {
-    const { getByTestId } = render(<FormErrors formErrors={errors} />);
-    const clickableError = getByTestId('testField');
+    const { getByRole } = render(<FormErrors formErrors={errors} />);
+    const clickableError = getByRole('link', { name: errors.testField });
     const mockInputElement = { focus: vi.fn() };
     vi.spyOn(document, 'getElementById').mockReturnValue(
       mockInputElement as unknown as HTMLElement

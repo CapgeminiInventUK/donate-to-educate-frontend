@@ -21,7 +21,6 @@ const FormErrors: FC<FormErrorsProps> = ({ formErrors }) => {
           <a
             href={`#${key}`}
             className={styles.errorMessage}
-            data-testid={`${key}`}
             key={formErrors[key]}
             onClick={(e) => scrollToElement(e, key)}
           >
