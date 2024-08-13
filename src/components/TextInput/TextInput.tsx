@@ -59,6 +59,7 @@ const TextInput: FC<TextInputProps> = ({
           disabled={disabled}
           required={!header?.includes('optional')}
           aria-label={ariaLabel}
+          id={ariaLabel}
         />
       </div>
     </div>
