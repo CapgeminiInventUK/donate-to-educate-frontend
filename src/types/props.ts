@@ -754,3 +754,9 @@ export interface ManageInstitutionsTableProps {
   type: 'school' | 'charity';
   isLoading?: boolean;
 }
+
+export interface InstitutionAdminViewProps {
+  postcode: string;
+  name: string;
+  type: 'school' | 'charity';
+}

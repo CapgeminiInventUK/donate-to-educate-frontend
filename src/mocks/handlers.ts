@@ -13,6 +13,7 @@ import getCharitiesQueryResponse from './data/getCharitiesQuery.json';
 import getRegisteredSchoolsQueryResponse from './data/getRegisteredSchoolsQuery.json';
 import getLocalAuthoritiesQueryResponse from './data/getLocalAuthoritiesQuery.json';
 import getJoinRequestsQueryResponse from './data/getJoinRequestsQuery.json';
+import getCharityProfileQueryResponse from './data/getCharityProfileQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { amplifyConfig } from '@/amplify.config';
@@ -60,6 +61,15 @@ export const handlers = [
   graphql.query('GetJoinRequests', () => {
     return HttpResponse.json({
       data: getJoinRequestsQueryResponse,
+    });
+  }),
+  graphql.query('GetCharityProfile', ({ variables }) => {
+    const { name, id } = variables;
+    if ([name, id].includes('error')) {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
+    return HttpResponse.json({
+      data: getCharityProfileQueryResponse,
     });
   }),
   graphql.mutation('UpdateJoinRequest', () => {

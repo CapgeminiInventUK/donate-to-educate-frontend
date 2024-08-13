@@ -4,7 +4,7 @@ import styles from './InstitutionBanner.module.scss';
 import { Link } from 'react-router-dom';
 import { getLinkFromType } from './utils';
 
-const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }): JSX.Element => {
+const BannerItem: FC<BannerItemProps> = ({ icon, item, itemType, defaultText }) => {
   return (
     <li>
       <span>{icon}</span>

@@ -1,0 +1,43 @@
+{
+  "getCharityProfile": {
+    "name": "Test",
+    "id": "1",
+    "localAuthority": "West Sussex",
+    "postcode": "TE5 T00",
+    "location": {
+      "type": "Point",
+      "coordinates": [1.327269, 51.962367],
+      "__typename": "Point"
+    },
+    "header": {
+      "phone": "07777777777",
+      "email": "test@test.com",
+      "website": "www.test.com",
+      "address": "Test",
+      "__typename": "CharityProfileHeader"
+    },
+    "about": "Test charity has pre-loved school products to help children thrive at school.\n\n",
+    "request": {
+      "items": "{\"0\":[\"Coats\",\"Trousers\"]}",
+      "whatToExpect": "View the products we have in stock. While we update our stock levels regularly, they may change daily.",
+      "actionText": "Once we have your request for the products you need, we'll contact you to arrange the next steps as soon as we can.",
+      "productTypes": [0],
+      "__typename": "ProfileItems"
+    },
+    "donate": {
+      "items": "{\"5\":[\"Internet access\",\"Laptops\",\"Computer software\"]}",
+      "whatToExpect": "View the products we need. When you select 'donate', you can tell us how you can help.",
+      "actionText": "Once we have your message about the products you can donate, we'll contact you to arrange the next steps as soon as we can.",
+      "productTypes": [5],
+      "__typename": "ProfileItems"
+    },
+    "excess": {
+      "items": "{\"0\":[],\"1\":[],\"3\":[],\"5\":[\"Internet access\"]}",
+      "whatToExpect": "View the products we have too much of, take it from us and share it with people who need it.",
+      "actionText": "Once we know what extra stock you can take from us, we'll contact you to arrange the next steps as soon as we can.",
+      "productTypes": [0, 1, 3, 5],
+      "__typename": "ProfileItems"
+    },
+    "__typename": "CharityProfile"
+  }
+}

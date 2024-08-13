@@ -38,28 +38,20 @@ const CharityAdminDashboard: FC = () => {
     }
   }, [refetch, setDataFetched, dataFetched]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   if (isError) {
     return <ErrorBanner />;
   }
 
-  return (
-    <InstitutionAdminDashboard
-      type="charity"
-      profile={
-        data?.getCharityProfile ?? {
-          __typename: 'CharityProfile',
-          name: '',
-          id: '',
-          localAuthority: '',
-          postcode: '',
-        }
-      }
-      name={checkForStringAndReturnEmptyIfFalsy(name)}
-    />
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    data?.getCharityProfile && (
+      <InstitutionAdminDashboard
+        type="charity"
+        profile={data.getCharityProfile}
+        name={checkForStringAndReturnEmptyIfFalsy(name)}
+      />
+    )
   );
 };
 
