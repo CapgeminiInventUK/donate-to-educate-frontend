@@ -16,7 +16,7 @@ const TextArea: FC<TextAreaProps> = ({
   value,
   ariaLabel,
 }) => {
-  const [characterCount, setCharacterCount] = useState(0);
+  const [characterCount, setCharacterCount] = useState(value?.length ?? 0);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const inputValue = event.target.value;
