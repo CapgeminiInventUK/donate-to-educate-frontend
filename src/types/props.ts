@@ -36,6 +36,8 @@ import {
   ProfileItems,
   SchoolProfile,
   SearchResult,
+  UpdateCharityProfileMutation,
+  UpdateSchoolProfileMutation,
 } from './api';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
@@ -759,4 +761,42 @@ export interface InstitutionAdminViewProps {
   postcode: string;
   name: string;
   type: 'school' | 'charity';
+}
+
+export interface InstitutionEditProps {
+  type: ItemsIconType;
+  institutionType: 'school' | 'charity';
+  path: Paths;
+  items: Record<number, string[]>;
+  setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
+  content: ContentType;
+  setContent: Dispatch<SetStateAction<ContentType>>;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<
+      GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
+      Error
+    >
+  >;
+}
+
+export interface InstitutionEditViewProps {
+  type: ItemsIconType;
+  institutionType: 'school' | 'charity';
+  content: ContentType;
+  setContent: Dispatch<SetStateAction<ContentType>>;
+  items: Record<number, string[]>;
+  setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
+  saveDisabled: boolean;
+  setSaveDisabled: Dispatch<SetStateAction<boolean>>;
+  path: Paths;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<
+      GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
+      Error
+    >
+  >;
 }

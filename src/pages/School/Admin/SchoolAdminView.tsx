@@ -9,7 +9,7 @@ import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import InstitutionAdminView from '@/components/InstitutionAdminDashboard/InstitutionAdminView/InstitutionAdminView';
 
-const School: FC = () => {
+const SchoolAdminView: FC = () => {
   const user = useStore((state) => state.user);
   const { name, id } = user ?? {};
 
@@ -42,4 +42,4 @@ const School: FC = () => {
   );
 };
 
-export default School;
+export default SchoolAdminView;
