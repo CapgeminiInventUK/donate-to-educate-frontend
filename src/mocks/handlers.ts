@@ -14,6 +14,7 @@ import getRegisteredSchoolsQueryResponse from './data/getRegisteredSchoolsQuery.
 import getLocalAuthoritiesQueryResponse from './data/getLocalAuthoritiesQuery.json';
 import getJoinRequestsQueryResponse from './data/getJoinRequestsQuery.json';
 import getCharityProfileQueryResponse from './data/getCharityProfileQuery.json';
+import getSchoolProfileQueryResponse from './data/getSchoolProfileQuery.json';
 import { nonExistentPostcode, validPostcode } from './mockParams';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { amplifyConfig } from '@/amplify.config';
@@ -72,6 +73,15 @@ export const handlers = [
       data: getCharityProfileQueryResponse,
     });
   }),
+  graphql.query('GetSchoolProfile', ({ variables }) => {
+    const { name, id } = variables;
+    if ([name, id].includes('error')) {
+      return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
+    }
+    return HttpResponse.json({
+      data: getSchoolProfileQueryResponse,
+    });
+  }),
   graphql.mutation('UpdateJoinRequest', () => {
     return HttpResponse.json({
       data: {
@@ -88,7 +98,7 @@ export const handlers = [
   }),
   graphql.mutation('UpdateSchoolProfile', ({ variables }) => {
     const { value } = variables;
-    if (String(value)?.includes('error')) {
+    if (String(value).includes('error')) {
       return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
     }
     return HttpResponse.json({
@@ -99,7 +109,7 @@ export const handlers = [
   }),
   graphql.mutation('UpdateCharityProfile', ({ variables }) => {
     const { value } = variables;
-    if (value === 'error') {
+    if (String(value).includes('error')) {
       return HttpResponse.error() as AsyncResponseResolverReturnType<GraphQLQuery>;
     }
     return HttpResponse.json({
