@@ -1,8 +1,8 @@
+import { CharityAdminView } from '@/config/lazy';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import CharityAdminDashboard from '../CharityAdminDashboard';
-import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import { useStore } from '@/stores/useStore';
 import { InstitutionType } from '@/types/data';
+import { render, waitForElementToBeRemoved } from '@testing-library/react';
 
 const initialStoreState = useStore.getState();
 
@@ -18,8 +18,8 @@ afterAll(() => {
   useStore.setState(initialStoreState, true);
 });
 
-describe('Charity admin dashboard', () => {
-  it('should render charity profile admin page', async () => {
+describe('Charity admin view', () => {
+  it('should render charity admin view page', async () => {
     useStore.setState({
       user: {
         userId: 'someId',
@@ -30,7 +30,7 @@ describe('Charity admin dashboard', () => {
         id: '1',
       },
     });
-    const Component = createWrapper(<CharityAdminDashboard />);
+    const Component = createWrapper(<CharityAdminView />);
     const { findByRole } = render(<Component />);
 
     const spinner = await findByRole('img');
@@ -51,7 +51,7 @@ describe('Charity admin dashboard', () => {
         id: 'error',
       },
     });
-    const Component = createWrapper(<CharityAdminDashboard />);
+    const Component = createWrapper(<CharityAdminView />);
     const { findByRole, findByText } = render(<Component />);
 
     const spinner = await findByRole('img');
@@ -62,7 +62,7 @@ describe('Charity admin dashboard', () => {
   });
 
   it('should not render details if no user present', async () => {
-    const Component = createWrapper(<CharityAdminDashboard />);
+    const Component = createWrapper(<CharityAdminView />);
     const { findByRole } = render(<Component />);
 
     const header = await findByRole('heading', { level: 1 });

@@ -8,7 +8,7 @@ import { GetJoinRequestsQuery } from '@/types/api';
 import JoinRequests from '../../../components/JoinRequests/JoinRequests';
 import ApprovalRequest from '../../../components/ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
+import { InstitutionType, SchoolOrCharityProperties, StageState } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getJoinRequests } from '@/graphql/queries';
 
@@ -57,7 +57,7 @@ const Requests: FC = () => {
             <ApprovalRequest
               id={schoolOrCharityProperties.id}
               setStage={setStage}
-              type="school"
+              type={InstitutionType.SCHOOL}
               name={schoolOrCharityProperties.name}
               la={schoolOrCharityProperties.la}
               user={schoolOrCharityProperties.user}
@@ -68,7 +68,7 @@ const Requests: FC = () => {
               <ApprovalRequest
                 id={schoolOrCharityProperties.id}
                 setStage={setStage}
-                type="charity"
+                type={InstitutionType.CHARITY}
                 name={schoolOrCharityProperties.name}
                 la={schoolOrCharityProperties.la}
                 user={schoolOrCharityProperties.user}

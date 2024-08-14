@@ -23,6 +23,7 @@ import {
   InstitutionProfile,
   RequestFormState,
   UserDetails,
+  InstitutionType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -36,6 +37,8 @@ import {
   ProfileItems,
   SchoolProfile,
   SearchResult,
+  UpdateCharityProfileMutation,
+  UpdateSchoolProfileMutation,
 } from './api';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
@@ -328,7 +331,7 @@ export interface InstitutionBannerProps {
   isAdminView?: boolean;
   banner: Banner;
   setBanner?: Dispatch<SetStateAction<Banner>>;
-  type: 'school' | 'charity';
+  type: InstitutionType;
   name?: string;
   postcode?: string;
 }
@@ -395,7 +398,7 @@ export interface CharitiesTablesProps {
 export interface ApprovalRequestProps {
   setStage: Dispatch<SetStateAction<StageState>>;
   id: string;
-  type: 'school' | 'charity';
+  type: InstitutionType;
   name: string;
   la: string;
   urn?: string;
@@ -427,7 +430,7 @@ export interface DeclineDeleteModalProps {
 }
 
 export interface InstitutionAdminDashboardProps {
-  type: 'school' | 'charity';
+  type: InstitutionType;
   name: string;
   profile: SchoolProfile | CharityProfile;
 }
@@ -442,7 +445,7 @@ export interface EditModeItemProps {
 
 export interface AdminViewProps {
   banner: Banner;
-  type: 'school' | 'charity';
+  type: InstitutionType;
   editMode: boolean;
   setBanner?: Dispatch<SetStateAction<Banner>>;
 }
@@ -460,7 +463,7 @@ export interface CardProps {
 }
 
 export interface ItemSelectionProps {
-  schoolOrCharity: 'school' | 'charity';
+  schoolOrCharity: InstitutionType;
   items: Record<number, string[]>;
   whatToExpect: string;
   actionText: string;
@@ -484,14 +487,14 @@ export interface AdminDashboardCardProps {
 
 export interface RequestItemsProps {
   type: ItemsIconType;
-  organisationType: 'school' | 'charity';
+  organisationType: InstitutionType;
   id: string;
   name: string;
 }
 
 export interface RequestItemsFormProps {
   type: ItemsIconType;
-  organisationType: 'school' | 'charity';
+  organisationType: InstitutionType;
   formState: RequestFormState;
   onFormChange: (key: string, value: string) => void;
   onFormSubmit: (event: FormEvent<Element>) => void;
@@ -557,7 +560,7 @@ export interface FormButtonsProps {
 
 export interface ProductsTableProps {
   tableData: SearchResult[];
-  type: 'school' | 'charity';
+  type: InstitutionType;
   iconColour: string;
   productsColumnHeader:
     | 'Product types available'
@@ -572,7 +575,7 @@ export interface ProductsTableProps {
 export interface FindCharityTableProps {
   title?: string;
   postcode: string;
-  type?: string;
+  type?: InstitutionType;
 }
 
 export interface LocationStateOrRedirectProps<T> {
@@ -581,7 +584,7 @@ export interface LocationStateOrRedirectProps<T> {
 }
 
 export interface PublicDashboardProps {
-  type: 'school' | 'charity';
+  type: InstitutionType;
   profile?: InstitutionProfile;
   setPreview?: (value: boolean) => void;
   previewMode?: boolean;
@@ -639,7 +642,7 @@ export interface HomeTileProps {
 }
 
 export interface UserRequestDetailsProps {
-  type: 'school' | 'charity';
+  type: InstitutionType;
   user: RequestUser;
   setMyStage: Dispatch<SetStateAction<myStageType>>;
   charity?: {
@@ -669,7 +672,7 @@ export interface PopupInfo {
 export interface EditableDashboardProps {
   banner: Banner;
   setBanner: Dispatch<SetStateAction<Banner>>;
-  type: 'school' | 'charity';
+  type: InstitutionType;
   name: string;
   about: string;
   setAbout: Dispatch<SetStateAction<string>>;
@@ -680,12 +683,12 @@ export interface EditableDashboardProps {
 
 export interface ActionTilesProps {
   profile: SchoolProfile | CharityProfile;
-  type: 'school' | 'charity';
+  type: InstitutionType;
 }
 
 export interface PublicViewProps {
   banner: Banner;
-  type: 'school' | 'charity';
+  type: InstitutionType;
 }
 
 export interface ItemListEditProps {
@@ -716,7 +719,7 @@ export interface PublicDashboardActionTilesProps {
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
-  type: 'school' | 'charity';
+  type: InstitutionType;
   name: string;
   id: string;
   previewMode?: boolean;
@@ -742,7 +745,7 @@ export interface ManageDetailsSectionProps {
 }
 
 export interface ManageInstitutionSectionProps {
-  type?: string;
+  type?: AccountType | '';
 }
 
 export interface ShowHideProps {
@@ -751,12 +754,46 @@ export interface ShowHideProps {
 
 export interface ManageInstitutionsTableProps {
   data: InstitutionProfile[];
-  type: 'school' | 'charity';
+  type: InstitutionType;
   isLoading?: boolean;
 }
 
 export interface InstitutionAdminViewProps {
   postcode: string;
   name: string;
-  type: 'school' | 'charity';
+  type: InstitutionType;
+}
+
+export interface ProductsListPageProps {
+  type: ItemsIconType;
+  institutionType: InstitutionType;
+  path: Paths;
+  items: Record<number, string[]>;
+  setItems: Dispatch<SetStateAction<Record<number, string[]>>>;
+  content: ContentType;
+  setContent: Dispatch<SetStateAction<ContentType>>;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<
+      GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
+      Error
+    >
+  >;
+}
+export interface RequestDonateNextStepsProps {
+  institutionType: InstitutionType;
+  content: ContentType;
+  setContent: Dispatch<SetStateAction<ContentType>>;
+  saveDisabled: boolean;
+  setSaveDisabled: Dispatch<SetStateAction<boolean>>;
+  path: Paths;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<
+    QueryObserverResult<
+      GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
+      Error
+    >
+  >;
 }

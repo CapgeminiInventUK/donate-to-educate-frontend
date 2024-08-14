@@ -7,6 +7,7 @@ import {
   FormMeta,
   FormNames,
   FormTemplate,
+  InstitutionType,
   SubmittedFormData,
 } from '@/types/data';
 import { client } from '@/graphqlClient';
@@ -74,7 +75,7 @@ const SignUpCharity: FC = () => {
         variables: {
           name: formDataForSubmission?.name,
           localAuthority: selectedLocalAuthority,
-          type: 'charity',
+          type: InstitutionType.CHARITY,
           email: formDataForSubmission?.email,
           school: formDataForSubmission?.school,
           jobTitle: formDataForSubmission?.jobTitle,
@@ -104,7 +105,7 @@ const SignUpCharity: FC = () => {
           localAuthority: selectedLocalAuthority,
           email: formDataForSubmission?.email,
           message: formDataForSubmission?.message,
-          type: 'charity',
+          type: InstitutionType.CHARITY,
         },
       });
       return result;

@@ -4,6 +4,7 @@ import { ProfileItems } from '@/types/api';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const CharityEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -20,7 +21,7 @@ const CharityEdit: FC = () => {
 
   return (
     <ItemSelection
-      schoolOrCharity="charity"
+      schoolOrCharity={InstitutionType.CHARITY}
       items={parsedItems}
       whatToExpect={checkForStringAndReturnEmptyIfFalsy(whatToExpect)}
       actionText={checkForStringAndReturnEmptyIfFalsy(actionText)}

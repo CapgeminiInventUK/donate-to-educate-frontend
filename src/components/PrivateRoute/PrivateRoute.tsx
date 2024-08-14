@@ -4,7 +4,6 @@ import Spinner from '../Spinner/Spinner';
 import { getRedirectUrl } from '@/utils/account';
 import Paths from '@/config/paths';
 import { useStore } from '@/stores/useStore';
-import { AccountType } from '@/types/data';
 import { PrivateRouteProps } from '@/types/props';
 
 const PrivateRoute: FC<PrivateRouteProps> = ({ route = Paths.SIGN_IN, children, authType }) => {
@@ -27,7 +26,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({ route = Paths.SIGN_IN, children, 
   const { type } = user;
 
   if (authType !== type) {
-    navigate(getRedirectUrl(type as AccountType, hasProfile));
+    navigate(getRedirectUrl(type, hasProfile));
     return;
   }
 

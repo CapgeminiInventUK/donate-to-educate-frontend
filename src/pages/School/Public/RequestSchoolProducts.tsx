@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Paths from '@/config/paths';
 import RequestItems from '@/components/RequestItems/RequestItems';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { ItemsIconType } from '@/types/data';
+import { InstitutionType, ItemsIconType } from '@/types/data';
 
 const RequestSchoolProducts: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -14,7 +14,12 @@ const RequestSchoolProducts: FC = () => {
   const { type, id, name, postcode } = state;
 
   return (
-    <RequestItems type={type} organisationType="school" id={id} name={`${name} - ${postcode}`} />
+    <RequestItems
+      type={type}
+      organisationType={InstitutionType.SCHOOL}
+      id={id}
+      name={`${name} - ${postcode}`}
+    />
   );
 };
 

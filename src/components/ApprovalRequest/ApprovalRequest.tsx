@@ -17,7 +17,7 @@ import Paths from '@/config/paths';
 import { getSchool } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import { ApprovalRequestProps } from '@/types/props';
-import { PillColours, StageState, myStageType } from '@/types/data';
+import { InstitutionType, PillColours, StageState, myStageType } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import SchoolDetails from './SchoolDetails/SchoolDetails';
@@ -60,7 +60,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     isError: isErrorSchool,
   } = useQuery({
     queryKey: [`school-details-${name}-${urn}`],
-    enabled: type === 'school',
+    enabled: type === InstitutionType.SCHOOL,
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolQuery>>({
         query: getSchool,
@@ -98,7 +98,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
     }
   }, [myStage, refetch, deleteProfile, navigate]);
 
-  if (isLoading && type === 'school') {
+  if (isLoading && type === InstitutionType.SCHOOL) {
     return <Spinner />;
   }
 
@@ -112,11 +112,11 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       <Card className={styles.approvalRequestCard}>
         <>
           <Pill
-            colour={type == 'school' ? PillColours.BLUE : PillColours.LIGHTBLUE}
-            text={type == 'school' ? 'SCHOOL' : 'CHARITY OR VOLUNTEER GROUP'}
+            colour={type == InstitutionType.SCHOOL ? PillColours.BLUE : PillColours.LIGHTBLUE}
+            text={type == InstitutionType.SCHOOL ? 'SCHOOL' : 'CHARITY OR VOLUNTEER GROUP'}
           />
-          {type === 'school' && data !== undefined && <SchoolDetails data={data} />}
-          {type === 'charity' && <h1>{name}</h1>}
+          {type === InstitutionType.SCHOOL && data !== undefined && <SchoolDetails data={data} />}
+          {type === InstitutionType.CHARITY && <h1>{name}</h1>}
           <hr />
           {myStage === 'deciding' && (
             <UserRequestDetails

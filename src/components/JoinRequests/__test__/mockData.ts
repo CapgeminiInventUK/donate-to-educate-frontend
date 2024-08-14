@@ -1,4 +1,5 @@
 import { GetJoinRequestsQuery } from '@/types/api';
+import { InstitutionType } from '@/types/data';
 
 export const dataWithSchoolAndCharity: GetJoinRequestsQuery = {
   getJoinRequests: [
@@ -6,7 +7,7 @@ export const dataWithSchoolAndCharity: GetJoinRequestsQuery = {
       id: '75ccc782-c359-47cc-8a7e-43522ec9d4af',
       name: 'Test Test',
       localAuthority: 'West Sussex',
-      type: 'school',
+      type: InstitutionType.SCHOOL,
       requestTime: 1711394605001,
       status: 'NEW',
       email: 'Test@gmail.com',
@@ -23,7 +24,7 @@ export const dataWithSchoolAndCharity: GetJoinRequestsQuery = {
       id: '31c7091b-558e-4087-8a54-2f176f76e894',
       name: 'Test Test',
       localAuthority: 'Hammersmith and Fulham',
-      type: 'charity',
+      type: InstitutionType.CHARITY,
       requestTime: 1711394803223,
       status: 'NEW',
       email: 'Test@gmail.com',
@@ -46,7 +47,7 @@ export const dataWithMultipleSchools: GetJoinRequestsQuery = {
       id: '75ccc782-c359-47cc-8a7e-43522ec9d4af',
       name: 'Test Test',
       localAuthority: 'West Sussex',
-      type: 'school',
+      type: InstitutionType.SCHOOL,
       requestTime: 1711394605001,
       status: 'NEW',
       email: 'Test@gmail.com',
@@ -63,7 +64,7 @@ export const dataWithMultipleSchools: GetJoinRequestsQuery = {
       id: '31c7091b-558e-4087-8a54-2f176f76e894',
       name: 'Test Test two',
       localAuthority: 'Hammersmith and Fulham',
-      type: 'school',
+      type: InstitutionType.SCHOOL,
       requestTime: 1711394605100,
       status: 'NEW',
       email: 'Test@gmail.com',

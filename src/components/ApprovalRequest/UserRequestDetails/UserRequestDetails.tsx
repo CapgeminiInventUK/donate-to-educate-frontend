@@ -4,6 +4,7 @@ import ToolTip from '@/assets/admin/ToolTip';
 import FormButton from '@/components/FormButton/FormButton';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 import { UserRequestDetailsProps } from '@/types/props';
+import { InstitutionType } from '@/types/data';
 
 const UserRequestDetails: FC<UserRequestDetailsProps> = ({
   type,
@@ -17,7 +18,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
   const { name, title, phone, email } = user;
   const { charityAddress, aboutCharity } = charity ?? {};
   const text =
-    type === 'school'
+    type === InstitutionType.SCHOOL
       ? 'senior staff or a senior contact at the school.'
       : 'working at the charity or volunteer group and have somewhere to store products.';
 
@@ -29,7 +30,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
         <b>The local authority may also review, confirm or decline this request.</b>
       </div>
       <div className={styles.requestDecisionCard}>
-        {type === 'charity' && <h3>Details</h3>}
+        {type === InstitutionType.CHARITY && <h3>Details</h3>}
         <div className={styles.informationLine}>
           <b>Name</b>
           <span>{name}</span>
@@ -50,7 +51,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
           <span>{phone}</span>
         </div>
         <hr />
-        {type === 'charity' && (
+        {type === InstitutionType.CHARITY && (
           <>
             <h3>Charity or volunteer group</h3>
             <div className={styles.informationLine}>

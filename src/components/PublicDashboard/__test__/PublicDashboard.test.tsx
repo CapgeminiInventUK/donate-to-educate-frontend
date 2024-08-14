@@ -3,11 +3,12 @@ import PublicDashboard from '../PublicDashboard';
 import { mockCharityProfileNoDetails, mockSchoolProfile } from './mockData';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { InstitutionType } from '@/types/data';
 
 describe('Public dashboard', () => {
   it('should not show profile details if none yet set', () => {
     const Component = createWrapper(
-      <PublicDashboard type="charity" profile={mockCharityProfileNoDetails} />
+      <PublicDashboard type={InstitutionType.CHARITY} profile={mockCharityProfileNoDetails} />
     );
     const { queryByText } = render(<Component />);
 
@@ -19,7 +20,9 @@ describe('Public dashboard', () => {
   });
 
   it('should show profile details when profile has been saved', () => {
-    const Component = createWrapper(<PublicDashboard type="school" profile={mockSchoolProfile} />);
+    const Component = createWrapper(
+      <PublicDashboard type={InstitutionType.SCHOOL} profile={mockSchoolProfile} />
+    );
     const { queryByText } = render(<Component />);
     expect(queryByText('About us')).toBeInTheDocument();
   });
@@ -27,7 +30,11 @@ describe('Public dashboard', () => {
   it('should handle edit profile click', async () => {
     const setPreview = vi.fn();
     const Component = createWrapper(
-      <PublicDashboard type="school" profile={mockSchoolProfile} setPreview={setPreview} />
+      <PublicDashboard
+        type={InstitutionType.SCHOOL}
+        profile={mockSchoolProfile}
+        setPreview={setPreview}
+      />
     );
     const { getByRole } = render(<Component />);
 

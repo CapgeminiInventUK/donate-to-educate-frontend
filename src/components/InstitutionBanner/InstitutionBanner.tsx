@@ -18,6 +18,7 @@ import PublicView from './PublicView';
 import Settings from '@/assets/icons/Settings';
 import Paths from '@/config/paths';
 import { Link } from 'react-router-dom';
+import { InstitutionType } from '@/types/data';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -40,7 +41,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
       >({
         authMode: checkIfInTestEnvForAuthMode(),
         authToken,
-        query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
+        query: type === InstitutionType.SCHOOL ? updateSchoolProfile : updateCharityProfile,
         variables: {
           key: 'header',
           value: JSON.stringify(banner),

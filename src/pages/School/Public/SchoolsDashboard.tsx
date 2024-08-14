@@ -11,6 +11,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import styles from './SchoolDashboard.module.scss';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { InstitutionType } from '@/types/data';
 
 const SchoolsDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; urn: string }>(
@@ -46,7 +47,10 @@ const SchoolsDashboard: FC = () => {
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <PublicDashboard type="school" profile={data?.getSchoolProfile ?? undefined} />
+        <PublicDashboard
+          type={InstitutionType.SCHOOL}
+          profile={data?.getSchoolProfile ?? undefined}
+        />
       </div>
     </div>
   );

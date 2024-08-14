@@ -12,6 +12,7 @@ import { FindCharityTableProps } from '@/types/props';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 import { useLocation } from 'react-router-dom';
+import { InstitutionType } from '@/types/data';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -60,14 +61,14 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
     <>
       {title ? (
         <h1>{title}</h1>
-      ) : type === 'school' ? (
+      ) : type === InstitutionType.SCHOOL ? (
         <h2>Nearby charities who can also help</h2>
       ) : (
         <h2>Other nearby charities who can also help</h2>
       )}
       <ProductsTable
         tableData={charitiesRows}
-        type="charity"
+        type={InstitutionType.CHARITY}
         iconColour="#97C8EB"
         productsColumnHeader="Product types available"
         postcode={postcode}

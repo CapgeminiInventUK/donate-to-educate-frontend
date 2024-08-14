@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import FormButton from '@/components/FormButton/FormButton';
 import ActionTiles from './ActionTiles';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const EditableDashboard: FC<EditableDashboardProps> = ({
   banner,
@@ -46,7 +47,7 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
       >({
         authMode: checkIfInTestEnvForAuthMode(),
         authToken,
-        query: type === 'school' ? updateSchoolProfile : updateCharityProfile,
+        query: type === InstitutionType.SCHOOL ? updateSchoolProfile : updateCharityProfile,
         variables: {
           key: 'about',
           value: about ? about : placeholderAboutText,
@@ -100,9 +101,11 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
       <Card className={styles.institutionCard}>
         {showBuildProfileBanner && (
           <InformationTile
-            heading={type === 'school' ? "Build your school's profile" : 'Build your profile'}
+            heading={
+              type === InstitutionType.SCHOOL ? "Build your school's profile" : 'Build your profile'
+            }
             subtext={
-              type === 'school'
+              type === InstitutionType.SCHOOL
                 ? 'Add, edit and save details about how your school can help children and the community.'
                 : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
             }
@@ -127,7 +130,9 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
             text="Continue"
             ariaLabel="Continue"
             fullWidth={true}
-            onClick={() => navigate(type === 'school' ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)}
+            onClick={() =>
+              navigate(type === InstitutionType.SCHOOL ? Paths.SCHOOL_VIEW : Paths.CHARITIES_VIEW)
+            }
           />
           <a onClick={() => setPreview(true)} className={styles.previewLink}>
             Preview public profile

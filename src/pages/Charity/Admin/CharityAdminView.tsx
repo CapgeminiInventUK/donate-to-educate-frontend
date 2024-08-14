@@ -8,6 +8,7 @@ import { GetCharityProfileQuery } from '@/types/api';
 import { getCharityProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import InstitutionAdminView from '@/components/InstitutionAdminDashboard/InstitutionAdminView/InstitutionAdminView';
+import { InstitutionType } from '@/types/data';
 
 const CharityView: FC = () => {
   const user = useStore((state) => state.user);
@@ -37,7 +38,7 @@ const CharityView: FC = () => {
     <InstitutionAdminView
       name={name ?? ''}
       postcode={data?.getCharityProfile?.postcode ?? ''}
-      type="charity"
+      type={InstitutionType.CHARITY}
     />
   );
 };

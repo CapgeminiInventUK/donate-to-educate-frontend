@@ -3,6 +3,7 @@ import { InstitutionBanner } from '../InstitutionBanner';
 import { charityBanner, schoolBanner } from './mockData';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { InstitutionType } from '@/types/data';
 
 describe('Institution banner', () => {
   const setBanner = vi.fn();
@@ -11,7 +12,7 @@ describe('Institution banner', () => {
       <InstitutionBanner
         banner={charityBanner}
         setBanner={setBanner}
-        type="charity"
+        type={InstitutionType.CHARITY}
         name="Test Charity"
       />
     );
@@ -26,7 +27,7 @@ describe('Institution banner', () => {
         isAdminView={true}
         banner={charityBanner}
         setBanner={setBanner}
-        type="charity"
+        type={InstitutionType.CHARITY}
         name="Test Charity"
       />
     );
@@ -57,7 +58,7 @@ describe('Institution banner', () => {
         isAdminView={true}
         banner={schoolBanner}
         setBanner={setBanner}
-        type="school"
+        type={InstitutionType.SCHOOL}
         name="Test School"
       />
     );
@@ -86,7 +87,7 @@ describe('Institution banner', () => {
         isAdminView={true}
         banner={schoolBanner}
         setBanner={setBanner}
-        type="school"
+        type={InstitutionType.SCHOOL}
         name="Test School"
       />
     );
@@ -116,7 +117,7 @@ describe('Institution banner', () => {
         isAdminView={true}
         banner={banner}
         setBanner={setBanner}
-        type="school"
+        type={InstitutionType.SCHOOL}
         name="Test School"
       />
     );

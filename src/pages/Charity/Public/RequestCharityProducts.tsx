@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Paths from '@/config/paths';
 import RequestItems from '@/components/RequestItems/RequestItems';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { ItemsIconType } from '@/types/data';
+import { InstitutionType, ItemsIconType } from '@/types/data';
 
 const RequestCharityProducts: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -13,7 +13,9 @@ const RequestCharityProducts: FC = () => {
   }>(Paths.HOME);
   const { type, id, name } = state;
 
-  return <RequestItems type={type} organisationType="charity" id={id} name={name} />;
+  return (
+    <RequestItems type={type} organisationType={InstitutionType.CHARITY} id={id} name={name} />
+  );
 };
 
 export default RequestCharityProducts;

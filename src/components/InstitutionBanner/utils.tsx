@@ -3,7 +3,7 @@ import Telephone from '@/assets/school/Telephone';
 import Email from '@/assets/school/EmailWhite';
 import Globe from '@/assets/school/Globe';
 import House from '@/assets/school/House';
-import { Banner } from '@/types/data';
+import { Banner, InstitutionType } from '@/types/data';
 
 export const getIcon = (item: string): JSX.Element => {
   switch (item) {
@@ -60,11 +60,11 @@ export const hasContactInfo = (banner: Banner, isAdminView?: boolean): boolean =
   );
 };
 
-export const getBannerKeys = (banner: Banner, type: 'school' | 'charity'): string[] => {
+export const getBannerKeys = (banner: Banner, type: InstitutionType): string[] => {
   return Object.keys(banner).filter((key) => {
     if (
-      (type === 'school' && key !== 'address') ||
-      (type === 'charity' && key !== 'uniformPolicy')
+      (type === InstitutionType.SCHOOL && key !== 'address') ||
+      (type === InstitutionType.CHARITY && key !== 'uniformPolicy')
     ) {
       return key;
     }

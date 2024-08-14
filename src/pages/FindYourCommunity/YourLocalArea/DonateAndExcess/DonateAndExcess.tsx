@@ -14,6 +14,7 @@ import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import { DonateAndExcessProps } from '@/types/props';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -90,7 +91,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
   const schoolRows = (schoolData?.getSchoolsNearbyWithProfile?.results ?? []).map(
     (school, index) => ({
       ...school,
-      type: 'school',
+      type: InstitutionType.SCHOOL,
       key: index,
     })
   );
@@ -98,7 +99,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
   const charityRows = (charityData?.getCharitiesNearbyWithProfile?.results ?? []).map(
     (charity, index) => ({
       ...charity,
-      type: 'charity',
+      type: InstitutionType.CHARITY,
       key: index,
     })
   );
@@ -114,7 +115,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         <h2>Schools</h2>
         <ProductsTable
           tableData={schoolRows}
-          type="school"
+          type={InstitutionType.SCHOOL}
           iconColour={type === 'excess' ? '#00B6A8' : '#0075A2'}
           productsColumnHeader={productsColumnHeader}
           hideNotJoined={true}
@@ -125,7 +126,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
         <h2>Charities</h2>
         <ProductsTable
           tableData={charityRows}
-          type="charity"
+          type={InstitutionType.CHARITY}
           iconColour={type === 'excess' ? '#00B6A8' : '#0075A2'}
           productsColumnHeader={productsColumnHeader}
           hideNoProducts={true}
@@ -140,7 +141,7 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
             ({ location: { coordinates }, name, type }) => ({
               coordinates,
               name,
-              colour: type === 'school' ? '#97C8EB' : '#11356F',
+              colour: type === InstitutionType.SCHOOL ? '#97C8EB' : '#11356F',
             })
           )}
         />

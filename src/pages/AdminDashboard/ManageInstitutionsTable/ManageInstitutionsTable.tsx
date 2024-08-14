@@ -11,7 +11,7 @@ import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';
 import { capitaliseFirstLetter, pluraliseString, useZeroIfUndefined } from '@/utils/globals';
 import { ManageInstitutionsTableProps } from '@/types/props';
-import { InstitutionProfile } from '@/types/data';
+import { InstitutionProfile, InstitutionType } from '@/types/data';
 
 const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type, isLoading }) => {
   const [searchText, setSearchText] = useState('');
@@ -51,9 +51,12 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
           text={text}
           ariaLabel={`name-${text}`}
           onClick={() =>
-            navigate(type === 'charity' ? Paths.CHARITY_DASHBOARD : Paths.SCHOOLS_DASHBOARD, {
-              state: { id, name, urn: id },
-            })
+            navigate(
+              type === InstitutionType.CHARITY ? Paths.CHARITY_DASHBOARD : Paths.SCHOOLS_DASHBOARD,
+              {
+                state: { id, name, urn: id },
+              }
+            )
           }
         />
       ),
@@ -79,7 +82,8 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
             <div className={styles.cardContainer}>
               <Card className={styles.manageCard}>
                 <h2>
-                  Registered {type === 'school' ? 'schools' : 'charities and volunteer groups'}
+                  Registered{' '}
+                  {type === InstitutionType.SCHOOL ? 'schools' : 'charities and volunteer groups'}
                 </h2>
                 <div aria-label="total-joined" className={styles.border}>
                   {useZeroIfUndefined(data.length)} joined

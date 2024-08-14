@@ -1,4 +1,5 @@
 import { SearchResult } from '@/types/api';
+import { InstitutionType } from '@/types/data';
 
 export const productsTablePropsCharity = {
   tableData: [
@@ -16,7 +17,7 @@ export const productsTablePropsCharity = {
       __typename: 'SearchResult',
     },
   ] as SearchResult[],
-  type: 'charity' as 'charity' | 'school',
+  type: InstitutionType.CHARITY,
   iconColour: '#97C8EB',
   productsColumnHeader: 'Product types available' as
     | 'Product types available'
@@ -29,7 +30,7 @@ export const productsTablePropsCharity = {
 
 export const productsTablePropsCharityNoOrganisations = {
   tableData: [],
-  type: 'charity' as 'charity' | 'school',
+  type: InstitutionType.CHARITY,
   iconColour: '#97C8EB',
   productsColumnHeader: 'Product types available' as
     | 'Product types available'
@@ -81,7 +82,7 @@ export const productsTablePropsSchool = {
       __typename: 'SearchResult',
     },
   ] as SearchResult[],
-  type: 'school' as 'charity' | 'school',
+  type: InstitutionType.SCHOOL,
   iconColour: '#97C8EB',
   productsColumnHeader: 'Product types available' as
     | 'Product types available'
@@ -93,7 +94,7 @@ export const productsTablePropsSchool = {
 
 export const productsTablePropsSchoolNoSchools = {
   tableData: [],
-  type: 'school' as 'charity' | 'school',
+  type: InstitutionType.SCHOOL,
   iconColour: '#97C8EB',
   productsColumnHeader: 'Product types available' as
     | 'Product types available'

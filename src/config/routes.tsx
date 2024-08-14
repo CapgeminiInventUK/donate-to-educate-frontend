@@ -51,6 +51,7 @@ import {
 } from './lazy';
 import { Route } from '@/types/props';
 import Settings from '@/pages/Settings/Settings';
+import { InstitutionType } from '@/types/data';
 
 const routes: Route[] = [
   // Admin dashboard
@@ -116,18 +117,18 @@ const routes: Route[] = [
   {
     path: Paths.SCHOOL_EDIT,
     element: <SchoolEdit />,
-    authType: 'school',
+    authType: InstitutionType.SCHOOL,
   },
   {
     path: Paths.SCHOOLS_CREATE_EDIT_PROFILE,
     element: <SchoolAdminDashboard />,
     name: 'Create or edit your profile',
-    authType: 'school',
+    authType: InstitutionType.SCHOOL,
   },
   {
     path: Paths.SCHOOL_VIEW,
     element: <SchoolAdminView />,
-    authType: 'school',
+    authType: InstitutionType.SCHOOL,
   },
 
   // Admin Charity
@@ -135,17 +136,17 @@ const routes: Route[] = [
     path: Paths.CHARITIES_CREATE_EDIT_PROFILE,
     element: <CharityAdminDashboard />,
     name: 'Create or edit your profile',
-    authType: 'charity',
+    authType: InstitutionType.CHARITY,
   },
   {
     path: Paths.CHARITIES_EDIT,
     element: <CharityEdit />,
-    authType: 'charity',
+    authType: InstitutionType.CHARITY,
   },
   {
     path: Paths.CHARITIES_VIEW,
     element: <CharityAdminView />,
-    authType: 'charity',
+    authType: InstitutionType.CHARITY,
   },
 
   // Login

@@ -14,6 +14,7 @@ import Paths from '@/config/paths';
 import styles from './ProductsTable.module.scss';
 import getColumnSearch from '@/utils/tableUtils';
 import { ProductsTableProps } from '@/types/props';
+import { InstitutionType } from '@/types/data';
 
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,
@@ -25,7 +26,8 @@ const ProductsTable: FC<ProductsTableProps> = ({
   hideNoProducts,
   hideStatus = false,
 }) => {
-  const dashboardLink = type === 'school' ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
+  const dashboardLink =
+    type === InstitutionType.SCHOOL ? Paths.SCHOOLS_DASHBOARD : Paths.CHARITY_DASHBOARD;
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -60,7 +62,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
       title: productsColumnHeader,
       dataIndex: 'productTypes',
       render: (text: number[], { registered, id }: SearchResult): JSX.Element[] => {
-        if (!registered && type === 'school') {
+        if (!registered && type === InstitutionType.SCHOOL) {
           return [<Fragment key={id}>N/A</Fragment>];
         }
         return text.map((productType) => (
@@ -79,7 +81,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
     },
   ];
 
-  if (type === 'school' && !hideStatus) {
+  if (type === InstitutionType.SCHOOL && !hideStatus) {
     columns.splice(1, 0, {
       title: 'Status',
       dataIndex: 'registered',
@@ -124,7 +126,7 @@ const ProductsTable: FC<ProductsTableProps> = ({
       scroll={{ x: 'max-content' }}
       rowKey="id"
       locale={
-        type === 'charity'
+        type === InstitutionType.CHARITY
           ? {
               emptyText: <NoLocalOrganisations />,
             }
