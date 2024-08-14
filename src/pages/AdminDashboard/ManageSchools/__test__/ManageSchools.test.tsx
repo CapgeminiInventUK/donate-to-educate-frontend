@@ -4,7 +4,7 @@ import {
   useDifferentResponseDataToDefault,
 } from '@/mocks/mockGraphqlClient';
 import * as router from 'react-router';
-import ManageCharities from '../ManageCharities';
+import ManageSchools from '../ManageSchools';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import { server } from '@/mocks/server';
 import userEvent from '@testing-library/user-event';
@@ -33,9 +33,9 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
-describe('Manage Charities', () => {
-  it('should render table with charities fetched from API', async () => {
-    const Component = createWrapper(<ManageCharities />);
+describe('Manage Schools', () => {
+  it('should render table with schools fetched from API', async () => {
+    const Component = createWrapper(<ManageSchools />);
     const { getAllByRole, findByRole, getByLabelText } = render(<Component />);
 
     const spinner = await findByRole('img');
@@ -47,18 +47,20 @@ describe('Manage Charities', () => {
       const totalJoinedText = getByLabelText('total-joined');
       expect(totalJoinedText).toHaveTextContent('2 joined');
 
-      const charityLink = await findByRole('button', { name: 'name-Test' });
-      await userEvent.click(charityLink);
+      const schoolLink = await findByRole('button', { name: 'name-The Aldgate School' });
+      await userEvent.click(schoolLink);
 
-      expect(navigate).toHaveBeenCalledWith(Paths.CHARITY_DASHBOARD, {
-        state: { id: '123456', name: 'Test', urn: '123456' },
+      expect(navigate).toHaveBeenCalledWith(Paths.SCHOOLS_DASHBOARD, {
+        state: { id: '100000', name: 'The Aldgate School', urn: '100000' },
       });
     });
   });
 
-  it('should render empty table if no charities fetched from API', async () => {
-    server.use(useDifferentResponseDataToDefault('GetCharities', { getCharities: undefined }));
-    const Component = createWrapper(<ManageCharities />);
+  it('should render empty table if no schools fetched from API', async () => {
+    server.use(
+      useDifferentResponseDataToDefault('GetRegisteredSchools', { getRegisteredSchools: undefined })
+    );
+    const Component = createWrapper(<ManageSchools />);
     const { queryAllByRole, findByRole, getByLabelText } = render(<Component />);
 
     const spinner = await findByRole('img');
@@ -74,7 +76,7 @@ describe('Manage Charities', () => {
 
   it('should handle API error', async () => {
     server.use(setupFailedNetworkRequest());
-    const Component = createWrapper(<ManageCharities />);
+    const Component = createWrapper(<ManageSchools />);
     const { findByText, findByRole } = render(<Component />);
 
     const spinner = await findByRole('img');

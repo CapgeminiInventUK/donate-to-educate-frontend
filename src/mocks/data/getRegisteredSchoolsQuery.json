@@ -1,0 +1,44 @@
+{
+  "getRegisteredSchools": [
+    {
+      "urn": "100000",
+      "name": "The Aldgate School",
+      "localAuthority": "City of London",
+      "postcode": "EC3A 5DE",
+      "registered": true,
+      "isLocalAuthorityRegistered": null,
+      "address3": "",
+      "county": "",
+      "locality": "Duke's Place",
+      "street": "St James's Passage",
+      "phone": "02072831147",
+      "town": "London",
+      "website": "www.thealdgateschool.org",
+      "distance": null,
+      "profile": null,
+      "hasJoinRequest": null,
+      "registrationState": null,
+      "__typename": "School"
+    },
+    {
+      "urn": "100026",
+      "name": "Fitzjohn's Primary School",
+      "localAuthority": "Camden",
+      "postcode": "NW3 6NP",
+      "registered": true,
+      "isLocalAuthorityRegistered": null,
+      "address3": "",
+      "county": "",
+      "locality": "",
+      "street": "86A Fitzjohn's Avenue",
+      "phone": "02074359797",
+      "town": "London",
+      "website": "http://www.fitzjohns.camden.sch.uk/",
+      "distance": null,
+      "profile": null,
+      "hasJoinRequest": null,
+      "registrationState": null,
+      "__typename": "School"
+    }
+  ]
+}

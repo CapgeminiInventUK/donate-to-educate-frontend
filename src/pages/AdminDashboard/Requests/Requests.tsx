@@ -1,16 +1,16 @@
 import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { getAdminPageRequests } from '@/graphql/composite';
 import { client } from '@/graphqlClient';
 import Spinner from '@/components/Spinner/Spinner';
 import BackButton from '@/components/BackButton/BackButton';
-import { GetLocalAuthoritiesQuery, GetJoinRequestsQuery } from '@/types/api';
+import { GetJoinRequestsQuery } from '@/types/api';
 import JoinRequests from '../../../components/JoinRequests/JoinRequests';
 import ApprovalRequest from '../../../components/ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import { SchoolOrCharityProperties, StageState } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { getJoinRequests } from '@/graphql/queries';
 
 const Requests: FC = () => {
   const [stage, setStage] = useState<StageState>(StageState.VIEW);
@@ -25,10 +25,8 @@ const Requests: FC = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['getJoinRequests'],
     queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthoritiesQuery & GetJoinRequestsQuery>
-      >({
-        query: getAdminPageRequests,
+      const { data } = await client.graphql<GraphQLQuery<GetJoinRequestsQuery>>({
+        query: getJoinRequests,
       });
 
       return data;
@@ -47,15 +45,15 @@ const Requests: FC = () => {
           <h1>Requests to join</h1>
         </div>
         <div className={dashboardStyles.subBody}>
-          {isLoading && <Spinner />}
-          {!isLoading && stage === StageState.VIEW && (
+          {isLoading ? (
+            <Spinner />
+          ) : stage === StageState.VIEW ? (
             <JoinRequests
               setStage={setStage}
               data={data}
               setSchoolOrCharityProperties={setSchoolOrCharityProperties}
             />
-          )}
-          {!isLoading && stage === StageState.APPROVE_SCHOOL && (
+          ) : stage === StageState.APPROVE_SCHOOL ? (
             <ApprovalRequest
               id={schoolOrCharityProperties.id}
               setStage={setStage}
@@ -65,17 +63,18 @@ const Requests: FC = () => {
               user={schoolOrCharityProperties.user}
               urn={schoolOrCharityProperties.urn}
             />
-          )}
-          {!isLoading && stage === StageState.APPROVE_CHARITY && (
-            <ApprovalRequest
-              id={schoolOrCharityProperties.id}
-              setStage={setStage}
-              type="charity"
-              name={schoolOrCharityProperties.name}
-              la={schoolOrCharityProperties.la}
-              user={schoolOrCharityProperties.user}
-              charity={schoolOrCharityProperties.charity}
-            />
+          ) : (
+            stage === StageState.APPROVE_CHARITY && (
+              <ApprovalRequest
+                id={schoolOrCharityProperties.id}
+                setStage={setStage}
+                type="charity"
+                name={schoolOrCharityProperties.name}
+                la={schoolOrCharityProperties.la}
+                user={schoolOrCharityProperties.user}
+                charity={schoolOrCharityProperties.charity}
+              />
+            )
           )}
         </div>
       </div>

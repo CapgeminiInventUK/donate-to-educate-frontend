@@ -1,0 +1,40 @@
+{
+  "getJoinRequests": [
+    {
+      "id": "123456",
+      "name": "Test School",
+      "localAuthority": "West Sussex",
+      "type": "school",
+      "requestTime": 1711394605001,
+      "status": "NEW",
+      "email": "test.school@test.com",
+      "school": "Ormiston Six Villages Academy - PO20 3UE",
+      "jobTitle": "Test",
+      "phone": "07777777777",
+      "charityName": null,
+      "charityAddress": null,
+      "aboutCharity": null,
+      "urn": null,
+      "postcode": null,
+      "__typename": "JoinRequest"
+    },
+    {
+      "id": "123457",
+      "name": "Test Charity",
+      "localAuthority": "Hammersmith and Fulham",
+      "type": "charity",
+      "requestTime": 1711394803223,
+      "status": "NEW",
+      "email": "test.charity@test.com",
+      "school": "",
+      "jobTitle": "Test",
+      "phone": "07777777777",
+      "charityName": "Test",
+      "charityAddress": "Test\n          \n          Test\n          Test\n          Testttt\n          ",
+      "aboutCharity": "Test",
+      "urn": null,
+      "postcode": null,
+      "__typename": "JoinRequest"
+    }
+  ]
+}
