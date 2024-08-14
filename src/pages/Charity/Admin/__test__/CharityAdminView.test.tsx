@@ -1,6 +1,7 @@
 import { CharityAdminView } from '@/config/lazy';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
 import { useStore } from '@/stores/useStore';
+import { InstitutionType } from '@/types/data';
 import { render, waitForElementToBeRemoved } from '@testing-library/react';
 
 const initialStoreState = useStore.getState();
@@ -24,7 +25,7 @@ describe('Charity admin view', () => {
         userId: 'someId',
         username: 'test7@test.com',
         email: 'test7@test.com',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         name: 'Test',
         id: '1',
       },
@@ -45,7 +46,7 @@ describe('Charity admin view', () => {
         userId: 'someId',
         username: 'test7@test.com',
         email: 'test7@test.com',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         name: 'error',
         id: 'error',
       },

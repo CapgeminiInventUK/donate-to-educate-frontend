@@ -10,7 +10,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { getCharityUser, getLocalAuthorityUser, getSchoolUser } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
-import { UserDetails } from '@/types/data';
+import { InstitutionType, UserDetails } from '@/types/data';
 import { getUserDetailsObjectFromQuery } from '@/utils/account';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ManageInstitutionSection from './ManageInstitutionSection';
@@ -73,7 +73,7 @@ const Settings: FC = () => {
           <h1>Settings</h1>
         </div>
         <div className={styles.body}>
-          {type === 'charity' && (
+          {type === InstitutionType.CHARITY && (
             <div className={styles.postcodeSection}>
               <h2>Postcode</h2>
               <InfoTable tableValues={{ Postcode: state.postcode }} editableKeys={['Postcode']} />

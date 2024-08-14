@@ -3,14 +3,14 @@ import { FC, useState } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import PublicDashboard from '../PublicDashboard/PublicDashboard';
-import { Banner } from '@/types/data';
+import { Banner, InstitutionType } from '@/types/data';
 import { InstitutionAdminDashboardProps } from '@/types/props';
 import { returnObjectValueOrUndefined } from '@/utils/globals';
 import EditableDashboard from './EditableDashboard/EditableDashboard';
 
 const InstitutionAdminDashboard: FC<InstitutionAdminDashboardProps> = ({ type, profile, name }) => {
   const { about: currentAbout, header } = profile;
-  const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\n\nRequest the things you need ${type === 'school' ? 'or donate products' : ''} to help the next child. ${type === 'school' ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
+  const placeholderAboutText = `${name} has pre-loved school products to help children thrive at school.\n\nRequest the things you need ${type === InstitutionType.SCHOOL ? 'or donate products' : ''} to help the next child. ${type === InstitutionType.SCHOOL ? 'Charities' : 'You'} can also take our extra stock to share with the communities that need it most.`;
 
   const [banner, setBanner] = useState<Banner>({
     phone: returnObjectValueOrUndefined('phone', header),

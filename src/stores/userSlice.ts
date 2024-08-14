@@ -1,7 +1,7 @@
 import { hasCharityProfile, hasSchoolProfile } from '@/graphql/queries';
 import { client } from '@/graphqlClient';
 import { HasCharityProfileQuery, HasSchoolProfileQuery } from '@/types/api';
-import { CustomAttributes } from '@/types/data';
+import { AccountType, CustomAttributes, InstitutionType } from '@/types/data';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { GraphQLQuery } from 'aws-amplify/api';
 import {
@@ -18,7 +18,7 @@ interface User {
   userId: string;
   username: string;
   email: string;
-  type: string;
+  type: AccountType | '';
   name: string;
   id: string;
 }
@@ -78,7 +78,9 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
         isLoading: false,
         error: undefined,
         hasProfile:
-          type === 'school' || type === 'charity' ? await hasProfile(type, name, id) : false,
+          type === InstitutionType.SCHOOL || type === InstitutionType.CHARITY
+            ? await hasProfile(type, name, id)
+            : false,
       });
     } catch (error) {
       set({ user: undefined, isLoading: false, error: error as Error, hasProfile: false });
@@ -86,12 +88,8 @@ export const userSlice: StateCreator<UserSlice> = (set) => ({
   },
 });
 
-const hasProfile = async (
-  type: 'school' | 'charity',
-  name: string,
-  id: string
-): Promise<boolean> => {
-  if (type === 'school') {
+const hasProfile = async (type: AccountType, name: string, id: string): Promise<boolean> => {
+  if (type === InstitutionType.SCHOOL) {
     const { data } = await client.graphql<GraphQLQuery<HasSchoolProfileQuery>>({
       query: hasSchoolProfile,
       variables: {
@@ -126,7 +124,7 @@ const getUser = async (): Promise<User> => {
     userId,
     username,
     email: checkForStringAndReturnEmptyIfFalsy(email),
-    type,
+    type: type as InstitutionType,
     name,
     id,
   };

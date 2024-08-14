@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
 import Paths from '@/config/paths';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 
@@ -14,7 +15,9 @@ beforeEach(() => {
 
 describe('Action tiles', () => {
   it('should handle requests tile click with school profile', async () => {
-    const Component = createWrapper(<ActionTiles profile={schoolProfile} type={'school'} />);
+    const Component = createWrapper(
+      <ActionTiles profile={schoolProfile} type={InstitutionType.SCHOOL} />
+    );
     const { getByRole } = render(<Component />);
     const requestButton = getByRole('button', { name: 'Edit products button' });
 
@@ -41,7 +44,9 @@ describe('Action tiles', () => {
   });
 
   it('should handle donations tile click with charity profile', async () => {
-    const Component = createWrapper(<ActionTiles profile={charityProfile} type={'charity'} />);
+    const Component = createWrapper(
+      <ActionTiles profile={charityProfile} type={InstitutionType.CHARITY} />
+    );
     const { getByRole } = render(<Component />);
     const donationsButton = getByRole('button', { name: 'Enable donations button' });
 
@@ -61,7 +66,9 @@ describe('Action tiles', () => {
   });
 
   it('should handle excess tile click with charity profile', async () => {
-    const Component = createWrapper(<ActionTiles profile={charityProfile} type={'charity'} />);
+    const Component = createWrapper(
+      <ActionTiles profile={charityProfile} type={InstitutionType.CHARITY} />
+    );
     const { getByRole } = render(<Component />);
     const requestButton = getByRole('button', { name: 'Enable sharing button' });
 

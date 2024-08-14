@@ -306,3 +306,8 @@ export interface ManageUserDetails {
   'Job title or role': string;
   Department?: string;
 }
+
+export enum InstitutionType {
+  SCHOOL = 'school',
+  CHARITY = 'charity',
+}

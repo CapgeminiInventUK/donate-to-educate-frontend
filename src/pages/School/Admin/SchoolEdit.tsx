@@ -10,12 +10,12 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
-import { ItemsIconType } from '@/types/data';
+import { InstitutionType, ItemsIconType } from '@/types/data';
 import {
   getKeyFromType,
   getPageContent,
-} from '@/components/InstitutionAdminDashboard/InstitutionEdit/utils';
-import InstitutionEdit from '@/components/InstitutionAdminDashboard/InstitutionEdit/InstitutionEdit';
+} from '@/components/InstitutionAdminDashboard/ProductsListPage/utils';
+import ProductsListPage from '@/components/InstitutionAdminDashboard/ProductsListPage/ProductsListPage';
 
 const SchoolEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; profile: ProfileItems }>(
@@ -27,7 +27,7 @@ const SchoolEdit: FC = () => {
     JSON.parse(profile?.items ?? '{}') as Record<number, string[]>
   );
   const { token: authToken } = useAuthToken();
-  const { howItWorks, actionText } = getPageContent(type, 'school');
+  const { howItWorks, actionText } = getPageContent(type, InstitutionType.SCHOOL);
   const [content, setContent] = useState<ContentType>({
     actionText,
     whatToExpect: howItWorks,
@@ -60,8 +60,8 @@ const SchoolEdit: FC = () => {
   }
 
   return (
-    <InstitutionEdit
-      institutionType={'school'}
+    <ProductsListPage
+      institutionType={InstitutionType.SCHOOL}
       path={Paths.SCHOOLS_CREATE_EDIT_PROFILE}
       items={items}
       setItems={setItems}

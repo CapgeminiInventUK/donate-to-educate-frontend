@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import Paths from '@/config/paths';
 import { useStore } from '@/stores/useStore';
 import * as router from 'react-router';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 const initialStoreState = useStore.getState();
@@ -75,7 +76,7 @@ describe('Private route', () => {
       isLoading: false,
       user: {
         userId: 'someId',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         username: 'test7@test.com',
         email: 'test7@test.com',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
@@ -97,7 +98,7 @@ describe('Private route', () => {
       isLoading: false,
       user: {
         userId: 'someId',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         username: 'test7@test.com',
         email: 'test7@test.com',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',

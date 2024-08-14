@@ -11,6 +11,7 @@ import Paths from '@/config/paths';
 import Spinner from '@/components/Spinner/Spinner';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { InstitutionType } from '@/types/data';
 
 const CharityDashboard: FC = () => {
   const { state, hasState } = useLocationStateOrRedirect<{ name: string; id: string }>(
@@ -45,7 +46,10 @@ const CharityDashboard: FC = () => {
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <BackButton theme="blue" />
-        <PublicDashboard type="charity" profile={data?.getCharityProfile ?? undefined} />
+        <PublicDashboard
+          type={InstitutionType.CHARITY}
+          profile={data?.getCharityProfile ?? undefined}
+        />
       </div>
     </div>
   );

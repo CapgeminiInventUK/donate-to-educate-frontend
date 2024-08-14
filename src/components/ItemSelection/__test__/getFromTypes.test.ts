@@ -1,11 +1,12 @@
 import Paths from '@/config/paths';
 import { getButtonTextFromType, getPathFromType, getTitleFromType } from '../getFromTypes';
+import { InstitutionType } from '@/types/data';
 
 describe('getFromTypes', () => {
   describe('getPathFromType', () => {
     const inputVsExpected = [
-      { type: 'school', path: Paths.REQUEST_SCHOOL_PRODUCTS },
-      { type: 'charity', path: Paths.REQUEST_CHARITY_PRODUCTS },
+      { type: InstitutionType.SCHOOL, path: Paths.REQUEST_SCHOOL_PRODUCTS },
+      { type: InstitutionType.CHARITY, path: Paths.REQUEST_CHARITY_PRODUCTS },
     ];
 
     it.each(inputVsExpected)('should return the correct path from given type', ({ type, path }) => {

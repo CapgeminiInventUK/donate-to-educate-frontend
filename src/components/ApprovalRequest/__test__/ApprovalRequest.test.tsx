@@ -4,6 +4,7 @@ import { render, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import pillStyles from '../../Pill/Pill.module.scss';
 import * as router from 'react-router';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 
@@ -24,7 +25,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Lyminster Primary School - BN17 7JZ'}
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         la={'West Sussex'}
         user={user}
         id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
@@ -45,7 +46,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Error name'}
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         la={'West Sussex'}
         user={user}
         id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
@@ -66,7 +67,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Lyminster Primary School - BN17 7JZ'}
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         la={'West Sussex'}
         user={user}
         id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
@@ -90,7 +91,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Lyminster Primary School - BN17 7JZ'}
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         la={'West Sussex'}
         user={user}
         id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
@@ -118,7 +119,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Lyminster Primary School - BN17 7JZ'}
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         la={'West Sussex'}
         user={user}
         id={'02085065-1dbb-428e-9dcd-bbfba974f1e7'}
@@ -138,7 +139,7 @@ describe('Approval Request component', () => {
       <ApprovalRequest
         setStage={vi.fn()}
         name={'Test charity'}
-        type={'charity'}
+        type={InstitutionType.CHARITY}
         la={'West Sussex'}
         user={user}
         id={'123456'}

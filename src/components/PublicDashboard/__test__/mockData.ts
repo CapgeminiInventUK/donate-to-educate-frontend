@@ -1,4 +1,4 @@
-import { InstitutionProfile } from '@/types/data';
+import { InstitutionProfile, InstitutionType } from '@/types/data';
 import { PublicDashboardActionTilesProps } from '@/types/props';
 
 export const mockSchoolProfile: InstitutionProfile = {
@@ -89,7 +89,7 @@ export const schoolPublicDashboardTilesProps: PublicDashboardActionTilesProps = 
     productTypes: [5],
     __typename: 'ProfileItems',
   },
-  type: 'school',
+  type: InstitutionType.SCHOOL,
   id: '125821',
   name: 'Test School',
   postcode: 'GU27 3RN',
@@ -125,7 +125,7 @@ export const charityPublicDashboardTilesProps: PublicDashboardActionTilesProps =
     productTypes: [2],
     __typename: 'ProfileItems',
   },
-  type: 'charity',
+  type: InstitutionType.CHARITY,
   name: 'Test Charity',
   id: '123456',
   postcode: 'BN3 3JP',

@@ -8,6 +8,7 @@ import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
 import InstitutionAdminView from '@/components/InstitutionAdminDashboard/InstitutionAdminView/InstitutionAdminView';
+import { InstitutionType } from '@/types/data';
 
 const SchoolAdminView: FC = () => {
   const user = useStore((state) => state.user);
@@ -37,7 +38,7 @@ const SchoolAdminView: FC = () => {
     <InstitutionAdminView
       name={name ?? ''}
       postcode={data?.getSchoolProfile?.postcode ?? ''}
-      type="school"
+      type={InstitutionType.SCHOOL}
     />
   );
 };

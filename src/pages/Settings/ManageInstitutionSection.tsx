@@ -14,7 +14,7 @@ const ManageInstitutionSection: FC<ManageInstitutionSectionProps> = ({ type }) =
   };
 
   return (
-    (type === 'charity' || type === 'school') && (
+    type && (
       <div className={styles.manageInstitutionSection}>
         <h2>Manage your {type}</h2>
         <p>Three accounts can manage this {type}, add a colleague and see how they can help.</p>

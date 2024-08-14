@@ -1,3 +1,5 @@
+import { InstitutionType } from '@/types/data';
+
 export const getButtonTextFromType = (type: string): string => {
   switch (type) {
     case 'tick':
@@ -26,7 +28,7 @@ export const getKeyFromType = (type: string): string => {
 
 export const getPageContent = (
   type: string,
-  institutionType: 'school' | 'charity'
+  institutionType: InstitutionType
 ): {
   banner: string;
   helpBannerTitle: string;
@@ -35,7 +37,7 @@ export const getPageContent = (
   actionText: string;
 } => {
   const schoolsCharitiesText =
-    institutionType === 'school' ? 'schools, charities' : 'charities, schools';
+    institutionType === InstitutionType.SCHOOL ? 'schools, charities' : 'charities, schools';
   switch (type) {
     case 'tick':
       return {

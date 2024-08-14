@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
 import { charityProfile, schoolProfile } from './mockData';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 
@@ -18,7 +19,11 @@ afterEach(() => {
 describe('Institution admin dashboard - school', () => {
   it('should render profile with details', () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'school'} profile={schoolProfile} name={'Test School'} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.SCHOOL}
+        profile={schoolProfile}
+        name={'Test School'}
+      />
     );
     const { getByRole } = render(<Component />);
     const h1 = getByRole('heading', { level: 1 });
@@ -27,7 +32,11 @@ describe('Institution admin dashboard - school', () => {
 
   it('should handle back button click when not in preview mode', async () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'school'} profile={schoolProfile} name={'Test School'} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.SCHOOL}
+        profile={schoolProfile}
+        name={'Test School'}
+      />
     );
     const { getByRole } = render(<Component />);
     const backButton = getByRole('button', { name: 'Back' });
@@ -38,7 +47,11 @@ describe('Institution admin dashboard - school', () => {
 
   it('should handle back button click when not in preview mode', async () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'school'} profile={schoolProfile} name={'Test School'} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.SCHOOL}
+        profile={schoolProfile}
+        name={'Test School'}
+      />
     );
     const { getByRole, getByText } = render(<Component />);
 
@@ -57,7 +70,11 @@ describe('Institution admin dashboard - school', () => {
 
   it('should show default about text', () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'school'} profile={schoolProfile} name={'Test School'} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.SCHOOL}
+        profile={schoolProfile}
+        name={'Test School'}
+      />
     );
     const { getByLabelText } = render(<Component />);
 
@@ -71,7 +88,7 @@ describe('Institution admin dashboard - school', () => {
     const editedAboutProfile = { ...schoolProfile, about: 'new about text' };
     const Component = createWrapper(
       <InstitutionAdminDashboard
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         profile={editedAboutProfile}
         name={'Test School'}
       />
@@ -86,7 +103,7 @@ describe('Institution admin dashboard - school', () => {
     const editedAboutProfile = { ...schoolProfile, about: 'about text' };
     const Component = createWrapper(
       <InstitutionAdminDashboard
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         name={'Test School'}
         profile={editedAboutProfile}
       />
@@ -115,7 +132,7 @@ describe('Institution admin dashboard - school', () => {
     const editedAboutProfile = { ...schoolProfile, about: 'about text' };
     const Component = createWrapper(
       <InstitutionAdminDashboard
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         name={'Test School'}
         profile={editedAboutProfile}
       />
@@ -144,7 +161,7 @@ describe('Institution admin dashboard - school', () => {
     const editedAboutProfile = { ...schoolProfile, about: 'about text' };
     const Component = createWrapper(
       <InstitutionAdminDashboard
-        type={'school'}
+        type={InstitutionType.SCHOOL}
         name={'Test School'}
         profile={editedAboutProfile}
       />
@@ -172,7 +189,11 @@ describe('Institution admin dashboard - school', () => {
 describe('Institution admin dashboard - school', () => {
   it('should show default about text', () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'charity'} profile={charityProfile} name={'Test Charity'} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.CHARITY}
+        profile={charityProfile}
+        name={'Test Charity'}
+      />
     );
     const { getByLabelText } = render(<Component />);
 
@@ -184,7 +205,11 @@ describe('Institution admin dashboard - school', () => {
 
   it('should revert to placeholder text when editing about text cancelled and no previous about text', async () => {
     const Component = createWrapper(
-      <InstitutionAdminDashboard type={'charity'} name={'Test Charity'} profile={charityProfile} />
+      <InstitutionAdminDashboard
+        type={InstitutionType.CHARITY}
+        name={'Test Charity'}
+        profile={charityProfile}
+      />
     );
     const { getByRole, getAllByRole, getByLabelText } = render(<Component />);
     const editButton = getAllByRole('button', { name: 'edit' });
@@ -211,7 +236,7 @@ describe('Institution admin dashboard - school', () => {
     const editedAboutProfile = { ...charityProfile, about: 'about text' };
     const Component = createWrapper(
       <InstitutionAdminDashboard
-        type={'charity'}
+        type={InstitutionType.CHARITY}
         name={'Test Charity'}
         profile={editedAboutProfile}
       />

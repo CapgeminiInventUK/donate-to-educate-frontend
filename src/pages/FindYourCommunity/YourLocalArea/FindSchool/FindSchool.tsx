@@ -17,6 +17,7 @@ import Card from '@/components/Card/Card';
 import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -68,7 +69,7 @@ const FindSchool: FC = () => {
         <h1>Find a school near {state.postcode.toUpperCase()}</h1>
         <ProductsTable
           tableData={schoolData}
-          type="school"
+          type={InstitutionType.SCHOOL}
           iconColour="#97C8EB"
           productsColumnHeader="Product types available"
           postcode={state.postcode}

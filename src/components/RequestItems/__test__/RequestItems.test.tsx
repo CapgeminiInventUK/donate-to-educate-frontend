@@ -4,6 +4,7 @@ import RequestItems from '../RequestItems';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getTextContent } from '../utils';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 
@@ -18,7 +19,12 @@ afterEach(() => {
 describe('Request items', () => {
   it('should disable submit button until all fields completed - school', async () => {
     const Component = createWrapper(
-      <RequestItems type={'tick'} organisationType={'school'} id={'123456'} name={'Test School'} />
+      <RequestItems
+        type={'tick'}
+        organisationType={InstitutionType.SCHOOL}
+        id={'123456'}
+        name={'Test School'}
+      />
     );
 
     const { getAllByRole, getByRole } = render(<Component />);
@@ -50,7 +56,7 @@ describe('Request items', () => {
     const Component = createWrapper(
       <RequestItems
         type={'plus'}
-        organisationType={'charity'}
+        organisationType={InstitutionType.CHARITY}
         id={'123456'}
         name={'Test Charity'}
       />
@@ -89,7 +95,7 @@ describe('Request items', () => {
     const Component = createWrapper(
       <RequestItems
         type={'heart'}
-        organisationType={'charity'}
+        organisationType={InstitutionType.CHARITY}
         id={'error'}
         name={'Test Charity'}
       />
@@ -127,7 +133,7 @@ describe('Request items', () => {
     const Component = createWrapper(
       <RequestItems
         type={'heart'}
-        organisationType={'charity'}
+        organisationType={InstitutionType.CHARITY}
         id={'123456'}
         name={'Test Charity'}
       />
@@ -160,10 +166,10 @@ describe('Request items', () => {
 
 describe('get text content', () => {
   it('should return the correct text content', () => {
-    expect(getTextContent('tick', 'charity').subHeading).toBe(
+    expect(getTextContent('tick', InstitutionType.CHARITY).subHeading).toBe(
       'Contact us and tell us what things you need. We will reply to you as soon as we can.'
     );
-    expect(getTextContent('heart', 'school').subHeading).toBe(
+    expect(getTextContent('heart', InstitutionType.SCHOOL).subHeading).toBe(
       "Tell us which things you'd like to donate and we'll contact you to arrange the next steps as soon as we can."
     );
   });

@@ -5,7 +5,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
+import { InstitutionType, SchoolOrCharityProperties, StageState } from '@/types/data';
 import { useQuery } from '@tanstack/react-query';
 import { deleteCharityProfile } from '@/graphql/mutations';
 import { DeleteCharityProfileMutation } from '@/types/api';
@@ -99,7 +99,7 @@ const ManageCharities: FC = () => {
         <ApprovalRequest
           id={charityProperties.id}
           setStage={setStage}
-          type="charity"
+          type={InstitutionType.CHARITY}
           name={charityProperties.name}
           la={charityProperties.la}
           user={charityProperties.user}

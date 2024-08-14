@@ -1,73 +1,26 @@
 import { FC, useState } from 'react';
-import styles from './InstitutionEdit.module.scss';
-import { InstitutionEditViewProps } from '@/types/props';
-import { getPageContent } from './utils';
+import styles from './ProductsListPage.module.scss';
+import { RequestDonateNextStepsProps } from '@/types/props';
 import FormButton from '@/components/FormButton/FormButton';
 import { EditDescription } from '@/components/EditDescription/EditDescription';
 import { openNotification } from '@/utils/formComponents';
-import ItemListEdit from '@/components/ItemList/ItemListEdit';
 import { useNavigate } from 'react-router-dom';
 
-const InstitutionEditView: FC<InstitutionEditViewProps> = ({
-  type,
+const RequestDonateNextSteps: FC<RequestDonateNextStepsProps> = ({
   institutionType,
   content,
   setContent,
-  items,
-  setItems,
   saveDisabled,
   setSaveDisabled,
   path,
   refetch,
 }) => {
   const navigate = useNavigate();
-  const [editState, setEditState] = useState(false);
-  const [editStateActionText, setEditStateActionText] = useState(false);
-  const [whatToExpectTestBeforeEdit, setWhatToExpectTestBeforeEdit] = useState('');
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
+  const [editStateActionText, setEditStateActionText] = useState(false);
 
-  const { helpBannerTitle, helpBannerBody } = getPageContent(type, institutionType);
   return (
     <>
-      <div className={styles.helpBanner}>
-        <h2>{helpBannerTitle}</h2>
-        {helpBannerBody}
-      </div>
-      <div className={styles.whatToExpect}>
-        <h2>What to expect</h2>
-        {!editState ? (
-          <>
-            <p>{content.whatToExpect}</p>
-            <FormButton
-              text={'Edit'}
-              onClick={(): void => {
-                setWhatToExpectTestBeforeEdit(content.whatToExpect);
-                setEditState(true);
-              }}
-              ariaLabel="edit"
-              theme="formButtonGrey"
-            />
-          </>
-        ) : (
-          <EditDescription
-            value={content.whatToExpect}
-            setValue={(val) => {
-              setContent({ ...content, whatToExpect: val });
-            }}
-            handleSave={() => {
-              openNotification();
-              setEditState(false);
-              void refetch();
-            }}
-            handleCancel={() => {
-              setContent({ ...content, whatToExpect: whatToExpectTestBeforeEdit });
-              setEditState(false);
-            }}
-          />
-        )}
-      </div>
-      <ItemListEdit setItems={setItems} items={items} />
-
       <div className={styles.helpContact}>
         <h2>Next steps</h2>
         {!editStateActionText ? (
@@ -122,4 +75,4 @@ const InstitutionEditView: FC<InstitutionEditViewProps> = ({
     </>
   );
 };
-export default InstitutionEditView;
+export default RequestDonateNextSteps;

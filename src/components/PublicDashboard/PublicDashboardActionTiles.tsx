@@ -9,7 +9,7 @@ import ExtraStock from '@/assets/school/ExtraStock';
 import { ActionTileProps, PublicDashboardActionTilesProps } from '@/types/props';
 import { ProfileItems } from '@/types/api';
 import { returnObjectValueOrUndefined } from '@/utils/globals';
-import { ActionTypes } from '@/types/data';
+import { ActionTypes, InstitutionType } from '@/types/data';
 
 const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
   request,
@@ -22,8 +22,8 @@ const PublicDashboardActionTiles: FC<PublicDashboardActionTilesProps> = ({
   postcode,
 }) => {
   const navigate = useNavigate();
-  const getNavigateLinkFromType = (type: 'school' | 'charity'): string =>
-    type === 'school' ? Paths.SCHOOLS_DASHBOARD_ITEMS : Paths.CHARITY_DASHBOARD_ITEMS;
+  const getNavigateLinkFromType = (type: InstitutionType): string =>
+    type === InstitutionType.SCHOOL ? Paths.SCHOOLS_DASHBOARD_ITEMS : Paths.CHARITY_DASHBOARD_ITEMS;
   const profiles = { request, donate, excess };
 
   const handleOnClick = (

@@ -10,11 +10,14 @@ import Tile from '../../../components/Tile/Tile';
 import Card from '@/components/Card/Card';
 import Crown from '@/assets/icons/Crown';
 import { InstitutionAdminViewProps } from '@/types/props';
+import { InstitutionType } from '@/types/data';
 
 const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, type }) => {
   const navigate = useNavigate();
   const path =
-    type === 'school' ? Paths.SCHOOLS_CREATE_EDIT_PROFILE : Paths.CHARITIES_CREATE_EDIT_PROFILE;
+    type === InstitutionType.SCHOOL
+      ? Paths.SCHOOLS_CREATE_EDIT_PROFILE
+      : Paths.CHARITIES_CREATE_EDIT_PROFILE;
 
   return (
     <div className={styles.container}>

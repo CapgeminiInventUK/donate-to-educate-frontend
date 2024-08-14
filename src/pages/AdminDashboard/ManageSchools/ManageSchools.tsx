@@ -6,6 +6,7 @@ import { GetRegisteredSchoolsQuery } from '@/types/api';
 import { getRegisteredSchools } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ManageInstitutionsTable from '../ManageInstitutionsTable/ManageInstitutionsTable';
+import { InstitutionType } from '@/types/data';
 
 const ManageSchools: FC = () => {
   const { data, isLoading, isError } = useQuery({
@@ -30,7 +31,9 @@ const ManageSchools: FC = () => {
       localAuthority,
     })) ?? [];
 
-  return <ManageInstitutionsTable data={tableData} type={'school'} isLoading={isLoading} />;
+  return (
+    <ManageInstitutionsTable data={tableData} type={InstitutionType.SCHOOL} isLoading={isLoading} />
+  );
 };
 
 export default ManageSchools;

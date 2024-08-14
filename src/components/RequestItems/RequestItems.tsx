@@ -1,7 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
 import styles from './RequestItems.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
-import { RequestFormState } from '@/types/data';
+import { InstitutionType, RequestFormState } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import { useQuery } from '@tanstack/react-query';
@@ -70,7 +70,7 @@ const RequestItems: FC<RequestItemsProps> = ({
     if (!checkIfValidObjectWithData(errors)) {
       void refetch().then(() => {
         navigate(
-          organisationType === 'school'
+          organisationType === InstitutionType.SCHOOL
             ? Paths.SCHOOLS_DASHBOARD_ITEMS_CONFIRMATION
             : Paths.CHARITY_DASHBOARD_ITEMS_CONFIRMATION,
           {

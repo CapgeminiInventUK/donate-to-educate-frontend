@@ -9,6 +9,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const SchoolAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -51,7 +52,7 @@ const SchoolAdminDashboard: FC = () => {
 
   return (
     <InstitutionAdminDashboard
-      type="school"
+      type={InstitutionType.SCHOOL}
       profile={
         data?.getSchoolProfile ?? {
           __typename: 'SchoolProfile',

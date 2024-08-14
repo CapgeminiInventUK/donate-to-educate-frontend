@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as router from 'react-router';
 import { useStore } from '@/stores/useStore';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 const initialStoreState = useStore.getState();
@@ -101,7 +102,7 @@ describe('Nav link', () => {
         userId: 'someId',
         username: 'test7@test.com',
         email: 'test7@test.com',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         name: 'Test charity',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
       },

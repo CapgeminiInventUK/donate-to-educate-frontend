@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
 import styles from '../../FormButton/FormButton.module.scss';
+import { InstitutionType } from '@/types/data';
 
 const navigate = vi.fn();
 
@@ -32,7 +33,7 @@ describe('Item selection', () => {
 
   it('should render component and handle button click', async () => {
     const Component = createWrapperWithState(
-      <ItemSelection {...props} schoolOrCharity="school" previewMode={false} />,
+      <ItemSelection {...props} schoolOrCharity={InstitutionType.SCHOOL} previewMode={false} />,
       state
     );
     const { getByRole } = render(<Component />);
@@ -44,7 +45,7 @@ describe('Item selection', () => {
 
   it('should disable button if in preview mode', () => {
     const Component = createWrapperWithState(
-      <ItemSelection {...props} schoolOrCharity="school" previewMode={true} />,
+      <ItemSelection {...props} schoolOrCharity={InstitutionType.SCHOOL} previewMode={true} />,
       state
     );
     const { getByRole } = render(<Component />);

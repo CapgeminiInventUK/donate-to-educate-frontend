@@ -8,13 +8,14 @@ import { ActionTilesProps } from '@/types/props';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
 import { ProfileItems } from '@/types/api';
+import { InstitutionType } from '@/types/data';
 
 const ActionTiles: FC<ActionTilesProps> = ({ profile, type }) => {
   const { donate, excess, request, postcode, name: organisationName, id } = profile;
   const navigate = useNavigate();
 
   const onTileClick = (iconType: string, profile?: ProfileItems | null): void => {
-    navigate(type === 'school' ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
+    navigate(type === InstitutionType.SCHOOL ? Paths.SCHOOL_EDIT : Paths.CHARITIES_EDIT, {
       state: {
         type: iconType,
         profile,

@@ -9,6 +9,7 @@ import { getCharityProfile } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { useStore } from '@/stores/useStore';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 const CharityAdminDashboard: FC = () => {
   const user = useStore((state) => state.user);
@@ -47,7 +48,7 @@ const CharityAdminDashboard: FC = () => {
   ) : (
     data?.getCharityProfile && (
       <InstitutionAdminDashboard
-        type="charity"
+        type={InstitutionType.CHARITY}
         profile={data.getCharityProfile}
         name={checkForStringAndReturnEmptyIfFalsy(name)}
       />

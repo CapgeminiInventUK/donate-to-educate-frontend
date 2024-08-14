@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import RegisteredSchools from './SchoolsTables/RegisteredSchools';
 import PendingSchools from './SchoolsTables/PendingSchools';
 import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
-import { SchoolOrCharityProperties, StageState } from '@/types/data';
+import { InstitutionType, SchoolOrCharityProperties, StageState } from '@/types/data';
 import { useQuery } from '@tanstack/react-query';
 import { DeleteSchoolProfileMutation } from '@/types/api';
 import { deleteSchoolProfile } from '@/graphql/mutations';
@@ -98,7 +98,7 @@ const ManageSchools: FC = () => {
         <ApprovalRequest
           id={schoolProperties.id}
           setStage={setStage}
-          type="school"
+          type={InstitutionType.SCHOOL}
           name={schoolProperties.name}
           la={schoolProperties.la}
           user={schoolProperties.user}

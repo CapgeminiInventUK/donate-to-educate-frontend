@@ -7,6 +7,7 @@ import {
   FormMeta,
   FormNames,
   FormTemplate,
+  InstitutionType,
   SubmittedFormData,
 } from '@/types/data';
 import signUpSchoolHappyPath from '../../../templates/forms/signUpSchoolHappyPath';
@@ -82,7 +83,7 @@ const SignUpSchool: FC = () => {
         variables: {
           name: formDataForSubmission?.name,
           localAuthority: selectedLocalAuthority,
-          type: 'school',
+          type: InstitutionType.SCHOOL,
           email: formDataForSubmission?.email,
           school: formDataForSubmission?.school,
           jobTitle: formDataForSubmission?.jobTitle,
@@ -112,7 +113,7 @@ const SignUpSchool: FC = () => {
           localAuthority: selectedLocalAuthority,
           email: formDataForSubmission?.email,
           message: formDataForSubmission?.message,
-          type: 'school',
+          type: InstitutionType.SCHOOL,
         },
       });
       return result;

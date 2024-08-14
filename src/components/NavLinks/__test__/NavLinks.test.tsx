@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import NavLinks from '../NavLinks';
 import { useStore } from '@/stores/useStore';
 import { createWrapper } from '@/mocks/mockGraphqlClient';
+import { InstitutionType } from '@/types/data';
 
 const initialStoreState = useStore.getState();
 
@@ -31,7 +32,7 @@ describe('navlinks component', () => {
         userId: 'someId',
         username: 'test7@test.com',
         email: 'test7@test.com',
-        type: 'charity',
+        type: InstitutionType.CHARITY,
         name: 'Test charity',
         id: '12fb794a-8be7-4588-8180-29c47b38721a',
       },

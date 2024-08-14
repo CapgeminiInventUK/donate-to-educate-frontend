@@ -6,6 +6,7 @@ import { GetCharitiesQuery } from '@/types/api';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import ManageInstitutionsTable from '../ManageInstitutionsTable/ManageInstitutionsTable';
+import { InstitutionType } from '@/types/data';
 
 const ManageCharities: FC = () => {
   const { data, isLoading, isError } = useQuery({
@@ -26,7 +27,7 @@ const ManageCharities: FC = () => {
   return (
     <ManageInstitutionsTable
       data={data?.getCharities ?? []}
-      type={'charity'}
+      type={InstitutionType.CHARITY}
       isLoading={isLoading}
     />
   );
