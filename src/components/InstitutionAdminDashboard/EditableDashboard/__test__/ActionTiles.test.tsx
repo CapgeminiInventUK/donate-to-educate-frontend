@@ -1,6 +1,6 @@
 import { createWrapper } from '@/mocks/mockGraphqlClient';
-import ActionTiles from '../EditableDashboard/ActionTiles';
-import { charityProfile, schoolProfile } from './mockData';
+import ActionTiles from '../ActionTiles';
+import { charityProfile, schoolProfile } from '../../__test__/mockData';
 import { render } from '@testing-library/react';
 import * as router from 'react-router';
 import userEvent from '@testing-library/user-event';
