@@ -4,7 +4,7 @@ import { RequestDonateNextStepsProps } from '@/types/props';
 import FormButton from '@/components/FormButton/FormButton';
 import { EditDescription } from '@/components/EditDescription/EditDescription';
 import { openNotification } from '@/utils/formComponents';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const RequestDonateNextSteps: FC<RequestDonateNextStepsProps> = ({
   institutionType,
@@ -15,7 +15,6 @@ const RequestDonateNextSteps: FC<RequestDonateNextStepsProps> = ({
   path,
   refetch,
 }) => {
-  const navigate = useNavigate();
   const [actionTextBeforeEdit, setActionTextBeforeEdit] = useState('');
   const [editStateActionText, setEditStateActionText] = useState(false);
 
@@ -68,9 +67,9 @@ const RequestDonateNextSteps: FC<RequestDonateNextStepsProps> = ({
           fullWidth={true}
           disabled={saveDisabled}
         />
-        <a onClick={() => navigate(path)} className={styles.previewLink}>
+        <Link to={path} className={styles.previewLink}>
           Return to {institutionType} profile
-        </a>
+        </Link>
       </div>
     </>
   );
