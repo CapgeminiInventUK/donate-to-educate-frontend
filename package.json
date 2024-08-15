@@ -48,7 +48,7 @@
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-node-polyfills": "0.22.0",
     "zod": "3.23.8",
-    "zustand": "4.5.4"
+    "zustand": "4.5.5"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^2.6.1",
