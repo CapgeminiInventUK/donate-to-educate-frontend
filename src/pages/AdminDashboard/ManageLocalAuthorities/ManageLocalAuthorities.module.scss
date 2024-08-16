@@ -10,18 +10,6 @@
   padding: 30px 40px;
   margin: 10px;
 
-  thead {
-    th {
-      background: g.$table-header-greyscale !important;
-      color: black !important;
-      font-size: 18px !important;
-
-      span {
-        font-size: 18px !important;
-      }
-    }
-  }
-
   .actionsContainer {
     display: flex;
     flex-direction: column;
