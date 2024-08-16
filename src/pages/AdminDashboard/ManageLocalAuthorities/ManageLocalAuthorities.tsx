@@ -8,7 +8,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
 import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
-import { GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
+import { GetLocalAuthoritiesQuery, GetSchoolsQuery, LocalAuthority } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -17,7 +17,7 @@ import getColumnSearch from '@/utils/tableUtils';
 import Crown from '@/assets/icons/Crown';
 import Paths from '@/config/paths';
 import { getLocalAuthorities } from '@/graphql/queries';
-import { School, Charity } from '@/types/api';
+import { Charity } from '@/types/api';
 
 const ManageLocalAuthorities: FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -51,7 +51,7 @@ const ManageLocalAuthorities: FC = () => {
   } = useQuery({
     queryKey: ['schools'],
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<{ getSchools: School[] }>>({
+      const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
         query: `query GetSchools {
           getSchools {
             name
