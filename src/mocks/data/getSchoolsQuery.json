@@ -1,0 +1,59 @@
+{
+  "getSchools": [
+    {
+      "name": "The Aldgate School",
+      "localAuthority": "City of London",
+      "registered": true
+    },
+    {
+      "name": "West Hampstead Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Thomas Coram Centre",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Heath School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Camden Primary Pupil Referral Unit",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Argyle Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Brecknock Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Edith Neville Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Brookfield Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Fleet Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    },
+    {
+      "name": "Hawley Primary School",
+      "localAuthority": "Camden",
+      "registered": false
+    }
+  ]
+}

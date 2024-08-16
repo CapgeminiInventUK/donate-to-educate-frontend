@@ -10,6 +10,7 @@ import getSchoolQueryResponse from './data/getSchoolQuery.json';
 import getSchoolsNearbyQueryResponse from './data/getSchoolsNearbyQuery.json';
 import getAdminTileStatsQueryResponse from './data/getAdminTileStatsQuery.json';
 import getCharitiesQueryResponse from './data/getCharitiesQuery.json';
+import getSchoolsQueryResponse from './data/getSchoolsQuery.json';
 import getRegisteredSchoolsQueryResponse from './data/getRegisteredSchoolsQuery.json';
 import getLocalAuthoritiesQueryResponse from './data/getLocalAuthoritiesQuery.json';
 import getJoinRequestsQueryResponse from './data/getJoinRequestsQuery.json';
@@ -47,6 +48,11 @@ export const handlers = [
   graphql.query('GetCharities', () => {
     return HttpResponse.json({
       data: getCharitiesQueryResponse,
+    });
+  }),
+  graphql.query('GetSchools', () => {
+    return HttpResponse.json({
+      data: getSchoolsQueryResponse,
     });
   }),
   graphql.query('GetRegisteredSchools', () => {
