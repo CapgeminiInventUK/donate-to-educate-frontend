@@ -2,6 +2,7 @@ import { SvgProps } from '@/types/props';
 
 const LogoCapgeminiInvent = ({ className, onClick }: SvgProps): JSX.Element => (
   <svg
+    aria-label="invent-logo"
     className={className}
     width="500"
     height="77"

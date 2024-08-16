@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import InstitutionAdminDashboard from '@/components/InstitutionAdminDashboard/InstitutionAdminDashboard';
+import InstitutionAdminDashboard from '@/components/InstitutionAdmin/InstitutionAdminDashboard';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GetSchoolProfileQuery } from '@/types/api';

@@ -14,8 +14,8 @@ import { InstitutionType, ItemsIconType } from '@/types/data';
 import {
   getKeyFromType,
   getPageContent,
-} from '@/components/InstitutionAdminDashboard/ProductsListPage/utils';
-import ProductsListPage from '@/components/InstitutionAdminDashboard/ProductsListPage/ProductsListPage';
+} from '@/components/InstitutionAdmin/ProductsListPage/utils';
+import ProductsListPage from '@/components/InstitutionAdmin/ProductsListPage/ProductsListPage';
 
 const SchoolEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; profile: ProfileItems }>(
