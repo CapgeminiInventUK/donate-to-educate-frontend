@@ -92,7 +92,7 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
   return (
     <>
       <InstitutionBanner
-        isAdminView
+        isAdminView={true}
         type={type}
         name={name}
         banner={banner}

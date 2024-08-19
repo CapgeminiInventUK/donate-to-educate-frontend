@@ -797,3 +797,8 @@ export interface RequestDonateNextStepsProps {
     >
   >;
 }
+
+export interface PostcodeEditProps {
+  postcode: string;
+  name: string;
+}

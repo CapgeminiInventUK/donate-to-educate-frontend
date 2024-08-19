@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './Settings.module.scss';
-import InfoTable from '@/components/InfoTable/InfoTable';
 import BackButton from '@/components/BackButton/BackButton';
 import { useStore } from '@/stores/useStore';
 import { useQuery } from '@tanstack/react-query';
@@ -16,9 +15,11 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import ManageInstitutionSection from './ManageInstitutionSection';
 import ManageDetailsSection from './ManageDetailsSection';
 import DangerZone from './DangerZone';
+import PostcodeEdit from './PostcodeEdit';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const Settings: FC = () => {
-  const { email, type } = useStore((state) => state.user) ?? {};
+  const { email, type, name } = useStore((state) => state.user) ?? {};
   const { state } = useLocationStateOrRedirect<{ postcode: string }>();
 
   const query =
@@ -74,10 +75,10 @@ const Settings: FC = () => {
         </div>
         <div className={styles.body}>
           {type === InstitutionType.CHARITY && (
-            <div className={styles.postcodeSection}>
-              <h2>Postcode</h2>
-              <InfoTable tableValues={{ Postcode: state.postcode }} editableKeys={['Postcode']} />
-            </div>
+            <PostcodeEdit
+              postcode={state.postcode}
+              name={checkForStringAndReturnEmptyIfFalsy(name)}
+            />
           )}
           <ManageDetailsSection userData={userData} type={type} />
           <ManageInstitutionSection type={type} />
