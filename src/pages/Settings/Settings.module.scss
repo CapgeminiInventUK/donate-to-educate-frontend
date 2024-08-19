@@ -68,3 +68,16 @@
     }
   }
 }
+
+.postcodeEditContainer {
+  display: flex;
+
+  .postcodeButtons {
+    display: flex;
+    height: 50px;
+  }
+
+  .marginTop {
+    margin-top: 32.3px;
+  }
+}

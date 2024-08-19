@@ -24,7 +24,7 @@ const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, t
       <div className={styles.actionButtons}>
         <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
       </div>
-      <InstitutionBanner type={type} name={name} banner={{}} />
+      <InstitutionBanner type={type} name={name} banner={{}} postcode={postcode} />
       <Card className={styles.subContainer}>
         <Tile
           title={`Your ${type} profile is active`}

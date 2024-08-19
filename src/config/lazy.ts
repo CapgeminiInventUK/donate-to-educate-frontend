@@ -71,6 +71,7 @@ export const AdminDashboardManageCharities = lazy(
 export const DeleteConfirmation = lazy(
   () => import('@/components/ApprovalRequest/DeleteConfirmation/DeleteConfirmation')
 );
+export const Settings = lazy(() => import('@/pages/Settings/Settings'));
 
 // Local Authority Dashboard
 export const LocalAuthorityDashboard = lazy(

@@ -48,9 +48,9 @@ import {
   CharityAdminView,
   CookiePolicy,
   Excess,
+  Settings,
 } from './lazy';
 import { Route } from '@/types/props';
-import Settings from '@/pages/Settings/Settings';
 import { InstitutionType } from '@/types/data';
 
 const routes: Route[] = [
