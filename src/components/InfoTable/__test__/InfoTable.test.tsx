@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 describe('Info table', () => {
   it('should render component', () => {
     const props = {
-      tableValues: {
+      originalTableValues: {
         Name: 'Name',
         Email: 'test@test.com',
         'Job title or role': 'Job',
@@ -22,7 +22,7 @@ describe('Info table', () => {
 
   it('should render component with title and icon when present', () => {
     const props = {
-      tableValues: {
+      originalTableValues: {
         'Local authority': 'LA',
         'Your account': 'test@test.com',
       },
@@ -39,7 +39,7 @@ describe('Info table', () => {
 
   it('should render component with user accounts', () => {
     const props = {
-      tableValues: {
+      originalTableValues: {
         'Account 1': 'Account user one',
         'Account 2': 'Account user two',
         'Account 3': '',
@@ -54,7 +54,7 @@ describe('Info table', () => {
   it('should handle Edit', async () => {
     const onEdit = vi.fn();
     const props = {
-      tableValues: {
+      originalTableValues: {
         Name: 'Name',
         Email: 'test@test.com',
         'Job title or role': 'Job',
@@ -77,7 +77,7 @@ describe('Info table', () => {
   it('should handle Delete', async () => {
     const onDelete = vi.fn();
     const props = {
-      tableValues: {
+      originalTableValues: {
         'Local authority': 'LA',
         'Your account': 'test@test.com',
       },

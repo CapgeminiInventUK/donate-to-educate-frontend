@@ -80,9 +80,9 @@ const Settings: FC = () => {
               name={checkForStringAndReturnEmptyIfFalsy(name)}
             />
           )}
-          <ManageDetailsSection userData={userData} type={type} />
+          {type && <ManageDetailsSection userData={userData} type={type} />}
           <ManageInstitutionSection type={type} />
-          <DangerZone userData={userData} type={type} />
+          {type && <DangerZone userData={userData} type={type} />}
         </div>
       </div>
     </div>

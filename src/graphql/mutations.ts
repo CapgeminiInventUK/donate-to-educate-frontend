@@ -209,3 +209,25 @@ export const deleteSignUpData =
     APITypes.DeleteSignUpDataMutationVariables,
     APITypes.DeleteSignUpDataMutation
   >;
+export const updateUser = /* GraphQL */ `mutation UpdateUser(
+  $userType: String!
+  $name: String!
+  $id: String!
+  $institutionName: String!
+  $email: String!
+  $phone: String!
+  $jobTitle: String!
+  $department: String
+) {
+  updateUser(
+    userType: $userType
+    name: $name
+    id: $id
+    institutionName: $institutionName
+    email: $email
+    phone: $phone
+    jobTitle: $jobTitle
+    department: $department
+  )
+}
+` as GeneratedMutation<APITypes.UpdateUserMutationVariables, APITypes.UpdateUserMutation>;

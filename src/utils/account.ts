@@ -35,7 +35,7 @@ export const getUserDetailsObjectFromQuery = (data: UserDetails, type?: string):
       if (key.toLowerCase().includes('name')) {
         return acc;
       }
-      if (key.includes('Id')) {
+      if (key.toLowerCase().includes('id')) {
         acc.institutionId = String(value);
       }
 
@@ -43,4 +43,11 @@ export const getUserDetailsObjectFromQuery = (data: UserDetails, type?: string):
     },
     { name, jobTitle: '', email: '', phone: '', institutionName: '', institutionId: '' }
   );
+};
+
+export const getUserDataKey = (key: string): string => {
+  if (key === 'Job title or role') {
+    return 'jobTitle';
+  }
+  return key.toLowerCase();
 };

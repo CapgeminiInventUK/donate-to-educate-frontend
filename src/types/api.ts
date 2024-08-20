@@ -408,6 +408,21 @@ export type DeleteSignUpDataMutation = {
   deleteSignUpData?: boolean | null;
 };
 
+export type UpdateUserMutationVariables = {
+  userType: string;
+  name: string;
+  id: string;
+  institutionName: string;
+  email: string;
+  phone: string;
+  jobTitle: string;
+  department?: string | null;
+};
+
+export type UpdateUserMutation = {
+  updateUser?: boolean | null;
+};
+
 export type GetSchoolQueryVariables = {
   name: string;
   urn: string;

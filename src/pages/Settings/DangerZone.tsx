@@ -22,7 +22,7 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ userData, type }) => {
     <div className={styles.deleteSection}>
       <h2>Delete</h2>
       <InfoTable
-        tableValues={deleteTableData}
+        originalTableValues={deleteTableData}
         editableKeys={[]}
         isDelete={true}
         title="Danger zone"

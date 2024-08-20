@@ -25,11 +25,16 @@
   }
 
   .row {
-    display: grid;
-    grid-template-columns: 1.3fr 2fr 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid g.$primary-dark-blue;
+
+    div,
+    button {
+      flex: 1 1 0;
+    }
 
     &:first-child {
       padding-top: 50px;
@@ -53,6 +58,10 @@
         justify-content: center;
         align-items: center;
       }
+    }
+
+    .noMarginBottom {
+      margin-bottom: 0;
     }
 
     .value {
@@ -108,5 +117,18 @@
         font-size: 14px;
       }
     }
+  }
+}
+
+.editContainer {
+  display: flex;
+
+  .editButtons {
+    display: flex;
+    height: 50px;
+  }
+
+  .marginTop {
+    margin-top: 32.3px;
   }
 }
