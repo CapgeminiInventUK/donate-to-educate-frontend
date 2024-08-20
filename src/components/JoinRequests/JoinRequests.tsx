@@ -1,28 +1,24 @@
 import { FC } from 'react';
-import styles from './JoinRequests.module.scss';
 import { JoinRequestsProps } from '@/types/props';
 import JoinRequestsTable from './JoinRequestsTable/JoinRequestsTable';
+import styles from './JoinRequests.module.scss';
 
 const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharityProperties }) => {
   const schools = data?.getJoinRequests.filter(({ type }) => type === 'school');
   const charities = data?.getJoinRequests.filter(({ type }) => type === 'charity');
 
   const tablesData = [
-    { title: 'School', dataIndex: 'school', dataSource: schools, h2: 'Schools' },
+    { title: 'School', dataIndex: 'school', dataSource: schools, h2: 'School requests' },
     {
       title: 'Charity',
       dataIndex: 'charityName',
       dataSource: charities,
-      h2: 'Charities and volunteer groups',
+      h2: 'Charities and volunteer groups requests',
     },
   ];
 
   return (
-    <>
-      <p className={styles.info}>
-        View who has asked their local authorities to join Donate to Educate. You may give the local
-        authority two working days to review a request before you do.
-      </p>
+    <div className={styles.tableWrapper}>
       {tablesData.map(({ title, dataIndex, dataSource, h2 }) => (
         <JoinRequestsTable
           key={title}
@@ -34,7 +30,7 @@ const JoinRequests: FC<JoinRequestsProps> = ({ data, setStage, setSchoolOrCharit
           h2={h2}
         />
       ))}
-    </>
+    </div>
   );
 };
 

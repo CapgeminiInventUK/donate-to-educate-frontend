@@ -419,6 +419,7 @@ export interface JoinRequestsTableProps {
   dataIndex: string;
   data?: JoinRequest[];
   h2: string;
+  firstColumnBold?: boolean;
 }
 
 export interface DeclineDeleteModalProps {
@@ -518,6 +519,7 @@ export interface getColumnSearchProps<T> {
   navigate?: NavigateFunction;
   buttonClassName?: string;
   postcode?: string;
+  firstColumnBold?: boolean;
 }
 
 export interface FormHeaderProps {
