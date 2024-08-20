@@ -3,6 +3,7 @@ import styles from '../JoinRequests.module.scss';
 import { Pill } from '@/components/Pill/Pill';
 import { PillColours } from '@/types/data';
 import { JoinRequest } from '@/types/api';
+import { splitAtLastHyphen } from '@/utils/globals';
 
 export const getSortIcon = ({
   sortOrder,
@@ -26,7 +27,8 @@ export const getRequestsFromData = <T,>(data: T[], typeText: string): JSX.Elemen
 export const separateSchoolNameAndPostcode = (data: JoinRequest[] = []): JoinRequest[] => {
   return data.map((item) => {
     if (item.school) {
-      const [schoolName, postCode] = item.school.split(' - ');
+      const schoolName = splitAtLastHyphen(item.school);
+      const postCode = item.school.substring(item.school.lastIndexOf(' - ') + 3);
 
       return {
         ...item,

@@ -5,13 +5,14 @@ import Paths from '@/config/paths';
 import Email from '@/assets/admin/Email';
 import styles from './SchoolContactConfirmation.module.scss';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
+import { splitAtLastHyphen } from '@/utils/globals';
 
 const SchoolContactConfirmation: FC = () => {
   const { state } = useLocationStateOrRedirect<{ name: string; id: string }>(
     Paths.SCHOOLS_DASHBOARD
   );
 
-  const name = state.name.split('-')[0]?.trim();
+  const name = splitAtLastHyphen(state.name);
 
   return (
     <div className={styles.container}>

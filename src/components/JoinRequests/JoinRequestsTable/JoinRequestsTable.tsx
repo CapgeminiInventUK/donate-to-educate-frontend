@@ -18,7 +18,6 @@ import {
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import { separateSchoolNameAndPostcode } from './utils';
-import { useDayOrdinal } from '@/utils/globals';
 
 const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
   setStage,
@@ -70,7 +69,7 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
       sorter: (a, b) => sortByNumber(a.requestTime, b.requestTime),
       sortIcon: getSortIcon,
       render: (text: number): JSX.Element => {
-        return <>{`${useDayOrdinal(dayjs(text).date())} ${dayjs(text).format('MMMM')}`}</>;
+        return <>{dayjs(text).format('Do MMMM')}</>;
       },
     },
     {
