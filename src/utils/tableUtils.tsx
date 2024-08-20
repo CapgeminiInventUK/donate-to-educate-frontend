@@ -1,4 +1,5 @@
 import { Button as SearchButton, Input, Space } from 'antd';
+import styles from './tableUtils.module.scss';
 import Button from '@/components/Button/Button';
 import { ColumnType } from 'antd/es/table';
 import { SearchOutlined } from '@ant-design/icons';
@@ -20,6 +21,7 @@ const getColumnSearch = <T,>({
   navigate,
   buttonClassName,
   postcode,
+  firstColumnBold,
 }: getColumnSearchProps<T>): ColumnType<T> => {
   const handleTableSearch = (
     selectedKeys: string[],
@@ -102,7 +104,7 @@ const getColumnSearch = <T,>({
             textToHighlight={text ? text.toString() : ''}
           />
         ) : (
-          text
+          <span className={firstColumnBold ? styles.firstColumn : ''}>{text}</span>
         );
       }
       const { name, id, registered } = record as SearchResult;

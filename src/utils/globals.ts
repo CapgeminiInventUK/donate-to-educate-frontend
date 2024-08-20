@@ -68,3 +68,16 @@ export const pluraliseString = (string: string, quantity?: number): string => {
 };
 
 export const useZeroIfUndefined = (number?: number): number => number ?? 0;
+
+export const useDayOrdinal = (day: number): string => {
+  const suffix =
+    day === 1 || day === 21 || day === 31
+      ? 'st'
+      : day === 2 || day === 22
+        ? 'nd'
+        : day === 3 || day === 23
+          ? 'rd'
+          : 'th';
+
+  return `${day}${suffix}`;
+};

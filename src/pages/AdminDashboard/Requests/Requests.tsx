@@ -42,7 +42,7 @@ const Requests: FC = () => {
       <BackButton theme="blue" />
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
-          <h1>Requests to join</h1>
+          <h1>Requests</h1>
         </div>
         <div className={dashboardStyles.subBody}>
           {isLoading ? (
