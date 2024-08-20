@@ -293,7 +293,7 @@ export interface UserDetails {
   email: string;
   phone: string;
   institutionName?: string;
-  institutionId?: string;
+  id?: string;
   department?: string;
   firstName?: string;
   lastName?: string;

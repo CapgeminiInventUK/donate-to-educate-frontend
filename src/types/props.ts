@@ -170,7 +170,7 @@ export interface Route {
   element: JSX.Element;
   name?: string;
   redirectRoute?: string;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface NavLinkProps {
@@ -708,7 +708,7 @@ export interface NoLocalOrganisationsProps {
 export interface PrivateRouteProps {
   route?: string;
   children: ReactNode;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface ProductTypeIconProps {

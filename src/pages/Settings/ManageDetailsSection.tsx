@@ -14,11 +14,8 @@ import { GraphQLQuery } from 'aws-amplify/api';
 
 const ManageDetailsSection: FC<ManageDetailsSectionProps> = ({ userData, type }) => {
   const [newUserData, setNewUserData] = useState(userData);
-  const { jobTitle, department, phone, email, name, institutionId: id } = newUserData;
+  const { jobTitle, department, phone, email, name, id } = newUserData;
   const [tableValues, setTableValues] = useState<ManageUserDetails>();
-
-  // eslint-disable-next-line no-console
-  console.log(userData);
 
   const { token: authToken } = useAuthToken();
   const { refetch } = useQuery({

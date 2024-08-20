@@ -244,7 +244,7 @@ const routes: Route[] = [
     path: Paths.SETTINGS,
     element: <Settings />,
     name: 'Settings',
-    //authType: 'localAuthority',
+    authType: ['localAuthority', 'school', 'charity', 'admin'],
   },
   {
     path: Paths.CONTACT,
