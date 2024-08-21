@@ -22,6 +22,7 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import SchoolDetails from './SchoolDetails/SchoolDetails';
 import UserRequestDetails from './UserRequestDetails/UserRequestDetails';
+import { splitAtLastHyphen } from '@/utils/globals';
 
 const ApprovalRequest: FC<ApprovalRequestProps> = ({
   setStage,
@@ -65,7 +66,7 @@ const ApprovalRequest: FC<ApprovalRequestProps> = ({
       const { data } = await client.graphql<GraphQLQuery<GetSchoolQuery>>({
         query: getSchool,
         variables: {
-          name: name.split('-')[0].trim(),
+          name: splitAtLastHyphen(name),
           urn,
         },
       });
