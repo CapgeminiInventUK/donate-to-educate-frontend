@@ -33,9 +33,6 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   const [previousBanner, setPreviousBanner] = useState(banner);
   const { token: authToken } = useAuthToken();
 
-  // eslint-disable-next-line no-console
-  console.log({ banner, setBanner, type, name, postcode });
-
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
     enabled: false,
