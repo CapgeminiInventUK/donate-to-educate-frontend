@@ -26,7 +26,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({ type, profile, setPreview, 
 
   return (
     <>
-      <InstitutionBanner type={type} name={name} banner={banner} />
+      <InstitutionBanner type={type} name={name} banner={banner} isPublic={true} />
       <Card className={styles.dashboardCard}>
         {!(about ?? excess ?? donate ?? request) && (
           <p>We are still populating our profile, please check back later</p>

@@ -27,10 +27,14 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   type,
   name,
   postcode,
+  isPublic,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const [previousBanner, setPreviousBanner] = useState(banner);
   const { token: authToken } = useAuthToken();
+
+  // eslint-disable-next-line no-console
+  console.log({ banner, setBanner, type, name, postcode });
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveBanner-${JSON.stringify(banner)}-${type}-${name}`],
@@ -101,9 +105,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           {!isAdminView && <PublicView banner={banner} type={type} />}
         </div>
       ) : (
-        <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
-          Settings <Settings />
-        </Link>
+        !isPublic && (
+          <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
+            Settings <Settings />
+          </Link>
+        )
       )}
     </div>
   );
