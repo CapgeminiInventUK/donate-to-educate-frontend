@@ -51,7 +51,7 @@ const EditingRow: FC<EditingRowProps> = ({
           onChange && onChange(field, value);
         }}
         errorMessage={errorMessage}
-        className={styles.noMarginBottom}
+        className={styles.textInput}
       />
       <div className={`${styles.editButtons} ${errorMessage ? styles.marginTop : ''}`}>
         <FormButton
