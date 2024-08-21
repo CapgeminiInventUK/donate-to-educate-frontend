@@ -32,15 +32,22 @@ export const getUserDetailsObjectFromQuery = (data: UserDetails, type?: string):
         acc.institutionName = String(value);
         return acc;
       }
+      if (key.toLowerCase().includes('id')) {
+        acc.id = String(value);
+      }
       if (key.toLowerCase().includes('name')) {
         return acc;
-      }
-      if (key.includes('Id')) {
-        acc.institutionId = String(value);
       }
 
       return { ...acc, [key]: String(value) };
     },
-    { name, jobTitle: '', email: '', phone: '', institutionName: '', institutionId: '' }
+    { name, jobTitle: '', email: '', phone: '', institutionName: '', id: '' }
   );
+};
+
+export const getUserDataKey = (key: string): string => {
+  if (key === 'Job title or role') {
+    return 'jobTitle';
+  }
+  return key.toLowerCase();
 };

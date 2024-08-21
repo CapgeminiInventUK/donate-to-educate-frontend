@@ -66,16 +66,16 @@ const PostcodeEdit: FC<PostcodeEditProps> = ({ postcode, name }) => {
   };
 
   return (
-    <div className={styles.postcodeSection}>
+    <div>
       <h2>Postcode</h2>
       {!isEditing ? (
         <InfoTable
-          tableValues={{ Postcode: newPostcode }}
+          originalTableValues={{ Postcode: newPostcode }}
           editableKeys={['Postcode']}
           onEdit={() => setIsEditing(true)}
         />
       ) : (
-        <div className={styles.postcodeEditContainer}>
+        <div className={styles.editContainer}>
           <TextInput
             ariaLabel="postcode"
             value={newPostcode}
@@ -84,7 +84,7 @@ const PostcodeEdit: FC<PostcodeEditProps> = ({ postcode, name }) => {
             }}
             errorMessage={postcodeError}
           />
-          <div className={`${styles.postcodeButtons} ${postcodeError ? styles.marginTop : ''}`}>
+          <div className={`${styles.editButtons} ${postcodeError ? styles.marginTop : ''}`}>
             <FormButton
               className={styles.formButton}
               text="Save"

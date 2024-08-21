@@ -318,6 +318,17 @@ type Mutation {
   acceptPrivacyPolicy(name: String!, nameId: String!, email: String!): Boolean!
 
   deleteSignUpData(id: String!, email: String!): Boolean
+
+  updateUser(
+    userType: String!
+    name: String!
+    id: String!
+    institutionName: String!
+    email: String!
+    phone: String!
+    jobTitle: String!
+    department: String
+  ): Boolean @aws_cognito_user_pools
 }
 
 schema {

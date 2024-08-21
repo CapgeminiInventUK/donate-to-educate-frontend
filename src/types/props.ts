@@ -39,6 +39,7 @@ import {
   SearchResult,
   UpdateCharityProfileMutation,
   UpdateSchoolProfileMutation,
+  UpdateUserMutation,
 } from './api';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
@@ -169,7 +170,7 @@ export interface Route {
   element: JSX.Element;
   name?: string;
   redirectRoute?: string;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface NavLinkProps {
@@ -709,7 +710,7 @@ export interface NoLocalOrganisationsProps {
 export interface PrivateRouteProps {
   route?: string;
   children: ReactNode;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface ProductTypeIconProps {
@@ -729,7 +730,7 @@ export interface PublicDashboardActionTilesProps {
 }
 
 export interface InfoTableProps {
-  tableValues: Record<string, string>;
+  originalTableValues: Record<string, string>;
   editableKeys?: string[];
   isAccounts?: boolean;
   isDelete?: boolean;
@@ -739,11 +740,27 @@ export interface InfoTableProps {
   rowClassName?: string;
   onEdit?: () => void;
   onDelete?: () => void;
+  onChange?: (key: string, value: string) => void;
+  refetch?: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
+}
+
+export interface EditingRowProps {
+  originalTableValues: Record<string, string>;
+  field: string;
+  value: string;
+  setNewTableValues: Dispatch<SetStateAction<Record<string, string>>>;
+  setEditingKey: Dispatch<SetStateAction<string | undefined>>;
+  onChange: ((key: string, value: string) => void) | undefined;
+  refetch?: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
 export interface ManageDetailsSectionProps {
   userData: UserDetails;
-  type?: string;
+  type?: AccountType;
 }
 
 export interface ManageInstitutionSectionProps {
