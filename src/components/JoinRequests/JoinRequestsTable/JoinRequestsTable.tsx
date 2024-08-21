@@ -15,6 +15,10 @@ import {
   sortAlphabetically,
   sortByNumber,
 } from '@/utils/globals';
+import School from '@/assets/icons/School';
+import Donate from '@/assets/icons/Donate';
+import { separateSchoolNameAndPostcode } from './utils';
+import { InstitutionType } from '@/types/data';
 
 const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
   setStage,
@@ -36,7 +40,11 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
     setSearchedColumn,
     searchInput,
     filterClassName: styles.filterIcon,
+    buttonClassName: styles.nameBtn,
+    firstColumnBold: true,
   };
+
+  const updatedData = separateSchoolNameAndPostcode(data);
 
   const columns: ColumnsType<JoinRequest> = [
     {
@@ -46,19 +54,23 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
       ...getColumnSearch<JoinRequest>(columnSearchProps),
     },
     {
+      title: 'Postcode',
+      dataIndex: 'postcode',
+    },
+    {
       title: 'Local authority',
       dataIndex: 'localAuthority',
       sorter: (a, b) => sortAlphabetically(a.localAuthority, b.localAuthority),
       sortIcon: getSortIcon,
     },
     {
-      title: 'Request time',
+      title: 'Date',
       dataIndex: 'requestTime',
       defaultSortOrder: 'descend',
       sorter: (a, b) => sortByNumber(a.requestTime, b.requestTime),
       sortIcon: getSortIcon,
       render: (text: number): JSX.Element => {
-        return <>{dayjs(text).format('HH:mm DD MMMM YYYY')}</>;
+        return <>{dayjs(text).format('Do MMMM')}</>;
       },
     },
     {
@@ -119,17 +131,21 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
       <Table
         title={() => (
           <div className={styles.titleContainer}>
+            <div className={styles.icon}>{title === 'School' ? <School /> : <Donate />}</div>
             <h2 className={styles.tableTitle}>{h2}</h2>
-            {data && getRequestsFromData<JoinRequest>(data)}
+            {updatedData &&
+              getRequestsFromData<JoinRequest>(
+                updatedData,
+                title === 'School' ? InstitutionType.SCHOOL : InstitutionType.CHARITY
+              )}
           </div>
         )}
         className={styles.schoolsTable}
-        dataSource={data}
+        dataSource={updatedData}
         columns={columns}
         scroll={{ x: 'max-content' }}
         rowKey="id"
       />
-      {title === 'School' && <br />}
     </>
   );
 };
