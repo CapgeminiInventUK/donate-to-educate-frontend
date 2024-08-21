@@ -6,6 +6,7 @@ import Button from '@/components/Button/Button';
 import styles from '../JoinRequests.module.scss';
 import './antDesignOverrides.scss';
 import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
 import { StageState } from '@/types/data';
 import { JoinRequestsTableProps } from '@/types/props';
 import getColumnSearch from '@/utils/tableUtils';
@@ -19,6 +20,8 @@ import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import { separateSchoolNameAndPostcode } from './utils';
 import { InstitutionType } from '@/types/data';
+
+dayjs.extend(advancedFormat);
 
 const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
   setStage,

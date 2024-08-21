@@ -335,6 +335,7 @@ export interface InstitutionBannerProps {
   type: InstitutionType;
   name?: string;
   postcode?: string;
+  isPublic?: boolean;
 }
 
 export interface InformationTileProps {
