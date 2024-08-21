@@ -4,6 +4,7 @@ import { Pill } from '@/components/Pill/Pill';
 import { PillColours } from '@/types/data';
 import { JoinRequest } from '@/types/api';
 import { splitAtLastHyphen } from '@/utils/globals';
+import { InstitutionType } from '@/types/data';
 
 export const getSortIcon = ({
   sortOrder,
@@ -18,7 +19,7 @@ export const getSortIcon = ({
   );
 };
 
-export const getRequestsFromData = <T,>(data: T[], typeText: string): JSX.Element => {
+export const getRequestsFromData = <T,>(data: T[], typeText: InstitutionType): JSX.Element => {
   const items = data.length;
   const text = items === 1 ? ' request' : ' requests';
   return <Pill colour={PillColours.GREEN} text={`${items} ${typeText} ${text}`} />;

@@ -18,6 +18,7 @@ import {
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import { separateSchoolNameAndPostcode } from './utils';
+import { InstitutionType } from '@/types/data';
 
 const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
   setStage,
@@ -53,7 +54,7 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
       ...getColumnSearch<JoinRequest>(columnSearchProps),
     },
     {
-      title: 'Post code',
+      title: 'Postcode',
       dataIndex: 'postcode',
     },
     {
@@ -135,7 +136,7 @@ const JoinRequestsTable: FC<JoinRequestsTableProps> = ({
             {updatedData &&
               getRequestsFromData<JoinRequest>(
                 updatedData,
-                title === 'School' ? 'school' : 'charity'
+                title === 'School' ? InstitutionType.SCHOOL : InstitutionType.CHARITY
               )}
           </div>
         )}
