@@ -8,7 +8,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
 import minusIcon from '@/assets/icons/minusIcon.svg';
 import tickIcon from '@/assets/icons/tickIcon.svg';
-import { GetLocalAuthoritiesQuery, GetSchoolsQuery, LocalAuthority } from '@/types/api';
+import { GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -17,13 +17,14 @@ import getColumnSearch from '@/utils/tableUtils';
 import Crown from '@/assets/icons/Crown';
 import Paths from '@/config/paths';
 import { getLocalAuthorities } from '@/graphql/queries';
-import { Charity } from '@/types/api';
+import { useNavigate } from 'react-router-dom';
 
 const ManageLocalAuthorities: FC = () => {
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
-  const dashboardLink = Paths.LOCAL_AUTHORITY_DASHBOARD;
+  const dashboardLink = Paths.ADMIN_DASHBOARD_LA_VIEW_USERS;
 
   const columnSearchProps = {
     dataIndex: 'name' as keyof LocalAuthority,
@@ -35,82 +36,34 @@ const ManageLocalAuthorities: FC = () => {
     filterClassName: styles.filterIcon,
     dashboardLink,
     buttonClassName: styles.nameBtn,
+    navigate,
   };
-
-  const fetchLocalAuthorities = async (): Promise<GetLocalAuthoritiesQuery> => {
-    const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
-      query: getLocalAuthorities,
-    });
-    return data;
-  };
-
-  const {
-    data: schoolsData,
-    isLoading: schoolsLoading,
-    isError: schoolsError,
-  } = useQuery({
-    queryKey: ['schools'],
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsQuery>>({
-        query: `query GetSchools {
-          getSchools {
-            name
-            localAuthority
-            registered
-          }
-        }`,
-      });
-      return data;
-    },
-  });
-
-  const {
-    data: charitiesData,
-    isLoading: charitiesLoading,
-    isError: charitiesError,
-  } = useQuery({
-    queryKey: ['charities'],
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<{ getCharities: Charity[] }>>({
-        query: `query GetCharities {
-          getCharities {
-            name
-            localAuthority
-          }
-        }`,
-      });
-      return data;
-    },
-  });
 
   const {
     data: localAuthoritiesData,
-    isLoading: laLoading,
-    isError: laError,
+    isLoading,
+    isError,
   } = useQuery({
     queryKey: ['las'],
-    queryFn: fetchLocalAuthorities,
+    queryFn: async () => {
+      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
+        query: getLocalAuthorities,
+      });
+      return data;
+    },
   });
 
-  const schools = schoolsData?.getSchools ?? [];
-  const charities = charitiesData?.getCharities ?? [];
+  if (isError) {
+    return <ErrorBanner />;
+  }
 
-  const filterSchoolsByLocalAuthority = (
-    localAuthority: string
-  ): { urn: string; name: string; localAuthority: string; registered: boolean }[] => {
-    return schools.filter(
-      (school) => school.localAuthority === localAuthority && school.registered === true
-    );
-  };
-
-  const filterCharitiesByLocalAuthority = (
-    localAuthority: string
-  ): { id: string; localAuthority: string; name: string }[] => {
-    return charities.filter((charity) => charity.localAuthority === localAuthority);
-  };
-
-  const isLoading = laLoading || schoolsLoading || charitiesLoading;
-  const isError = laError || schoolsError || charitiesError;
+  const localAuthorities =
+    localAuthoritiesData?.getLocalAuthorities.map((la) => ({
+      ...la,
+      id: la.code,
+      registeredSchools: la?.registeredSchools,
+      registeredCharities: la?.registeredCharities,
+    })) ?? [];
 
   const { registered, notRegistered } =
     localAuthoritiesData?.getLocalAuthorities?.reduce(
@@ -169,28 +122,22 @@ const ManageLocalAuthorities: FC = () => {
     {
       title: 'Schools',
       align: 'center' as const,
-      render: (la: LocalAuthority): JSX.Element | null => {
-        const filteredSchools = schools.length ? filterSchoolsByLocalAuthority(la.name) : [];
-        return la.registered ? (
-          <div className={styles.actionsContainer}>{filteredSchools.length}</div>
+      render: ({ registeredSchools, registered }: LocalAuthority): JSX.Element | null => {
+        return registered ? (
+          <div className={styles.actionsContainer}>{registeredSchools}</div>
         ) : null;
       },
     },
     {
       title: 'Charities',
       align: 'center' as const,
-      render: (la: LocalAuthority): JSX.Element | null => {
-        const filteredCharities = charities.length ? filterCharitiesByLocalAuthority(la.name) : [];
-        return la.registered ? (
-          <div className={styles.actionsContainer}>{filteredCharities.length}</div>
+      render: ({ registered, registeredCharities }: LocalAuthority): JSX.Element | null => {
+        return registered ? (
+          <div className={styles.actionsContainer}>{registeredCharities}</div>
         ) : null;
       },
     },
   ];
-
-  if (isError) {
-    return <ErrorBanner />;
-  }
 
   return (
     <div className={dashboardStyles.subContainer}>
@@ -218,7 +165,7 @@ const ManageLocalAuthorities: FC = () => {
                 <br />
                 <Table
                   className={styles.lasTable}
-                  dataSource={localAuthoritiesData?.getLocalAuthorities}
+                  dataSource={localAuthorities}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
                   rowKey="code"
