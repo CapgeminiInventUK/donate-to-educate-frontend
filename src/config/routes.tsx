@@ -49,6 +49,7 @@ import {
   CookiePolicy,
   Excess,
   Settings,
+  AdminDashboardLocalAuthorityUsers,
 } from './lazy';
 import { Route } from '@/types/props';
 import { InstitutionType } from '@/types/data';
@@ -63,6 +64,11 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
     element: <AdminDashboardManageLocalAuthorities />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_LA_VIEW_USERS,
+    element: <AdminDashboardLocalAuthorityUsers />,
     authType: 'admin',
   },
   {

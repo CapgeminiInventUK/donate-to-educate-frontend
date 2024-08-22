@@ -10,6 +10,7 @@ enum Paths {
   ADMIN_DASHBOARD = '/admin',
   ADMIN_DASHBOARD_LA_MANAGE = '/admin/manage-local-authority',
   ADMIN_DASHBOARD_LA_VIEW = '/admin/view-local-authority',
+  ADMIN_DASHBOARD_LA_VIEW_USERS = '/admin/view-local-authority-users',
   ADMIN_DASHBOARD_REQUESTS = '/admin/requests',
   ADMIN_DASHBOARD_REQUESTS_SCHOOL = '/admin/school-requests',
   ADMIN_DASHBOARD_REQUESTS_CHARITY = '/admin/charity-requests',

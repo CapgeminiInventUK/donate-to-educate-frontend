@@ -311,3 +311,9 @@ export enum InstitutionType {
   SCHOOL = 'school',
   CHARITY = 'charity',
 }
+
+export interface StatusColumn {
+  title: string;
+  dataIndex: string;
+  render: (text: string) => JSX.Element;
+}
