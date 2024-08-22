@@ -21,7 +21,6 @@ const LocalAuthorityUsers: FC = () => {
         query: getLocalAuthorityUsers,
         variables: {
           id,
-          name,
         },
       });
       return data;
