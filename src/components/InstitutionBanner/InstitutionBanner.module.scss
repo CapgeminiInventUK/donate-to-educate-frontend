@@ -166,6 +166,7 @@
 .item {
   color: g.$primary-white;
   word-break: break-word;
+  font-style: italic;
 }
 
 @media only screen and (max-width: g.$screen-large) {

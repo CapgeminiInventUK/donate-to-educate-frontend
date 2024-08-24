@@ -12,7 +12,7 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
       icon: getIcon(itemType),
       item: banner[itemType as keyof Banner],
       itemType,
-      defaultText: `You haven't added your ${getItemTypeString(itemType)}`,
+      defaultText: `Add your ${type}'s ${getItemTypeString(itemType)}`,
     };
   });
 
@@ -21,15 +21,28 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
       {!editMode ? (
         <>
           <ul>
-            {bannerItems.map(({ icon, item, itemType, defaultText }, key) => (
-              <BannerItem
-                key={key}
-                icon={icon}
-                item={item}
-                itemType={itemType}
-                defaultText={defaultText}
-              />
-            ))}
+            {bannerItems.map(({ icon, item, itemType, defaultText }, key) =>
+              key === bannerItems.length - 1 ? (
+                <>
+                  <br />
+                  <BannerItem
+                    key={key}
+                    icon={icon}
+                    item={item}
+                    itemType={itemType}
+                    defaultText={defaultText}
+                  />
+                </>
+              ) : (
+                <BannerItem
+                  key={key}
+                  icon={icon}
+                  item={item}
+                  itemType={itemType}
+                  defaultText={defaultText}
+                />
+              )
+            )}
           </ul>
         </>
       ) : (

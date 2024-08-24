@@ -25,9 +25,9 @@ export const getIcon = (item: string): JSX.Element => {
 export const getItemTypeString = (itemType: string): string => {
   switch (itemType) {
     case 'uniformPolicy':
-      return "school's uniform policy";
+      return 'uniform policy';
     case 'address':
-      return "charity's address";
+      return 'address';
     case 'phone':
       return 'phone number';
     default:
