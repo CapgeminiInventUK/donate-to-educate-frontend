@@ -21,28 +21,15 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
       {!editMode ? (
         <>
           <ul>
-            {bannerItems.map(({ icon, item, itemType, defaultText }, key) =>
-              key === bannerItems.length - 1 ? (
-                <>
-                  <br />
-                  <BannerItem
-                    key={key}
-                    icon={icon}
-                    item={item}
-                    itemType={itemType}
-                    defaultText={defaultText}
-                  />
-                </>
-              ) : (
-                <BannerItem
-                  key={key}
-                  icon={icon}
-                  item={item}
-                  itemType={itemType}
-                  defaultText={defaultText}
-                />
-              )
-            )}
+            {bannerItems.map(({ icon, item, itemType, defaultText }, key) => (
+              <BannerItem
+                key={key}
+                icon={icon}
+                item={item}
+                itemType={itemType}
+                defaultText={defaultText}
+              />
+            ))}
           </ul>
         </>
       ) : (
