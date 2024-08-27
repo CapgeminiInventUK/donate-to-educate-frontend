@@ -5,6 +5,9 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 30px;
+  background-color: g.$about-grey;
+  padding: 25px;
+  border-radius: 10px;
 }
 
 .header {
@@ -23,6 +26,10 @@
   font-family: 'Poppins', sans-serif;
   line-height: 160%;
   margin: -20px 0 20px;
+
+  @include g.sm-breakpoint {
+    margin: -10px 0 20px;
+  }
 }
 
 .input {
@@ -34,6 +41,10 @@
 
   @include g.sm-breakpoint {
     max-width: 200px;
+  }
+
+  @include g.md-breakpoint {
+    max-width: 50%;
   }
 }
 
@@ -101,13 +112,9 @@
     width: 80px;
     height: 46px;
   }
-
-  @include g.sm-breakpoint {
-    width: 60px;
-    height: 46px;
-  }
 }
 
 .searchContainer {
   display: flex;
+  margin-top: 15px;
 }
