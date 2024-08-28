@@ -5,6 +5,8 @@ import {
   checkForStringAndReturnEmptyIfFalsy,
   splitAtLastHyphen,
 } from './globals';
+import { deleteCharityProfile, deleteSchoolProfile } from '@/graphql/mutations';
+import { getCharityUsers, getLocalAuthorityUsers, getSchoolUsers } from '@/graphql/queries';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {
@@ -72,3 +74,13 @@ export const getDeleteTableData = (
     'Your account': checkForStringAndReturnEmptyIfFalsy(email),
   };
 };
+
+export const getDeleteProfileQueryFromType = (type?: AccountType): string =>
+  type === 'school' ? deleteSchoolProfile : type === 'charity' ? deleteCharityProfile : '';
+
+export const getGetUsersQueryFromType = (type?: AccountType): string =>
+  type === 'localAuthority'
+    ? getLocalAuthorityUsers
+    : type === 'school'
+      ? getSchoolUsers
+      : getCharityUsers;

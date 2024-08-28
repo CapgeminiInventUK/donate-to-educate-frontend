@@ -9,7 +9,7 @@ import useAuthToken from '@/hooks/useAuthToken';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { deleteCharityProfile, deleteSchoolProfile, deleteUserProfile } from '@/graphql/mutations';
+import { deleteUserProfile } from '@/graphql/mutations';
 import {
   DeleteCharityProfileMutation,
   DeleteSchoolProfileMutation,
@@ -18,18 +18,18 @@ import {
   GetLocalAuthorityUsersQuery,
   GetSchoolUsersQuery,
 } from '@/types/api';
-import { getCharityUsers, getLocalAuthorityUsers, getSchoolUsers } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { getDeleteTableData } from '@/utils/account';
+import {
+  getDeleteProfileQueryFromType,
+  getDeleteTableData,
+  getGetUsersQueryFromType,
+} from '@/utils/account';
 
 const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
   const { institutionName, id, email, name } = userData;
 
   const deleteTableData = getDeleteTableData(type, institutionName, email);
-
-  const deleteProfileQuery =
-    type === 'school' ? deleteSchoolProfile : type === 'charity' ? deleteCharityProfile : '';
 
   const { token: authToken } = useAuthToken();
   const { refetch: deleteUserRefetch } = useQuery({
@@ -47,7 +47,6 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
           email,
         },
       });
-
       return result;
     },
   });
@@ -59,23 +58,15 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
       const result = await client.graphql<
         GraphQLQuery<DeleteSchoolProfileMutation | DeleteCharityProfileMutation>
       >({
-        query: deleteProfileQuery,
+        query: getDeleteProfileQueryFromType(type),
         variables: {
           name: institutionName,
           id,
         },
       });
-
       return result;
     },
   });
-
-  const query =
-    type === 'localAuthority'
-      ? getLocalAuthorityUsers
-      : type === 'school'
-        ? getSchoolUsers
-        : getCharityUsers;
 
   const { isLoading, data, isError } = useQuery({
     queryKey: [`get-${type}-user-${email}`],
@@ -83,7 +74,7 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
       const { data } = await client.graphql<
         GraphQLQuery<GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery>
       >({
-        query: query,
+        query: getGetUsersQueryFromType(type),
         variables: {
           email,
         },
