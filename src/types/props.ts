@@ -740,7 +740,7 @@ export interface InfoTableProps {
   className?: string;
   rowClassName?: string;
   onEdit?: () => void;
-  onDelete?: () => void;
+  onDelete?: (key: string) => Promise<void>;
   onChange?: (key: string, value: string) => void;
   refetch?: (
     options?: RefetchOptions | undefined

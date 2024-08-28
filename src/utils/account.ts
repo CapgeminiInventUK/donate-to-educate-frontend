@@ -1,5 +1,10 @@
 import Paths from '@/config/paths';
-import { AccountType, UserDetails } from '@/types/data';
+import { AccountType, InstitutionType, UserDetails } from '@/types/data';
+import {
+  capitaliseFirstLetter,
+  checkForStringAndReturnEmptyIfFalsy,
+  splitAtLastHyphen,
+} from './globals';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {
@@ -50,4 +55,20 @@ export const getUserDataKey = (key: string): string => {
     return 'jobTitle';
   }
   return key.toLowerCase();
+};
+
+export const getDeleteTableData = (
+  type?: AccountType,
+  institutionName?: string,
+  email?: string
+): Record<string, string> => {
+  const typename =
+    String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
+  return {
+    [typename]:
+      type === InstitutionType.SCHOOL
+        ? splitAtLastHyphen(String(institutionName))
+        : String(institutionName),
+    'Your account': checkForStringAndReturnEmptyIfFalsy(email),
+  };
 };

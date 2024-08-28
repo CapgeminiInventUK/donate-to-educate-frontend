@@ -68,7 +68,7 @@ const InfoTable: FC<InfoTableProps> = ({
                 theme="light"
                 ariaLabel="delete-button"
                 className={styles.delete}
-                onClick={() => onDelete && onDelete()}
+                onClick={() => onDelete && void onDelete(key)}
               />
             )}
           </div>
