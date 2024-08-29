@@ -46,13 +46,19 @@ const CharityAdminDashboard: FC = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    data?.getCharityProfile && (
-      <InstitutionAdminDashboard
-        type={InstitutionType.CHARITY}
-        profile={data.getCharityProfile}
-        name={checkForStringAndReturnEmptyIfFalsy(name)}
-      />
-    )
+    <InstitutionAdminDashboard
+      type={InstitutionType.CHARITY}
+      profile={
+        data?.getCharityProfile ?? {
+          __typename: 'CharityProfile',
+          name: '',
+          id: '',
+          localAuthority: '',
+          postcode: '',
+        }
+      }
+      name={checkForStringAndReturnEmptyIfFalsy(name)}
+    />
   );
 };
 

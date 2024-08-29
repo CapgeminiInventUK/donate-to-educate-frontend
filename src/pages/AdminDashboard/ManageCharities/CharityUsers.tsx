@@ -4,7 +4,7 @@ import { InstitutionProfile, InstitutionType } from '@/types/data';
 import { FC } from 'react';
 import ManageInstitution from '../ManageInstitutions/ManageInstitution';
 
-const ManageCharity: FC = () => {
+const CharityUsers: FC = () => {
   const { state } = useLocationStateOrRedirect<{ institution: InstitutionProfile }>(
     Paths.ADMIN_DASHBOARD
   );
@@ -13,4 +13,4 @@ const ManageCharity: FC = () => {
     <ManageInstitution type={InstitutionType.CHARITY} institutionProfile={state.institution} />
   );
 };
-export default ManageCharity;
+export default CharityUsers;

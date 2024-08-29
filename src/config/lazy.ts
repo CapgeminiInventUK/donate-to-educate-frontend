@@ -53,7 +53,7 @@ export const AdminDashboardManageLocalAuthorities = lazy(
   () => import('@pages/AdminDashboard/ManageLocalAuthorities/ManageLocalAuthorities')
 );
 export const AdminDashboardLocalAuthorityUsers = lazy(
-  () => import('@pages/AdminDashboard/LocalAuthorityUsers/LocalAuthorityUsers')
+  () => import('@pages/AdminDashboard/ManageLocalAuthorities/LocalAuthorityUsers')
 );
 export const AdminDashboardLocalAuthoritySignUp = lazy(
   () => import('@pages/AdminDashboard/LocalAuthoritySignUp/LocalAuthoritySignUp')
@@ -70,14 +70,14 @@ export const AdminDashboardManageSchools = lazy(
 );
 
 export const AdminDashboardManageSchool = lazy(
-  () => import('@pages/AdminDashboard/ManageSchools/ManageSchool')
+  () => import('@pages/AdminDashboard/ManageSchools/SchoolUsers')
 );
 export const AdminDashboardManageCharities = lazy(
   () => import('@pages/AdminDashboard/ManageCharities/ManageCharities')
 );
 
 export const AdminDashboardManageCharity = lazy(
-  () => import('@pages/AdminDashboard/ManageCharities/ManageCharity')
+  () => import('@pages/AdminDashboard/ManageCharities/CharityUsers')
 );
 export const DeleteConfirmation = lazy(
   () => import('@/components/ApprovalRequest/DeleteConfirmation/DeleteConfirmation')
