@@ -8,7 +8,6 @@ import Tile from './Tile/HomeTile';
 import People from '@/assets/home/tiles/People';
 import Hat from '@/assets/home/tiles/Hat';
 import Heart from '@/assets/home/tiles/Heart';
-import FormButton from '@/components/FormButton/FormButton';
 import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import Star from '@/assets/home/helpPupils/Star';
@@ -84,17 +83,23 @@ const Home: FC = () => {
       </div>
 
       <div className={styles.howItWorks}>
-        <Image alt="How it works" image={PupilsTalking} />
+        <Image alt="Helping pupils in your local authority" image={PupilsTalking} />
         <div className={styles.textContainer}>
-          <Header text="How it works" />
-          <p>Giving communities one place to collaborate and help children thrive at school.</p>
-          <FormButton
-            className={styles.howItWorksBtn}
-            theme="formButtonMidBlue"
-            onClick={() => navigate(Paths.HOW_IT_WORKS)}
-            text="Find out more"
-            ariaLabel="find out more"
-          />
+          <Header text="Helping pupils in your local authority" />
+          <p>
+            In the UK, children experiencing education poverty are missing school because they
+            don&apos;t have essential supplies.
+          </p>
+          <p>Our vision is to make sure that every child has what they need to thrive in school.</p>
+          <p>
+            {' '}
+            If you work for a local authority, find out how you can bring Donate to Educate&apos;s
+            vision to life in your community and
+            <Link className={styles.link} to={Paths.LOCAL_AUTHORITY_JOIN_INFO}>
+              {' '}
+              register your local authority.{' '}
+            </Link>
+          </p>
         </div>
       </div>
 
