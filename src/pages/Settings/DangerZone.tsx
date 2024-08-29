@@ -96,19 +96,24 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
 
   // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
   // TODO - Log user out and redirect after deleting user/profile
-  // TODO - Popup for if more than 1 user and attempt to delete profile
   const onDelete = async (key: string): Promise<void> => {
     if (key === 'Your account') {
+      //popup here first and then ->
       await deleteUserRefetch();
       return;
     }
     if (type === 'localAuthority') {
+      //popup instead of this alert
       alert('cannae do this rn');
       return;
     }
     if (numberOfUsers < 2) {
+      //confirm delete popup for deleting school/charity profile, then ->
       await removeProfile();
       await deleteUserRefetch();
+    }
+    if (numberOfUsers > 1) {
+      // TODO - Popup for if more than 1 user and attempt to delete profile
     }
   };
 
