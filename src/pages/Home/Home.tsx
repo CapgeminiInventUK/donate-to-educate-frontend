@@ -11,11 +11,8 @@ import Heart from '@/assets/home/tiles/Heart';
 import FormButton from '@/components/FormButton/FormButton';
 import PupilsTalking from '@assets/tiles/PupilsTalking.webp';
 import { Link, useNavigate } from 'react-router-dom';
-import Star from '@/assets/home/helpPupils/Star';
-import Archive from '@/assets/home/helpPupils/Archive';
 import donateToUs from '@assets/home/helpPupils/donateToUs.webp';
 import Paths from '@/config/paths';
-import { motion } from 'framer-motion';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -101,29 +98,18 @@ const Home: FC = () => {
       <div className={styles.helpingPupils}>
         <div className={styles.content}>
           <div>
-            <Header text="Helping pupils and the planet" />
+            <Header text="Support our mission" />
             <p>
-              Every year, pupils experiencing education poverty miss days off school because they
-              don&apos;t have the things they need.
+              If you&apos;re a business that wants to support schools and charities in your
+              community, please{' '}
+              <Link to={Paths.CONTACT} className={styles.whiteLink}>
+                contact our team.
+              </Link>
             </p>
             <p>
-              With over 100 million items of school uniform, laptops and other essentials destined
-              for landfill, it&apos;s time to create circularity within education.
+              Maybe you can donate tech or office supplies, or you can support schools and charities
+              to distribute products. Whatever you can help us with, we want to hear from you.
             </p>
-          </div>
-          <div className={styles.actionButtons}>
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <Link to={Paths.FIND_YOUR_COMMUNITY} className={styles.button}>
-                <Archive />
-                <h3>Donate products</h3>
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <Link to={Paths.CONTACT} className={styles.button}>
-                <Star />
-                <h3>Support us</h3>
-              </Link>
-            </motion.div>
           </div>
         </div>
         <div className={styles.supporters}>
