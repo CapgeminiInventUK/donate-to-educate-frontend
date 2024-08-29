@@ -149,6 +149,11 @@
     max-width: 50%;
     max-height: 50%;
   }
+
+  .blueLink {
+    color: g.$link-blue;
+    font-weight: 700;
+  }
 }
 
 @media only screen and (max-width: g.$screen-large) {

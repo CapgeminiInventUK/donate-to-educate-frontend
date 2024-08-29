@@ -94,9 +94,8 @@ const Home: FC = () => {
           <p>
             {' '}
             If you work for a local authority, find out how you can bring Donate to Educate&apos;s
-            vision to life in your community and
-            <Link className={styles.link} to={Paths.LOCAL_AUTHORITY_JOIN_INFO}>
-              {' '}
+            vision to life in your community and{' '}
+            <Link className={styles.blueLink} to={Paths.LOCAL_AUTHORITY_JOIN_INFO}>
               register your local authority.{' '}
             </Link>
           </p>
