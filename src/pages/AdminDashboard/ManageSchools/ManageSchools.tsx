@@ -25,10 +25,11 @@ const ManageSchools: FC = () => {
   }
 
   const tableData =
-    data?.getRegisteredSchools?.map(({ name, urn, localAuthority }) => ({
+    data?.getRegisteredSchools?.map(({ name, urn, localAuthority, postcode }) => ({
       name,
       id: urn,
       localAuthority,
+      postcode,
     })) ?? [];
 
   return (

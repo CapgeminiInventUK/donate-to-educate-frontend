@@ -45,7 +45,7 @@ describe('Manage Schools', () => {
       expect(rows).toHaveLength(3);
 
       const totalJoinedText = getByLabelText('total-joined');
-      expect(totalJoinedText).toHaveTextContent('2 joined');
+      expect(totalJoinedText).toHaveTextContent('2');
 
       const schoolLink = await findByRole('button', { name: 'name-The Aldgate School' });
       await userEvent.click(schoolLink);
@@ -70,7 +70,7 @@ describe('Manage Schools', () => {
       expect(rows).toHaveLength(2);
 
       const totalJoinedText = getByLabelText('total-joined');
-      expect(totalJoinedText).toHaveTextContent('0 joined');
+      expect(totalJoinedText).toHaveTextContent('0');
     });
   });
 

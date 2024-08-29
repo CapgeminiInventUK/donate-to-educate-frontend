@@ -12,6 +12,8 @@ import getColumnSearch from '@/utils/tableUtils';
 import { capitaliseFirstLetter, pluraliseString, useZeroIfUndefined } from '@/utils/globals';
 import { ManageInstitutionsTableProps } from '@/types/props';
 import { InstitutionProfile, InstitutionType } from '@/types/data';
+import School from '@/assets/icons/School';
+import Donate from '@/assets/icons/Donate';
 
 const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type, isLoading }) => {
   const [searchText, setSearchText] = useState('');
@@ -19,6 +21,9 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
   const searchInput = useRef<InputRef>(null);
 
   const navigate = useNavigate();
+
+  /* eslint-disable no-console */
+  console.log(data, 'OOOO');
 
   const columnSearchProps = {
     searchText,
@@ -31,11 +36,6 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
 
   const institutionColumnSearchProps = {
     dataIndex: 'name' as keyof InstitutionProfile,
-    ...columnSearchProps,
-  };
-
-  const laColumnSearchProps = {
-    dataIndex: 'localAuthority' as keyof InstitutionProfile,
     ...columnSearchProps,
   };
 
@@ -62,9 +62,27 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
       ),
     },
     {
+      title: 'Postcode',
+      dataIndex: 'postcode',
+      align: 'center' as const,
+    },
+    {
       title: 'Local Authority',
       dataIndex: 'localAuthority',
-      ...getColumnSearch<InstitutionProfile>(laColumnSearchProps),
+      align: 'center' as const,
+    },
+    {
+      title: 'Action',
+      dataIndex: 'localAuthority',
+      align: 'center' as const,
+      render: (text: string): JSX.Element => (
+        <Button
+          theme="link-blue-bold"
+          text="details"
+          ariaLabel={`name-${text}`}
+          onClick={() => window.alert('This is in development')}
+        />
+      ),
     },
   ];
 
@@ -81,13 +99,35 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
           ) : (
             <div className={styles.cardContainer}>
               <Card className={styles.manageCard}>
-                <h2>
-                  Registered{' '}
-                  {type === InstitutionType.SCHOOL ? 'schools' : 'charities and volunteer groups'}
-                </h2>
-                <div aria-label="total-joined" className={styles.border}>
-                  {useZeroIfUndefined(data.length)} joined
-                </div>
+                {type === InstitutionType.SCHOOL ? (
+                  <>
+                    <School />
+                    <h2>View and edit the details of your schools</h2>
+                    <div className={styles.numberJoinedArea}>
+                      <h4>
+                        <span className={styles.amount} aria-label="total-joined">
+                          {useZeroIfUndefined(data.length)}
+                        </span>
+                      </h4>
+                      <div className={styles.subBody}>schools have joined Donate to Educate</div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Donate />
+                    <h2>View and edit the details of your charities</h2>
+                    <div className={styles.numberJoinedArea}>
+                      <h4>
+                        <span className={styles.amount} aria-label="total-joined">
+                          {useZeroIfUndefined(data.length)}
+                        </span>
+                      </h4>
+                      <div className={styles.subBody}>
+                        charities and volunteer groups have joined Donate to Educate
+                      </div>
+                    </div>
+                  </>
+                )}
                 <br />
                 <Table
                   dataSource={data}

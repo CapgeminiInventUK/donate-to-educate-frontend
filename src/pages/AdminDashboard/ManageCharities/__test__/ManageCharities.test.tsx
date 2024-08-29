@@ -45,7 +45,7 @@ describe('Manage Charities', () => {
       expect(rows).toHaveLength(3);
 
       const totalJoinedText = getByLabelText('total-joined');
-      expect(totalJoinedText).toHaveTextContent('2 joined');
+      expect(totalJoinedText).toHaveTextContent('2');
 
       const charityLink = await findByRole('button', { name: 'name-Test' });
       await userEvent.click(charityLink);
@@ -68,7 +68,7 @@ describe('Manage Charities', () => {
       expect(rows).toHaveLength(2);
 
       const totalJoinedText = getByLabelText('total-joined');
-      expect(totalJoinedText).toHaveTextContent('0 joined');
+      expect(totalJoinedText).toHaveTextContent('0');
     });
   });
 
