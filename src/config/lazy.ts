@@ -68,8 +68,16 @@ export const AdminDashboardRequests = lazy(() => import('@pages/AdminDashboard/R
 export const AdminDashboardManageSchools = lazy(
   () => import('@pages/AdminDashboard/ManageSchools/ManageSchools')
 );
+
+export const AdminDashboardManageSchool = lazy(
+  () => import('@pages/AdminDashboard/ManageSchools/ManageSchool')
+);
 export const AdminDashboardManageCharities = lazy(
   () => import('@pages/AdminDashboard/ManageCharities/ManageCharities')
+);
+
+export const AdminDashboardManageCharity = lazy(
+  () => import('@pages/AdminDashboard/ManageCharities/ManageCharity')
 );
 export const DeleteConfirmation = lazy(
   () => import('@/components/ApprovalRequest/DeleteConfirmation/DeleteConfirmation')

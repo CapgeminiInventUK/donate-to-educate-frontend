@@ -822,3 +822,8 @@ export interface PostcodeEditProps {
   postcode: string;
   name: string;
 }
+
+export interface ManageInstitutionProps {
+  type: InstitutionType;
+  institutionProfile: InstitutionProfile;
+}

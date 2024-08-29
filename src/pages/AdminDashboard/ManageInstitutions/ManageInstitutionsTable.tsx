@@ -39,6 +39,11 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
     ...columnSearchProps,
   };
 
+  const postcodeColumnSearchProps = {
+    dataIndex: 'postcode' as keyof InstitutionProfile,
+    ...columnSearchProps,
+  };
+
   const columns = [
     {
       title: capitaliseFirstLetter(type),
@@ -62,9 +67,35 @@ const ManageInstitutionsTable: FC<ManageInstitutionsTableProps> = ({ data, type,
       ),
     },
     {
+      title: 'Postcode',
+      dataIndex: 'postcode',
+      ...getColumnSearch<InstitutionProfile>(postcodeColumnSearchProps),
+    },
+    {
       title: 'Local Authority',
       dataIndex: 'localAuthority',
       ...getColumnSearch<InstitutionProfile>(laColumnSearchProps),
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: (_: string, institution: InstitutionProfile): JSX.Element => (
+        <Button
+          theme="link-blue-bold"
+          text="Details"
+          ariaLabel={`${institution.name}-details`}
+          onClick={() =>
+            navigate(
+              type === InstitutionType.CHARITY
+                ? Paths.ADMIN_DASHBOARD_MANAGE_CHARITY
+                : Paths.ADMIN_DASHBOARD_MANAGE_SCHOOL,
+              {
+                state: { institution },
+              }
+            )
+          }
+        />
+      ),
     },
   ];
 
