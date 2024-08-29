@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { GetRegisteredSchoolsQuery } from '@/types/api';
 import { getRegisteredSchools } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import ManageInstitutionsTable from '../ManageInstitutionsTable/ManageInstitutionsTable';
+import ManageInstitutionsTable from '../ManageInstitutions/ManageInstitutionsTable';
 import { InstitutionType } from '@/types/data';
 
 const ManageSchools: FC = () => {
@@ -25,10 +25,9 @@ const ManageSchools: FC = () => {
   }
 
   const tableData =
-    data?.getRegisteredSchools?.map(({ name, urn, localAuthority }) => ({
-      name,
-      id: urn,
-      localAuthority,
+    data?.getRegisteredSchools?.map((school) => ({
+      id: school.urn,
+      ...school,
     })) ?? [];
 
   return (

@@ -26,7 +26,9 @@ import {
   YourLocalArea,
   HowItWorks,
   AdminDashboardManageSchools,
+  AdminDashboardManageSchool,
   AdminDashboardManageCharities,
+  AdminDashboardManageCharity,
   LocalAuthorityDashboardSchools,
   LocalAuthorityDashboardCharities,
   RequestSchoolProducts,
@@ -92,8 +94,18 @@ const routes: Route[] = [
     authType: 'admin',
   },
   {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOL,
+    element: <AdminDashboardManageSchool />,
+    authType: 'admin',
+  },
+  {
     path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
     element: <AdminDashboardManageCharities />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITY,
+    element: <AdminDashboardManageCharity />,
     authType: 'admin',
   },
   {
