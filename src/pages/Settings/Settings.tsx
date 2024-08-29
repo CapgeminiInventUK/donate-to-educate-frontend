@@ -12,7 +12,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { InstitutionType, UserDetails } from '@/types/data';
 import { getUserDetailsObjectFromQuery } from '@/utils/account';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ManageInstitutionSection from './ManageInstitutionSection';
+// import ManageInstitutionSection from './ManageInstitutionSection';
 import ManageDetailsSection from './ManageDetailsSection';
 import DangerZone from './DangerZone';
 import PostcodeEdit from './PostcodeEdit';
@@ -50,7 +50,7 @@ const Settings: FC = () => {
   }
 
   if (isError) {
-    <ErrorBanner />;
+    return <ErrorBanner />;
   }
 
   const userData =
@@ -61,7 +61,7 @@ const Settings: FC = () => {
     );
 
   if (!userData) {
-    return <Spinner />;
+    return <ErrorBanner />;
   }
 
   return (
@@ -81,7 +81,8 @@ const Settings: FC = () => {
             />
           )}
           {type && <ManageDetailsSection userData={userData} type={type} />}
-          <ManageInstitutionSection type={type} />
+          {/* // TODO Add the below component when enabling multi accounts */}
+          {/* <ManageInstitutionSection type={type} /> */}
           {type && <DangerZone userData={userData} type={type} />}
         </div>
       </div>
