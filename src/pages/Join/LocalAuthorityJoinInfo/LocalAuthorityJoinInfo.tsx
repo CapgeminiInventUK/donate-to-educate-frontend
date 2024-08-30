@@ -14,12 +14,16 @@ const LocalAuthorityJoinInfo: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card>
-        <h2>How local authorities join Donate to Educate</h2>
+        <h2>Register your local authority</h2>
         <p>
-          If you work for a local authority, you can support us by managing the schools and
-          charities in your area on our platform.
+          If you work for a local authority in England or Wales, you can support us by managing the
+          schools and charities in your area.
         </p>
-        <p>To join, contact our team to discuss the next steps.</p>
+        <p>
+          Accept requests from schools and charities in your local authority to join Donate to
+          Educate. Once you accept the request, they can start sharing products with those in need.
+        </p>
+        <p>Contact our team by email or phone to discuss the next steps.</p>
         <div className={styles.linksContainer}>
           <EmailSolid />
           <Link to={Paths.EMAIL} className={styles.link}>
