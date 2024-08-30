@@ -45,7 +45,7 @@ const Login: FC = () => {
             <h3>If you work for a local authority</h3>
             <p>
               If you work for a local authority and want to join,{' '}
-              <Link className={styles.link} to={Paths.CONTACT}>
+              <Link className={styles.link} to={Paths.LOCAL_AUTHORITY_JOIN_INFO}>
                 {' '}
                 contact us.{' '}
               </Link>
