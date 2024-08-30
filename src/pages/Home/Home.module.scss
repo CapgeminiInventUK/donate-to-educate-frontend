@@ -100,13 +100,23 @@
   }
 
   .helpingPupils {
+    display: flex;
+    flex-direction: row;
+
     .content {
+      margin: 30px;
       flex-direction: row;
       gap: 50px;
     }
 
     .button {
       min-width: 300px;
+    }
+
+    .whiteLink {
+      color: g.$pill-green-text;
+      font-size: 18;
+      font-weight: 700;
     }
   }
 }
