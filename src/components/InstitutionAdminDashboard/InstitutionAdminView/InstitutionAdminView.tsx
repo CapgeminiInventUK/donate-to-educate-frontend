@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './InstitutionAdminView.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
@@ -21,9 +20,6 @@ const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, t
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
-      </div>
       <InstitutionBanner type={type} name={name} banner={{}} postcode={postcode} />
       <Card className={styles.subContainer}>
         <Tile
