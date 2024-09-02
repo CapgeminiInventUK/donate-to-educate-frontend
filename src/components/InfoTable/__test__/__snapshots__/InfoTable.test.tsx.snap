@@ -6,7 +6,7 @@ exports[`Info table > should render component 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df "
+        class="_infoTable_f1f6df undefined  "
       >
         <div
           class="_row_f1f6df "
@@ -108,7 +108,7 @@ exports[`Info table > should render component 1`] = `
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df "
+      class="_infoTable_f1f6df undefined  "
     >
       <div
         class="_row_f1f6df "
@@ -267,7 +267,7 @@ exports[`Info table > should render component with title and icon when present 1
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df deleteTable"
+        class="_infoTable_f1f6df undefined  deleteTable"
       >
         <h3>
           <span
@@ -344,7 +344,7 @@ exports[`Info table > should render component with title and icon when present 1
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df deleteTable"
+      class="_infoTable_f1f6df undefined  deleteTable"
     >
       <h3>
         <span
@@ -478,7 +478,7 @@ exports[`Info table > should render component with user accounts 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df "
+        class="_infoTable_f1f6df undefined  "
       >
         <div
           class="_row_f1f6df "
@@ -537,7 +537,7 @@ exports[`Info table > should render component with user accounts 1`] = `
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df "
+      class="_infoTable_f1f6df undefined  "
     >
       <div
         class="_row_f1f6df "

@@ -53,19 +53,20 @@
       }
     }
 
-    .deleteSection {
-      .deleteTable {
-        background: g.$greyscale-extra-dark;
-      }
-
-      .deleteTableRow {
-        border-bottom: 1px solid g.$greyscale;
-      }
-    }
-
     @include g.sm-breakpoint {
       padding: 15px;
     }
+  }
+}
+
+.deleteSection {
+  .deleteTable {
+    color: white;
+    background: g.$greyscale-extra-dark;
+  }
+
+  .deleteTableRow {
+    border-bottom: 1px solid g.$greyscale;
   }
 }
 

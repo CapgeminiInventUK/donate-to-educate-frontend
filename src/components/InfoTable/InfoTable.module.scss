@@ -114,6 +114,15 @@
       }
     }
   }
+
+  &.light {
+    background: g.$about-grey;
+    color: g.$primary-dark-blue;
+
+    .row {
+      border-bottom: 1px solid g.$primary-light-blue;
+    }
+  }
 }
 
 .editContainer {

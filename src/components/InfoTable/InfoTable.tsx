@@ -14,6 +14,7 @@ const InfoTable: FC<InfoTableProps> = ({
   icon,
   className,
   rowClassName,
+  theme = 'dark',
   onEdit,
   onDelete,
   onChange,
@@ -23,7 +24,9 @@ const InfoTable: FC<InfoTableProps> = ({
   const [newTableValues, setNewTableValues] = useState(originalTableValues);
 
   return (
-    <div className={`${styles.infoTable} ${checkForStringAndReturnEmptyIfFalsy(className)}`}>
+    <div
+      className={`${styles.infoTable} ${styles[theme]}  ${checkForStringAndReturnEmptyIfFalsy(className)}`}
+    >
       {(title ?? icon) && (
         <h3>
           <span className={styles.icon}>{icon}</span>

@@ -1,0 +1,16 @@
+@use '@assets/global.scss' as g;
+
+.RegisteredUsersSection {
+  margin: 50px 0 50px;
+
+  .addUserButton {
+    margin-top: 40px;
+  }
+
+  h2 {
+    color: g.$primary-dark-blue;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid g.$primary-light-blue;
+  }
+}
