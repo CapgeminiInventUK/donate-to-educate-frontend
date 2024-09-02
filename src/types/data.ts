@@ -275,9 +275,9 @@ export interface InstitutionProfile {
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
-  phone?: string;
-  street?: string;
-  town?: string;
+  phone?: string | null;
+  street?: string | null;
+  town?: string | null;
 }
 
 export interface RequestItemsTextContent {
