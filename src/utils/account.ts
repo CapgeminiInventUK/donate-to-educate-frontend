@@ -7,6 +7,7 @@ import {
 } from './globals';
 import { deleteCharityProfile, deleteSchoolProfile } from '@/graphql/mutations';
 import { getCharityUsers, getLocalAuthorityUsers, getSchoolUsers } from '@/graphql/queries';
+import { deleteUser } from 'aws-amplify/auth';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {
@@ -84,3 +85,11 @@ export const getGetUsersQueryFromType = (type?: AccountType): string =>
     : type === 'school'
       ? getSchoolUsers
       : getCharityUsers;
+
+export async function removeUser(): Promise<void> {
+  try {
+    await deleteUser();
+  } catch (error) {
+    throw new Error(String(error));
+  }
+}
