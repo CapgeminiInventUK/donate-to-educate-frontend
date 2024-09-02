@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from '../types/api';
+import * as APITypes from "../types/api";
 type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationInput: InputType;
   __generatedMutationOutput: OutputType;
@@ -35,22 +35,20 @@ export const registerLocalAuthority = /* GraphQL */ `mutation RegisterLocalAutho
   APITypes.RegisterLocalAuthorityMutationVariables,
   APITypes.RegisterLocalAuthorityMutation
 >;
-export const updateSchoolProfile =
-  /* GraphQL */ `mutation UpdateSchoolProfile($key: String!, $value: String!) {
+export const updateSchoolProfile = /* GraphQL */ `mutation UpdateSchoolProfile($key: String!, $value: String!) {
   updateSchoolProfile(key: $key, value: $value)
 }
 ` as GeneratedMutation<
-    APITypes.UpdateSchoolProfileMutationVariables,
-    APITypes.UpdateSchoolProfileMutation
-  >;
-export const updateCharityProfile =
-  /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
+  APITypes.UpdateSchoolProfileMutationVariables,
+  APITypes.UpdateSchoolProfileMutation
+>;
+export const updateCharityProfile = /* GraphQL */ `mutation UpdateCharityProfile($key: String!, $value: String!) {
   updateCharityProfile(key: $key, value: $value)
 }
 ` as GeneratedMutation<
-    APITypes.UpdateCharityProfileMutationVariables,
-    APITypes.UpdateCharityProfileMutation
-  >;
+  APITypes.UpdateCharityProfileMutationVariables,
+  APITypes.UpdateCharityProfileMutation
+>;
 export const updateJoinRequest = /* GraphQL */ `mutation UpdateJoinRequest(
   $id: String!
   $localAuthority: String!
@@ -101,8 +99,7 @@ export const insertJoinRequest = /* GraphQL */ `mutation InsertJoinRequest(
   APITypes.InsertJoinRequestMutationVariables,
   APITypes.InsertJoinRequestMutation
 >;
-export const insertLocalAuthorityRegisterRequest =
-  /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
+export const insertLocalAuthorityRegisterRequest = /* GraphQL */ `mutation InsertLocalAuthorityRegisterRequest(
   $name: String!
   $localAuthority: String!
   $email: String!
@@ -118,9 +115,9 @@ export const insertLocalAuthorityRegisterRequest =
   )
 }
 ` as GeneratedMutation<
-    APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
-    APITypes.InsertLocalAuthorityRegisterRequestMutation
-  >;
+  APITypes.InsertLocalAuthorityRegisterRequestMutationVariables,
+  APITypes.InsertLocalAuthorityRegisterRequestMutation
+>;
 export const insertSignUpData = /* GraphQL */ `mutation InsertSignUpData(
   $id: String!
   $email: String!
@@ -165,31 +162,31 @@ export const insertItemQuery = /* GraphQL */ `mutation InsertItemQuery(
     organisationType: $organisationType
   )
 }
-` as GeneratedMutation<APITypes.InsertItemQueryMutationVariables, APITypes.InsertItemQueryMutation>;
-export const deleteDeniedJoinRequest =
-  /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
+` as GeneratedMutation<
+  APITypes.InsertItemQueryMutationVariables,
+  APITypes.InsertItemQueryMutation
+>;
+export const deleteDeniedJoinRequest = /* GraphQL */ `mutation DeleteDeniedJoinRequest($id: String!) {
   deleteDeniedJoinRequest(id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteDeniedJoinRequestMutationVariables,
-    APITypes.DeleteDeniedJoinRequestMutation
-  >;
-export const deleteSchoolProfile =
-  /* GraphQL */ `mutation DeleteSchoolProfile($name: String!, $id: String!) {
+  APITypes.DeleteDeniedJoinRequestMutationVariables,
+  APITypes.DeleteDeniedJoinRequestMutation
+>;
+export const deleteSchoolProfile = /* GraphQL */ `mutation DeleteSchoolProfile($name: String!, $id: String!) {
   deleteSchoolProfile(name: $name, id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteSchoolProfileMutationVariables,
-    APITypes.DeleteSchoolProfileMutation
-  >;
-export const deleteCharityProfile =
-  /* GraphQL */ `mutation DeleteCharityProfile($name: String!, $id: String!) {
+  APITypes.DeleteSchoolProfileMutationVariables,
+  APITypes.DeleteSchoolProfileMutation
+>;
+export const deleteCharityProfile = /* GraphQL */ `mutation DeleteCharityProfile($name: String!, $id: String!) {
   deleteCharityProfile(name: $name, id: $id)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteCharityProfileMutationVariables,
-    APITypes.DeleteCharityProfileMutation
-  >;
+  APITypes.DeleteCharityProfileMutationVariables,
+  APITypes.DeleteCharityProfileMutation
+>;
 export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   $name: String!
   $nameId: String!
@@ -201,14 +198,13 @@ export const acceptPrivacyPolicy = /* GraphQL */ `mutation AcceptPrivacyPolicy(
   APITypes.AcceptPrivacyPolicyMutationVariables,
   APITypes.AcceptPrivacyPolicyMutation
 >;
-export const deleteSignUpData =
-  /* GraphQL */ `mutation DeleteSignUpData($id: String!, $email: String!) {
+export const deleteSignUpData = /* GraphQL */ `mutation DeleteSignUpData($id: String!, $email: String!) {
   deleteSignUpData(id: $id, email: $email)
 }
 ` as GeneratedMutation<
-    APITypes.DeleteSignUpDataMutationVariables,
-    APITypes.DeleteSignUpDataMutation
-  >;
+  APITypes.DeleteSignUpDataMutationVariables,
+  APITypes.DeleteSignUpDataMutation
+>;
 export const updateUser = /* GraphQL */ `mutation UpdateUser(
   $userType: String!
   $name: String!
@@ -230,7 +226,10 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     department: $department
   )
 }
-` as GeneratedMutation<APITypes.UpdateUserMutationVariables, APITypes.UpdateUserMutation>;
+` as GeneratedMutation<
+  APITypes.UpdateUserMutationVariables,
+  APITypes.UpdateUserMutation
+>;
 export const deleteUserProfile = /* GraphQL */ `mutation DeleteUserProfile(
   $userType: String!
   $name: String!
@@ -242,4 +241,35 @@ export const deleteUserProfile = /* GraphQL */ `mutation DeleteUserProfile(
 ` as GeneratedMutation<
   APITypes.DeleteUserProfileMutationVariables,
   APITypes.DeleteUserProfileMutation
+>;
+export const addAdditionalUser = /* GraphQL */ `mutation AddAdditionalUser(
+  $id: String!
+  $name: String!
+  $localAuthority: String!
+  $type: String!
+  $email: String!
+  $school: String
+  $jobTitle: String!
+  $phone: String
+  $charityName: String
+  $urn: String
+  $department: String
+) {
+  addAdditionalUser(
+    id: $id
+    name: $name
+    localAuthority: $localAuthority
+    type: $type
+    email: $email
+    school: $school
+    jobTitle: $jobTitle
+    phone: $phone
+    charityName: $charityName
+    urn: $urn
+    department: $department
+  )
+}
+` as GeneratedMutation<
+  APITypes.AddAdditionalUserMutationVariables,
+  APITypes.AddAdditionalUserMutation
 >;

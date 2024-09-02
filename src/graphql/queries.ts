@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from '../types/api';
+import * as APITypes from "../types/api";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
@@ -133,7 +133,10 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolsByLaQueryVariables, APITypes.GetSchoolsByLaQuery>;
+` as GeneratedQuery<
+  APITypes.GetSchoolsByLaQueryVariables,
+  APITypes.GetSchoolsByLaQuery
+>;
 export const getSchools = /* GraphQL */ `query GetSchools {
   getSchools {
     urn
@@ -196,7 +199,10 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolsQueryVariables, APITypes.GetSchoolsQuery>;
+` as GeneratedQuery<
+  APITypes.GetSchoolsQueryVariables,
+  APITypes.GetSchoolsQuery
+>;
 export const getCharities = /* GraphQL */ `query GetCharities {
   getCharities {
     id
@@ -250,7 +256,10 @@ export const getCharities = /* GraphQL */ `query GetCharities {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharitiesQueryVariables, APITypes.GetCharitiesQuery>;
+` as GeneratedQuery<
+  APITypes.GetCharitiesQueryVariables,
+  APITypes.GetCharitiesQuery
+>;
 export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: String!) {
   getCharitiesByLa(name: $name) {
     id
@@ -304,7 +313,10 @@ export const getCharitiesByLa = /* GraphQL */ `query GetCharitiesByLa($name: Str
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharitiesByLaQueryVariables, APITypes.GetCharitiesByLaQuery>;
+` as GeneratedQuery<
+  APITypes.GetCharitiesByLaQueryVariables,
+  APITypes.GetCharitiesByLaQuery
+>;
 export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
   getRegisteredSchools {
     urn
@@ -371,8 +383,7 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
   APITypes.GetRegisteredSchoolsQueryVariables,
   APITypes.GetRegisteredSchoolsQuery
 >;
-export const getRegisteredSchoolsByLa =
-  /* GraphQL */ `query GetRegisteredSchoolsByLa($localAuthority: String!) {
+export const getRegisteredSchoolsByLa = /* GraphQL */ `query GetRegisteredSchoolsByLa($localAuthority: String!) {
   getRegisteredSchoolsByLa(localAuthority: $localAuthority) {
     urn
     name
@@ -435,9 +446,9 @@ export const getRegisteredSchoolsByLa =
   }
 }
 ` as GeneratedQuery<
-    APITypes.GetRegisteredSchoolsByLaQueryVariables,
-    APITypes.GetRegisteredSchoolsByLaQuery
-  >;
+  APITypes.GetRegisteredSchoolsByLaQueryVariables,
+  APITypes.GetRegisteredSchoolsByLaQuery
+>;
 export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
   getLocalAuthorities {
     code
@@ -448,7 +459,10 @@ export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetLocalAuthoritiesQueryVariables, APITypes.GetLocalAuthoritiesQuery>;
+` as GeneratedQuery<
+  APITypes.GetLocalAuthoritiesQueryVariables,
+  APITypes.GetLocalAuthoritiesQuery
+>;
 export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
   getJoinRequests {
     id
@@ -469,9 +483,11 @@ export const getJoinRequests = /* GraphQL */ `query GetJoinRequests {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetJoinRequestsQueryVariables, APITypes.GetJoinRequestsQuery>;
-export const getSchoolProfile =
-  /* GraphQL */ `query GetSchoolProfile($name: String!, $id: String!) {
+` as GeneratedQuery<
+  APITypes.GetJoinRequestsQueryVariables,
+  APITypes.GetJoinRequestsQuery
+>;
+export const getSchoolProfile = /* GraphQL */ `query GetSchoolProfile($name: String!, $id: String!) {
   getSchoolProfile(name: $name, id: $id) {
     name
     id
@@ -514,9 +530,11 @@ export const getSchoolProfile =
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolProfileQueryVariables, APITypes.GetSchoolProfileQuery>;
-export const getCharityProfile =
-  /* GraphQL */ `query GetCharityProfile($name: String!, $id: String!) {
+` as GeneratedQuery<
+  APITypes.GetSchoolProfileQueryVariables,
+  APITypes.GetSchoolProfileQuery
+>;
+export const getCharityProfile = /* GraphQL */ `query GetCharityProfile($name: String!, $id: String!) {
   getCharityProfile(name: $name, id: $id) {
     name
     id
@@ -559,7 +577,10 @@ export const getCharityProfile =
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharityProfileQueryVariables, APITypes.GetCharityProfileQuery>;
+` as GeneratedQuery<
+  APITypes.GetCharityProfileQueryVariables,
+  APITypes.GetCharityProfileQuery
+>;
 export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser($email: String!) {
   getLocalAuthorityUser(email: $email) {
     name
@@ -609,7 +630,10 @@ export const getSchoolUser = /* GraphQL */ `query GetSchoolUser($email: String!)
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolUserQueryVariables, APITypes.GetSchoolUserQuery>;
+` as GeneratedQuery<
+  APITypes.GetSchoolUserQueryVariables,
+  APITypes.GetSchoolUserQuery
+>;
 export const getSchoolUsers = /* GraphQL */ `query GetSchoolUsers($id: String!) {
   getSchoolUsers(id: $id) {
     name
@@ -621,7 +645,10 @@ export const getSchoolUsers = /* GraphQL */ `query GetSchoolUsers($id: String!) 
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolUsersQueryVariables, APITypes.GetSchoolUsersQuery>;
+` as GeneratedQuery<
+  APITypes.GetSchoolUsersQueryVariables,
+  APITypes.GetSchoolUsersQuery
+>;
 export const getCharityUser = /* GraphQL */ `query GetCharityUser($email: String!) {
   getCharityUser(email: $email) {
     name
@@ -633,7 +660,10 @@ export const getCharityUser = /* GraphQL */ `query GetCharityUser($email: String
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharityUserQueryVariables, APITypes.GetCharityUserQuery>;
+` as GeneratedQuery<
+  APITypes.GetCharityUserQueryVariables,
+  APITypes.GetCharityUserQuery
+>;
 export const getCharityUsers = /* GraphQL */ `query GetCharityUsers($id: String!) {
   getCharityUsers(id: $id) {
     name
@@ -645,7 +675,10 @@ export const getCharityUsers = /* GraphQL */ `query GetCharityUsers($id: String!
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharityUsersQueryVariables, APITypes.GetCharityUsersQuery>;
+` as GeneratedQuery<
+  APITypes.GetCharityUsersQueryVariables,
+  APITypes.GetCharityUsersQuery
+>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id
@@ -656,9 +689,11 @@ export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSignUpDataQueryVariables, APITypes.GetSignUpDataQuery>;
-export const getSchoolsNearby =
-  /* GraphQL */ `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
+` as GeneratedQuery<
+  APITypes.GetSignUpDataQueryVariables,
+  APITypes.GetSignUpDataQuery
+>;
+export const getSchoolsNearby = /* GraphQL */ `query GetSchoolsNearby($postcode: String!, $distance: Float!) {
   getSchoolsNearby(postcode: $postcode, distance: $distance) {
     urn
     name
@@ -720,9 +755,11 @@ export const getSchoolsNearby =
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetSchoolsNearbyQueryVariables, APITypes.GetSchoolsNearbyQuery>;
-export const getCharitiesNearby =
-  /* GraphQL */ `query GetCharitiesNearby($postcode: String!, $distance: Float!) {
+` as GeneratedQuery<
+  APITypes.GetSchoolsNearbyQueryVariables,
+  APITypes.GetSchoolsNearbyQuery
+>;
+export const getCharitiesNearby = /* GraphQL */ `query GetCharitiesNearby($postcode: String!, $distance: Float!) {
   getCharitiesNearby(postcode: $postcode, distance: $distance) {
     id
     localAuthority
@@ -775,9 +812,11 @@ export const getCharitiesNearby =
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetCharitiesNearbyQueryVariables, APITypes.GetCharitiesNearbyQuery>;
-export const getSchoolJoinRequestsByLa =
-  /* GraphQL */ `query GetSchoolJoinRequestsByLa($localAuthority: String!) {
+` as GeneratedQuery<
+  APITypes.GetCharitiesNearbyQueryVariables,
+  APITypes.GetCharitiesNearbyQuery
+>;
+export const getSchoolJoinRequestsByLa = /* GraphQL */ `query GetSchoolJoinRequestsByLa($localAuthority: String!) {
   getSchoolJoinRequestsByLa(localAuthority: $localAuthority) {
     id
     name
@@ -798,11 +837,10 @@ export const getSchoolJoinRequestsByLa =
   }
 }
 ` as GeneratedQuery<
-    APITypes.GetSchoolJoinRequestsByLaQueryVariables,
-    APITypes.GetSchoolJoinRequestsByLaQuery
-  >;
-export const getCharityJoinRequestsByLa =
-  /* GraphQL */ `query GetCharityJoinRequestsByLa($localAuthority: String!) {
+  APITypes.GetSchoolJoinRequestsByLaQueryVariables,
+  APITypes.GetSchoolJoinRequestsByLaQuery
+>;
+export const getCharityJoinRequestsByLa = /* GraphQL */ `query GetCharityJoinRequestsByLa($localAuthority: String!) {
   getCharityJoinRequestsByLa(localAuthority: $localAuthority) {
     id
     name
@@ -823,9 +861,9 @@ export const getCharityJoinRequestsByLa =
   }
 }
 ` as GeneratedQuery<
-    APITypes.GetCharityJoinRequestsByLaQueryVariables,
-    APITypes.GetCharityJoinRequestsByLaQuery
-  >;
+  APITypes.GetCharityJoinRequestsByLaQueryVariables,
+  APITypes.GetCharityJoinRequestsByLaQuery
+>;
 export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
   getAdminTileStats {
     la {
@@ -843,9 +881,11 @@ export const getAdminTileStats = /* GraphQL */ `query GetAdminTileStats {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetAdminTileStatsQueryVariables, APITypes.GetAdminTileStatsQuery>;
-export const getLaStats =
-  /* GraphQL */ `query GetLaStats($name: String!, $nameId: String!, $email: String!) {
+` as GeneratedQuery<
+  APITypes.GetAdminTileStatsQueryVariables,
+  APITypes.GetAdminTileStatsQuery
+>;
+export const getLaStats = /* GraphQL */ `query GetLaStats($name: String!, $nameId: String!, $email: String!) {
   getLaStats(name: $name, nameId: $nameId, email: $email) {
     schoolRequests
     charityRequests
@@ -853,7 +893,10 @@ export const getLaStats =
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetLaStatsQueryVariables, APITypes.GetLaStatsQuery>;
+` as GeneratedQuery<
+  APITypes.GetLaStatsQueryVariables,
+  APITypes.GetLaStatsQuery
+>;
 export const getSchoolsNearbyWithProfile = /* GraphQL */ `query GetSchoolsNearbyWithProfile(
   $postcode: String!
   $distance: Float!
@@ -928,13 +971,17 @@ export const getCharitiesNearbyWithProfile = /* GraphQL */ `query GetCharitiesNe
   APITypes.GetCharitiesNearbyWithProfileQueryVariables,
   APITypes.GetCharitiesNearbyWithProfileQuery
 >;
-export const hasSchoolProfile =
-  /* GraphQL */ `query HasSchoolProfile($name: String!, $id: String!) {
+export const hasSchoolProfile = /* GraphQL */ `query HasSchoolProfile($name: String!, $id: String!) {
   hasSchoolProfile(name: $name, id: $id)
 }
-` as GeneratedQuery<APITypes.HasSchoolProfileQueryVariables, APITypes.HasSchoolProfileQuery>;
-export const hasCharityProfile =
-  /* GraphQL */ `query HasCharityProfile($name: String!, $id: String!) {
+` as GeneratedQuery<
+  APITypes.HasSchoolProfileQueryVariables,
+  APITypes.HasSchoolProfileQuery
+>;
+export const hasCharityProfile = /* GraphQL */ `query HasCharityProfile($name: String!, $id: String!) {
   hasCharityProfile(name: $name, id: $id)
 }
-` as GeneratedQuery<APITypes.HasCharityProfileQueryVariables, APITypes.HasCharityProfileQuery>;
+` as GeneratedQuery<
+  APITypes.HasCharityProfileQueryVariables,
+  APITypes.HasCharityProfileQuery
+>;
