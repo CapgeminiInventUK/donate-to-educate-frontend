@@ -82,7 +82,7 @@ const Home: FC = () => {
       <div className={styles.howItWorks}>
         <Image alt="Helping pupils in your local authority" image={PupilsTalking} />
         <div className={styles.textContainer}>
-          <Header text="Helping pupils in your local authority" />
+          <Header className={styles.header} text="Helping pupils in your local authority" />
           <p>
             In the UK, children experiencing education poverty are missing school because they
             don&apos;t have essential supplies.
@@ -99,25 +99,21 @@ const Home: FC = () => {
       </div>
 
       <div className={styles.helpingPupils}>
-        <div className={styles.content}>
-          <div>
-            <Header text="Support our mission" />
-            <p>
-              If you&apos;re a business that wants to support schools and charities in your
-              community, please{' '}
-              <Link to={Paths.CONTACT} className={styles.whiteLink}>
-                contact our team.
-              </Link>
-            </p>
-            <p>
-              Maybe you can donate tech or office supplies, or you can support schools and charities
-              to distribute products. Whatever you can help us with, we want to hear from you.
-            </p>
-          </div>
+        <div className={styles.textContainer}>
+          <Header text="Support our mission" />
+          <p>
+            If you&apos;re a business that wants to support schools and charities in your community,
+            please{' '}
+            <Link to={Paths.CONTACT} className={styles.whiteLink}>
+              contact our team.
+            </Link>
+          </p>
+          <p>
+            Maybe you can donate tech or office supplies, or you can support schools and charities
+            to distribute products. Whatever you can help us with, we want to hear from you.
+          </p>
         </div>
-        <div className={styles.supporters}>
-          <Image alt="Supporters" image={donateToUs} className={styles.donateToUs} />
-        </div>
+        <Image alt="Supporters" image={donateToUs} className={styles.donateToUs} />
       </div>
     </div>
   );
