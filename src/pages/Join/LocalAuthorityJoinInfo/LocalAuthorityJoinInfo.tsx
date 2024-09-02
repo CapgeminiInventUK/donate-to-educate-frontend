@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './LocallAuthorityJoinInfo.module.scss';
+import styles from './LocalAuthorityJoinInfo.module.scss';
 import Phone from '@/assets/tiles/Phone';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
@@ -14,7 +14,7 @@ const LocalAuthorityJoinInfo: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <Card>
-        <h2>Register your local authority</h2>
+        <h1>Register your local authority</h1>
         <p>
           If you work for a local authority in England or Wales, you can support us by managing the
           schools and charities in your area.
