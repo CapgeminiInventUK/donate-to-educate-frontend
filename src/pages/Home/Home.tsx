@@ -82,7 +82,7 @@ const Home: FC = () => {
       <div className={styles.howItWorks}>
         <Image alt="Helping pupils in your local authority" image={PupilsTalking} />
         <div className={styles.textContainer}>
-          <Header className={styles.header} text="Helping pupils in your local authority" />
+          <h2 className={styles.header}>Helping pupils in your local authority</h2>
           <p>
             In the UK, children experiencing education poverty are missing school because they
             don&apos;t have essential supplies.
@@ -100,7 +100,7 @@ const Home: FC = () => {
 
       <div className={styles.helpingPupils}>
         <div className={styles.textContainer}>
-          <Header text="Support our mission" />
+          <h2>Support our mission</h2>
           <p>
             If you&apos;re a business that wants to support schools and charities in your community,
             please{' '}
