@@ -64,7 +64,7 @@ const PublicDashboard: FC<PublicDashboardProps> = ({ type, profile, setPreview, 
         {postcode && (
           <div className={styles.nearbyCharitiesTable}>
             <hr />
-            <FindCharityTable postcode={postcode} type={type} />
+            <FindCharityTable postcode={postcode} type={type} currentCharityId={id} />
           </div>
         )}
         {setPreview && (

@@ -580,6 +580,7 @@ export interface FindCharityTableProps {
   title?: string;
   postcode: string;
   type?: InstitutionType;
+  currentCharityId?: string;
 }
 
 export interface LocationStateOrRedirectProps<T> {
