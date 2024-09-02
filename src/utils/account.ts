@@ -87,5 +87,9 @@ export const getGetUsersQueryFromType = (type?: AccountType): string =>
       : getCharityUsers;
 
 export async function removeUser(): Promise<void> {
-  await deleteUser();
+  try {
+    await deleteUser();
+  } catch (error) {
+    throw new Error(String(error));
+  }
 }
