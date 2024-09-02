@@ -3,13 +3,13 @@ import { FC } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './ManageInstitution.module.scss';
 import { InstitutionType } from '@/types/data';
-import { GraphQLQuery } from 'aws-amplify/api';
-import { client } from '@/graphqlClient';
-import { useQuery } from '@tanstack/react-query';
-import { GetSchoolProfileQuery, GetCharityProfileQuery } from '@/types/api';
-import { getSchoolProfile, getCharityProfile } from '@/graphql/queries';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Spinner from '@/components/Spinner/Spinner';
+// import { GraphQLQuery } from 'aws-amplify/api';
+// import { client } from '@/graphqlClient';
+// import { useQuery } from '@tanstack/react-query';
+// import { GetSchoolProfileQuery, GetCharityProfileQuery } from '@/types/api';
+// import { getSchoolProfile, getCharityProfile } from '@/graphql/queries';
+// import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+// import Spinner from '@/components/Spinner/Spinner';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import Phone from '@/assets/icons/Phone';
@@ -30,23 +30,22 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     },
   };
 
-  // getCharityProfile keeps calling getCharities for some reason. Ask Jake about this on monday
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['registeredCharities'],
-    queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetSchoolProfileQuery | GetCharityProfileQuery>
-      >({
-        query: type === InstitutionType.SCHOOL ? getSchoolProfile : getCharityProfile,
-        variables: {
-          name: institutionProfile.name,
-          id: institutionProfile.id,
-        },
-      });
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ['registeredCharities'],
+  //   queryFn: async () => {
+  //     const { data } = await client.graphql<
+  //       GraphQLQuery<GetSchoolProfileQuery | GetCharityProfileQuery>
+  //     >({
+  //       query: type === InstitutionType.SCHOOL ? getSchoolProfile : getCharityProfile,
+  //       variables: {
+  //         name: institutionProfile.name,
+  //         id: institutionProfile.id,
+  //       },
+  //     });
 
-      return data;
-    },
-  });
+  //     return data;
+  //   },
+  // });
 
   const userDetails = {
     name: 'John Doe',
@@ -60,16 +59,13 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     lastName: 'Doe',
   };
 
-  // eslint-disable-next-line no-console
-  console.log('Data', data);
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return <ErrorBanner />;
-  }
+  // if (isError) {
+  //   return <ErrorBanner />;
+  // }
 
   return (
     <div className={styles.container}>
