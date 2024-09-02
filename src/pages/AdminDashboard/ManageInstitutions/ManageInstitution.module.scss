@@ -1,0 +1,42 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  padding: 4px 100px 50px;
+}
+
+.body {
+  background: g.$primary-white;
+  padding: 50px 60px 50px;
+  border-radius: 10px;
+
+  .title {
+    color: g.$primary-dark-blue;
+  }
+
+  .contactArea {
+    margin: 30px 0 0;
+
+    .contactAreaItem {
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: g.$primary-dark-blue;
+    }
+  }
+
+  .addressArea {
+    border-left: 8px solid #9ea3ae;
+    padding-left: 20px;
+    margin: 40px 0 20px;
+    display: flex;
+    flex-direction: column;
+    color: g.$primary-dark-blue;
+
+    p {
+      margin: 5px 0;
+      color: g.$primary-dark-blue;
+    }
+  }
+}

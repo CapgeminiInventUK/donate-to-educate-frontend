@@ -739,6 +739,7 @@ export interface InfoTableProps {
   icon?: JSX.Element;
   className?: string;
   rowClassName?: string;
+  theme?: string;
   onEdit?: () => void;
   onDelete?: (key: string) => Promise<void>;
   onChange?: (key: string, value: string) => void;
@@ -762,10 +763,16 @@ export interface EditingRowProps {
 export interface ManageDetailsSectionProps {
   userData: UserDetails;
   type?: AccountType;
+  theme?: 'dark';
 }
 
 export interface ManageInstitutionSectionProps {
   type?: AccountType | '';
+}
+
+export interface RegisteredUsersSectionProps {
+  userData: UserDetails;
+  type?: AccountType;
 }
 
 export interface ShowHideProps {

@@ -76,7 +76,7 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
       >({
         query: getGetUsersQueryFromType(type),
         variables: {
-          email,
+          id,
         },
       });
       return data;
