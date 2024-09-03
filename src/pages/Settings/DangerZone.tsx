@@ -4,7 +4,6 @@ import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
 import { checkIfInTestEnvForAuthMode, replaceSpacesWithHyphens } from '@/utils/globals';
 import { ManageDetailsSectionProps } from '@/types/props';
-import { UserDetails } from '@/types/data';
 import useAuthToken from '@/hooks/useAuthToken';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -14,20 +13,10 @@ import {
   DeleteCharityProfileMutation,
   DeleteSchoolProfileMutation,
   DeleteUserProfileMutation,
-  GetCharityUsersQuery,
-  GetLocalAuthorityUsersQuery,
-  GetSchoolUsersQuery,
 } from '@/types/api';
-import Spinner from '@/components/Spinner/Spinner';
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import {
-  getDeleteProfileQueryFromType,
-  getDeleteTableData,
-  getGetUsersQueryFromType,
-  removeUser,
-} from '@/utils/account';
+import { getDeleteProfileQueryFromType, getDeleteTableData, removeUser } from '@/utils/account';
 
-const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
+const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUsers }) => {
   const { institutionName, id, email, name } = userData;
 
   const deleteTableData = getDeleteTableData(type, institutionName, email);
@@ -69,32 +58,6 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
     },
   });
 
-  const { isLoading, data, isError } = useQuery({
-    queryKey: [`get-${type}-user-${email}`],
-    queryFn: async () => {
-      const { data } = await client.graphql<
-        GraphQLQuery<GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery>
-      >({
-        query: getGetUsersQueryFromType(type),
-        variables: {
-          id,
-        },
-      });
-      return data;
-    },
-  });
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return <ErrorBanner />;
-  }
-
-  const numberOfUsers =
-    (data && Object.values(data).map((value) => value as UserDetails[])[0]?.length) ?? 0;
-
   // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
   // TODO - Log user out and redirect after deleting user/profile
   const onDelete = async (key: string): Promise<void> => {
@@ -109,13 +72,13 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData }) => {
       alert('cannae do this rn');
       return;
     }
-    if (numberOfUsers < 2) {
+    if (numberOfUsers && numberOfUsers < 2) {
       //confirm delete popup for deleting school/charity profile, then ->
       await removeProfile();
       await deleteUserRefetch();
       await removeUser();
     }
-    if (numberOfUsers > 1) {
+    if (numberOfUsers && numberOfUsers > 1) {
       // TODO - Popup for if more than 1 user and attempt to delete profile
     }
   };

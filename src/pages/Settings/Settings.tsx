@@ -60,8 +60,8 @@ const Settings: FC = () => {
       type
     );
 
-  if (!userData) {
-    return <ErrorBanner />;
+  if (!userData?.name) {
+    return <Spinner />;
   }
 
   return (

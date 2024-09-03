@@ -2,23 +2,33 @@ import { ManageInstitutionProps } from '@/types/props';
 import { FC } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './ManageInstitution.module.scss';
-import { InstitutionType } from '@/types/data';
-// import { GraphQLQuery } from 'aws-amplify/api';
-// import { client } from '@/graphqlClient';
-// import { useQuery } from '@tanstack/react-query';
-// import { GetSchoolProfileQuery, GetCharityProfileQuery } from '@/types/api';
-// import { getSchoolProfile, getCharityProfile } from '@/graphql/queries';
-// import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-// import Spinner from '@/components/Spinner/Spinner';
+import { Address, InstitutionType, UserDetails } from '@/types/data';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { client } from '@/graphqlClient';
+import { useQuery } from '@tanstack/react-query';
+import {
+  GetSchoolProfileQuery,
+  GetCharityProfileQuery,
+  GetLocalAuthorityUsersQuery,
+  GetCharityUsersQuery,
+  GetSchoolUsersQuery,
+  CharityProfile,
+  SchoolProfile,
+} from '@/types/api';
+import { getSchoolProfile, getCharityProfile } from '@/graphql/queries';
+import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import Spinner from '@/components/Spinner/Spinner';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
-import Phone from '@/assets/icons/Phone';
-import Email from '@/assets/icons/email';
 import RegisteredUsersSection from './RegisteredUsersSection';
 import DangerZone from '@/pages/Settings/DangerZone';
-import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { getGetUsersQueryFromType, getUserDetailsObjectFromQuery } from '@/utils/account';
+import AddressInset from '@/components/AddressInset/AddressInset';
+import { getDataValuesFromQueryObject } from '@/utils/api';
+import InstitutionContactInset from '@/components/InstitutionContactInset/InstitutionContactInset';
 
 const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfile }) => {
+  const { id, name } = institutionProfile;
   const content = {
     [InstitutionType.SCHOOL]: {
       icon: <School />,
@@ -30,66 +40,75 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     },
   };
 
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ['registeredCharities'],
-  //   queryFn: async () => {
-  //     const { data } = await client.graphql<
-  //       GraphQLQuery<GetSchoolProfileQuery | GetCharityProfileQuery>
-  //     >({
-  //       query: type === InstitutionType.SCHOOL ? getSchoolProfile : getCharityProfile,
-  //       variables: {
-  //         name: institutionProfile.name,
-  //         id: institutionProfile.id,
-  //       },
-  //     });
+  const {
+    isLoading: usersIsLoading,
+    data: usersData,
+    isError: usersIsError,
+  } = useQuery({
+    queryKey: [`get-${type}-user-${id}`],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery>
+      >({
+        query: getGetUsersQueryFromType(type),
+        variables: {
+          id,
+        },
+      });
+      return data;
+    },
+  });
 
-  //     return data;
-  //   },
-  // });
+  const {
+    data: profileData,
+    isLoading: profileIsLoading,
+    isError: profileIsError,
+  } = useQuery({
+    queryKey: [`get-${type}-profile=${id}`],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetSchoolProfileQuery | GetCharityProfileQuery>
+      >({
+        query: type === InstitutionType.SCHOOL ? getSchoolProfile : getCharityProfile,
+        variables: {
+          name,
+          id,
+        },
+      });
 
-  const userDetails = {
-    name: 'John Doe',
-    jobTitle: 'Software Engineer',
-    email: `${type}@test.com`,
-    phone: '072345543854',
-    institutionName: institutionProfile.name,
-    id: type === InstitutionType.CHARITY ? '12fb794a-8be7-4588-8180-29c47b38771a' : '125807',
-    department: 'Computer Science',
-    firstName: 'John',
-    lastName: 'Doe',
-  };
+      return data;
+    },
+  });
 
-  // if (isLoading) {
-  //   return <Spinner />;
-  // }
+  if (profileIsLoading || usersIsLoading) {
+    return <Spinner />;
+  }
 
-  // if (isError) {
-  //   return <ErrorBanner />;
-  // }
+  if (profileIsError || usersIsError) {
+    return <ErrorBanner />;
+  }
+
+  const users = usersData
+    ? Object.values(usersData).flatMap((value) =>
+        (value as UserDetails[]).map((user) => getUserDetailsObjectFromQuery(user, type))
+      )
+    : [];
+
+  const { header } =
+    getDataValuesFromQueryObject<SchoolProfile | CharityProfile>(
+      profileData as GraphQLQuery<SchoolProfile | CharityProfile>
+    ) ?? {};
 
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
       <div className={styles.body}>
         <div className={styles.log}>{content.school.icon}</div>
-        <h1 className={styles.title}>{institutionProfile.name}</h1>
-        <div className={styles.contactArea}>
-          <div className={styles.contactAreaItem}>
-            <Phone /> 01883234874
-          </div>
-          <div className={styles.contactAreaItem}>
-            <Email /> email@ormiston.edu.ac.uk
-          </div>
-        </div>
-        <div className={styles.addressArea}>
-          <div>{checkForStringAndReturnEmptyIfFalsy(institutionProfile?.name)}</div>
-          <div>{checkForStringAndReturnEmptyIfFalsy(institutionProfile?.street)}</div>
-          <div>{checkForStringAndReturnEmptyIfFalsy(institutionProfile?.town)}</div>
-          <div>{checkForStringAndReturnEmptyIfFalsy(institutionProfile?.localAuthority)}</div>
-          <div>{checkForStringAndReturnEmptyIfFalsy(institutionProfile?.postcode)}</div>
-        </div>
-        <RegisteredUsersSection userData={userDetails} type={type} />
-        <DangerZone userData={userDetails} type={type} />
+        <h1 className={styles.title}>{name}</h1>
+        <InstitutionContactInset header={header} />
+        <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
+        <RegisteredUsersSection userData={users} type={type} />
+        <DangerZone userData={users[0]} type={type} numberOfUsers={users?.length ?? 0} />
       </div>
     </div>
   );
