@@ -24,18 +24,21 @@ import {
   RequestFormState,
   UserDetails,
   InstitutionType,
+  Address,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
+  CharityProfileHeader,
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
   ProfileItems,
   SchoolProfile,
+  SchoolProfileHeader,
   SearchResult,
   UpdateCharityProfileMutation,
   UpdateSchoolProfileMutation,
@@ -366,7 +369,8 @@ export interface ActionTileProps {
 
 export interface AddressInsetProps {
   formData: FormDataItem[];
-  componentData: ComponentDataPropsType;
+  componentData?: ComponentDataPropsType;
+  addressDetails?: Address;
 }
 
 export interface FormErrorsProps {
@@ -764,6 +768,7 @@ export interface ManageDetailsSectionProps {
   userData: UserDetails;
   type?: AccountType;
   theme?: 'dark';
+  numberOfUsers?: number;
 }
 
 export interface ManageInstitutionSectionProps {
@@ -771,7 +776,7 @@ export interface ManageInstitutionSectionProps {
 }
 
 export interface RegisteredUsersSectionProps {
-  userData: UserDetails;
+  userData: UserDetails[];
   type?: AccountType;
 }
 
@@ -833,4 +838,8 @@ export interface PostcodeEditProps {
 export interface ManageInstitutionProps {
   type: InstitutionType;
   institutionProfile: InstitutionProfile;
+}
+
+export interface InstitutionContactInsetProps {
+  header?: SchoolProfileHeader | CharityProfileHeader | null;
 }

@@ -320,3 +320,11 @@ export interface StatusColumn {
   dataIndex: string;
   render: (text: string) => JSX.Element;
 }
+
+export interface Address {
+  name: string;
+  street?: string;
+  town?: string;
+  localAuthority: string;
+  postcode: string;
+}
