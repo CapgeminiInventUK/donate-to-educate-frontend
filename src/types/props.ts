@@ -836,8 +836,9 @@ export interface PostcodeEditProps {
 }
 
 export interface ManageInstitutionProps {
-  type: InstitutionType;
+  type: AccountType;
   institutionProfile: InstitutionProfile;
+  header?: SchoolProfileHeader | CharityProfileHeader;
 }
 
 export interface InstitutionContactInsetProps {

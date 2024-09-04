@@ -1,42 +1,16 @@
-import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
-import { getLocalAuthorityUsers } from '@/graphql/queries';
-import { client } from '@/graphqlClient';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import { GetLocalAuthorityUsersQuery } from '@/types/api';
-import { useQuery } from '@tanstack/react-query';
-import { GraphQLQuery } from 'aws-amplify/api';
+import { InstitutionProfile } from '@/types/data';
 import { FC } from 'react';
+import ManageInstitution from '../ManageInstitutions/ManageInstitution';
 
 const LocalAuthorityUsers: FC = () => {
-  const {
-    state: { id, name },
-  } = useLocationStateOrRedirect<{ id: string; name: string }>(Paths.ADMIN_DASHBOARD_LA_VIEW_USERS);
+  const { state } = useLocationStateOrRedirect<{ id: string; name: string }>(
+    Paths.ADMIN_DASHBOARD_LA_VIEW_USERS
+  );
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: [`la-users-${name}`],
-    queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetLocalAuthorityUsersQuery>>({
-        query: getLocalAuthorityUsers,
-        variables: {
-          id,
-        },
-      });
-      return data;
-    },
-  });
+  const profile: InstitutionProfile = { ...state, localAuthority: state.name };
 
-  if (isError) {
-    return <ErrorBanner />;
-  }
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(data);
-  return <div>{name}</div>;
+  return <ManageInstitution type="localAuthority" institutionProfile={profile} />;
 };
 export default LocalAuthorityUsers;
