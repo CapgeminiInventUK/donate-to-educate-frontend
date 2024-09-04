@@ -17,6 +17,7 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({ userData, typ
     };
     if (type === 'localAuthority') {
       manageDetails.Department = checkForStringAndReturnEmptyIfFalsy(user.department);
+      manageDetails['Notes about this user'] = checkForStringAndReturnEmptyIfFalsy(user.notes);
     }
     return manageDetails;
   });
@@ -24,7 +25,7 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({ userData, typ
   return (
     tableValues && (
       <div className={styles.RegisteredUsersSection}>
-        <h2>1 of 3 users registered</h2>
+        <h2>{tableValues.length} of 3 users registered</h2>
         {tableValues.map((user, key) => (
           <InfoTable key={key} originalTableValues={{ ...user }} theme="light" />
         ))}

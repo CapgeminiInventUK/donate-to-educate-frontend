@@ -300,6 +300,7 @@ export interface UserDetails {
   department?: string;
   firstName?: string;
   lastName?: string;
+  notes?: string;
 }
 
 export interface ManageUserDetails {
@@ -308,6 +309,7 @@ export interface ManageUserDetails {
   Phone: string;
   'Job title or role': string;
   Department?: string;
+  'Notes about this user'?: string;
 }
 
 export enum InstitutionType {
