@@ -19,6 +19,7 @@ import Settings from '@/assets/icons/Settings';
 import Paths from '@/config/paths';
 import { Link } from 'react-router-dom';
 import { InstitutionType } from '@/types/data';
+import { useStore } from '@/stores/useStore';
 
 export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   isAdminView = false,
@@ -63,7 +64,10 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
 
   const onSave = async (): Promise<void> => {
     toggleEditMode(false);
-    await refetch().then(() => setPreviousBanner(banner));
+    await refetch().then(() => {
+      setPreviousBanner(banner);
+      void useStore.getState().getCurrentUser();
+    });
   };
 
   return (
