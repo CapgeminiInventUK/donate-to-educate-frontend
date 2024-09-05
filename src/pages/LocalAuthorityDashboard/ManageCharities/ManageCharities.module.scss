@@ -17,59 +17,62 @@
   }
 }
 
-.borderLeft {
-  border-left: g.$primary-light-blue solid 10px;
-  margin-bottom: 20px;
-
-  div {
-    margin-left: 20px;
-  }
-}
-
 .body {
   background: g.$primary-dark-blue;
   color: g.$primary-white;
   padding: 60px 50px;
   border-radius: 0 0 10px 10px;
 
-  @include g.md-breakpoint {
+  @include g.lg-breakpoint {
     padding: 25px;
   }
 
   .charitiesCard {
-    padding: 30px;
+    padding: 10px;
     border-top: g.$secondary-blue solid 18px;
 
-    .borderLeft {
-      border-left: g.$primary-light-blue solid 10px;
-      margin-bottom: 20px;
-
-      div {
-        margin-left: 20px;
-      }
+    @include g.md-breakpoint {
+      padding: 5px;
     }
   }
 }
 
-.actionsContainer {
-  display: flex;
-  justify-content: center;
+.subHeader {
+  margin-bottom: 60px;
+}
 
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 30px;
+.tableHeader {
+  margin-bottom: 0;
+}
+
+.registeredCharities {
+  padding: 40px;
+  border-radius: 10px;
+  background-color: g.$about-grey;
+  margin: 40px 0;
+
+  @include g.md-breakpoint {
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 20px 0 0;
   }
 }
 
-.statusDiv {
-  margin-top: 6px;
+.pillContainer {
+  padding: 40px 0;
 
-  .status {
-    margin-left: 10px;
+  @include g.md-breakpoint {
+    padding: 20px 0;
   }
 
-  .joined {
-    color: green;
+  @include g.sm-breakpoint {
+    padding: 10px 0;
   }
 }

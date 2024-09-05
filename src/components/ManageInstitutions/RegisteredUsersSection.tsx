@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './/RegisteredUsersSection.module.scss';
+import styles from './RegisteredUsersSection.module.scss';
 import InfoTable from '@/components/InfoTable/InfoTable';
 import { ManageUserDetails } from '@/types/data';
 import { getNameFromUserObject } from '@/utils/account';

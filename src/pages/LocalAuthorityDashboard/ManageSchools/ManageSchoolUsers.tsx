@@ -2,7 +2,6 @@ import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { InstitutionProfile, InstitutionType } from '@/types/data';
 import { FC } from 'react';
-import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
@@ -11,10 +10,11 @@ import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getDataValuesFromQueryObject } from '@/utils/api';
+import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution';
 
-const CharityUsers: FC = () => {
+const SchoolUsers: FC = () => {
   const { state } = useLocationStateOrRedirect<{ institution: InstitutionProfile }>(
-    Paths.ADMIN_DASHBOARD
+    Paths.LOCAL_AUTHORITY_DASHBOARD
   );
 
   const {
@@ -22,7 +22,7 @@ const CharityUsers: FC = () => {
   } = state;
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: [`get-charity-profile=${id}`],
+    queryKey: [`get-school-profile=${id}`],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
         query: getSchoolProfile,
@@ -49,10 +49,10 @@ const CharityUsers: FC = () => {
 
   return (
     <ManageInstitution
-      type={InstitutionType.CHARITY}
+      type={InstitutionType.SCHOOL}
       institutionProfile={state.institution}
       header={header ?? undefined}
     />
   );
 };
-export default CharityUsers;
+export default SchoolUsers;

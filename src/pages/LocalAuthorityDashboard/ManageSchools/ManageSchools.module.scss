@@ -22,48 +22,57 @@
     padding: 60px 50px;
     border-radius: 0 0 10px 10px;
 
-    @include g.md-breakpoint {
+    @include g.lg-breakpoint {
       padding: 25px;
     }
 
     .schoolsCard {
-      padding: 30px;
+      padding: 10px;
       border-top: g.$secondary-blue solid 18px;
+
+      @include g.md-breakpoint {
+        padding: 5px;
+      }
     }
   }
 }
 
-.borderLeft {
-  border-left: g.$primary-light-blue solid 10px;
-  margin-bottom: 20px;
+.subHeader {
+  margin-bottom: 60px;
+}
 
-  div {
-    margin-left: 20px;
+.tableHeader {
+  margin-bottom: 0;
+}
+
+.registeredSchools {
+  padding: 40px;
+  border-radius: 10px;
+  background-color: g.$about-grey;
+  margin: 40px 0;
+
+  @include g.md-breakpoint {
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 20px 0 0;
   }
 }
 
-.actionsContainer {
-  display: flex;
-  justify-content: center;
+.pillContainer {
+  padding: 40px 0;
 
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 30px;
-  }
-}
-
-.statusDiv {
-  display: flex;
-  justify-content: center;
-  margin-top: 6px;
-
-  .status {
-    display: flex;
-    justify-content: space-between;
+  @include g.md-breakpoint {
+    padding: 20px 0;
   }
 
-  .joined {
-    color: green;
+  @include g.sm-breakpoint {
+    padding: 10px 0;
   }
 }

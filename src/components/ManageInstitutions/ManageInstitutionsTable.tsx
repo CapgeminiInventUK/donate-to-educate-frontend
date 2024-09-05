@@ -5,7 +5,7 @@ import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
 import Paths from '@/config/paths';
-import dashboardStyles from '../AdminDashboard.module.scss';
+import dashboardStyles from '@/pages/AdminDashboard/AdminDashboard.module.scss';
 import styles from './ManageInstitutionsTable.module.scss';
 import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';

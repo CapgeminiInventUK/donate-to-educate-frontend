@@ -2,7 +2,7 @@ import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { InstitutionProfile } from '@/types/data';
 import { FC } from 'react';
-import ManageInstitution from '../ManageInstitutions/ManageInstitution';
+import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution';
 
 const LocalAuthorityUsers: FC = () => {
   const { state } = useLocationStateOrRedirect<{ id: string; name: string }>(

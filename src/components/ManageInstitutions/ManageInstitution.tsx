@@ -69,7 +69,7 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     <div className={styles.container}>
       <BackButton theme="blue" />
       <div className={styles.body}>
-        <div className={styles.log}>{icon}</div>
+        <div>{icon}</div>
         <h1 className={styles.title}>{name}</h1>
         <InstitutionContactInset header={header} />
         {type !== 'localAuthority' && (

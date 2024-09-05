@@ -14,7 +14,7 @@ import { getDataValuesFromQueryObject } from '@/utils/api';
 
 const CharityUsers: FC = () => {
   const { state } = useLocationStateOrRedirect<{ institution: InstitutionProfile }>(
-    Paths.ADMIN_DASHBOARD
+    Paths.LOCAL_AUTHORITY_DASHBOARD
   );
 
   const {
