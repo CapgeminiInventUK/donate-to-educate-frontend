@@ -53,6 +53,7 @@ const PendingCharities: FC<CharitiesTablesProps> = ({
         id,
         aboutCharity,
         charityAddress,
+        localAuthority,
       };
     }
   );

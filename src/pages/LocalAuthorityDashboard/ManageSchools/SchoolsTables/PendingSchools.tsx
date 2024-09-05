@@ -52,6 +52,7 @@ const PendingSchools: FC<SchoolsTablesProps> = ({
         phone,
         id,
         urn: checkForStringAndReturnEmptyIfFalsy(urn),
+        localAuthority,
       };
     }
   );
