@@ -19,6 +19,7 @@ import FormButton from '@/components/FormButton/FormButton';
 import ActionTiles from './ActionTiles';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 import { InstitutionType } from '@/types/data';
+import { useStore } from '@/stores/useStore';
 
 const EditableDashboard: FC<EditableDashboardProps> = ({
   banner,
@@ -72,7 +73,9 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
       setAbout(placeholderAboutText);
     }
     openNotification();
-    void refetch();
+    void refetch().then(() => {
+      void useStore.getState().getCurrentUser();
+    });
     toggleIsEditingAboutUs();
   };
 

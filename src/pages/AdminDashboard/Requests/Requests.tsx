@@ -53,26 +53,27 @@ const Requests: FC = () => {
               data={data}
               setSchoolOrCharityProperties={setSchoolOrCharityProperties}
             />
-          ) : stage === StageState.APPROVE_SCHOOL ? (
-            <ApprovalRequest
-              id={schoolOrCharityProperties.id}
-              setStage={setStage}
-              type={InstitutionType.SCHOOL}
-              name={schoolOrCharityProperties.name}
-              la={schoolOrCharityProperties.la}
-              user={schoolOrCharityProperties.user}
-              urn={schoolOrCharityProperties.urn}
-            />
           ) : (
-            stage === StageState.APPROVE_CHARITY && (
+            (stage === StageState.APPROVE_SCHOOL || stage === StageState.APPROVE_CHARITY) && (
               <ApprovalRequest
                 id={schoolOrCharityProperties.id}
                 setStage={setStage}
-                type={InstitutionType.CHARITY}
+                type={
+                  stage === StageState.APPROVE_SCHOOL
+                    ? InstitutionType.SCHOOL
+                    : InstitutionType.CHARITY
+                }
                 name={schoolOrCharityProperties.name}
                 la={schoolOrCharityProperties.la}
                 user={schoolOrCharityProperties.user}
-                charity={schoolOrCharityProperties.charity}
+                urn={
+                  stage === StageState.APPROVE_SCHOOL ? schoolOrCharityProperties.urn : undefined
+                }
+                charity={
+                  stage === StageState.APPROVE_CHARITY
+                    ? schoolOrCharityProperties.charity
+                    : undefined
+                }
               />
             )
           )}

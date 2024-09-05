@@ -7,7 +7,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetCharityProfileQuery } from '@/types/api';
 import { getCharityProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
-import InstitutionAdminView from '@/components/InstitutionAdminDashboard/InstitutionAdminView/InstitutionAdminView';
+import InstitutionAdminView from '@/components/InstitutionAdmin/InstitutionAdminView/InstitutionAdminView';
 import { InstitutionType } from '@/types/data';
 
 const CharityView: FC = () => {

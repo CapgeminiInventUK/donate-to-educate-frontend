@@ -7,7 +7,7 @@ import { GraphQLQuery } from 'aws-amplify/api';
 import { GetSchoolProfileQuery } from '@/types/api';
 import { getSchoolProfile } from '@/graphql/queries';
 import { useStore } from '@/stores/useStore';
-import InstitutionAdminView from '@/components/InstitutionAdminDashboard/InstitutionAdminView/InstitutionAdminView';
+import InstitutionAdminView from '@/components/InstitutionAdmin/InstitutionAdminView/InstitutionAdminView';
 import { InstitutionType } from '@/types/data';
 
 const SchoolAdminView: FC = () => {

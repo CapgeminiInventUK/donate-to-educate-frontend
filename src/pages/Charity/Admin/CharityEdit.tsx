@@ -11,11 +11,11 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import useAuthToken from '@/hooks/useAuthToken';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 import { InstitutionType, ItemsIconType } from '@/types/data';
-import ProductsListPage from '@/components/InstitutionAdminDashboard/ProductsListPage/ProductsListPage';
+import ProductsListPage from '@/components/InstitutionAdmin/ProductsListPage/ProductsListPage';
 import {
   getKeyFromType,
   getPageContent,
-} from '@/components/InstitutionAdminDashboard/ProductsListPage/utils';
+} from '@/components/InstitutionAdmin/ProductsListPage/utils';
 
 const CharityEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{

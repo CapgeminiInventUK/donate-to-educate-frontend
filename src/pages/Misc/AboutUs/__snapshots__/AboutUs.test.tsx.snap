@@ -168,6 +168,7 @@ exports[`renders correctly 1`] = `
               Powered by
             </p>
             <svg
+              aria-label="invent-logo"
               class="_inventLogo_1a4d78"
               fill="none"
               height="77"
@@ -399,6 +400,7 @@ exports[`renders correctly 1`] = `
             Powered by
           </p>
           <svg
+            aria-label="invent-logo"
             class="_inventLogo_1a4d78"
             fill="none"
             height="77"
