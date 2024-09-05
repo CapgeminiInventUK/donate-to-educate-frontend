@@ -24,7 +24,7 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({ userData, typ
 
   return (
     tableValues && (
-      <div className={styles.RegisteredUsersSection}>
+      <div className={styles.registeredUsersSection}>
         <h2>{tableValues.length} of 3 users registered</h2>
         {tableValues.map((user, key) => (
           <InfoTable key={key} originalTableValues={{ ...user }} theme="light" />

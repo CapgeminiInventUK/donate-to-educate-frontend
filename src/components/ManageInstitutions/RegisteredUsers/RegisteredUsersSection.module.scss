@@ -1,6 +1,6 @@
 @use '@assets/global.scss' as g;
 
-.RegisteredUsersSection {
+.registeredUsersSection {
   margin: 50px 0 50px;
 
   .addUserButton {
@@ -12,5 +12,16 @@
     padding-bottom: 20px;
     margin-bottom: 30px;
     border-bottom: 1px solid g.$primary-light-blue;
+  }
+}
+
+.deleteSection {
+  .deleteTable {
+    color: white;
+    background: g.$greyscale-extra-dark;
+  }
+
+  .deleteTableRow {
+    border-bottom: 1px solid g.$greyscale;
   }
 }

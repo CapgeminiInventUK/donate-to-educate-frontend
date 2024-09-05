@@ -10,7 +10,7 @@ import { getSchoolProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getDataValuesFromQueryObject } from '@/utils/api';
-import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution';
+import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution/ManageInstitution';
 
 const SchoolUsers: FC = () => {
   const { state } = useLocationStateOrRedirect<{ institution: InstitutionProfile }>(

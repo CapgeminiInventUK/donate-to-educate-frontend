@@ -15,11 +15,11 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
-import RegisteredUsersSection from './RegisteredUsersSection';
-import DangerZone from '@/pages/Settings/DangerZone';
+import RegisteredUsersSection from '../RegisteredUsers/RegisteredUsersSection';
 import { getGetUsersQueryFromType, getUserDetailsObjectFromQuery } from '@/utils/account';
 import AddressInset from '@/components/AddressInset/AddressInset';
 import InstitutionContactInset from '@/components/InstitutionContactInset/InstitutionContactInset';
+import DangerZone from '../RegisteredUsers/DangerZone';
 
 const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfile, header }) => {
   const { id, name } = institutionProfile;
@@ -76,7 +76,7 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
           <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
         )}
         <RegisteredUsersSection userData={users} type={type} />
-        <DangerZone userData={users[0]} type={type} numberOfUsers={users?.length ?? 0} />
+        <DangerZone userData={users} type={type} />
       </div>
     </div>
   );
