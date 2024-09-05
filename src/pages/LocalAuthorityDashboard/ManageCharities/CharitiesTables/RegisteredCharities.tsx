@@ -45,6 +45,7 @@ const RegisteredCharities: FC<CharitiesTablesProps> = ({
       name: charity!.name,
       key: index,
       status: 'Joined',
+      localAuthority,
     };
   });
 

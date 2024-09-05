@@ -57,31 +57,29 @@ const SchoolsTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPrope
       align: 'center' as const,
       render: (
         _: string,
-        { status, name, id, joinRequestName, phone, email, jobTitle, urn }: SchoolOrCharityTableData
+        {
+          status,
+          name,
+          id,
+          joinRequestName,
+          phone,
+          email,
+          jobTitle,
+          urn,
+          localAuthority,
+        }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
             <Button
-              theme="link-blue"
-              className={styles.actionButtons}
-              text="Remove"
-              onClick={(): void => {
-                setProperties &&
-                  setProperties((schoolProperties) => ({
-                    ...schoolProperties,
-                    name,
-                    id: String(urn),
-                    urn,
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                  }));
-                setStage && setStage(StageState.REMOVE);
-              }}
-              ariaLabel="remove"
+              theme="link-blue-bold"
+              text="Details"
+              ariaLabel={`${name}-details`}
+              onClick={() =>
+                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL, {
+                  state: { institution: { name, id: urn, localAuthority } },
+                })
+              }
             />
           </div>
         ) : (

@@ -45,6 +45,7 @@ const RegisteredSchools: FC<SchoolsTablesProps> = ({
       urn,
       status: 'Joined',
       key: name,
+      localAuthority,
     };
   });
 

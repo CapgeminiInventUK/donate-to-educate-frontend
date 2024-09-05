@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { GetRegisteredSchoolsQuery } from '@/types/api';
 import { getRegisteredSchools } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import ManageInstitutionsTable from '../ManageInstitutions/ManageInstitutionsTable';
+import ManageInstitutionsTable from '@/components/ManageInstitutions/ManageInstitutionsTable';
 import { InstitutionType } from '@/types/data';
 
 const ManageSchools: FC = () => {

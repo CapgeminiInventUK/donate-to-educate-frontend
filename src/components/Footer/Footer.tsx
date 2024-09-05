@@ -3,9 +3,9 @@ import styles from './Footer.module.scss';
 import LogoWhite from '@assets/logo/LogoWhite';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
-import Image from '../../components/Image/Image';
+import Image from '@/components/Image/Image';
 import Button from '../Button/Button';
-import WeHaveThePowerLogo from '../../assets/logo/WeHaveThePowerLogo.webp';
+import WeHaveThePowerLogo from '@/assets/logo/WeHaveThePowerLogo.webp';
 
 const Footer: FC = () => {
   const navigate = useNavigate();

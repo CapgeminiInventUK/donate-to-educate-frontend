@@ -4,7 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Tile from '../../../components/Tile/Tile';
+import Tile from '@/components/Tile/Tile';
 import kidsRunning from '@/assets/icons/kidsRunning.webp';
 import Card from '@/components/Card/Card';
 import { GetSchoolsNearbyQuery } from '@/types/api';

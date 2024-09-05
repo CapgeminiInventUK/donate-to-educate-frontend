@@ -5,7 +5,7 @@ import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import Tile from '../../../components/Tile/Tile';
+import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
 import Crown from '@/assets/icons/Crown';
 import { InstitutionAdminViewProps } from '@/types/props';

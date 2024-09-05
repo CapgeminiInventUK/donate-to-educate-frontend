@@ -26,6 +26,8 @@ enum Paths {
   LOCAL_AUTHORITY_DASHBOARD = '/local-authority',
   LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority/schools',
   LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority/charities',
+  LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY = '/local-authority/manage-charity',
+  LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL = '/local-authority/manage-school',
 
   // Admin School
   SCHOOLS_CREATE_EDIT_PROFILE = '/school-admin-create-profile',

@@ -31,6 +31,8 @@ import {
   AdminDashboardManageCharity,
   LocalAuthorityDashboardSchools,
   LocalAuthorityDashboardCharities,
+  LocalAuthorityDashboardManageSchoolUsers,
+  LocalAuthorityDashboardManageCharityUsers,
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,
@@ -128,6 +130,16 @@ const routes: Route[] = [
   {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES,
     element: <LocalAuthorityDashboardCharities />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY,
+    element: <LocalAuthorityDashboardManageCharityUsers />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL,
+    element: <LocalAuthorityDashboardManageSchoolUsers />,
     authType: 'localAuthority',
   },
 

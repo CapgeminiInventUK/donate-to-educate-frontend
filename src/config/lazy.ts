@@ -94,6 +94,12 @@ export const LocalAuthorityDashboardSchools = lazy(
 export const LocalAuthorityDashboardCharities = lazy(
   () => import('@pages/LocalAuthorityDashboard/ManageCharities/ManageCharities')
 );
+export const LocalAuthorityDashboardManageSchoolUsers = lazy(
+  () => import('@pages/LocalAuthorityDashboard/ManageSchools/ManageSchoolUsers')
+);
+export const LocalAuthorityDashboardManageCharityUsers = lazy(
+  () => import('@pages/LocalAuthorityDashboard/ManageCharities/ManageCharityUsers')
+);
 
 // Admin School
 export const SchoolAdminDashboard = lazy(() => import('@pages/School/Admin/SchoolAdminDashboard'));

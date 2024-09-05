@@ -167,6 +167,7 @@ export interface SubmittedFormData {
 export interface SchoolOrCharityTableData {
   name: string;
   status: string;
+  localAuthority: string;
   id?: string;
   urn?: string;
   joinRequestName?: string;
