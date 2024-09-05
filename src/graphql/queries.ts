@@ -443,6 +443,8 @@ export const getLocalAuthorities = /* GraphQL */ `query GetLocalAuthorities {
     code
     name
     registered
+    registeredSchools
+    registeredCharities
     __typename
   }
 }
@@ -577,6 +579,25 @@ export const getLocalAuthorityUser = /* GraphQL */ `query GetLocalAuthorityUser(
   APITypes.GetLocalAuthorityUserQueryVariables,
   APITypes.GetLocalAuthorityUserQuery
 >;
+export const getLocalAuthorityUsers = /* GraphQL */ `query GetLocalAuthorityUsers($id: String!) {
+  getLocalAuthorityUsers(id: $id) {
+    name
+    firstName
+    lastName
+    jobTitle
+    department
+    email
+    phone
+    notes
+    nameId
+    privacyPolicyAccepted
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetLocalAuthorityUsersQueryVariables,
+  APITypes.GetLocalAuthorityUsersQuery
+>;
 export const getSchoolUser = /* GraphQL */ `query GetSchoolUser($email: String!) {
   getSchoolUser(email: $email) {
     name
@@ -589,6 +610,18 @@ export const getSchoolUser = /* GraphQL */ `query GetSchoolUser($email: String!)
   }
 }
 ` as GeneratedQuery<APITypes.GetSchoolUserQueryVariables, APITypes.GetSchoolUserQuery>;
+export const getSchoolUsers = /* GraphQL */ `query GetSchoolUsers($id: String!) {
+  getSchoolUsers(id: $id) {
+    name
+    schoolName
+    schoolId
+    jobTitle
+    email
+    phone
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetSchoolUsersQueryVariables, APITypes.GetSchoolUsersQuery>;
 export const getCharityUser = /* GraphQL */ `query GetCharityUser($email: String!) {
   getCharityUser(email: $email) {
     name
@@ -601,6 +634,18 @@ export const getCharityUser = /* GraphQL */ `query GetCharityUser($email: String
   }
 }
 ` as GeneratedQuery<APITypes.GetCharityUserQueryVariables, APITypes.GetCharityUserQuery>;
+export const getCharityUsers = /* GraphQL */ `query GetCharityUsers($id: String!) {
+  getCharityUsers(id: $id) {
+    name
+    charityName
+    charityId
+    jobTitle
+    email
+    phone
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetCharityUsersQueryVariables, APITypes.GetCharityUsersQuery>;
 export const getSignUpData = /* GraphQL */ `query GetSignUpData($id: String!) {
   getSignUpData(id: $id) {
     id

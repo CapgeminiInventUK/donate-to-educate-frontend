@@ -10,11 +10,14 @@ enum Paths {
   ADMIN_DASHBOARD = '/admin',
   ADMIN_DASHBOARD_LA_MANAGE = '/admin/manage-local-authority',
   ADMIN_DASHBOARD_LA_VIEW = '/admin/view-local-authority',
+  ADMIN_DASHBOARD_LA_VIEW_USERS = '/admin/view-local-authority-users',
   ADMIN_DASHBOARD_REQUESTS = '/admin/requests',
   ADMIN_DASHBOARD_REQUESTS_SCHOOL = '/admin/school-requests',
   ADMIN_DASHBOARD_REQUESTS_CHARITY = '/admin/charity-requests',
   ADMIN_DASHBOARD_MANAGE_SCHOOLS = '/admin/manage-schools',
+  ADMIN_DASHBOARD_MANAGE_SCHOOL = '/admin/manage-school',
   ADMIN_DASHBOARD_MANAGE_CHARITIES = '/admin/manage-charities',
+  ADMIN_DASHBOARD_MANAGE_CHARITY = '/admin/manage-charity',
   ADMIN_DASHBOARD_SIGN_UP = '/admin/local-authority-sign-up',
   ADMIN_DASHBOARD_SIGN_UP_CONFIRMATION = '/admin/local-authority-confirmation',
   DELETE_CONFIRMATION = '/admin/requests/deleted',
@@ -23,6 +26,8 @@ enum Paths {
   LOCAL_AUTHORITY_DASHBOARD = '/local-authority',
   LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority/schools',
   LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority/charities',
+  LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY = '/local-authority/manage-charity',
+  LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL = '/local-authority/manage-school',
 
   // Admin School
   SCHOOLS_CREATE_EDIT_PROFILE = '/school-admin-create-profile',

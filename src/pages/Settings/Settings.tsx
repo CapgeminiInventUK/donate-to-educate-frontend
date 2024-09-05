@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styles from './Settings.module.scss';
-import InfoTable from '@/components/InfoTable/InfoTable';
 import BackButton from '@/components/BackButton/BackButton';
 import { useStore } from '@/stores/useStore';
 import { useQuery } from '@tanstack/react-query';
@@ -13,12 +12,14 @@ import Spinner from '@/components/Spinner/Spinner';
 import { InstitutionType, UserDetails } from '@/types/data';
 import { getUserDetailsObjectFromQuery } from '@/utils/account';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import ManageInstitutionSection from './ManageInstitutionSection';
+// import ManageInstitutionSection from './ManageInstitutionSection';
 import ManageDetailsSection from './ManageDetailsSection';
 import DangerZone from './DangerZone';
+import PostcodeEdit from './PostcodeEdit';
+import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const Settings: FC = () => {
-  const { email, type } = useStore((state) => state.user) ?? {};
+  const { email, type, name } = useStore((state) => state.user) ?? {};
   const { state } = useLocationStateOrRedirect<{ postcode: string }>();
 
   const query =
@@ -49,7 +50,7 @@ const Settings: FC = () => {
   }
 
   if (isError) {
-    <ErrorBanner />;
+    return <ErrorBanner />;
   }
 
   const userData =
@@ -59,7 +60,7 @@ const Settings: FC = () => {
       type
     );
 
-  if (!userData) {
+  if (!userData?.name) {
     return <Spinner />;
   }
 
@@ -74,14 +75,15 @@ const Settings: FC = () => {
         </div>
         <div className={styles.body}>
           {type === InstitutionType.CHARITY && (
-            <div className={styles.postcodeSection}>
-              <h2>Postcode</h2>
-              <InfoTable tableValues={{ Postcode: state.postcode }} editableKeys={['Postcode']} />
-            </div>
+            <PostcodeEdit
+              postcode={state.postcode}
+              name={checkForStringAndReturnEmptyIfFalsy(name)}
+            />
           )}
-          <ManageDetailsSection userData={userData} type={type} />
-          <ManageInstitutionSection type={type} />
-          <DangerZone userData={userData} type={type} />
+          {type && <ManageDetailsSection userData={userData} type={type} />}
+          {/* // TODO Add the below component when enabling multi accounts */}
+          {/* <ManageInstitutionSection type={type} /> */}
+          {type && <DangerZone userData={userData} type={type} />}
         </div>
       </div>
     </div>

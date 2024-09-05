@@ -7,6 +7,8 @@ export type LocalAuthority = {
   code: string;
   name: string;
   registered: boolean;
+  registeredSchools?: number | null;
+  registeredCharities?: number | null;
 };
 
 export type JoinRequest = {
@@ -406,6 +408,50 @@ export type DeleteSignUpDataMutationVariables = {
 
 export type DeleteSignUpDataMutation = {
   deleteSignUpData?: boolean | null;
+};
+
+export type UpdateUserMutationVariables = {
+  userType: string;
+  name: string;
+  id: string;
+  institutionName: string;
+  email: string;
+  phone: string;
+  jobTitle: string;
+  department?: string | null;
+};
+
+export type UpdateUserMutation = {
+  updateUser?: boolean | null;
+};
+
+export type DeleteUserProfileMutationVariables = {
+  userType: string;
+  name: string;
+  id: string;
+  email: string;
+};
+
+export type DeleteUserProfileMutation = {
+  deleteUserProfile?: boolean | null;
+};
+
+export type AddAdditionalUserMutationVariables = {
+  id: string;
+  name: string;
+  localAuthority: string;
+  type: string;
+  email: string;
+  school?: string | null;
+  jobTitle: string;
+  phone?: string | null;
+  charityName?: string | null;
+  urn?: string | null;
+  department?: string | null;
+};
+
+export type AddAdditionalUserMutation = {
+  addAdditionalUser?: boolean | null;
 };
 
 export type GetSchoolQueryVariables = {
@@ -862,6 +908,8 @@ export type GetLocalAuthoritiesQuery = {
     code: string;
     name: string;
     registered: boolean;
+    registeredSchools?: number | null;
+    registeredCharities?: number | null;
   }>;
 };
 
@@ -1006,6 +1054,26 @@ export type GetLocalAuthorityUserQuery = {
   };
 };
 
+export type GetLocalAuthorityUsersQueryVariables = {
+  id: string;
+};
+
+export type GetLocalAuthorityUsersQuery = {
+  getLocalAuthorityUsers: Array<{
+    __typename: 'LocalAuthorityUser';
+    name: string;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    department: string;
+    email: string;
+    phone: string;
+    notes?: string | null;
+    nameId: string;
+    privacyPolicyAccepted?: boolean | null;
+  } | null>;
+};
+
 export type GetSchoolUserQueryVariables = {
   email: string;
 };
@@ -1022,6 +1090,22 @@ export type GetSchoolUserQuery = {
   };
 };
 
+export type GetSchoolUsersQueryVariables = {
+  id: string;
+};
+
+export type GetSchoolUsersQuery = {
+  getSchoolUsers: Array<{
+    __typename: 'SchoolUser';
+    name: string;
+    schoolName: string;
+    schoolId: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
+  } | null>;
+};
+
 export type GetCharityUserQueryVariables = {
   email: string;
 };
@@ -1036,6 +1120,22 @@ export type GetCharityUserQuery = {
     email: string;
     phone: string;
   };
+};
+
+export type GetCharityUsersQueryVariables = {
+  id: string;
+};
+
+export type GetCharityUsersQuery = {
+  getCharityUsers: Array<{
+    __typename: 'CharityUser';
+    name: string;
+    charityName: string;
+    charityId: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
+  } | null>;
 };
 
 export type GetSignUpDataQueryVariables = {

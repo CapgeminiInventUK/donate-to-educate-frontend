@@ -66,34 +66,20 @@ const CharitiesTable: FC<SchoolsOrCharityTableProps> = ({ data, setStage, setPro
           jobTitle,
           charityAddress,
           aboutCharity,
+          localAuthority,
         }: SchoolOrCharityTableData
       ): JSX.Element => {
         return status.toLowerCase() === 'joined' ? (
           <div className={styles.actionsContainer}>
             <Button
-              theme="link-blue"
-              className={styles.actionButtons}
-              text="Remove"
-              onClick={(): void => {
-                setProperties &&
-                  setProperties((charityProperties) => ({
-                    ...charityProperties,
-                    name,
-                    id: String(id),
-                    user: {
-                      name: checkForStringAndReturnEmptyIfFalsy(joinRequestName),
-                      title: checkForStringAndReturnEmptyIfFalsy(jobTitle),
-                      email: checkForStringAndReturnEmptyIfFalsy(email),
-                      phone: checkForStringAndReturnEmptyIfFalsy(phone),
-                    },
-                    charity: {
-                      charityAddress: checkForStringAndReturnEmptyIfFalsy(charityAddress),
-                      aboutCharity: checkForStringAndReturnEmptyIfFalsy(aboutCharity),
-                    },
-                  }));
-                setStage && setStage(StageState.REMOVE);
-              }}
-              ariaLabel="remove"
+              theme="link-blue-bold"
+              text="Details"
+              ariaLabel={`${name}-details`}
+              onClick={() =>
+                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY, {
+                  state: { institution: { name, id, localAuthority } },
+                })
+              }
             />
           </div>
         ) : (

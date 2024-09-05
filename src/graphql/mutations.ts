@@ -209,3 +209,68 @@ export const deleteSignUpData =
     APITypes.DeleteSignUpDataMutationVariables,
     APITypes.DeleteSignUpDataMutation
   >;
+export const updateUser = /* GraphQL */ `mutation UpdateUser(
+  $userType: String!
+  $name: String!
+  $id: String!
+  $institutionName: String!
+  $email: String!
+  $phone: String!
+  $jobTitle: String!
+  $department: String
+) {
+  updateUser(
+    userType: $userType
+    name: $name
+    id: $id
+    institutionName: $institutionName
+    email: $email
+    phone: $phone
+    jobTitle: $jobTitle
+    department: $department
+  )
+}
+` as GeneratedMutation<APITypes.UpdateUserMutationVariables, APITypes.UpdateUserMutation>;
+export const deleteUserProfile = /* GraphQL */ `mutation DeleteUserProfile(
+  $userType: String!
+  $name: String!
+  $id: String!
+  $email: String!
+) {
+  deleteUserProfile(userType: $userType, name: $name, id: $id, email: $email)
+}
+` as GeneratedMutation<
+  APITypes.DeleteUserProfileMutationVariables,
+  APITypes.DeleteUserProfileMutation
+>;
+export const addAdditionalUser = /* GraphQL */ `mutation AddAdditionalUser(
+  $id: String!
+  $name: String!
+  $localAuthority: String!
+  $type: String!
+  $email: String!
+  $school: String
+  $jobTitle: String!
+  $phone: String
+  $charityName: String
+  $urn: String
+  $department: String
+) {
+  addAdditionalUser(
+    id: $id
+    name: $name
+    localAuthority: $localAuthority
+    type: $type
+    email: $email
+    school: $school
+    jobTitle: $jobTitle
+    phone: $phone
+    charityName: $charityName
+    urn: $urn
+    department: $department
+  )
+}
+` as GeneratedMutation<
+  APITypes.AddAdditionalUserMutationVariables,
+  APITypes.AddAdditionalUserMutation
+>;

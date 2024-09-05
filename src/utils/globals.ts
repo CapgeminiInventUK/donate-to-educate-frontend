@@ -68,3 +68,13 @@ export const pluraliseString = (string: string, quantity?: number): string => {
 };
 
 export const useZeroIfUndefined = (number?: number): number => number ?? 0;
+
+export const splitAtLastHyphen = (str: string): string => {
+  const lastHyphenIndex = str.lastIndexOf('-');
+  if (lastHyphenIndex === -1) {
+    return str.trim();
+  }
+  return str.substring(0, lastHyphenIndex).trim();
+};
+
+export const replaceSpacesWithHyphens = (string: string): string => string.replace(/  +/g, '-');

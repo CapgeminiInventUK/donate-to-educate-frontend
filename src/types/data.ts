@@ -167,6 +167,7 @@ export interface SubmittedFormData {
 export interface SchoolOrCharityTableData {
   name: string;
   status: string;
+  localAuthority: string;
   id?: string;
   urn?: string;
   joinRequestName?: string;
@@ -275,6 +276,9 @@ export interface InstitutionProfile {
   request?: ProfileItems | null;
   donate?: ProfileItems | null;
   excess?: ProfileItems | null;
+  phone?: string | null;
+  street?: string | null;
+  town?: string | null;
 }
 
 export interface RequestItemsTextContent {
@@ -293,10 +297,11 @@ export interface UserDetails {
   email: string;
   phone: string;
   institutionName?: string;
-  institutionId?: string;
+  id?: string;
   department?: string;
   firstName?: string;
   lastName?: string;
+  notes?: string;
 }
 
 export interface ManageUserDetails {
@@ -305,9 +310,24 @@ export interface ManageUserDetails {
   Phone: string;
   'Job title or role': string;
   Department?: string;
+  'Notes about this user'?: string;
 }
 
 export enum InstitutionType {
   SCHOOL = 'school',
   CHARITY = 'charity',
+}
+
+export interface StatusColumn {
+  title: string;
+  dataIndex: string;
+  render: (text: string) => JSX.Element;
+}
+
+export interface Address {
+  name: string;
+  street?: string;
+  town?: string;
+  localAuthority: string;
+  postcode: string;
 }

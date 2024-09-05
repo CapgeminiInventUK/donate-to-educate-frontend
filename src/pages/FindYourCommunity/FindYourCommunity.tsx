@@ -28,8 +28,17 @@ const FindYourCommunity: FC = () => {
         theme="blue"
         onClick={() => (state?.error ? navigate(Paths.HOME) : navigate(-1))}
       />
-      <Card className={styles.subContainer}>
+      <Card>
         <h1>Find your community</h1>
+
+        <div className={styles.subContainer}>
+          <p>You can use this service to:</p>
+          <ul>
+            <li>search for charities and schools in your local area</li>
+            <li>see what products are available to request</li>
+            <li>donate products to help the next child</li>
+          </ul>
+        </div>
 
         <TextInputSearch
           ariaLabel="postcode"

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { HeroBannerProps } from '@/types/props';
 import styles from './HeroBanner.module.scss';
-import Image from '../../components/Image/Image';
-import HeroBannerPicture from '../../assets/hero-pictures/HeroBanner.webp';
+import Image from '@/components/Image/Image';
+import HeroBannerPicture from '@/assets/hero-pictures/HeroBanner.webp';
 import Header from '../Header/Header';
 import LogoPurple from '@/assets/logo/LogoPurple';
 

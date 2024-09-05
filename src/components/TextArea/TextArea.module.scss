@@ -52,7 +52,7 @@
       font-size: 18px;
     }
 
-    @include g.sm-breakpoint {
+    @include g.lg-breakpoint {
       font-size: 14px;
     }
   }

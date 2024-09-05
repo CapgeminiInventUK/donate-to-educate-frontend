@@ -6,7 +6,7 @@ exports[`Info table > should render component 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df "
+        class="_infoTable_f1f6df undefined  "
       >
         <div
           class="_row_f1f6df "
@@ -21,6 +21,8 @@ exports[`Info table > should render component 1`] = `
           >
             Name
           </div>
+           
+          <div />
         </div>
         <div
           class="_row_f1f6df "
@@ -35,6 +37,8 @@ exports[`Info table > should render component 1`] = `
           >
             test@test.com
           </div>
+           
+          <div />
         </div>
         <div
           class="_row_f1f6df "
@@ -55,6 +59,7 @@ exports[`Info table > should render component 1`] = `
           >
             Edit
           </button>
+           
         </div>
         <div
           class="_row_f1f6df "
@@ -75,6 +80,7 @@ exports[`Info table > should render component 1`] = `
           >
             Edit
           </button>
+           
         </div>
         <div
           class="_row_f1f6df "
@@ -95,13 +101,14 @@ exports[`Info table > should render component 1`] = `
           >
             Edit
           </button>
+           
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df "
+      class="_infoTable_f1f6df undefined  "
     >
       <div
         class="_row_f1f6df "
@@ -116,6 +123,8 @@ exports[`Info table > should render component 1`] = `
         >
           Name
         </div>
+         
+        <div />
       </div>
       <div
         class="_row_f1f6df "
@@ -130,6 +139,8 @@ exports[`Info table > should render component 1`] = `
         >
           test@test.com
         </div>
+         
+        <div />
       </div>
       <div
         class="_row_f1f6df "
@@ -150,6 +161,7 @@ exports[`Info table > should render component 1`] = `
         >
           Edit
         </button>
+         
       </div>
       <div
         class="_row_f1f6df "
@@ -170,6 +182,7 @@ exports[`Info table > should render component 1`] = `
         >
           Edit
         </button>
+         
       </div>
       <div
         class="_row_f1f6df "
@@ -190,6 +203,7 @@ exports[`Info table > should render component 1`] = `
         >
           Edit
         </button>
+         
       </div>
     </div>
   </div>,
@@ -253,7 +267,7 @@ exports[`Info table > should render component with title and icon when present 1
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df deleteTable"
+        class="_infoTable_f1f6df undefined  deleteTable"
       >
         <h3>
           <span
@@ -294,6 +308,8 @@ exports[`Info table > should render component with title and icon when present 1
           >
             LA
           </div>
+           
+          <div />
           <button
             aria-label="delete-button"
             class="_light_f8f296 _delete_f1f6df "
@@ -314,6 +330,8 @@ exports[`Info table > should render component with title and icon when present 1
           >
             test@test.com
           </div>
+           
+          <div />
           <button
             aria-label="delete-button"
             class="_light_f8f296 _delete_f1f6df "
@@ -326,7 +344,7 @@ exports[`Info table > should render component with title and icon when present 1
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df deleteTable"
+      class="_infoTable_f1f6df undefined  deleteTable"
     >
       <h3>
         <span
@@ -367,6 +385,8 @@ exports[`Info table > should render component with title and icon when present 1
         >
           LA
         </div>
+         
+        <div />
         <button
           aria-label="delete-button"
           class="_light_f8f296 _delete_f1f6df "
@@ -387,6 +407,8 @@ exports[`Info table > should render component with title and icon when present 1
         >
           test@test.com
         </div>
+         
+        <div />
         <button
           aria-label="delete-button"
           class="_light_f8f296 _delete_f1f6df "
@@ -456,7 +478,7 @@ exports[`Info table > should render component with user accounts 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="_infoTable_f1f6df "
+        class="_infoTable_f1f6df undefined  "
       >
         <div
           class="_row_f1f6df "
@@ -471,6 +493,8 @@ exports[`Info table > should render component with user accounts 1`] = `
           >
             Account user one
           </div>
+           
+          <div />
         </div>
         <div
           class="_row_f1f6df "
@@ -485,6 +509,8 @@ exports[`Info table > should render component with user accounts 1`] = `
           >
             Account user two
           </div>
+           
+          <div />
         </div>
         <div
           class="_row_f1f6df "
@@ -503,13 +529,15 @@ exports[`Info table > should render component with user accounts 1`] = `
               FREE
             </span>
           </div>
+           
+          <div />
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="_infoTable_f1f6df "
+      class="_infoTable_f1f6df undefined  "
     >
       <div
         class="_row_f1f6df "
@@ -524,6 +552,8 @@ exports[`Info table > should render component with user accounts 1`] = `
         >
           Account user one
         </div>
+         
+        <div />
       </div>
       <div
         class="_row_f1f6df "
@@ -538,6 +568,8 @@ exports[`Info table > should render component with user accounts 1`] = `
         >
           Account user two
         </div>
+         
+        <div />
       </div>
       <div
         class="_row_f1f6df "
@@ -556,6 +588,8 @@ exports[`Info table > should render component with user accounts 1`] = `
             FREE
           </span>
         </div>
+         
+        <div />
       </div>
     </div>
   </div>,

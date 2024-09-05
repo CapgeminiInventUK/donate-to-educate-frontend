@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import styles from './InstitutionAdminView.module.scss';
-import BackButton from '@/components/BackButton/BackButton';
 import { Link, useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
 import SchoolProfile from '@/assets/admin/SchoolProfile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
-import Tile from '../../../components/Tile/Tile';
+import Tile from '@/components/Tile/Tile';
 import Card from '@/components/Card/Card';
 import Crown from '@/assets/icons/Crown';
 import { InstitutionAdminViewProps } from '@/types/props';
@@ -21,10 +20,7 @@ const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, t
 
   return (
     <div className={styles.container}>
-      <div className={styles.actionButtons}>
-        <BackButton theme="blue" onClick={() => navigate(Paths.HOME)} />
-      </div>
-      <InstitutionBanner type={type} name={name} banner={{}} />
+      <InstitutionBanner type={type} name={name} banner={{}} postcode={postcode} />
       <Card className={styles.subContainer}>
         <Tile
           title={`Your ${type} profile is active`}

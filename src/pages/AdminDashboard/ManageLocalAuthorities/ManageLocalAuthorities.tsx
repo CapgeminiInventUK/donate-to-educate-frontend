@@ -1,28 +1,30 @@
 import { useState, useRef, FC, Key } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { InputRef, Table } from 'antd';
+import { InputRef, Popover, Table } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
-import { Pill } from '@/components/Pill/Pill';
-import Button from '@/components/Button/Button';
 import BackButton from '@/components/BackButton/BackButton';
 import Spinner from '@/components/Spinner/Spinner';
+import minusIcon from '@/assets/icons/minusIcon.svg';
+import tickIcon from '@/assets/icons/tickIcon.svg';
 import { GetLocalAuthoritiesQuery, LocalAuthority } from '@/types/api';
-import Paths from '@/config/paths';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import styles from './ManageLocalAuthorities.module.scss';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Card from '@/components/Card/Card';
 import getColumnSearch from '@/utils/tableUtils';
-import { PillColours } from '@/types/data';
+import Crown from '@/assets/icons/Crown';
+import Paths from '@/config/paths';
 import { getLocalAuthorities } from '@/graphql/queries';
+import { useNavigate } from 'react-router-dom';
 
 const ManageLocalAuthorities: FC = () => {
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
+  const dashboardLink = Paths.ADMIN_DASHBOARD_LA_VIEW_USERS;
 
   const columnSearchProps = {
     dataIndex: 'name' as keyof LocalAuthority,
@@ -32,11 +34,16 @@ const ManageLocalAuthorities: FC = () => {
     setSearchedColumn,
     searchInput,
     filterClassName: styles.filterIcon,
+    dashboardLink,
+    buttonClassName: styles.nameBtn,
+    navigate,
   };
 
-  const navigate = useNavigate();
-
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data: localAuthoritiesData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['las'],
     queryFn: async () => {
       const { data } = await client.graphql<GraphQLQuery<GetLocalAuthoritiesQuery>>({
@@ -46,8 +53,20 @@ const ManageLocalAuthorities: FC = () => {
     },
   });
 
+  if (isError) {
+    return <ErrorBanner />;
+  }
+
+  const localAuthorities =
+    localAuthoritiesData?.getLocalAuthorities.map((la) => ({
+      ...la,
+      id: la.code,
+      registeredSchools: la?.registeredSchools,
+      registeredCharities: la?.registeredCharities,
+    })) ?? [];
+
   const { registered, notRegistered } =
-    data?.getLocalAuthorities?.reduce(
+    localAuthoritiesData?.getLocalAuthorities?.reduce(
       (acc, { registered }) => {
         registered ? acc.registered++ : acc.notRegistered++;
         return acc;
@@ -83,34 +102,42 @@ const ManageLocalAuthorities: FC = () => {
       filterIcon: (): JSX.Element => <FilterFilled className={styles.filterIcon} />,
       render: (registered: boolean): JSX.Element =>
         registered ? (
-          <Pill colour={PillColours.BLUE} text="Joined" />
+          <Popover
+            content={'Joined'}
+            trigger="hover"
+            className={`${styles.status} ${styles.joined}`}
+          >
+            <span>
+              <img src={tickIcon} alt="Joined" />
+            </span>
+          </Popover>
         ) : (
-          <Pill colour={PillColours.RED} text="Not Joined" />
+          <Popover content={'Not joined'} trigger="hover" className={styles.status}>
+            <span>
+              <img src={minusIcon} alt="Not joined" />
+            </span>
+          </Popover>
         ),
     },
     {
-      title: 'Action',
+      title: 'Schools',
       align: 'center' as const,
-      render: (_: unknown, la: LocalAuthority): JSX.Element | false =>
-        !la.registered && (
-          <div className={styles.actionsContainer}>
-            <Button
-              theme="link-blue"
-              className={styles.actionButtons}
-              text="Add user"
-              onClick={(): void => {
-                navigate(Paths.ADMIN_DASHBOARD_SIGN_UP, { state: { la: la.name, id: la.code } });
-              }}
-              ariaLabel="add user"
-            />
-          </div>
-        ),
+      render: ({ registeredSchools, registered }: LocalAuthority): JSX.Element | null => {
+        return registered ? (
+          <div className={styles.actionsContainer}>{registeredSchools}</div>
+        ) : null;
+      },
+    },
+    {
+      title: 'Charities',
+      align: 'center' as const,
+      render: ({ registered, registeredCharities }: LocalAuthority): JSX.Element | null => {
+        return registered ? (
+          <div className={styles.actionsContainer}>{registeredCharities}</div>
+        ) : null;
+      },
     },
   ];
-
-  if (isError) {
-    return <ErrorBanner />;
-  }
 
   return (
     <div className={dashboardStyles.subContainer}>
@@ -124,12 +151,21 @@ const ManageLocalAuthorities: FC = () => {
           {!isLoading && (
             <div className={styles.cardContainer}>
               <Card className={styles.lasCard}>
-                <div className={styles.laBorder}>{registered} joined</div>
-                <div className={styles.laBorder}>{notRegistered} to join</div>
+                <Crown />
+                <h2>View, add and edit your local authorities</h2>
+                <div className={styles.numberJoinedArea}>
+                  <h4>
+                    <span className={styles.amount}>{registered}</span>{' '}
+                    {notRegistered && `out of ${notRegistered}`}
+                  </h4>
+                  <div className={styles.subBody}>
+                    local authorities have joined Donate to Educate.
+                  </div>
+                </div>
                 <br />
                 <Table
                   className={styles.lasTable}
-                  dataSource={data?.getLocalAuthorities}
+                  dataSource={localAuthorities}
                   columns={columns}
                   scroll={{ x: 'max-content' }}
                   rowKey="code"

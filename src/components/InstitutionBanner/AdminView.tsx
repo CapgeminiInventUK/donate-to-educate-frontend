@@ -12,7 +12,7 @@ const AdminView: FC<AdminViewProps> = ({ banner, type, editMode, setBanner }) =>
       icon: getIcon(itemType),
       item: banner[itemType as keyof Banner],
       itemType,
-      defaultText: `You haven't added your ${getItemTypeString(itemType)}`,
+      defaultText: `Add your ${type}'s ${getItemTypeString(itemType)}`,
     };
   });
 

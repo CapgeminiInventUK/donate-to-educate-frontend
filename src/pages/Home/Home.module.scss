@@ -30,87 +30,6 @@
   min-width: 125px;
 }
 
-.helpingPupils {
-  background: g.$primary-mid-blue;
-  color: g.$primary-white;
-  padding: 60px 60px 0 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-bottom: 80px;
-  }
-
-  .button {
-    margin-top: 40px;
-    padding: 40px;
-    text-decoration: none;
-    background: g.$primary-white;
-    color: g.$primary-dark-blue;
-    display: flex;
-    border-radius: 10px;
-    min-width: 250px;
-    align-items: center;
-    gap: 10px;
-
-    h3 {
-      margin: 0;
-    }
-  }
-
-  img {
-    width: auto;
-    height: auto;
-    max-width: 60%;
-    max-height: 60%;
-    min-width: 250px;
-  }
-
-  .supporters {
-    display: flex;
-    justify-content: center;
-
-    img {
-      transform: translate(-10%, 8.5px);
-    }
-  }
-}
-
-@media only screen and (min-width: calc(g.$screen-medium + 1px)) {
-  .councilBanner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-
-    .title {
-      padding-bottom: 0;
-      max-width: 580px;
-    }
-  }
-
-  .westSussexLogo {
-    padding-left: 74px;
-    width: 150px;
-  }
-
-  .helpingPupils {
-    .content {
-      flex-direction: row;
-      gap: 50px;
-    }
-
-    .button {
-      min-width: 300px;
-    }
-  }
-}
-
 .tileContainer {
   background: g.$primary-dark-blue;
   padding: 40px 20px;
@@ -130,6 +49,10 @@
   display: flex;
   gap: 50px;
 
+  .header {
+    color: g.$dark-blue;
+  }
+
   h1,
   h2,
   p {
@@ -140,7 +63,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 30px 20px 20px;
   }
 
   img {
@@ -149,11 +72,49 @@
     max-width: 50%;
     max-height: 50%;
   }
+
+  .blueLink {
+    color: g.$link-blue;
+    font-weight: 700;
+  }
+}
+
+.helpingPupils {
+  background: g.$primary-mid-blue;
+  color: g.$primary-white;
+  display: flex;
+
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 30px 20px 20px;
+  }
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+  .whiteLink {
+    color: g.$primary-white;
+    font-weight: 700;
+  }
 }
 
 @media only screen and (max-width: g.$screen-large) {
+  .helpingPupils {
+    flex-direction: column;
+  }
+
   .howItWorks {
     flex-direction: column-reverse;
+  }
+
+  .howItWorks,
+  .helpingPupils {
     justify-items: center;
     align-items: center;
 
@@ -167,5 +128,24 @@
 
   .textContainer {
     padding: 40px;
+  }
+}
+
+@media only screen and (min-width: calc(g.$screen-medium + 1px)) {
+  .councilBanner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    .title {
+      padding-bottom: 0;
+      max-width: 580px;
+    }
+  }
+
+  .westSussexLogo {
+    padding-left: 74px;
+    width: 150px;
   }
 }

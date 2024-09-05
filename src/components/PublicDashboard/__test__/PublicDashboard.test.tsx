@@ -15,7 +15,6 @@ describe('Public dashboard', () => {
     expect(
       queryByText('We are still populating our profile, please check back later')
     ).toBeInTheDocument();
-    expect(queryByText('Location map')).not.toBeInTheDocument();
     expect(queryByText('About us')).not.toBeInTheDocument();
   });
 

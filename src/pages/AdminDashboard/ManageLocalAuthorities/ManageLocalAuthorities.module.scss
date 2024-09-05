@@ -10,25 +10,44 @@
   padding: 30px 40px;
   margin: 10px;
 
-  thead {
-    th {
-      background: g.$primary-mid-blue !important;
-      color: g.$primary-white !important;
-    }
-  }
-
   .actionsContainer {
     display: flex;
     flex-direction: column;
   }
 }
 
+.nameBtn {
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: g.$link-blue;
+}
+
 .filterIcon {
-  color: g.$primary-white;
   font-size: 20px;
+}
+
+.status {
+  margin-left: 18px;
 }
 
 .laBorder {
   border-left: solid 10px g.$primary-light-blue;
   padding-left: 20px;
+}
+
+.numberJoinedArea {
+  margin: 30px 0 15px;
+  padding: 18px 30px 30px;
+  background: g.$about-grey;
+  border-radius: 10px;
+
+  .amount {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .subBody {
+    margin-top: 5px;
+  }
 }

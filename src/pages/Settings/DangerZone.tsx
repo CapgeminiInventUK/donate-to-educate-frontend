@@ -1,30 +1,97 @@
+/* eslint-disable no-console */
 import { FC } from 'react';
 import styles from './Settings.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
-import { capitaliseFirstLetter, checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
+import { checkIfInTestEnvForAuthMode, replaceSpacesWithHyphens } from '@/utils/globals';
 import { ManageDetailsSectionProps } from '@/types/props';
+import useAuthToken from '@/hooks/useAuthToken';
+import { useQuery } from '@tanstack/react-query';
+import { client } from '@/graphqlClient';
+import { GraphQLQuery } from 'aws-amplify/api';
+import { deleteUserProfile } from '@/graphql/mutations';
+import {
+  DeleteCharityProfileMutation,
+  DeleteSchoolProfileMutation,
+  DeleteUserProfileMutation,
+} from '@/types/api';
+import { getDeleteProfileQueryFromType, getDeleteTableData, removeUser } from '@/utils/account';
 
-const DangerZone: FC<ManageDetailsSectionProps> = ({ userData, type }) => {
-  const { name, institutionName, email } = userData;
+const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUsers }) => {
+  const { institutionName, id, email, name } = userData;
 
-  const typename =
-    String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
+  const deleteTableData = getDeleteTableData(type, institutionName, email);
 
-  const institution = String(type) === 'localAuthority' ? name : institutionName;
+  const { token: authToken } = useAuthToken();
+  const { refetch: deleteUserRefetch } = useQuery({
+    queryKey: [`delete-user-${type}-${replaceSpacesWithHyphens(name)}`],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<GraphQLQuery<DeleteUserProfileMutation>>({
+        authMode: checkIfInTestEnvForAuthMode(),
+        authToken,
+        query: deleteUserProfile,
+        variables: {
+          userType: type,
+          name: institutionName,
+          id,
+          email,
+        },
+      });
+      return result;
+    },
+  });
 
-  const deleteTableData = {
-    [typename]: String(institution),
-    'Your account': checkForStringAndReturnEmptyIfFalsy(email),
+  const { refetch: removeProfile } = useQuery({
+    queryKey: ['removeSchool'],
+    enabled: false,
+    queryFn: async () => {
+      const result = await client.graphql<
+        GraphQLQuery<DeleteSchoolProfileMutation | DeleteCharityProfileMutation>
+      >({
+        query: getDeleteProfileQueryFromType(type),
+        variables: {
+          name: institutionName,
+          id,
+        },
+      });
+      return result;
+    },
+  });
+
+  // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
+  // TODO - Log user out and redirect after deleting user/profile
+  const onDelete = async (key: string): Promise<void> => {
+    if (key === 'Your account') {
+      //popup here first and then ->
+      console.log(deleteUserRefetch);
+      console.log(removeUser);
+      return;
+    }
+    if (type === 'localAuthority') {
+      //popup instead of this alert
+      alert('cannae do this rn');
+      return;
+    }
+    if (numberOfUsers && numberOfUsers < 2) {
+      //confirm delete popup for deleting school/charity profile, then ->
+      console.log(deleteUserRefetch);
+      console.log(removeUser);
+      await removeProfile();
+    }
+    if (numberOfUsers && numberOfUsers > 1) {
+      // TODO - Popup for if more than 1 user and attempt to delete profile
+    }
   };
 
   return (
     <div className={styles.deleteSection}>
       <h2>Delete</h2>
       <InfoTable
-        tableValues={deleteTableData}
+        originalTableValues={deleteTableData}
         editableKeys={[]}
         isDelete={true}
+        onDelete={onDelete}
         title="Danger zone"
         icon={<Caution />}
         className={styles.deleteTable}

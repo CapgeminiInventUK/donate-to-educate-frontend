@@ -5,8 +5,8 @@ import { client } from '@/graphqlClient';
 import Spinner from '@/components/Spinner/Spinner';
 import BackButton from '@/components/BackButton/BackButton';
 import { GetJoinRequestsQuery } from '@/types/api';
-import JoinRequests from '../../../components/JoinRequests/JoinRequests';
-import ApprovalRequest from '../../../components/ApprovalRequest/ApprovalRequest';
+import JoinRequests from '@/components/JoinRequests/JoinRequests';
+import ApprovalRequest from '@/components/ApprovalRequest/ApprovalRequest';
 import dashboardStyles from '../AdminDashboard.module.scss';
 import { InstitutionType, SchoolOrCharityProperties, StageState } from '@/types/data';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -42,7 +42,7 @@ const Requests: FC = () => {
       <BackButton theme="blue" />
       <div className={dashboardStyles.adminCard}>
         <div className={dashboardStyles.header}>
-          <h1>Requests to join</h1>
+          <h1>Requests</h1>
         </div>
         <div className={dashboardStyles.subBody}>
           {isLoading ? (

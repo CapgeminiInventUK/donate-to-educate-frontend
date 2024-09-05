@@ -27,6 +27,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   type,
   name,
   postcode,
+  isPublic,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const [previousBanner, setPreviousBanner] = useState(banner);
@@ -101,9 +102,11 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
           {!isAdminView && <PublicView banner={banner} type={type} />}
         </div>
       ) : (
-        <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
-          Settings <Settings />
-        </Link>
+        !isPublic && (
+          <Link className={styles.settingsButton} to={Paths.SETTINGS} state={{ postcode }}>
+            Settings <Settings />
+          </Link>
+        )
       )}
     </div>
   );

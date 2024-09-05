@@ -4,7 +4,7 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-import Tile from '../../../components/Tile/Tile';
+import Tile from '@/components/Tile/Tile';
 import kidsRunning from '@/assets/icons/kidsRunning.webp';
 import Card from '@/components/Card/Card';
 import { GetSchoolsNearbyQuery } from '@/types/api';
@@ -57,23 +57,28 @@ const YourLocalArea: FC = () => {
           <Tile
             title="Find a nearby school"
             onClick={() => navigate(Paths.LOCAL_SCHOOLS, { state: { postcode: state.postcode } })}
-            body={['See products schools can provide to you or what donations they need']}
+            body={["See what's in stock and request the products you need from your local school."]}
             icon={<School />}
             size="small"
+            titleLarge={true}
           />
           <Tile
             title="Find nearby charities"
             onClick={() => navigate(Paths.LOCAL_CHARITIES, { state: { postcode: state.postcode } })}
-            body={['Find out what they stock, or donate products']}
+            body={[
+              "If your school doesn't have what you need, request products from a nearby charity.",
+            ]}
             icon={<Heart />}
             size="small"
+            titleLarge={true}
           />
           <Tile
             title="Donate products"
             onClick={() => navigate(Paths.LOCAL_DONATE, { state: { postcode: state.postcode } })}
-            body={['Support schools and charities in your area']}
+            body={['Find out what products schools and charities in your area need.']}
             icon={<Donate />}
             size="small"
+            titleLarge={true}
           />
         </div>
         <div className={styles.imageContainer}>

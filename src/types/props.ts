@@ -24,21 +24,25 @@ import {
   RequestFormState,
   UserDetails,
   InstitutionType,
+  Address,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
+  CharityProfileHeader,
   GetJoinRequestsQuery,
   GetSchoolQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
   ProfileItems,
   SchoolProfile,
+  SchoolProfileHeader,
   SearchResult,
   UpdateCharityProfileMutation,
   UpdateSchoolProfileMutation,
+  UpdateUserMutation,
 } from './api';
 import { InputRef } from 'antd';
 import { NavigateFunction } from 'react-router-dom';
@@ -169,7 +173,7 @@ export interface Route {
   element: JSX.Element;
   name?: string;
   redirectRoute?: string;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface NavLinkProps {
@@ -334,6 +338,7 @@ export interface InstitutionBannerProps {
   type: InstitutionType;
   name?: string;
   postcode?: string;
+  isPublic?: boolean;
 }
 
 export interface InformationTileProps {
@@ -364,7 +369,8 @@ export interface ActionTileProps {
 
 export interface AddressInsetProps {
   formData: FormDataItem[];
-  componentData: ComponentDataPropsType;
+  componentData?: ComponentDataPropsType;
+  addressDetails?: Address;
 }
 
 export interface FormErrorsProps {
@@ -419,6 +425,7 @@ export interface JoinRequestsTableProps {
   dataIndex: string;
   data?: JoinRequest[];
   h2: string;
+  firstColumnBold?: boolean;
 }
 
 export interface DeclineDeleteModalProps {
@@ -518,6 +525,7 @@ export interface getColumnSearchProps<T> {
   navigate?: NavigateFunction;
   buttonClassName?: string;
   postcode?: string;
+  firstColumnBold?: boolean;
 }
 
 export interface FormHeaderProps {
@@ -576,6 +584,7 @@ export interface FindCharityTableProps {
   title?: string;
   postcode: string;
   type?: InstitutionType;
+  currentCharityId?: string;
 }
 
 export interface LocationStateOrRedirectProps<T> {
@@ -707,7 +716,7 @@ export interface NoLocalOrganisationsProps {
 export interface PrivateRouteProps {
   route?: string;
   children: ReactNode;
-  authType?: AccountType;
+  authType?: AccountType | AccountType[];
 }
 
 export interface ProductTypeIconProps {
@@ -727,7 +736,7 @@ export interface PublicDashboardActionTilesProps {
 }
 
 export interface InfoTableProps {
-  tableValues: Record<string, string>;
+  originalTableValues: Record<string, string>;
   editableKeys?: string[];
   isAccounts?: boolean;
   isDelete?: boolean;
@@ -735,17 +744,46 @@ export interface InfoTableProps {
   icon?: JSX.Element;
   className?: string;
   rowClassName?: string;
+  theme?: string;
   onEdit?: () => void;
-  onDelete?: () => void;
+  onDelete?: (key: string) => Promise<void>;
+  onChange?: (key: string, value: string) => void;
+  refetch?: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
+}
+
+export interface EditingRowProps {
+  originalTableValues: Record<string, string>;
+  field: string;
+  value: string;
+  setNewTableValues: Dispatch<SetStateAction<Record<string, string>>>;
+  setEditingKey: Dispatch<SetStateAction<string | undefined>>;
+  onChange: ((key: string, value: string) => void) | undefined;
+  refetch?: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
 export interface ManageDetailsSectionProps {
   userData: UserDetails;
-  type?: string;
+  type?: AccountType;
+  theme?: 'dark';
+  numberOfUsers?: number;
+}
+
+export interface AdminManageInstitutionDangerZoneProps {
+  userData: UserDetails[];
+  type?: AccountType;
 }
 
 export interface ManageInstitutionSectionProps {
   type?: AccountType | '';
+}
+
+export interface RegisteredUsersSectionProps {
+  userData: UserDetails[];
+  type?: AccountType;
 }
 
 export interface ShowHideProps {
@@ -796,4 +834,19 @@ export interface RequestDonateNextStepsProps {
       Error
     >
   >;
+}
+
+export interface PostcodeEditProps {
+  postcode: string;
+  name: string;
+}
+
+export interface ManageInstitutionProps {
+  type: AccountType;
+  institutionProfile: InstitutionProfile;
+  header?: SchoolProfileHeader | CharityProfileHeader;
+}
+
+export interface InstitutionContactInsetProps {
+  header?: SchoolProfileHeader | CharityProfileHeader | null;
 }

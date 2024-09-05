@@ -18,7 +18,7 @@ const ManageInstitutionSection: FC<ManageInstitutionSectionProps> = ({ type }) =
       <div className={styles.manageInstitutionSection}>
         <h2>Manage your {type}</h2>
         <p>Three accounts can manage this {type}, add a colleague and see how they can help.</p>
-        <InfoTable tableValues={accountDetails} isAccounts={true} />
+        <InfoTable originalTableValues={accountDetails} isAccounts={true} />
         <FormButton
           theme={
             countEmptyObjectValues(accountDetails) > 0 ? 'formButtonGreen' : 'formButtonDisabled'

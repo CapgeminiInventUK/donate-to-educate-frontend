@@ -101,6 +101,8 @@ type LocalAuthority {
   code: String!
   name: String!
   registered: Boolean!
+  registeredSchools: Int
+  registeredCharities: Int
 }
 
 type LocalAuthorityProfile {
@@ -124,6 +126,20 @@ type JoinRequest {
   aboutCharity: String
   urn: String
   postcode: String
+}
+
+type AdditionalUser {
+  id: String!
+  name: String!
+  localAuthority: String!
+  type: String!
+  email: String!
+  school: String
+  jobTitle: String!
+  phone: String
+  charityName: String
+  urn: String
+  department: String
 }
 
 type ItemQuery {
@@ -226,8 +242,11 @@ type Query {
   getSchoolProfile(name: String!, id: String!): SchoolProfile
   getCharityProfile(name: String!, id: String!): CharityProfile
   getLocalAuthorityUser(email: String!): LocalAuthorityUser!
+  getLocalAuthorityUsers(id: String!): [LocalAuthorityUser]!
   getSchoolUser(email: String!): SchoolUser!
+  getSchoolUsers(id: String!): [SchoolUser]!
   getCharityUser(email: String!): CharityUser!
+  getCharityUsers(id: String!): [CharityUser]!
   getSignUpData(id: String!): SignUpData
   getSchoolsNearby(postcode: String!, distance: Float!): [School!]!
   getCharitiesNearby(postcode: String!, distance: Float!): [Charity!]!
@@ -318,6 +337,34 @@ type Mutation {
   acceptPrivacyPolicy(name: String!, nameId: String!, email: String!): Boolean!
 
   deleteSignUpData(id: String!, email: String!): Boolean
+
+  updateUser(
+    userType: String!
+    name: String!
+    id: String!
+    institutionName: String!
+    email: String!
+    phone: String!
+    jobTitle: String!
+    department: String
+  ): Boolean @aws_cognito_user_pools
+
+  deleteUserProfile(userType: String!, name: String!, id: String!, email: String!): Boolean
+    @aws_cognito_user_pools
+
+  addAdditionalUser(
+    id: String!
+    name: String!
+    localAuthority: String!
+    type: String!
+    email: String!
+    school: String
+    jobTitle: String!
+    phone: String
+    charityName: String
+    urn: String
+    department: String
+  ): Boolean @aws_cognito_user_pools
 }
 
 schema {

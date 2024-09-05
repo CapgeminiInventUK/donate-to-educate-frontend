@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { GetCharitiesQuery } from '@/types/api';
 import { getCharities } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import ManageInstitutionsTable from '../ManageInstitutionsTable/ManageInstitutionsTable';
+import ManageInstitutionsTable from '@components/ManageInstitutions/ManageInstitutionsTable';
 import { InstitutionType } from '@/types/data';
 
 const ManageCharities: FC = () => {

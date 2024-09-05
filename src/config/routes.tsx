@@ -26,9 +26,13 @@ import {
   YourLocalArea,
   HowItWorks,
   AdminDashboardManageSchools,
+  AdminDashboardManageSchool,
   AdminDashboardManageCharities,
+  AdminDashboardManageCharity,
   LocalAuthorityDashboardSchools,
   LocalAuthorityDashboardCharities,
+  LocalAuthorityDashboardManageSchoolUsers,
+  LocalAuthorityDashboardManageCharityUsers,
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,
@@ -48,9 +52,10 @@ import {
   CharityAdminView,
   CookiePolicy,
   Excess,
+  Settings,
+  AdminDashboardLocalAuthorityUsers,
 } from './lazy';
 import { Route } from '@/types/props';
-import Settings from '@/pages/Settings/Settings';
 import { InstitutionType } from '@/types/data';
 
 const routes: Route[] = [
@@ -63,6 +68,11 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_LA_MANAGE,
     element: <AdminDashboardManageLocalAuthorities />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_LA_VIEW_USERS,
+    element: <AdminDashboardLocalAuthorityUsers />,
     authType: 'admin',
   },
   {
@@ -86,8 +96,18 @@ const routes: Route[] = [
     authType: 'admin',
   },
   {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_SCHOOL,
+    element: <AdminDashboardManageSchool />,
+    authType: 'admin',
+  },
+  {
     path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITIES,
     element: <AdminDashboardManageCharities />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITY,
+    element: <AdminDashboardManageCharity />,
     authType: 'admin',
   },
   {
@@ -110,6 +130,16 @@ const routes: Route[] = [
   {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES,
     element: <LocalAuthorityDashboardCharities />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY,
+    element: <LocalAuthorityDashboardManageCharityUsers />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL,
+    element: <LocalAuthorityDashboardManageSchoolUsers />,
     authType: 'localAuthority',
   },
 
@@ -244,7 +274,7 @@ const routes: Route[] = [
     path: Paths.SETTINGS,
     element: <Settings />,
     name: 'Settings',
-    //authType: 'localAuthority',
+    authType: ['localAuthority', 'school', 'charity', 'admin'],
   },
   {
     path: Paths.CONTACT,

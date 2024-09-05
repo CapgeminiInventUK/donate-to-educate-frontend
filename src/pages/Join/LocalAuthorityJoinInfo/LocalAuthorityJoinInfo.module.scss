@@ -5,6 +5,10 @@
   color: g.$primary-dark-blue;
   padding: 48px 120px;
 
+  @include g.md-breakpoint {
+    padding: 24px 60px;
+  }
+
   @include g.sm-breakpoint {
     padding: 12px 30px;
   }

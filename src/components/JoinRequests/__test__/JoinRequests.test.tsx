@@ -17,7 +17,7 @@ describe('Join requests', () => {
       />
     );
     const h2s = getAllByRole('heading', { level: 2 });
-    expect(h2s[0]).toHaveTextContent('Schools');
+    expect(h2s[0]).toHaveTextContent('School requests');
     expect(h2s[1]).toHaveTextContent('Charities and volunteer groups');
   });
 
@@ -91,7 +91,7 @@ describe('Join requests', () => {
         setSchoolOrCharityProperties={setSchoolOrCharityProperties}
       />
     );
-    const columnHeader = getAllByText('Request time')[0];
+    const columnHeader = getAllByText('Date')[0];
     await userEvent.click(columnHeader);
 
     expect(globals.sortByNumber).toHaveBeenCalled();

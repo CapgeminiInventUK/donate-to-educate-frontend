@@ -16,7 +16,12 @@ import { InstitutionType } from '@/types/data';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
-const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) => {
+const FindCharityTable: FC<FindCharityTableProps> = ({
+  title,
+  postcode,
+  type,
+  currentCharityId,
+}) => {
   const location = useLocation();
 
   const { data, isLoading, isError, refetch } = useQuery({
@@ -50,12 +55,12 @@ const FindCharityTable: FC<FindCharityTableProps> = ({ title, postcode, type }) 
     return <ErrorBanner />;
   }
 
-  const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? []).map(
-    (charity, key) => ({
+  const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? [])
+    .filter((charity) => charity.id !== currentCharityId)
+    .map((charity, key) => ({
       ...charity,
       key,
-    })
-  );
+    }));
 
   return (
     <>

@@ -19,11 +19,15 @@
     flex-direction: column;
     align-items: center;
     align-items: flex-start;
-    padding-left: 11.9%;
+    padding-left: 60px;
+
+    @include g.md-breakpoint {
+      padding: 25px;
+    }
 
     h1 {
       color: white;
-      margin: 40px 0 0;
+      margin: 40px 0;
     }
 
     .settingsButton {
@@ -148,7 +152,7 @@
   padding: 4px 100px 50px;
 
   @include g.md-breakpoint {
-    padding: 40px;
+    padding: 30px;
   }
 
   @include g.sm-breakpoint {
