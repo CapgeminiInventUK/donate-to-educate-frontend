@@ -2,7 +2,7 @@ import Paths from '@/config/paths';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import { InstitutionProfile, InstitutionType } from '@/types/data';
 import { FC } from 'react';
-import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution';
+import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution/ManageInstitution';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';

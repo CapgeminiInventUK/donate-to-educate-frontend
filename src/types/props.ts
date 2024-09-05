@@ -772,6 +772,11 @@ export interface ManageDetailsSectionProps {
   numberOfUsers?: number;
 }
 
+export interface AdminManageInstitutionDangerZoneProps {
+  userData: UserDetails[];
+  type?: AccountType;
+}
+
 export interface ManageInstitutionSectionProps {
   type?: AccountType | '';
 }
