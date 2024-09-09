@@ -774,7 +774,9 @@ export interface ManageDetailsSectionProps {
 
 export interface AdminManageInstitutionDangerZoneProps {
   userData: UserDetails[];
-  type?: AccountType;
+  type: AccountType;
+  institutionId: string;
+  institutionName: string;
 }
 
 export interface ManageInstitutionSectionProps {

@@ -76,7 +76,7 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
           <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
         )}
         <RegisteredUsersSection userData={users} type={type} />
-        <DangerZone userData={users} type={type} />
+        <DangerZone userData={users} type={type} institutionId={id} institutionName={name} />
       </div>
     </div>
   );

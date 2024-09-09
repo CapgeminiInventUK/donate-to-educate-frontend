@@ -76,6 +76,19 @@ export const getDeleteTableData = (
   };
 };
 
+export const getDeleteTableDataMultipleUsers = (
+  userData: UserDetails[],
+  type: AccountType
+): Record<string, string> => {
+  const tableData = userData.reduce((acc, user) => {
+    return { ...acc, [getNameFromUserObject(user)]: user.email };
+  }, {});
+  if (type === 'localAuthority') {
+    return tableData;
+  }
+  return { [capitaliseFirstLetter(type)]: userData[0].institutionName, ...tableData };
+};
+
 export const getDeleteProfileQueryFromType = (type?: AccountType): string =>
   type === 'school' ? deleteSchoolProfile : type === 'charity' ? deleteCharityProfile : '';
 

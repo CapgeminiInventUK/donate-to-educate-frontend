@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './RegisteredUsersSection.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
@@ -14,17 +14,28 @@ import {
   DeleteSchoolProfileMutation,
   DeleteUserProfileMutation,
 } from '@/types/api';
-import { getDeleteProfileQueryFromType, getDeleteTableData, removeUser } from '@/utils/account';
+import {
+  getDeleteProfileQueryFromType,
+  getDeleteTableDataMultipleUsers,
+  getNameFromUserObject,
+} from '@/utils/account';
 import { AdminManageInstitutionDangerZoneProps } from '@/types/props';
+import { InstitutionType, UserDetails } from '@/types/data';
 
-const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({ type, userData }) => {
-  const { institutionName, id, email, name } = userData[0];
-
-  const deleteTableData = getDeleteTableData(type, institutionName, email);
+const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
+  type,
+  userData,
+  institutionId,
+  institutionName,
+}) => {
+  const [selectedUser, setSelectedUser] = useState<UserDetails>();
+  const [deleteTableData, setDeleteTableData] = useState(
+    getDeleteTableDataMultipleUsers(userData, type)
+  );
 
   const { token: authToken } = useAuthToken();
   const { refetch: deleteUserRefetch } = useQuery({
-    queryKey: [`delete-user-${type}-${replaceSpacesWithHyphens(name)}`],
+    queryKey: [`delete-${type}-user-${replaceSpacesWithHyphens(selectedUser?.name)}`],
     enabled: false,
     queryFn: async () => {
       const result = await client.graphql<GraphQLQuery<DeleteUserProfileMutation>>({
@@ -34,8 +45,8 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({ type, userData 
         variables: {
           userType: type,
           name: institutionName,
-          id,
-          email,
+          id: institutionId,
+          email: selectedUser?.email,
         },
       });
       return result;
@@ -52,36 +63,49 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({ type, userData 
         query: getDeleteProfileQueryFromType(type),
         variables: {
           name: institutionName,
-          id,
+          id: institutionId,
         },
       });
       return result;
     },
   });
 
+  useEffect(() => {
+    if (!selectedUser) {
+      return;
+    }
+
+    console.log(deleteUserRefetch);
+    console.log(selectedUser);
+    // void deleteUserRefetch().then(() => {
+    setDeleteTableData((prevValue) => {
+      const newData = prevValue;
+      delete newData[selectedUser.name];
+      return newData;
+    });
+    setSelectedUser(undefined);
+    // });
+  }, [selectedUser]);
+
   // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
   // TODO - Log user out and redirect after deleting user/profile
-  const onDelete = async (key: string): Promise<void> => {
-    if (key === 'Your account') {
+  const onDelete = (key: string): Promise<void> => {
+    if (Object.values(InstitutionType).includes(key.toLowerCase() as InstitutionType)) {
       //popup here first and then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
-      return;
+      // await removeProfile();
+      console.log(removeProfile);
+      return new Promise(() => undefined);
     }
-    if (type === 'localAuthority') {
-      //popup instead of this alert
-      alert('cannae do this rn');
-      return;
-    }
-    if (userData.length < 2) {
+    if (userData.length === 1 && type !== 'localAuthority') {
       //confirm delete popup for deleting school/charity profile, then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
-      await removeProfile();
+      setSelectedUser(userData[0]);
+      // await removeProfile();
+      console.log(removeProfile);
+      return new Promise(() => undefined);
     }
-    if (userData.length > 1) {
-      // TODO - Popup for if more than 1 user and attempt to delete profile
-    }
+    // TODO - Popup for if more than 1 user and attempt to delete profile
+    setSelectedUser(userData.find((user) => key === getNameFromUserObject(user)));
+    return new Promise(() => undefined);
   };
 
   return (
