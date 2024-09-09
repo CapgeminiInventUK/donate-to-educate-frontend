@@ -31,7 +31,7 @@
     "@eslint/compat": "^1.1.1",
     "@tanstack/react-query": "5.55.4",
     "@tanstack/react-query-devtools": "5.55.4",
-    "antd": "5.20.5",
+    "antd": "5.20.6",
     "aws-amplify": "6.6.0",
     "framer-motion": "11.5.4",
     "globals": "^15.9.0",
