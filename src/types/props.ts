@@ -72,7 +72,8 @@ export type FormButtonThemes =
   | 'formButtonGreen'
   | 'formButtonDisabled'
   | 'formButtonLightBlue'
-  | 'formButtonGreenDisabled';
+  | 'formButtonGreenDisabled'
+  | 'formButtonDanger';
 
 export interface ButtonProps {
   theme: Themes;
@@ -434,6 +435,10 @@ export interface DeclineDeleteModalProps {
   onConfirm: () => void;
   bodyText: string;
   confirmText: string;
+  header?: string;
+  subHeader?: string;
+  icon?: JSX.Element;
+  deleteButtonTheme?: FormButtonThemes;
 }
 
 export interface InstitutionAdminDashboardProps {
@@ -746,7 +751,7 @@ export interface InfoTableProps {
   rowClassName?: string;
   theme?: string;
   onEdit?: () => void;
-  onDelete?: (key: string) => Promise<void>;
+  onDelete?: (key: string) => void;
   onChange?: (key: string, value: string) => void;
   refetch?: (
     options?: RefetchOptions | undefined
@@ -774,7 +779,9 @@ export interface ManageDetailsSectionProps {
 
 export interface AdminManageInstitutionDangerZoneProps {
   userData: UserDetails[];
-  type?: AccountType;
+  type: AccountType;
+  institutionId: string;
+  institutionName: string;
 }
 
 export interface ManageInstitutionSectionProps {

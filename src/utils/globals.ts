@@ -77,4 +77,5 @@ export const splitAtLastHyphen = (str: string): string => {
   return str.substring(0, lastHyphenIndex).trim();
 };
 
-export const replaceSpacesWithHyphens = (string: string): string => string.replace(/  +/g, '-');
+export const replaceSpacesWithHyphens = (string?: string): string =>
+  string ? string.replace(/  +/g, '-') : '';
