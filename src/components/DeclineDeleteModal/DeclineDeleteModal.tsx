@@ -30,7 +30,7 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
             <AlertCircleBlue /> {subHeader}
           </h4>
         )}
-        <p>{bodyText}</p>
+        {bodyText && <p>{bodyText}</p>}
         <div className={styles.actionButtons}>
           <FormButton
             theme={'formButtonGrey'}

@@ -433,7 +433,7 @@ export interface DeclineDeleteModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   onConfirm: () => void;
-  bodyText: string;
+  bodyText?: string;
   confirmText: string;
   header?: string;
   subHeader?: string;
@@ -775,6 +775,12 @@ export interface ManageDetailsSectionProps {
   type?: AccountType;
   theme?: 'dark';
   numberOfUsers?: number;
+}
+
+export interface SettingsDangerZoneProps {
+  userData: UserDetails;
+  type: AccountType;
+  numberOfUsers: number;
 }
 
 export interface AdminManageInstitutionDangerZoneProps {

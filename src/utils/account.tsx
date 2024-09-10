@@ -157,14 +157,25 @@ export const getDeleteAccountModalText = (
         header: `Are you sure you want to delete ${name}?`,
       };
     case DeleteAccountType.SELF_USER: {
+      const header = 'Are you sure you want to delete your account?';
+      const confirmText = 'Delete account';
+      const deleteButtonTheme = 'formButtonDanger';
+      if (userCount > 2) {
+        return {
+          header,
+          confirmText,
+          deleteButtonTheme,
+          icon,
+        };
+      }
       const bodyText = isLocalAuthority
-        ? 'If you remove your profile, Donate to Educate to temporarily manage your local authority.'
+        ? 'If you remove your profile, Donate to Educate will temporarily manage your local authority.'
         : `If you delete your profile without finding a new user, the ${accountType} will also be deleted.`;
       return {
         bodyText,
-        confirmText: `Delete account`,
-        deleteButtonTheme: 'formButtonDanger',
-        header: `Are you sure you want to delete your account?`,
+        confirmText,
+        deleteButtonTheme,
+        header,
         subHeader: `You do not have an additional user to manage your ${getSentenceCaseAccountType(accountType)}`,
         icon,
       };
