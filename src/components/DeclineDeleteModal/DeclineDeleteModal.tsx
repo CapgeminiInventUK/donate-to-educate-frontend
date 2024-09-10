@@ -3,6 +3,7 @@ import { FC } from 'react';
 import styles from './DeclineDeleteModal.module.scss';
 import { DeclineDeleteModalProps } from '@/types/props';
 import Card from '@/components/Card/Card';
+import AlertCircleBlue from '@/assets/warning/AlertCircleBlue';
 
 const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
   showModal,
@@ -10,6 +11,10 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
   onConfirm,
   bodyText,
   confirmText,
+  header = 'Are you sure?',
+  subHeader,
+  icon,
+  deleteButtonTheme = 'formButtonRed',
 }) => {
   if (!showModal) {
     return null;
@@ -18,7 +23,13 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
   return (
     <div className={styles.modal}>
       <Card className={styles.modalCard}>
-        <h2>Are you sure?</h2>
+        {icon && <div className={styles.icon}>{icon}</div>}
+        <h2>{header}</h2>
+        {subHeader && (
+          <h4>
+            <AlertCircleBlue /> {subHeader}
+          </h4>
+        )}
         <p>{bodyText}</p>
         <div className={styles.actionButtons}>
           <FormButton
@@ -28,7 +39,7 @@ const DeclineDeleteModal: FC<DeclineDeleteModalProps> = ({
             ariaLabel="back"
           />
           <FormButton
-            theme={'formButtonRed'}
+            theme={deleteButtonTheme}
             onClick={() => {
               setShowModal(false);
               onConfirm();

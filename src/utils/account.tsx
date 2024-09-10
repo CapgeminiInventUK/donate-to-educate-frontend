@@ -1,5 +1,11 @@
 import Paths from '@/config/paths';
-import { AccountType, InstitutionType, UserDetails } from '@/types/data';
+import {
+  AccountType,
+  DeleteAccountType,
+  InstitutionType,
+  ModalTextValues,
+  UserDetails,
+} from '@/types/data';
 import {
   capitaliseFirstLetter,
   checkForStringAndReturnEmptyIfFalsy,
@@ -8,6 +14,7 @@ import {
 import { deleteCharityProfile, deleteSchoolProfile } from '@/graphql/mutations';
 import { getCharityUsers, getLocalAuthorityUsers, getSchoolUsers } from '@/graphql/queries';
 import { deleteUser } from 'aws-amplify/auth';
+import AlertCircleRed from '@/assets/warning/AlertCircleRed';
 
 export const getRedirectUrl = (type: AccountType, hasProfile: boolean): string => {
   switch (type) {
@@ -60,13 +67,15 @@ export const getUserDataKey = (key: string): string => {
   return key.toLowerCase();
 };
 
+export const getSentenceCaseAccountType = (type?: AccountType): string =>
+  String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
+
 export const getDeleteTableData = (
   type?: AccountType,
   institutionName?: string,
   email?: string
 ): Record<string, string> => {
-  const typename =
-    String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
+  const typename = capitaliseFirstLetter(getSentenceCaseAccountType(type));
   return {
     [typename]:
       type === InstitutionType.SCHOOL
@@ -106,3 +115,59 @@ export async function removeUser(): Promise<void> {
     throw new Error(String(error));
   }
 }
+
+export const getDeleteAccountModalText = (
+  accountType: AccountType,
+  deleteType: DeleteAccountType,
+  userCount: number,
+  institutionName: string,
+  name?: string
+): ModalTextValues => {
+  const icon = <AlertCircleRed />;
+  const isLocalAuthority = accountType === 'localAuthority';
+  switch (deleteType) {
+    case DeleteAccountType.PROFILE:
+      return {
+        bodyText: `We will email the users associated with this profile to let them know that the ${accountType} has been deleted and they have been removed.`,
+        confirmText: `Delete ${accountType}`,
+        deleteButtonTheme: 'formButtonDanger',
+        header: `Are you sure you want to delete ${institutionName}?`,
+        subHeader: `This ${accountType} and its data will be deleted from Donate to Educate.`,
+        icon,
+      };
+    case DeleteAccountType.ADMIN_USER:
+      if (userCount === 1) {
+        const bodyText = isLocalAuthority
+          ? 'If you remove them Donate to Educate will need to manage this local authority until a replacement is found. \n\nWe will email the user to let them know that they have been removed.'
+          : `If you remove them, this ${accountType} will also be deleted. We will email the user to let them know.`;
+        const confirmText = isLocalAuthority ? 'Remove and self-manage' : `Delete account`;
+        return {
+          bodyText,
+          confirmText,
+          deleteButtonTheme: 'formButtonDanger',
+          header: `Are you sure you want to delete this account?`,
+          subHeader: `You do not have any additional users to manage this ${getSentenceCaseAccountType(accountType)}.`,
+          icon,
+        };
+      }
+      return {
+        bodyText: `We will email the user to let them know that they have been deleted.`,
+        confirmText: `Delete user`,
+        deleteButtonTheme: 'formButtonDanger',
+        header: `Are you sure you want to delete ${name}?`,
+      };
+    case DeleteAccountType.SELF_USER: {
+      const bodyText = isLocalAuthority
+        ? 'If you remove your profile, Donate to Educate to temporarily manage your local authority.'
+        : `If you delete your profile without finding a new user, the ${accountType} will also be deleted.`;
+      return {
+        bodyText,
+        confirmText: `Delete account`,
+        deleteButtonTheme: 'formButtonDanger',
+        header: `Are you sure you want to delete your account?`,
+        subHeader: `You do not have an additional user to manage your ${getSentenceCaseAccountType(accountType)}`,
+        icon,
+      };
+    }
+  }
+};

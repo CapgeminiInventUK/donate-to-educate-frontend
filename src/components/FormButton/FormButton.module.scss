@@ -74,6 +74,14 @@
   color: g.$primary-white;
 }
 
+.formButtonDanger {
+  @extend %button;
+  border: g.$error-red 1px solid;
+  box-shadow: 0 4px 4px 0 g.$secondary-red;
+  background: g.$danger-button-red;
+  color: g.$primary-white;
+}
+
 .formButtonGreenDisabled {
   @extend %button;
   cursor: not-allowed;

@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './RegisteredUsersSection.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
@@ -15,12 +14,15 @@ import {
   DeleteUserProfileMutation,
 } from '@/types/api';
 import {
+  getDeleteAccountModalText,
   getDeleteProfileQueryFromType,
   getDeleteTableDataMultipleUsers,
   getNameFromUserObject,
 } from '@/utils/account';
-import { AdminManageInstitutionDangerZoneProps } from '@/types/props';
-import { InstitutionType, UserDetails } from '@/types/data';
+import { AdminManageInstitutionDangerZoneProps, DeclineDeleteModalProps } from '@/types/props';
+import { DeleteAccountType, InstitutionType, UserDetails } from '@/types/data';
+import { useNavigate } from 'react-router-dom';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 
 const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   type,
@@ -28,10 +30,13 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   institutionId,
   institutionName,
 }) => {
+  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<UserDetails>();
   const [deleteTableData, setDeleteTableData] = useState(
     getDeleteTableDataMultipleUsers(userData, type)
   );
+  const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
+  const [showModal, setShowModal] = useState(false);
 
   const { token: authToken } = useAuthToken();
   const { refetch: deleteUserRefetch } = useQuery({
@@ -70,42 +75,53 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
     },
   });
 
-  useEffect(() => {
+  const removeRow = (): void => {
     if (!selectedUser) {
       return;
     }
-
-    console.log(deleteUserRefetch);
-    console.log(selectedUser);
-    // void deleteUserRefetch().then(() => {
+    setModalProps(undefined);
     setDeleteTableData((prevValue) => {
       const newData = prevValue;
       delete newData[selectedUser.name];
       return newData;
     });
     setSelectedUser(undefined);
-    // });
-  }, [selectedUser]);
+  };
 
-  // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
-  // TODO - Log user out and redirect after deleting user/profile
-  const onDelete = (key: string): Promise<void> => {
+  const onDelete = (key: string): void => {
     if (Object.values(InstitutionType).includes(key.toLowerCase() as InstitutionType)) {
-      //popup here first and then ->
-      // await removeProfile();
-      console.log(removeProfile);
-      return new Promise(() => undefined);
+      setModalProps({
+        showModal,
+        setShowModal,
+        onConfirm: () => void removeProfile().then(() => navigate(-1)),
+        ...getDeleteAccountModalText(
+          type,
+          DeleteAccountType.PROFILE,
+          userData.length,
+          institutionName
+        ),
+      });
+      setShowModal(true);
+      return;
     }
-    if (userData.length === 1 && type !== 'localAuthority') {
-      //confirm delete popup for deleting school/charity profile, then ->
-      setSelectedUser(userData[0]);
-      // await removeProfile();
-      console.log(removeProfile);
-      return new Promise(() => undefined);
-    }
-    // TODO - Popup for if more than 1 user and attempt to delete profile
     setSelectedUser(userData.find((user) => key === getNameFromUserObject(user)));
-    return new Promise(() => undefined);
+    setModalProps({
+      ...getDeleteAccountModalText(
+        type,
+        DeleteAccountType.ADMIN_USER,
+        userData.length,
+        institutionName
+      ),
+      showModal,
+      setShowModal,
+      onConfirm: () => {
+        userData.length === 1 && type !== 'localAuthority' && void removeProfile();
+        void deleteUserRefetch().then(() => {
+          userData.length === 1 ? navigate(-1) : removeRow();
+        });
+      },
+    });
+    setShowModal(true);
   };
 
   return (
@@ -121,6 +137,9 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
         className={styles.deleteTable}
         rowClassName={styles.deleteTableRow}
       />
+      {modalProps && (
+        <DeclineDeleteModal {...modalProps} setShowModal={setShowModal} showModal={showModal} />
+      )}
     </div>
   );
 };

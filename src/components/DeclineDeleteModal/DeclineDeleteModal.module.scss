@@ -17,14 +17,40 @@
     border: 2px solid g.$primary-light-blue;
     padding: 40px 100px;
     max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @include g.sm-breakpoint {
       padding: 20px 50px;
       width: 80vw;
     }
 
+    .icon {
+      display: flex;
+      justify-content: center;
+
+      svg {
+        color: g.$danger-button-red;
+      }
+    }
+
     h2 {
       text-align: center;
+    }
+
+    h4 {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+
+    p {
+      white-space: pre-wrap;
     }
 
     .actionButtons {
@@ -32,6 +58,7 @@
       justify-content: center;
       align-items: center;
       gap: 40px;
+      margin-top: 20px;
     }
   }
 }
