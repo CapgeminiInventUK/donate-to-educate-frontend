@@ -6,8 +6,8 @@ import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { GetSchoolProfileQuery, SchoolProfile } from '@/types/api';
-import { getSchoolProfile } from '@/graphql/queries';
+import { GetCharityProfileQuery, CharityProfile } from '@/types/api';
+import { getCharityProfile } from '@/graphql/queries';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import { getDataValuesFromQueryObject } from '@/utils/api';
@@ -24,8 +24,8 @@ const CharityUsers: FC = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: [`get-charity-profile=${id}`],
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolProfileQuery>>({
-        query: getSchoolProfile,
+      const { data } = await client.graphql<GraphQLQuery<GetCharityProfileQuery>>({
+        query: getCharityProfile,
         variables: {
           name,
           id,
@@ -45,7 +45,7 @@ const CharityUsers: FC = () => {
   }
 
   const { header } =
-    getDataValuesFromQueryObject<SchoolProfile>(data as GraphQLQuery<SchoolProfile>) ?? {};
+    getDataValuesFromQueryObject<CharityProfile>(data as GraphQLQuery<CharityProfile>) ?? {};
 
   return (
     <ManageInstitution

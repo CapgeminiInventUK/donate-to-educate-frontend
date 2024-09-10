@@ -23,6 +23,7 @@ import { AdminManageInstitutionDangerZoneProps, DeclineDeleteModalProps } from '
 import { DeleteAccountType, InstitutionType, UserDetails } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Spinner from '@/components/Spinner/Spinner';
 
 const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   type,
@@ -58,7 +59,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
     },
   });
 
-  const { refetch: removeProfile } = useQuery({
+  const { refetch: removeProfile, isLoading: removeProfileLoading } = useQuery({
     queryKey: ['removeSchool'],
     enabled: false,
     queryFn: async () => {
@@ -74,6 +75,10 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       return result;
     },
   });
+
+  if (removeProfileLoading) {
+    return <Spinner />;
+  }
 
   const removeRow = (): void => {
     if (!selectedUser) {
