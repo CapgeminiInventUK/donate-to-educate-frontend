@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './Settings.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
 import { checkIfInTestEnvForAuthMode, replaceSpacesWithHyphens } from '@/utils/globals';
-import { ManageDetailsSectionProps } from '@/types/props';
+import { DeclineDeleteModalProps, SettingsDangerZoneProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -15,9 +14,23 @@ import {
   DeleteSchoolProfileMutation,
   DeleteUserProfileMutation,
 } from '@/types/api';
-import { getDeleteProfileQueryFromType, getDeleteTableData, removeUser } from '@/utils/account';
+import {
+  getDeleteAccountModalText,
+  getDeleteProfileQueryFromType,
+  getDeleteTableData,
+  removeUser,
+} from '@/utils/account';
+import { DeleteAccountType } from '@/types/data';
+import { useNavigate } from 'react-router-dom';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Paths from '@/config/paths';
+import { useStore } from '@/stores/useStore';
 
-const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUsers }) => {
+const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, numberOfUsers }) => {
+  const state = useStore((state) => state);
+  const navigate = useNavigate();
+  const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
+  const [showModal, setShowModal] = useState(false);
   const { institutionName, id, email, name } = userData;
 
   const deleteTableData = getDeleteTableData(type, institutionName, email);
@@ -59,13 +72,32 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUse
     },
   });
 
+  const logoutCallback = (): void => {
+    void state.logout();
+    navigate(Paths.HOME);
+  };
+
   // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
   // TODO - Log user out and redirect after deleting user/profile
   const onDelete = (key: string): void => {
     if (key === 'Your account') {
-      //popup here first and then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
+      setModalProps({
+        showModal,
+        setShowModal,
+        onConfirm: () => {
+          type !== 'localAuthority' && numberOfUsers < 2
+            ? void removeProfile().then(logoutCallback)
+            : void deleteUserRefetch().then(logoutCallback);
+          void removeUser();
+        },
+        ...getDeleteAccountModalText(
+          type,
+          DeleteAccountType.SELF_USER,
+          numberOfUsers,
+          String(institutionName)
+        ),
+      });
+      setShowModal(true);
       return;
     }
     if (type === 'localAuthority') {
@@ -73,11 +105,23 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUse
       alert('cannae do this rn');
       return;
     }
-    if (numberOfUsers && numberOfUsers < 2) {
-      //confirm delete popup for deleting school/charity profile, then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
-      void removeProfile();
+    if (numberOfUsers < 2) {
+      setModalProps({
+        showModal,
+        setShowModal,
+        onConfirm: () =>
+          void removeProfile().then(() => {
+            logoutCallback();
+            void removeUser();
+          }),
+        ...getDeleteAccountModalText(
+          type,
+          DeleteAccountType.PROFILE,
+          numberOfUsers,
+          String(institutionName)
+        ),
+      });
+      setShowModal(true);
     }
     if (numberOfUsers && numberOfUsers > 1) {
       // TODO - Popup for if more than 1 user and attempt to delete profile
@@ -97,6 +141,9 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUse
         className={styles.deleteTable}
         rowClassName={styles.deleteTableRow}
       />
+      {modalProps && (
+        <DeclineDeleteModal {...modalProps} setShowModal={setShowModal} showModal={showModal} />
+      )}
     </div>
   );
 };

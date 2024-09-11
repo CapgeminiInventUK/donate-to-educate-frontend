@@ -340,7 +340,7 @@ export enum DeleteAccountType {
 }
 
 export interface ModalTextValues {
-  bodyText: string;
+  bodyText?: string;
   confirmText: string;
   header?: string;
   subHeader?: string;

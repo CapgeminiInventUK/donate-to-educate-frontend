@@ -4,13 +4,20 @@ import BackButton from '@/components/BackButton/BackButton';
 import { useStore } from '@/stores/useStore';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
-import { GetCharityUserQuery, GetLocalAuthorityUserQuery, GetSchoolUserQuery } from '@/types/api';
+import {
+  GetCharityUserQuery,
+  GetCharityUsersQuery,
+  GetLocalAuthorityUserQuery,
+  GetLocalAuthorityUsersQuery,
+  GetSchoolUserQuery,
+  GetSchoolUsersQuery,
+} from '@/types/api';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { getCharityUser, getLocalAuthorityUser, getSchoolUser } from '@/graphql/queries';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Spinner from '@/components/Spinner/Spinner';
-import { InstitutionType, UserDetails } from '@/types/data';
-import { getUserDetailsObjectFromQuery } from '@/utils/account';
+import { AccountType, InstitutionType, UserDetails } from '@/types/data';
+import { getGetUsersQueryFromType, getUserDetailsObjectFromQuery } from '@/utils/account';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 // import ManageInstitutionSection from './ManageInstitutionSection';
 import ManageDetailsSection from './ManageDetailsSection';
@@ -19,7 +26,7 @@ import PostcodeEdit from './PostcodeEdit';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 
 const Settings: FC = () => {
-  const { email, type, name } = useStore((state) => state.user) ?? {};
+  const { email, type, name, id } = useStore((state) => state.user) ?? {};
   const { state } = useLocationStateOrRedirect<{ postcode: string }>();
 
   const query =
@@ -45,11 +52,30 @@ const Settings: FC = () => {
     },
   });
 
-  if (isLoading) {
+  const {
+    isLoading: usersIsLoading,
+    data: usersData,
+    isError: usersIsError,
+  } = useQuery({
+    queryKey: [`get-${type}-users-${id}`],
+    queryFn: async () => {
+      const { data } = await client.graphql<
+        GraphQLQuery<GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery>
+      >({
+        query: getGetUsersQueryFromType(type as AccountType),
+        variables: {
+          id,
+        },
+      });
+      return data;
+    },
+  });
+
+  if (isLoading || usersIsLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
+  if (isError || usersIsError) {
     return <ErrorBanner />;
   }
 
@@ -59,6 +85,10 @@ const Settings: FC = () => {
       Object.values(data).map((value) => value as UserDetails)[0],
       type
     );
+
+  const numberOfUsers: number = usersData
+    ? Object.values(usersData).map((value) => value as UserDetails[])[0]?.length
+    : 0;
 
   if (!userData?.name) {
     return <Spinner />;
@@ -83,7 +113,7 @@ const Settings: FC = () => {
           {type && <ManageDetailsSection userData={userData} type={type} />}
           {/* // TODO Add the below component when enabling multi accounts */}
           {/* <ManageInstitutionSection type={type} /> */}
-          {type && <DangerZone userData={userData} type={type} />}
+          {type && <DangerZone userData={userData} type={type} numberOfUsers={numberOfUsers} />}
         </div>
       </div>
     </div>

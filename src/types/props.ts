@@ -32,8 +32,11 @@ import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
   CharityProfileHeader,
+  GetCharityUsersQuery,
   GetJoinRequestsQuery,
+  GetLocalAuthorityUsersQuery,
   GetSchoolQuery,
+  GetSchoolUsersQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
   ProfileItems,
@@ -433,7 +436,7 @@ export interface DeclineDeleteModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   onConfirm: () => void;
-  bodyText: string;
+  bodyText?: string;
   confirmText: string;
   header?: string;
   subHeader?: string;
@@ -777,11 +780,25 @@ export interface ManageDetailsSectionProps {
   numberOfUsers?: number;
 }
 
+export interface SettingsDangerZoneProps {
+  userData: UserDetails;
+  type: AccountType;
+  numberOfUsers: number;
+}
+
 export interface AdminManageInstitutionDangerZoneProps {
   userData: UserDetails[];
   type: AccountType;
   institutionId: string;
   institutionName: string;
+  getUsersRefetch: (
+    options?: RefetchOptions
+  ) => Promise<
+    QueryObserverResult<
+      GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery,
+      Error
+    >
+  >;
 }
 
 export interface ManageInstitutionSectionProps {
