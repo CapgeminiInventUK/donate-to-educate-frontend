@@ -30,6 +30,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   userData,
   institutionId,
   institutionName,
+  getUsersRefetch,
 }) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<UserDetails>();
@@ -40,7 +41,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   const [showModal, setShowModal] = useState(false);
 
   const { token: authToken } = useAuthToken();
-  const { refetch: deleteUserRefetch } = useQuery({
+  const { refetch: deleteUserRefetch, isLoading } = useQuery({
     queryKey: [`delete-${type}-user-${replaceSpacesWithHyphens(selectedUser?.name)}`],
     enabled: false,
     queryFn: async () => {
@@ -76,18 +77,19 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
     },
   });
 
-  if (removeProfileLoading) {
+  if (removeProfileLoading || isLoading) {
     return <Spinner />;
   }
 
-  const removeRow = (): void => {
-    if (!selectedUser) {
+  const removeRow = (user?: UserDetails): void => {
+    void getUsersRefetch();
+    if (!user) {
       return;
     }
     setModalProps(undefined);
     setDeleteTableData((prevValue) => {
       const newData = prevValue;
-      delete newData[selectedUser.name];
+      delete newData[user.name];
       return newData;
     });
     setSelectedUser(undefined);
@@ -109,7 +111,8 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       setShowModal(true);
       return;
     }
-    setSelectedUser(userData.find((user) => key === getNameFromUserObject(user)));
+    const user = userData.find((user) => key === getNameFromUserObject(user));
+    setSelectedUser(user);
     setModalProps({
       ...getDeleteAccountModalText(
         type,
@@ -122,7 +125,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       onConfirm: () => {
         userData.length === 1 && type !== 'localAuthority' && void removeProfile();
         void deleteUserRefetch().then(() => {
-          userData.length === 1 ? navigate(-1) : removeRow();
+          userData.length === 1 ? navigate(-1) : removeRow(user);
         });
       },
     });

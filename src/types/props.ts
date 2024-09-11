@@ -32,8 +32,11 @@ import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
   CharityProfile,
   CharityProfileHeader,
+  GetCharityUsersQuery,
   GetJoinRequestsQuery,
+  GetLocalAuthorityUsersQuery,
   GetSchoolQuery,
+  GetSchoolUsersQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
   ProfileItems,
@@ -788,6 +791,14 @@ export interface AdminManageInstitutionDangerZoneProps {
   type: AccountType;
   institutionId: string;
   institutionName: string;
+  getUsersRefetch: (
+    options?: RefetchOptions
+  ) => Promise<
+    QueryObserverResult<
+      GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery,
+      Error
+    >
+  >;
 }
 
 export interface ManageInstitutionSectionProps {
