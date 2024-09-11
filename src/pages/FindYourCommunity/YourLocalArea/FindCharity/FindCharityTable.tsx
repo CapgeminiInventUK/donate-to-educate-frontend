@@ -64,34 +64,40 @@ const FindCharityTable: FC<FindCharityTableProps> = ({
 
   return (
     <>
-      {title ? (
-        <h1>{title}</h1>
-      ) : type === InstitutionType.SCHOOL ? (
-        <h2>Nearby charities who can also help</h2>
-      ) : (
-        <h2>Other nearby charities who can also help</h2>
-      )}
-      <ProductsTable
-        tableData={charitiesRows}
-        type={InstitutionType.CHARITY}
-        iconColour="#97C8EB"
-        productsColumnHeader="Product types available"
-        postcode={postcode}
-      />
-      {location.pathname.includes('your-local-area') && (
+      {charitiesRows?.length > 0 ? (
         <>
-          <h3>Charity map</h3>
-          <Map
-            initialCoordinates={
-              data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
-            }
-            markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
-              coordinates,
-              name,
-              colour: '#11356F',
-            }))}
+          {title ? (
+            <h1>{title}</h1>
+          ) : type === InstitutionType.SCHOOL ? (
+            <h2>Nearby charities who can also help</h2>
+          ) : (
+            <h2>Other nearby charities who can also help</h2>
+          )}
+          <ProductsTable
+            tableData={charitiesRows}
+            type={InstitutionType.CHARITY}
+            iconColour="#97C8EB"
+            productsColumnHeader="Product types available"
+            postcode={postcode}
           />
+          {location.pathname.includes('your-local-area') && (
+            <>
+              <h3>Charity map</h3>
+              <Map
+                initialCoordinates={
+                  data?.getCharitiesNearbyWithProfile?.searchLocation?.coordinates ?? [0, 0]
+                }
+                markers={charitiesRows.map(({ location: { coordinates }, name }) => ({
+                  coordinates,
+                  name,
+                  colour: '#11356F',
+                }))}
+              />
+            </>
+          )}
         </>
+      ) : (
+        <></>
       )}
     </>
   );
