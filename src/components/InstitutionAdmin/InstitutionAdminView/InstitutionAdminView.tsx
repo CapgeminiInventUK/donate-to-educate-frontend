@@ -38,9 +38,10 @@ const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, t
             onClick={() => navigate(path)}
             ariaLabel={`view and edit profile`}
           />
-          <Link className={styles.deactivateLink} to={Paths.HOME}>
+          {/* Commenting out until functionality to deactivate profile */}
+          {/* <Link className={styles.deactivateLink} to={Paths.HOME}>
             Deactivate your public profile
-          </Link>
+          </Link> */}
         </Tile>
         <Tile
           title="Your local area"
