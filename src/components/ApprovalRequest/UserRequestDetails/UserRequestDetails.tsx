@@ -27,29 +27,27 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
       <p>To confirm this connection, check that they&apos;re {text}</p>
       <div className={styles.contactInfo}>
         <ToolTip className={styles.infoToolTip} />
-        <b className={styles.key}>
-          The local authority may also review, confirm or decline this request.
-        </b>
+        <b>The local authority may also review, confirm or decline this request.</b>
       </div>
       <div className={styles.requestDecisionCard}>
         {type === InstitutionType.CHARITY && <h3>Details</h3>}
         <div className={styles.informationLine}>
-          <b className={styles.key}>Name</b>
+          <b>Name</b>
           <span>{name}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b className={styles.key}>Job title or role</b>
+          <b>Job title or role</b>
           <span>{title}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b className={styles.key}>Email</b>
+          <b>Email</b>
           <span className={styles.email}>{email}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b className={styles.key}>Phone</b>
+          <b>Phone</b>
           <span>{phone}</span>
         </div>
         <hr />
@@ -57,22 +55,22 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
           <>
             <h3>Charity or volunteer group</h3>
             <div className={styles.informationLine}>
-              <b className={styles.key}>Name</b>
+              <b>Name</b>
               <span>{charityName}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b className={styles.key}>Local Authority</b>
+              <b>Local Authority</b>
               <span>{la}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b className={styles.key}>Main Address</b>
+              <b>Main Address</b>
               <span className={styles.address}>{charityAddress}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b className={styles.key}>About</b>
+              <b>About</b>
               <span className={styles.about}>{aboutCharity}</span>
             </div>
             <hr />

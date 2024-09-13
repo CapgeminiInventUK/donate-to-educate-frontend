@@ -1,4 +1,4 @@
-@use "@assets/global.scss" as g;
+@use '@assets/global.scss' as g;
 
 .bannerContainer {
   background: g.$primary-dark-blue;
@@ -11,7 +11,8 @@
     color: g.$primary-white;
     text-decoration: underline;
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       color: g.$primary-light-blue;
     }
   }
