@@ -27,27 +27,29 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
       <p>To confirm this connection, check that they&apos;re {text}</p>
       <div className={styles.contactInfo}>
         <ToolTip className={styles.infoToolTip} />
-        <b>The local authority may also review, confirm or decline this request.</b>
+        <b className={styles.key}>
+          The local authority may also review, confirm or decline this request.
+        </b>
       </div>
       <div className={styles.requestDecisionCard}>
         {type === InstitutionType.CHARITY && <h3>Details</h3>}
         <div className={styles.informationLine}>
-          <b>Name</b>
+          <b className={styles.key}>Name</b>
           <span>{name}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b>Job title or role</b>
+          <b className={styles.key}>Job title or role</b>
           <span>{title}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b>Email</b>
-          <span>{email}</span>
+          <b className={styles.key}>Email</b>
+          <span className={styles.email}>{email}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
-          <b>Phone</b>
+          <b className={styles.key}>Phone</b>
           <span>{phone}</span>
         </div>
         <hr />
@@ -55,23 +57,23 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
           <>
             <h3>Charity or volunteer group</h3>
             <div className={styles.informationLine}>
-              <b>Name</b>
+              <b className={styles.key}>Name</b>
               <span>{charityName}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b>Local Authority</b>
+              <b className={styles.key}>Local Authority</b>
               <span>{la}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b>Main Address</b>
+              <b className={styles.key}>Main Address</b>
               <span className={styles.address}>{charityAddress}</span>
             </div>
             <hr />
             <div className={styles.informationLine}>
-              <b>About</b>
-              <span>{aboutCharity}</span>
+              <b className={styles.key}>About</b>
+              <span className={styles.about}>{aboutCharity}</span>
             </div>
             <hr />
           </>
@@ -97,8 +99,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
         setShowModal={setShowModal}
         showModal={showModal}
         onConfirm={() => setMyStage('denied')}
-        bodyText=" If you cannot identify this connection or confirm they are connected to the school, you
-      may decline them."
+        bodyText="If you cannot identify this connection or confirm they are connected to the school, you may decline them."
         confirmText="Decline request"
       />
     </>

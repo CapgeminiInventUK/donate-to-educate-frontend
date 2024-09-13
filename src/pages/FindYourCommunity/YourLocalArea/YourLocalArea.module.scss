@@ -19,6 +19,11 @@ $small: 500px;
       margin-top: 20px;
       cursor: pointer;
       white-space: pre-wrap;
+
+      h2 {
+        text-decoration: underline;
+        color: g.$link-blue;
+      }
     }
 
     .imageContainer {

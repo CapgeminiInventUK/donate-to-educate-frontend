@@ -22,6 +22,10 @@
     gap: 25px;
     color: g.$primary-dark-blue;
 
+    @include g.md-breakpoint {
+      padding: 20px 30px;
+    }
+
     hr {
       height: 2px;
       margin: 0;
@@ -42,14 +46,32 @@
     b {
       width: 45%;
       max-width: 275px;
+
+      @include g.md-breakpoint {
+        width: 30%;
+      }
     }
 
     span {
       white-space: nowrap;
+      width: 55%;
+
+      @include g.md-breakpoint {
+        width: 70%;
+      }
     }
 
     .address {
       white-space: pre-wrap;
+    }
+
+    .about,
+    .email {
+      white-space: pre-wrap;
+      word-break: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
     }
   }
 
@@ -68,7 +90,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    height: 26px;
 
     .item {
       word-break: break-word;
