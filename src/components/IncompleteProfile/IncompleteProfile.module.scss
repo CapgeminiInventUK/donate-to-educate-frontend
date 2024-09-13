@@ -1,0 +1,18 @@
+@use "@assets/global.scss" as g;
+
+.bannerContainer {
+  background: g.$primary-dark-blue;
+  color: g.$primary-white;
+  padding: 30px 40px;
+  border-top: g.$secondary-blue 18px solid;
+  border-radius: 10px 10px 0 0;
+
+  a {
+    color: g.$primary-white;
+    text-decoration: underline;
+
+    &:focus, &:hover {
+      color: g.$primary-light-blue;
+    }
+  }
+}
