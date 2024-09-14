@@ -140,6 +140,8 @@ export const convertCategoryToNumber = (category: SectionsIconType): number => {
   }
 };
 
+export const disabledCategories = [1, 2, 3, 4, 5];
+
 export const convertNumberToCategory = (number: number): SectionsIconType => {
   switch (Number(number)) {
     case 0:
