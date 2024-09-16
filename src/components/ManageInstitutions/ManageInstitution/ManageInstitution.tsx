@@ -56,7 +56,7 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     return <Spinner />;
   }
 
-  if (usersIsError) {
+  if (usersIsError && type !== 'localAuthority') {
     return <ErrorBanner />;
   }
 
@@ -77,13 +77,15 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
           <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
         )}
         <RegisteredUsersSection userData={users} type={type} />
-        <DangerZone
-          userData={users}
-          type={type}
-          institutionId={id}
-          institutionName={name}
-          getUsersRefetch={refetch}
-        />
+        {users.length > 0 && (
+          <DangerZone
+            userData={users}
+            type={type}
+            institutionId={id}
+            institutionName={name}
+            getUsersRefetch={refetch}
+          />
+        )}
       </div>
     </div>
   );
