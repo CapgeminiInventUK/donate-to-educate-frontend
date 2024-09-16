@@ -1,0 +1,19 @@
+@use '@assets/global.scss' as g;
+
+.body {
+  background: g.$primary-white;
+  padding: 20px 60px 60px;
+  border-radius: 10px;
+
+  .title {
+    margin-bottom: 10px;
+  }
+
+  .textInput {
+    margin-bottom: 50px;
+
+    &:first-of-type {
+      margin-top: 40px;
+    }
+  }
+}

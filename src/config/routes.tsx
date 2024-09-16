@@ -54,6 +54,7 @@ import {
   Excess,
   Settings,
   AdminDashboardLocalAuthorityUsers,
+  AddSchoolUser,
 } from './lazy';
 import { Route } from '@/types/props';
 import { InstitutionType } from '@/types/data';
@@ -108,6 +109,11 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_MANAGE_CHARITY,
     element: <AdminDashboardManageCharity />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER,
+    element: <AddSchoolUser />,
     authType: 'admin',
   },
   {

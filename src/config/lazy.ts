@@ -130,3 +130,6 @@ export const FindSchools = lazy(
 export const FindCharities = lazy(
   () => import('@/pages/FindYourCommunity/YourLocalArea/FindCharity/FindCharity')
 );
+
+// Add Users
+export const AddSchoolUser = lazy(() => import('@/pages/AddUser/AddSchoolUser/AddSchoolUser.tsx'));
