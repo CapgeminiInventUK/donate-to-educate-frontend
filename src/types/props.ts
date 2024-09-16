@@ -284,7 +284,7 @@ export interface MultiStepFormProps {
   isSchoolRegistered?: boolean;
   hasActiveJoinRequest?: boolean;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<GraphQLResult<GraphQLQuery<InsertJoinRequestMutationVariables>>, Error>
   >;
@@ -557,7 +557,7 @@ export interface FormFieldsProps {
   onChange: (
     value: string | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, string | boolean> | undefined
+    fullValue?: Record<string, string | boolean>
   ) => void;
   isUnhappyPath?: boolean;
 }
@@ -757,7 +757,7 @@ export interface InfoTableProps {
   onDelete?: (key: string) => void;
   onChange?: (key: string, value: string) => void;
   refetch?: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
@@ -769,7 +769,7 @@ export interface EditingRowProps {
   setEditingKey: Dispatch<SetStateAction<string | undefined>>;
   onChange: ((key: string, value: string) => void) | undefined;
   refetch?: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
@@ -835,7 +835,7 @@ export interface ProductsListPageProps {
   content: ContentType;
   setContent: Dispatch<SetStateAction<ContentType>>;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<
       GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
@@ -851,7 +851,7 @@ export interface RequestDonateNextStepsProps {
   setSaveDisabled: Dispatch<SetStateAction<boolean>>;
   path: Paths;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<
       GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
