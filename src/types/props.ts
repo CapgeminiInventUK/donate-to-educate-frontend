@@ -534,6 +534,7 @@ export interface getColumnSearchProps<T> {
   buttonClassName?: string;
   postcode?: string;
   firstColumnBold?: boolean;
+  isLocalAuthority?: boolean;
 }
 
 export interface FormHeaderProps {

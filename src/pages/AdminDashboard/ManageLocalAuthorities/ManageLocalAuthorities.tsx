@@ -37,6 +37,7 @@ const ManageLocalAuthorities: FC = () => {
     dashboardLink,
     buttonClassName: styles.nameBtn,
     navigate,
+    isLocalAuthority: true,
   };
 
   const {
