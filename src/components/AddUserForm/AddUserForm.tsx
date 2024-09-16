@@ -9,6 +9,7 @@ import { checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
 import { useNavigate } from 'react-router-dom';
+import { FormState } from '@/types/data';
 
 const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refetch, isError }) => {
   const [formErrors, setFormErrors] = useState<Record<string, string>>();
@@ -36,6 +37,15 @@ const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refe
     void refetch().then(() => navigate(-1));
   };
 
+  const formKeys: { header: string; key: keyof FormState }[] = [
+    { header: 'First name', key: 'firstName' },
+    { header: 'Last name', key: 'lastName' },
+    { header: 'Job title or role', key: 'jobTitle' },
+    { header: 'Department', key: 'department' },
+    { header: 'Email', key: 'email' },
+    { header: 'Phone', key: 'phone' },
+  ];
+
   if (isError) {
     return <ErrorBanner />;
   }
@@ -46,53 +56,17 @@ const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refe
       <h2>Add user</h2>
       <form onSubmit={onSubmit}>
         {formErrors && <FormErrors formErrors={formErrors} />}
-        <TextInput
-          header="First name"
-          onChange={(value) => onFormChange('firstName', value)}
-          ariaLabel="first-name"
-          value={formState.firstName}
-          className={styles.textInput}
-          isLarge
-        />
-        <TextInput
-          header="Last name"
-          onChange={(value) => onFormChange('lastName', value)}
-          ariaLabel="last-name"
-          value={formState.lastName}
-          className={styles.textInput}
-          isLarge
-        />
-        <TextInput
-          header="Job title or role"
-          onChange={(value) => onFormChange('jobTitle', value)}
-          ariaLabel="job-title-or-role"
-          value={formState.jobTitle}
-          className={styles.textInput}
-          isLarge
-        />
-        <TextInput
-          header="Department"
-          onChange={(value) => onFormChange('department', value)}
-          ariaLabel="department"
-          value={formState.department}
-          className={styles.textInput}
-          isLarge
-        />
-        <TextInput
-          header="Email"
-          onChange={(value) => onFormChange('email', value)}
-          ariaLabel="email"
-          value={formState.email}
-          className={styles.textInput}
-          isLarge
-        />
-        <TextInput
-          header="Phone"
-          onChange={(value) => onFormChange('phone', value)}
-          ariaLabel="phone"
-          value={formState.phone}
-          className={styles.textInput}
-        />
+        {formKeys.map(({ header, key }) => (
+          <TextInput
+            key={key}
+            header={header}
+            onChange={(value) => onFormChange(key, value)}
+            ariaLabel={key}
+            value={formState[key]}
+            className={styles.textInput}
+            isLarge={key !== 'phone'}
+          />
+        ))}
         <TextArea
           header="Notes about this user (optional)"
           subHeading="This information can only be seen by Donate to Educate administrators."
