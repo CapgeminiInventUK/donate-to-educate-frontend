@@ -783,7 +783,7 @@ export interface ManageDetailsSectionProps {
 export interface SettingsDangerZoneProps {
   userData: UserDetails;
   type: AccountType;
-  numberOfUsers: number;
+  allUsers: UserDetails[];
 }
 
 export interface AdminManageInstitutionDangerZoneProps {
@@ -873,4 +873,11 @@ export interface ManageInstitutionProps {
 
 export interface InstitutionContactInsetProps {
   header?: SchoolProfileHeader | CharityProfileHeader | null;
+}
+
+export interface DeniedModalProps {
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+  showModal: boolean;
+  header?: string;
+  body?: string;
 }
