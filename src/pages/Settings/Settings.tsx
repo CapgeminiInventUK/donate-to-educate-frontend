@@ -86,9 +86,9 @@ const Settings: FC = () => {
       type
     );
 
-  const numberOfUsers: number = usersData
-    ? Object.values(usersData).map((value) => value as UserDetails[])[0]?.length
-    : 0;
+  const allUsers: UserDetails[] = usersData
+    ? Object.values(usersData).map((value) => value as UserDetails[])[0]
+    : [];
 
   if (!userData?.name) {
     return <Spinner />;
@@ -113,7 +113,7 @@ const Settings: FC = () => {
           {type && <ManageDetailsSection userData={userData} type={type} />}
           {/* // TODO Add the below component when enabling multi accounts */}
           {/* <ManageInstitutionSection type={type} /> */}
-          {type && <DangerZone userData={userData} type={type} numberOfUsers={numberOfUsers} />}
+          {type && <DangerZone userData={userData} type={type} allUsers={allUsers} />}
         </div>
       </div>
     </div>

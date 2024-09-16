@@ -18,19 +18,23 @@ import {
   getDeleteAccountModalText,
   getDeleteProfileQueryFromType,
   getDeleteTableData,
+  getDeniedModalContent,
   removeUser,
 } from '@/utils/account';
-import { DeleteAccountType } from '@/types/data';
+import { DeleteAccountType, DeniedModalContent } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 import Paths from '@/config/paths';
 import { useStore } from '@/stores/useStore';
+import DeniedModal from '@/components/DeniedModal/DeniedModal';
 
-const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, numberOfUsers }) => {
+const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, allUsers }) => {
   const state = useStore((state) => state);
   const navigate = useNavigate();
   const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
   const [showModal, setShowModal] = useState(false);
+  const [showDeniedModal, setShowDeniedModal] = useState(false);
+  const [deniedModalContent, setDeniedModalContent] = useState<DeniedModalContent>();
   const { institutionName, id, email, name } = userData;
 
   const deleteTableData = getDeleteTableData(type, institutionName, email);
@@ -73,59 +77,38 @@ const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, numberOfUsers
   });
 
   const logoutCallback = (): void => {
+    void removeUser();
     void state.logout();
     navigate(Paths.HOME);
   };
 
-  // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
-  // TODO - Log user out and redirect after deleting user/profile
+  const onConfirm = async (key: string): Promise<void> => {
+    key === 'Your account' && (type === 'localAuthority' || allUsers.length > 1)
+      ? await deleteUserRefetch()
+      : await removeProfile();
+  };
+
+  const getDeleteAccountType = (key: string): DeleteAccountType =>
+    key === 'Your account' ? DeleteAccountType.SELF_USER : DeleteAccountType.PROFILE;
+
   const onDelete = (key: string): void => {
-    if (key === 'Your account') {
+    if (key === 'Your account' || (allUsers.length < 2 && type !== 'localAuthority')) {
       setModalProps({
         showModal,
         setShowModal,
-        onConfirm: () => {
-          type !== 'localAuthority' && numberOfUsers < 2
-            ? void removeProfile().then(logoutCallback)
-            : void deleteUserRefetch().then(logoutCallback);
-          void removeUser();
-        },
+        onConfirm: () => void onConfirm(key).then(logoutCallback),
         ...getDeleteAccountModalText(
           type,
-          DeleteAccountType.SELF_USER,
-          numberOfUsers,
+          getDeleteAccountType(key),
+          allUsers.length,
           String(institutionName)
         ),
       });
       setShowModal(true);
       return;
     }
-    if (type === 'localAuthority') {
-      //popup instead of this alert
-      alert('cannae do this rn');
-      return;
-    }
-    if (numberOfUsers < 2) {
-      setModalProps({
-        showModal,
-        setShowModal,
-        onConfirm: () =>
-          void removeProfile().then(() => {
-            logoutCallback();
-            void removeUser();
-          }),
-        ...getDeleteAccountModalText(
-          type,
-          DeleteAccountType.PROFILE,
-          numberOfUsers,
-          String(institutionName)
-        ),
-      });
-      setShowModal(true);
-    }
-    if (numberOfUsers && numberOfUsers > 1) {
-      // TODO - Popup for if more than 1 user and attempt to delete profile
-    }
+    setDeniedModalContent(getDeniedModalContent(allUsers, userData, type));
+    setShowDeniedModal(true);
   };
 
   return (
@@ -143,6 +126,13 @@ const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, numberOfUsers
       />
       {modalProps && (
         <DeclineDeleteModal {...modalProps} setShowModal={setShowModal} showModal={showModal} />
+      )}
+      {deniedModalContent && (
+        <DeniedModal
+          showModal={showDeniedModal}
+          setShowModal={setShowDeniedModal}
+          {...deniedModalContent}
+        />
       )}
     </div>
   );

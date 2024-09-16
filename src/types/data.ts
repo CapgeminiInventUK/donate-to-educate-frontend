@@ -339,11 +339,16 @@ export enum DeleteAccountType {
   SELF_USER,
 }
 
-export interface ModalTextValues {
+export interface DeclineDeleteModalContent {
   bodyText?: string;
   confirmText: string;
   header?: string;
   subHeader?: string;
   icon?: JSX.Element;
   deleteButtonTheme?: FormButtonThemes;
+}
+
+export interface DeniedModalContent {
+  header?: string;
+  body?: string;
 }

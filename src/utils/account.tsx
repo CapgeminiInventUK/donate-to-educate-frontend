@@ -3,8 +3,9 @@ import {
   AccountType,
   DeleteAccountType,
   InstitutionType,
-  ModalTextValues,
+  DeclineDeleteModalContent,
   UserDetails,
+  DeniedModalContent,
 } from '@/types/data';
 import {
   capitaliseFirstLetter,
@@ -68,7 +69,7 @@ export const getUserDataKey = (key: string): string => {
 };
 
 export const getSentenceCaseAccountType = (type?: AccountType): string =>
-  String(type) === 'localAuthority' ? 'Local authority' : capitaliseFirstLetter(String(type));
+  String(type) === 'localAuthority' ? 'local authority' : String(type);
 
 export const getDeleteTableData = (
   type?: AccountType,
@@ -122,7 +123,7 @@ export const getDeleteAccountModalText = (
   userCount: number,
   institutionName: string,
   name?: string
-): ModalTextValues => {
+): DeclineDeleteModalContent => {
   const icon = <AlertCircleRed />;
   const isLocalAuthority = accountType === 'localAuthority';
   switch (deleteType) {
@@ -181,4 +182,30 @@ export const getDeleteAccountModalText = (
       };
     }
   }
+};
+
+export const getDeniedModalContent = (
+  users: UserDetails[],
+  currentUser: UserDetails,
+  type: AccountType
+): DeniedModalContent => {
+  const otherUsers = users.filter(({ email }) => email !== currentUser.email);
+  const body = `You cannot delete your ${type} as there is more than one user associated with it. When there is only one user managing the ${type}, then the ${type} can be deleted.\n\nIt is recommended that you contact us if you need additional help.`;
+  if (type === 'localAuthority') {
+    return {
+      header: 'Contact us',
+      body: 'Deleting your local authority will have a knock-on affect with associated schools and charities that operate within your local authority.\n\nIt is recommended that you contact us to discuss next steps.',
+    };
+  }
+  if (otherUsers.length === 1) {
+    const { name } = otherUsers[0];
+    return {
+      header: `${name} still has an account at this ${type}`,
+      body,
+    };
+  }
+  return {
+    header: `There are still other accounts registered to this ${type}`,
+    body,
+  };
 };
