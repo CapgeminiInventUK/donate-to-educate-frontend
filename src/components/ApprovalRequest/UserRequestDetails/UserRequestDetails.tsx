@@ -43,7 +43,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
         <hr />
         <div className={styles.informationLine}>
           <b>Email</b>
-          <span>{email}</span>
+          <span className={styles.email}>{email}</span>
         </div>
         <hr />
         <div className={styles.informationLine}>
@@ -71,7 +71,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
             <hr />
             <div className={styles.informationLine}>
               <b>About</b>
-              <span>{aboutCharity}</span>
+              <span className={styles.about}>{aboutCharity}</span>
             </div>
             <hr />
           </>
@@ -97,8 +97,7 @@ const UserRequestDetails: FC<UserRequestDetailsProps> = ({
         setShowModal={setShowModal}
         showModal={showModal}
         onConfirm={() => setMyStage('denied')}
-        bodyText=" If you cannot identify this connection or confirm they are connected to the school, you
-      may decline them."
+        bodyText="If you cannot identify this connection or confirm they are connected to the school, you may decline them."
         confirmText="Decline request"
       />
     </>

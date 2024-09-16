@@ -9,6 +9,7 @@ export const getArrowColour = (theme: FormButtonThemes): string => {
     case 'formButtonMidBlue':
     case 'formButtonGreen':
     case 'formButtonGreenDisabled':
+    case 'formButtonDanger':
       return RightArrowWhite;
     case 'formButtonGrey':
     case 'formButtonDisabled':

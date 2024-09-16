@@ -34,8 +34,11 @@ import {
   AddAdditionalUserMutation,
   CharityProfile,
   CharityProfileHeader,
+  GetCharityUsersQuery,
   GetJoinRequestsQuery,
+  GetLocalAuthorityUsersQuery,
   GetSchoolQuery,
+  GetSchoolUsersQuery,
   InsertJoinRequestMutationVariables,
   JoinRequest,
   ProfileItems,
@@ -74,7 +77,8 @@ export type FormButtonThemes =
   | 'formButtonGreen'
   | 'formButtonDisabled'
   | 'formButtonLightBlue'
-  | 'formButtonGreenDisabled';
+  | 'formButtonGreenDisabled'
+  | 'formButtonDanger';
 
 export interface ButtonProps {
   theme: Themes;
@@ -282,7 +286,7 @@ export interface MultiStepFormProps {
   isSchoolRegistered?: boolean;
   hasActiveJoinRequest?: boolean;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<GraphQLResult<GraphQLQuery<InsertJoinRequestMutationVariables>>, Error>
   >;
@@ -434,8 +438,12 @@ export interface DeclineDeleteModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
   onConfirm: () => void;
-  bodyText: string;
+  bodyText?: string;
   confirmText: string;
+  header?: string;
+  subHeader?: string;
+  icon?: JSX.Element;
+  deleteButtonTheme?: FormButtonThemes;
 }
 
 export interface InstitutionAdminDashboardProps {
@@ -528,6 +536,7 @@ export interface getColumnSearchProps<T> {
   buttonClassName?: string;
   postcode?: string;
   firstColumnBold?: boolean;
+  isLocalAuthority?: boolean;
 }
 
 export interface FormHeaderProps {
@@ -551,7 +560,7 @@ export interface FormFieldsProps {
   onChange: (
     value: string | boolean,
     formMeta: FormMeta | undefined,
-    fullValue?: Record<string, string | boolean> | undefined
+    fullValue?: Record<string, string | boolean>
   ) => void;
   isUnhappyPath?: boolean;
 }
@@ -748,10 +757,10 @@ export interface InfoTableProps {
   rowClassName?: string;
   theme?: string;
   onEdit?: () => void;
-  onDelete?: (key: string) => Promise<void>;
+  onDelete?: (key: string) => void;
   onChange?: (key: string, value: string) => void;
   refetch?: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
@@ -763,7 +772,7 @@ export interface EditingRowProps {
   setEditingKey: Dispatch<SetStateAction<string | undefined>>;
   onChange: ((key: string, value: string) => void) | undefined;
   refetch?: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<UpdateUserMutation>>, Error>>;
 }
 
@@ -774,9 +783,25 @@ export interface ManageDetailsSectionProps {
   numberOfUsers?: number;
 }
 
+export interface SettingsDangerZoneProps {
+  userData: UserDetails;
+  type: AccountType;
+  allUsers: UserDetails[];
+}
+
 export interface AdminManageInstitutionDangerZoneProps {
   userData: UserDetails[];
-  type?: AccountType;
+  type: AccountType;
+  institutionId: string;
+  institutionName: string;
+  getUsersRefetch: (
+    options?: RefetchOptions
+  ) => Promise<
+    QueryObserverResult<
+      GetLocalAuthorityUsersQuery | GetCharityUsersQuery | GetSchoolUsersQuery,
+      Error
+    >
+  >;
 }
 
 export interface ManageInstitutionSectionProps {
@@ -814,7 +839,7 @@ export interface ProductsListPageProps {
   content: ContentType;
   setContent: Dispatch<SetStateAction<ContentType>>;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<
       GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
@@ -830,7 +855,7 @@ export interface RequestDonateNextStepsProps {
   setSaveDisabled: Dispatch<SetStateAction<boolean>>;
   path: Paths;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<
     QueryObserverResult<
       GraphQLResult<GraphQLQuery<UpdateSchoolProfileMutation | UpdateCharityProfileMutation>>,
@@ -859,7 +884,14 @@ export interface AddUserFormProps {
   formState: FormState;
   setFormState: React.Dispatch<React.SetStateAction<FormState>>;
   refetch: (
-    options?: RefetchOptions | undefined
+    options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<AddAdditionalUserMutation>>, Error>>;
   isError: boolean;
+}
+
+export interface DeniedModalProps {
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+  showModal: boolean;
+  header?: string;
+  body?: string;
 }

@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './Settings.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
 import { checkIfInTestEnvForAuthMode, replaceSpacesWithHyphens } from '@/utils/globals';
-import { ManageDetailsSectionProps } from '@/types/props';
+import { DeclineDeleteModalProps, SettingsDangerZoneProps } from '@/types/props';
 import useAuthToken from '@/hooks/useAuthToken';
 import { useQuery } from '@tanstack/react-query';
 import { client } from '@/graphqlClient';
@@ -15,9 +14,27 @@ import {
   DeleteSchoolProfileMutation,
   DeleteUserProfileMutation,
 } from '@/types/api';
-import { getDeleteProfileQueryFromType, getDeleteTableData, removeUser } from '@/utils/account';
+import {
+  getDeleteAccountModalText,
+  getDeleteProfileQueryFromType,
+  getDeleteTableData,
+  getDeniedModalContent,
+  removeUser,
+} from '@/utils/account';
+import { DeleteAccountType, DeniedModalContent } from '@/types/data';
+import { useNavigate } from 'react-router-dom';
+import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
+import Paths from '@/config/paths';
+import { useStore } from '@/stores/useStore';
+import DeniedModal from '@/components/DeniedModal/DeniedModal';
 
-const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUsers }) => {
+const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, allUsers }) => {
+  const state = useStore((state) => state);
+  const navigate = useNavigate();
+  const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
+  const [showModal, setShowModal] = useState(false);
+  const [showDeniedModal, setShowDeniedModal] = useState(false);
+  const [deniedModalContent, setDeniedModalContent] = useState<DeniedModalContent>();
   const { institutionName, id, email, name } = userData;
 
   const deleteTableData = getDeleteTableData(type, institutionName, email);
@@ -59,29 +76,39 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUse
     },
   });
 
-  // TODO - Popup for type === 'localAuthority' scenario and for confirm delete in all scenarios
-  // TODO - Log user out and redirect after deleting user/profile
-  const onDelete = async (key: string): Promise<void> => {
-    if (key === 'Your account') {
-      //popup here first and then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
+  const logoutCallback = (): void => {
+    void removeUser();
+    void state.logout();
+    navigate(Paths.HOME);
+  };
+
+  const onConfirm = async (key: string): Promise<void> => {
+    key === 'Your account' && (type === 'localAuthority' || allUsers.length > 1)
+      ? await deleteUserRefetch()
+      : await removeProfile();
+  };
+
+  const getDeleteAccountType = (key: string): DeleteAccountType =>
+    key === 'Your account' ? DeleteAccountType.SELF_USER : DeleteAccountType.PROFILE;
+
+  const onDelete = (key: string): void => {
+    if (key === 'Your account' || (allUsers.length < 2 && type !== 'localAuthority')) {
+      setModalProps({
+        showModal,
+        setShowModal,
+        onConfirm: () => void onConfirm(key).then(logoutCallback),
+        ...getDeleteAccountModalText(
+          type,
+          getDeleteAccountType(key),
+          allUsers.length,
+          String(institutionName)
+        ),
+      });
+      setShowModal(true);
       return;
     }
-    if (type === 'localAuthority') {
-      //popup instead of this alert
-      alert('cannae do this rn');
-      return;
-    }
-    if (numberOfUsers && numberOfUsers < 2) {
-      //confirm delete popup for deleting school/charity profile, then ->
-      console.log(deleteUserRefetch);
-      console.log(removeUser);
-      await removeProfile();
-    }
-    if (numberOfUsers && numberOfUsers > 1) {
-      // TODO - Popup for if more than 1 user and attempt to delete profile
-    }
+    setDeniedModalContent(getDeniedModalContent(allUsers, userData, type));
+    setShowDeniedModal(true);
   };
 
   return (
@@ -97,6 +124,16 @@ const DangerZone: FC<ManageDetailsSectionProps> = ({ type, userData, numberOfUse
         className={styles.deleteTable}
         rowClassName={styles.deleteTableRow}
       />
+      {modalProps && (
+        <DeclineDeleteModal {...modalProps} setShowModal={setShowModal} showModal={showModal} />
+      )}
+      {deniedModalContent && (
+        <DeniedModal
+          showModal={showDeniedModal}
+          setShowModal={setShowDeniedModal}
+          {...deniedModalContent}
+        />
+      )}
     </div>
   );
 };

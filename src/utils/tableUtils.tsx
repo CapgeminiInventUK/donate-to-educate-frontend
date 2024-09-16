@@ -22,6 +22,7 @@ const getColumnSearch = <T,>({
   buttonClassName,
   postcode,
   firstColumnBold,
+  isLocalAuthority,
 }: getColumnSearchProps<T>): ColumnType<T> => {
   const handleTableSearch = (
     selectedKeys: string[],
@@ -108,7 +109,7 @@ const getColumnSearch = <T,>({
         );
       }
       const { name, id, registered } = record as SearchResult;
-      if (registered || dashboardLink === Paths.CHARITY_DASHBOARD) {
+      if (registered || dashboardLink === Paths.CHARITY_DASHBOARD || isLocalAuthority) {
         return searchedColumn === dataIndex ? (
           <Button
             key={id}

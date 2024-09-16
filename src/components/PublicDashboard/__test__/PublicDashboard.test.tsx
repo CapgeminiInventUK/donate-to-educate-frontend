@@ -12,9 +12,12 @@ describe('Public dashboard', () => {
     );
     const { queryByText } = render(<Component />);
 
-    expect(
-      queryByText('We are still populating our profile, please check back later')
-    ).toBeInTheDocument();
+    expect(queryByText('We are still populating our profile')).toBeInTheDocument();
+    expect(queryByText('find nearby charities who may be able to help.')).toBeInTheDocument();
+    expect(queryByText('Check back later or you can also')).toBeInTheDocument();
+    expect(queryByText('Contact us')).toBeInTheDocument();
+    expect(queryByText('if you need help')).toBeInTheDocument();
+
     expect(queryByText('About us')).not.toBeInTheDocument();
   });
 

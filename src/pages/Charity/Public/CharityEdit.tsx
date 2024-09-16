@@ -5,6 +5,7 @@ import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
 import Paths from '@/config/paths';
 import { checkForStringAndReturnEmptyIfFalsy } from '@/utils/globals';
 import { InstitutionType } from '@/types/data';
+import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const CharityEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -19,10 +20,18 @@ const CharityEdit: FC = () => {
 
   const parsedItems = JSON.parse(items ?? '{}') as Record<number, string[]>;
 
+  const getItems = (): Record<number, string[]> => {
+    for (const disabledCategory of disabledCategories) {
+      delete parsedItems[disabledCategory];
+    }
+
+    return parsedItems;
+  };
+
   return (
     <ItemSelection
       schoolOrCharity={InstitutionType.CHARITY}
-      items={parsedItems}
+      items={getItems()}
       whatToExpect={checkForStringAndReturnEmptyIfFalsy(whatToExpect)}
       actionText={checkForStringAndReturnEmptyIfFalsy(actionText)}
       id={id}

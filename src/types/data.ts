@@ -5,6 +5,7 @@ import {
   CheckboxProps,
   DropdownProps,
   ExternalLinkProps,
+  FormButtonThemes,
   FormIntroPageProps,
   RadioGroupProps,
   SummaryProps,
@@ -330,4 +331,24 @@ export interface Address {
   town?: string;
   localAuthority: string;
   postcode: string;
+}
+
+export enum DeleteAccountType {
+  PROFILE,
+  ADMIN_USER,
+  SELF_USER,
+}
+
+export interface DeclineDeleteModalContent {
+  bodyText?: string;
+  confirmText: string;
+  header?: string;
+  subHeader?: string;
+  icon?: JSX.Element;
+  deleteButtonTheme?: FormButtonThemes;
+}
+
+export interface DeniedModalContent {
+  header?: string;
+  body?: string;
 }
