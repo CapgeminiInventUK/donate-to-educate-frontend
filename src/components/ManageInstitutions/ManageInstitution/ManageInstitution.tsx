@@ -76,7 +76,11 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
         {type !== 'localAuthority' && (
           <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
         )}
-        <RegisteredUsersSection userData={users} type={type} />
+        <RegisteredUsersSection
+          institutionProfile={institutionProfile}
+          userData={users}
+          type={type}
+        />
         {users.length > 0 && (
           <DangerZone
             userData={users}

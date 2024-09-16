@@ -1,0 +1,15 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  color: g.$primary-dark-blue;
+  padding: 4px 100px 50px;
+
+  .formButton {
+    margin: 20px 0 20px;
+  }
+
+  a {
+    color: g.$link-blue;
+  }
+}

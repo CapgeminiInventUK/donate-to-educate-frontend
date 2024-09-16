@@ -108,7 +108,7 @@ export interface FormState {
   department: string;
   email: string;
   phone: string;
-  notes: string;
+  notes?: string;
 }
 
 export interface RequestFormState {

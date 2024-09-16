@@ -25,11 +25,13 @@ import {
   UserDetails,
   InstitutionType,
   Address,
+  FormState,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { GraphQLQuery, GraphQLResult } from 'aws-amplify/api';
 import {
+  AddAdditionalUserMutation,
   CharityProfile,
   CharityProfileHeader,
   GetCharityUsersQuery,
@@ -809,6 +811,7 @@ export interface ManageInstitutionSectionProps {
 export interface RegisteredUsersSectionProps {
   userData: UserDetails[];
   type?: AccountType;
+  institutionProfile: InstitutionProfile;
 }
 
 export interface ShowHideProps {
@@ -874,6 +877,16 @@ export interface ManageInstitutionProps {
 
 export interface InstitutionContactInsetProps {
   header?: SchoolProfileHeader | CharityProfileHeader | null;
+}
+
+export interface AddUserFormProps {
+  name: string;
+  formState: FormState;
+  setFormState: React.Dispatch<React.SetStateAction<FormState>>;
+  refetch: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<AddAdditionalUserMutation>>, Error>>;
+  isError: boolean;
 }
 
 export interface DeniedModalProps {

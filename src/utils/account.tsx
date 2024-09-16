@@ -198,7 +198,7 @@ export const getDeniedModalContent = (
     };
   }
   if (otherUsers.length === 1) {
-    const { name } = otherUsers[0];
+    const name = getNameFromUserObject(otherUsers[0]);
     return {
       header: `${name} still has an account at this ${type}`,
       body,
