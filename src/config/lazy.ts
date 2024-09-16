@@ -133,3 +133,9 @@ export const FindCharities = lazy(
 
 // Add Users
 export const AddSchoolUser = lazy(() => import('@/pages/AddUser/AddSchoolUser/AddSchoolUser.tsx'));
+export const AddCharityUser = lazy(
+  () => import('@/pages/AddUser/AddCharityUser/AddCharityUser.tsx')
+);
+export const AddLocalAuthorityUser = lazy(
+  () => import('@/pages/AddUser/AddLocalAuthorityUser/AddLocalAuthorityUser.tsx')
+);

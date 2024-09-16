@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import styles from './AddCharityUser.module.scss';
+import styles from './AddLocalAuthorityUser.module.scss';
 import { InstitutionType } from '@/types/data';
 import BackButton from '@/components/BackButton/BackButton';
 import AddUserForm from '@/components/AddUserForm/AddUserForm';
@@ -12,7 +12,7 @@ import { addAdditionalUser } from '@/graphql/mutations';
 import { FormState } from '@/types/data';
 import { useQuery } from '@tanstack/react-query';
 
-const AddCharityUser: FC = () => {
+const AddLocalAuthorityUser: FC = () => {
   const [formState, setFormState] = useState<FormState>({
     firstName: '',
     lastName: '',
@@ -51,4 +51,4 @@ const AddCharityUser: FC = () => {
   );
 };
 
-export default AddCharityUser;
+export default AddLocalAuthorityUser;

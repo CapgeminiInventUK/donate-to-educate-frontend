@@ -55,6 +55,8 @@ import {
   Settings,
   AdminDashboardLocalAuthorityUsers,
   AddSchoolUser,
+  AddCharityUser,
+  AddLocalAuthorityUser,
 } from './lazy';
 import { Route } from '@/types/props';
 import { InstitutionType } from '@/types/data';
@@ -114,6 +116,16 @@ const routes: Route[] = [
   {
     path: Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER,
     element: <AddSchoolUser />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_ADD_CHARITY_USER,
+    element: <AddCharityUser />,
+    authType: 'admin',
+  },
+  {
+    path: Paths.ADMIN_DASHBOARD_ADD_LOCAL_AUTHORITY_USER,
+    element: <AddLocalAuthorityUser />,
     authType: 'admin',
   },
   {

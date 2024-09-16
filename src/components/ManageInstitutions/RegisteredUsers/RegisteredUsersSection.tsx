@@ -31,12 +31,19 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
   });
 
   const handleNavigation = (): void => {
-    navigate(Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER, {
-      state: {
-        type,
-        name: institutionProfile.name,
-      },
-    });
+    navigate(
+      type === 'school'
+        ? Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER
+        : type === 'charity'
+          ? Paths.ADMIN_DASHBOARD_ADD_CHARITY_USER
+          : Paths.ADMIN_DASHBOARD_ADD_LOCAL_AUTHORITY_USER,
+      {
+        state: {
+          type,
+          name: institutionProfile.name,
+        },
+      }
+    );
   };
 
   return (
