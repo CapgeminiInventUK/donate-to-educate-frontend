@@ -15,6 +15,7 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
   institutionProfile,
 }) => {
   const navigate = useNavigate();
+  const { id, name, localAuthority } = institutionProfile;
 
   const tableValues = userData.map((user) => {
     const manageDetails: ManageUserDetails = {
@@ -33,14 +34,17 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
   const handleNavigation = (): void => {
     navigate(
       type === 'school'
-        ? Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER
+        ? Paths.ADD_SCHOOL_USER
         : type === 'charity'
-          ? Paths.ADMIN_DASHBOARD_ADD_CHARITY_USER
-          : Paths.ADMIN_DASHBOARD_ADD_LOCAL_AUTHORITY_USER,
+          ? Paths.ADD_CHARITY_USER
+          : Paths.ADD_LOCAL_AUTHORITY_USER,
       {
         state: {
           type,
-          name: institutionProfile.name,
+          name,
+          id,
+          localAuthority,
+          urn: id,
         },
       }
     );

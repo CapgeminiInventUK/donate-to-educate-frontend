@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './AddLocalAuthorityUser.module.scss';
-import { InstitutionType } from '@/types/data';
+import { InstitutionType, UserDetails } from '@/types/data';
 import BackButton from '@/components/BackButton/BackButton';
 import AddUserForm from '@/components/AddUserForm/AddUserForm';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
@@ -11,6 +11,9 @@ import { AddAdditionalUserMutation } from '@/types/api';
 import { addAdditionalUser } from '@/graphql/mutations';
 import { FormState } from '@/types/data';
 import { useQuery } from '@tanstack/react-query';
+import { getNameFromUserObject } from '@/utils/account';
+import useAuthToken from '@/hooks/useAuthToken';
+import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 
 const AddLocalAuthorityUser: FC = () => {
   const [formState, setFormState] = useState<FormState>({
@@ -22,18 +25,31 @@ const AddLocalAuthorityUser: FC = () => {
     phone: '',
     notes: '',
   });
+  const [name, setName] = useState('');
+  const { token: authToken } = useAuthToken();
 
-  const { state } = useLocationStateOrRedirect<{ type: InstitutionType; name: string }>(
-    Paths.ADMIN_DASHBOARD_LA_VIEW_USERS
-  );
+  useEffect(() => {
+    setName(getNameFromUserObject(formState as UserDetails));
+  }, [formState]);
+
+  const {
+    state: { type, id, localAuthority },
+  } = useLocationStateOrRedirect<{
+    type: InstitutionType;
+    name: string;
+    id: string;
+    localAuthority: string;
+  }>(Paths.ADMIN_DASHBOARD_LA_VIEW_USERS);
 
   const { refetch, isError } = useQuery({
-    queryKey: [`add-${state.type}-${state.name}-${JSON.stringify(formState)}`],
+    queryKey: [`add-${type}-${localAuthority}-${name}`],
     enabled: false,
     queryFn: async () =>
       await client.graphql<GraphQLQuery<AddAdditionalUserMutation>>({
+        authToken,
+        authMode: checkIfInTestEnvForAuthMode(),
         query: addAdditionalUser,
-        variables: {},
+        variables: { type, id, localAuthority, name, ...formState },
       }),
   });
 
@@ -41,7 +57,7 @@ const AddLocalAuthorityUser: FC = () => {
     <div className={styles.container}>
       <BackButton theme="blue" />
       <AddUserForm
-        name={state.name}
+        name={localAuthority}
         formState={formState}
         setFormState={setFormState}
         refetch={refetch}

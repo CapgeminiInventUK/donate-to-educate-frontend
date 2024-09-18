@@ -114,19 +114,19 @@ const routes: Route[] = [
     authType: 'admin',
   },
   {
-    path: Paths.ADMIN_DASHBOARD_ADD_SCHOOL_USER,
+    path: Paths.ADD_SCHOOL_USER,
     element: <AddSchoolUser />,
-    authType: 'admin',
+    authType: ['admin', 'localAuthority'],
   },
   {
-    path: Paths.ADMIN_DASHBOARD_ADD_CHARITY_USER,
+    path: Paths.ADD_CHARITY_USER,
     element: <AddCharityUser />,
-    authType: 'admin',
+    authType: ['admin', 'localAuthority'],
   },
   {
-    path: Paths.ADMIN_DASHBOARD_ADD_LOCAL_AUTHORITY_USER,
+    path: Paths.ADD_LOCAL_AUTHORITY_USER,
     element: <AddLocalAuthorityUser />,
-    authType: 'admin',
+    authType: ['admin', 'localAuthority'],
   },
   {
     path: Paths.DELETE_CONFIRMATION,
