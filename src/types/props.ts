@@ -60,6 +60,9 @@ export interface LayoutProps {
 
 export type TileThemes = 'lightBlue' | 'midBlue' | 'darkBlue' | 'grey';
 
+export type TileAccentColours = 'lightBlueAccent' | 'midBlueAccent' | 'midGreenAccent';
+export type TileColourSchemes = 'dark' | 'light';
+
 export type Themes =
   | 'darkBlue'
   | 'midBlue'
@@ -651,6 +654,9 @@ export interface TileProps {
   noShadow?: boolean;
   hoverScale?: number;
   titleLarge?: boolean;
+  tileColourScheme?: TileColourSchemes;
+  tileAccentColour?: TileAccentColours;
+  hasBorder?: boolean;
 }
 
 export interface HomeTileProps {

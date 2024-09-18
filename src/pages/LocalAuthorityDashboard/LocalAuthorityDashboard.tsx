@@ -22,6 +22,9 @@ import Donate from '@/assets/icons/Donate';
 import School from '@/assets/icons/School';
 import Settings from '@/assets/icons/Settings';
 import { PillColours } from '@/types/data';
+import Hanger from '@/assets/tiles/Hanger';
+import Heart from '@/assets/LocalAuthorityDashboard/Heart';
+import ExtraStock from '@/assets/LocalAuthorityDashboard/ExtraStock';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -130,38 +133,95 @@ const LocalAuthorityDashboard: FC = () => {
         </div>
 
         <div className={styles.body}>
-          <h2>Manage your community</h2>
-          <div className={styles.tileRow}>
-            <Tile
-              title="Manage your schools"
-              onClick={() =>
-                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
-                  state: { localAuthority: name },
-                })
-              }
-              body={['View, edit and remove schools from Donate to Educate in your area.']}
-              icon={<School />}
-              size="medium"
-              noShadow
-            >
-              <Pill colour={PillColours.GREEN} text={`${schoolRequests} requests`} />
-            </Tile>
-            <Tile
-              title="Manage your charity and volunteer groups"
-              onClick={() =>
-                navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
-                  state: { localAuthority: name },
-                })
-              }
-              body={[
-                'View, edit, and remove charities and volunteer groups from Donate to Educate in your area.',
-              ]}
-              icon={<Donate />}
-              size="medium"
-              noShadow
-            >
-              <Pill colour={PillColours.GREEN} text={`${charityRequests} requests`} />
-            </Tile>
+          <div className={styles.tileContainer}>
+            <h2>Schools and charities in your area</h2>
+            <div className={styles.tileRow}>
+              <Tile
+                title="Available products"
+                onClick={() =>
+                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
+                    state: { localAuthority: name },
+                  })
+                }
+                body={['Easily request school supplies for children in your community.']}
+                icon={<Hanger />}
+                tileColourScheme="light"
+                tileAccentColour="lightBlueAccent"
+                size="medium"
+                noShadow
+                hasBorder
+              />
+              <Tile
+                title="Donations needed"
+                onClick={() =>
+                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
+                    state: { localAuthority: name },
+                  })
+                }
+                body={['Donate school supplies to schools and charities who need them.']}
+                icon={<Heart />}
+                size="medium"
+                tileColourScheme="light"
+                tileAccentColour="midBlueAccent"
+                noShadow
+                hasBorder
+              />
+              <Tile
+                title="Redistribute extra stock"
+                onClick={() =>
+                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
+                    state: { localAuthority: name },
+                  })
+                }
+                body={[
+                  'Your community might have too many school products. Take it off their hands!',
+                ]}
+                icon={<ExtraStock />}
+                size="medium"
+                tileColourScheme="light"
+                tileAccentColour="midGreenAccent"
+                noShadow
+                hasBorder
+              />
+            </div>
+          </div>
+
+          <div className={styles.tileContainer}>
+            <h2>Manage your community</h2>
+            <div className={styles.tileRow}>
+              <Tile
+                title="Manage your schools"
+                onClick={() =>
+                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_SCHOOLS, {
+                    state: { localAuthority: name },
+                  })
+                }
+                body={['View, edit and remove schools from Donate to Educate in your area.']}
+                icon={<School />}
+                size="medium"
+                noShadow
+                tileColourScheme="dark"
+              >
+                <Pill colour={PillColours.GREEN} text={`${schoolRequests} requests`} />
+              </Tile>
+              <Tile
+                title="Manage your charity and volunteer groups"
+                onClick={() =>
+                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD_CHARITIES, {
+                    state: { localAuthority: name },
+                  })
+                }
+                body={[
+                  'View, edit, and remove charities and volunteer groups from Donate to Educate in your area.',
+                ]}
+                icon={<Donate />}
+                tileColourScheme="dark"
+                size="medium"
+                noShadow
+              >
+                <Pill colour={PillColours.GREEN} text={`${charityRequests} requests`} />
+              </Tile>
+            </div>
           </div>
         </div>
       </div>
