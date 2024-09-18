@@ -40,9 +40,9 @@ enum Paths {
   CHARITIES_VIEW = '/charities-admin-view',
 
   // Add Users
-  ADMIN_DASHBOARD_ADD_SCHOOL_USER = '/add-school-user',
-  ADMIN_DASHBOARD_ADD_CHARITY_USER = '/add-charity-user',
-  ADMIN_DASHBOARD_ADD_LOCAL_AUTHORITY_USER = '/add-local-authority-user',
+  ADD_SCHOOL_USER = '/add-school-user',
+  ADD_CHARITY_USER = '/add-charity-user',
+  ADD_LOCAL_AUTHORITY_USER = '/add-local-authority-user',
 
   // Public School
   SCHOOLS_DASHBOARD = '/school',
