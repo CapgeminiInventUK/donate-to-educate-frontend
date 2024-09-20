@@ -13,10 +13,13 @@ const Tile: FC<TileProps> = ({
   children,
   hoverScale = 1.05,
   titleLarge = false,
+  tileColourScheme,
+  tileAccentColour,
+  hasBorder = false,
 }) => {
   return (
     <motion.div
-      className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium} ${noShadow === true ? styles.noShadow : ''} ${onClick ? styles.clickable : ''}`}
+      className={`${styles.tile} ${size === 'small' ? styles.small : styles.medium} ${noShadow === true ? styles.noShadow : ''} ${onClick ? styles.clickable : ''} ${tileAccentColour ? styles[tileAccentColour] : ''} ${hasBorder ? styles.hasBorder : ''} ${tileColourScheme ? styles[tileColourScheme] : ''}`}
       whileHover={{ scale: hoverScale }}
       onClick={onClick ?? undefined}
       aria-label="tile"

@@ -27,6 +27,32 @@
   cursor: pointer;
 }
 
+.hasBorder {
+  border-top: white 8px solid;
+}
+
+.lightBlueAccent {
+  border-top-color: g.$primary-light-blue;
+}
+
+.midBlueAccent {
+  border-top-color: g.$primary-mid-blue;
+}
+
+.midGreenAccent {
+  border-top-color: g.$primary-mid-green;
+}
+
+.dark {
+  background: g.$dark-blue;
+  color: g.$primary-white;
+  border: 0.5px solid g.$dark-blue;
+}
+
+.light {
+  color: g.$primary-dark-blue;
+}
+
 .children {
   margin: 30px 0 10px;
 

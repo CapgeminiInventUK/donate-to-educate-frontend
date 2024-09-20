@@ -7,7 +7,7 @@ exports[`Tile > should render component 1`] = `
     <div>
       <div
         aria-label="tile"
-        class="_tile_34c135 undefined _noShadow_34c135 "
+        class="_tile_34c135 undefined _noShadow_34c135    "
       >
         <h2>
           Your charity profile is active
@@ -26,7 +26,7 @@ exports[`Tile > should render component 1`] = `
   "container": <div>
     <div
       aria-label="tile"
-      class="_tile_34c135 undefined _noShadow_34c135 "
+      class="_tile_34c135 undefined _noShadow_34c135    "
     >
       <h2>
         Your charity profile is active
