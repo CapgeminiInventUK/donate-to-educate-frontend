@@ -804,6 +804,7 @@ export interface AdminManageInstitutionDangerZoneProps {
   type: AccountType;
   institutionId: string;
   institutionName: string;
+  usersIsLoading: boolean;
   getUsersRefetch: (
     options?: RefetchOptions
   ) => Promise<

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './RegisteredUsersSection.module.scss';
 import Caution from '@/assets/icons/Caution';
 import InfoTable from '@/components/InfoTable/InfoTable';
@@ -32,6 +32,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   institutionId,
   institutionName,
   getUsersRefetch,
+  usersIsLoading,
 }) => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<UserDetails>();
@@ -40,6 +41,10 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   );
   const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setDeleteTableData(getDeleteTableDataMultipleUsers(userData, type));
+  }, [userData]);
 
   const { token: authToken } = useAuthToken();
   const { refetch: deleteUserRefetch, isLoading } = useQuery({
@@ -78,7 +83,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
     },
   });
 
-  if (removeProfileLoading || isLoading) {
+  if (removeProfileLoading || isLoading || usersIsLoading) {
     return <Spinner />;
   }
 
@@ -113,13 +118,15 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       return;
     }
     const user = userData.find((user) => key === getNameFromUserObject(user));
+    const name = user && getNameFromUserObject(user);
     setSelectedUser(user);
     setModalProps({
       ...getDeleteAccountModalText(
         type,
         DeleteAccountType.ADMIN_USER,
         userData.length,
-        institutionName
+        institutionName,
+        name
       ),
       showModal,
       setShowModal,
@@ -139,16 +146,18 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   return (
     <div className={styles.deleteSection}>
       <h2>Delete</h2>
-      <InfoTable
-        originalTableValues={deleteTableData}
-        editableKeys={[]}
-        isDelete={true}
-        onDelete={onDelete}
-        title="Danger zone"
-        icon={<Caution />}
-        className={styles.deleteTable}
-        rowClassName={styles.deleteTableRow}
-      />
+      {deleteTableData && (
+        <InfoTable
+          originalTableValues={deleteTableData}
+          editableKeys={[]}
+          isDelete={true}
+          onDelete={onDelete}
+          title="Danger zone"
+          icon={<Caution />}
+          className={styles.deleteTable}
+          rowClassName={styles.deleteTableRow}
+        />
+      )}
       {modalProps && (
         <DeclineDeleteModal {...modalProps} setShowModal={setShowModal} showModal={showModal} />
       )}
