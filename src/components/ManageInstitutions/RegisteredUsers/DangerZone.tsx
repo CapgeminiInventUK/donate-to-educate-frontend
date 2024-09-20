@@ -21,7 +21,6 @@ import {
 } from '@/utils/account';
 import { AdminManageInstitutionDangerZoneProps, DeclineDeleteModalProps } from '@/types/props';
 import { DeleteAccountType, InstitutionType, UserDetails } from '@/types/data';
-import { useNavigate } from 'react-router-dom';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 import Spinner from '@/components/Spinner/Spinner';
 import { openNotification } from '@/utils/formComponents';
@@ -33,8 +32,8 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   institutionName,
   getUsersRefetch,
   usersIsLoading,
+  setShowResultBanner,
 }) => {
-  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<UserDetails>();
   const [deleteTableData, setDeleteTableData] = useState(
     getDeleteTableDataMultipleUsers(userData, type)
@@ -106,7 +105,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       setModalProps({
         showModal,
         setShowModal,
-        onConfirm: () => void removeProfile().then(() => navigate(-1)),
+        onConfirm: () => void removeProfile().then(() => setShowResultBanner(true)),
         ...getDeleteAccountModalText(
           type,
           DeleteAccountType.PROFILE,
@@ -134,7 +133,7 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
         userData.length === 1 && type !== 'localAuthority' && void removeProfile();
         void deleteUserRefetch().then(() => {
           userData.length === 1
-            ? navigate(-1)
+            ? setShowResultBanner(true)
             : (openNotification(<span className="notificationMessage">User deleted</span>),
               removeRow(user));
         });

@@ -2,7 +2,7 @@ import { ManageInstitutionProps } from '@/types/props';
 import { FC, useEffect, useState } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './ManageInstitution.module.scss';
-import { Address, InstitutionType, UserDetails } from '@/types/data';
+import { Address, AdminUserResultType, InstitutionType, UserDetails } from '@/types/data';
 import { GraphQLQuery } from 'aws-amplify/api';
 import { client } from '@/graphqlClient';
 import { useQuery } from '@tanstack/react-query';
@@ -20,9 +20,12 @@ import { getGetUsersQueryFromType, getUserDetailsObjectFromQuery } from '@/utils
 import AddressInset from '@/components/AddressInset/AddressInset';
 import InstitutionContactInset from '@/components/InstitutionContactInset/InstitutionContactInset';
 import DangerZone from '../RegisteredUsers/DangerZone';
+import ResultBanner from '@/components/AddUserForm/ResultBanner';
+import { pluraliseString } from '@/utils/globals';
 
 const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfile, header }) => {
   const [users, setUsers] = useState<UserDetails[]>([]);
+  const [showResultBanner, setShowResultBanner] = useState(false);
   const { id, name } = institutionProfile;
   const icon =
     type === InstitutionType.SCHOOL ? (
@@ -77,29 +80,40 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
-      <div className={styles.body}>
-        <div>{icon}</div>
-        <h1 className={styles.title}>{name}</h1>
-        <InstitutionContactInset header={header} />
-        {type !== 'localAuthority' && (
-          <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
-        )}
-        <RegisteredUsersSection
-          institutionProfile={institutionProfile}
-          userData={users}
-          type={type}
-        />
-        {users?.length > 0 && (
-          <DangerZone
+      {!showResultBanner ? (
+        <div className={styles.body}>
+          <div>{icon}</div>
+          <h1 className={styles.title}>{name}</h1>
+          <InstitutionContactInset header={header} />
+          {type !== 'localAuthority' && (
+            <AddressInset formData={[]} addressDetails={institutionProfile as Address} />
+          )}
+          <RegisteredUsersSection
+            institutionProfile={institutionProfile}
             userData={users}
             type={type}
-            institutionId={id}
-            institutionName={name}
-            getUsersRefetch={refetch}
-            usersIsLoading={usersIsLoading}
           />
-        )}
-      </div>
+          {users?.length > 0 && (
+            <DangerZone
+              userData={users}
+              type={type}
+              institutionId={id}
+              institutionName={name}
+              getUsersRefetch={refetch}
+              usersIsLoading={usersIsLoading}
+              setShowResultBanner={setShowResultBanner}
+            />
+          )}
+        </div>
+      ) : (
+        <ResultBanner
+          type={AdminUserResultType.ACCOUNT_DELETED}
+          name={name}
+          linkText={`Return to ${pluraliseString(type)}`}
+          logo="back"
+        />
+      )}
+      ;
     </div>
   );
 };
