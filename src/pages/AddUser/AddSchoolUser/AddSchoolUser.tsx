@@ -63,6 +63,7 @@ const AddSchoolUser: FC = () => {
         setFormState={setFormState}
         refetch={refetch}
         isError={isError}
+        type="school"
       />
     </div>
   );

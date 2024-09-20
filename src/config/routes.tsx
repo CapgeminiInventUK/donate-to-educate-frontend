@@ -36,7 +36,7 @@ import {
   RequestSchoolProducts,
   SchoolDashboardItems,
   SchoolContactConfirmation,
-  DeleteConfirmation,
+  DeleteConfirmationBanner,
   Donate,
   FindSchools,
   FindCharities,
@@ -130,7 +130,7 @@ const routes: Route[] = [
   },
   {
     path: Paths.DELETE_CONFIRMATION,
-    element: <DeleteConfirmation />,
+    element: <DeleteConfirmationBanner />,
     authType: 'admin',
   },
 

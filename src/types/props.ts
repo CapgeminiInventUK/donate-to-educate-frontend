@@ -26,6 +26,7 @@ import {
   InstitutionType,
   Address,
   FormState,
+  AdminUserResultType,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -616,6 +617,15 @@ export interface PublicDashboardProps {
 export interface ResultBannerProps {
   type: ResultType;
   name?: string;
+  logo?: string;
+  linkText?: string;
+}
+
+export interface AdminUserResultBannerProps {
+  type: AdminUserResultType;
+  name?: string;
+  logo?: string;
+  linkText?: string;
 }
 
 export interface BackButtonProps {
@@ -893,6 +903,7 @@ export interface AddUserFormProps {
     options?: RefetchOptions
   ) => Promise<QueryObserverResult<GraphQLResult<GraphQLQuery<AddAdditionalUserMutation>>, Error>>;
   isError: boolean;
+  type: AccountType;
 }
 
 export interface DeniedModalProps {

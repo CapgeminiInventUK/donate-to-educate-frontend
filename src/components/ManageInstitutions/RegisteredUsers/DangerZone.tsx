@@ -24,6 +24,7 @@ import { DeleteAccountType, InstitutionType, UserDetails } from '@/types/data';
 import { useNavigate } from 'react-router-dom';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
 import Spinner from '@/components/Spinner/Spinner';
+import { openNotification } from '@/utils/formComponents';
 
 const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
   type,
@@ -125,7 +126,10 @@ const DangerZone: FC<AdminManageInstitutionDangerZoneProps> = ({
       onConfirm: () => {
         userData.length === 1 && type !== 'localAuthority' && void removeProfile();
         void deleteUserRefetch().then(() => {
-          userData.length === 1 ? navigate(-1) : removeRow(user);
+          userData.length === 1
+            ? navigate(-1)
+            : (openNotification(<span className="notificationMessage">User deleted</span>),
+              removeRow(user));
         });
       },
     });

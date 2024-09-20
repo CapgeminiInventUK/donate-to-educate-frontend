@@ -62,6 +62,7 @@ const AddLocalAuthorityUser: FC = () => {
         setFormState={setFormState}
         refetch={refetch}
         isError={isError}
+        type="localAuthority"
       />
     </div>
   );
