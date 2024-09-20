@@ -805,6 +805,7 @@ export interface AdminManageInstitutionDangerZoneProps {
   institutionId: string;
   institutionName: string;
   usersIsLoading: boolean;
+  setShowResultBanner: Dispatch<SetStateAction<boolean>>;
   getUsersRefetch: (
     options?: RefetchOptions
   ) => Promise<
