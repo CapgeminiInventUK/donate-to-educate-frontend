@@ -1,5 +1,5 @@
 import { ManageInstitutionProps } from '@/types/props';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import BackButton from '@/components/BackButton/BackButton';
 import styles from './ManageInstitution.module.scss';
 import { Address, InstitutionType, UserDetails } from '@/types/data';
@@ -22,6 +22,7 @@ import InstitutionContactInset from '@/components/InstitutionContactInset/Instit
 import DangerZone from '../RegisteredUsers/DangerZone';
 
 const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfile, header }) => {
+  const [users, setUsers] = useState<UserDetails[]>([]);
   const { id, name } = institutionProfile;
   const icon =
     type === InstitutionType.SCHOOL ? (
@@ -52,6 +53,19 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
     },
   });
 
+  useEffect(() => {
+    void refetch();
+  }, []);
+
+  useEffect(() => {
+    const newUsers = usersData
+      ? Object.values(usersData).flatMap((value) =>
+          (value as UserDetails[]).map((user) => getUserDetailsObjectFromQuery(user, type))
+        )
+      : [];
+    setUsers(newUsers);
+  }, [usersData]);
+
   if (usersIsLoading) {
     return <Spinner />;
   }
@@ -59,12 +73,6 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
   if (usersIsError && type !== 'localAuthority') {
     return <ErrorBanner />;
   }
-
-  const users = usersData
-    ? Object.values(usersData).flatMap((value) =>
-        (value as UserDetails[]).map((user) => getUserDetailsObjectFromQuery(user, type))
-      )
-    : [];
 
   return (
     <div className={styles.container}>
@@ -81,13 +89,14 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
           userData={users}
           type={type}
         />
-        {users.length > 0 && (
+        {users?.length > 0 && (
           <DangerZone
             userData={users}
             type={type}
             institutionId={id}
             institutionName={name}
             getUsersRefetch={refetch}
+            usersIsLoading={usersIsLoading}
           />
         )}
       </div>

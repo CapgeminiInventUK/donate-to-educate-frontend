@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './InfoTable.module.scss';
 import { InfoTableProps } from '@/types/props';
 import Button from '../Button/Button';
@@ -22,6 +22,10 @@ const InfoTable: FC<InfoTableProps> = ({
 }) => {
   const [editingKey, setEditingKey] = useState<string>();
   const [newTableValues, setNewTableValues] = useState(originalTableValues);
+
+  useEffect(() => {
+    setNewTableValues(originalTableValues);
+  }, [originalTableValues]);
 
   return (
     <div

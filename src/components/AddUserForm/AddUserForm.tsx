@@ -26,6 +26,13 @@ const AddUserForm: FC<AddUserFormProps> = ({
       ? AdminUserResultType.LA_ACCOUNT_CREATED
       : AdminUserResultType.INSTITUTION_ACCOUNT_CREATED;
   const resultBannerName = type === 'localAuthority' ? name : formState.firstName;
+  const formComplete =
+    formState.firstName &&
+    formState.lastName &&
+    formState.jobTitle &&
+    formState.department &&
+    formState.email &&
+    formState.phone;
 
   const onFormChange = (key: string, value: string): void => {
     setFormState((prevState) => {
@@ -88,7 +95,7 @@ const AddUserForm: FC<AddUserFormProps> = ({
           characterLimit={1000}
         />
         <FormButton
-          theme="formButtonGrey"
+          theme={formComplete ? 'formButtonDarkBlue' : 'formButtonGrey'}
           text="Create account"
           onClick={(): void => {
             null;
