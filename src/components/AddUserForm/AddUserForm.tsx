@@ -8,12 +8,24 @@ import { validateForm } from '@/utils/formValidationUtils';
 import { checkIfValidObjectWithData, scrollToTheTop } from '@/utils/globals';
 import FormErrors from '@/components/FormErrors/FormErrors';
 import ErrorBanner from '../ErrorBanner/ErrorBanner';
-import { useNavigate } from 'react-router-dom';
-import { FormState } from '@/types/data';
+import { FormState, AdminUserResultType } from '@/types/data';
+import ResultBanner from './ResultBanner';
 
-const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refetch, isError }) => {
+const AddUserForm: FC<AddUserFormProps> = ({
+  name,
+  formState,
+  setFormState,
+  refetch,
+  isError,
+  type,
+}) => {
   const [formErrors, setFormErrors] = useState<Record<string, string>>();
-  const navigate = useNavigate();
+  const [showResultsBanner, setShowResultsBanner] = useState(false);
+  const resultType =
+    type === 'localAuthority'
+      ? AdminUserResultType.LA_ACCOUNT_CREATED
+      : AdminUserResultType.INSTITUTION_ACCOUNT_CREATED;
+  const resultBannerName = type === 'localAuthority' ? name : formState.firstName;
 
   const onFormChange = (key: string, value: string): void => {
     setFormState((prevState) => {
@@ -34,7 +46,7 @@ const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refe
 
     setFormErrors(undefined);
 
-    void refetch().then(() => navigate(-1));
+    void refetch().then(() => setShowResultsBanner(true));
   };
 
   const formKeys: { header: string; key: keyof FormState }[] = [
@@ -50,7 +62,7 @@ const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refe
     return <ErrorBanner />;
   }
 
-  return (
+  return !showResultsBanner ? (
     <div className={styles.body}>
       <h1 className={styles.title}>{name}</h1>
       <h2>Add user</h2>
@@ -85,6 +97,8 @@ const AddUserForm: FC<AddUserFormProps> = ({ name, formState, setFormState, refe
         />
       </form>
     </div>
+  ) : (
+    <ResultBanner type={resultType} name={resultBannerName} linkText={`Return to ${name}`} />
   );
 };
 export default AddUserForm;

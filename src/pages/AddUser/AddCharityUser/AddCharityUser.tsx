@@ -63,6 +63,7 @@ const AddCharityUser: FC = () => {
         setFormState={setFormState}
         refetch={refetch}
         isError={isError}
+        type="charity"
       />
     </div>
   );

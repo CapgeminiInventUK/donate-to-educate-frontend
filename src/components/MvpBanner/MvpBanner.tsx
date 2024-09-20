@@ -1,7 +1,5 @@
 import { FC, useState } from 'react';
 import styles from './MvpBanner.module.scss';
-import { Link } from 'react-router-dom';
-import Paths from '@/config/paths';
 import CloseButton from '../CloseButton/CloseButton';
 
 const MvpBanner: FC = () => {
@@ -10,8 +8,11 @@ const MvpBanner: FC = () => {
     <div className={styles.banner}>
       <div></div>
       <div className={styles.content}>
-        This is a new service - your <Link to={Paths.CONTACT}>feedback</Link> will help us to
-        improve it.
+        This is a new service - your{' '}
+        <a href="https://forms.office.com/e/qLfZjhJ57K" target="_blank" rel="noreferrer">
+          feedback
+        </a>{' '}
+        will help us to improve it.
       </div>
       <div className={styles.buttonContainer}>
         <CloseButton onClick={() => setHideBanner(true)} />

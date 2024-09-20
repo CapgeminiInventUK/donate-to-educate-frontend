@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import LogoWhite from '@/assets/logo/LogoWhite';
 import Paths from '@/config/paths';
 import Email from '@/assets/admin/Email';
-import styles from './DeleteConfirmation.module.scss';
+import styles from './DeleteConfirmationBanner.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 
-const DeleteConfirmation: FC = () => {
+const DeleteConfirmationBanner: FC = () => {
   return (
     <div className={styles.container}>
       <BackButton theme="blue" />
@@ -21,4 +21,4 @@ const DeleteConfirmation: FC = () => {
   );
 };
 
-export default DeleteConfirmation;
+export default DeleteConfirmationBanner;

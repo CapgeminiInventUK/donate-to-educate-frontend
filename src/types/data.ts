@@ -223,6 +223,12 @@ export interface Banner {
 
 export type ResultType = 'declined' | 'approved';
 
+export enum AdminUserResultType {
+  LA_ACCOUNT_CREATED = 'laCreated',
+  INSTITUTION_ACCOUNT_CREATED = 'institutionCreated',
+  ACCOUNT_DELETED = 'accountDeleted',
+}
+
 export interface SignUpParameters {
   password: string;
   email: string;

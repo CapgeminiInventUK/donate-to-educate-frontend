@@ -79,8 +79,8 @@ export const AdminDashboardManageCharities = lazy(
 export const AdminDashboardManageCharity = lazy(
   () => import('@pages/AdminDashboard/ManageCharities/CharityUsers')
 );
-export const DeleteConfirmation = lazy(
-  () => import('@/components/ApprovalRequest/DeleteConfirmation/DeleteConfirmation')
+export const DeleteConfirmationBanner = lazy(
+  () => import('@/pages/DeleteConfirmationBanner/DeleteConfirmationBanner')
 );
 export const Settings = lazy(() => import('@/pages/Settings/Settings'));
 
