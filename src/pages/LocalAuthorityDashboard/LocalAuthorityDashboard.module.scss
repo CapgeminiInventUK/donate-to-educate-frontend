@@ -19,10 +19,14 @@
     flex-direction: column;
     align-items: center;
     align-items: flex-start;
-    padding-left: 60px;
+    padding-left: 120px;
+
+    @include g.lg-breakpoint {
+      padding-left: 60px;
+    }
 
     @include g.md-breakpoint {
-      padding: 25px;
+      padding-left: 25px;
     }
 
     h1 {
@@ -55,8 +59,12 @@
   .body {
     background: g.$primary-dark-blue;
     color: g.$primary-white;
-    padding: 20px 12% 60px;
+    padding: 20px 120px 60px;
     border-radius: 0 0 10px 10px;
+
+    @include g.lg-breakpoint {
+      padding: 20px 60px;
+    }
 
     @include g.md-breakpoint {
       padding: 25px;
