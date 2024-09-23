@@ -107,13 +107,12 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
         </div>
       ) : (
         <ResultBanner
-          type={AdminUserResultType.ACCOUNT_DELETED}
+          type={AdminUserResultType.PROFILE_DELETED}
           name={name}
           linkText={`Return to ${pluraliseString(type)}`}
           logo="back"
         />
       )}
-      ;
     </div>
   );
 };

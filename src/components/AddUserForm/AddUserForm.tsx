@@ -36,7 +36,8 @@ const AddUserForm: FC<AddUserFormProps> = ({
 
   const onFormChange = (key: string, value: string): void => {
     setFormState((prevState) => {
-      return { ...prevState, [key]: value };
+      const formValue = key === 'email' ? value.toLowerCase() : value;
+      return { ...prevState, [key]: formValue };
     });
   };
 

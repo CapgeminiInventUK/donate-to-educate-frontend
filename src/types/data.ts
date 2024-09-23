@@ -226,7 +226,9 @@ export type ResultType = 'declined' | 'approved';
 export enum AdminUserResultType {
   LA_ACCOUNT_CREATED = 'laCreated',
   INSTITUTION_ACCOUNT_CREATED = 'institutionCreated',
+  PROFILE_DELETED = 'profileDeleted',
   ACCOUNT_DELETED = 'accountDeleted',
+  PROFILE_AND_ACCOUNT_DELETED = 'profileAccountDeleted',
 }
 
 export interface SignUpParameters {
