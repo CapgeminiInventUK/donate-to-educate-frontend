@@ -59,7 +59,9 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
         {tableValues.map((user, key) => (
           <InfoTable key={key} originalTableValues={{ ...user }} theme="light" />
         ))}
-        {type === 'localAuthority' && registered && <AdminManageLa name={name} />}
+        {type === 'localAuthority' && registered && tableValues.length === 0 && (
+          <AdminManageLa name={name} />
+        )}
         <FormButton
           theme={'formButtonGreen'}
           text="Add user &nbsp;+"
