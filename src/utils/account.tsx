@@ -161,7 +161,7 @@ export const getDeleteAccountModalText = (
       const header = 'Are you sure you want to delete your account?';
       const confirmText = 'Delete account';
       const deleteButtonTheme = 'formButtonDanger';
-      if (userCount > 2) {
+      if (userCount > 1) {
         return {
           header,
           confirmText,

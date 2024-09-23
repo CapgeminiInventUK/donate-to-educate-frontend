@@ -626,6 +626,7 @@ export interface AdminUserResultBannerProps {
   name?: string;
   logo?: string;
   linkText?: string;
+  onLinkClick?: () => void;
 }
 
 export interface BackButtonProps {
@@ -803,6 +804,7 @@ export interface SettingsDangerZoneProps {
   userData: UserDetails;
   type: AccountType;
   allUsers: UserDetails[];
+  setAdminUserResultType: Dispatch<SetStateAction<AdminUserResultType | undefined>>;
 }
 
 export interface AdminManageInstitutionDangerZoneProps {

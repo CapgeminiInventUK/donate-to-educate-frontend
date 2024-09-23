@@ -9,7 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import LogoWhite from '@/assets/logo/LogoWhite';
 
-const ResultBanner: FC<AdminUserResultBannerProps> = ({ type, name, linkText, logo = 'email' }) => {
+const ResultBanner: FC<AdminUserResultBannerProps> = ({
+  type,
+  name,
+  linkText,
+  logo = 'email',
+  onLinkClick,
+}) => {
   const navigate = useNavigate();
   return (
     <div className={styles.banner}>
@@ -25,7 +31,7 @@ const ResultBanner: FC<AdminUserResultBannerProps> = ({ type, name, linkText, lo
             theme="link"
             ariaLabel={`${linkText}-button`}
             className={styles.link}
-            onClick={() => navigate(-1)}
+            onClick={() => (onLinkClick ? onLinkClick() : navigate(-1))}
             text={linkText}
           />
         </>
@@ -40,8 +46,12 @@ const getHeaderText = (type: AdminUserResultType, name?: string): string => {
       return `You have created an account for ${capitaliseFirstLetter(String(name))} County Council.`;
     case AdminUserResultType.INSTITUTION_ACCOUNT_CREATED:
       return `You have created an account for ${name}`;
-    case AdminUserResultType.ACCOUNT_DELETED:
+    case AdminUserResultType.PROFILE_DELETED:
       return `${name} has been deleted from Donate to Educate`;
+    case AdminUserResultType.ACCOUNT_DELETED:
+      return `Your account has been deleted from Donate to Educate`;
+    case AdminUserResultType.PROFILE_AND_ACCOUNT_DELETED:
+      return `Your profile and ${name} have been deleted from Donate to Educate`;
   }
 };
 
@@ -50,8 +60,11 @@ const getSubtext = (type: AdminUserResultType): string => {
     case AdminUserResultType.LA_ACCOUNT_CREATED:
     case AdminUserResultType.INSTITUTION_ACCOUNT_CREATED:
       return 'The user has been emailed with instructions to set up their profile';
-    case AdminUserResultType.ACCOUNT_DELETED:
+    case AdminUserResultType.PROFILE_DELETED:
       return 'Users associated with this profile have been emailed.';
+    case AdminUserResultType.ACCOUNT_DELETED:
+    case AdminUserResultType.PROFILE_AND_ACCOUNT_DELETED:
+      return 'Thank you for having been a part of our mission to alleviate education poverty.';
   }
 };
 

@@ -19,18 +19,17 @@ import {
   getDeleteProfileQueryFromType,
   getDeleteTableData,
   getDeniedModalContent,
-  removeUser,
 } from '@/utils/account';
-import { DeleteAccountType, DeniedModalContent } from '@/types/data';
-import { useNavigate } from 'react-router-dom';
+import { AdminUserResultType, DeleteAccountType, DeniedModalContent } from '@/types/data';
 import DeclineDeleteModal from '@/components/DeclineDeleteModal/DeclineDeleteModal';
-import Paths from '@/config/paths';
-import { useStore } from '@/stores/useStore';
 import DeniedModal from '@/components/DeniedModal/DeniedModal';
 
-const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, allUsers }) => {
-  const state = useStore((state) => state);
-  const navigate = useNavigate();
+const DangerZone: FC<SettingsDangerZoneProps> = ({
+  type,
+  userData,
+  allUsers,
+  setAdminUserResultType,
+}) => {
   const [modalProps, setModalProps] = useState<DeclineDeleteModalProps>();
   const [showModal, setShowModal] = useState(false);
   const [showDeniedModal, setShowDeniedModal] = useState(false);
@@ -76,12 +75,6 @@ const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, allUsers }) =
     },
   });
 
-  const logoutCallback = (): void => {
-    void removeUser();
-    void state.logout();
-    navigate(Paths.HOME);
-  };
-
   const onConfirm = async (key: string): Promise<void> => {
     key === 'Your account' && (type === 'localAuthority' || allUsers.length > 1)
       ? await deleteUserRefetch()
@@ -96,7 +89,14 @@ const DangerZone: FC<SettingsDangerZoneProps> = ({ type, userData, allUsers }) =
       setModalProps({
         showModal,
         setShowModal,
-        onConfirm: () => void onConfirm(key).then(logoutCallback),
+        onConfirm: () =>
+          void onConfirm(key).then(() =>
+            setAdminUserResultType(
+              allUsers.length < 2 && type !== 'localAuthority'
+                ? AdminUserResultType.PROFILE_AND_ACCOUNT_DELETED
+                : AdminUserResultType.ACCOUNT_DELETED
+            )
+          ),
         ...getDeleteAccountModalText(
           type,
           getDeleteAccountType(key),
