@@ -5,7 +5,7 @@ import { FC } from 'react';
 import ManageInstitution from '@/components/ManageInstitutions/ManageInstitution/ManageInstitution';
 
 const LocalAuthorityUsers: FC = () => {
-  const { state } = useLocationStateOrRedirect<{ id: string; name: string }>(
+  const { state } = useLocationStateOrRedirect<{ id: string; name: string; registered: boolean }>(
     Paths.ADMIN_DASHBOARD_LA_VIEW_USERS
   );
 

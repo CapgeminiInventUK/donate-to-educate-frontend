@@ -125,7 +125,8 @@ const getColumnSearch = <T,>({
             }
             ariaLabel={`name-${text}`}
             onClick={() =>
-              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+              navigate &&
+              navigate(dashboardLink, { state: { urn: id, name, id, postcode, registered } })
             }
           />
         ) : (
@@ -136,7 +137,8 @@ const getColumnSearch = <T,>({
             text={text}
             ariaLabel={`name-${text}`}
             onClick={() =>
-              navigate && navigate(dashboardLink, { state: { urn: id, name, id, postcode } })
+              navigate &&
+              navigate(dashboardLink, { state: { urn: id, name, id, postcode, registered } })
             }
           />
         );

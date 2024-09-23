@@ -1,0 +1,30 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  display: flex;
+  padding: 40px 25px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: g.$about-grey;
+  border-radius: 10px;
+  color: g.$primary-dark-blue;
+
+  .logo {
+    width: 300px;
+
+    @include g.sm-breakpoint {
+      width: 200px;
+    }
+  }
+
+  .link {
+    color: g.$link-blue;
+    text-decoration: underline;
+  }
+
+  ul,
+  li {
+    color: g.$link-blue;
+  }
+}
