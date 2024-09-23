@@ -8,11 +8,13 @@ import { RegisteredUsersSectionProps } from '@/types/props';
 import { useNavigate } from 'react-router-dom';
 import Paths from '@/config/paths';
 import FormButton from '@/components/FormButton/FormButton';
+import AdminManageLa from '../AdminManageLa/AdminManageLa';
 
 const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
   userData,
   type,
   institutionProfile,
+  registered,
 }) => {
   const navigate = useNavigate();
   const { id, name, localAuthority } = institutionProfile;
@@ -57,6 +59,7 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
         {tableValues.map((user, key) => (
           <InfoTable key={key} originalTableValues={{ ...user }} theme="light" />
         ))}
+        {type === 'localAuthority' && registered && <AdminManageLa name={name} />}
         <FormButton
           theme={'formButtonGreen'}
           text="Add user &nbsp;+"

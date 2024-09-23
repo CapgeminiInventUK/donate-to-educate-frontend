@@ -288,6 +288,7 @@ export interface InstitutionProfile {
   phone?: string | null;
   street?: string | null;
   town?: string | null;
+  registered?: boolean;
 }
 
 export interface RequestItemsTextContent {

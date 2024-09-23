@@ -832,6 +832,7 @@ export interface RegisteredUsersSectionProps {
   userData: UserDetails[];
   type?: AccountType;
   institutionProfile: InstitutionProfile;
+  registered?: boolean;
 }
 
 export interface ShowHideProps {
@@ -915,4 +916,8 @@ export interface DeniedModalProps {
   showModal: boolean;
   header?: string;
   body?: string;
+}
+
+export interface AdminManageLaProps {
+  name: string;
 }

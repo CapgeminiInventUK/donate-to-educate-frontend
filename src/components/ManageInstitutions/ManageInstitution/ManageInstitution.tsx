@@ -26,7 +26,7 @@ import { pluraliseString } from '@/utils/globals';
 const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfile, header }) => {
   const [users, setUsers] = useState<UserDetails[]>([]);
   const [showResultBanner, setShowResultBanner] = useState(false);
-  const { id, name } = institutionProfile;
+  const { id, name, registered } = institutionProfile;
   const icon =
     type === InstitutionType.SCHOOL ? (
       <School />
@@ -92,6 +92,7 @@ const ManageInstitution: FC<ManageInstitutionProps> = ({ type, institutionProfil
             institutionProfile={institutionProfile}
             userData={users}
             type={type}
+            registered={registered}
           />
           {users?.length > 0 && (
             <DangerZone
