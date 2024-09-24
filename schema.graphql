@@ -24,6 +24,9 @@ type School {
   profile: [SchoolProfile]
   hasJoinRequest: Boolean
   registrationState: String
+  request: ProfileItems
+  donate: ProfileItems
+  excess: ProfileItems
 }
 
 type Charity {
@@ -140,6 +143,7 @@ type AdditionalUser {
   charityName: String
   urn: String
   department: String
+  addedBy: String!
 }
 
 type ItemQuery {
@@ -364,6 +368,7 @@ type Mutation {
     charityName: String
     urn: String
     department: String
+    addedBy: String!
   ): Boolean @aws_cognito_user_pools
 }
 

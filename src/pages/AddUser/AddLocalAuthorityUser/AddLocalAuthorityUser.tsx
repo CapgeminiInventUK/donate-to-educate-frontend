@@ -14,8 +14,10 @@ import { useQuery } from '@tanstack/react-query';
 import { getNameFromUserObject } from '@/utils/account';
 import useAuthToken from '@/hooks/useAuthToken';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
+import { useStore } from '@/stores/useStore';
 
 const AddLocalAuthorityUser: FC = () => {
+  const { user } = useStore((state) => state);
   const [formState, setFormState] = useState<FormState>({
     firstName: '',
     lastName: '',
@@ -49,7 +51,7 @@ const AddLocalAuthorityUser: FC = () => {
         authToken,
         authMode: checkIfInTestEnvForAuthMode(),
         query: addAdditionalUser,
-        variables: { type, id, localAuthority, name, ...formState },
+        variables: { type, id, localAuthority, name, addedBy: user?.type, ...formState },
       }),
   });
 

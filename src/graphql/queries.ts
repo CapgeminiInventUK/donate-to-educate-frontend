@@ -67,6 +67,27 @@ export const getSchool = /* GraphQL */ `query GetSchool($name: String!, $urn: St
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
@@ -130,6 +151,27 @@ export const getSchoolsByLa = /* GraphQL */ `query GetSchoolsByLa($name: String!
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
@@ -193,6 +235,27 @@ export const getSchools = /* GraphQL */ `query GetSchools {
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
@@ -364,6 +427,27 @@ export const getRegisteredSchools = /* GraphQL */ `query GetRegisteredSchools {
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
@@ -431,6 +515,27 @@ export const getRegisteredSchoolsByLa =
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
@@ -717,6 +822,27 @@ export const getSchoolsNearby =
     }
     hasJoinRequest
     registrationState
+    request {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    donate {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
+    excess {
+      items
+      whatToExpect
+      actionText
+      productTypes
+      __typename
+    }
     __typename
   }
 }
