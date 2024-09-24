@@ -25,6 +25,9 @@ enum Paths {
   // Local Authority Dashboard
   LOCAL_AUTHORITY_DASHBOARD = '/local-authority',
   LOCAL_AUTHORITY_DASHBOARD_SCHOOLS = '/local-authority/schools',
+  LOCAL_AUTHORITY_DASHBOARD_PRODUCTS = '/local-authority/:laName/products',
+  LOCAL_AUTHORITY_DASHBOARD_DONATE = '/local-authority/:laName/donate',
+  LOCAL_AUTHORITY_DASHBOARD_EXCESS = '/local-authority/:laName/excess',
   LOCAL_AUTHORITY_DASHBOARD_CHARITIES = '/local-authority/charities',
   LOCAL_AUTHORITY_DASHBOARD_MANAGE_CHARITY = '/local-authority/manage-charity',
   LOCAL_AUTHORITY_DASHBOARD_MANAGE_SCHOOL = '/local-authority/manage-school',

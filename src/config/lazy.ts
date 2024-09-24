@@ -88,6 +88,15 @@ export const Settings = lazy(() => import('@/pages/Settings/Settings'));
 export const LocalAuthorityDashboard = lazy(
   () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDashboard')
 );
+export const LocalAuthorityProducts = lazy(
+  () => import('@pages/LocalAuthorityDashboard/LocalAuthorityProducts')
+);
+export const LocalAuthorityDonate = lazy(
+  () => import('@pages/LocalAuthorityDashboard/LocalAuthorityDonate')
+);
+export const LocalAuthorityExcess = lazy(
+  () => import('@pages/LocalAuthorityDashboard/LocalAuthorityExcess')
+);
 export const LocalAuthorityDashboardSchools = lazy(
   () => import('@pages/LocalAuthorityDashboard/ManageSchools/ManageSchools')
 );

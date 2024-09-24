@@ -25,6 +25,7 @@ import { PillColours } from '@/types/data';
 import Hanger from '@/assets/tiles/Hanger';
 import Heart from '@/assets/LocalAuthorityDashboard/Heart';
 import ExtraStock from '@/assets/LocalAuthorityDashboard/ExtraStock';
+import { paramedRoute } from '@/utils/routeUtils';
 
 const LocalAuthorityDashboard: FC = () => {
   const [accepted, setAccepted] = useState(false);
@@ -139,9 +140,7 @@ const LocalAuthorityDashboard: FC = () => {
               <Tile
                 title="Available products"
                 onClick={() =>
-                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
-                    state: { localAuthority: name },
-                  })
+                  navigate(paramedRoute(Paths.LOCAL_AUTHORITY_DASHBOARD_PRODUCTS, { laName: name }))
                 }
                 body={['Easily request school supplies for children in your community.']}
                 icon={<Hanger />}
@@ -154,9 +153,7 @@ const LocalAuthorityDashboard: FC = () => {
               <Tile
                 title="Donations needed"
                 onClick={() =>
-                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
-                    state: { localAuthority: name },
-                  })
+                  navigate(paramedRoute(Paths.LOCAL_AUTHORITY_DASHBOARD_DONATE, { laName: name }))
                 }
                 body={['Donate school supplies to schools and charities who need them.']}
                 icon={<Heart />}
@@ -169,9 +166,7 @@ const LocalAuthorityDashboard: FC = () => {
               <Tile
                 title="Redistribute extra stock"
                 onClick={() =>
-                  navigate(Paths.LOCAL_AUTHORITY_DASHBOARD, {
-                    state: { localAuthority: name },
-                  })
+                  navigate(paramedRoute(Paths.LOCAL_AUTHORITY_DASHBOARD_EXCESS, { laName: name }))
                 }
                 body={[
                   'Your community might have too many school products. Take it off their hands!',
