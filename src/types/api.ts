@@ -49,6 +49,9 @@ export type School = {
   profile?: Array<SchoolProfile | null> | null;
   hasJoinRequest?: boolean | null;
   registrationState?: string | null;
+  request?: ProfileItems | null;
+  donate?: ProfileItems | null;
+  excess?: ProfileItems | null;
 };
 
 export type SchoolProfile = {
@@ -520,6 +523,27 @@ export type GetSchoolQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   };
 };
 
@@ -587,6 +611,27 @@ export type GetSchoolsByLaQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   }>;
 };
 
@@ -652,6 +697,27 @@ export type GetSchoolsQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   }>;
 };
 
@@ -831,6 +897,27 @@ export type GetRegisteredSchoolsQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   }>;
 };
 
@@ -898,6 +985,27 @@ export type GetRegisteredSchoolsByLaQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   }>;
 };
 
@@ -1219,6 +1327,27 @@ export type GetSchoolsNearbyQuery = {
     } | null> | null;
     hasJoinRequest?: boolean | null;
     registrationState?: string | null;
+    request?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    donate?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
+    excess?: {
+      __typename: 'ProfileItems';
+      items?: string | null;
+      whatToExpect?: string | null;
+      actionText?: string | null;
+      productTypes?: Array<number | null> | null;
+    } | null;
   }>;
 };
 
