@@ -255,6 +255,7 @@ export const addAdditionalUser = /* GraphQL */ `mutation AddAdditionalUser(
   $charityName: String
   $urn: String
   $department: String
+  $addedBy: String!
 ) {
   addAdditionalUser(
     id: $id
@@ -268,6 +269,7 @@ export const addAdditionalUser = /* GraphQL */ `mutation AddAdditionalUser(
     charityName: $charityName
     urn: $urn
     department: $department
+    addedBy: $addedBy
   )
 }
 ` as GeneratedMutation<

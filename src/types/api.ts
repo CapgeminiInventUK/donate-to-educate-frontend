@@ -448,6 +448,7 @@ export type AddAdditionalUserMutationVariables = {
   charityName?: string | null;
   urn?: string | null;
   department?: string | null;
+  addedBy: string;
 };
 
 export type AddAdditionalUserMutation = {
