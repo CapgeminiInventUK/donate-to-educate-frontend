@@ -15,7 +15,7 @@ import SimpleProductsTable from '@/components/SimpleProductsTable/SimpleProducts
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import Heart from '@/assets/LocalAuthorityDashboard/Heart';
-import { mapCharityToSearchResult, mapSchoolToSearchResult } from '@/utils/mapper';
+import { mapCharityToSimpleSearchResult, mapSchoolToSimpleSearchResult } from '@/utils/mapper';
 
 const LocalAuthorityDonate: FC = () => {
   const navigate = useNavigate();
@@ -56,11 +56,11 @@ const LocalAuthorityDonate: FC = () => {
   }
 
   const schoolMappedData = (schoolData?.getSchoolsByLa ?? []).map((school) => {
-    return mapSchoolToSearchResult(school);
+    return mapSchoolToSimpleSearchResult(school);
   });
 
   const charityMappedData = (charityData?.getCharitiesByLa ?? []).map((charity) => {
-    return mapCharityToSearchResult(charity as Charity);
+    return mapCharityToSimpleSearchResult(charity as Charity);
   });
 
   return (

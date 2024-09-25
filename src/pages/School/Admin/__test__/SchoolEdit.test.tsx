@@ -4,18 +4,18 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { notification } from 'antd';
 
-describe('Charity Edit', () => {
+describe('School Edit', () => {
   it('should save any changes to charity profile', async () => {
     const spy = vi.spyOn(notification, 'info');
     const state = {
       type: 'plus',
       profile: {
-        items: '{"5":["Computer software","Internet access","Laptops","Tablets"]}',
+        items: '{"0":["Coats","Shoes","Wellies","Hats"]}',
         whatToExpect:
           'View the products we have too much of, take it from us and share it with people who need it.',
         actionText:
           "Once we know what extra stock you can take from us, we'll contact you to arrange the next steps as soon as we can.",
-        productTypes: [5],
+        productTypes: [0],
         __typename: 'ProfileItems',
       },
       name: 'Test School',
@@ -25,7 +25,7 @@ describe('Charity Edit', () => {
     const Component = createWrapperWithState(<SchoolEdit />, state);
     const { getAllByRole, getByRole } = render(<Component />);
     const checkboxes = getAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(99);
+    expect(checkboxes).toHaveLength(23);
 
     await userEvent.click(checkboxes[0]);
 
@@ -81,6 +81,6 @@ describe('Charity Edit', () => {
     const Component = createWrapperWithState(<SchoolEdit />, state);
     const { getAllByRole } = render(<Component />);
     const checkboxes = getAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(99);
+    expect(checkboxes).toHaveLength(23);
   });
 });

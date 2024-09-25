@@ -16,6 +16,7 @@ import {
   getKeyFromType,
   getPageContent,
 } from '@/components/InstitutionAdmin/ProductsListPage/utils';
+import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const CharityEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{
@@ -33,6 +34,14 @@ const CharityEdit: FC = () => {
     actionText,
     whatToExpect: howItWorks,
   });
+
+  const getItems = (): Record<number, string[]> => {
+    for (const disabledCategory of disabledCategories) {
+      delete items[disabledCategory];
+    }
+
+    return items;
+  };
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfileCharity-${type}`],
@@ -64,7 +73,7 @@ const CharityEdit: FC = () => {
     <ProductsListPage
       institutionType={InstitutionType.CHARITY}
       path={Paths.CHARITIES_CREATE_EDIT_PROFILE}
-      items={items}
+      items={getItems()}
       setItems={setItems}
       type={type}
       content={content}

@@ -16,6 +16,7 @@ import {
   getPageContent,
 } from '@/components/InstitutionAdmin/ProductsListPage/utils';
 import ProductsListPage from '@/components/InstitutionAdmin/ProductsListPage/ProductsListPage';
+import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const SchoolEdit: FC = () => {
   const { state } = useLocationStateOrRedirect<{ type: ItemsIconType; profile: ProfileItems }>(
@@ -32,6 +33,14 @@ const SchoolEdit: FC = () => {
     actionText,
     whatToExpect: howItWorks,
   });
+
+  const getItems = (): Record<number, string[]> => {
+    for (const disabledCategory of disabledCategories) {
+      delete items[disabledCategory];
+    }
+
+    return items;
+  };
 
   const { refetch, isError } = useQuery({
     queryKey: [`saveProfileSchool-${type}`],
@@ -63,7 +72,7 @@ const SchoolEdit: FC = () => {
     <ProductsListPage
       institutionType={InstitutionType.SCHOOL}
       path={Paths.SCHOOLS_CREATE_EDIT_PROFILE}
-      items={items}
+      items={getItems()}
       setItems={setItems}
       type={type}
       content={content}

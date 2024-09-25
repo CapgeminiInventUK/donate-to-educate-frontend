@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 describe('Item list edit', () => {
   it('should update item list when checkbox selected', async () => {
     const initialItems = {
-      2: ['Guitars'],
+      0: ['Coats'],
     };
     const prevState = initialItems;
     let nextState;
@@ -15,7 +15,7 @@ describe('Item list edit', () => {
         nextState = callback(prevState);
       });
     const { getByRole } = render(<ItemListEdit items={initialItems} setItems={mockSetter} />);
-    const crayonsCheckbox = getByRole('checkbox', { name: 'Art and music-Crayons-edit' });
+    const crayonsCheckbox = getByRole('checkbox', { name: 'Clothing and uniform-Shoes-edit' });
 
     expect(crayonsCheckbox).not.toBeChecked();
 
@@ -23,7 +23,7 @@ describe('Item list edit', () => {
 
     expect(crayonsCheckbox).toBeChecked();
     expect(nextState).toEqual({
-      2: ['Guitars', 'Crayons'],
+      0: ['Coats', 'Shoes'],
     });
   });
 
@@ -37,10 +37,12 @@ describe('Item list edit', () => {
         nextState = callback(prevState);
       });
     const { getByRole } = render(<ItemListEdit items={initialItems} setItems={mockSetter} />);
-    const selectAllCheckbox = getByRole('checkbox', { name: 'Sports-select-all-edit' });
+    const selectAllCheckbox = getByRole('checkbox', {
+      name: 'Clothing and uniform-select-all-edit',
+    });
 
     await userEvent.click(selectAllCheckbox);
 
-    expect(nextState).toEqual({ 1: ['Water bottle'] });
+    expect(nextState).toEqual({ 0: ['Wellies'] });
   });
 });

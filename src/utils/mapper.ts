@@ -1,7 +1,7 @@
 import { disabledCategories } from '@/components/ItemList/getFullItemList';
 import { Charity, School, SimpleSearchResult } from '@/types/api';
 
-export const mapSchoolToSearchResult = (school: School): SimpleSearchResult => {
+export const mapSchoolToSimpleSearchResult = (school: School): SimpleSearchResult => {
   const requestProductTypes = school?.request?.productTypes?.filter(
     (productType) => !disabledCategories.includes(productType ?? -1)
   );
@@ -34,7 +34,7 @@ export const mapSchoolToSearchResult = (school: School): SimpleSearchResult => {
   };
 };
 
-export const mapCharityToSearchResult = (charity: Charity): SimpleSearchResult => {
+export const mapCharityToSimpleSearchResult = (charity: Charity): SimpleSearchResult => {
   const requestProductTypes = charity?.request?.productTypes?.filter(
     (productType) => !disabledCategories.includes(productType ?? -1)
   );

@@ -13,6 +13,7 @@ import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 import { useLocation } from 'react-router-dom';
 import { InstitutionType } from '@/types/data';
+import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -57,10 +58,21 @@ const FindCharityTable: FC<FindCharityTableProps> = ({
 
   const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? [])
     .filter(({ id }) => id !== currentCharityId)
-    .map((charity, key) => ({
-      ...charity,
-      key,
-    }));
+    .map((charity, key) => {
+      const productTypes = charity.productTypes.filter(
+        (productType) => !disabledCategories.includes(productType)
+      );
+
+      const newCharity = {
+        ...charity,
+        productTypes,
+      };
+
+      return {
+        ...newCharity,
+        key,
+      };
+    });
 
   return (
     <>

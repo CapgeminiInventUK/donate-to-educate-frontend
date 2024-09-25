@@ -14,7 +14,7 @@ import { InstitutionType } from '@/types/data';
 import SimpleProductsTable from '@/components/SimpleProductsTable/SimpleProductsTable';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { mapCharityToSearchResult, mapSchoolToSearchResult } from '@/utils/mapper';
+import { mapCharityToSimpleSearchResult, mapSchoolToSimpleSearchResult } from '@/utils/mapper';
 import ExtraStock from '@/assets/LocalAuthorityDashboard/ExtraStock';
 
 const LocalAuthorityExcess: FC = () => {
@@ -56,11 +56,11 @@ const LocalAuthorityExcess: FC = () => {
   }
 
   const schoolMappedData = (schoolData?.getSchoolsByLa ?? []).map((school) => {
-    return mapSchoolToSearchResult(school);
+    return mapSchoolToSimpleSearchResult(school);
   });
 
   const charityMappedData = (charityData?.getCharitiesByLa ?? []).map((charity) => {
-    return mapCharityToSearchResult(charity as Charity);
+    return mapCharityToSimpleSearchResult(charity as Charity);
   });
 
   return (
