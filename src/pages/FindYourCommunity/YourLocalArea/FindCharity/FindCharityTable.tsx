@@ -57,10 +57,12 @@ const FindCharityTable: FC<FindCharityTableProps> = ({
 
   const charitiesRows = (data?.getCharitiesNearbyWithProfile?.results ?? [])
     .filter(({ id }) => id !== currentCharityId)
-    .map((charity, key) => ({
-      ...charity,
-      key,
-    }));
+    .map((charity, key) => {
+      return {
+        ...charity,
+        key,
+      };
+    });
 
   return (
     <>

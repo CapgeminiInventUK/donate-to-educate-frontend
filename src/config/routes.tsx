@@ -57,6 +57,9 @@ import {
   AddSchoolUser,
   AddCharityUser,
   AddLocalAuthorityUser,
+  LocalAuthorityProducts,
+  LocalAuthorityDonate,
+  LocalAuthorityExcess,
 } from './lazy';
 import { Route } from '@/types/props';
 import { InstitutionType } from '@/types/data';
@@ -138,6 +141,21 @@ const routes: Route[] = [
   {
     path: Paths.LOCAL_AUTHORITY_DASHBOARD,
     element: <LocalAuthorityDashboard />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_PRODUCTS,
+    element: <LocalAuthorityProducts />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_DONATE,
+    element: <LocalAuthorityDonate />,
+    authType: 'localAuthority',
+  },
+  {
+    path: Paths.LOCAL_AUTHORITY_DASHBOARD_EXCESS,
+    element: <LocalAuthorityExcess />,
     authType: 'localAuthority',
   },
   {

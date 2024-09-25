@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, Fragment, useRef, useState } from 'react';
 import { SearchResult } from '@/types/api';
 import { Table, Popover, InputRef } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
@@ -13,12 +13,17 @@ import styles from './ProductsTable.module.scss';
 import getColumnSearch from '@/utils/tableUtils';
 import { ProductsTableProps } from '@/types/props';
 import { InstitutionType } from '@/types/data';
+import { convertNumberToCategory } from '../ItemList/getFullItemList';
+import ProductTypeIcon from '../ProductTypeIcon/ProductTypeIcon';
 
 const ProductsTable: FC<ProductsTableProps> = ({
   tableData,
   type,
   postcode,
   hideNotJoined,
+  hideNoProducts,
+  iconColour,
+  productsColumnHeader,
   hideStatus = false,
 }) => {
   const dashboardLink =
@@ -53,27 +58,27 @@ const ProductsTable: FC<ProductsTableProps> = ({
       dataIndex: 'distance',
       render: (text: string) => `${convertMetresToMiles(text)} miles`,
     },
-    // {
-    //   title: productsColumnHeader,
-    //   dataIndex: 'productTypes',
-    //   render: (text: number[], { registered, id }: SearchResult): JSX.Element[] => {
-    //     if (!registered && type === InstitutionType.SCHOOL) {
-    //       return [<Fragment key={id}>N/A</Fragment>];
-    //     }
-    //     return text.map((productType) => (
-    //       <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
-    //     ));
-    //   },
-    //   filters: Array.from(Array(6)).map((_, index) => ({
-    //     text: convertNumberToCategory(index),
-    //     value: index,
-    //   })),
-    //   onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
-    //   filterIcon: () => <FilterFilled className={styles.filterIcon} />,
-    //   defaultFilteredValue: hideNoProducts
-    //     ? Array.from(Array(6)).map((_, index) => `${index}`)
-    //     : [],
-    // },
+    {
+      title: productsColumnHeader,
+      dataIndex: 'productTypes',
+      render: (text: number[], { registered, id }: SearchResult): JSX.Element[] => {
+        if (!registered && type === InstitutionType.SCHOOL) {
+          return [<Fragment key={id}>N/A</Fragment>];
+        }
+        return text.map((productType) => (
+          <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
+        ));
+      },
+      filters: Array.from(Array(6)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
+      filterIcon: () => <FilterFilled className={styles.filterIcon} />,
+      defaultFilteredValue: hideNoProducts
+        ? Array.from(Array(6)).map((_, index) => `${index}`)
+        : [],
+    },
   ];
 
   if (type === InstitutionType.SCHOOL && !hideStatus) {

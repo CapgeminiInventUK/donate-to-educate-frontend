@@ -1,0 +1,10 @@
+@use '@assets/global.scss' as g;
+
+.container {
+  @include g.page-container;
+  padding: 66px 100px;
+
+  @include g.sm-breakpoint {
+    padding: 25px;
+  }
+}

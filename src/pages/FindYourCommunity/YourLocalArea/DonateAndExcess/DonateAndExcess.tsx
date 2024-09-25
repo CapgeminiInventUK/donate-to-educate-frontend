@@ -89,19 +89,23 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
   }
 
   const schoolRows = (schoolData?.getSchoolsNearbyWithProfile?.results ?? []).map(
-    (school, index) => ({
-      ...school,
-      type: InstitutionType.SCHOOL,
-      key: index,
-    })
+    (school, index) => {
+      return {
+        ...school,
+        type: InstitutionType.SCHOOL,
+        key: index,
+      };
+    }
   );
 
   const charityRows = (charityData?.getCharitiesNearbyWithProfile?.results ?? []).map(
-    (charity, index) => ({
-      ...charity,
-      type: InstitutionType.CHARITY,
-      key: index,
-    })
+    (charity, index) => {
+      return {
+        ...charity,
+        type: InstitutionType.CHARITY,
+        key: index,
+      };
+    }
   );
 
   return (

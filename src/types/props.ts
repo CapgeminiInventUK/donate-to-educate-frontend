@@ -27,6 +27,7 @@ import {
   Address,
   FormState,
   AdminUserResultType,
+  SimpleSearchResult,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -595,6 +596,20 @@ export interface ProductsTableProps {
   hideStatus?: boolean;
 }
 
+export interface SimpleProductsTableProps {
+  tableData?: SimpleSearchResult[];
+  productsDataIndex: string;
+  type: InstitutionType;
+  iconColour: string;
+  productsColumnHeader:
+    | 'Product types available'
+    | 'Excess stock product types'
+    | 'Product types needed';
+  postcode?: string;
+  hideNotJoined?: boolean;
+  hideNoProducts?: boolean;
+  hideStatus?: boolean;
+}
 export interface FindCharityTableProps {
   title?: string;
   postcode: string;

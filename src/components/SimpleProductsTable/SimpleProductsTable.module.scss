@@ -1,0 +1,12 @@
+@use '@assets/global.scss' as g;
+
+.nameBtn {
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: g.$link-blue;
+}
+
+.filterIcon {
+  font-size: 20px;
+}

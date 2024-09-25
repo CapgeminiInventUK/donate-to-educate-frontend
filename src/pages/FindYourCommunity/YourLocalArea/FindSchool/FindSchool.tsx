@@ -55,10 +55,12 @@ const FindSchool: FC = () => {
     return <ErrorBanner />;
   }
 
-  const schoolData = (data?.getSchoolsNearbyWithProfile?.results ?? []).map((school, index) => ({
-    ...school,
-    key: index,
-  }));
+  const schoolData = (data?.getSchoolsNearbyWithProfile?.results ?? []).map((school, index) => {
+    return {
+      ...school,
+      key: index,
+    };
+  });
 
   return (
     <div className={styles.container}>
