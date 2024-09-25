@@ -22,7 +22,7 @@ describe('Charity Edit', () => {
     const Component = createWrapperWithState(<CharityEdit />, state);
     const { getAllByRole, getByRole } = render(<Component />);
     const checkboxes = getAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(23);
+    expect(checkboxes).toHaveLength(99);
 
     await userEvent.click(checkboxes[0]);
 
@@ -75,6 +75,6 @@ describe('Charity Edit', () => {
     const Component = createWrapperWithState(<CharityEdit />, state);
     const { getAllByRole } = render(<Component />);
     const checkboxes = getAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(23);
+    expect(checkboxes).toHaveLength(99);
   });
 });

@@ -7,11 +7,11 @@ import Card from '@/components/Card/Card';
 import { useStore } from '@/stores/useStore';
 import Hanger from '@/assets/tiles/Hanger';
 import { useQuery } from '@tanstack/react-query';
-import { getCharitiesByLa, getSchoolsByLa } from '@/graphql/queries';
+import { getCharitiesByLa, getRegisteredSchoolsByLa } from '@/graphql/queries';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { Charity, GetCharitiesByLaQuery, GetSchoolsByLaQuery } from '@/types/api';
+import { GetCharitiesByLaQuery, GetRegisteredSchoolsByLaQuery } from '@/types/api';
 import { client } from '@/graphqlClient';
-import { InstitutionType } from '@/types/data';
+import { InstitutionType, SimpleSearchResult } from '@/types/data';
 import SimpleProductsTable from '@/components/SimpleProductsTable/SimpleProductsTable';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -24,13 +24,13 @@ const LocalAuthorityProducts: FC = () => {
   const { name } = user ?? {};
 
   const { data: schoolData, isError: schoolDataError } = useQuery({
-    queryKey: [`getSchoolsByLa-${name}`],
+    queryKey: [`getRegisteredSchoolsByLa-${name}`],
     enabled: true,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsByLaQuery>>({
-        query: getSchoolsByLa,
+      const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
+        query: getRegisteredSchoolsByLa,
         variables: {
-          name,
+          localAuthority: name,
         },
       });
       return data;
@@ -55,19 +55,19 @@ const LocalAuthorityProducts: FC = () => {
     return <ErrorBanner />;
   }
 
-  const schoolMappedData = (schoolData?.getSchoolsByLa ?? []).map((school, index) => {
-    return {
-      ...mapSchoolToSimpleSearchResult(school),
-      key: index,
-    };
+  const schoolMappedData = (schoolData?.getRegisteredSchoolsByLa ?? []).map((school) => {
+    return mapSchoolToSimpleSearchResult(school, 'donate');
   });
 
-  const charityMappedData = (charityData?.getCharitiesByLa ?? []).map((charity, index) => {
-    return {
-      ...mapCharityToSimpleSearchResult(charity as Charity),
-      key: index,
-    };
-  });
+  const charityMappedData = (charityData?.getCharitiesByLa ?? []).reduce(
+    (acc: SimpleSearchResult[], charity) => {
+      if (charity) {
+        acc = [...acc, mapCharityToSimpleSearchResult(charity, 'donate')];
+      }
+      return acc;
+    },
+    []
+  );
 
   return (
     <div className={styles.container}>
@@ -81,7 +81,7 @@ const LocalAuthorityProducts: FC = () => {
           {schoolData ? (
             <SimpleProductsTable
               tableData={schoolMappedData}
-              productsDataIndex={['request', 'productTypes']}
+              productsDataIndex={'request'}
               type={InstitutionType.SCHOOL}
               iconColour="#97C8EB"
               productsColumnHeader="Product types available"
@@ -97,7 +97,7 @@ const LocalAuthorityProducts: FC = () => {
           {charityData ? (
             <SimpleProductsTable
               tableData={charityMappedData}
-              productsDataIndex={['request', 'productTypes']}
+              productsDataIndex={'request'}
               type={InstitutionType.CHARITY}
               iconColour="#97C8EB"
               productsColumnHeader="Product types available"

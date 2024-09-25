@@ -15,7 +15,6 @@ import { DonateAndExcessProps } from '@/types/props';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 import { InstitutionType } from '@/types/data';
-import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -91,17 +90,8 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
 
   const schoolRows = (schoolData?.getSchoolsNearbyWithProfile?.results ?? []).map(
     (school, index) => {
-      const productTypes = school.productTypes.filter(
-        (productType) => !disabledCategories.includes(productType)
-      );
-
-      const newSchool = {
-        ...school,
-        productTypes,
-      };
-
       return {
-        ...newSchool,
+        ...school,
         type: InstitutionType.SCHOOL,
         key: index,
       };
@@ -110,17 +100,8 @@ const DonateAndExcess: FC<DonateAndExcessProps> = ({ type, postcode, hasState })
 
   const charityRows = (charityData?.getCharitiesNearbyWithProfile?.results ?? []).map(
     (charity, index) => {
-      const productTypes = charity.productTypes.filter(
-        (productType) => !disabledCategories.includes(productType)
-      );
-
-      const newCharity = {
-        ...charity,
-        productTypes,
-      };
-
       return {
-        ...newCharity,
+        ...charity,
         type: InstitutionType.CHARITY,
         key: index,
       };

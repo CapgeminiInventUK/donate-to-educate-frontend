@@ -361,3 +361,11 @@ export interface DeniedModalContent {
   header?: string;
   body?: string;
 }
+
+export interface SimpleSearchResult {
+  __typename: 'SearchResult';
+  id: string;
+  name: string;
+  productTypes: (number | null)[] | undefined;
+  registered: boolean;
+}

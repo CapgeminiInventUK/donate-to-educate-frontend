@@ -13,7 +13,7 @@ import styles from './ProductsTable.module.scss';
 import getColumnSearch from '@/utils/tableUtils';
 import { ProductsTableProps } from '@/types/props';
 import { InstitutionType } from '@/types/data';
-import { convertNumberToCategory, disabledCategories } from '../ItemList/getFullItemList';
+import { convertNumberToCategory } from '../ItemList/getFullItemList';
 import ProductTypeIcon from '../ProductTypeIcon/ProductTypeIcon';
 
 const ProductsTable: FC<ProductsTableProps> = ({
@@ -69,12 +69,10 @@ const ProductsTable: FC<ProductsTableProps> = ({
           <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
         ));
       },
-      filters: Array.from(Array(6))
-        .map((_, index) => ({
-          text: convertNumberToCategory(index),
-          value: index,
-        }))
-        .filter((textVal) => !disabledCategories.includes(textVal.value)),
+      filters: Array.from(Array(6)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
       onFilter: (value, record): boolean => record.productTypes.includes(Number(value)),
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       defaultFilteredValue: hideNoProducts

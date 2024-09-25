@@ -17,7 +17,6 @@ import ProductsTable from '@/components/ProductsTable/ProductsTable';
 import Map from '@components/Map/Map';
 import { SEARCH_RADIUS_IN_MILES, SEARCH_RESULT_LIMIT } from '@/utils/globals';
 import { InstitutionType } from '@/types/data';
-import { disabledCategories } from '@/components/ItemList/getFullItemList';
 
 const maxDistance = convertMilesToMetres(SEARCH_RADIUS_IN_MILES);
 
@@ -57,17 +56,8 @@ const FindSchool: FC = () => {
   }
 
   const schoolData = (data?.getSchoolsNearbyWithProfile?.results ?? []).map((school, index) => {
-    const productTypes = school.productTypes.filter(
-      (productType) => !disabledCategories.includes(productType)
-    );
-
-    const newSchool = {
-      ...school,
-      productTypes,
-    };
-
     return {
-      ...newSchool,
+      ...school,
       key: index,
     };
   });

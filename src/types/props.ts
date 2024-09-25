@@ -27,6 +27,7 @@ import {
   Address,
   FormState,
   AdminUserResultType,
+  SimpleSearchResult,
 } from './data';
 import Paths from '@/config/paths';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
@@ -46,7 +47,6 @@ import {
   SchoolProfile,
   SchoolProfileHeader,
   SearchResult,
-  SimpleSearchResult,
   UpdateCharityProfileMutation,
   UpdateSchoolProfileMutation,
   UpdateUserMutation,
@@ -598,7 +598,7 @@ export interface ProductsTableProps {
 
 export interface SimpleProductsTableProps {
   tableData?: SimpleSearchResult[];
-  productsDataIndex: string[];
+  productsDataIndex: string;
   type: InstitutionType;
   iconColour: string;
   productsColumnHeader:

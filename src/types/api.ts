@@ -219,22 +219,6 @@ export type SearchResult = {
   location: Point;
 };
 
-export type SimpleSearchResult = {
-  __typename: 'SearchResult';
-  id: string;
-  name: string;
-  request?: {
-    productTypes?: Array<number | null>;
-  };
-  donate?: {
-    productTypes?: Array<number | null>;
-  };
-  excess?: {
-    productTypes?: Array<number | null>;
-  };
-  registered: boolean;
-};
-
 export type getAdminPageRequestsQueryVariables = {};
 
 export type getAdminPageRequestsQuery = {

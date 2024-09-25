@@ -1,6 +1,4 @@
-// eslint-disable @typescript-eslint/no-unsafe-assignment
 import { FC, Fragment, useRef, useState } from 'react';
-import { SimpleSearchResult } from '@/types/api';
 import { Table, InputRef } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
@@ -10,9 +8,9 @@ import Paths from '@/config/paths';
 import styles from './SimpleProductsTable.module.scss';
 import getColumnSearch from '@/utils/tableUtils';
 import { SimpleProductsTableProps } from '@/types/props';
-import { InstitutionType } from '@/types/data';
+import { InstitutionType, SimpleSearchResult } from '@/types/data';
 import ProductTypeIcon from '../ProductTypeIcon/ProductTypeIcon';
-import { convertNumberToCategory, disabledCategories } from '../ItemList/getFullItemList';
+import { convertNumberToCategory } from '../ItemList/getFullItemList';
 
 const SimpleProductsTable: FC<SimpleProductsTableProps> = ({
   tableData,
@@ -51,25 +49,23 @@ const SimpleProductsTable: FC<SimpleProductsTableProps> = ({
     {
       title: productsColumnHeader,
       dataIndex: productsDataIndex,
-      render: (text: number[], { registered, id }: SimpleSearchResult): JSX.Element[] => {
-        if ((!registered && type === InstitutionType.SCHOOL) || !text) {
+      render: (_, { registered, id, productTypes }: SimpleSearchResult): JSX.Element[] => {
+        if ((!registered && type === InstitutionType.SCHOOL) || !productTypes) {
           return [<Fragment key={id}></Fragment>];
         }
-
-        return text.map((productType) => (
-          <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
-        ));
+        return productTypes.map((productType) =>
+          productType !== null ? (
+            <ProductTypeIcon key={productType} productType={productType} colour={iconColour} />
+          ) : (
+            <Fragment key={id} />
+          )
+        );
       },
-      filters: Array.from(Array(6))
-        .map((_, index) => ({
-          text: convertNumberToCategory(index),
-          value: index,
-        }))
-        .filter((textVal) => !disabledCategories.includes(textVal.value)),
-      // onFilter: (value, record): boolean => {
-      //   // TODO fix this to use request/donate/excess.
-      //   return record.productTypes.includes(Number(value));
-      // },
+      filters: Array.from(Array(6)).map((_, index) => ({
+        text: convertNumberToCategory(index),
+        value: index,
+      })),
+      onFilter: (value, record): boolean => !!record?.productTypes?.includes(Number(value)),
       filterIcon: () => <FilterFilled className={styles.filterIcon} />,
       defaultFilteredValue: hideNoProducts
         ? Array.from(Array(6)).map((_, index) => `${index}`)

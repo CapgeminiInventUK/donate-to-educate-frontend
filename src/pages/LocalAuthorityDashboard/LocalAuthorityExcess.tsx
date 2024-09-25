@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import Card from '@/components/Card/Card';
 import { useStore } from '@/stores/useStore';
 import { useQuery } from '@tanstack/react-query';
-import { getCharitiesByLa, getSchoolsByLa } from '@/graphql/queries';
+import { getCharitiesByLa, getRegisteredSchoolsByLa } from '@/graphql/queries';
 import { GraphQLQuery } from 'aws-amplify/api';
-import { Charity, GetCharitiesByLaQuery, GetSchoolsByLaQuery } from '@/types/api';
+import { GetCharitiesByLaQuery, GetRegisteredSchoolsByLaQuery } from '@/types/api';
 import { client } from '@/graphqlClient';
-import { InstitutionType } from '@/types/data';
+import { InstitutionType, SimpleSearchResult } from '@/types/data';
 import SimpleProductsTable from '@/components/SimpleProductsTable/SimpleProductsTable';
 import Spinner from '@/components/Spinner/Spinner';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
@@ -24,13 +24,13 @@ const LocalAuthorityExcess: FC = () => {
   const { name } = user ?? {};
 
   const { data: schoolData, isError: schoolDataError } = useQuery({
-    queryKey: [`getSchoolsByLa-${name}`],
+    queryKey: [`getRegisteredSchoolsByLa-${name}`],
     enabled: true,
     queryFn: async () => {
-      const { data } = await client.graphql<GraphQLQuery<GetSchoolsByLaQuery>>({
-        query: getSchoolsByLa,
+      const { data } = await client.graphql<GraphQLQuery<GetRegisteredSchoolsByLaQuery>>({
+        query: getRegisteredSchoolsByLa,
         variables: {
-          name,
+          localAuthority: name,
         },
       });
       return data;
@@ -55,13 +55,19 @@ const LocalAuthorityExcess: FC = () => {
     return <ErrorBanner />;
   }
 
-  const schoolMappedData = (schoolData?.getSchoolsByLa ?? []).map((school) => {
-    return mapSchoolToSimpleSearchResult(school);
+  const schoolMappedData = (schoolData?.getRegisteredSchoolsByLa ?? []).map((school) => {
+    return mapSchoolToSimpleSearchResult(school, 'excess');
   });
 
-  const charityMappedData = (charityData?.getCharitiesByLa ?? []).map((charity) => {
-    return mapCharityToSimpleSearchResult(charity as Charity);
-  });
+  const charityMappedData = (charityData?.getCharitiesByLa ?? []).reduce(
+    (acc: SimpleSearchResult[], charity) => {
+      if (charity) {
+        acc = [...acc, mapCharityToSimpleSearchResult(charity, 'excess')];
+      }
+      return acc;
+    },
+    []
+  );
 
   return (
     <div className={styles.container}>
@@ -75,7 +81,7 @@ const LocalAuthorityExcess: FC = () => {
           {schoolData ? (
             <SimpleProductsTable
               tableData={schoolMappedData}
-              productsDataIndex={['excess', 'productTypes']}
+              productsDataIndex={'excess'}
               type={InstitutionType.SCHOOL}
               iconColour="#51B3A8"
               productsColumnHeader="Excess stock product types"
@@ -91,7 +97,7 @@ const LocalAuthorityExcess: FC = () => {
           {charityData ? (
             <SimpleProductsTable
               tableData={charityMappedData}
-              productsDataIndex={['excess', 'productTypes']}
+              productsDataIndex={'excess'}
               type={InstitutionType.CHARITY}
               iconColour="#51B3A8"
               productsColumnHeader="Excess stock product types"
