@@ -26,8 +26,11 @@
   align-items: center;
   color: g.$primary-white;
   padding: 40px 82px;
-  max-width: 1200px;
   max-height: 600px;
+
+  @include g.md-breakpoint {
+    padding: 20px 40px;
+  }
 
   h2 {
     text-align: center;
@@ -36,5 +39,20 @@
   .logo {
     width: 300px;
     margin: 60px;
+
+    @include g.md-breakpoint {
+      width: 200px;
+      margin: 45px;
+    }
+
+    @include g.sm-breakpoint {
+      width: 100px;
+      margin: 20px;
+    }
+  }
+
+  button {
+    white-space: normal;
+    word-wrap: break-word;
   }
 }
