@@ -63,7 +63,8 @@ const RegisteredUsersSection: FC<RegisteredUsersSectionProps> = ({
           <AdminManageLa name={name} />
         )}
         <FormButton
-          theme={'formButtonGreen'}
+          disabled={userData.length > 2}
+          theme={userData.length < 3 ? 'formButtonGreen' : 'formButtonGreenDisabled'}
           text="Add user &nbsp;+"
           fullWidth={true}
           onClick={handleNavigation}
