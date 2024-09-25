@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import styles from './AddLocalAuthorityUser.module.scss';
+import styles from '../AddUser.module.scss';
 import { InstitutionType, UserDetails } from '@/types/data';
 import BackButton from '@/components/BackButton/BackButton';
 import AddUserForm from '@/components/AddUserForm/AddUserForm';
@@ -57,15 +57,19 @@ const AddLocalAuthorityUser: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
-      <AddUserForm
-        name={localAuthority}
-        formState={formState}
-        setFormState={setFormState}
-        refetch={refetch}
-        isError={isError}
-        type="localAuthority"
-      />
+      <div className={styles.backButton}>
+        <BackButton theme="blue" />
+      </div>
+      <div className={styles.form}>
+        <AddUserForm
+          name={localAuthority}
+          formState={formState}
+          setFormState={setFormState}
+          refetch={refetch}
+          isError={isError}
+          type="localAuthority"
+        />
+      </div>
     </div>
   );
 };

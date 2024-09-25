@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import styles from './AddSchoolUser.module.scss';
+import styles from '../AddUser.module.scss';
 import { InstitutionType, UserDetails } from '@/types/data';
 import BackButton from '@/components/BackButton/BackButton';
 import AddUserForm from '@/components/AddUserForm/AddUserForm';
@@ -67,15 +67,19 @@ const AddSchoolUser: FC = () => {
 
   return (
     <div className={styles.container}>
-      <BackButton theme="blue" />
-      <AddUserForm
-        name={school}
-        formState={formState}
-        setFormState={setFormState}
-        refetch={refetch}
-        isError={isError}
-        type="school"
-      />
+      <div className={styles.form}>
+        <div className={styles.backButton}>
+          <BackButton theme="blue" />
+        </div>
+        <AddUserForm
+          name={school}
+          formState={formState}
+          setFormState={setFormState}
+          refetch={refetch}
+          isError={isError}
+          type="school"
+        />
+      </div>
     </div>
   );
 };
