@@ -66,7 +66,9 @@ const SignIn: FC = () => {
           }}
           ariaLabel="password"
           isSmall={isSmallMobile}
-          errorMessage={error?.message}
+          errorMessage={
+            !error?.message?.includes('UserUnAuthenticatedException') ? error?.message : undefined
+          }
         />
         <Link to={Paths.RESET_PASSWORD} className={styles.altLink}>
           I have forgotten my password
