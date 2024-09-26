@@ -39,6 +39,7 @@ const LocalAuthorityDashboard: FC = () => {
     data,
     isLoading,
     isError: isErrorQuery,
+    refetch: laStatsRefetch,
   } = useQuery({
     queryKey: [`getLaStats-${name}-${nameId}-${email}}`],
     enabled: user !== undefined,
@@ -113,7 +114,10 @@ const LocalAuthorityDashboard: FC = () => {
             ariaLabel="accept privacy policy"
             disabled={!accepted}
             onClick={() => {
-              void refetch().then(() => setHidePrivacyPolicy(true));
+              void refetch().then(() => {
+                void laStatsRefetch();
+                setHidePrivacyPolicy(true);
+              });
             }}
           />
         </Card>
