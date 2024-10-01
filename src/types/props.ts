@@ -350,6 +350,7 @@ export interface InstitutionBannerProps {
   name?: string;
   postcode?: string;
   isPublic?: boolean;
+  localAuthority?: string;
 }
 
 export interface InformationTileProps {
@@ -841,6 +842,8 @@ export interface AdminManageInstitutionDangerZoneProps {
 
 export interface ManageInstitutionSectionProps {
   type?: AccountType | '';
+  allUsers: UserDetails[];
+  localAuthority?: string;
 }
 
 export interface RegisteredUsersSectionProps {
@@ -864,6 +867,7 @@ export interface InstitutionAdminViewProps {
   postcode: string;
   name: string;
   type: InstitutionType;
+  localAuthority?: string;
 }
 
 export interface ProductsListPageProps {

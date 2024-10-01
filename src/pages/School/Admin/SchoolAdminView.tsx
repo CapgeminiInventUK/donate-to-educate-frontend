@@ -38,6 +38,7 @@ const SchoolAdminView: FC = () => {
     <InstitutionAdminView
       name={name ?? ''}
       postcode={data?.getSchoolProfile?.postcode ?? ''}
+      localAuthority={data?.getSchoolProfile?.localAuthority}
       type={InstitutionType.SCHOOL}
     />
   );

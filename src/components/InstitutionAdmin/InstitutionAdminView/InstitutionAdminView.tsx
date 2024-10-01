@@ -11,7 +11,12 @@ import Crown from '@/assets/icons/Crown';
 import { InstitutionAdminViewProps } from '@/types/props';
 import { InstitutionType } from '@/types/data';
 
-const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, type }) => {
+const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({
+  postcode,
+  name,
+  type,
+  localAuthority,
+}) => {
   const navigate = useNavigate();
   const path =
     type === InstitutionType.SCHOOL
@@ -20,7 +25,13 @@ const InstitutionAdminView: FC<InstitutionAdminViewProps> = ({ postcode, name, t
 
   return (
     <div className={styles.container}>
-      <InstitutionBanner type={type} name={name} banner={{}} postcode={postcode} />
+      <InstitutionBanner
+        type={type}
+        name={name}
+        banner={{}}
+        postcode={postcode}
+        localAuthority={localAuthority}
+      />
       <Card className={styles.subContainer}>
         <Tile
           title={`Your ${type} profile is active`}
