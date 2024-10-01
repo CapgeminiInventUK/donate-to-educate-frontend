@@ -3,7 +3,11 @@ import InfoTable from '@/components/InfoTable/InfoTable';
 import FormButton from '@/components/FormButton/FormButton';
 import { FC } from 'react';
 import { ManageInstitutionSectionProps } from '@/types/props';
-import { getNameFromUserObject, getUserDetailsObjectFromQuery } from '@/utils/account';
+import {
+  getNameFromUserObject,
+  getSentenceCaseAccountType,
+  getUserDetailsObjectFromQuery,
+} from '@/utils/account';
 import Paths from '@/config/paths';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,8 +49,11 @@ const ManageInstitutionSection: FC<ManageInstitutionSectionProps> = ({
   return (
     type && (
       <div className={styles.manageInstitutionSection}>
-        <h2>Manage your {type}</h2>
-        <p>Three accounts can manage this {type}, add a colleague and see how they can help.</p>
+        <h2>Manage your {getSentenceCaseAccountType(type)}</h2>
+        <p>
+          Three accounts can manage this {getSentenceCaseAccountType(type)}, add a colleague and see
+          how they can help.
+        </p>
         <InfoTable originalTableValues={accountDetails} isAccounts={true} />
         <FormButton
           disabled={allUsers.length > 2}
