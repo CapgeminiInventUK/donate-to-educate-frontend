@@ -38,6 +38,7 @@ const CharityView: FC = () => {
     <InstitutionAdminView
       name={name ?? ''}
       postcode={data?.getCharityProfile?.postcode ?? ''}
+      localAuthority={data?.getCharityProfile?.localAuthority}
       type={InstitutionType.CHARITY}
     />
   );

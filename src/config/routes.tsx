@@ -119,12 +119,12 @@ const routes: Route[] = [
   {
     path: Paths.ADD_SCHOOL_USER,
     element: <AddSchoolUser />,
-    authType: ['admin', 'localAuthority'],
+    authType: ['admin', 'localAuthority', 'school'],
   },
   {
     path: Paths.ADD_CHARITY_USER,
     element: <AddCharityUser />,
-    authType: ['admin', 'localAuthority'],
+    authType: ['admin', 'localAuthority', 'charity'],
   },
   {
     path: Paths.ADD_LOCAL_AUTHORITY_USER,

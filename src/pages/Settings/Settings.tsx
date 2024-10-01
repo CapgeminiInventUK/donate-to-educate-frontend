@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Settings.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { useStore } from '@/stores/useStore';
@@ -23,7 +23,7 @@ import {
   removeUser,
 } from '@/utils/account';
 import useLocationStateOrRedirect from '@/hooks/useLocationStateOrRedirect';
-// import ManageInstitutionSection from './ManageInstitutionSection';
+import ManageInstitutionSection from './ManageInstitutionSection';
 import ManageDetailsSection from './ManageDetailsSection';
 import DangerZone from './DangerZone';
 import PostcodeEdit from './PostcodeEdit';
@@ -36,7 +36,7 @@ const Settings: FC = () => {
   const loginState = useStore((state) => state);
   const navigate = useNavigate();
   const { email, type, name, id } = useStore((state) => state.user) ?? {};
-  const { state } = useLocationStateOrRedirect<{ postcode: string }>();
+  const { state } = useLocationStateOrRedirect<{ postcode: string; localAuthority?: string }>();
   const [adminUserResultType, setAdminUserResultType] = useState<AdminUserResultType>();
 
   const query =
@@ -66,6 +66,7 @@ const Settings: FC = () => {
     isLoading: usersIsLoading,
     data: usersData,
     isError: usersIsError,
+    refetch,
   } = useQuery({
     queryKey: [`get-${type}-users-${id}`],
     queryFn: async () => {
@@ -80,6 +81,10 @@ const Settings: FC = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    void refetch();
+  }, []);
 
   if (isLoading || usersIsLoading) {
     return <Spinner />;
@@ -135,8 +140,11 @@ const Settings: FC = () => {
               />
             )}
             {type && <ManageDetailsSection userData={userData} type={type} />}
-            {/* // TODO Add the below component when enabling multi accounts */}
-            {/* <ManageInstitutionSection type={type} /> */}
+            <ManageInstitutionSection
+              type={type}
+              allUsers={allUsers}
+              localAuthority={state?.localAuthority}
+            />
             {type && (
               <DangerZone
                 userData={userData}
