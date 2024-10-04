@@ -12,7 +12,7 @@ const MvpBanner: FC = () => {
         <a href="https://forms.office.com/e/qLfZjhJ57K" target="_blank" rel="noreferrer">
           feedback
         </a>{' '}
-        will help us to improve it.
+        will help us to improve.
       </div>
       <div className={styles.buttonContainer}>
         <CloseButton onClick={() => setHideBanner(true)} />
