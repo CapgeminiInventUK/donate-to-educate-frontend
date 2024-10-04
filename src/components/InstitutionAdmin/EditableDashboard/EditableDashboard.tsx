@@ -1,6 +1,5 @@
 import Card from '@/components/Card/Card';
 import EditableInformationTile from '@/components/EditableInformationTile/EditableInformationTile';
-import InformationTile from '@/components/InformationTile/InformationTile';
 import { InstitutionBanner } from '@/components/InstitutionBanner/InstitutionBanner';
 import { EditableDashboardProps } from '@/types/props';
 import { FC, useState } from 'react';
@@ -20,6 +19,7 @@ import ActionTiles from './ActionTiles';
 import { checkIfInTestEnvForAuthMode } from '@/utils/globals';
 import { InstitutionType } from '@/types/data';
 import { useStore } from '@/stores/useStore';
+import EditProfileBanner from './EditProfileBanner';
 
 const EditableDashboard: FC<EditableDashboardProps> = ({
   banner,
@@ -33,7 +33,6 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
   setPreview,
 }) => {
   const navigate = useNavigate();
-  const [showBuildProfileBanner, setShowBuildProfileBanner] = useState(true);
   const [previousAbout, setPreviousAbout] = useState<string>();
   const [isEditingAboutUs, setIsEditingAboutUs] = useState(false);
 
@@ -94,29 +93,16 @@ const EditableDashboard: FC<EditableDashboardProps> = ({
 
   return (
     <>
+      <EditProfileBanner type={type} />
       <InstitutionBanner
         isAdminView={true}
         type={type}
         name={name}
         banner={banner}
         setBanner={setBanner}
+        hasBorder={false}
       />
       <Card className={styles.institutionCard}>
-        {showBuildProfileBanner && (
-          <InformationTile
-            heading={
-              type === InstitutionType.SCHOOL ? "Build your school's profile" : 'Build your profile'
-            }
-            subtext={
-              type === InstitutionType.SCHOOL
-                ? 'Add, edit and save details about how your school can help children and the community.'
-                : 'Use your profile to tell visitors how your organisation can help children, schools, and the community get the needed products.'
-            }
-            dismiss={() =>
-              setShowBuildProfileBanner((showBuildProfileBanner) => !showBuildProfileBanner)
-            }
-          />
-        )}
         <EditableInformationTile
           editContent={toggleIsEditingAboutUs}
           onCancel={cancelAboutUs}
