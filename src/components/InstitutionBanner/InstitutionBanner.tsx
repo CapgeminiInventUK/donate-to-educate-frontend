@@ -30,6 +30,7 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   postcode,
   isPublic,
   localAuthority,
+  hasBorder = true,
 }) => {
   const [isEditMode, toggleEditMode] = useState(false);
   const [previousBanner, setPreviousBanner] = useState(banner);
@@ -72,7 +73,9 @@ export const InstitutionBanner: FC<InstitutionBannerProps> = ({
   };
 
   return (
-    <div className={`${styles.bannerContainer} ${styles[type]}`}>
+    <div
+      className={`${styles.bannerContainer} ${styles[type]} ${isAdminView ? styles.adminView : ''} ${hasBorder ? styles.hasBorder : ''}`}
+    >
       <h1>{name}</h1>
       {hasContactInfo(banner, isAdminView) ? (
         <div className={styles.textContainer}>

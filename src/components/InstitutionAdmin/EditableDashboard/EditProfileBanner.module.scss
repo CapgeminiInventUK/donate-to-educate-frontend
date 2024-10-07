@@ -1,0 +1,31 @@
+@use '@assets/global.scss' as g;
+
+.bannerContainer {
+  display: block;
+  border-top: g.$secondary-blue 18px solid;
+  border-radius: 10px 10px 0 0;
+  color: g.$primary-white;
+  padding: 40px 80px 40px;
+
+  @include g.md-breakpoint {
+    padding: 20px;
+  }
+
+  &.charity {
+    background: g.$primary-dark-blue;
+  }
+
+  &.school {
+    background: g.$dark-blue;
+  }
+
+  h1 {
+    color: g.$primary-white;
+    margin: 0;
+  }
+
+  .subtitle {
+    display: block;
+    margin-top: 5px;
+  }
+}

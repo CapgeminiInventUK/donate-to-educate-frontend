@@ -31,13 +31,13 @@ describe('School admin dashboard', () => {
       },
     });
     const Component = createWrapper(<SchoolAdminDashboard />);
-    const { findByRole } = render(<Component />);
+    const { findByRole, findByText } = render(<Component />);
 
     const spinner = await findByRole('img');
     await waitForElementToBeRemoved(spinner);
 
-    const header = await findByRole('heading', { level: 1 });
-    expect(header).toHaveTextContent('Test School');
+    const header = await findByText('Test School');
+    expect(header).toBeInTheDocument();
   });
 
   it('should render error page when API error', async () => {
@@ -63,9 +63,9 @@ describe('School admin dashboard', () => {
 
   it('should not render details if no user present', async () => {
     const Component = createWrapper(<SchoolAdminDashboard />);
-    const { findByRole } = render(<Component />);
+    const { queryByText } = render(<Component />);
 
-    const header = await findByRole('heading', { level: 1 });
-    expect(header.textContent).not.toBeTruthy();
+    const header = await queryByText('Test School');
+    expect(header).not.toBeInTheDocument();
   });
 });

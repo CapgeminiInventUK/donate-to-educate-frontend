@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 describe('Institution admin dashboard - school', () => {
-  it('should render profile with details', () => {
+  it('should render profile with details', async () => {
     const Component = createWrapper(
       <InstitutionAdminDashboard
         type={InstitutionType.SCHOOL}
@@ -25,9 +25,9 @@ describe('Institution admin dashboard - school', () => {
         name={'Test School'}
       />
     );
-    const { getByRole } = render(<Component />);
-    const h1 = getByRole('heading', { level: 1 });
-    expect(h1).toHaveTextContent('Test School');
+    const { findByText } = render(<Component />);
+    const header = await findByText('Test School');
+    expect(header).toBeInTheDocument();
   });
 
   it('should handle back button click when not in preview mode', async () => {

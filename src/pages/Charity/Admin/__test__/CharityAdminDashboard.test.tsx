@@ -26,18 +26,18 @@ describe('Charity admin dashboard', () => {
         username: 'test7@test.com',
         email: 'test7@test.com',
         type: InstitutionType.CHARITY,
-        name: 'Test',
+        name: 'TestCharity',
         id: '1',
       },
     });
     const Component = createWrapper(<CharityAdminDashboard />);
-    const { findByRole } = render(<Component />);
+    const { findByRole, findByText } = render(<Component />);
 
     const spinner = await findByRole('img');
     await waitForElementToBeRemoved(spinner);
 
-    const header = await findByRole('heading', { level: 1 });
-    expect(header).toHaveTextContent('Test');
+    const header = await findByText('TestCharity');
+    expect(header).toBeInTheDocument();
   });
 
   it('should render error page when API error', async () => {
@@ -63,9 +63,9 @@ describe('Charity admin dashboard', () => {
 
   it('should not render details if no user present', async () => {
     const Component = createWrapper(<CharityAdminDashboard />);
-    const { findByRole } = render(<Component />);
+    const { queryByText } = render(<Component />);
 
-    const header = await findByRole('heading', { level: 1 });
-    expect(header.textContent).not.toBeTruthy();
+    const header = await queryByText('TestCharity');
+    expect(header).not.toBeInTheDocument();
   });
 });

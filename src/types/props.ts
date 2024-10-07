@@ -351,6 +351,11 @@ export interface InstitutionBannerProps {
   postcode?: string;
   isPublic?: boolean;
   localAuthority?: string;
+  hasBorder?: boolean;
+}
+
+export interface EditProfileBannerProps {
+  type: InstitutionType;
 }
 
 export interface InformationTileProps {
