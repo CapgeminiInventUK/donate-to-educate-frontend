@@ -14,7 +14,6 @@ import Crown from '@/assets/icons/Crown';
 import School from '@/assets/icons/School';
 import Donate from '@/assets/icons/Donate';
 import Requests from '@/assets/icons/Requests';
-import InventBanner from '@/components/InventBanner/InventBanner';
 import { useZeroIfUndefined } from '@/utils/globals';
 
 const AdminDashboard: FC = () => {
@@ -94,7 +93,6 @@ const AdminDashboard: FC = () => {
               className="charities"
             />
           </div>
-          <InventBanner />
         </div>
       </div>
     </div>

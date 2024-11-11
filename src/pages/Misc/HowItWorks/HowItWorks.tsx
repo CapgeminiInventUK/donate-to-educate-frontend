@@ -3,7 +3,6 @@ import styles from './HowItWorks.module.scss';
 import BackButton from '@/components/BackButton/BackButton';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
-import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 import Card from '@/components/Card/Card';
 
 const HowItWorks: FC = () => {
@@ -62,15 +61,6 @@ const HowItWorks: FC = () => {
           </p>
         </Card>
 
-        <div className={styles.inventBanner}>
-          <p>Powered by</p>
-          <LogoCapgeminiInvent
-            className={styles.inventLogo}
-            onClick={(): Window | null =>
-              window.open(Paths.INVENT, '_blank', 'rel=noopener noreferrer')
-            }
-          />
-        </div>
         <Link className={styles.home} to={Paths.HOME}>
           Return to homepage
         </Link>

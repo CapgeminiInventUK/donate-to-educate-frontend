@@ -3,7 +3,6 @@ import styles from './AboutUs.module.scss';
 import { Link } from 'react-router-dom';
 import Paths from '@/config/paths';
 import LogoCommunityInspired from '@/assets/logo/LogoCommunityInspired';
-import LogoCapgeminiInvent from '@/assets/logo/LogoCapgeminiInvent';
 import Image from '@/components/Image/Image';
 import magazines from '@/assets/about/magazines.webp';
 import facebook from '@/assets/about/facebook.webp';
@@ -81,15 +80,6 @@ const AboutUs: FC = () => {
           </div>
           <Image image={green} alt="Green up your school" className={styles.newsletter} />
         </Card>
-        <div className={styles.inventBanner}>
-          <p>Powered by</p>
-          <LogoCapgeminiInvent
-            className={styles.inventLogo}
-            onClick={(): Window | null =>
-              window.open(Paths.INVENT, '_blank', 'rel=noopener noreferrer')
-            }
-          />
-        </div>
         <Link className={styles.home} to={Paths.HOME}>
           Return to homepage
         </Link>
